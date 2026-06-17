@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://thai.inaflash.cards/sitemap.xml
