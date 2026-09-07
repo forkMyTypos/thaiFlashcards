@@ -1096,7 +1096,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A person emphatically points at their own chest with one hand while forcefully pushing away a huge unwanted object with the other hand, shaking their head with an unmistakable expression of refusal. Their glowing heart is clearly visible on their chest, reinforcing “MY,” while their dramatic stopping gesture strongly communicates “NOT.” The rejected object is being physically pushed backward as if the person absolutely refuses to accept it. Exaggerated body language, clear visual storytelling, humorous and memorable scene, strong central silhouette, painterly digital illustration, rich textures, dramatic cinematic lighting, vibrant warm tones, clean uncluttered composition. No text, no letters, no numbers, no Thai script, no symbols, no UI, no borders.\n",
   "mnemonic_concept": "A person dramatically shakes their head and pushes away a giant forbidden object.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000039.jpg"
   ],
@@ -1398,7 +1400,9 @@
   "mnemonic": "TH_000167 || น้ำ\nPhonics: náam\nMeaning: water, liquid, fluid, juice, river\nSound hook: NAH (expression) — someone saying nah and waving it away\nMnemonic: A person casually waves away a glass of water while saying, “Nah.”\nPrompt: A playful memorable scene of a person casually waving away a large glass of clear water with one hand, relaxed dismissive expression, exaggerated gesture suggesting 'nah', bright colorful 3D illustration, simple clean composition, strong central subject, no text, no letters, no numbers",
   "mnemonic_concept": "A person proudly holds one specific object directly toward the viewer to indicate this one.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000051.jpg"
   ],
@@ -3047,11 +3051,13 @@
   "level": null,
   "sound_hook": "caw",
   "hook_visual": "a crow cawing to ask for something",
-  "mnemonic": "A black crow perched on a wooden fence, cawing loudly with its beak open, pointing at a shiny coin, asking for it, photorealistic, bright lighting",
+  "mnemonic": "A black crow perched on a wooden fence, leaning forward with its beak wide open as it loudly caws toward a single shiny gold coin placed just in front of it. The crow is clearly trying to get the coin, with an expressive, pleading posture and one wing pointing toward it. The coin is highly visible and visually important. Photorealistic, bright natural lighting, clean simple background, strong central composition, memorable visual, no text, no letters, no numbers.\n",
   "mnemonic_concept": "A black crow cawing loudly to ask for a shiny coin.",
   "sentences": [],
   "lessons": [],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000117.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000117.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000117_slow.mp3"
@@ -4300,7 +4306,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio.A memorable cinematic 3D illustration of a single stereotypical Vietnam War-era American soldier standing prominently beside the iconic Bridge on the River Kwai, surrounded by an enormous, unmistakable flowing river of water. The soldier and bridge are the secondary visual anchors, while the huge river dominates the scene and physically connects the idea of “’NAM” with WATER. Exaggerated scale, strong central composition, instantly recognizable visual story, playful mnemonic style, vivid lighting, clean uncluttered background, highly memorable silhouette, no text, no letters, no numbers, no captions, no labels, no borders, no card UI. \n\n",
   "mnemonic_concept": "A person casually waves away a glass of water while saying, “Nah.”",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000167.jpg"
   ],
@@ -6427,7 +6435,9 @@
   "mnemonic": "A hilarious, highly memorable 3D illustration of an enormous human hand dramatically presenting an absurdly gigantic, spectacular feast directly toward a hungry person. The food is so delicious and overwhelming that the person throws their hands up in a huge amazed “AH!” reaction, eyes wide with delight and surprise. The giant hand dominates the composition and is unmistakably connected to the feast, creating the visual mnemonic of “AH… HAND” for FOOD. Exaggerated scale, expressive reaction, strong central silhouette, playful cinematic lighting, colorful polished 3D illustration, simple uncluttered background, instantly readable visual story, no dialogue, no text, no letters, no numbers, no captions, no labels, no borders, no card UI.\n",
   "mnemonic_concept": "A person has an enormous “aha!” moment while staring at a spectacular meal.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000252.jpg"
   ],
@@ -7529,7 +7539,9 @@
   "mnemonic": "A humorous, highly memorable 3D illustration of a sleek modern Mac computer completely overwhelmed by an absurdly enormous quantity of objects pouring out of it — mountains of food, piles of everyday objects, stacks of items, and countless things cascading outward until they fill the scene. The sheer quantity is the dominant visual idea: ridiculously much, an enormous amount, far more than could possibly fit. The Mac is clearly visible at the center and is physically producing the overwhelming abundance, making the meaning perform the pronunciation through the visual action. Exaggerated scale, strong central silhouette, playful cinematic lighting, polished colorful 3D illustration, simple clean composition, instantly readable visual story, no text, no letters, no numbers, no logos, no captions, no labels, no borders, no card UI.\n",
   "mnemonic_concept": "A tiny person stands beside an absurdly enormous mountain of objects and reacts to how much there is.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000296.jpg"
   ],
@@ -10556,7 +10568,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio, 1024×1024. Create a bold, exaggerated, instantly readable mnemonic illustration with ONE clear visual joke.\n\nA HUGE shaggy yak is the dominant hero subject, filling most of the square frame. The yak is desperately trying to reach an enormous, spectacular feast positioned just beyond its reach. Its entire body is physically lunging toward the food: neck stretched forward, front legs reaching, mouth open, tongue out, eyes comically wide with desperate longing. Make the yak's desire exaggerated and unmistakable — it should look absolutely obsessed with getting the food.\n\nThe feast should be enormous, colorful, delicious-looking and visually irresistible, acting as the clear target of the yak's desire. The physical struggle between the desperate yak and the unreachable food should instantly communicate “WANT.”\n\nStrong exaggerated character design, powerful silhouette, expressive face, comedic action, dynamic pose, dramatic perspective, polished high-end 3D collectible-card illustration, vivid lighting, rich detail, clean uncluttered background. The image should feel like premium game card artwork, not a wildlife photograph or generic animal illustration.\n\nONE yak. ONE giant feast. ONE clear action: the yak desperately wants the food.\n\nSubject fully contained within the square frame. Centered composition. Strong thumbnail readability. No text, no letters, no numbers, no captions, no labels, no borders, no card UI, no logos, no watermark.\n",
   "mnemonic_concept": "A shaggy yak stares intensely at a giant plate of food because it desperately wants to eat it.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000417.jpg"
   ],
@@ -10883,7 +10897,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio, 1024×1024.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration for the concept **“YOU”**.\n\nONE clear visual joke: a charismatic person is dramatically and unmistakably addressing the viewer directly, pointing straight toward the viewer with an exaggerated expression of recognition, as if saying **“YOU!”** The pointing gesture is enormous and impossible to misunderstand — the finger and gaze are aimed directly out of the image toward the viewer.\n\nMake the viewer feel like the central target of the scene. The character should lean forward dramatically, lock eyes with the viewer, and gesture emphatically toward them, creating the unmistakable visual meaning of **YOU**.\n\nThe composition should be extremely simple and readable at thumbnail size: ONE person, ONE direct pointing gesture, ONE clear target — the viewer.\n\nPremium polished 3D game-card illustration, exaggerated proportions, expressive face, cinematic lighting, strong silhouette, dynamic pose, clean uncluttered background, highly memorable visual storytelling.\n\nDo NOT depict a king, royalty, a crown, a specific famous person, or a named character. Do NOT rely on written language to communicate the concept.\n\nNo text, no letters, no numbers, no captions, no labels, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
   "mnemonic_concept": "A person named Kuhn wears a giant crown and everyone politely addresses them.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000430.jpg"
   ],
@@ -11935,7 +11951,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration built around ONE clear visual joke:\n\nA wildly delighted person is enthusiastically CHOPPING an enormous piece of their absolute favorite food with a ridiculously oversized kitchen knife. The person is visibly ecstatic about the food — huge joyful grin, excited eyes, exaggerated enthusiasm — while making a dramatic chopping motion.\n\nThe meaning performs the pronunciation: the person LOVES the food so much that they are happily CHOPPING it with absurd enthusiasm.\n\nMake the chopping action huge, dynamic, and unmistakable. The favorite food should be oversized and visually prominent, while the person's exaggerated happiness makes the connection between LIKING and CHOPPING immediately memorable.\n\nONE person. ONE giant piece of favorite food. ONE enormous knife. ONE clear chopping action.\n\nPremium polished 3D game-card illustration, exaggerated proportions, cinematic lighting, strong silhouette, dynamic composition, clean uncluttered background, highly readable at thumbnail size.\n\nNo text, no letters, no numbers, no captions, no labels, no speech bubbles, no borders, no card UI, no logos, no watermark. \n\n",
   "mnemonic_concept": "A happy person enthusiastically chops their favorite food with an enormous kitchen knife.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000472.jpg"
   ],
@@ -12362,7 +12380,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration built around ONE clear visual joke:\n\nA cheerful Thai woman is driving an enormous, absurdly polite car through a recognizable modern Thai street scene. The car is performing exaggerated acts of courtesy: stopping dramatically to let pedestrians cross, yielding respectfully to everyone around it, and making an exaggerated courteous bow with its front end. The woman is smiling warmly and giving an unmistakably polite gesture from the driver's seat.\n\nThe meaning performs the mnemonic: a Thai woman giving a polite response → a Thai woman driving an absurdly polite CAR.\n\nMake the CAR enormous and unmistakably the central visual anchor. The woman's exaggerated politeness and the car's ridiculous courteous behavior should make the connection immediately memorable.\n\nAdd subtle authentic Thai flavour through the environment: tropical vegetation, Thai-style urban buildings, street details and visual atmosphere. Keep these details secondary and uncluttered.\n\nONE Thai woman. ONE giant car. ONE clear idea: an absurdly polite car.\n\nPremium polished 3D game-card illustration, exaggerated proportions, expressive character, cinematic lighting, strong silhouette, dynamic composition, clean uncluttered background, highly memorable visual storytelling, excellent thumbnail readability.\n\nNo text, no letters, no numbers, no captions, no labels, no speech bubbles, no borders, no card UI, no logos, no watermark. \n\n",
   "mnemonic_concept": "A cheerful woman presses a giant glowing politeness button whenever she answers politely.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000489.jpg"
   ],
@@ -12814,7 +12834,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a hilarious, instantly readable mnemonic scene centered on ONE absurdly pompous British gentleman — the POM.\n\nThe pompous British gentleman dominates the image. He has an outrageously self-important expression, nose held high, chest puffed out, ridiculous aristocratic confidence, immaculate old-fashioned gentleman clothing, elegant waistcoat and fancy hat. His clothing prominently features the UNITED KINGDOM / UNION JACK FLAG pattern, making him unmistakably British.\n\nNearby are TWO clearly recognizable supporting characters:\n\n1. A cheeky Australian outlaw wearing clothing prominently covered in the AUSTRALIAN FLAG, with goofy harmless criminal/outlaw styling, looking amused and pointing at the pompous British POM.\n\n2. An eccentric New Zealand sheep farmer wearing clothing prominently covered in the NEW ZEALAND FLAG, standing beside a fluffy sheep and looking unusually enthusiastic about his beloved sheep, while also pointing toward the pompous British POM.\n\nThe three characters should form one clear visual joke: an Australian and a Kiwi have spotted an absurdly pompous British POM.\n\nMake the POM the largest and most visually dominant character. The Aussie and Kiwi are supporting characters whose purpose is simply to establish Australian, New Zealand, and British identity.\n\nUse the flags boldly and unmistakably in the clothing so the three national identities are immediately recognizable, but keep the costumes visually fun rather than turning the image into a wall of flags.\n\nNormal human anatomy, two arms and two hands per person. No surreal mutations.\n\nSimple, polished background with soft depth of field. Strong subject-background separation.\n\nPremium polished 3D collectible game-card illustration, cinematic lighting, expressive faces, exaggerated comedic character design, strong silhouette, excellent thumbnail readability.\n\nNo text, no letters, no numbers, no speech bubbles, no logos, no watermark, no borders, no card UI.\n",
   "mnemonic_concept": "Two cheeky Aussie or Kiwi guys point at an absurdly pompous British bloke—their unmistakable POM.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000507.jpg"
   ],
@@ -18916,7 +18938,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration built around ONE clear visual joke:\n\nA polite Thai man is presenting an enormous bright-red crab to another person with absurdly exaggerated courtesy. He holds the giant crab carefully with both hands, bows deeply and respectfully, and wears an extremely formal, deferential expression, as though presenting something precious to an honored guest.\n\nThe meaning performs the mnemonic: **a male speaker giving a polite response → a Thai man performing exaggerated politeness while presenting a giant CRAB.**\n\nMake the giant red crab the dominant visual anchor. The man's exaggerated respectful posture and the oversized crab should create an immediate and memorable connection between **polite male speech** and **CRAB**.\n\nAdd subtle authentic Thai flavour through the setting and character design — a recognizable Thai environment, tropical details, and natural Thai visual cues — while keeping the mnemonic action absolutely dominant.\n\nONE Thai man. ONE enormous red crab. ONE clear action: an absurdly polite presentation.\n\nPremium polished 3D game-card illustration, exaggerated proportions, expressive character, cinematic lighting, strong silhouette, dynamic composition, clean uncluttered background, highly memorable visual storytelling, excellent thumbnail readability.\n\nNo text, no letters, no numbers, no captions, no labels, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
   "mnemonic_concept": "A polite man holds up a cheerful red crab while respectfully acknowledging someone.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000751.jpg"
   ],
@@ -21168,7 +21192,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, playful, instantly readable mnemonic illustration built around ONE clear visual joke: a woman named Chan dramatically pointing at herself to mean **ME / I**.\n\nThe woman is the dominant subject, confidently pointing at herself with both hands, looking directly at the viewer with an unmistakable expression of “me!” Make the self-pointing gesture exaggerated and impossible to misunderstand.\n\nThe visual mnemonic must clearly connect **CHAN → chǎn → I / ME**. The meaning must perform the pronunciation: **Chan is indicating herself because she means “I / me.”**\n\nAdd subtle authentic Thai flavour through the woman's appearance, clothing, or environment, but keep the self-pointing action overwhelmingly clear. Avoid unnecessary cultural stereotypes or background clutter.\n\nONE woman. ONE self-pointing gesture. ONE clear idea: **ME.**\n\nPremium polished 3D game-card illustration, expressive character, exaggerated gesture, cinematic lighting, strong silhouette, clean uncluttered background, vibrant appealing visual style, excellent thumbnail readability.\n\nNo text, letters, numbers, captions, labels, speech bubbles, borders, card UI, logos, or watermark.\n",
   "mnemonic_concept": "A woman named Shan points directly at herself and proudly says, “Me!”",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000841.jpg"
   ],
@@ -25160,15 +25186,15 @@
   "romanization": "jaan",
   "ipa": null,
   "part_of_speech": "noun, classifier",
-  "meanings": "plate, dish, classifier for plates",
+  "meanings": "plate, dish, classifier for plates, classifier for plates of food",
   "categories": null,
   "examples": "อาหารจานนี้เผ็ดมาก",
   "example_translation": "This dish is very spicy.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "John",
+  "hook_visual": "John holding a plate",
+  "mnemonic": "A man wearing a nametag that says 'John' holding up a massive, oversized white dinner plate, photorealistic, well lit",
+  "mnemonic_concept": "A man named John holding a giant dinner plate.",
   "sentences": [],
   "lessons": [],
   "images": [],
@@ -25190,13 +25216,17 @@
   "examples": "ฉันอยากกินอาหารไทย",
   "example_translation": "I want to eat Thai food.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "gin",
+  "hook_visual": "a glass of gin",
+  "mnemonic": "TH_001163 || หน่อย\nPhonics: nòi\nMeaning: please\nSound hook: none — taught by meaning\nMnemonic: A tiny little creature repeatedly asks for just a tiny amount from an enormous bowl.\nPrompt: A charming humorous scene of a tiny creature holding out a tiny spoon toward an enormous bowl of food, clearly asking for just a little bit, exaggerated size contrast, expressive pleading face, simple memorable composition, bright colorful 3D illustration, no text, no letters, no numbers",
+  "mnemonic_concept": "A person greedily eats a giant plate of food while holding a glass of gin.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001143.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001002.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001002_slow.mp3"
@@ -25215,13 +25245,17 @@
   "examples": "ร้านนี้ขายอาหารอร่อย",
   "example_translation": "This restaurant sells delicious food.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "a Roy",
+  "hook_visual": "a man named Roy tasting food",
+  "mnemonic": "Create a distinctive recurring character named Roy for a series of humorous language-learning mnemonic illustrations.\n\nRoy is a cheerful, charismatic, slightly chubby man in his late 30s or early 40s who absolutely LOVES food. He has a warm expressive face, friendly eyes, slightly messy dark hair, and an enthusiastic personality. He has the comfortable, well-fed appearance of someone who genuinely enjoys eating, without being exaggerated into a caricature.\n\nRoy wears colorful casual clothing with a fun, slightly quirky foodie personality — for example, a bright patterned short-sleeve shirt, comfortable trousers, and casual shoes. His appearance should be distinctive and recognizable enough that the same character can return in many different scenes.\n\nRoy's defining personality trait is his completely unrestrained enthusiasm for delicious food. Whenever he encounters something tasty, his facial expressions and body language become hilariously exaggerated: huge delighted eyes, enormous grin, dramatic gestures, and genuine amazement. He approaches food with childlike excitement and treats every great meal like the greatest culinary discovery of his life.\n\nDesign Roy as an original character. He must not resemble any specific famous person or existing fictional character.\n\nPremium polished 3D game-card character design, expressive face, appealing proportions, colorful clothing, strong silhouette, cinematic lighting, playful and memorable personality, suitable for recurring use across many different mnemonic illustrations.\n\nNo text, no letters, no numbers, no captions, no logos, no watermark.\n\n\nDigital collectible card art, 1:1 square composition.\n\nA charismatic man named Roy is the dominant subject, sitting at an incredible Thai feast. Roy has just taken one bite of an unbelievably delicious dish and is experiencing an enormous, exaggerated explosion of pure culinary delight. His eyes are wide with amazement, his face is glowing with happiness, his mouth is savoring the food dramatically, and his whole body reacts as if he has just discovered the greatest food in existence.\n\nThe food should look spectacularly delicious and irresistible: an enormous beautifully presented Thai dish with rich colors, steam rising from it, fresh ingredients, and an abundance of appetizing detail. Roy should be completely captivated by the food.\n\nMake the mnemonic visually clear: **A ROY tasting amazing food → “A-ROY!” → อร่อย (à-ròi) = DELICIOUS.**\n\nThe emotional reaction is essential — Roy should look overwhelmingly delighted by how delicious the food is, not merely like an ordinary person eating dinner.\n\nONE man named Roy. ONE spectacular dish. ONE exaggerated reaction of DELICIOUS enjoyment.\n\nPremium polished 3D game-card illustration, hilarious expressive reaction, cinematic lighting, vibrant colors, strong central composition, memorable character silhouette, clean background, instantly readable at thumbnail size. Authentic Thai food and subtle Thai atmosphere.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "A man named Roy tastes an incredible dish and reacts with overwhelming delight.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001079.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001003.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001003_slow.mp3"
@@ -25240,41 +25274,20 @@
   "examples": "ขอจานหนึ่งใบได้ไหม",
   "example_translation": "Can I have one plate?",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "my",
+  "hook_visual": "someone pointing at themselves saying my",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA lively Thai market stall. One shopper stands directly in front of a friendly market vendor and asks a simple question, leaning forward with an exaggerated curious expression.\n\nThe shopper points at one specific item at the stall, then points toward the vendor with raised eyebrows and an unmistakable questioning gesture, as if asking:\n\n“MY?”\n\nThe vendor looks back at the shopper, surprised but amused, clearly expected to answer the question.\n\nMake the interaction extremely readable: ONE shopper asking ONE vendor ONE clear question about ONE item.\n\nThe shopper's face and body language are the main mnemonic. Big raised eyebrows, tilted head, open questioning hand gesture, expectant expression. The vendor is secondary.\n\nUse a colorful authentic Thai fresh market atmosphere with fruit, vegetables and a simple market stall, but keep the background softly blurred and visually quiet. Do not let the environment compete with the two characters.\n\nThe visual joke should instantly communicate:\nMY? → asking a yes/no question → ไหม\n\nPremium polished 3D collectible game-card illustration, cinematic lighting, expressive characters, strong silhouette, clean composition, shallow depth of field, excellent thumbnail readability, playful exaggerated expressions.\n\nNo text, no letters, no numbers, no question-mark symbol, no speech bubbles, no logos, no watermark, no borders, no card UI.\n",
+  "mnemonic_concept": "A person points at themselves and asks, “Mine?” while looking expectantly at another person.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001178.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001004.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001004_slow.mp3"
-  }
- },
- {
-  "id": "TH_001005",
-  "seq": 1005,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001005.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001005_slow.mp3"
   }
  },
  {
@@ -25287,44 +25300,23 @@
   "part_of_speech": "noun",
   "meanings": "rice, meal",
   "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001006.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001006_slow.mp3"
-  }
- },
- {
-  "id": "TH_001007",
-  "seq": 1007,
-  "rank": null,
-  "word": "ข้าว",
-  "romanization": "kâao",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "rice, meal",
-  "categories": null,
   "examples": "ฉันขอเพิ่มข้าวได้ไหม",
   "example_translation": "Can I get more rice?",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "cow",
+  "hook_visual": "a cow in a rice field",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA huge friendly COW stands proudly in the middle of a lush green Thai rice field, completely surrounded by an absurd mountain of freshly cooked white rice. Giant bowls, piles, and steaming mounds of fluffy rice are everywhere around the cow, making RICE the second unmistakable visual element of the scene.\n\nThe cow looks hilariously pleased with itself, standing knee-deep among the rice as if it somehow owns the entire rice field. Steam rises dramatically from the freshly cooked rice, making it look delicious and unmistakable.\n\nThe visual mnemonic must be instantly clear: **COW → kâao → ข้าว = RICE.** The cow and enormous quantity of rice should form one memorable visual joke.\n\nONE giant friendly cow. ONE enormous rice-filled field. ONE clear visual connection.\n\nPremium polished 3D game-card illustration, playful exaggerated proportions, expressive character, cinematic lighting, vibrant colors, strong silhouette, clean composition, instantly readable at thumbnail size. Authentic Thai countryside atmosphere.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "A giant cow stands in the middle of a rice field surrounded by bowls of rice.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001069.jpg"
+  ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001007.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001007_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001006.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001006_slow.mp3"
   }
  },
  {
@@ -25340,13 +25332,17 @@
   "examples": "กาแฟแก้วนี้ร้อนมาก",
   "example_translation": "This cup of coffee is very hot.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "wrong",
+  "hook_visual": "someone sweating because they chose wrong",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration built around one absurd visual joke: **Ron is unbelievably HOT, literally standing inside a blazing inferno, yet he remains impossibly cool and composed.**\n\nA handsome, sophisticated secret-agent-style man named Ron stands confidently in an immaculate black tuxedo, suave and completely unbothered. His entire body is surrounded by a spectacular blazing inferno, with huge flames and intense heat waves exploding around him.\n\nYet Ron remains perfectly calm, ice-cold and effortlessly suave. He has a deadpan expression, relaxed posture, confident gaze, and casually holds a beautifully elegant martini glass containing visibly freezing-cold liquid, with thick frost covering the glass and ice crystals forming around it.\n\nThe visual joke should be immediately obvious: **RON IS HOT, but his martini is still ICE COLD.** Ron looks like he could be standing in the middle of hell and still calmly enjoy his perfectly chilled drink.\n\nThe visual mnemonic must clearly connect **RON → ร้อน → HOT**. Ron is literally ON FIRE because he is HOT, while his impossible coolness creates the comedic contrast.\n\nAdd subtle authentic Thai flavour through the environment, such as a sophisticated tropical Thai setting, but keep Ron, the inferno, and the absurdly frozen martini as the dominant visual.\n\nONE suave man. ONE blazing inferno. ONE ice-cold martini. ONE completely unbothered expression.\n\nPremium polished 3D game-card illustration, cinematic lighting, spectacular stylized flames, sparkling ice crystals, exaggerated contrast between fire and ice, strong silhouette, dynamic composition, sophisticated but playful aesthetic, clean uncluttered background, excellent thumbnail readability.\n\nNo text, letters, numbers, captions, labels, speech bubbles, borders, card UI, logos, or watermark.\n",
+  "mnemonic_concept": "A person realizes they chose the wrong seat and is now sweating beside a blazing hot stove.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001038.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001008.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001008_slow.mp3"
@@ -25365,13 +25361,17 @@
   "examples": "ไข่ใบนี้สดมาก",
   "example_translation": "This egg is very fresh.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "sought",
+  "hook_visual": "a detective looking for something sought",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA hilariously determined detective has finally SOUGHT out the freshest vegetables imaginable at a colorful Thai fresh market. He crouches dramatically beside an enormous basket of freshly picked vegetables, inspecting them intensely with a magnifying glass as if he has discovered the most important evidence of his career. The vegetables look absurdly fresh: crisp green leaves, sparkling droplets of water, vivid colors, perfect texture, just-picked appearance.\n\nThe visual joke is immediate: the detective has been desperately SEARCHING for the FRESHEST thing possible — he has SOUGHT out these unbelievably fresh vegetables.\n\nStrong central silhouette, exaggerated facial expression, playful detective energy, premium polished 3D game-card illustration, cinematic lighting, vibrant colors, clean uncluttered composition, subtle authentic Thai market atmosphere, highly readable at thumbnail size.\n\nONE detective, ONE basket of spectacularly fresh vegetables, ONE clear action: the detective has SOUGHT the freshest vegetables.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "A detective searches intensely for freshly picked vegetables that someone has hidden.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001102.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001009.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001009_slow.mp3"
@@ -25385,18 +25385,22 @@
   "romanization": "nòi",
   "ipa": null,
   "part_of_speech": "particle, adverb",
-  "meanings": "a little, please (particle to soften request)",
+  "meanings": "a little, please (particle to soften request), please",
   "categories": null,
   "examples": "ช่วยเอาน้ำให้ฉันหน่อย",
   "example_translation": "Please get me some water.",
   "level": "beginner",
   "sound_hook": null,
   "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "mnemonic": "TH_001177 || ไข่\nPhonics: kài\nMeaning: egg\nSound hook: GUY (word) — a guy holding an egg\nMnemonic: A cool-looking guy proudly holds up a giant egg.\nPrompt: A playful memorable scene of a cool-looking young man proudly holding an enormous white egg above his head, exaggerated heroic pose, clear focus on the guy and egg, bright colorful 3D illustration, strong silhouette, clean background, no text, no letters, no numbers",
+  "mnemonic_concept": "A tiny little creature repeatedly asks for just a tiny amount from an enormous bowl.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001163.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001010.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001010_slow.mp3"
@@ -25415,13 +25419,17 @@
   "examples": "กล้วยลูกนี้หวานมาก",
   "example_translation": "This banana is very sweet.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "one",
+  "hook_visual": "the number one covered in sugar",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA gigantic number ONE has just WON the ultimate prize: an absurd mountain of sweetness. The enormous numeral 1 is completely coated in thick dripping sugar, sticky golden syrup, colorful candy, frosting, chocolate, and sparkling sugary crystals, with candy pouring over it from every direction. The sweetness is hilariously excessive, almost completely burying the giant number.\n\nMake the giant ONE visually unmistakable and make it look unbelievably, ridiculously SWEET. The visual joke is immediate: the number has WON and is covered in the sweetest prize imaginable.\n\nPlayful surreal humor, exaggerated scale, strong central silhouette, premium polished 3D game-card illustration, vibrant colorful lighting, clean uncluttered background, highly readable at thumbnail size.\n\nONE giant number, ONE absurd mountain of candy and sugar, ONE clear visual joke: WON = unbelievably SWEET.\n\nNo text, no written words, no captions, no speech bubbles, no extra numbers, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "The number one is completely covered in dripping sugar and candy.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001112.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001011.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001011_slow.mp3"
@@ -25440,13 +25448,17 @@
   "examples": "อาหารจานนี้เผ็ดมาก",
   "example_translation": "This dish is very spicy.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "pet",
+  "hook_visual": "a cute pet panting from spicy food",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA cute, goofy pet is the huge central character in a colorful Thai street-food setting, sitting directly in front of an enormous plate of intensely spicy food. The pet has just taken ONE bite and is having an absolutely outrageous spicy-food meltdown: eyes wide open, tongue hanging dramatically out, panting desperately, fur slightly puffed up, sweat flying everywhere, tiny harmless flames and heat waves surrounding its mouth, desperately trying to cool itself down.\n\nMake the food visibly EXTREMELY spicy — vivid red chilies piled high, fiery-looking curry or chili dish, and an exaggerated blast of heat rising from the plate. The pet's reaction should be hilarious rather than frightening.\n\nThe mnemonic must be instantly readable: **PET + extremely spicy food → PET has an absurd spicy reaction → เผ็ด (pèt) = SPICY.**\n\nONE cute pet. ONE giant plate of spicy food. ONE ridiculous spicy reaction.\n\nPremium polished 3D game-card illustration, expressive character, exaggerated facial expression, cinematic lighting, strong silhouette, vibrant colors, clean uncluttered composition, highly memorable and readable at thumbnail size. Authentic Thai street-food atmosphere with subtle Thai environmental details.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "A cute pet takes one bite of extremely spicy food and immediately starts panting.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001064.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001012.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001012_slow.mp3"
@@ -25465,13 +25477,17 @@
   "examples": "ปลาตัวนี้สดมาก",
   "example_translation": "This fish is very fresh.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "blah",
+  "hook_visual": "a fish saying blah",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nSCENE: A grand, extravagant European-style opera house with a huge theatrical stage, luxurious red velvet curtains pulled open, ornate golden balconies, dramatic warm stage lights, and a visible orchestra pit below. This must unmistakably look like an opera performance, not an underwater scene.\n\nMAIN SUBJECT: A bizarre, funky, brightly colored fish is the star opera singer standing center stage under a powerful spotlight. The fish is upright like a human performer, wearing an extravagant flamboyant opera costume with dramatic ruffles and theatrical flair.\n\nACTION: The fish is passionately performing an impossibly long, powerful operatic note — mouth opened enormously wide, fins dramatically spread, body leaning backward with maximum theatrical emotion, as if singing “PLAAAAAAAAAAAA!” at the absolute top of its lungs. The performance should feel hilariously excessive and over-the-top.\n\nMake the visual mnemonic extremely clear: **FUNKY FISH + OPERA SINGER + LONG “PLAAAAAAAA!” → ปลา (plaa) → FISH.**\n\nThe fish should look energetic, ridiculous, expressive, and unforgettable. The long open-mouthed singing pose is the central visual joke.\n\nONE clear subject: the funky opera fish. ONE clear setting: grand opera house. ONE clear action: dramatically singing PLAAAAAAAA.\n\nPremium polished 3D game-card illustration, cinematic theatrical lighting, strong silhouette, exaggerated character design, vibrant colors, clean composition, instantly readable at thumbnail size. Subtle Thai flavour can appear naturally in small environmental details, but the opera setting must remain dominant.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no musical notation, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "A funny fish opens its mouth and loudly says “blah” while splashing in a bowl.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001052.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001013.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001013_slow.mp3"
@@ -25485,7 +25501,7 @@
   "romanization": "sài",
   "ipa": null,
   "part_of_speech": "verb",
-  "meanings": "to put in, to add, to include",
+  "meanings": "to put in, to add, to include, put in",
   "categories": null,
   "examples": "ฉันขอไม่ใส่พริก",
   "example_translation": "I'd like it without chili.",
@@ -25515,13 +25531,17 @@
   "examples": "ตอนเช้าฉันกินข้าวกับไข่",
   "example_translation": "In the morning I eat rice with eggs.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "guy",
+  "hook_visual": "a guy holding an egg",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA cool-looking young man known as the EGG GUY proudly presents an absolutely enormous white egg with both hands. He has a confident, slightly ridiculous heroic attitude, as if this gigantic egg is the greatest achievement of his life. He is completely obsessed with eggs — egg-themed clothing details, a few eggs nearby, and an absurdly oversized egg dominating the scene.\n\nMake Egg Guy instantly recognizable as a character: stylish young man, confident grin, expressive face, exaggerated heroic pose, strong personality. The gigantic egg should be the clear visual focus.\n\nPlayful exaggerated comedy, subtle authentic Thai environment, premium polished 3D game-card illustration, cinematic lighting, vibrant colors, strong silhouette, clean uncluttered background, highly readable at thumbnail size.\n\nONE memorable GUY, ONE enormous EGG, ONE ridiculous heroic presentation, ONE clear visual joke: EGG GUY.\n\nNo text, no written words, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
+  "mnemonic_concept": "A cool-looking guy proudly holds up a giant egg.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001177.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001015.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001015_slow.mp3"
@@ -25685,7 +25705,7 @@
   "romanization": "lɔɔng",
   "ipa": null,
   "part_of_speech": "verb",
-  "meanings": "to try (an action or food)",
+  "meanings": "to try (an action or food), to try",
   "categories": null,
   "examples": "ฉันอยากลองอาหารจานนี้",
   "example_translation": "I want to try this dish.",
@@ -25735,7 +25755,7 @@
   "romanization": "sôm",
   "ipa": null,
   "part_of_speech": "noun",
-  "meanings": "orange",
+  "meanings": "orange, orange (in this context, part of ส้มตำ - papaya salad)",
   "categories": null,
   "examples": "ฉันซื้อส้มมาจากตลาด",
   "example_translation": "I bought oranges from the market.",
@@ -25970,7 +25990,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration built around ONE clear visual joke: an enormous Japanese YEN coin completely frozen inside a gigantic crystal-clear block of ice.\n\nThe giant coin is visibly trapped deep inside sparkling ice, surrounded by dramatic frost, frozen vapor, icicles, and intense visual cues of extreme cold. Make the contrast between the recognizable YEN coin and the brutally COLD ice immediately obvious.\n\nThe visual mnemonic must clearly connect **YEN → เย็น → COLD / COOL**. The meaning must perform the pronunciation: the YEN itself is literally being made cold by being frozen solid.\n\nAdd subtle authentic Thai flavour through the setting, such as a tropical Thai environment contrasted with the absurdly frozen object, but keep the mnemonic completely dominant.\n\nONE giant YEN coin. ONE giant block of ice. ONE clear action: YEN being frozen by extreme COLD.\n\nPremium polished 3D game-card illustration, exaggerated scale, spectacular crystalline ice, cinematic lighting, strong silhouette, vibrant appealing visuals, clean uncluttered composition, excellent thumbnail readability.\n\nNo text, letters, numbers, captions, labels, speech bubbles, borders, card UI, logos, or watermark.\n",
   "mnemonic_concept": "A giant Japanese yen coin sits inside a block of sparkling ice.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001033.jpg"
   ],
@@ -26012,7 +26034,7 @@
   "romanization": "gɔɔ",
   "ipa": null,
   "part_of_speech": "fragment",
-  "meanings": "fragment of กรอบ (crunchy, crispy)",
+  "meanings": "fragment of กรอบ (crunchy, crispy), fragment of กรอบ (crispy)",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -26052,58 +26074,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001036.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001036_slow.mp3"
-  }
- },
- {
-  "id": "TH_001037",
-  "seq": 1037,
-  "rank": null,
-  "word": "กระทะ",
-  "romanization": "grà-tá",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "pan, wok",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001037.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001037_slow.mp3"
-  }
- },
- {
-  "id": "TH_001038",
-  "seq": 1038,
-  "rank": null,
-  "word": "ร้อน",
-  "romanization": "rɔ́ɔn",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "hot",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "wrong",
-  "hook_visual": "someone sweating because they chose wrong",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, hilarious, instantly readable mnemonic illustration built around one absurd visual joke: **Ron is unbelievably HOT, literally standing inside a blazing inferno, yet he remains impossibly cool and composed.**\n\nA handsome, sophisticated secret-agent-style man named Ron stands confidently in an immaculate black tuxedo, suave and completely unbothered. His entire body is surrounded by a spectacular blazing inferno, with huge flames and intense heat waves exploding around him.\n\nYet Ron remains perfectly calm, ice-cold and effortlessly suave. He has a deadpan expression, relaxed posture, confident gaze, and casually holds a beautifully elegant martini glass containing visibly freezing-cold liquid, with thick frost covering the glass and ice crystals forming around it.\n\nThe visual joke should be immediately obvious: **RON IS HOT, but his martini is still ICE COLD.** Ron looks like he could be standing in the middle of hell and still calmly enjoy his perfectly chilled drink.\n\nThe visual mnemonic must clearly connect **RON → ร้อน → HOT**. Ron is literally ON FIRE because he is HOT, while his impossible coolness creates the comedic contrast.\n\nAdd subtle authentic Thai flavour through the environment, such as a sophisticated tropical Thai setting, but keep Ron, the inferno, and the absurdly frozen martini as the dominant visual.\n\nONE suave man. ONE blazing inferno. ONE ice-cold martini. ONE completely unbothered expression.\n\nPremium polished 3D game-card illustration, cinematic lighting, spectacular stylized flames, sparkling ice crystals, exaggerated contrast between fire and ice, strong silhouette, dynamic composition, sophisticated but playful aesthetic, clean uncluttered background, excellent thumbnail readability.\n\nNo text, letters, numbers, captions, labels, speech bubbles, borders, card UI, logos, or watermark.\n",
-  "mnemonic_concept": "A person realizes they chose the wrong seat and is now sweating beside a blazing hot stove.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001038.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001038.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001038_slow.mp3"
   }
  },
  {
@@ -26189,10 +26159,10 @@
   "romanization": "lûuk",
   "ipa": null,
   "part_of_speech": "classifier",
-  "meanings": "classifier for fruits",
+  "meanings": "classifier for fruits, classifier for round objects, fruits",
   "categories": null,
-  "examples": null,
-  "example_translation": null,
+  "examples": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
+  "example_translation": "Today I bought two apples.",
   "level": "beginner",
   "sound_hook": null,
   "hook_visual": null,
@@ -26224,7 +26194,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nCreate a bold, whimsical, instantly memorable mnemonic illustration built around ONE clear visual joke: **the magical home of the coffee fairies.**\n\nShow a charming British-style house that is clearly the cozy **GAFF** of a group of tiny magical **FAE / fairies**. The entire house is overflowing with an absurd amount of delicious steaming COFFEE — giant coffee cups, warm coffee pots, rich coffee aroma, and one enormous steaming cup prominently dominating the foreground. The fairies happily live among the coffee as if this is their completely normal home.\n\nThe visual mnemonic must clearly connect **GAFF + FAE → gaa-fɛɛ → กาแฟ → COFFEE**. The coffee is the dominant semantic meaning, while the house represents the GAFF and the magical inhabitants represent the FAE.\n\nMake the scene playful and visually ridiculous: this isn't merely a house with coffee in it — **this is literally the coffee fairies' home.**\n\nAdd subtle authentic Thai flavour where natural, perhaps through small environmental details or tropical vegetation around the house, but do not distract from the mnemonic.\n\nONE magical home. ONE group of coffee fairies. ONE dominant coffee theme. ONE clear visual joke.\n\nPremium polished 3D game-card illustration, charming fantasy aesthetic, exaggerated scale, cinematic warm lighting, expressive tiny fairies, strong central silhouette, clean readable composition, excellent thumbnail readability.\n\nNo text, letters, numbers, captions, labels, speech bubbles, borders, card UI, logos, or watermark.\n",
   "mnemonic_concept": "A giant steaming cup of coffee stands dramatically in front of a sleepy person.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001043.jpg"
   ],
@@ -26259,31 +26231,6 @@
   }
  },
  {
-  "id": "TH_001045",
-  "seq": 1045,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001045.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001045_slow.mp3"
-  }
- },
- {
   "id": "TH_001046",
   "seq": 1046,
   "rank": null,
@@ -26306,31 +26253,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001046.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001046_slow.mp3"
-  }
- },
- {
-  "id": "TH_001047",
-  "seq": 1047,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001047.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001047_slow.mp3"
   }
  },
  {
@@ -26359,31 +26281,6 @@
   }
  },
  {
-  "id": "TH_001049",
-  "seq": 1049,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001049.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001049_slow.mp3"
-  }
- },
- {
   "id": "TH_001050",
   "seq": 1050,
   "rank": null,
@@ -26409,83 +26306,6 @@
   }
  },
  {
-  "id": "TH_001051",
-  "seq": 1051,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001051.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001051_slow.mp3"
-  }
- },
- {
-  "id": "TH_001052",
-  "seq": 1052,
-  "rank": null,
-  "word": "ปลา",
-  "romanization": "plaa",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "fish",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "blah",
-  "hook_visual": "a fish saying blah",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nSCENE: A grand, extravagant European-style opera house with a huge theatrical stage, luxurious red velvet curtains pulled open, ornate golden balconies, dramatic warm stage lights, and a visible orchestra pit below. This must unmistakably look like an opera performance, not an underwater scene.\n\nMAIN SUBJECT: A bizarre, funky, brightly colored fish is the star opera singer standing center stage under a powerful spotlight. The fish is upright like a human performer, wearing an extravagant flamboyant opera costume with dramatic ruffles and theatrical flair.\n\nACTION: The fish is passionately performing an impossibly long, powerful operatic note — mouth opened enormously wide, fins dramatically spread, body leaning backward with maximum theatrical emotion, as if singing “PLAAAAAAAAAAAA!” at the absolute top of its lungs. The performance should feel hilariously excessive and over-the-top.\n\nMake the visual mnemonic extremely clear: **FUNKY FISH + OPERA SINGER + LONG “PLAAAAAAAA!” → ปลา (plaa) → FISH.**\n\nThe fish should look energetic, ridiculous, expressive, and unforgettable. The long open-mouthed singing pose is the central visual joke.\n\nONE clear subject: the funky opera fish. ONE clear setting: grand opera house. ONE clear action: dramatically singing PLAAAAAAAA.\n\nPremium polished 3D game-card illustration, cinematic theatrical lighting, strong silhouette, exaggerated character design, vibrant colors, clean composition, instantly readable at thumbnail size. Subtle Thai flavour can appear naturally in small environmental details, but the opera setting must remain dominant.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no musical notation, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "A funny fish opens its mouth and loudly says “blah” while splashing in a bowl.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001052.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001052.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001052_slow.mp3"
-  }
- },
- {
-  "id": "TH_001053",
-  "seq": 1053,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001053.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001053_slow.mp3"
-  }
- },
- {
   "id": "TH_001054",
   "seq": 1054,
   "rank": null,
@@ -26498,41 +26318,20 @@
   "examples": null,
   "example_translation": null,
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "pack",
+  "hook_visual": "a pack of vegetables",
+  "mnemonic": "A humorous memorable scene of a delivery worker struggling under an enormous backpack completely stuffed with fresh colorful vegetables spilling out everywhere, exaggerated weight and abundance, strong central silhouette, bright colorful 3D illustration, clean composition, no text, no letters, no numbers",
+  "mnemonic_concept": "A delivery worker carries an enormous pack stuffed completely full of fresh vegetables.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000002"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001136.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001054.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001054_slow.mp3"
-  }
- },
- {
-  "id": "TH_001055",
-  "seq": 1055,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001055.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001055_slow.mp3"
   }
  },
  {
@@ -26561,81 +26360,6 @@
   }
  },
  {
-  "id": "TH_001057",
-  "seq": 1057,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001057.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001057_slow.mp3"
-  }
- },
- {
-  "id": "TH_001058",
-  "seq": 1058,
-  "rank": null,
-  "word": "ส้ม",
-  "romanization": "sôm",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "orange (in this context, part of ส้มตำ - papaya salad)",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001058.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001058_slow.mp3"
-  }
- },
- {
-  "id": "TH_001059",
-  "seq": 1059,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001059.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001059_slow.mp3"
-  }
- },
- {
   "id": "TH_001060",
   "seq": 1060,
   "rank": null,
@@ -26643,7 +26367,7 @@
   "romanization": "mòt",
   "ipa": null,
   "part_of_speech": "adjective, adverb",
-  "meanings": "all gone, finished, to be completely out of",
+  "meanings": "all gone, finished, to be completely out of, empty",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -26658,31 +26382,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001060.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001060_slow.mp3"
-  }
- },
- {
-  "id": "TH_001061",
-  "seq": 1061,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001061.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001061_slow.mp3"
   }
  },
  {
@@ -26708,58 +26407,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001062.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001062_slow.mp3"
-  }
- },
- {
-  "id": "TH_001063",
-  "seq": 1063,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001063.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001063_slow.mp3"
-  }
- },
- {
-  "id": "TH_001064",
-  "seq": 1064,
-  "rank": null,
-  "word": "เผ็ด",
-  "romanization": "pèt",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "spicy",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "pet",
-  "hook_visual": "a cute pet panting from spicy food",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA cute, goofy pet is the huge central character in a colorful Thai street-food setting, sitting directly in front of an enormous plate of intensely spicy food. The pet has just taken ONE bite and is having an absolutely outrageous spicy-food meltdown: eyes wide open, tongue hanging dramatically out, panting desperately, fur slightly puffed up, sweat flying everywhere, tiny harmless flames and heat waves surrounding its mouth, desperately trying to cool itself down.\n\nMake the food visibly EXTREMELY spicy — vivid red chilies piled high, fiery-looking curry or chili dish, and an exaggerated blast of heat rising from the plate. The pet's reaction should be hilarious rather than frightening.\n\nThe mnemonic must be instantly readable: **PET + extremely spicy food → PET has an absurd spicy reaction → เผ็ด (pèt) = SPICY.**\n\nONE cute pet. ONE giant plate of spicy food. ONE ridiculous spicy reaction.\n\nPremium polished 3D game-card illustration, expressive character, exaggerated facial expression, cinematic lighting, strong silhouette, vibrant colors, clean uncluttered composition, highly memorable and readable at thumbnail size. Authentic Thai street-food atmosphere with subtle Thai environmental details.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "A cute pet takes one bite of extremely spicy food and immediately starts panting.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001064.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001064.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001064_slow.mp3"
   }
  },
  {
@@ -26810,108 +26457,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001066.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001066_slow.mp3"
-  }
- },
- {
-  "id": "TH_001067",
-  "seq": 1067,
-  "rank": null,
-  "word": "ข้าว",
-  "romanization": "kâao",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "rice",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001067.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001067_slow.mp3"
-  }
- },
- {
-  "id": "TH_001068",
-  "seq": 1068,
-  "rank": null,
-  "word": "จาน",
-  "romanization": "jaan",
-  "ipa": null,
-  "part_of_speech": "classifier",
-  "meanings": "plate, classifier for plates of food",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001068.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001068_slow.mp3"
-  }
- },
- {
-  "id": "TH_001069",
-  "seq": 1069,
-  "rank": null,
-  "word": "ข้าว",
-  "romanization": "kâao",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "rice",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "cow",
-  "hook_visual": "a cow in a rice field",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA huge friendly COW stands proudly in the middle of a lush green Thai rice field, completely surrounded by an absurd mountain of freshly cooked white rice. Giant bowls, piles, and steaming mounds of fluffy rice are everywhere around the cow, making RICE the second unmistakable visual element of the scene.\n\nThe cow looks hilariously pleased with itself, standing knee-deep among the rice as if it somehow owns the entire rice field. Steam rises dramatically from the freshly cooked rice, making it look delicious and unmistakable.\n\nThe visual mnemonic must be instantly clear: **COW → kâao → ข้าว = RICE.** The cow and enormous quantity of rice should form one memorable visual joke.\n\nONE giant friendly cow. ONE enormous rice-filled field. ONE clear visual connection.\n\nPremium polished 3D game-card illustration, playful exaggerated proportions, expressive character, cinematic lighting, vibrant colors, strong silhouette, clean composition, instantly readable at thumbnail size. Authentic Thai countryside atmosphere.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "A giant cow stands in the middle of a rice field surrounded by bowls of rice.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001069.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001069.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001069_slow.mp3"
-  }
- },
- {
-  "id": "TH_001070",
-  "seq": 1070,
-  "rank": null,
-  "word": "หมด",
-  "romanization": "mòt",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "empty, all gone",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001070.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001070_slow.mp3"
   }
  },
  {
@@ -27040,31 +26585,6 @@
   }
  },
  {
-  "id": "TH_001076",
-  "seq": 1076,
-  "rank": null,
-  "word": "ลูก",
-  "romanization": "lûuk",
-  "ipa": null,
-  "part_of_speech": "classifier",
-  "meanings": "classifier for fruits",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001076.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001076_slow.mp3"
-  }
- },
- {
   "id": "TH_001077",
   "seq": 1077,
   "rank": null,
@@ -27072,7 +26592,7 @@
   "romanization": "jîm",
   "ipa": null,
   "part_of_speech": "verb",
-  "meanings": "dip (from น้ำจิ้ม dipping sauce)",
+  "meanings": "dip (from น้ำจิ้ม dipping sauce), dip",
   "categories": null,
   "examples": "น้ำจิ้มนี้อร่อยมาก",
   "example_translation": "This dipping sauce is very delicious.",
@@ -27087,58 +26607,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001077.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001077_slow.mp3"
-  }
- },
- {
-  "id": "TH_001078",
-  "seq": 1078,
-  "rank": null,
-  "word": "จิ้ม",
-  "romanization": "jîm",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "dip",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "intermediate",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001078.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001078_slow.mp3"
-  }
- },
- {
-  "id": "TH_001079",
-  "seq": 1079,
-  "rank": null,
-  "word": "อร่อย",
-  "romanization": "à-ròi",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "delicious",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "a Roy",
-  "hook_visual": "a man named Roy tasting food",
-  "mnemonic": "Create a distinctive recurring character named Roy for a series of humorous language-learning mnemonic illustrations.\n\nRoy is a cheerful, charismatic, slightly chubby man in his late 30s or early 40s who absolutely LOVES food. He has a warm expressive face, friendly eyes, slightly messy dark hair, and an enthusiastic personality. He has the comfortable, well-fed appearance of someone who genuinely enjoys eating, without being exaggerated into a caricature.\n\nRoy wears colorful casual clothing with a fun, slightly quirky foodie personality — for example, a bright patterned short-sleeve shirt, comfortable trousers, and casual shoes. His appearance should be distinctive and recognizable enough that the same character can return in many different scenes.\n\nRoy's defining personality trait is his completely unrestrained enthusiasm for delicious food. Whenever he encounters something tasty, his facial expressions and body language become hilariously exaggerated: huge delighted eyes, enormous grin, dramatic gestures, and genuine amazement. He approaches food with childlike excitement and treats every great meal like the greatest culinary discovery of his life.\n\nDesign Roy as an original character. He must not resemble any specific famous person or existing fictional character.\n\nPremium polished 3D game-card character design, expressive face, appealing proportions, colorful clothing, strong silhouette, cinematic lighting, playful and memorable personality, suitable for recurring use across many different mnemonic illustrations.\n\nNo text, no letters, no numbers, no captions, no logos, no watermark.\n\n\nDigital collectible card art, 1:1 square composition.\n\nA charismatic man named Roy is the dominant subject, sitting at an incredible Thai feast. Roy has just taken one bite of an unbelievably delicious dish and is experiencing an enormous, exaggerated explosion of pure culinary delight. His eyes are wide with amazement, his face is glowing with happiness, his mouth is savoring the food dramatically, and his whole body reacts as if he has just discovered the greatest food in existence.\n\nThe food should look spectacularly delicious and irresistible: an enormous beautifully presented Thai dish with rich colors, steam rising from it, fresh ingredients, and an abundance of appetizing detail. Roy should be completely captivated by the food.\n\nMake the mnemonic visually clear: **A ROY tasting amazing food → “A-ROY!” → อร่อย (à-ròi) = DELICIOUS.**\n\nThe emotional reaction is essential — Roy should look overwhelmingly delighted by how delicious the food is, not merely like an ordinary person eating dinner.\n\nONE man named Roy. ONE spectacular dish. ONE exaggerated reaction of DELICIOUS enjoyment.\n\nPremium polished 3D game-card illustration, hilarious expressive reaction, cinematic lighting, vibrant colors, strong central composition, memorable character silhouette, clean background, instantly readable at thumbnail size. Authentic Thai food and subtle Thai atmosphere.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "A man named Roy tastes an incredible dish and reacts with overwhelming delight.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001079.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001079.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001079_slow.mp3"
   }
  },
  {
@@ -27229,43 +26697,20 @@
   "examples": "วันนี้อากาศร้อน ฉันอยากดื่มน้ำ",
   "example_translation": "The weather is hot today, so I want to drink water.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001083.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001083_slow.mp3"
-  }
- },
- {
-  "id": "TH_001084",
-  "seq": 1084,
-  "rank": null,
-  "word": "ดื่ม",
-  "romanization": "dʉ̀ʉm",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "drink",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
   "sound_hook": "doom",
   "hook_visual": "a looming scene of doom",
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA heavily armored, iconic-looking DOOM-style demon-slaying space marine stands dramatically in the center of a colorful Thai street-food setting. He is enormous, intimidating, covered in rugged futuristic armor, and clearly looks like he belongs in an absurdly intense demon-fighting video game — but instead of fighting, he is calmly and dramatically DRINKING an enormous glass of Thai iced tea through a straw.\n\nMake the contrast hilarious: this terrifying armored warrior has stopped his epic demon-slaying mission specifically to enjoy a giant refreshing Thai tea. He holds the huge glass with both hands and takes an unmistakable, exaggerated drink through the straw.\n\nThe Thai iced tea should be visually unmistakable: large transparent glass, vivid orange tea, ice cubes, creamy layer, condensation, tropical Thai street-food surroundings.\n\nThe visual mnemonic must be instantly clear: **DOOM GUY → DRINKING → ดื่ม = DRINK.**\n\nONE armored Doom-style warrior. ONE enormous Thai iced tea. ONE unmistakable drinking action.\n\nPremium polished 3D game-card illustration, cinematic lighting, exaggerated contrast between intimidating warrior and relaxed drinking, strong silhouette, expressive body language, vibrant colors, clean composition, highly memorable and readable at thumbnail size. Authentic Thai atmosphere.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
   "mnemonic_concept": "A person drinks from a mysterious cup while a dramatic cloud of doom looms behind them.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001084.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001084.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001084_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001083.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001083_slow.mp3"
   }
  },
  {
@@ -27286,7 +26731,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA huge steaming glass of Thai iced tea is so unbelievably hot that its intense heat is literally turning a large wooden log beside it into glowing black CHARCOAL. The wood is visibly charring and burning at the edges from the tea's absurd heat, with glowing embers and wisps of smoke. The enormous Thai tea dominates the foreground, vivid amber-orange liquid, ice, condensation, and dramatic steam.\n\nThe visual joke is immediate: TEA is literally causing the wood to CHAR.\n\nStrong central silhouette, exaggerated scale, playful and memorable rather than dangerous, premium polished 3D game-card illustration, cinematic lighting, vibrant colors, clean uncluttered composition, subtle authentic Thai street-food atmosphere, highly readable at thumbnail size.\n\nONE giant cup of tea, ONE piece of wood, ONE clear action: the tea is literally CHARRING the wood.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
   "mnemonic_concept": "A steaming cup of tea sits beside a piece of wood turning into glowing charcoal.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001085.jpg"
   ],
@@ -27318,31 +26765,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001086.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001086_slow.mp3"
-  }
- },
- {
-  "id": "TH_001087",
-  "seq": 1087,
-  "rank": null,
-  "word": "ไหม",
-  "romanization": "mǎi",
-  "ipa": null,
-  "part_of_speech": "particle",
-  "meanings": "question particle",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001087.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001087_slow.mp3"
   }
  },
  {
@@ -27396,31 +26818,6 @@
   }
  },
  {
-  "id": "TH_001090",
-  "seq": 1090,
-  "rank": null,
-  "word": "ไข่",
-  "romanization": "kài",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "egg",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001090.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001090_slow.mp3"
-  }
- },
- {
   "id": "TH_001091",
   "seq": 1091,
   "rank": null,
@@ -27453,7 +26850,7 @@
   "romanization": "nít",
   "ipa": null,
   "part_of_speech": "adverb",
-  "meanings": "a little bit",
+  "meanings": "a little bit, a little",
   "categories": null,
   "examples": "แกงนี้หวานไปนิด",
   "example_translation": "This curry is a little too sweet.",
@@ -27468,56 +26865,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001092.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001092_slow.mp3"
-  }
- },
- {
-  "id": "TH_001093",
-  "seq": 1093,
-  "rank": null,
-  "word": "นิด",
-  "romanization": "nít",
-  "ipa": null,
-  "part_of_speech": "adverb",
-  "meanings": "a little",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001093.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001093_slow.mp3"
-  }
- },
- {
-  "id": "TH_001094",
-  "seq": 1094,
-  "rank": null,
-  "word": "ไหม",
-  "romanization": "mǎi",
-  "ipa": null,
-  "part_of_speech": "particle",
-  "meanings": "question particle",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001094.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001094_slow.mp3"
   }
  },
  {
@@ -27596,31 +26943,6 @@
   }
  },
  {
-  "id": "TH_001098",
-  "seq": 1098,
-  "rank": null,
-  "word": "หอม",
-  "romanization": "hɔ̌ɔm",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "fragrant",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001098.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001098_slow.mp3"
-  }
- },
- {
   "id": "TH_001099",
   "seq": 1099,
   "rank": null,
@@ -27643,83 +26965,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001099.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001099_slow.mp3"
-  }
- },
- {
-  "id": "TH_001100",
-  "seq": 1100,
-  "rank": null,
-  "word": "หน่อย",
-  "romanization": "nòi",
-  "ipa": null,
-  "part_of_speech": "particle",
-  "meanings": "a little, please",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001100.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001100_slow.mp3"
-  }
- },
- {
-  "id": "TH_001101",
-  "seq": 1101,
-  "rank": null,
-  "word": "ผัก",
-  "romanization": "pàk",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "vegetable",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001101.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001101_slow.mp3"
-  }
- },
- {
-  "id": "TH_001102",
-  "seq": 1102,
-  "rank": null,
-  "word": "สด",
-  "romanization": "sòt",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "fresh",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "sought",
-  "hook_visual": "a detective looking for something sought",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA hilariously determined detective has finally SOUGHT out the freshest vegetables imaginable at a colorful Thai fresh market. He crouches dramatically beside an enormous basket of freshly picked vegetables, inspecting them intensely with a magnifying glass as if he has discovered the most important evidence of his career. The vegetables look absurdly fresh: crisp green leaves, sparkling droplets of water, vivid colors, perfect texture, just-picked appearance.\n\nThe visual joke is immediate: the detective has been desperately SEARCHING for the FRESHEST thing possible — he has SOUGHT out these unbelievably fresh vegetables.\n\nStrong central silhouette, exaggerated facial expression, playful detective energy, premium polished 3D game-card illustration, cinematic lighting, vibrant colors, clean uncluttered composition, subtle authentic Thai market atmosphere, highly readable at thumbnail size.\n\nONE detective, ONE basket of spectacularly fresh vegetables, ONE clear action: the detective has SOUGHT the freshest vegetables.\n\nNo text, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "A detective searches intensely for freshly picked vegetables that someone has hidden.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001102.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001102.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001102_slow.mp3"
   }
  },
  {
@@ -27773,31 +27018,6 @@
   }
  },
  {
-  "id": "TH_001105",
-  "seq": 1105,
-  "rank": null,
-  "word": "ลูก",
-  "romanization": "lûuk",
-  "ipa": null,
-  "part_of_speech": "classifier",
-  "meanings": "classifier for fruits",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001105.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001105_slow.mp3"
-  }
- },
- {
   "id": "TH_001106",
   "seq": 1106,
   "rank": null,
@@ -27820,31 +27040,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001106.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001106_slow.mp3"
-  }
- },
- {
-  "id": "TH_001107",
-  "seq": 1107,
-  "rank": null,
-  "word": "ลูก",
-  "romanization": "lûuk",
-  "ipa": null,
-  "part_of_speech": "classifier",
-  "meanings": "classifier for fruits",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001107.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001107_slow.mp3"
   }
  },
  {
@@ -27923,58 +27118,6 @@
   }
  },
  {
-  "id": "TH_001111",
-  "seq": 1111,
-  "rank": null,
-  "word": "รส",
-  "romanization": "rót",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "flavor",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001111.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001111_slow.mp3"
-  }
- },
- {
-  "id": "TH_001112",
-  "seq": 1112,
-  "rank": null,
-  "word": "หวาน",
-  "romanization": "wǎan",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "sweet",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "one",
-  "hook_visual": "the number one covered in sugar",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA gigantic number ONE has just WON the ultimate prize: an absurd mountain of sweetness. The enormous numeral 1 is completely coated in thick dripping sugar, sticky golden syrup, colorful candy, frosting, chocolate, and sparkling sugary crystals, with candy pouring over it from every direction. The sweetness is hilariously excessive, almost completely burying the giant number.\n\nMake the giant ONE visually unmistakable and make it look unbelievably, ridiculously SWEET. The visual joke is immediate: the number has WON and is covered in the sweetest prize imaginable.\n\nPlayful surreal humor, exaggerated scale, strong central silhouette, premium polished 3D game-card illustration, vibrant colorful lighting, clean uncluttered background, highly readable at thumbnail size.\n\nONE giant number, ONE absurd mountain of candy and sugar, ONE clear visual joke: WON = unbelievably SWEET.\n\nNo text, no written words, no captions, no speech bubbles, no extra numbers, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "The number one is completely covered in dripping sugar and candy.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001112.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001112.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001112_slow.mp3"
-  }
- },
- {
   "id": "TH_001113",
   "seq": 1113,
   "rank": null,
@@ -28025,31 +27168,6 @@
   }
  },
  {
-  "id": "TH_001115",
-  "seq": 1115,
-  "rank": null,
-  "word": "รส",
-  "romanization": "rót",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "flavor",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001115.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001115_slow.mp3"
-  }
- },
- {
   "id": "TH_001116",
   "seq": 1116,
   "rank": null,
@@ -28059,8 +27177,8 @@
   "part_of_speech": "adjective",
   "meanings": "sour",
   "categories": null,
-  "examples": null,
-  "example_translation": null,
+  "examples": "ต้มยำนี้เปรี้ยวมาก",
+  "example_translation": "This tom yum is very sour.",
   "level": "beginner",
   "sound_hook": null,
   "hook_visual": null,
@@ -28117,7 +27235,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA normally intimidating Thai street-food vendor is dramatically pointing at a customer as if delivering a very serious, blunt warning. But a gigantic fluffy pink marshmallow is absurdly wedged between them, physically absorbing all the tension and turning the confrontation into an impossibly soft, gentle interaction. The vendor still looks intensely serious, while the customer looks completely reassured and relaxed because the giant marshmallow literally cushions the encounter.\n\nMake the visual joke immediate: the situation should be harsh and confrontational, but the giant fluffy marshmallow makes everything ridiculously SOFT and gentle.\n\nPlayful exaggerated physical comedy, expressive characters, subtle authentic Thai street-food setting, strong central composition, premium polished 3D game-card illustration, cinematic lighting, vibrant colors, clean uncluttered background, highly readable at thumbnail size.\n\nONE intimidating vendor, ONE customer, ONE gigantic fluffy marshmallow, ONE clear visual joke: NAH makes the interaction soft.\n\nNo text, no written words, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
   "mnemonic_concept": "A friendly person gives a gentle little nudge while casually saying “nah” to soften what they are saying.",
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000002"
+  ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001118.jpg"
   ],
@@ -28177,81 +27297,6 @@
   }
  },
  {
-  "id": "TH_001121",
-  "seq": 1121,
-  "rank": null,
-  "word": "ร",
-  "romanization": "rɔɔ",
-  "ipa": null,
-  "part_of_speech": "fragment",
-  "meanings": "fragment of บัตร (card)",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001121.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001121_slow.mp3"
-  }
- },
- {
-  "id": "TH_001122",
-  "seq": 1122,
-  "rank": null,
-  "word": "ไหม",
-  "romanization": "mǎi",
-  "ipa": null,
-  "part_of_speech": "particle",
-  "meanings": "question particle",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001122.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001122_slow.mp3"
-  }
- },
- {
-  "id": "TH_001123",
-  "seq": 1123,
-  "rank": null,
-  "word": "ลอง",
-  "romanization": "lɔɔng",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "to try",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001123.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001123_slow.mp3"
-  }
- },
- {
   "id": "TH_001124",
   "seq": 1124,
   "rank": null,
@@ -28302,31 +27347,6 @@
   }
  },
  {
-  "id": "TH_001126",
-  "seq": 1126,
-  "rank": null,
-  "word": "ลูก",
-  "romanization": "lûuk",
-  "ipa": null,
-  "part_of_speech": "classifier",
-  "meanings": "classifier for round objects, fruits",
-  "categories": null,
-  "examples": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
-  "example_translation": "Today I bought two apples.",
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001126.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001126_slow.mp3"
-  }
- },
- {
   "id": "TH_001127",
   "seq": 1127,
   "rank": null,
@@ -28349,31 +27369,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001127.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001127_slow.mp3"
-  }
- },
- {
-  "id": "TH_001128",
-  "seq": 1128,
-  "rank": null,
-  "word": "ผัก",
-  "romanization": "pàk",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "vegetable",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001128.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001128_slow.mp3"
   }
  },
  {
@@ -28477,31 +27472,6 @@
   }
  },
  {
-  "id": "TH_001133",
-  "seq": 1133,
-  "rank": null,
-  "word": "จาน",
-  "romanization": "jaan",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "plate",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "John",
-  "hook_visual": "John holding a plate",
-  "mnemonic": "A man wearing a nametag that says 'John' holding up a massive, oversized white dinner plate, photorealistic, well lit",
-  "mnemonic_concept": "A man named John holding a giant dinner plate.",
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001133.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001133_slow.mp3"
-  }
- },
- {
   "id": "TH_001134",
   "seq": 1134,
   "rank": null,
@@ -28552,33 +27522,6 @@
   }
  },
  {
-  "id": "TH_001136",
-  "seq": 1136,
-  "rank": null,
-  "word": "ผัก",
-  "romanization": "pàk",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "vegetable",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "pack",
-  "hook_visual": "a pack of vegetables",
-  "mnemonic": "A humorous memorable scene of a delivery worker struggling under an enormous backpack completely stuffed with fresh colorful vegetables spilling out everywhere, exaggerated weight and abundance, strong central silhouette, bright colorful 3D illustration, clean composition, no text, no letters, no numbers",
-  "mnemonic_concept": "A delivery worker carries an enormous pack stuffed completely full of fresh vegetables.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001136.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001136.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001136_slow.mp3"
-  }
- },
- {
   "id": "TH_001137",
   "seq": 1137,
   "rank": null,
@@ -28604,31 +27547,6 @@
   }
  },
  {
-  "id": "TH_001138",
-  "seq": 1138,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001138.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001138_slow.mp3"
-  }
- },
- {
   "id": "TH_001139",
   "seq": 1139,
   "rank": null,
@@ -28651,31 +27569,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001139.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001139_slow.mp3"
-  }
- },
- {
-  "id": "TH_001140",
-  "seq": 1140,
-  "rank": null,
-  "word": "ใส่",
-  "romanization": "sài",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "to add, to put in",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001140.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001140_slow.mp3"
   }
  },
  {
@@ -28726,58 +27619,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001142.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001142_slow.mp3"
-  }
- },
- {
-  "id": "TH_001143",
-  "seq": 1143,
-  "rank": null,
-  "word": "กิน",
-  "romanization": "gin",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "eat",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "gin",
-  "hook_visual": "a glass of gin",
-  "mnemonic": "TH_001163 || หน่อย\nPhonics: nòi\nMeaning: please\nSound hook: none — taught by meaning\nMnemonic: A tiny little creature repeatedly asks for just a tiny amount from an enormous bowl.\nPrompt: A charming humorous scene of a tiny creature holding out a tiny spoon toward an enormous bowl of food, clearly asking for just a little bit, exaggerated size contrast, expressive pleading face, simple memorable composition, bright colorful 3D illustration, no text, no letters, no numbers",
-  "mnemonic_concept": "A person greedily eats a giant plate of food while holding a glass of gin.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001143.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001143.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001143_slow.mp3"
-  }
- },
- {
-  "id": "TH_001144",
-  "seq": 1144,
-  "rank": null,
-  "word": "ก๋วยเ",
-  "romanization": "ก๋วยเ",
-  "ipa": null,
-  "part_of_speech": "fragment",
-  "meanings": "fragment of ก๋วยเตี๋ยว (noodles)",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001144.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001144_slow.mp3"
   }
  },
  {
@@ -28906,31 +27747,6 @@
   }
  },
  {
-  "id": "TH_001150",
-  "seq": 1150,
-  "rank": null,
-  "word": "ิน",
-  "romanization": "in",
-  "ipa": null,
-  "part_of_speech": "fragment",
-  "meanings": "fragment of กิน (eat)",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001150.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001150_slow.mp3"
-  }
- },
- {
   "id": "TH_001151",
   "seq": 1151,
   "rank": null,
@@ -29028,31 +27844,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001154.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001154_slow.mp3"
-  }
- },
- {
-  "id": "TH_001155",
-  "seq": 1155,
-  "rank": null,
-  "word": "เค้ก",
-  "romanization": "kéek",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "cake",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001155.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001155_slow.mp3"
   }
  },
  {
@@ -29156,31 +27947,6 @@
   }
  },
  {
-  "id": "TH_001160",
-  "seq": 1160,
-  "rank": null,
-  "word": "เปรี้ยว",
-  "romanization": "prîao",
-  "ipa": null,
-  "part_of_speech": "adjective",
-  "meanings": "sour",
-  "categories": null,
-  "examples": "ต้มยำนี้เปรี้ยวมาก",
-  "example_translation": "This tom yum is very sour.",
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001160.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001160_slow.mp3"
-  }
- },
- {
   "id": "TH_001161",
   "seq": 1161,
   "rank": null,
@@ -29203,58 +27969,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001161.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001161_slow.mp3"
-  }
- },
- {
-  "id": "TH_001162",
-  "seq": 1162,
-  "rank": null,
-  "word": "เมนู",
-  "romanization": "mee-nuu",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "menu",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001162.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001162_slow.mp3"
-  }
- },
- {
-  "id": "TH_001163",
-  "seq": 1163,
-  "rank": null,
-  "word": "หน่อย",
-  "romanization": "nòi",
-  "ipa": null,
-  "part_of_speech": "particle",
-  "meanings": "please",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": "TH_001177 || ไข่\nPhonics: kài\nMeaning: egg\nSound hook: GUY (word) — a guy holding an egg\nMnemonic: A cool-looking guy proudly holds up a giant egg.\nPrompt: A playful memorable scene of a cool-looking young man proudly holding an enormous white egg above his head, exaggerated heroic pose, clear focus on the guy and egg, bright colorful 3D illustration, strong silhouette, clean background, no text, no letters, no numbers",
-  "mnemonic_concept": "A tiny little creature repeatedly asks for just a tiny amount from an enormous bowl.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001163.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001163.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001163_slow.mp3"
   }
  },
  {
@@ -29408,81 +28122,6 @@
   }
  },
  {
-  "id": "TH_001170",
-  "seq": 1170,
-  "rank": null,
-  "word": "ใส่",
-  "romanization": "sài",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "to add, put in",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001170.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001170_slow.mp3"
-  }
- },
- {
-  "id": "TH_001171",
-  "seq": 1171,
-  "rank": null,
-  "word": "กระเทียม",
-  "romanization": "grà-tiam",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "garlic",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001171.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001171_slow.mp3"
-  }
- },
- {
-  "id": "TH_001172",
-  "seq": 1172,
-  "rank": null,
-  "word": "ใส่",
-  "romanization": "sài",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "to put in",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001172.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001172_slow.mp3"
-  }
- },
- {
   "id": "TH_001173",
   "seq": 1173,
   "rank": null,
@@ -29505,31 +28144,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001173.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001173_slow.mp3"
-  }
- },
- {
-  "id": "TH_001174",
-  "seq": 1174,
-  "rank": null,
-  "word": "ใส่",
-  "romanization": "sài",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "to add",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001174.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001174_slow.mp3"
   }
  },
  {
@@ -29558,85 +28172,6 @@
   }
  },
  {
-  "id": "TH_001176",
-  "seq": 1176,
-  "rank": null,
-  "word": "ใส่",
-  "romanization": "sài",
-  "ipa": null,
-  "part_of_speech": "verb",
-  "meanings": "to include, to add",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001176.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001176_slow.mp3"
-  }
- },
- {
-  "id": "TH_001177",
-  "seq": 1177,
-  "rank": null,
-  "word": "ไข่",
-  "romanization": "kài",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "egg",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "guy",
-  "hook_visual": "a guy holding an egg",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA cool-looking young man known as the EGG GUY proudly presents an absolutely enormous white egg with both hands. He has a confident, slightly ridiculous heroic attitude, as if this gigantic egg is the greatest achievement of his life. He is completely obsessed with eggs — egg-themed clothing details, a few eggs nearby, and an absurdly oversized egg dominating the scene.\n\nMake Egg Guy instantly recognizable as a character: stylish young man, confident grin, expressive face, exaggerated heroic pose, strong personality. The gigantic egg should be the clear visual focus.\n\nPlayful exaggerated comedy, subtle authentic Thai environment, premium polished 3D game-card illustration, cinematic lighting, vibrant colors, strong silhouette, clean uncluttered background, highly readable at thumbnail size.\n\nONE memorable GUY, ONE enormous EGG, ONE ridiculous heroic presentation, ONE clear visual joke: EGG GUY.\n\nNo text, no written words, no letters, no numbers, no captions, no speech bubbles, no borders, no card UI, no logos, no watermark.\n",
-  "mnemonic_concept": "A cool-looking guy proudly holds up a giant egg.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001177.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001177.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001177_slow.mp3"
-  }
- },
- {
-  "id": "TH_001178",
-  "seq": 1178,
-  "rank": null,
-  "word": "ไหม",
-  "romanization": "mǎi",
-  "ipa": null,
-  "part_of_speech": "particle",
-  "meanings": "question particle",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": "my",
-  "hook_visual": "someone pointing at themselves saying my",
-  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA lively Thai market stall. One shopper stands directly in front of a friendly market vendor and asks a simple question, leaning forward with an exaggerated curious expression.\n\nThe shopper points at one specific item at the stall, then points toward the vendor with raised eyebrows and an unmistakable questioning gesture, as if asking:\n\n“MY?”\n\nThe vendor looks back at the shopper, surprised but amused, clearly expected to answer the question.\n\nMake the interaction extremely readable: ONE shopper asking ONE vendor ONE clear question about ONE item.\n\nThe shopper's face and body language are the main mnemonic. Big raised eyebrows, tilted head, open questioning hand gesture, expectant expression. The vendor is secondary.\n\nUse a colorful authentic Thai fresh market atmosphere with fruit, vegetables and a simple market stall, but keep the background softly blurred and visually quiet. Do not let the environment compete with the two characters.\n\nThe visual joke should instantly communicate:\nMY? → asking a yes/no question → ไหม\n\nPremium polished 3D collectible game-card illustration, cinematic lighting, expressive characters, strong silhouette, clean composition, shallow depth of field, excellent thumbnail readability, playful exaggerated expressions.\n\nNo text, no letters, no numbers, no question-mark symbol, no speech bubbles, no logos, no watermark, no borders, no card UI.\n",
-  "mnemonic_concept": "A person points at themselves and asks, “Mine?” while looking expectantly at another person.",
-  "sentences": [],
-  "lessons": [],
-  "images": [
-   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001178.jpg"
-  ],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001178.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001178_slow.mp3"
-  }
- },
- {
   "id": "TH_001179",
   "seq": 1179,
   "rank": null,
@@ -29659,31 +28194,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001179.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001179_slow.mp3"
-  }
- },
- {
-  "id": "TH_001180",
-  "seq": 1180,
-  "rank": null,
-  "word": "ก",
-  "romanization": "gɔɔ",
-  "ipa": null,
-  "part_of_speech": "fragment",
-  "meanings": "fragment of กรอบ (crispy)",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001180.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001180_slow.mp3"
   }
  },
  {
@@ -29759,56 +28269,6 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001183.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001183_slow.mp3"
-  }
- },
- {
-  "id": "TH_001184",
-  "seq": 1184,
-  "rank": null,
-  "word": "ไอศกรีม",
-  "romanization": "ai-sà-kriim",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "ice cream",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001184.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001184_slow.mp3"
-  }
- },
- {
-  "id": "TH_001185",
-  "seq": 1185,
-  "rank": null,
-  "word": "รส",
-  "romanization": "rót",
-  "ipa": null,
-  "part_of_speech": "noun",
-  "meanings": "flavor",
-  "categories": null,
-  "examples": null,
-  "example_translation": null,
-  "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
-  "lessons": [],
-  "images": [],
-  "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001185.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001185_slow.mp3"
   }
  },
  {
