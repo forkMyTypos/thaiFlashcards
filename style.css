@@ -44,3 +44,138 @@ article h1{font-size:28px;color:#fff;line-height:1.25;margin-bottom:10px}
 .vocab-row .say:hover{color:#9cc4ff}
 .vocab-row .say.slow{font-size:15px;color:#7f93b5}
 .vocab-row .say.slow:hover{color:#a9bcda}
+
+/* ------------------------------------------------------------------ shell
+   The course pages are a room, not a scroll: a menu that never moves, a bar
+   that says where you are, the picture, and the word beside it.
+
+       ┌──────────┬───────────────────────────────┐
+       │          │            SLIDER             │
+       │   MENU   ├───────────────┬───────────────┤
+       │          │     IMAGE     │     INFO      │
+       └──────────┴───────────────┴───────────────┘
+
+   Everything above this line is still in use: the two hand-made pages in
+   the repository (thai-basics-100 and the class-9 list) load this same
+   stylesheet, and replacing it rather than adding to it would strip them. */
+:root{--menu:220px;--bar:3em;--line:#1c1c2a;--panel:#12121b;--dim:#8a8aa8}
+[hidden]{display:none!important}
+/* The drawer's backdrop exists only on a phone, but it is a child of the grid,
+   so it has to be taken out of the layout HERE rather than inside the media
+   query — an unstyled div in a grid is a grid item, and it would claim a cell. */
+.scrim{display:none}
+body.shell{height:100vh;overflow:hidden}
+.page{display:grid;grid-template-columns:var(--menu) 1fr 1fr;
+  grid-template-rows:var(--bar) 1fr;height:100vh}
+.menu{grid-row:1/3;grid-column:1;border-right:1px solid var(--line);
+  background:#0a0a11;display:flex;flex-direction:column;min-height:0}
+.slider{grid-column:2/4;grid-row:1;border-bottom:1px solid var(--line);
+  background:#0a0a11;display:flex;align-items:center;gap:14px;padding:0 16px;
+  min-width:0}
+.left{grid-column:2;grid-row:2;min-width:0;min-height:0;display:flex;
+  align-items:center;justify-content:center;padding:22px;background:#0f0f17}
+.right{grid-column:3;grid-row:2;min-width:0;min-height:0;overflow-y:auto;
+  padding:26px 28px 34px;border-left:1px solid var(--line)}
+
+/* menu */
+.menu .brand{display:block;padding:14px 16px;border-bottom:1px solid var(--line);
+  font-size:16px;font-weight:800;color:#ece9f5;text-decoration:none}
+.menu .find{padding:12px 12px 8px}
+.menu .find input{width:100%;padding:8px 10px;border-radius:8px;
+  border:1px solid #24243a;background:#13131c;color:#e6e6f0;font-size:13px}
+.menu .find input:focus{outline:none;border-color:#3b82f6}
+.menu nav{flex:1;overflow-y:auto;padding:0 8px 8px}
+.menu .grp{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;
+  color:#6f6f90;font-weight:700;padding:12px 8px 6px}
+.menu a.item{display:block;padding:7px 8px;border-radius:7px;font-size:13px;
+  color:#c4c4da;text-decoration:none;line-height:1.35}
+.menu a.item:hover{background:#15151f;color:#fff}
+.menu a.item.on{background:#16284a;color:#bcd4ff}
+.menu a.item .sub{display:block;font-size:11px;color:#6f6f90}
+.menu a.item.on .sub{color:#7f9dd0}
+.menu .none{padding:10px 8px;font-size:12px;color:#6f6f90}
+.menu .foot{border-top:1px solid var(--line);padding:12px 16px;font-size:11px;
+  color:#6a6a86;line-height:1.5}
+.menu .foot a{color:#8a8aa8}
+
+/* slider bar */
+.slider .burger{display:none;background:#15151f;border:1px solid #24243a;
+  color:#cfcfe4;border-radius:7px;width:32px;height:28px;font-size:15px;
+  cursor:pointer;line-height:1;flex-shrink:0}
+.slider .name{font-size:14px;font-weight:700;color:#ece9f5;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.slider .name a{color:#7a7a98;text-decoration:none}
+.slider .pager{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.slider .pager button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+  border-radius:7px;width:30px;height:26px;font-size:14px;cursor:pointer;
+  line-height:1}
+.slider .pager button:hover:not(:disabled){border-color:#3b82f6;color:#fff}
+.slider .pager button:disabled{opacity:.35;cursor:default}
+.slider .pager .count{font-family:monospace;font-size:12.5px;color:var(--dim);
+  min-width:64px;text-align:center}
+.slider .scrub{flex:0 1 220px;accent-color:#3b82f6;min-width:80px}
+
+/* the picture */
+.left a{max-width:100%;max-height:100%;text-decoration:none}
+.left figure{max-width:100%;max-height:100%;display:flex;flex-direction:column;
+  align-items:center;gap:10px}
+.left img{max-width:100%;max-height:calc(100vh - var(--bar) - 96px);
+  object-fit:contain;border-radius:12px;display:block}
+.left .nopic{width:min(360px,60vw);aspect-ratio:4/3;border-radius:12px;
+  border:1px dashed #2a2a3e;background:#13131c;display:flex;align-items:center;
+  justify-content:center;color:#3f3f57;font-size:64px}
+.left figcaption{font-size:11px;color:#5a5a72;text-align:center}
+
+/* the word */
+.info .th{font-size:44px;line-height:1.15;color:#fff;font-weight:600;
+  word-break:break-word}
+.info .rom{font-size:17px;color:#60a5fa;margin-top:4px}
+.info .en{font-size:19px;color:#e2e2ee;margin-top:14px}
+.info .pos{font-size:12px;color:#6f6f90;margin-top:2px}
+.info .plays{display:flex;gap:8px;margin-top:16px}
+.info .plays button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+  border-radius:8px;padding:7px 12px;font-size:13px;cursor:pointer}
+.info .plays button:hover{border-color:#3b82f6;color:#fff}
+.info .aid{margin-top:20px;padding:14px 15px;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel)}
+.info .aid .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;
+  color:#6f6f90;font-weight:700}
+.info .aid .hook{font-size:16px;color:#c9a227;font-weight:700;
+  letter-spacing:.02em;margin-top:3px}
+.info .aid p{font-size:13.5px;color:#b6b6cf;margin-top:8px;line-height:1.55}
+.info .ex{margin-top:18px}
+.info .ex li{list-style:none;padding:10px 0;border-top:1px solid var(--line)}
+.info .ex .sx{font-size:17px;color:#e6e6f0}
+.info .ex .sr{font-size:12.5px;color:#60a5fa}
+.info .ex .st{font-size:13px;color:#9a9ab8}
+.info .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+
+/* the readable list a crawler reads, and anyone with no JavaScript.
+   Present in the markup on purpose — the panes show one word at a time, the
+   page still contains all of them. */
+.seo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+  white-space:nowrap;border:0}
+
+/* On a phone the menu is a drawer, not a wall. Laid out in the flow it put
+   five lesson links between the top of the page and the word you came to
+   read, which is the wrong way round on the screen with the least room. */
+@media(max-width:900px){
+  body.shell{height:auto;overflow:auto}
+  .page{grid-template-columns:1fr;grid-template-rows:var(--bar) auto auto;
+    height:auto;min-height:100vh}
+  .slider{grid-column:1;grid-row:1;position:sticky;top:0;z-index:12}
+  .slider .burger{display:block}
+  .slider .scrub{display:none}
+  .left{grid-column:1;grid-row:2;padding:16px}
+  .left img{max-height:46vh}
+  .right{grid-column:1;grid-row:3;border-left:0;
+    border-top:1px solid var(--line);padding:20px}
+  .info .th{font-size:36px}
+  .menu{position:fixed;top:0;bottom:0;left:0;width:min(300px,86vw);z-index:30;
+    border-right:1px solid var(--line);transform:translateX(-100%);
+    transition:transform .18s ease;box-shadow:0 0 40px rgba(0,0,0,.6)}
+  body.menu-open .menu{transform:none}
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20}
+  body.menu-open .scrim{display:block}
+  body.menu-open{overflow:hidden}
+}
