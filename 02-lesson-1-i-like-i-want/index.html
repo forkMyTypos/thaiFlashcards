@@ -20,7 +20,7 @@
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
 <link rel="stylesheet" href="../style.css?v=e970b371"/>
 </head>
-<body class="shell" data-root="..">
+<body class="shell" data-root=".." data-lesson="02-lesson-1-i-like-i-want">
 <div class="page">
 <aside class="menu">
   <a class="brand" href="https://thai.inaflash.cards/"><span class="bolt">⚡</span> Thai.inaflash</a>
@@ -304,6 +304,13 @@
   var b=e.target.closest?e.target.closest('[data-play]'):null;
   if(b){new Audio(b.dataset.play).play();}
  });
+
+ // Remember where the reader got to, so the front page can send them back.
+ // Only a real lesson page writes it: the front page renders lesson one for
+ // everyone who has not been here, and it should not thereby claim that
+ // lesson one is where they left off.
+ try{var mine=document.body.dataset.lesson;
+     if(mine)localStorage.setItem('wb.last',mine);}catch(e){}
 
  // ☰ — a drawer on a phone, a collapse on a laptop. Same button, because it
  // means the same thing: show me the menu, or give me the room back.
