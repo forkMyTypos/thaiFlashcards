@@ -18,37 +18,148 @@
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
 <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
-<header class="site-head">
+<body class="shell" data-root="">
+<div class="page">
+<aside class="menu">
   <a class="brand" href="https://thai.inaflash.cards/"><span class="bolt">⚡</span> Learn <b>Thai</b></a>
-  <a class="app-link" href="https://inaflash.cards" target="_blank" rel="noopener">Built with inaflash.cards ↗</a>
-</header><main class="wrap">
-  <section class="hero"><h1>Learn Thai with Flashcards</h1>
-    <p class="tagline">A free, beginner-friendly Thai vocabulary course. Read each lesson, then study it as flashcards.</p>
-    <p class="how">Each lesson is a readable vocabulary list you can also study as interactive flashcards — free, no signup, works offline once loaded.</p></section>
-  <section><h2 class="sec-h">Lessons</h2><ol class="lesson-list">
-    <li class="lesson-item"><a class="lesson-link" href="https://thai.inaflash.cards/01-top-30-thai-words/">
+  <div class="find"><input id="find" type="search" placeholder="Search lessons and words" aria-label="Search lessons and words" autocomplete="off"/></div>
+  <nav id="nav">
+    <div class="grp" data-grp>Recently updated</div><a class="item dup" href="https://thai.inaflash.cards/02-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">29 words</span></a><a class="item dup" href="https://thai.inaflash.cards/01-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">30 words</span></a>    <div class="grp" data-grp>All lessons</div><a class="item" href="https://thai.inaflash.cards/01-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">01 · 30 words</span></a><a class="item" href="https://thai.inaflash.cards/02-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">02 · 29 words</span></a><a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">03</span></a><a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">04</span></a>
+    <div class="none" id="nohits" hidden>Nothing matches.</div>
+  </nav>
+  <div class="foot">A free Thai vocabulary course · studied with <a href="https://inaflash.cards" target="_blank" rel="noopener">inaflash.cards</a></div>
+</aside>
+<div class="scrim" id="scrim"></div>
+  <div class="slider">
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <div class="name">Learn Thai with Flashcards</div>
+    <div class="pager"><span class="count">2 lessons</span></div>
+  </div>
+  <div class="left">
+    <a href="https://thai.inaflash.cards/02-lesson-1-i-like-i-want/"><figure><img src="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000841.jpg" alt="Lesson 1 — I like, I want" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nopic',textContent:'⚡'}))"/><figcaption>Lesson 1 — I like, I want · 59 words in 2 lessons</figcaption></figure></a>
+  </div>
+  <div class="right info">
+    <h1 style="font-size:26px;color:#fff;line-height:1.25">Learn Thai with Flashcards</h1>
+    <p class="lead">A free, beginner-friendly Thai vocabulary course. Read each lesson, then study it as flashcards.</p>
+    <p class="cta-note">Each lesson is a readable vocabulary list you can also study as interactive flashcards — free, no signup, works offline once loaded.</p>
+    <h2 class="sec-h">Start where you left off</h2>
+    <ol class="lesson-list">
+    <li><a class="lesson-link" href="https://thai.inaflash.cards/02-lesson-1-i-like-i-want/">
+      <span class="num">02</span>
+      <span class="meta"><span class="lt">Lesson 1 — I like, I want</span>
+        <span class="ld">29 words</span></span>
+      <span class="go">→</span></a></li>    <li><a class="lesson-link" href="https://thai.inaflash.cards/01-top-30-thai-words/">
+      <span class="num">01</span>
+      <span class="meta"><span class="lt">Top 30 Thai words</span>
+        <span class="ld">30 words</span></span>
+      <span class="go">→</span></a></li></ol>
+    <h2 class="sec-h">Every lesson</h2>
+    <ol class="lesson-list">
+    <li><a class="lesson-link" href="https://thai.inaflash.cards/01-top-30-thai-words/">
       <span class="num">01</span>
       <span class="meta"><span class="lt">Top 30 Thai words</span>
         <span class="ld">30 words · beginner</span></span>
       <span class="go">→</span></a></li>
-    <li class="lesson-item"><a class="lesson-link" href="https://thai.inaflash.cards/02-lesson-1-i-like-i-want/">
+    <li><a class="lesson-link" href="https://thai.inaflash.cards/02-lesson-1-i-like-i-want/">
       <span class="num">02</span>
       <span class="meta"><span class="lt">Lesson 1 — I like, I want</span>
         <span class="ld">29 words · beginner</span></span>
-      <span class="go">→</span></a></li>
-    <li class="lesson-item"><a class="lesson-link" href="https://thai.inaflash.cards/thai-basics-100/">
-      <span class="num">03</span>
-      <span class="meta"><span class="lt">Thai Basics 100</span>
-        <span class="ld"></span></span>
-      <span class="go">→</span></a></li>
-    <li class="lesson-item"><a class="lesson-link" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/">
-      <span class="num">04</span>
-      <span class="meta"><span class="lt">Thai Class 9 Complete Vocab List</span>
-        <span class="ld"></span></span>
-      <span class="go">→</span></a></li></ol></section>
-</main>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Learn Thai with Flashcards","description":"A free, beginner-friendly Thai vocabulary course. Read each lesson, then study it as flashcards.","url":"https://thai.inaflash.cards/","inLanguage":"th","provider":{"@type":"Organization","name":"inaflash.cards","url":"https://inaflash.cards"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Learn Thai with Flashcards","itemListElement":[{"@type":"ListItem","position":1,"name":"Top 30 Thai words","url":"https://thai.inaflash.cards/01-top-30-thai-words/"},{"@type":"ListItem","position":2,"name":"Lesson 1 — I like, I want","url":"https://thai.inaflash.cards/02-lesson-1-i-like-i-want/"},{"@type":"ListItem","position":3,"name":"Thai Basics 100","url":"https://thai.inaflash.cards/thai-basics-100/"},{"@type":"ListItem","position":4,"name":"Thai Class 9 Complete Vocab List","url":"https://thai.inaflash.cards/thai-class-9-complete-vocab-list/"}]}</script><footer class="site-foot">
-  <p>A free Thai vocabulary course · studied with <a href="https://inaflash.cards" target="_blank" rel="noopener">inaflash.cards</a>, a local-first flashcard app.</p>
-</footer>
-</body></html>
+      <span class="go">→</span></a></li></ol>
+  </div>
+</div>
+<script>
+(function(){
+ var nav=document.getElementById('nav'),find=document.getElementById('find'),
+     none=document.getElementById('nohits'),idx=null,idxTried=false;
+ function items(){return nav?nav.querySelectorAll('a.item'):[];}
+ function filter(q){
+  q=(q||'').trim().toLowerCase();var hits=0,i,a=items();
+  for(i=0;i<a.length;i++){
+   var t=a[i].dataset.title||'',w=a[i].dataset.words||'',
+       dup=a[i].classList.contains('dup');
+   // the shortcut list at the top repeats lessons from the full one below;
+   // while searching, only the full list answers, so a hit appears once
+   var on=q?(!dup&&(t.indexOf(q)>=0||w.indexOf(q)>=0)):true;
+   a[i].hidden=!on;if(on&&q)hits++;
+  }
+  var g=nav?nav.querySelectorAll('[data-grp]'):[];
+  for(i=0;i<g.length;i++)g[i].hidden=!!q;
+  if(none)none.hidden=!q||hits>0;
+ }
+ function loadIndex(){
+  if(idxTried)return;idxTried=true;
+  var base=document.body.dataset.root||'';
+  fetch(base+'/search.json').then(function(r){return r.json();}).then(function(j){
+   idx=j;var a=items(),by={},i;
+   for(i=0;i<(j.lessons||[]).length;i++)by[j.lessons[i].folder]=j.lessons[i].words;
+   for(i=0;i<a.length;i++){
+    var m=a[i].getAttribute('href').replace(/\/$/,'').split('/').pop();
+    if(by[m])a[i].dataset.words=by[m];
+   }
+   filter(find?find.value:'');
+  }).catch(function(){});
+ }
+ if(find){find.addEventListener('input',function(){loadIndex();filter(find.value);});
+          find.addEventListener('focus',loadIndex);}
+
+ var cards=[].slice.call(document.querySelectorAll('.card')),at=0,
+     prev=document.getElementById('prev'),next=document.getElementById('next'),
+     count=document.getElementById('count'),scrub=document.getElementById('scrub'),
+     pic=document.getElementById('pic');
+ function show(n){
+  if(!cards.length)return;
+  at=Math.max(0,Math.min(cards.length-1,n));
+  for(var i=0;i<cards.length;i++)cards[i].hidden=(i!==at);
+  if(count)count.textContent=(at+1)+' / '+cards.length;
+  if(prev)prev.disabled=at===0;
+  if(next)next.disabled=at===cards.length-1;
+  if(scrub)scrub.value=at+1;
+  if(pic){
+   var c=cards[at],src=c.dataset.img||'',alt=c.dataset.alt||'',
+       ch=c.dataset.ch||'';
+   pic.innerHTML='';
+   var f=document.createElement('figure');
+   function blank(){var d=document.createElement('div');d.className='nopic';
+                    d.textContent=ch;return d;}
+   if(src){
+    var im=new Image();im.alt=alt;im.loading='eager';
+    // a picture that will not load leaves the alt text sitting in the middle
+    // of an empty column, which reads as a broken page rather than a word
+    // without a picture yet
+    im.onerror=function(){f.innerHTML='';f.appendChild(blank());};
+    im.src=src;f.appendChild(im);
+   }else{f.appendChild(blank());}
+   pic.appendChild(f);
+  }
+  if(history.replaceState)history.replaceState(null,'','#'+(at+1));
+ }
+ if(prev)prev.onclick=function(){show(at-1);};
+ if(next)next.onclick=function(){show(at+1);};
+ if(scrub)scrub.oninput=function(){show(+scrub.value-1);};
+ document.addEventListener('keydown',function(e){
+  if(e.target&&/INPUT|TEXTAREA/.test(e.target.tagName))return;
+  if(e.key==='ArrowLeft')show(at-1);
+  if(e.key==='ArrowRight')show(at+1);
+ });
+ if(cards.length){
+  var start=parseInt((location.hash||'').slice(1),10);
+  show(isFinite(start)&&start>0?start-1:0);
+ }
+ document.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('[data-play]'):null;
+  if(b){new Audio(b.dataset.play).play();}
+ });
+
+ // the drawer, on a phone
+ var burger=document.getElementById('burger'),scrim=document.getElementById('scrim');
+ function menu(open){document.body.classList.toggle('menu-open',open);}
+ if(burger)burger.onclick=function(){
+  menu(!document.body.classList.contains('menu-open'));};
+ if(scrim)scrim.onclick=function(){menu(false);};
+ if(nav)nav.addEventListener('click',function(e){
+  if(e.target.closest&&e.target.closest('a'))menu(false);});
+ document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')menu(false);});
+})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Learn Thai with Flashcards","description":"A free, beginner-friendly Thai vocabulary course. Read each lesson, then study it as flashcards.","url":"https://thai.inaflash.cards/","inLanguage":"th","provider":{"@type":"Organization","name":"inaflash.cards","url":"https://inaflash.cards"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Learn Thai with Flashcards","itemListElement":[{"@type":"ListItem","position":1,"name":"Top 30 Thai words","url":"https://thai.inaflash.cards/01-top-30-thai-words/"},{"@type":"ListItem","position":2,"name":"Lesson 1 — I like, I want","url":"https://thai.inaflash.cards/02-lesson-1-i-like-i-want/"},{"@type":"ListItem","position":3,"name":"Thai Basics 100","url":"https://thai.inaflash.cards/thai-basics-100/"},{"@type":"ListItem","position":4,"name":"Thai Class 9 Complete Vocab List","url":"https://thai.inaflash.cards/thai-class-9-complete-vocab-list/"}]}</script></body></html>
