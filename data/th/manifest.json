@@ -3,8 +3,8 @@
  "language_name": "Thai",
  "native_name": "ภาษาไทย",
  "flag": "🇹🇭",
- "count": 1188,
- "generated_at": "2026-09-07T09:06:04Z",
+ "count": 1124,
+ "generated_at": "2026-09-07T10:36:16Z",
  "media_base": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev",
  "card_layout": {
   "front": [
@@ -40,5 +40,5 @@
   "lessons"
  ],
  "generator": "WordBase v2",
- "lesson_count": 1
+ "lesson_count": 2
 }
