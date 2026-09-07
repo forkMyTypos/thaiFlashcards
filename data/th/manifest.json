@@ -1,0 +1,44 @@
+{
+ "language": "th",
+ "language_name": "Thai",
+ "native_name": "ภาษาไทย",
+ "flag": "🇹🇭",
+ "count": 1188,
+ "generated_at": "2026-09-07T08:51:06Z",
+ "media_base": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev",
+ "card_layout": {
+  "front": [
+   "word",
+   "image",
+   "romanization",
+   "audio"
+  ],
+  "back": [
+   "meanings"
+  ],
+  "autoplay": false
+ },
+ "fields": [
+  "id",
+  "rank",
+  "word",
+  "romanization",
+  "ipa",
+  "part_of_speech",
+  "meanings",
+  "categories",
+  "examples",
+  "example_translation",
+  "level",
+  "sound_hook",
+  "hook_visual",
+  "mnemonic",
+  "mnemonic_concept",
+  "images",
+  "audio",
+  "sentences",
+  "lessons"
+ ],
+ "generator": "WordBase v2",
+ "lesson_count": 1
+}
