@@ -65,17 +65,61 @@ article h1{font-size:28px;color:#fff;line-height:1.25;margin-bottom:10px}
    query — an unstyled div in a grid is a grid item, and it would claim a cell. */
 .scrim{display:none}
 body.shell{height:100vh;overflow:hidden}
-.page{display:grid;grid-template-columns:var(--menu) 1fr 1fr;
+/* The room is a grid, and the panels in row two are placed by the order they
+   appear in the markup rather than by number — so turning the video column on
+   adds two cells and everything after it moves along, instead of every rule
+   having to know how many columns there are today. The widths are variables
+   because the reader drags them; --wyt/--wa/--wb are what the grips write. */
+.page{display:grid;--wyt:1.15fr;--wa:1fr;--wb:1fr;--grip:6px;
+  grid-template-columns:var(--menu) var(--wa) var(--grip) var(--wb);
   grid-template-rows:var(--bar) 1fr;height:100vh}
+body.yt-on .page{grid-template-columns:var(--menu) var(--wyt) var(--grip)
+  var(--wa) var(--grip) var(--wb)}
 .menu{grid-row:1/3;grid-column:1;border-right:1px solid var(--line);
   background:#0a0a11;display:flex;flex-direction:column;min-height:0}
-.slider{grid-column:2/4;grid-row:1;border-bottom:1px solid var(--line);
+.slider{grid-column:2/-1;grid-row:1;border-bottom:1px solid var(--line);
   background:#0a0a11;display:flex;align-items:center;gap:14px;padding:0 16px;
   min-width:0}
-.left{grid-column:2;grid-row:2;min-width:0;min-height:0;display:flex;
+.left{grid-row:2;min-width:0;min-height:0;display:flex;overflow:hidden;
   align-items:center;justify-content:center;padding:22px;background:#0f0f17}
-.right{grid-column:3;grid-row:2;min-width:0;min-height:0;overflow-y:auto;
+.right{grid-row:2;min-width:0;min-height:0;overflow-y:auto;
   padding:26px 28px 34px;border-left:1px solid var(--line)}
+
+/* the grips. A hidden panel must leave the grid entirely, or its empty cell
+   still takes a column's worth of room. */
+.yt[hidden],.grip[hidden]{display:none}
+.grip{grid-row:2;background:var(--line);cursor:col-resize;position:relative;
+  border:0;padding:0}
+.grip::after{content:"";position:absolute;inset:0 -4px;}
+.grip:hover,.grip.dragging{background:#3b82f6}
+.grip:focus-visible{outline:2px solid #3b82f6;outline-offset:1px}
+body.resizing{cursor:col-resize;user-select:none}
+body.resizing iframe{pointer-events:none}
+
+/* the video column */
+.yt{grid-row:2;min-width:0;min-height:0;display:flex;flex-direction:column;
+  background:#0b0b12;padding:14px 14px 10px;gap:10px;overflow:hidden}
+.ytframe{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px;
+  overflow:hidden;flex:none;display:flex;align-items:center;
+  justify-content:center}
+.ytframe iframe{width:100%;height:100%;border:0;display:block}
+.ytload{color:#5a5a72;font-size:12.5px}
+.ytbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ytbar button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+  border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer;
+  font-family:inherit}
+.ytbar button:hover{border-color:#3b82f6;color:#fff}
+.ytbar .ymode.on{border-color:#3b82f6;background:#16233a;color:#cfe0ff}
+.ytbar .yspace{flex:1}
+.ytwho{font-size:12px;color:#5a5a72;line-height:1.4;
+  overflow:hidden;text-overflow:ellipsis;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical}
+.slider .ytbtn{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+  border-radius:8px;width:30px;height:28px;font-size:13px;cursor:pointer;
+  flex-shrink:0;font-family:inherit}
+.slider .ytbtn:hover{border-color:#3b82f6;color:#fff}
+.slider .ytbtn[aria-pressed="true"]{border-color:#3b82f6;background:#16233a;
+  color:#cfe0ff}
 
 /* menu */
 .menu .brand{display:block;padding:14px 16px;border-bottom:1px solid var(--line);
@@ -105,7 +149,7 @@ body.shell{height:100vh;overflow:hidden}
 /* Collapsed. The menu is a reference, not a companion — on a laptop the two
    panes are the work, and 220px of lesson titles is 220px the picture could
    have had. ☰ puts it back, and the choice is remembered. */
-body.menu-hidden .page{grid-template-columns:0 1fr 1fr}
+body.menu-hidden{--menu:0}
 body.menu-hidden .menu{display:none}
 
 /* slider bar */
@@ -134,7 +178,11 @@ body.menu-hidden .menu{display:none}
   align-items:center;gap:10px}
 .left img{max-width:100%;max-height:calc(100vh - var(--bar) - 96px);
   object-fit:contain;border-radius:12px;display:block}
-.left .nopic{width:min(360px,60vw);aspect-ratio:4/3;border-radius:12px;
+/* 60vw was a share of the window, which was the whole width of this column
+   until the reader could drag it narrower. Now it is a share of the column:
+   otherwise the placeholder keeps its width while its column shrinks and
+   spills out over whatever is beside it. */
+.left .nopic{width:min(360px,100%);aspect-ratio:4/3;border-radius:12px;
   border:1px dashed #2a2a3e;background:#13131c;display:flex;align-items:center;
   justify-content:center;color:#3f3f57;font-size:64px}
 .left figcaption{font-size:11px;color:#5a5a72;text-align:center}
@@ -232,14 +280,22 @@ body.menu-hidden .menu{display:none}
    read, which is the wrong way round on the screen with the least room. */
 @media(max-width:900px){
   body.shell{height:auto;overflow:auto}
-  .page{grid-template-columns:1fr;grid-template-rows:var(--bar) auto auto;
-    height:auto;min-height:100vh}
+  /* One column, everything stacked, and no grips: there is no width to
+     trade on a phone, so a drag handle would only be something to hit by
+     accident. The video goes above the word, which is the right order here
+     — on a wide screen it sits beside it. */
+  .page,body.yt-on .page{grid-template-columns:1fr;
+    grid-template-rows:var(--bar) auto auto auto;height:auto;min-height:100vh}
   .slider{grid-column:1;grid-row:1;position:sticky;top:0;z-index:12}
   .slider .scrub{display:none}
-  .left{grid-column:1;grid-row:2;padding:16px}
+  .grip{display:none}
+  /* row 2 is a wide-screen idea. Here they stack, so each takes the next row
+     it is given — without this they all land in row two on top of each other. */
+  .yt,.left,.right{grid-column:1;grid-row:auto}
+  .yt{padding:12px 14px}
+  .left{padding:16px}
   .left img{max-height:46vh}
-  .right{grid-column:1;grid-row:3;border-left:0;
-    border-top:1px solid var(--line);padding:20px}
+  .right{border-left:0;border-top:1px solid var(--line);padding:20px}
   .info .th{font-size:36px}
   .menu{position:fixed;top:0;bottom:0;left:0;width:min(300px,86vw);z-index:30;
     border-right:1px solid var(--line);transform:translateX(-100%);
