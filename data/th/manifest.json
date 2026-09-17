@@ -3,8 +3,8 @@
  "language_name": "Thai",
  "native_name": "ภาษาไทย",
  "flag": "🇹🇭",
- "count": 1124,
- "generated_at": "2026-09-07T10:42:49Z",
+ "count": 1131,
+ "generated_at": "2026-09-17T07:27:32Z",
  "media_base": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev",
  "card_layout": {
   "front": [
@@ -34,11 +34,12 @@
   "hook_visual",
   "mnemonic",
   "mnemonic_concept",
+  "emoji",
   "images",
   "audio",
   "sentences",
   "lessons"
  ],
  "generator": "WordBase v2",
- "lesson_count": 2
+ "lesson_count": 3
 }
