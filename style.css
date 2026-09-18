@@ -65,31 +65,55 @@ article h1{font-size:28px;color:#fff;line-height:1.25;margin-bottom:10px}
    query — an unstyled div in a grid is a grid item, and it would claim a cell. */
 .scrim{display:none}
 body.shell{height:100vh;overflow:hidden}
-/* The room is a grid, and the panels in row two are placed by the order they
-   appear in the markup rather than by number — so turning the video column on
-   adds two cells and everything after it moves along, instead of every rule
-   having to know how many columns there are today. The widths are variables
-   because the reader drags them; --wyt/--wa/--wb are what the grips write. */
+/* The room is a grid, and every panel is placed on a NAMED line rather than a
+   numbered one. Turning the video column on adds two cells in the middle, and
+   hiding the menu takes its cell away entirely — with plain auto-placement
+   each of those slid every later panel into the wrong column. Named lines
+   survive both, because a panel says which line it starts on rather than how
+   many came before it. The widths are variables because the reader drags
+   them; --wyt/--wa/--wb are what the grips write. */
 .page{display:grid;--wyt:1.15fr;--wa:1fr;--wb:1fr;--grip:6px;
-  grid-template-columns:var(--menu) var(--wa) var(--grip) var(--wb);
-  grid-template-rows:var(--bar) 1fr;height:100vh}
-body.yt-on .page{grid-template-columns:var(--menu) var(--wyt) var(--grip)
-  var(--wa) var(--grip) var(--wb)}
-.menu{grid-row:1/3;grid-column:1;border-right:1px solid var(--line);
-  background:#0a0a11;display:flex;flex-direction:column;min-height:0}
+  grid-template-columns:[menu] var(--menu) [pic] var(--wa) [gb] var(--grip)
+    [txt] var(--wb);
+  grid-template-rows:var(--bar) auto 1fr;height:100vh}
+body.yt-on .page{grid-template-columns:[menu] var(--menu) [ytc] var(--wyt)
+  [ga] var(--grip) [pic] var(--wa) [gb] var(--grip) [txt] var(--wb)}
+.menu{grid-row:1/-1;grid-column:menu;border-right:1px solid var(--line);
+  background:#0a0a11;display:flex;flex-direction:column;min-height:0;
+  min-width:0}
 .slider{grid-column:2/-1;grid-row:1;border-bottom:1px solid var(--line);
   background:#0a0a11;display:flex;align-items:center;gap:14px;padding:0 16px;
   min-width:0}
-.left{grid-row:2;min-width:0;min-height:0;display:flex;overflow:hidden;
-  align-items:center;justify-content:center;padding:22px;background:#0f0f17}
-.right{grid-row:2;min-width:0;min-height:0;overflow-y:auto;
+.left{grid-row:3;grid-column:pic;min-width:0;min-height:0;display:flex;
+  overflow:hidden;align-items:center;justify-content:center;padding:22px;
+  background:#0f0f17}
+.right{grid-row:3;grid-column:txt;min-width:0;min-height:0;overflow-y:auto;
   padding:26px 28px 34px;border-left:1px solid var(--line)}
+
+/* The courses, across the top. Its own row, which is `auto` — so on a site
+   with no courses to show the row collapses to nothing and the page is
+   exactly what it was. */
+.coursebar{grid-row:2;grid-column:2/-1;display:flex;gap:6px;flex-wrap:wrap;
+  align-items:center;padding:7px 16px;background:#0a0a11;
+  border-bottom:1px solid var(--line);overflow-x:auto;
+  scrollbar-width:none}
+.coursebar::-webkit-scrollbar{display:none}
+.coursebar .cs{display:inline-flex;gap:6px;align-items:center;
+  padding:3px 11px;border-radius:20px;border:1px solid #24243a;
+  color:#9a9ab8;text-decoration:none;font-size:12.5px;white-space:nowrap}
+.coursebar .cs:hover{border-color:#3b82f6;color:#cfe0ff}
+.coursebar .cs.on{border-color:#3b82f6;background:#16233a;color:#cfe0ff;
+  font-weight:600}
+.coursebar .cs .n{font-family:monospace;font-size:11px;color:#5a5a72}
+.coursebar .cs.on .n{color:#7fa8dd}
 
 /* the grips. A hidden panel must leave the grid entirely, or its empty cell
    still takes a column's worth of room. */
 .yt[hidden],.grip[hidden]{display:none}
-.grip{grid-row:2;background:var(--line);cursor:col-resize;position:relative;
+.grip{grid-row:3;background:var(--line);cursor:col-resize;position:relative;
   border:0;padding:0}
+#gripa{grid-column:ga}
+#gripb{grid-column:gb}
 .grip::after{content:"";position:absolute;inset:0 -4px;}
 .grip:hover,.grip.dragging{background:#3b82f6}
 .grip:focus-visible{outline:2px solid #3b82f6;outline-offset:1px}
@@ -97,7 +121,8 @@ body.resizing{cursor:col-resize;user-select:none}
 body.resizing iframe{pointer-events:none}
 
 /* the video column */
-.yt{grid-row:2;min-width:0;min-height:0;display:flex;flex-direction:column;
+.yt{grid-row:3;grid-column:ytc;min-width:0;min-height:0;display:flex;
+  flex-direction:column;
   background:#0b0b12;padding:14px 14px 10px;gap:10px;overflow:hidden}
 .ytframe{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px;
   overflow:hidden;flex:none;display:flex;align-items:center;
@@ -211,6 +236,74 @@ body.menu-hidden .menu{display:none}
 .info .ex .st{font-size:13px;color:#9a9ab8}
 .info .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
 
+/* ------------------------------------------------------------------ modes
+   Three ways to look at the same lesson, chosen in the bar. They change the
+   RIGHT panel and nothing else: the menu, the picture, the arrow keys and the
+   scrubber all behave identically in all three, so switching is a change of
+   what you are being shown rather than a different place to be. */
+.slider .modes{display:flex;gap:3px;flex-shrink:0}
+.slider .md{background:#15151f;border:1px solid #24243a;color:#9a9ab8;
+  border-radius:8px;width:31px;height:28px;font-size:14px;cursor:pointer;
+  line-height:1;font-family:inherit;padding:0}
+.slider .md:hover{border-color:#3b82f6;color:#fff}
+.slider .md[aria-pressed="true"]{border-color:#3b82f6;background:#16233a;
+  color:#cfe0ff}
+
+/* card mode. The answer is hidden with visibility rather than display, so the
+   word does not jump up the panel when you turn it over. */
+body.mode-card .info .rom,body.mode-card .info .pos,
+body.mode-card .info .en,body.mode-card .info .plays,
+body.mode-card .info .aid,body.mode-card .info .ex{visibility:hidden}
+body.mode-card .card.flip .rom,body.mode-card .card.flip .pos,
+body.mode-card .card.flip .en,body.mode-card .card.flip .plays,
+body.mode-card .card.flip .aid,body.mode-card .card.flip .ex{visibility:visible}
+.flipnote{display:none;margin-top:22px;font-size:12.5px;color:#5a5a72;
+  border-top:1px solid var(--line);padding-top:12px}
+body.mode-card .flipnote{display:block}
+body.mode-card .flipnote b{color:#8a8aa8}
+body.mode-card.flipped .flipnote .ask{display:none}
+body.mode-card:not(.flipped) .flipnote .seen{display:none}
+
+/* quiz mode. The picture is a giveaway, so it waits until you have answered —
+   and then it arrives as the reward for getting it right. */
+.quiz{display:none}
+body.mode-quiz .info>.card,body.mode-quiz .flipnote{display:none}
+body.mode-quiz .quiz{display:block}
+body.mode-quiz .left figure{opacity:0;transition:opacity .25s}
+body.mode-quiz.answered .left figure{opacity:1}
+.quiz .qask{font-size:12px;text-transform:uppercase;letter-spacing:.1em;
+  color:#6f6f90;font-weight:700}
+.quiz .qmean{font-size:30px;color:#fff;font-weight:600;margin:6px 0 22px;
+  line-height:1.2}
+.quiz .qopts{display:grid;grid-template-columns:1fr;gap:9px}
+.quiz .qopt{text-align:left;background:#15151f;border:1px solid #24243a;
+  color:#e6e6f0;border-radius:10px;padding:13px 16px;font-size:22px;
+  cursor:pointer;font-family:inherit;transition:border-color .12s}
+.quiz .qopt:hover:not(:disabled){border-color:#3b82f6}
+.quiz .qopt .r{display:block;font-size:12.5px;color:#60a5fa;margin-top:3px}
+/* qok / qno, not right / wrong: `.right` is already the word panel of the
+   page shell, and a button wearing that class picked up its grid placement
+   and threw the options into two ragged columns. */
+.quiz .qopt.qok{border-color:#34c98e;background:rgba(52,201,142,.12)}
+.quiz .qopt.qno{border-color:#f2705f;background:rgba(242,112,95,.12)}
+.quiz .qopt:disabled{cursor:default}
+.quiz .qfoot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  margin-top:20px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:13px;color:#8a8aa8;min-height:34px}
+.quiz .qscore{font-family:monospace;color:#9a9ab8}
+.quiz .qnext{background:#3b82f6;border:1px solid #3b82f6;color:#06122a;
+  border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600;
+  cursor:pointer;font-family:inherit}
+.quiz .qdone{margin-top:20px;padding:16px;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel)}
+.quiz .qdone h2{margin:0 0 6px;font-size:18px;color:#fff}
+.quiz .qdone p{margin:0 0 12px;color:#9a9ab8;font-size:13.5px}
+.quiz .qdone button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+  border-radius:8px;padding:7px 13px;font-size:13px;cursor:pointer;
+  font-family:inherit;margin-right:8px}
+.quiz .qdone button:hover{border-color:#3b82f6;color:#fff}
+@media(max-width:1100px){.slider .modes{order:3}}
+
 /* the readable list a crawler reads, and anyone with no JavaScript.
    Present in the markup on purpose — the panes show one word at a time, the
    page still contains all of them. */
@@ -220,9 +313,12 @@ body.menu-hidden .menu{display:none}
 /* ------------------------------------------------ from a YouTube video
    A tool rather than a lesson, so it takes the whole width under the bar
    instead of splitting into picture and word. */
-.wide{grid-column:2/4;grid-row:2;min-width:0;min-height:0;overflow-y:auto;
+/* The video pages have one content column, not two, so it runs from where the
+   picture would start to the end. Written as a named line rather than "2/4",
+   which meant "both content columns" only while there were exactly three. */
+.wide{grid-column:pic/-1;grid-row:3;min-width:0;min-height:0;overflow-y:auto;
   padding:26px 28px 40px}
-@media(max-width:900px){.wide{grid-column:1;grid-row:2;padding:20px}}
+@media(max-width:900px){.wide{grid-column:1;grid-row:auto;padding:20px}}
 .paste{display:flex;gap:8px;flex-wrap:wrap;max-width:720px}
 .paste input{flex:1;min-width:260px;padding:11px 13px;border-radius:9px;
   border:1px solid #24243a;background:#13131c;color:#e6e6f0;font-size:14px}
@@ -284,8 +380,16 @@ body.menu-hidden .menu{display:none}
      trade on a phone, so a drag handle would only be something to hit by
      accident. The video goes above the word, which is the right order here
      — on a wide screen it sits beside it. */
+  /* align-content:start, because the page is min-height:100vh and the rows
+     are `auto`: with a short lesson the leftover height was shared out among
+     them and the course band became a 150px strip with four chips floating
+     in the middle of it. */
   .page,body.yt-on .page{grid-template-columns:1fr;
-    grid-template-rows:var(--bar) auto auto auto;height:auto;min-height:100vh}
+    grid-template-rows:var(--bar) auto auto auto auto;height:auto;
+    min-height:100vh;align-content:start}
+  /* One line that scrolls sideways, not four lines of chips: wrapped, five
+     courses took 180px off the top of the screen with the least of it. */
+  .coursebar{grid-column:1;grid-row:2;padding:7px 14px;flex-wrap:nowrap}
   .slider{grid-column:1;grid-row:1;position:sticky;top:0;z-index:12}
   .slider .scrub{display:none}
   .grip{display:none}
