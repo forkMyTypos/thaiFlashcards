@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="A free, beginner-friendly Thai vocabulary course. Read each lesson, then study it as flashcards."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="style.css?v=d5e2b4d0"/>
+<link rel="stylesheet" href="style.css?v=7acd1fa6"/>
 <script>try{var l=localStorage.getItem("wb.last");if(l&&["01-lesson-1-i-like-i-want", "02-top-30-thai-words", "03-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence"].indexOf(l)>=0&&l!=="01-lesson-1-i-like-i-want")location.replace(l+"/");}catch(e){}</script>
 </head>
 <body class="shell" data-root=".">
@@ -38,6 +38,11 @@
   <div class="slider">
     <button class="burger" id="burger" aria-label="Menu">☰</button>
     <div class="name"><a href="https://thai.inaflash.cards/">Learn Thai with Flashcards</a> / Lesson 1 — I like, I want</div>
+    <div class="modes" id="modes" role="group" aria-label="How to study this lesson">
+      <button class="md" data-mode="info" aria-pressed="true" title="Read it — the word, what it means, and a sentence">&#8505;</button>
+      <button class="md" data-mode="card" aria-pressed="false" title="Flashcards — the answer stays hidden until you ask for it">&#127183;</button>
+      <button class="md" data-mode="quiz" aria-pressed="false" title="Quiz — pick the right word">&#10067;</button>
+    </div>
     <span class="hint" aria-hidden="true">← → keys</span>
     <input class="scrub" id="scrub" type="range" min="1" max="29" value="1" step="1" aria-label="Move through the words"/>
     <div class="pager"><button id="prev" aria-label="Previous word">‹</button><span class="count" id="count">1 / 29</span><button id="next" aria-label="Next word">›</button></div>
@@ -296,6 +301,12 @@
   }
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
   cue(byUser);
+  // A new word is a new card to turn over and a new question to ask.
+  if(typeof mode!=='undefined'){
+   if(mode==='card'){for(i=0;i<cards.length;i++)cards[i].classList.remove('flip');
+                     document.body.classList.remove('flipped');}
+   if(mode==='quiz')drawQuiz();
+  }
  }
  if(prev)prev.onclick=function(){show(at-1,true);};
  if(next)next.onclick=function(){show(at+1,true);};
@@ -341,18 +352,211 @@
  document.addEventListener('keydown',function(e){
   if(e.key==='Escape'&&phone())menu(false);});
 
+ // ------------------------------------------------------------- the modes
+ //
+ // Three ways to look at one lesson, and the same lesson underneath all
+ // three. Info is the page as it was. Card hides the answer until you ask for
+ // it. Quiz asks you instead. Nothing here reloads or navigates: the cards in
+ // the markup are the single source of what this lesson teaches, and each
+ // mode is a different way of showing that same list.
+ var modes=document.getElementById('modes'),
+     right=document.querySelector('.right'),
+     mode='info',flipNote=null,quizBox=null,
+     score=0,asked=0,answered={};
+
+ function textOf(card,sel){var el=card.querySelector(sel);
+                           return el?el.textContent.trim():'';}
+
+ function buildFlipNote(){
+  if(flipNote||!right)return;
+  flipNote=document.createElement('div');
+  flipNote.className='flipnote';
+  flipNote.innerHTML='<span class="ask">Press <b>space</b>, or click here, '
+   +'to turn the card over.</span><span class="seen">Turned over. '
+   +'<b>&rarr;</b> for the next word.</span>';
+  flipNote.addEventListener('click',function(){flip();});
+  right.appendChild(flipNote);
+ }
+
+ function flip(on){
+  if(mode!=='card'||!cards.length)return;
+  var c=cards[at],want=(on===undefined)?!c.classList.contains('flip'):!!on;
+  c.classList.toggle('flip',want);
+  document.body.classList.toggle('flipped',want);
+ }
+
+ // --- the quiz
+ //
+ // Built from the cards themselves, so it can only ever ask about words this
+ // lesson actually teaches, and the wrong answers are the lesson's own other
+ // words — which is what makes it a test of this lesson rather than of
+ // whether you can spot the odd one out.
+ function buildQuiz(){
+  if(quizBox||!right)return;
+  quizBox=document.createElement('div');
+  quizBox.className='quiz';
+  quizBox.innerHTML='<div class="qask">Which word means</div>'
+   +'<div class="qmean"></div><div class="qopts"></div>'
+   +'<div class="qfoot"><span class="qscore"></span>'
+   +'<span style="flex:1"></span></div>';
+  right.appendChild(quizBox);
+ }
+
+ // A fixed shuffle per question, from the question number: the options stay
+ // put when you come back to a word, instead of jumping about under a pointer
+ // that is already on its way to one of them.
+ function shuffled(list,seed){
+  var a=list.slice(),i,j,t,r=seed*9301+49297;
+  for(i=a.length-1;i>0;i--){
+   r=(r*9301+49297)%233280;j=Math.floor(r/233280*(i+1));
+   t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+ }
+
+ function drawQuiz(){
+  if(mode!=='quiz'||!quizBox||!cards.length)return;
+  var card=cards[at],mean=textOf(card,'.en')||textOf(card,'.rom');
+  quizBox.querySelector('.qmean').textContent=mean;
+  var pool=[],i;
+  for(i=0;i<cards.length;i++)if(i!==at)pool.push(i);
+  pool=shuffled(pool,at+1).slice(0,3);
+  var picks=shuffled(pool.concat([at]),at+7);
+  var opts=quizBox.querySelector('.qopts');
+  opts.innerHTML='';
+  var already=answered[at];
+  for(i=0;i<picks.length;i++)(function(k){
+   var b=document.createElement('button');
+   b.className='qopt';b.type='button';
+   b.setAttribute('lang',document.documentElement.lang||'');
+   b.textContent=textOf(cards[k],'.th');
+   var rom=textOf(cards[k],'.rom');
+   if(rom){var sp=document.createElement('span');sp.className='r';
+           sp.textContent=rom;b.appendChild(sp);}
+   if(already){
+    b.disabled=true;
+    if(k===at)b.classList.add('qok');
+    else if(already.picked===k)b.classList.add('qno');
+   }else{
+    b.onclick=function(){answer(k);};
+   }
+   opts.appendChild(b);
+  })(picks[i]);
+  document.body.classList.toggle('answered',!!already);
+  drawScore();
+  var foot=quizBox.querySelector('.qfoot');
+  var old=foot.querySelector('.qnext');if(old)old.remove();
+  if(already&&at<cards.length-1){
+   var n=document.createElement('button');
+   n.className='qnext';n.type='button';n.textContent='Next word →';
+   n.onclick=function(){n.blur();show(at+1,true);};
+   foot.appendChild(n);
+  }
+  var done=quizBox.querySelector('.qdone');if(done)done.remove();
+  var left=quizBox.querySelector('.qleft');if(left)left.remove();
+  if(asked>=cards.length){finish();return;}
+  // The end of the lesson with words still unasked — you moved past some,
+  // or came back to change one. Without this the last word was simply the
+  // end of the road: no result, and nothing saying why not.
+  if(at===cards.length-1&&already){
+   var miss=[],k;
+   for(k=0;k<cards.length;k++)if(!answered[k])miss.push(k);
+   if(miss.length){
+    var l=document.createElement('button');
+    l.className='qnext qleft';l.type='button';
+    l.textContent=miss.length+' still to answer →';
+    l.onclick=function(){l.blur();show(miss[0],true);};
+    quizBox.querySelector('.qfoot').appendChild(l);
+   }
+  }
+ }
+
+ function drawScore(){
+  if(!quizBox)return;
+  quizBox.querySelector('.qscore').textContent=
+   asked?(score+' of '+asked+' right'):'';
+ }
+
+ function answer(picked){
+  if(answered[at])return;
+  answered[at]={picked:picked,right:picked===at};
+  asked++;if(picked===at)score++;
+  drawQuiz();
+ }
+
+ function finish(){
+  var done=document.createElement('div');
+  done.className='qdone';
+  var pct=Math.round(100*score/Math.max(1,cards.length));
+  done.innerHTML='<h2>'+score+' of '+cards.length+' &mdash; '+pct+'%</h2>'
+   +'<p>'+(pct===100?'Every word. Nothing left to look up here.'
+        :pct>=70?'Most of them. The ones you missed are worth another look.'
+        :'Worth reading through again before the next go.')+'</p>';
+  var again=document.createElement('button');
+  again.type='button';again.textContent='Go again';
+  again.onclick=function(){answered={};score=0;asked=0;show(0,true);};
+  var read=document.createElement('button');
+  read.type='button';read.textContent='Read the lesson';
+  read.onclick=function(){setMode('info');};
+  done.appendChild(again);done.appendChild(read);
+  quizBox.appendChild(done);
+ }
+
+ function setMode(m){
+  mode=(m==='card'||m==='quiz')?m:'info';
+  document.body.classList.remove('mode-info','mode-card','mode-quiz',
+                                 'flipped','answered');
+  document.body.classList.add('mode-'+mode);
+  if(modes){
+   var b=modes.querySelectorAll('.md'),i;
+   for(i=0;i<b.length;i++)
+    b[i].setAttribute('aria-pressed',b[i].dataset.mode===mode?'true':'false');
+  }
+  if(mode==='card'){buildFlipNote();flip(false);}
+  if(mode==='quiz'){buildQuiz();drawQuiz();}
+  try{localStorage.setItem('wb.mode',mode);}catch(e){}
+ }
+
+ if(modes)modes.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('[data-mode]'):null;
+  if(!b)return;
+  setMode(b.dataset.mode);
+  // Let the button go. A toolbar button that keeps focus swallows the space
+  // bar, and in card mode the space bar is how you turn the card over — so
+  // choosing card mode would have stopped the one key that mode is about.
+  b.blur();
+ });
+ // Chosen once, kept: a reader who studies with cards wants cards on lesson
+ // four as well as lesson one.
+ if(cards.length){
+  try{var keep=localStorage.getItem('wb.mode');
+      setMode(keep||'info');}catch(e){setMode('info');}
+ }
+
+ // Space turns the card over; in the other modes it is the browser's own
+ // scroll and stays that way.
+ document.addEventListener('keydown',function(e){
+  if(e.target&&/INPUT|TEXTAREA|BUTTON/.test(e.target.tagName))return;
+  if(e.key===' '&&mode==='card'){e.preventDefault();flip();}
+ });
+
  // ----------------------------------------------------- the video column
  //
  // Only on a lesson made from a video, and only once asked for. Two ways to
  // run it, which are the same two facts in opposite orders: the cards lead
  // and the video follows them, or the video leads and the cards follow it.
+ //
+ // Called `sync`, not `mode`: this file already has modes — info, card and
+ // quiz — and one shared scope. Two `setMode` functions in it meant the later
+ // one silently replaced the earlier, and the view modes stopped working the
+ // moment a video lesson was built.
  var ytbtn=document.getElementById('ytbtn'),
      ytpane=document.getElementById('ytpane'),
      ytframe=document.getElementById('ytframe'),
      gripa=document.getElementById('gripa'),gripb=document.getElementById('gripb'),
      page=document.querySelector('.page'),
      vid=document.body.dataset.yt||'',
-     player=null,mode='slide',ticker=null,seeking=0;
+     player=null,sync='slide',ticker=null,seeking=0;
 
  function atOf(c){var v=c&&c.dataset.at;return v?parseInt(v,10):null;}
  var stops=[];                                  // [ms, cardIndex], in order
@@ -373,7 +577,7 @@
  // otherwise the two would chase each other a quarter of a second apart.
  function cue(byUser){
   if(!player||!player.seekTo)return;
-  if(mode!=='slide'&&!(mode==='video'&&byUser))return;
+  if(sync!=='slide'&&!(sync==='video'&&byUser))return;
   var ms=atOf(cards[at]);
   if(ms===null)return;
   seeking=Date.now();
@@ -381,7 +585,7 @@
  }
 
  function follow(){
-  if(mode!=='video'||!player||!player.getCurrentTime)return;
+  if(sync!=='video'||!player||!player.getCurrentTime)return;
   if(Date.now()-seeking<700)return;
   var t=player.getCurrentTime();
   if(typeof t!=='number')return;
@@ -389,14 +593,14 @@
   if(want>=0&&want!==at)show(want);
  }
 
- function setMode(m){
-  mode=(m==='slide'||m==='video')?m:'';
+ function setSync(m){
+  sync=(m==='slide'||m==='video')?m:'';
   var b=ytpane?ytpane.querySelectorAll('.ymode'):[];
   for(var i=0;i<b.length;i++)
-   b[i].classList.toggle('on',b[i].dataset.sync===mode);
-  document.body.classList.toggle('yt-lead',mode==='video');
-  try{localStorage.setItem('wb.ytmode',mode);}catch(e){}
-  if(mode==='slide')cue();
+   b[i].classList.toggle('on',b[i].dataset.sync===sync);
+  document.body.classList.toggle('yt-lead',sync==='video');
+  try{localStorage.setItem('wb.ytmode',sync);}catch(e){}
+  if(sync==='slide')cue();
  }
 
  // The player is built the first time the column is opened and never before,
@@ -410,7 +614,7 @@
    player=new YT.Player(host,{videoId:vid,
     host:'https://www.youtube-nocookie.com',
     playerVars:{rel:0,modestbranding:1,playsinline:1},
-    events:{onReady:function(){if(mode==='slide')cue();}}});
+    events:{onReady:function(){if(sync==='slide')cue();}}});
    if(ticker)clearInterval(ticker);
    ticker=setInterval(follow,250);
   }
@@ -441,11 +645,11 @@
    var m=e.target.closest?e.target.closest('[data-sync]'):null;
    // pressing the mode you are already in turns it off: watch the video
    // without it moving anything, and move the cards without it seeking
-   if(m)setMode(mode===m.dataset.sync?'':m.dataset.sync);
+   if(m)setSync(sync===m.dataset.sync?'':m.dataset.sync);
    if(e.target.id==='ytreset')resetWidths();
   });
   try{var mm=localStorage.getItem('wb.ytmode');
-      if(mm!==null)setMode(mm);
+      if(mm!==null)setSync(mm);
       if(localStorage.getItem('wb.yt')==='1')ytOn(true);}catch(e){}
  }
 
