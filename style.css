@@ -1,49 +1,49 @@
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0d0d14;color:#e6e6f0;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#7cb0ff}
-.site-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid #1c1c2a;background:#0a0a11;position:sticky;top:0;z-index:5}
-.brand{font-size:18px;font-weight:800;color:#ece9f5;text-decoration:none}.brand .bolt{color:#3b82f6}.brand b{color:#3b82f6}
-.app-link{font-size:12px;color:#8a8aa8;text-decoration:none}.app-link:hover{color:#7cb0ff}
+body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--s0);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent2)}
+.site-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--s0);position:sticky;top:0;z-index:5}
+.brand{font-size:18px;font-weight:800;color:var(--text);text-decoration:none}.brand .bolt{color:var(--accent)}.brand b{color:var(--accent)}
+.app-link{font-size:12px;color:var(--muted);text-decoration:none}.app-link:hover{color:var(--accent2)}
 .wrap{max-width:760px;margin:0 auto;padding:30px 20px 50px}
-.hero h1{font-size:34px;line-height:1.2;color:#fff;margin-bottom:10px}
-.hero .tagline{font-size:17px;color:#c4c4da;margin-bottom:10px}.hero .how{font-size:14px;color:#8e8eaa}
-.sec-h{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#6f6f90;margin:34px 0 14px;font-weight:700}
+.hero h1{font-size:34px;line-height:1.2;color:var(--bright);margin-bottom:10px}
+.hero .tagline{font-size:17px;color:var(--text2);margin-bottom:10px}.hero .how{font-size:14px;color:var(--muted)}
+.sec-h{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:34px 0 14px;font-weight:700}
 .lesson-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.lesson-link{display:flex;align-items:center;gap:14px;padding:15px 16px;background:#15151f;border:1px solid #24243a;border-radius:11px;text-decoration:none;color:inherit;transition:border-color .12s,transform .12s}
-.lesson-link:hover{border-color:#3b82f6;transform:translateY(-1px)}
-.lesson-link .num{font-family:monospace;font-size:18px;color:#3b82f6;font-weight:700}
+.lesson-link{display:flex;align-items:center;gap:14px;padding:15px 16px;background:var(--s3);border:1px solid var(--edge);border-radius:11px;text-decoration:none;color:inherit;transition:border-color .12s,transform .12s}
+.lesson-link:hover{border-color:var(--accent);transform:translateY(-1px)}
+.lesson-link .num{font-family:monospace;font-size:18px;color:var(--accent);font-weight:700}
 .lesson-link .meta{flex:1;display:flex;flex-direction:column}
-.lesson-link .lt{font-size:16px;font-weight:700;color:#ece9f5}.lesson-link .ld{font-size:12px;color:#7a7a98}
-.lesson-link .go{font-size:20px;color:#56566e}
-.crumbs{font-size:12.5px;color:#7a7a98;margin-bottom:18px}.crumbs a{color:#8a8aa8;text-decoration:none}.crumbs span{margin:0 6px;color:#44445c}
-article h1{font-size:28px;color:#fff;line-height:1.25;margin-bottom:10px}
-.lead{font-size:15.5px;color:#b6b6cf;margin-bottom:20px}
+.lesson-link .lt{font-size:16px;font-weight:700;color:var(--text)}.lesson-link .ld{font-size:12px;color:var(--dim)}
+.lesson-link .go{font-size:20px;color:var(--edge)}
+.crumbs{font-size:12.5px;color:var(--dim);margin-bottom:18px}.crumbs a{color:var(--muted);text-decoration:none}.crumbs span{margin:0 6px;color:var(--edge)}
+article h1{font-size:28px;color:var(--bright);line-height:1.25;margin-bottom:10px}
+.lead{font-size:15.5px;color:var(--text3);margin-bottom:20px}
 .study-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.btn{display:inline-block;padding:11px 18px;border-radius:9px;text-decoration:none;font-size:14px;font-weight:700;border:1px solid #2a2a3e;background:#16161f;color:#cfcfe4}
-.btn:hover{border-color:#3a3a56}.btn.primary{background:#16284a;border-color:#3b82f6;color:#bcd4ff}.btn.primary:hover{background:#1d3460}
-.cta-note{font-size:12px;color:#7a7a98;margin-bottom:24px}
+.btn{display:inline-block;padding:11px 18px;border-radius:9px;text-decoration:none;font-size:14px;font-weight:700;border:1px solid var(--edge);background:var(--s2);color:var(--text2)}
+.btn:hover{border-color:var(--edge)}.btn.primary{background:var(--accentbg);border-color:var(--accent);color:var(--accent3)}.btn.primary:hover{background:var(--accentbg)}
+.cta-note{font-size:12px;color:var(--dim);margin-bottom:24px}
 .vocab{display:flex;flex-direction:column;border-radius:10px;overflow:hidden}
-.vocab-row{display:flex;align-items:center;gap:16px;padding:12px 14px;border-bottom:1px solid #1c1c2a}
-.vocab-row:nth-child(odd){background:#13131c}
+.vocab-row{display:flex;align-items:center;gap:16px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.vocab-row:nth-child(odd){background:var(--s2)}
 .vocab-pic{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px}
 .vocab-pic img{width:120px;height:80px;object-fit:cover;border-radius:8px;display:block}
-.vocab-pic .cred{font-size:8.5px;color:#5a5a72;max-width:120px;text-align:center;line-height:1.2}
-.vocab-pic .cred a{color:#6a6a9a}
-.vocab-row dt{flex:1;min-width:0}.vocab-row .th{font-size:21px;color:#fff;font-weight:600}.vocab-row .rom{font-size:14px;color:#60a5fa;margin-left:8px}
-.vocab-row dd{font-size:15px;color:#d4d4e4;text-align:right;min-width:110px}
+.vocab-pic .cred{font-size:8.5px;color:var(--faint);max-width:120px;text-align:center;line-height:1.2}
+.vocab-pic .cred a{color:var(--dim)}
+.vocab-row dt{flex:1;min-width:0}.vocab-row .th{font-size:21px;color:var(--bright);font-weight:600}.vocab-row .rom{font-size:14px;color:var(--accent2);margin-left:8px}
+.vocab-row dd{font-size:15px;color:var(--text2);text-align:right;min-width:110px}
 .lesson-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;font-size:13.5px}
-.lesson-nav a{color:#8aa9d8;text-decoration:none}.lesson-nav a:hover{color:#7cb0ff}
-.site-foot{border-top:1px solid #1c1c2a;padding:24px 20px;text-align:center;color:#6a6a86;font-size:12.5px}.site-foot a{color:#8a8aa8}
+.lesson-nav a{color:var(--accentq);text-decoration:none}.lesson-nav a:hover{color:var(--accent2)}
+.site-foot{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--dim);font-size:12.5px}.site-foot a{color:var(--muted)}
 @media(max-width:540px){.hero h1{font-size:27px}.vocab-row dd{min-width:70px}.vocab-pic img{width:88px;height:62px}.vocab-pic .cred{display:none}}
 /* the sound hook and the picture-it line: the method, in text a search engine
    can read — and the play button, neither of which the reference site had */
-.vocab-row .aid{font-size:12.5px;color:#8a8aa8;margin-top:2px;line-height:1.45}
-.vocab-row .aid .hook{color:#c9a227;font-weight:700;letter-spacing:.02em}
+.vocab-row .aid{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.45}
+.vocab-row .aid .hook{color:var(--gold);font-weight:700;letter-spacing:.02em}
 @media(max-width:540px){.vocab-row .aid{font-size:11.5px}}
-.vocab-row .say{background:none;border:0;color:#60a5fa;font-size:17px;cursor:pointer;padding:2px 6px;line-height:1}
-.vocab-row .say:hover{color:#9cc4ff}
-.vocab-row .say.slow{font-size:15px;color:#7f93b5}
-.vocab-row .say.slow:hover{color:#a9bcda}
+.vocab-row .say{background:none;border:0;color:var(--accent2);font-size:17px;cursor:pointer;padding:2px 6px;line-height:1}
+.vocab-row .say:hover{color:var(--accent3)}
+.vocab-row .say.slow{font-size:15px;color:var(--accentq)}
+.vocab-row .say.slow:hover{color:var(--text3)}
 
 /* ------------------------------------------------------------------ shell
    The course pages are a room, not a scroll: a menu that never moves, a bar
@@ -58,7 +58,91 @@ article h1{font-size:28px;color:#fff;line-height:1.25;margin-bottom:10px}
    Everything above this line is still in use: the two hand-made pages in
    the repository (thai-basics-100 and the class-9 list) load this same
    stylesheet, and replacing it rather than adding to it would strip them. */
-:root{--menu:220px;--bar:3em;--line:#1c1c2a;--panel:#12121b;--dim:#8a8aa8}
+:root{
+  --ink:#000;
+  --s0:#0a0a11;
+  --s1:#0f0f17;
+  --s2:#12121b;
+  --front:#161622;
+  --back:#1c1616;
+  --s3:#15151f;
+  --frontbar:#1a1a35;
+  --backbar:#2a1818;
+  --line:#1c1c2a;
+  --edge:#24243a;
+  --frontedge:#2a3a5a;
+  --backedge:#4a2a2a;
+  --frontdot:#2a4a7a;
+  --backdot:#6a2a2a;
+  --bright:#fff;
+  --text:#ece9f5;
+  --text2:#d4d4e4;
+  --text3:#b6b6cf;
+  --muted:#9a9ab8;
+  --dim:#7a7a98;
+  --faint:#5a5a72;
+  --accent:#3b82f6;
+  --accent2:#60a5fa;
+  --accent3:#9cc4ff;
+  --accentq:#8aa9d8;
+  --accentbg:#16233a;
+  --onaccent:#06122a;
+  --ok:#34c98e;
+  --bad:#f2705f;
+  --bad2:#f87171;
+  --badbg:#5a1e1e;
+  --gold:#c9a227;
+  --gold2:#f5cb6e;
+  --goldbg:#3a2a14;
+  --violet:#a78bfa;
+  --violet2:#c4b5fd;
+  --violetbg:#2a1a4a;
+  --menu:220px;--rail:50px;--bar:3em;--line:var(--line);--panel:var(--s2);--dim:var(--muted)
+}
+/* Daylight. The same palette, the same jobs — only the values
+   change, which is the whole reason the colours have names. */
+html.light-pre body,body.light{
+  --ink:#000;
+  --s0:#eef0f5;
+  --s1:#f4f5f9;
+  --s2:#ffffff;
+  --s3:#e9ebf2;
+  --front:#ffffff;
+  --back:#fff6f4;
+  --frontbar:#dde7fb;
+  --backbar:#fadbd6;
+  --line:#d9dde8;
+  --edge:#c9cfdd;
+  --frontedge:#9fbdf0;
+  --backedge:#e8b4ab;
+  --frontdot:#7aa6e8;
+  --backdot:#d99a8f;
+  --bright:#0b0d14;
+  --text:#1a1d29;
+  --text2:#333747;
+  --text3:#454a5c;
+  --muted:#5a6072;
+  --dim:#6f7588;
+  --faint:#8c93a6;
+  --accent:#1d63d8;
+  --accent2:#1554bd;
+  --accent3:#123f8e;
+  --accentq:#3a6cb5;
+  --accentbg:#dbe6fb;
+  --onaccent:#ffffff;
+  --ok:#127a52;
+  --bad:#c0392b;
+  --bad2:#a93226;
+  --badbg:#fadbd6;
+  --gold:#8a6d10;
+  --gold2:#6f5608;
+  --goldbg:#faeecd;
+  --violet:#6d3fd4;
+  --violet2:#5327b5;
+  --violetbg:#e7defb;
+}
+body.light img{filter:none}
+
 [hidden]{display:none!important}
 /* The drawer's backdrop exists only on a phone, but it is a child of the grid,
    so it has to be taken out of the layout HERE rather than inside the media
@@ -73,39 +157,40 @@ body.shell{height:100vh;overflow:hidden}
    many came before it. The widths are variables because the reader drags
    them; --wyt/--wa/--wb are what the grips write. */
 .page{display:grid;--wyt:1.15fr;--wa:1fr;--wb:1fr;--grip:6px;
-  grid-template-columns:[menu] var(--menu) [pic] var(--wa) [gb] var(--grip)
-    [txt] var(--wb);
+  grid-template-columns:[rail] var(--rail) [menu] var(--menu) [pic] var(--wa)
+    [gb] var(--grip) [txt] var(--wb);
   grid-template-rows:var(--bar) auto 1fr;height:100vh}
-body.yt-on .page{grid-template-columns:[menu] var(--menu) [ytc] var(--wyt)
-  [ga] var(--grip) [pic] var(--wa) [gb] var(--grip) [txt] var(--wb)}
+body.yt-on .page{grid-template-columns:[rail] var(--rail) [menu] var(--menu)
+  [ytc] var(--wyt) [ga] var(--grip) [pic] var(--wa) [gb] var(--grip)
+  [txt] var(--wb)}
 .menu{grid-row:1/-1;grid-column:menu;border-right:1px solid var(--line);
-  background:#0a0a11;display:flex;flex-direction:column;min-height:0;
+  background:var(--s0);display:flex;flex-direction:column;min-height:0;
   min-width:0}
-.slider{grid-column:2/-1;grid-row:1;border-bottom:1px solid var(--line);
-  background:#0a0a11;display:flex;align-items:center;gap:14px;padding:0 16px;
+.slider{grid-column:3/-1;grid-row:1;border-bottom:1px solid var(--line);
+  background:var(--s0);display:flex;align-items:center;gap:14px;padding:0 16px;
   min-width:0}
 .left{grid-row:3;grid-column:pic;min-width:0;min-height:0;display:flex;
   overflow:hidden;align-items:center;justify-content:center;padding:22px;
-  background:#0f0f17}
+  background:var(--s1)}
 .right{grid-row:3;grid-column:txt;min-width:0;min-height:0;overflow-y:auto;
   padding:26px 28px 34px;border-left:1px solid var(--line)}
 
 /* The courses, across the top. Its own row, which is `auto` — so on a site
    with no courses to show the row collapses to nothing and the page is
    exactly what it was. */
-.coursebar{grid-row:2;grid-column:2/-1;display:flex;gap:6px;flex-wrap:wrap;
-  align-items:center;padding:7px 16px;background:#0a0a11;
+.coursebar{grid-row:2;grid-column:3/-1;display:flex;gap:6px;flex-wrap:wrap;
+  align-items:center;padding:7px 16px;background:var(--s0);
   border-bottom:1px solid var(--line);overflow-x:auto;
   scrollbar-width:none}
 .coursebar::-webkit-scrollbar{display:none}
 .coursebar .cs{display:inline-flex;gap:6px;align-items:center;
-  padding:3px 11px;border-radius:20px;border:1px solid #24243a;
-  color:#9a9ab8;text-decoration:none;font-size:12.5px;white-space:nowrap}
-.coursebar .cs:hover{border-color:#3b82f6;color:#cfe0ff}
-.coursebar .cs.on{border-color:#3b82f6;background:#16233a;color:#cfe0ff;
+  padding:3px 11px;border-radius:20px;border:1px solid var(--edge);
+  color:var(--muted);text-decoration:none;font-size:12.5px;white-space:nowrap}
+.coursebar .cs:hover{border-color:var(--accent);color:var(--accent3)}
+.coursebar .cs.on{border-color:var(--accent);background:var(--accentbg);color:var(--accent3);
   font-weight:600}
-.coursebar .cs .n{font-family:monospace;font-size:11px;color:#5a5a72}
-.coursebar .cs.on .n{color:#7fa8dd}
+.coursebar .cs .n{font-family:monospace;font-size:11px;color:var(--faint)}
+.coursebar .cs.on .n{color:var(--accentq)}
 
 /* the grips. A hidden panel must leave the grid entirely, or its empty cell
    still takes a column's worth of room. */
@@ -115,86 +200,86 @@ body.yt-on .page{grid-template-columns:[menu] var(--menu) [ytc] var(--wyt)
 #gripa{grid-column:ga}
 #gripb{grid-column:gb}
 .grip::after{content:"";position:absolute;inset:0 -4px;}
-.grip:hover,.grip.dragging{background:#3b82f6}
-.grip:focus-visible{outline:2px solid #3b82f6;outline-offset:1px}
+.grip:hover,.grip.dragging{background:var(--accent)}
+.grip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 body.resizing{cursor:col-resize;user-select:none}
 body.resizing iframe{pointer-events:none}
 
 /* the video column */
 .yt{grid-row:3;grid-column:ytc;min-width:0;min-height:0;display:flex;
   flex-direction:column;
-  background:#0b0b12;padding:14px 14px 10px;gap:10px;overflow:hidden}
-.ytframe{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px;
+  background:var(--s0);padding:14px 14px 10px;gap:10px;overflow:hidden}
+.ytframe{width:100%;aspect-ratio:16/9;background:var(--ink);border-radius:10px;
   overflow:hidden;flex:none;display:flex;align-items:center;
   justify-content:center}
 .ytframe iframe{width:100%;height:100%;border:0;display:block}
-.ytload{color:#5a5a72;font-size:12.5px}
+.ytload{color:var(--faint);font-size:12.5px}
 .ytbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.ytbar button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+.ytbar button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer;
   font-family:inherit}
-.ytbar button:hover{border-color:#3b82f6;color:#fff}
-.ytbar .ymode.on{border-color:#3b82f6;background:#16233a;color:#cfe0ff}
+.ytbar button:hover{border-color:var(--accent);color:var(--bright)}
+.ytbar .ymode.on{border-color:var(--accent);background:var(--accentbg);color:var(--accent3)}
 .ytbar .yspace{flex:1}
-.ytwho{font-size:12px;color:#5a5a72;line-height:1.4;
+.ytwho{font-size:12px;color:var(--faint);line-height:1.4;
   overflow:hidden;text-overflow:ellipsis;display:-webkit-box;
   -webkit-line-clamp:2;-webkit-box-orient:vertical}
-.slider .ytbtn{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+.slider .ytbtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:8px;width:30px;height:28px;font-size:13px;cursor:pointer;
   flex-shrink:0;font-family:inherit}
-.slider .ytbtn:hover{border-color:#3b82f6;color:#fff}
-.slider .ytbtn[aria-pressed="true"]{border-color:#3b82f6;background:#16233a;
-  color:#cfe0ff}
+.slider .ytbtn:hover{border-color:var(--accent);color:var(--bright)}
+.slider .ytbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accentbg);
+  color:var(--accent3)}
 
 /* menu */
 .menu .brand{display:block;padding:14px 16px;border-bottom:1px solid var(--line);
-  font-size:16px;font-weight:800;color:#ece9f5;text-decoration:none}
+  font-size:16px;font-weight:800;color:var(--text);text-decoration:none}
 .menu .find{padding:12px 12px 8px}
 .menu .find input{width:100%;padding:8px 10px;border-radius:8px;
-  border:1px solid #24243a;background:#13131c;color:#e6e6f0;font-size:13px}
-.menu .find input:focus{outline:none;border-color:#3b82f6}
+  border:1px solid var(--edge);background:var(--s2);color:var(--text);font-size:13px}
+.menu .find input:focus{outline:none;border-color:var(--accent)}
 .menu nav{flex:1;overflow-y:auto;padding:0 8px 8px}
 .menu .grp{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;
-  color:#6f6f90;font-weight:700;padding:12px 8px 6px}
+  color:var(--dim);font-weight:700;padding:12px 8px 6px}
 .menu a.item{display:block;padding:7px 8px;border-radius:7px;font-size:13px;
-  color:#c4c4da;text-decoration:none;line-height:1.35}
-.menu a.item:hover{background:#15151f;color:#fff}
-.menu a.item.on{background:#16284a;color:#bcd4ff}
-.menu a.item .sub{display:block;font-size:11px;color:#6f6f90}
-.menu a.item.on .sub{color:#7f9dd0}
-.menu .none{padding:10px 8px;font-size:12px;color:#6f6f90}
+  color:var(--text2);text-decoration:none;line-height:1.35}
+.menu a.item:hover{background:var(--s3);color:var(--bright)}
+.menu a.item.on{background:var(--accentbg);color:var(--accent3)}
+.menu a.item .sub{display:block;font-size:11px;color:var(--dim)}
+.menu a.item.on .sub{color:var(--accentq)}
+.menu .none{padding:10px 8px;font-size:12px;color:var(--dim)}
 .menu .acts{border-top:1px solid var(--line);padding:10px 10px 4px;
   display:flex;flex-wrap:wrap;gap:6px}
 .menu .acts .btn{padding:6px 10px;font-size:12px;border-radius:7px;
   font-weight:600}
 .menu .foot{border-top:1px solid var(--line);padding:12px 16px;font-size:11px;
-  color:#6a6a86;line-height:1.5}
-.menu .foot a{color:#8a8aa8}
+  color:var(--dim);line-height:1.5}
+.menu .foot a{color:var(--muted)}
 
 /* Collapsed. The menu is a reference, not a companion — on a laptop the two
    panes are the work, and 220px of lesson titles is 220px the picture could
    have had. ☰ puts it back, and the choice is remembered. */
-body.menu-hidden{--menu:0}
-body.menu-hidden .menu{display:none}
+body.no-lessons{--menu:0}
+body.no-lessons .menu{display:none}
 
 /* slider bar */
-.slider .burger{display:block;background:#15151f;border:1px solid #24243a;
-  color:#cfcfe4;border-radius:7px;width:32px;height:28px;font-size:15px;
+.slider .burger{display:block;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:7px;width:32px;height:28px;font-size:15px;
   cursor:pointer;line-height:1;flex-shrink:0}
-.slider .burger:hover{border-color:#3b82f6;color:#fff}
-.slider .name{font-size:14px;font-weight:700;color:#ece9f5;white-space:nowrap;
+.slider .burger:hover{border-color:var(--accent);color:var(--bright)}
+.slider .name{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
-.slider .name a{color:#7a7a98;text-decoration:none}
+.slider .name a{color:var(--dim);text-decoration:none}
 .slider .pager{display:flex;align-items:center;gap:4px;flex-shrink:0}
-.slider .pager button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+.slider .pager button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:7px;width:30px;height:26px;font-size:14px;cursor:pointer;
   line-height:1}
-.slider .pager button:hover:not(:disabled){border-color:#3b82f6;color:#fff}
+.slider .pager button:hover:not(:disabled){border-color:var(--accent);color:var(--bright)}
 .slider .pager button:disabled{opacity:.35;cursor:default}
 .slider .pager .count{font-family:monospace;font-size:12.5px;color:var(--dim);
   min-width:64px;text-align:center}
-.slider .scrub{flex:0 1 200px;accent-color:#3b82f6;min-width:80px}
-.slider .hint{font-size:11px;color:#5a5a72;white-space:nowrap;flex-shrink:0}
+.slider .scrub{flex:0 1 200px;accent-color:var(--accent);min-width:80px}
+.slider .hint{font-size:11px;color:var(--faint);white-space:nowrap;flex-shrink:0}
 @media(max-width:1100px){.slider .hint{display:none}}
 
 /* the picture */
@@ -208,32 +293,32 @@ body.menu-hidden .menu{display:none}
    otherwise the placeholder keeps its width while its column shrinks and
    spills out over whatever is beside it. */
 .left .nopic{width:min(360px,100%);aspect-ratio:4/3;border-radius:12px;
-  border:1px dashed #2a2a3e;background:#13131c;display:flex;align-items:center;
-  justify-content:center;color:#3f3f57;font-size:64px}
-.left figcaption{font-size:11px;color:#5a5a72;text-align:center}
+  border:1px dashed var(--edge);background:var(--s2);display:flex;align-items:center;
+  justify-content:center;color:var(--faint);font-size:64px}
+.left figcaption{font-size:11px;color:var(--faint);text-align:center}
 
 /* the word */
-.info .th{font-size:44px;line-height:1.15;color:#fff;font-weight:600;
+.info .th{font-size:44px;line-height:1.15;color:var(--bright);font-weight:600;
   word-break:break-word}
-.info .rom{font-size:17px;color:#60a5fa;margin-top:4px}
-.info .en{font-size:19px;color:#e2e2ee;margin-top:14px}
-.info .pos{font-size:12px;color:#6f6f90;margin-top:2px}
+.info .rom{font-size:17px;color:var(--accent2);margin-top:4px}
+.info .en{font-size:19px;color:var(--text);margin-top:14px}
+.info .pos{font-size:12px;color:var(--dim);margin-top:2px}
 .info .plays{display:flex;gap:8px;margin-top:16px}
-.info .plays button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+.info .plays button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:8px;padding:7px 12px;font-size:13px;cursor:pointer}
-.info .plays button:hover{border-color:#3b82f6;color:#fff}
+.info .plays button:hover{border-color:var(--accent);color:var(--bright)}
 .info .aid{margin-top:20px;padding:14px 15px;border:1px solid var(--line);
   border-radius:10px;background:var(--panel)}
 .info .aid .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;
-  color:#6f6f90;font-weight:700}
-.info .aid .hook{font-size:16px;color:#c9a227;font-weight:700;
+  color:var(--dim);font-weight:700}
+.info .aid .hook{font-size:16px;color:var(--gold);font-weight:700;
   letter-spacing:.02em;margin-top:3px}
-.info .aid p{font-size:13.5px;color:#b6b6cf;margin-top:8px;line-height:1.55}
+.info .aid p{font-size:13.5px;color:var(--text3);margin-top:8px;line-height:1.55}
 .info .ex{margin-top:18px}
 .info .ex li{list-style:none;padding:10px 0;border-top:1px solid var(--line)}
-.info .ex .sx{font-size:17px;color:#e6e6f0}
-.info .ex .sr{font-size:12.5px;color:#60a5fa}
-.info .ex .st{font-size:13px;color:#9a9ab8}
+.info .ex .sx{font-size:17px;color:var(--text)}
+.info .ex .sr{font-size:12.5px;color:var(--accent2)}
+.info .ex .st{font-size:13px;color:var(--muted)}
 .info .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
 
 /* ------------------------------------------------------------------ modes
@@ -242,66 +327,242 @@ body.menu-hidden .menu{display:none}
    scrubber all behave identically in all three, so switching is a change of
    what you are being shown rather than a different place to be. */
 .slider .modes{display:flex;gap:3px;flex-shrink:0}
-.slider .md{background:#15151f;border:1px solid #24243a;color:#9a9ab8;
+.slider .md{background:var(--s3);border:1px solid var(--edge);color:var(--muted);
   border-radius:8px;width:31px;height:28px;font-size:14px;cursor:pointer;
   line-height:1;font-family:inherit;padding:0}
-.slider .md:hover{border-color:#3b82f6;color:#fff}
-.slider .md[aria-pressed="true"]{border-color:#3b82f6;background:#16233a;
-  color:#cfe0ff}
+.slider .md:hover{border-color:var(--accent);color:var(--bright)}
+.slider .md[aria-pressed="true"]{border-color:var(--accent);background:var(--accentbg);
+  color:var(--accent3)}
 
-/* card mode. The answer is hidden with visibility rather than display, so the
-   word does not jump up the panel when you turn it over. */
-body.mode-card .info .rom,body.mode-card .info .pos,
-body.mode-card .info .en,body.mode-card .info .plays,
-body.mode-card .info .aid,body.mode-card .info .ex{visibility:hidden}
-body.mode-card .card.flip .rom,body.mode-card .card.flip .pos,
-body.mode-card .card.flip .en,body.mode-card .card.flip .plays,
-body.mode-card .card.flip .aid,body.mode-card .card.flip .ex{visibility:visible}
-.flipnote{display:none;margin-top:22px;font-size:12.5px;color:#5a5a72;
-  border-top:1px solid var(--line);padding-top:12px}
-body.mode-card .flipnote{display:block}
-body.mode-card .flipnote b{color:#8a8aa8}
-body.mode-card.flipped .flipnote .ask{display:none}
-body.mode-card:not(.flipped) .flipnote .seen{display:none}
+/* the two buttons that say whether you knew it */
+.fknow{display:flex;gap:8px;justify-content:center;padding:0 0 10px;
+  flex-shrink:0}
+.fknow .kno{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;padding:5px 13px;font-size:12.5px;
+  cursor:pointer;font-family:inherit}
+.fknow .kno:hover{border-color:var(--accent);color:var(--bright)}
+.fknow .kno[data-know="known"].on{border-color:var(--ok);color:var(--ok)}
+.fknow .kno[data-know="learning"].on{border-color:var(--gold2);
+  color:var(--gold2)}
 
-/* quiz mode. The picture is a giveaway, so it waits until you have answered —
-   and then it arrives as the reward for getting it right. */
-.quiz{display:none}
-body.mode-quiz .info>.card,body.mode-quiz .flipnote{display:none}
+/* a panel over the page: progress, about, guide */
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;
+  display:flex;align-items:center;justify-content:center;padding:20px}
+.sheet-box{background:var(--s2);border:1px solid var(--line);
+  border-radius:12px;width:min(680px,100%);max-height:86vh;display:flex;
+  flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;border-bottom:1px solid var(--line)}
+.sheet-head b{font-size:15px;color:var(--bright)}
+.sheet-head .x{background:none;border:0;color:var(--dim);font-size:15px;
+  cursor:pointer;font-family:inherit}
+.sheet-head .x:hover{color:var(--bright)}
+.sheet-body{padding:16px;overflow-y:auto}
+.sheet-p{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 14px}
+.sheet-row{margin-top:14px}
+.sheet-row .wipe{background:var(--s3);border:1px solid var(--edge);
+  color:var(--muted);border-radius:7px;padding:6px 12px;font-size:12.5px;
+  cursor:pointer;font-family:inherit}
+.sheet-row .wipe:hover{border-color:var(--bad);color:var(--bad)}
+.pstat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.pc{flex:1;min-width:120px;border:1px solid var(--line);border-radius:9px;
+  padding:11px 13px;font-size:12px;color:var(--dim);background:var(--s3)}
+.pc b{display:block;font-size:24px;color:var(--text);margin-bottom:2px}
+.pc.ok b{color:var(--ok)}
+.pc.warn b{color:var(--gold2)}
+.ptab{width:100%;border-collapse:collapse;font-size:13px}
+.ptab th{text-align:left;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--faint);padding:0 8px 7px 0;
+  font-weight:700}
+.ptab td{padding:6px 8px 6px 0;border-top:1px solid var(--line);
+  color:var(--text2)}
+.ptab td.ok{color:var(--ok)}
+.ptab td.warn{color:var(--gold2)}
+.ptab td.n{font-family:monospace;color:var(--dim);text-align:right;
+  width:52px}
+.ptab .best{color:var(--faint);font-size:11px}
+.dimq{color:var(--faint)}
+
+/* ------------------------------------------------------ the site's menu
+   The ☰ sits on a rail at the very left — before the brand, before the
+   lessons — because it is the way out of all of them. The course's lessons
+   keep their own panel; this one is about the site. */
+.rail{grid-row:1/-1;grid-column:rail;background:var(--s0);
+  border-right:1px solid var(--line);display:flex;flex-direction:column;
+  align-items:center;padding:9px 0;gap:8px;z-index:14;position:relative}
+.rail .burger{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;width:32px;height:30px;font-size:14px;
+  cursor:pointer;flex-shrink:0;font-family:inherit;line-height:1}
+.rail .burger:hover{border-color:var(--accent);color:var(--bright)}
+.rail .burger[aria-expanded="true"]{border-color:var(--accent);
+  background:var(--accentbg);color:var(--accent3)}
+.mainmenu{position:absolute;left:100%;top:0;bottom:0;width:212px;
+  background:var(--s0);border-right:1px solid var(--line);padding:9px;
+  display:flex;flex-direction:column;gap:2px;
+  transform:translateX(-100%);opacity:0;pointer-events:none;
+  transition:transform .18s ease,opacity .18s ease;overflow-y:auto}
+body.mm-open .mainmenu{transform:none;opacity:1;pointer-events:auto;
+  box-shadow:10px 0 30px rgba(0,0,0,.35)}
+.mm-head{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);font-weight:700;padding:4px 8px 8px}
+.mm{display:flex;gap:10px;align-items:center;width:100%;text-align:left;
+  background:none;border:0;color:var(--text2);border-radius:7px;
+  padding:8px 9px;font-size:13px;cursor:pointer;font-family:inherit}
+.mm:hover{background:var(--s3);color:var(--bright)}
+.mm .i{width:17px;text-align:center;color:var(--faint);flex:none}
+.mm[aria-pressed="true"] .i{color:var(--accent2)}
+.mm-sep{height:1px;background:var(--line);margin:7px 4px}
+
+/* ------------------------------------------------- one panel, not two
+   Reading a word wants the picture beside it. A flashcard IS the picture and
+   the word, and a question wants the whole width for its options — so those
+   two modes take the room the picture column was using. The video column is
+   left alone: a video lesson still plays beside its own cards. */
+body.mode-card .left,body.mode-quiz .left,
+body.mode-card #gripb,body.mode-quiz #gripb{display:none}
+body.mode-card .right,body.mode-quiz .right{grid-column:pic/-1;border-left:0;
+  overflow:hidden;padding:0}
+body.mode-card .info>.card,body.mode-quiz .info>.card,
+body.mode-card .info .cta,body.mode-quiz .info .cta{display:none}
+
+/* the mode bar: what shuffle, reverse and the rest live in */
+.mbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;
+  padding:8px 14px;border-bottom:1px solid var(--line);background:var(--s0);
+  font-size:12px;color:var(--dim)}
+.mbar button{background:var(--s3);border:1px solid var(--edge);color:var(--muted);
+  border-radius:7px;padding:4px 10px;font-size:11.5px;cursor:pointer;
+  font-family:inherit;display:inline-flex;gap:5px;align-items:center}
+.mbar button:hover{border-color:var(--accent);color:var(--bright)}
+.mbar button.on{border-color:var(--violet);background:var(--violetbg);color:var(--violet2)}
+.mbar .sp{flex:1}
+.mbar .grp{display:flex;gap:3px;align-items:center}
+.mbar .grp b{font-weight:600;color:var(--dim);margin-right:2px;font-size:11px}
+.mbar .nbtn{width:26px;padding:0;height:24px;justify-content:center;
+  font-family:monospace}
+.mbar .nbtn.on{border-color:var(--gold2);background:var(--goldbg);color:var(--gold2)}
+.mbar .score{font-family:monospace;color:var(--muted)}
+
+/* --------------------------------------------------------- the flashcard
+   Copied from inaflash.cards: a shell you drag by its bar and resize by its
+   corner, two faces on a 3D turn, the front blue and the back red. */
+.fcwrap{position:relative;height:calc(100% - 44px);overflow:hidden}
+.grab{position:absolute;left:0;top:0;cursor:grab;user-select:none}
+.fshell{position:relative;display:flex;flex-direction:column;
+  width:420px;height:440px;min-width:300px;min-height:260px;border-radius:10px;
+  border:1px solid var(--frontedge);background:var(--front);
+  box-shadow:0 8px 40px rgba(0,0,0,.75);transition:border-color .4s,background .4s}
+.fshell.flipped{border-color:var(--backedge);background:var(--back)}
+.fbar{display:flex;align-items:center;justify-content:space-between;
+  padding:0 12px;height:34px;border-radius:10px 10px 0 0;
+  border-bottom:1px solid var(--frontedge);background:var(--frontbar);cursor:grab;
+  user-select:none;flex-shrink:0;transition:background .4s,border-color .4s}
+.fbar:active{cursor:grabbing}
+.fshell.flipped .fbar{background:var(--backbar);border-bottom-color:var(--backedge)}
+.fdots{display:flex;gap:5px;pointer-events:none}
+.fdots span{width:9px;height:9px;border-radius:50%;background:var(--frontdot)}
+.fshell.flipped .fdots span{background:var(--backdot)}
+.fbadge{font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:2px 8px;border-radius:20px;
+  pointer-events:none;background:var(--accentbg);color:var(--accent2);transition:background .4s,color .4s}
+.fshell.flipped .fbadge{background:var(--badbg);color:var(--bad2)}
+.fbody{flex:1;min-height:0;position:relative;overflow:hidden;
+  border-radius:0 0 10px 10px}
+.finner{position:absolute;inset:0;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.fshell.flipped .finner{transform:rotateY(180deg)}
+.fface{position:absolute;inset:0;backface-visibility:hidden;display:flex;
+  flex-direction:column;justify-content:safe center;align-items:center;
+  gap:10px;overflow-y:auto;padding:16px 18px;text-align:center;
+  font-size:15px;line-height:1.7;color:var(--text)}
+/* Some browsers ignore backface-visibility on a scrollable face and show the
+   other side mirrored, so visibility swaps at the half-way point too. */
+.ffront{transform:rotateY(0deg);visibility:visible;transition:visibility 0s .25s;
+  background:var(--front)}
+.fshell.flipped .ffront{visibility:hidden}
+.fback{visibility:hidden;transition:visibility 0s .25s;background:var(--back);
+  transform:rotateY(180deg)}
+.fshell.flipped .fback{visibility:visible}
+.fface .f-word{font-size:40px;line-height:1.15;color:var(--bright);font-weight:600;
+  word-break:break-word}
+.fface .f-rom{font-size:16px;color:var(--accent2)}
+.fface .f-pos{font-size:12px;color:var(--dim)}
+.fface .f-mean{font-size:20px;color:var(--text)}
+.fface .f-hook{font-size:14px;color:var(--gold);font-weight:700}
+.fface .f-ex{font-size:13px;color:var(--muted)}
+.fface img{max-width:100%;max-height:200px;object-fit:contain;border-radius:8px}
+.fface .f-empty{color:var(--faint);font-size:13px;font-style:italic}
+.fresize{position:absolute;right:-4px;bottom:-4px;width:16px;height:16px;
+  cursor:nwse-resize}
+.fresize::before{content:"";position:absolute;right:6px;bottom:6px;width:8px;
+  height:8px;border-right:2px solid var(--frontedge);border-bottom:2px solid var(--frontedge)}
+.fhint{position:absolute;left:0;right:0;bottom:8px;text-align:center;
+  font-size:11px;color:var(--faint);pointer-events:none}
+.fhint span{margin:0 8px}
+
+/* ------------------------------------------------------------- the quiz */
+.quiz{display:none;height:calc(100% - 44px);overflow-y:auto;padding:22px 26px}
 body.mode-quiz .quiz{display:block}
-body.mode-quiz .left figure{opacity:0;transition:opacity .25s}
-body.mode-quiz.answered .left figure{opacity:1}
-.quiz .qask{font-size:12px;text-transform:uppercase;letter-spacing:.1em;
-  color:#6f6f90;font-weight:700}
-.quiz .qmean{font-size:30px;color:#fff;font-weight:600;margin:6px 0 22px;
-  line-height:1.2}
-.quiz .qopts{display:grid;grid-template-columns:1fr;gap:9px}
-.quiz .qopt{text-align:left;background:#15151f;border:1px solid #24243a;
-  color:#e6e6f0;border-radius:10px;padding:13px 16px;font-size:22px;
-  cursor:pointer;font-family:inherit;transition:border-color .12s}
-.quiz .qopt:hover:not(:disabled){border-color:#3b82f6}
-.quiz .qopt .r{display:block;font-size:12.5px;color:#60a5fa;margin-top:3px}
-/* qok / qno, not right / wrong: `.right` is already the word panel of the
-   page shell, and a button wearing that class picked up its grid placement
-   and threw the options into two ragged columns. */
-.quiz .qopt.qok{border-color:#34c98e;background:rgba(52,201,142,.12)}
-.quiz .qopt.qno{border-color:#f2705f;background:rgba(242,112,95,.12)}
-.quiz .qopt:disabled{cursor:default}
-.quiz .qfoot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
-  margin-top:20px;padding-top:14px;border-top:1px solid var(--line);
-  font-size:13px;color:#8a8aa8;min-height:34px}
-.quiz .qscore{font-family:monospace;color:#9a9ab8}
-.quiz .qnext{background:#3b82f6;border:1px solid #3b82f6;color:#06122a;
+.qsplit{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media(max-width:1000px){.qsplit{grid-template-columns:1fr}}
+.qcard{border:1px solid var(--frontedge);background:var(--front);border-radius:10px;
+  padding:26px 22px;text-align:center;display:flex;flex-direction:column;
+  gap:10px;align-items:center;min-height:180px;justify-content:center}
+.qbadge{font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:2px 8px;border-radius:20px;
+  background:var(--accentbg);color:var(--accent2);align-self:center}
+.qcard .f-word{font-size:38px;color:var(--bright);font-weight:600;line-height:1.15}
+.qcard img{max-width:100%;max-height:190px;object-fit:contain;border-radius:8px}
+.qopts{display:grid;grid-template-columns:1fr;gap:9px}
+.qopt{display:flex;gap:11px;align-items:center;text-align:left;
+  background:var(--s3);border:1px solid var(--edge);color:var(--text);border-radius:10px;
+  padding:11px 14px;font-size:17px;cursor:pointer;font-family:inherit;
+  transition:border-color .12s}
+.qopt:hover:not(:disabled){border-color:var(--accent)}
+.qopt .qkey{flex:none;width:22px;height:22px;border-radius:5px;
+  background:var(--edge);color:var(--muted);font-size:11px;font-family:monospace;
+  display:flex;align-items:center;justify-content:center}
+.qopt .qtext{flex:1;min-width:0;display:flex;gap:10px;align-items:center}
+.qopt img{max-height:56px;max-width:84px;object-fit:contain;border-radius:6px;
+  flex:none}
+.qopt .f-rom{font-size:12.5px;color:var(--accent2)}
+.qopt.qok{border-color:var(--ok);background:rgba(52,201,142,.12)}
+.qopt.qno{border-color:var(--bad);background:rgba(242,112,95,.12)}
+.qopt:disabled{cursor:default}
+.qresult{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  margin-top:16px;font-size:13px;color:var(--muted);min-height:32px}
+.qnext{background:var(--accent);border:1px solid var(--accent);color:var(--onaccent);
   border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600;
   cursor:pointer;font-family:inherit}
-.quiz .qdone{margin-top:20px;padding:16px;border:1px solid var(--line);
+.qnote{font-size:11px;color:var(--dim);font-style:italic;margin-top:8px;
+  text-align:center}
+.qdone{margin-top:20px;padding:16px;border:1px solid var(--line);
   border-radius:10px;background:var(--panel)}
-.quiz .qdone h2{margin:0 0 6px;font-size:18px;color:#fff}
-.quiz .qdone p{margin:0 0 12px;color:#9a9ab8;font-size:13.5px}
-.quiz .qdone button{background:#15151f;border:1px solid #24243a;color:#cfcfe4;
+.qdone h2{margin:0 0 6px;font-size:18px;color:var(--bright)}
+.qdone p{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.qdone button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:8px;padding:7px 13px;font-size:13px;cursor:pointer;
   font-family:inherit;margin-right:8px}
-.quiz .qdone button:hover{border-color:#3b82f6;color:#fff}
+
+/* which fields go on which side */
+.sides{position:absolute;right:14px;top:46px;z-index:20;width:min(360px,90%);
+  background:var(--s2);border:1px solid var(--frontedge);border-radius:10px;padding:14px;
+  box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.sides h3{margin:0 0 3px;font-size:14px;color:var(--accent3)}
+.sides p{margin:0 0 12px;font-size:11.5px;color:var(--dim);line-height:1.5}
+.sides table{width:100%;border-collapse:collapse;font-size:12.5px}
+.sides th{text-align:center;font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--dim);padding-bottom:6px}
+.sides th:first-child{text-align:left}
+.sides td{padding:4px 0;color:var(--text2)}
+.sides td.c{text-align:center;width:56px}
+.sides input{accent-color:var(--accent);cursor:pointer}
+.sides .row{display:flex;gap:8px;margin-top:14px}
+.sides .row button{flex:1;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:7px;padding:6px;font-size:12px;cursor:pointer;
+  font-family:inherit}
+.sides .row button.primary{background:var(--accentbg);border-color:var(--accent);
+  color:var(--accent2)}
+
 @media(max-width:1100px){.slider .modes{order:3}}
 
 /* the readable list a crawler reads, and anyone with no JavaScript.
@@ -321,8 +582,8 @@ body.mode-quiz.answered .left figure{opacity:1}
 @media(max-width:900px){.wide{grid-column:1;grid-row:auto;padding:20px}}
 .paste{display:flex;gap:8px;flex-wrap:wrap;max-width:720px}
 .paste input{flex:1;min-width:260px;padding:11px 13px;border-radius:9px;
-  border:1px solid #24243a;background:#13131c;color:#e6e6f0;font-size:14px}
-.paste input:focus{outline:none;border-color:#3b82f6}
+  border:1px solid var(--edge);background:var(--s2);color:var(--text);font-size:14px}
+.paste input:focus{outline:none;border-color:var(--accent)}
 .vhits{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
   gap:12px;margin-top:18px}
 .vcard{border:1px solid var(--line);border-radius:11px;background:var(--panel);
@@ -331,23 +592,23 @@ body.mode-quiz.answered .left figure{opacity:1}
   flex-shrink:0}
 .vcard .vemoji{width:74px;height:56px;border-radius:8px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;font-size:34px;
-  background:#15151f;border:1px solid #24243a}
+  background:var(--s3);border:1px solid var(--edge)}
 .vcard .b{min-width:0;flex:1}
-.vcard .w{font-size:22px;color:#fff;font-weight:600;line-height:1.2}
-.vcard .r{font-size:12.5px;color:#60a5fa}
-.vcard .m{font-size:13px;color:#c4c4da;margin-top:3px}
+.vcard .w{font-size:22px;color:var(--bright);font-weight:600;line-height:1.2}
+.vcard .r{font-size:12.5px;color:var(--accent2)}
+.vcard .m{font-size:13px;color:var(--text2);margin-top:3px}
 .vcard .at{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
-.vcard .at a{font-family:monospace;font-size:11.5px;color:#8a8aa8;
-  border:1px solid #24243a;border-radius:6px;padding:1px 6px;
+.vcard .at a{font-family:monospace;font-size:11.5px;color:var(--muted);
+  border:1px solid var(--edge);border-radius:6px;padding:1px 6px;
   text-decoration:none}
-.vcard .at a:hover{border-color:#3b82f6;color:#cfe0ff}
-.vcard .say{background:none;border:0;color:#60a5fa;font-size:16px;
+.vcard .at a:hover{border-color:var(--accent);color:var(--accent3)}
+.vcard .say{background:none;border:0;color:var(--accent2);font-size:16px;
   cursor:pointer;padding:0 4px;line-height:1}
-.vmiss{margin-top:10px;font-size:15px;color:#c9a227;line-height:2;
+.vmiss{margin-top:10px;font-size:15px;color:var(--gold);line-height:2;
   word-spacing:6px}
 .vstat{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px}
-.vstat b{display:block;font-size:26px;color:#fff;line-height:1.1}
-.vstat span{font-size:12px;color:#6f6f90}
+.vstat b{display:block;font-size:26px;color:var(--bright);line-height:1.1}
+.vstat span{font-size:12px;color:var(--dim)}
 /* One video's words, in the order they are said. A row rather than a card:
    the useful comparison here is down the column — what comes next — not
    across, and a learner scanning for a word wants them in one line each. */
@@ -355,17 +616,17 @@ body.mode-quiz.answered .left figure{opacity:1}
   border-radius:10px;overflow:hidden}
 .vrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
   padding:11px 14px;border-bottom:1px solid var(--line)}
-.vrow:nth-child(odd){background:#13131c}
-.vrow .vw{font-size:20px;color:#fff;font-weight:600;line-height:1.3}
-.vrow .vrom{font-size:13px;color:#60a5fa}
-.vrow .vmean{flex:1;min-width:120px;font-size:14px;color:#d4d4e4}
+.vrow:nth-child(odd){background:var(--s2)}
+.vrow .vw{font-size:20px;color:var(--bright);font-weight:600;line-height:1.3}
+.vrow .vrom{font-size:13px;color:var(--accent2)}
+.vrow .vmean{flex:1;min-width:120px;font-size:14px;color:var(--text2)}
 .vrow .vat{display:flex;gap:6px;flex-wrap:wrap}
-.vrow .vat .at{font-family:monospace;font-size:11.5px;color:#8a8aa8;
-  border:1px solid #24243a;border-radius:6px;padding:1px 6px;
+.vrow .vat .at{font-family:monospace;font-size:11.5px;color:var(--muted);
+  border:1px solid var(--edge);border-radius:6px;padding:1px 6px;
   text-decoration:none}
-.vrow .vat .at:hover{border-color:#3b82f6;color:#cfe0ff}
-.vrow .vles{font-size:12px;color:#8aa9d8;text-decoration:none;white-space:nowrap}
-.vrow .vles:hover{color:#7cb0ff}
+.vrow .vat .at:hover{border-color:var(--accent);color:var(--accent3)}
+.vrow .vles{font-size:12px;color:var(--accentq);text-decoration:none;white-space:nowrap}
+.vrow .vles:hover{color:var(--accent2)}
 .vthumb{width:96px;height:54px;object-fit:cover;border-radius:7px;
   flex-shrink:0;display:block}
 @media(max-width:540px){.vthumb{width:72px;height:41px}
@@ -384,6 +645,12 @@ body.mode-quiz.answered .left figure{opacity:1}
      are `auto`: with a short lesson the leftover height was shared out among
      them and the course band became a 150px strip with four chips floating
      in the middle of it. */
+  .rail{grid-row:1;grid-column:1;flex-direction:row;padding:0 10px;
+    border-right:0;border-bottom:1px solid var(--line);height:var(--bar);
+    position:sticky;top:0}
+  .mainmenu{left:0;top:100%;bottom:auto;height:auto;max-height:70vh;width:100%;
+    transform:translateY(-8px)}
+  body.mm-open .mainmenu{transform:none}
   .page,body.yt-on .page{grid-template-columns:1fr;
     grid-template-rows:var(--bar) auto auto auto auto;height:auto;
     min-height:100vh;align-content:start}
@@ -404,8 +671,8 @@ body.mode-quiz.answered .left figure{opacity:1}
   .menu{position:fixed;top:0;bottom:0;left:0;width:min(300px,86vw);z-index:30;
     border-right:1px solid var(--line);transform:translateX(-100%);
     transition:transform .18s ease;box-shadow:0 0 40px rgba(0,0,0,.6)}
-  body.menu-open .menu{transform:none}
+  body:not(.no-lessons) .menu{transform:none}
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20}
-  body.menu-open .scrim{display:block}
-  body.menu-open{overflow:hidden}
+  body:not(.no-lessons) .scrim{display:block}
+  body:not(.no-lessons){overflow:hidden}
 }
