@@ -18,10 +18,24 @@
 <meta name="twitter:description" content="The Top 30 Thai words by rank."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=7acd1fa6"/>
+<link rel="stylesheet" href="../style.css?v=96c86770"/>
+<script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");}catch(e){}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
 <body class="shell" data-root=".." data-lesson="02-top-30-thai-words">
 <div class="page">
+  <nav class="rail" id="rail" aria-label="Site">
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mainmenu">&#9776;</button>
+    <div class="mainmenu" id="mainmenu">
+      <div class="mm-head">Menu</div>
+      <button class="mm" id="mm-theme" aria-pressed="false"><span class="i">&#9680;</span><span class="t">Light mode</span></button>
+      <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
+      <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
+      <div class="mm-sep"></div>
+      <button class="mm" id="mm-about"><span class="i">&#9432;</span><span class="t">About</span></button>
+      <button class="mm" id="mm-guide"><span class="i">?</span><span class="t">Guide</span></button>
+    </div>
+  </nav>
 <aside class="menu">
   <a class="brand" href="https://thai.inaflash.cards/"><span class="bolt">⚡</span> Thai.inaflash</a>
   <div class="find"><input id="find" type="search" placeholder="Search lessons and words" aria-label="Search lessons and words" autocomplete="off"/></div>
@@ -30,12 +44,9 @@
 <a class="item" href="https://thai.inaflash.cards/03-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" data-title="100 most common thai words in 30 minutes (pronunciation and example sentence)">100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)<span class="sub">03 · 165 words</span></a><a class="item" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">01 · 29 words</span></a><a class="item on" href="https://thai.inaflash.cards/02-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">02 · 30 words</span></a><a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">04</span></a><a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">05</span></a>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
-  <div class="acts"><a class="btn primary" href="https://inaflash.cards/#import=https%3A%2F%2Fthai.inaflash.cards%2Fdecks%2F02-top-30-thai-words.json">★ Study as flashcards</a><a class="btn" href="../decks/02-top-30-thai-words.json" download>↓ Deck</a><a class="btn" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" title="Lesson 1 — I like, I want">← Previous</a><a class="btn" href="https://thai.inaflash.cards/03-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" title="100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)">Next →</a></div>
-  <div class="foot">A free Thai vocabulary course · studied with <a href="https://inaflash.cards" target="_blank" rel="noopener">inaflash.cards</a></div>
 </aside>
 <div class="scrim" id="scrim"></div>
   <div class="slider">
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
     <div class="name"><a href="https://thai.inaflash.cards/">Learn Thai with Flashcards</a> / Top 30 Thai words</div>
     <div class="modes" id="modes" role="group" aria-label="How to study this lesson">
       <button class="md" data-mode="info" aria-pressed="true" title="Read it — the word, what it means, and a sentence">&#8505;</button>
@@ -51,181 +62,181 @@
   <div class="right info">
     <h1 class="seo">Thai Vocabulary: Top 30 Thai words</h1>
     <p class="seo">The Top 30 Thai words by rank.</p>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000001.jpg" data-alt="that, which, who, at, in, on, place, location — ที่" data-ch="ท">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000001.jpg" data-alt="that, which, who, at, in, on, place, location — ที่" data-wid="TH_000001" data-ch="ท">
   <div class="th" lang="th">ที่</div>
   <div class="rom">thîi</div><div class="pos">Noun; Preposition; Relative pronoun</div>
   <div class="en">that, which, who, at, in, on, place, location</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000001.mp3" aria-label="Play ที่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000001_slow.mp3" aria-label="Play ที่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">tea</div><p>tea</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000002.jpg" data-alt="and — และ" data-ch="แ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000002.jpg" data-alt="and — และ" data-wid="TH_000002" data-ch="แ">
   <div class="th" lang="th">และ</div>
   <div class="rom">láe</div><div class="pos">Conjunction</div>
   <div class="en">and</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000002.mp3" aria-label="Play และ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000002_slow.mp3" aria-label="Play และ slowly">🐢 Slowly</button></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000003.jpg" data-alt="date, the day that... — วันที่" data-ch="ว">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000003.jpg" data-alt="date, the day that... — วันที่" data-wid="TH_000003" data-ch="ว">
   <div class="th" lang="th">วันที่</div>
   <div class="rom">wan-thîi</div><div class="pos">N. phrase</div>
   <div class="en">date, the day that...</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000003.mp3" aria-label="Play วันที่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000003_slow.mp3" aria-label="Play วันที่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">one tea</div><p>one tea</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000004.jpg" data-alt="in, inside, within — ใน" data-ch="ใ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000004.jpg" data-alt="in, inside, within — ใน" data-wid="TH_000004" data-ch="ใ">
   <div class="th" lang="th">ใน</div>
   <div class="rom">nai</div><div class="pos">Preposition</div>
   <div class="en">in, inside, within</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000004.mp3" aria-label="Play ใน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000004_slow.mp3" aria-label="Play ใน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">nigh</div><p>nigh</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000005.jpg" data-alt="of, belonging to, thing, item — ของ" data-ch="ข">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000005.jpg" data-alt="of, belonging to, thing, item — ของ" data-wid="TH_000005" data-ch="ข">
   <div class="th" lang="th">ของ</div>
   <div class="rom">khɔ̌ɔng</div><div class="pos">Noun; Preposition</div>
   <div class="en">of, belonging to, thing, item</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000005.mp3" aria-label="Play ของ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000005_slow.mp3" aria-label="Play ของ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Kong</div><p>Kong</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000006.jpg" data-alt="year, [classifier for years] — ปี" data-ch="ป">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000006.jpg" data-alt="year, [classifier for years] — ปี" data-wid="TH_000006" data-ch="ป">
   <div class="th" lang="th">ปี</div>
   <div class="rom">pii</div><div class="pos">Classifier; Noun</div>
   <div class="en">year, [classifier for years]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000006.mp3" aria-label="Play ปี">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000006_slow.mp3" aria-label="Play ปี slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">pea</div><p>pea</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000007.jpg" data-alt="to be, is, am, are, able to, as — เป็น" data-ch="เ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000007.jpg" data-alt="to be, is, am, are, able to, as — เป็น" data-wid="TH_000007" data-ch="เ">
   <div class="th" lang="th">เป็น</div>
   <div class="rom">pen</div><div class="pos">Auxiliary verb; Verb</div>
   <div class="en">to be, is, am, are, able to, as</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000007.mp3" aria-label="Play เป็น">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000007_slow.mp3" aria-label="Play เป็น slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">pen</div><p>pen</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000008.jpg" data-alt="to have, there is, there are — มี" data-ch="ม">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000008.jpg" data-alt="to have, there is, there are — มี" data-wid="TH_000008" data-ch="ม">
   <div class="th" lang="th">มี</div>
   <div class="rom">mii</div><div class="pos">Verb</div>
   <div class="en">to have, there is, there are</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000008.mp3" aria-label="Play มี">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000008_slow.mp3" aria-label="Play มี slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">me</div><p>me</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000009.jpg" data-alt="time — เวลา" data-ch="เ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000009.jpg" data-alt="time — เวลา" data-wid="TH_000009" data-ch="เ">
   <div class="th" lang="th">เวลา</div>
   <div class="rom">wee-laa</div><div class="pos">Noun</div>
   <div class="en">time</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000009.mp3" aria-label="Play เวลา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000009_slow.mp3" aria-label="Play เวลา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">way law</div><p>way law</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000010.jpg" data-alt="by, via, through, by means of — โดย" data-ch="โ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000010.jpg" data-alt="by, via, through, by means of — โดย" data-wid="TH_000010" data-ch="โ">
   <div class="th" lang="th">โดย</div>
   <div class="rom">dooi</div><div class="pos">Adverb; Preposition</div>
   <div class="en">by, via, through, by means of</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000010.mp3" aria-label="Play โดย">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000010_slow.mp3" aria-label="Play โดย slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">toy</div><p>toy</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000011.jpg" data-alt="when, upon, time, occasion — เมื่อ" data-ch="เ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000011.jpg" data-alt="when, upon, time, occasion — เมื่อ" data-wid="TH_000011" data-ch="เ">
   <div class="th" lang="th">เมื่อ</div>
   <div class="rom">mûea</div><div class="pos">Adverb; Conjunction; Noun</div>
   <div class="en">when, upon, time, occasion</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000011.mp3" aria-label="Play เมื่อ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000011_slow.mp3" aria-label="Play เมื่อ slowly">🐢 Slowly</button></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000012.jpg" data-alt="to get, receive, obtain, [past tense/completion marker], can, able to — ได้" data-ch="ไ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000012.jpg" data-alt="to get, receive, obtain, [past tense/completion marker], can, able to — ได้" data-wid="TH_000012" data-ch="ไ">
   <div class="th" lang="th">ได้</div>
   <div class="rom">dâai</div><div class="pos">Auxiliary verb; Verb</div>
   <div class="en">to get, receive, obtain, [past tense/completion marker], can, able to</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000012.mp3" aria-label="Play ได้">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000012_slow.mp3" aria-label="Play ได้ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">die</div><p>die</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000013.jpg" data-alt="to give, for, let, allow, make [causative] — ให้" data-ch="ใ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000013.jpg" data-alt="to give, for, let, allow, make [causative] — ให้" data-wid="TH_000013" data-ch="ใ">
   <div class="th" lang="th">ให้</div>
   <div class="rom">hâi</div><div class="pos">Auxiliary verb; Preposition; Verb</div>
   <div class="en">to give, for, let, allow, make [causative]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000013.mp3" aria-label="Play ให้">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000013_slow.mp3" aria-label="Play ให้ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">hi</div><p>hi</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000014.jpg" data-alt="at [formal, used in specific contexts like addresses or locations] — ณ" data-ch="ณ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000014.jpg" data-alt="at [formal, used in specific contexts like addresses or locations] — ณ" data-wid="TH_000014" data-ch="ณ">
   <div class="th" lang="th">ณ</div>
   <div class="rom">ná</div><div class="pos">Preposition</div>
   <div class="en">at [formal, used in specific contexts like addresses or locations]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000014.mp3" aria-label="Play ณ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000014_slow.mp3" aria-label="Play ณ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">naah</div><p>naah</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000015.jpg" data-alt="from, since — จาก" data-ch="จ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000015.jpg" data-alt="from, since — จาก" data-wid="TH_000015" data-ch="จ">
   <div class="th" lang="th">จาก</div>
   <div class="rom">jàak</div><div class="pos">Preposition</div>
   <div class="en">from, since</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000015.mp3" aria-label="Play จาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000015_slow.mp3" aria-label="Play จาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">jack</div><p>jack</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000016.jpg" data-alt="February — กุมภาพันธ์" data-ch="ก">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000016.jpg" data-alt="February — กุมภาพันธ์" data-wid="TH_000016" data-ch="ก">
   <div class="th" lang="th">กุมภาพันธ์</div>
   <div class="rom">kum-phaa-phan</div><div class="pos">Noun</div>
   <div class="en">February</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000016.mp3" aria-label="Play กุมภาพันธ์">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000016_slow.mp3" aria-label="Play กุมภาพันธ์ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">come + far + fan</div><p>come + far + fan</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000017.jpg" data-alt="story, matter, subject, topic, [classifier for stories, subjects] — เรื่อง" data-ch="เ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000017.jpg" data-alt="story, matter, subject, topic, [classifier for stories, subjects] — เรื่อง" data-wid="TH_000017" data-ch="เ">
   <div class="th" lang="th">เรื่อง</div>
   <div class="rom">rûeang</div><div class="pos">Classifier; Noun</div>
   <div class="en">story, matter, subject, topic, [classifier for stories, subjects]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000017.mp3" aria-label="Play เรื่อง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000017_slow.mp3" aria-label="Play เรื่อง slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">ring</div><p>ring</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000018.jpg" data-alt="to say, speak, scold, that [introducing reported speech/thought], [colloquial sentence-ending particle] — ว่า" data-ch="ว">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000018.jpg" data-alt="to say, speak, scold, that [introducing reported speech/thought], [colloquial sentence-ending particle] — ว่า" data-wid="TH_000018" data-ch="ว">
   <div class="th" lang="th">ว่า</div>
   <div class="rom">wâa</div><div class="pos">Conjunction; Particle; Verb</div>
   <div class="en">to say, speak, scold, that [introducing reported speech/thought], [colloquial sentence-ending particle]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000018.mp3" aria-label="Play ว่า">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000018_slow.mp3" aria-label="Play ว่า slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">wow</div><p>wow</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000019.jpg" data-alt="amount, quantity, number — จำนวน" data-ch="จ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000019.jpg" data-alt="amount, quantity, number — จำนวน" data-wid="TH_000019" data-ch="จ">
   <div class="th" lang="th">จำนวน</div>
   <div class="rom">jam-nuan</div><div class="pos">Classifier; Noun</div>
   <div class="en">amount, quantity, number</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000019.mp3" aria-label="Play จำนวน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000019_slow.mp3" aria-label="Play จำนวน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">jam + noon</div><p>jam + noon</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000020.jpg" data-alt="with, to, and — กับ" data-ch="ก">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000020.jpg" data-alt="with, to, and — กับ" data-wid="TH_000020" data-ch="ก">
   <div class="th" lang="th">กับ</div>
   <div class="rom">gàp</div><div class="pos">Conjunction; Preposition</div>
   <div class="en">with, to, and</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000020.mp3" aria-label="Play กับ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000020_slow.mp3" aria-label="Play กับ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">gap</div><p>gap</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000021.jpg" data-alt="project, program, scheme — โครงการ" data-ch="โ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000021.jpg" data-alt="project, program, scheme — โครงการ" data-wid="TH_000021" data-ch="โ">
   <div class="th" lang="th">โครงการ</div>
   <div class="rom">khroong-gaan</div><div class="pos">Noun</div>
   <div class="en">project, program, scheme</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000021.mp3" aria-label="Play โครงการ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000021_slow.mp3" aria-label="Play โครงการ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">chrome gun</div><p>chrome gun</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000022.jpg" data-alt="October — ตุลาคม" data-ch="ต">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000022.jpg" data-alt="October — ตุลาคม" data-wid="TH_000022" data-ch="ต">
   <div class="th" lang="th">ตุลาคม</div>
   <div class="rom">dtù-laa-khom</div><div class="pos">Noun</div>
   <div class="en">October</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000022.mp3" aria-label="Play ตุลาคม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000022_slow.mp3" aria-label="Play ตุลาคม slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">tool + lock + home</div><p>tool + lock + home</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000023.jpg" data-alt="area, zone, district [esp. Bangkok] — เขต" data-ch="เ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000023.jpg" data-alt="area, zone, district [esp. Bangkok] — เขต" data-wid="TH_000023" data-ch="เ">
   <div class="th" lang="th">เขต</div>
   <div class="rom">khèet</div><div class="pos">Noun</div>
   <div class="en">area, zone, district [esp. Bangkok]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000023.mp3" aria-label="Play เขต">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000023_slow.mp3" aria-label="Play เขต slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">cat</div><p>cat</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000024.jpg" data-alt="to limit, restrict, limited — จำกัด" data-ch="จ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000024.jpg" data-alt="to limit, restrict, limited — จำกัด" data-wid="TH_000024" data-ch="จ">
   <div class="th" lang="th">จำกัด</div>
   <div class="rom">jam-gàt</div><div class="pos">Adjective; Verb</div>
   <div class="en">to limit, restrict, limited</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000024.mp3" aria-label="Play จำกัด">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000024_slow.mp3" aria-label="Play จำกัด slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">jam god</div><p>jam god</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000025.jpg" data-alt="June — มิถุนายน" data-ch="ม">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000025.jpg" data-alt="June — มิถุนายน" data-wid="TH_000025" data-ch="ม">
   <div class="th" lang="th">มิถุนายน</div>
   <div class="rom">mí-thù-naa-yon</div><div class="pos">Noun</div>
   <div class="en">June</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000025.mp3" aria-label="Play มิถุนายน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000025_slow.mp3" aria-label="Play มิถุนายน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">me + tuna + yawn</div><p>me + tuna + yawn</p></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000026.jpg" data-alt="for, for the purpose of, in order to — เพื่อ" data-ch="เ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000026.jpg" data-alt="for, for the purpose of, in order to — เพื่อ" data-wid="TH_000026" data-ch="เ">
   <div class="th" lang="th">เพื่อ</div>
   <div class="rom">phûea</div><div class="pos">Conjunction; Preposition</div>
   <div class="en">for, for the purpose of, in order to</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000026.mp3" aria-label="Play เพื่อ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000026_slow.mp3" aria-label="Play เพื่อ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">pure</div></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000027.jpg" data-alt="[prefix turning verbs into abstract nouns], affair, matter, work, activity — การ" data-ch="ก">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000027.jpg" data-alt="[prefix turning verbs into abstract nouns], affair, matter, work, activity — การ" data-wid="TH_000027" data-ch="ก">
   <div class="th" lang="th">การ</div>
   <div class="rom">gaan</div><div class="pos">Noun; Prefix</div>
   <div class="en">[prefix turning verbs into abstract nouns], affair, matter, work, activity</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000027.mp3" aria-label="Play การ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000027_slow.mp3" aria-label="Play การ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">garn</div></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000028.jpg" data-alt="company, corporation — บริษัท" data-ch="บ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000028.jpg" data-alt="company, corporation — บริษัท" data-wid="TH_000028" data-ch="บ">
   <div class="th" lang="th">บริษัท</div>
   <div class="rom">bɔɔ-rí-sàt</div><div class="pos">Noun</div>
   <div class="en">company, corporation</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000028.mp3" aria-label="Play บริษัท">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000028_slow.mp3" aria-label="Play บริษัท slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">bore reset</div></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000029.jpg" data-alt="September — กันยายน" data-ch="ก">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000029.jpg" data-alt="September — กันยายน" data-wid="TH_000029" data-ch="ก">
   <div class="th" lang="th">กันยายน</div>
   <div class="rom">gan-yaa-yon</div><div class="pos">Noun</div>
   <div class="en">September</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000029.mp3" aria-label="Play กันยายน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000029_slow.mp3" aria-label="Play กันยายน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">gun yarn</div></div>
 </article>
-<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000030.jpg" data-alt="November — พฤศจิกายน" data-ch="พ">
+<article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000030.jpg" data-alt="November — พฤศจิกายน" data-wid="TH_000030" data-ch="พ">
   <div class="th" lang="th">พฤศจิกายน</div>
   <div class="rom">phrɯ́(t)-sà-jì-gaa-yon</div><div class="pos">Noun</div>
   <div class="en">November</div>
@@ -281,13 +292,17 @@
  function show(n,byUser){
   if(!cards.length)return;
   at=Math.max(0,Math.min(cards.length-1,n));
-  for(var i=0;i<cards.length;i++)cards[i].hidden=(i!==at);
+  // `at` is a position in the running order, not an index into the markup.
+  // They are the same until somebody shuffles, and keeping them apart is what
+  // lets a shuffled pass leave the page's own order alone for a crawler.
+  var meIdx=(typeof order!=='undefined'&&order&&order.length)?order[at]:at;
+  for(var i=0;i<cards.length;i++)cards[i].hidden=(i!==meIdx);
   if(count)count.textContent=(at+1)+' / '+cards.length;
   if(prev)prev.disabled=at===0;
   if(next)next.disabled=at===cards.length-1;
   if(scrub)scrub.value=at+1;
   if(pic){
-   var c=cards[at],src=c.dataset.img||'',alt=c.dataset.alt||'',
+   var c=cards[meIdx],src=c.dataset.img||'',alt=c.dataset.alt||'',
        ch=c.dataset.ch||'';
    pic.innerHTML='';
    var f=document.createElement('figure');
@@ -306,11 +321,7 @@
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
   cue(byUser);
   // A new word is a new card to turn over and a new question to ask.
-  if(typeof mode!=='undefined'){
-   if(mode==='card'){for(i=0;i<cards.length;i++)cards[i].classList.remove('flip');
-                     document.body.classList.remove('flipped');}
-   if(mode==='quiz')drawQuiz();
-  }
+  if(typeof mode!=='undefined'&&mode!=='info')draw();
  }
  if(prev)prev.onclick=function(){show(at-1,true);};
  if(next)next.onclick=function(){show(at+1,true);};
@@ -336,81 +347,528 @@
  try{var mine=document.body.dataset.lesson;
      if(mine)localStorage.setItem('wb.last',mine);}catch(e){}
 
- // ☰ — a drawer on a phone, a collapse on a laptop. Same button, because it
- // means the same thing: show me the menu, or give me the room back.
- var burger=document.getElementById('burger'),scrim=document.getElementById('scrim'),
+ // The lessons panel. The ☰ used to collapse it; the ☰ now opens the site's
+ // own menu, and "Hide the lessons" in there is the one thing that puts this
+ // away — on a laptop by taking its column back, on a phone by sliding the
+ // drawer shut. One state, `no-lessons`, however wide the screen is.
+ var scrim=document.getElementById('scrim'),
      phone=function(){return matchMedia('(max-width:900px)').matches;};
- function menu(open){
-  if(phone())document.body.classList.toggle('menu-open',open);
-  else{document.body.classList.toggle('menu-hidden',!open);
-       try{localStorage.setItem('menu',open?'1':'0');}catch(e){}}
- }
- function isOpen(){return phone()?document.body.classList.contains('menu-open')
-                                :!document.body.classList.contains('menu-hidden');}
- try{if(localStorage.getItem('menu')==='0')
-      document.body.classList.add('menu-hidden');}catch(e){}
- if(burger)burger.onclick=function(){menu(!isOpen());};
- if(scrim)scrim.onclick=function(){menu(false);};
+ if(scrim)scrim.onclick=function(){if(typeof setLessons==='function')
+                                    setLessons(false);};
  if(nav)nav.addEventListener('click',function(e){
-  if(e.target.closest&&e.target.closest('a')&&phone())menu(false);});
- document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'&&phone())menu(false);});
+  if(e.target.closest&&e.target.closest('a')&&phone()
+     &&typeof setLessons==='function')setLessons(false);});
+
+ // ------------------------------------------------------- what you know
+ //
+ // A row per word in this browser's own IndexedDB: how often it has been put
+ // in front of you, how often you got it, how long your current run is, and
+ // what that adds up to. Nothing leaves the machine and nothing needs an
+ // account — the course is a static site and this is the reader's own record
+ // of how they are getting on with it.
+ //
+ // Dexie does the work when it is there. It is a proper query layer over
+ // IndexedDB — indexes, a where clause, a promise that behaves — which is
+ // what detailed statistics want. But it arrives from a CDN, and a course
+ // whose progress quietly stops being kept because a script did not load is
+ // worse than one that keeps it plainly. So the same table is also written
+ // against raw IndexedDB, and whichever is available answers. One database,
+ // one shape of row, either way.
+ var Progress=(function(){
+  var NAME='wordbase-progress',STORE='words',engine='none';
+
+  // --- Dexie, when the page managed to fetch it
+  function viaDexie(){
+   if(typeof Dexie==='undefined')return null;
+   try{
+    var db=new Dexie(NAME);
+    // Version 1 is what the plain writer made: a store keyed by id and no
+    // indexes. Saying so lets Dexie upgrade an existing one rather than
+    // failing on a schema it did not expect.
+    db.version(1).stores({words:'id'});
+    db.version(2).stores({words:'id,state,lesson,at'});
+    return {
+     put:function(row){return db.words.put(row);},
+     all:function(){return db.words.toArray();},
+     get:function(id){return db.words.get(id);},
+     clear:function(){return db.words.clear();}
+    };
+   }catch(e){return null;}
+  }
+
+  // --- and the one that needs nothing
+  function viaRaw(){
+   var ready=null;
+   function open(){
+    if(ready)return ready;
+    ready=new Promise(function(res){
+     var req;
+     // No version: take the database as it stands, whatever Dexie may have
+     // made of it. A store is only created when there is not one.
+     try{req=indexedDB.open(NAME);}catch(e){return res(null);}
+     req.onsuccess=function(e){
+      var d=e.target.result;
+      if(d.objectStoreNames.contains(STORE))return res(d);
+      var v=d.version+1;d.close();
+      var up;
+      try{up=indexedDB.open(NAME,v);}catch(e2){return res(null);}
+      up.onupgradeneeded=function(e2){
+       var d2=e2.target.result;
+       if(!d2.objectStoreNames.contains(STORE))
+        d2.createObjectStore(STORE,{keyPath:'id'});
+      };
+      up.onsuccess=function(e2){res(e2.target.result);};
+      up.onerror=function(){res(null);};
+     };
+     // Private windows, blocked storage, an old browser: the site keeps
+     // working and the record lives only as long as the tab.
+     req.onerror=function(){res(null);};
+     req.onblocked=function(){res(null);};
+    });
+    return ready;
+   }
+   function store(mode){
+    return open().then(function(d){
+     if(!d)return null;
+     try{return d.transaction(STORE,mode).objectStore(STORE);}
+     catch(e){return null;}
+    });
+   }
+   var mem={};
+   return {
+    put:function(row){
+     mem[row.id]=row;
+     return store('readwrite').then(function(st){
+      if(st)try{st.put(row);}catch(e){}
+      return row;
+     });
+    },
+    all:function(){
+     return store('readonly').then(function(st){
+      if(!st)return Object.keys(mem).map(function(k){return mem[k];});
+      return new Promise(function(res){
+       var out=[],c=st.openCursor();
+       c.onsuccess=function(e){
+        var cur=e.target.result;
+        if(cur){out.push(cur.value);cur.continue();}else res(out);
+       };
+       c.onerror=function(){res([]);};
+      });
+     });
+    },
+    get:function(id){
+     return store('readonly').then(function(st){
+      if(!st)return mem[id];
+      return new Promise(function(res){
+       var r=st.get(id);
+       r.onsuccess=function(){res(r.result);};
+       r.onerror=function(){res(undefined);};
+      });
+     });
+    },
+    clear:function(){
+     mem={};
+     return store('readwrite').then(function(st){
+      if(st)try{st.clear();}catch(e){}
+     });
+    }
+   };
+  }
+
+  var impl=viaDexie();
+  engine=impl?'dexie':'plain';
+  if(!impl)impl=viaRaw();
+
+  return {
+   engine:function(){return engine;},
+   all:impl.all,
+   clear:impl.clear,
+   // One answer, folded into what is already known about the word. The
+   // counts are what turn "I got it" into a statistic worth showing.
+   note:function(id,right,extra){
+    return Promise.resolve(impl.get(id)).then(function(was){
+     var row=was||{id:id,seen:0,right:0,wrong:0,streak:0,best:0,first:Date.now()};
+     row.seen=(row.seen||0)+1;
+     if(right){row.right=(row.right||0)+1;row.streak=(row.streak||0)+1;}
+     else{row.wrong=(row.wrong||0)+1;row.streak=0;}
+     if(row.streak>(row.best||0))row.best=row.streak;
+     // Two in a row is the line between "got it once" and "knows it". One
+     // right answer is luck as often as it is knowledge, and a word you have
+     // seen twenty times and still miss is not known however often it has
+     // come up.
+     row.state=row.streak>=2?'known':'learning';
+     row.at=Date.now();
+     if(extra)for(var k in extra)if(extra.hasOwnProperty(k))row[k]=extra[k];
+     return Promise.resolve(impl.put(row)).then(function(){return row;});
+    });
+   },
+   // And the reader's own word on it, which outranks any count.
+   say:function(id,state,extra){
+    return Promise.resolve(impl.get(id)).then(function(was){
+     var row=was||{id:id,seen:0,right:0,wrong:0,streak:0,best:0,first:Date.now()};
+     row.state=state;row.said=state;row.at=Date.now();
+     if(state==='known'&&!row.streak)row.streak=1;
+     if(state==='learning')row.streak=0;
+     if(extra)for(var k in extra)if(extra.hasOwnProperty(k))row[k]=extra[k];
+     return Promise.resolve(impl.put(row)).then(function(){return row;});
+    });
+   }
+  };
+ })();
+
+ // What this lesson's words are called in the store. The display id is the
+ // one thing a word carries that survives a rebuild of the site.
+ function wordKey(card){
+  return (card&&card.dataset&&card.dataset.wid)||
+   ((card&&card.querySelector('.th')?card.querySelector('.th').textContent:'')
+    .trim());
+ }
+ function cardFacts(card){
+  var th=card.querySelector('.th'),en=card.querySelector('.en');
+  return {word:th?th.textContent.trim():'',
+          mean:en?en.textContent.trim():'',
+          lesson:document.body.dataset.lesson||''};
+ }
+ // An answer, right or wrong — the quiz's business.
+ function scored(card,right){
+  var k=wordKey(card);if(!k)return;
+  Progress.note(k,right,cardFacts(card)).then(function(row){
+   if(typeof knownNow!=='undefined')knownNow[k]=row.state;
+  });
+ }
+ // And what the reader says themselves, on a card.
+ function remember(card,state){
+  var k=wordKey(card);if(!k)return;
+  Progress.say(k,state,cardFacts(card)).then(function(row){
+   if(typeof knownNow!=='undefined')knownNow[k]=row.state;
+  });
+ }
 
  // ------------------------------------------------------------- the modes
  //
- // Three ways to look at one lesson, and the same lesson underneath all
- // three. Info is the page as it was. Card hides the answer until you ask for
- // it. Quiz asks you instead. Nothing here reloads or navigates: the cards in
- // the markup are the single source of what this lesson teaches, and each
- // mode is a different way of showing that same list.
+ // Three ways to look at one lesson. Reading keeps the two panels — the
+ // picture belongs beside the word. A flashcard IS the picture and the word,
+ // and a question needs the room for its options, so both of those take the
+ // whole width.
+ //
+ // The flashcard and the quiz are the ones from inaflash.cards: the same
+ // shell you drag by its bar and resize by its corner, the same 3D turn, the
+ // same shuffle and reverse, the same choice of how many wrong answers.
  var modes=document.getElementById('modes'),
      right=document.querySelector('.right'),
-     mode='info',flipNote=null,quizBox=null,
-     score=0,asked=0,answered={};
+     mode='info',fcWrap=null,quizBox=null,barEl=null,
+     order=[],shuffled=false,reversed=false,wrongs=3,knownNow={},
+     score=0,asked=0,answered={},sides=null;
 
- function textOf(card,sel){var el=card.querySelector(sel);
-                           return el?el.textContent.trim():'';}
+ // Every field a card carries, and where each one lives in the markup that is
+ // already on the page. One list, so the flashcard, the quiz and the chooser
+ // can never disagree about what a card is made of.
+ var FIELDS=[
+  {k:'word',  label:'The word',       sel:'.th',  cls:'f-word'},
+  {k:'rom',   label:'Romanization',   sel:'.rom', cls:'f-rom'},
+  {k:'pos',   label:'Part of speech', sel:'.pos', cls:'f-pos'},
+  {k:'mean',  label:'English meaning',sel:'.en',  cls:'f-mean'},
+  {k:'image', label:'Picture',        img:true},
+  {k:'hook',  label:'Memory hook',    sel:'.aid', cls:'f-hook'},
+  {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'}
+ ];
+ // Thai one side, English and the picture the other. What a vocabulary card
+ // is for, and what the quiz then asks in that direction by default.
+ var SIDES_DEFAULT={front:['word'],back:['image','mean','rom']};
 
- function buildFlipNote(){
-  if(flipNote||!right)return;
-  flipNote=document.createElement('div');
-  flipNote.className='flipnote';
-  flipNote.innerHTML='<span class="ask">Press <b>space</b>, or click here, '
-   +'to turn the card over.</span><span class="seen">Turned over. '
-   +'<b>&rarr;</b> for the next word.</span>';
-  flipNote.addEventListener('click',function(){flip();});
-  right.appendChild(flipNote);
+ function loadSides(){
+  try{var raw=localStorage.getItem('wb.sides');
+      if(raw){var got=JSON.parse(raw);
+        if(got&&got.front&&got.back)return got;}}catch(e){}
+  return {front:SIDES_DEFAULT.front.slice(),back:SIDES_DEFAULT.back.slice()};
+ }
+ function saveSides(){try{localStorage.setItem('wb.sides',JSON.stringify(sides));}
+                      catch(e){}}
+ sides=loadSides();
+
+ // A face of a card, built from whichever fields that side is set to show.
+ function faceInto(host,card,which){
+  host.innerHTML='';
+  var want=sides[which]||[],n=0,i,j;
+  for(i=0;i<FIELDS.length;i++){
+   var f=FIELDS[i];
+   if(want.indexOf(f.k)<0)continue;
+   if(f.img){
+    var src=card.dataset.img||'';
+    if(!src)continue;
+    var im=new Image();im.alt=card.dataset.alt||'';im.loading='eager';
+    im.onerror=function(){this.remove();};
+    im.src=src;host.appendChild(im);n++;continue;
+   }
+   var el=card.querySelector(f.sel);
+   if(!el)continue;
+   var txt=(el.textContent||'').trim();
+   if(!txt)continue;
+   var d=document.createElement('div');
+   d.className=f.cls;
+   d.textContent=txt;
+   if(f.k==='word')d.setAttribute('lang',document.documentElement.lang||'');
+   host.appendChild(d);n++;
+  }
+  if(!n){var e2=document.createElement('div');e2.className='f-empty';
+         e2.textContent='Nothing on this side yet — press ⚙ to choose.';
+         host.appendChild(e2);}
+ }
+
+ // ------------------------------------------------------- order and sharing
+ //
+ // Shuffle and reverse belong to both modes, so they live here rather than in
+ // either one. `order` is a list of card indexes: shuffling moves the list,
+ // never the cards, so the markup a crawler reads stays in lesson order.
+ function buildOrder(){
+  order=[];for(var i=0;i<cards.length;i++)order.push(i);
+  if(shuffled)for(var j=order.length-1;j>0;j--){
+   var k=Math.floor(Math.random()*(j+1)),t=order[j];order[j]=order[k];order[k]=t;
+  }
+ }
+ function cardAtPos(p){return cards[order[p]]||cards[p];}
+
+ function toggleShuffle(){
+  shuffled=!shuffled;buildOrder();
+  if(barEl){var b=barEl.querySelector('[data-act=shuffle]');
+            if(b)b.classList.toggle('on',shuffled);}
+  if(mode==='quiz'){answered={};score=0;asked=0;}
+  show(0,true);
+ }
+ function toggleReverse(){
+  reversed=!reversed;
+  if(barEl){var b=barEl.querySelector('[data-act=reverse]');
+            if(b)b.classList.toggle('on',reversed);}
+  if(mode==='quiz'){answered={};score=0;asked=0;}
+  draw();
+ }
+
+ function bar(kind){
+  var b=document.createElement('div');
+  b.className='mbar';
+  var html='<button data-act="shuffle" title="Mix the order of the words">'
+   +'⇄ Shuffle</button>'
+   +'<button data-act="reverse" title="'
+   +(kind==='card'?'Start on the back and turn to the front'
+                  :'Ask it the other way round')+'">⇋ Reverse</button>'
+   +'<button data-act="reset" title="Start again">↺ Reset</button>';
+  if(kind==='quiz')
+   html+='<div class="grp"><b>Wrong answers</b>'
+    +'<button class="nbtn" data-n="2">2</button>'
+    +'<button class="nbtn" data-n="3">3</button>'
+    +'<button class="nbtn" data-n="4">4</button>'
+    +'<button class="nbtn" data-n="5">5</button></div>'
+    +'<span class="score"></span>';
+  html+='<span class="sp"></span>'
+   +'<button data-act="sides" title="Choose what goes on each side">'
+   +'⚙ Sides</button>';
+  b.innerHTML=html;
+  b.querySelector('[data-act=shuffle]').classList.toggle('on',shuffled);
+  b.querySelector('[data-act=reverse]').classList.toggle('on',reversed);
+  b.addEventListener('click',function(e){
+   var t=e.target.closest?e.target.closest('[data-act],[data-n]'):null;
+   if(!t)return;t.blur();
+   if(t.dataset.n){setWrongs(parseInt(t.dataset.n,10));return;}
+   if(t.dataset.act==='shuffle')toggleShuffle();
+   if(t.dataset.act==='reverse')toggleReverse();
+   if(t.dataset.act==='sides')sidesPanel();
+   if(t.dataset.act==='reset'){
+    if(mode==='quiz'){answered={};score=0;asked=0;}
+    show(0,true);
+   }
+  });
+  return b;
+ }
+
+ function setWrongs(n){
+  wrongs=n;
+  if(barEl)barEl.querySelectorAll('.nbtn').forEach(function(b){
+   b.classList.toggle('on',parseInt(b.dataset.n,10)===n);});
+  try{localStorage.setItem('wb.wrongs',String(n));}catch(e){}
+  if(!answered[at])draw();
+ }
+ try{var wn=parseInt(localStorage.getItem('wb.wrongs'),10);
+     if(wn>=2&&wn<=5)wrongs=wn;}catch(e){}
+
+ // ------------------------------------------------------------ the chooser
+ function sidesPanel(){
+  var old=right.querySelector('.sides');if(old){old.remove();return;}
+  var box=document.createElement('div');
+  box.className='sides';
+  var rows='';
+  for(var i=0;i<FIELDS.length;i++){
+   var f=FIELDS[i];
+   rows+='<tr><td>'+f.label+'</td>'
+    +'<td class="c"><input type="checkbox" data-side="front" data-k="'+f.k+'"'
+    +(sides.front.indexOf(f.k)>=0?' checked':'')+'/></td>'
+    +'<td class="c"><input type="checkbox" data-side="back" data-k="'+f.k+'"'
+    +(sides.back.indexOf(f.k)>=0?' checked':'')+'/></td></tr>';
+  }
+  box.innerHTML='<h3>What goes on each side</h3>'
+   +'<p>The front is the question; the back is the answer. A field can sit on '
+   +'both, or on neither.</p>'
+   +'<table><tr><th>Field</th><th>Front</th><th>Back</th></tr>'+rows+'</table>'
+   +'<div class="row"><button data-x="reset">Back to the usual</button>'
+   +'<button class="primary" data-x="close">Done</button></div>';
+  box.addEventListener('change',function(e){
+   var c=e.target;if(!c.dataset||!c.dataset.side)return;
+   var list=sides[c.dataset.side],k=c.dataset.k,i2=list.indexOf(k);
+   if(c.checked&&i2<0)list.push(k);
+   if(!c.checked&&i2>=0)list.splice(i2,1);
+   saveSides();draw();
+  });
+  box.addEventListener('click',function(e){
+   var b=e.target.closest?e.target.closest('[data-x]'):null;if(!b)return;
+   if(b.dataset.x==='reset'){
+    sides={front:SIDES_DEFAULT.front.slice(),back:SIDES_DEFAULT.back.slice()};
+    saveSides();box.remove();draw();sidesPanel();return;
+   }
+   box.remove();
+  });
+  right.appendChild(box);
+ }
+
+ // ---------------------------------------------------------- the flashcard
+ function buildCard(){
+  if(fcWrap)return;
+  barEl=bar('card');
+  fcWrap=document.createElement('div');
+  fcWrap.className='fcwrap';
+  fcWrap.innerHTML='<div class="grab"><div class="fshell">'
+   +'<div class="fbar"><div class="fdots"><span></span><span></span>'
+   +'<span></span></div><div class="fbadge">Front</div>'
+   +'<div style="width:38px"></div></div>'
+   +'<div class="fbody"><div class="finner">'
+   +'<div class="fface ffront"></div><div class="fface fback"></div>'
+   +'</div></div><div class="fresize"></div></div></div>'
+   +'<div class="fknow"><button class="kno" data-know="learning">'
+   +'✗ Not yet</button><button class="kno" data-know="known">'
+   +'✓ I know it</button></div>'
+   +'<div class="fhint"><span>← → navigate</span><span>space turns it over</span>'
+   +'<span>drag the bar, pull the corner</span></div>';
+  right.appendChild(barEl);right.appendChild(fcWrap);
+
+  var grab=fcWrap.querySelector('.grab'),shell=fcWrap.querySelector('.fshell'),
+      inner=fcWrap.querySelector('.finner'),
+      dragBar=fcWrap.querySelector('.fbar'),
+      handle=fcWrap.querySelector('.fresize');
+  // Put it where it was left, or in the middle of the room.
+  var kept=null;try{kept=JSON.parse(localStorage.getItem('wb.fc')||'null');}
+                catch(e){}
+  if(kept&&typeof kept.x==='number'){
+   grab.style.left=kept.x+'px';grab.style.top=kept.y+'px';
+   if(kept.w)shell.style.width=kept.w+'px';
+   if(kept.h)shell.style.height=kept.h+'px';
+  }else{
+   grab.style.left='50%';grab.style.top='24px';
+   grab.style.transform='translateX(-50%)';
+  }
+  // keepPlace, not remember: `remember` is already how a word's state is
+  // written down, and an inner function of the same name shadowed it — so
+  // pressing "I know it" quietly saved the card's position instead.
+  function keepPlace(){
+   var r=grab.getBoundingClientRect(),p=fcWrap.getBoundingClientRect();
+   try{localStorage.setItem('wb.fc',JSON.stringify({
+    x:Math.round(r.left-p.left),y:Math.round(r.top-p.top),
+    w:shell.offsetWidth,h:shell.offsetHeight}));}catch(e){}
+  }
+  // A drag must not also turn the card over, so a move of more than three
+  // pixels disarms the click that follows it.
+  var moved=false,resizing=false,dragging=false,x0=0,y0=0,ox=0,oy=0,
+      rx=0,ry=0,rw=0,rh=0;
+  function pin(){
+   if(grab.style.transform){
+    var r=grab.getBoundingClientRect(),p=fcWrap.getBoundingClientRect();
+    grab.style.transform='';
+    grab.style.left=Math.round(r.left-p.left)+'px';
+    grab.style.top=Math.round(r.top-p.top)+'px';
+   }
+   ox=parseInt(grab.style.left,10)||0;oy=parseInt(grab.style.top,10)||0;
+  }
+  dragBar.addEventListener('pointerdown',function(e){
+   e.preventDefault();pin();dragging=true;moved=false;x0=e.clientX;y0=e.clientY;
+   try{dragBar.setPointerCapture(e.pointerId);}catch(err){}
+  });
+  handle.addEventListener('pointerdown',function(e){
+   e.preventDefault();e.stopPropagation();resizing=true;
+   rx=e.clientX;ry=e.clientY;rw=shell.offsetWidth;rh=shell.offsetHeight;
+   try{handle.setPointerCapture(e.pointerId);}catch(err){}
+  });
+  function move(e){
+   if(dragging){
+    var dx=e.clientX-x0,dy=e.clientY-y0;
+    if(Math.abs(dx)>3||Math.abs(dy)>3)moved=true;
+    grab.style.left=(ox+dx)+'px';grab.style.top=(oy+dy)+'px';
+   }
+   if(resizing){
+    shell.style.width=Math.max(300,rw+(e.clientX-rx))+'px';
+    shell.style.height=Math.max(260,rh+(e.clientY-ry))+'px';
+   }
+  }
+  function up(){
+   if(dragging||resizing)keepPlace();
+   dragging=false;resizing=false;
+   setTimeout(function(){moved=false;},0);
+  }
+  document.addEventListener('pointermove',move);
+  document.addEventListener('pointerup',up);
+  document.addEventListener('pointercancel',up);
+  inner.addEventListener('click',function(e){
+   if(!moved&&!resizing)flip();e.stopPropagation();});
+  fcWrap.querySelector('.fknow').addEventListener('click',function(e){
+   var b=e.target.closest?e.target.closest('[data-know]'):null;
+   if(!b)return;b.blur();
+   remember(cardAtPos(at),b.dataset.know);
+   markKnown(b.dataset.know);
+   if(at<cards.length-1)show(at+1,true);
+  });
+  fcWrap._shell=shell;
  }
 
  function flip(on){
-  if(mode!=='card'||!cards.length)return;
-  var c=cards[at],want=(on===undefined)?!c.classList.contains('flip'):!!on;
-  c.classList.toggle('flip',want);
-  document.body.classList.toggle('flipped',want);
+  if(mode!=='card'||!fcWrap)return;
+  var shell=fcWrap._shell,
+      want=(on===undefined)?!shell.classList.contains('flipped'):!!on;
+  shell.classList.toggle('flipped',want);
+  // Reverse starts you on the back, so what the badge should say is not
+  // simply "flipped or not".
+  var showFront=reversed?want:!want;
+  fcWrap.querySelector('.fbadge').textContent=showFront?'Front':'Back';
  }
 
- // --- the quiz
- //
- // Built from the cards themselves, so it can only ever ask about words this
- // lesson actually teaches, and the wrong answers are the lesson's own other
- // words — which is what makes it a test of this lesson rather than of
- // whether you can spot the odd one out.
+ function markKnown(state){
+  if(!fcWrap)return;
+  var b=fcWrap.querySelectorAll('[data-know]'),i;
+  for(i=0;i<b.length;i++)
+   b[i].classList.toggle('on',b[i].dataset.know===state);
+ }
+
+ function drawCard(){
+  if(!fcWrap||!cards.length)return;
+  var card=cardAtPos(at);
+  if(!card)return;
+  flip(false);
+  markKnown(knownNow[wordKey(card)]||'');
+  // Reverse swaps what is written on each face, not which face you are
+  // looking at — so you still start on the side facing you.
+  faceInto(fcWrap.querySelector('.ffront'),card,reversed?'back':'front');
+  faceInto(fcWrap.querySelector('.fback'),card,reversed?'front':'back');
+ }
+
+ // --------------------------------------------------------------- the quiz
  function buildQuiz(){
-  if(quizBox||!right)return;
+  if(quizBox)return;
+  barEl=bar('quiz');
   quizBox=document.createElement('div');
   quizBox.className='quiz';
-  quizBox.innerHTML='<div class="qask">Which word means</div>'
-   +'<div class="qmean"></div><div class="qopts"></div>'
-   +'<div class="qfoot"><span class="qscore"></span>'
-   +'<span style="flex:1"></span></div>';
-  right.appendChild(quizBox);
+  right.appendChild(barEl);right.appendChild(quizBox);
+  setWrongs(wrongs);
  }
 
- // A fixed shuffle per question, from the question number: the options stay
- // put when you come back to a word, instead of jumping about under a pointer
- // that is already on its way to one of them.
- function shuffled(list,seed){
-  var a=list.slice(),i,j,t,r=seed*9301+49297;
+ // A fixed shuffle per question, so the options stay put when you come back
+ // to a word instead of jumping under a pointer already on its way.
+ function seeded(list,seed){
+  var a=list.slice(),r=seed*9301+49297,i,j,t;
   for(i=a.length-1;i>0;i--){
    r=(r*9301+49297)%233280;j=Math.floor(r/233280*(i+1));
    t=a[i];a[i]=a[j];a[j]=t;
@@ -419,72 +877,87 @@
  }
 
  function drawQuiz(){
-  if(mode!=='quiz'||!quizBox||!cards.length)return;
-  var card=cards[at],mean=textOf(card,'.en')||textOf(card,'.rom');
-  quizBox.querySelector('.qmean').textContent=mean;
+  if(!quizBox||!cards.length)return;
+  var meIdx=order[at],card=cards[meIdx];
+  if(!card)return;
+  var qSide=reversed?'back':'front',aSide=reversed?'front':'back';
   var pool=[],i;
-  for(i=0;i<cards.length;i++)if(i!==at)pool.push(i);
-  pool=shuffled(pool,at+1).slice(0,3);
-  var picks=shuffled(pool.concat([at]),at+7);
-  var opts=quizBox.querySelector('.qopts');
-  opts.innerHTML='';
+  for(i=0;i<cards.length;i++)if(i!==meIdx)pool.push(i);
+  var picked=seeded(pool,at+1).slice(0,wrongs);
+  var all=seeded(picked.concat([meIdx]),at+7);
   var already=answered[at];
-  for(i=0;i<picks.length;i++)(function(k){
+
+  quizBox.innerHTML='<div class="qsplit"><div><div class="qcard">'
+   +'<div class="qbadge">Which one</div><div class="qface"></div></div></div>'
+   +'<div><div class="qopts"></div><div class="qresult"></div></div></div>';
+  faceInto(quizBox.querySelector('.qface'),card,qSide);
+
+  var opts=quizBox.querySelector('.qopts');
+  for(i=0;i<all.length;i++)(function(k,n){
    var b=document.createElement('button');
    b.className='qopt';b.type='button';
-   b.setAttribute('lang',document.documentElement.lang||'');
-   b.textContent=textOf(cards[k],'.th');
-   var rom=textOf(cards[k],'.rom');
-   if(rom){var sp=document.createElement('span');sp.className='r';
-           sp.textContent=rom;b.appendChild(sp);}
+   var key=document.createElement('span');key.className='qkey';
+   key.textContent=String(n+1);
+   var txt=document.createElement('span');txt.className='qtext';
+   faceInto(txt,cards[k],aSide);
+   b.appendChild(key);b.appendChild(txt);
    if(already){
     b.disabled=true;
-    if(k===at)b.classList.add('qok');
+    if(k===meIdx)b.classList.add('qok');
     else if(already.picked===k)b.classList.add('qno');
-   }else{
-    b.onclick=function(){answer(k);};
-   }
+   }else b.onclick=function(){b.blur();answer(k,meIdx);};
    opts.appendChild(b);
-  })(picks[i]);
+  })(all[i],i);
+
+  if(picked.length<wrongs){
+   var note=document.createElement('div');
+   note.className='qnote';
+   note.textContent='Only '+picked.length+' other word'
+    +(picked.length===1?'':'s')+' in this lesson to choose from.';
+   opts.appendChild(note);
+  }
+
+  var res=quizBox.querySelector('.qresult');
+  if(already){
+   var say=document.createElement('span');
+   say.textContent=already.right?'Right.':'Not that one.';
+   res.appendChild(say);
+   if(at<cards.length-1){
+    var nx=document.createElement('button');
+    nx.className='qnext';nx.type='button';nx.textContent='Next word →';
+    nx.onclick=function(){nx.blur();show(at+1,true);};
+    res.appendChild(nx);
+   }
+  }
   document.body.classList.toggle('answered',!!already);
   drawScore();
-  var foot=quizBox.querySelector('.qfoot');
-  var old=foot.querySelector('.qnext');if(old)old.remove();
-  if(already&&at<cards.length-1){
-   var n=document.createElement('button');
-   n.className='qnext';n.type='button';n.textContent='Next word →';
-   n.onclick=function(){n.blur();show(at+1,true);};
-   foot.appendChild(n);
-  }
-  var done=quizBox.querySelector('.qdone');if(done)done.remove();
-  var left=quizBox.querySelector('.qleft');if(left)left.remove();
-  if(asked>=cards.length){finish();return;}
-  // The end of the lesson with words still unasked — you moved past some,
-  // or came back to change one. Without this the last word was simply the
-  // end of the road: no result, and nothing saying why not.
-  if(at===cards.length-1&&already){
-   var miss=[],k;
-   for(k=0;k<cards.length;k++)if(!answered[k])miss.push(k);
+  if(asked>=cards.length)finish();
+  else if(at===cards.length-1&&already){
+   var miss=[],k2;
+   for(k2=0;k2<cards.length;k2++)if(!answered[k2])miss.push(k2);
    if(miss.length){
     var l=document.createElement('button');
-    l.className='qnext qleft';l.type='button';
+    l.className='qnext';l.type='button';
     l.textContent=miss.length+' still to answer →';
     l.onclick=function(){l.blur();show(miss[0],true);};
-    quizBox.querySelector('.qfoot').appendChild(l);
+    res.appendChild(l);
    }
   }
  }
 
  function drawScore(){
-  if(!quizBox)return;
-  quizBox.querySelector('.qscore').textContent=
-   asked?(score+' of '+asked+' right'):'';
+  if(!barEl)return;
+  var el=barEl.querySelector('.score');
+  if(el)el.textContent=asked?(score+' of '+asked+' right'):'';
  }
 
- function answer(picked){
+ function answer(picked,me){
   if(answered[at])return;
-  answered[at]={picked:picked,right:picked===at};
-  asked++;if(picked===at)score++;
+  answered[at]={picked:picked,right:picked===me};
+  asked++;if(picked===me)score++;
+  // The quiz already knows whether you knew it. Saying so is the whole of
+  // what "track my progress" means here.
+  scored(cards[me],picked===me);
   drawQuiz();
  }
 
@@ -492,10 +965,10 @@
   var done=document.createElement('div');
   done.className='qdone';
   var pct=Math.round(100*score/Math.max(1,cards.length));
-  done.innerHTML='<h2>'+score+' of '+cards.length+' &mdash; '+pct+'%</h2>'
-   +'<p>'+(pct===100?'Every word. Nothing left to look up here.'
-        :pct>=70?'Most of them. The ones you missed are worth another look.'
-        :'Worth reading through again before the next go.')+'</p>';
+  done.innerHTML='<h2>'+score+' of '+cards.length+' — '+pct+'%</h2><p>'
+   +(pct===100?'Every word. Nothing left to look up here.'
+     :pct>=70?'Most of them. The ones you missed are worth another look.'
+     :'Worth reading through again before the next go.')+'</p>';
   var again=document.createElement('button');
   again.type='button';again.textContent='Go again';
   again.onclick=function(){answered={};score=0;asked=0;show(0,true);};
@@ -506,18 +979,28 @@
   quizBox.appendChild(done);
  }
 
+ // ------------------------------------------------------------- the switch
+ function draw(){
+  if(mode==='card')drawCard();
+  if(mode==='quiz')drawQuiz();
+ }
+
  function setMode(m){
   mode=(m==='card'||m==='quiz')?m:'info';
-  document.body.classList.remove('mode-info','mode-card','mode-quiz',
-                                 'flipped','answered');
+  var panel=right?right.querySelector('.sides'):null;if(panel)panel.remove();
+  if(barEl){barEl.remove();barEl=null;}
+  if(fcWrap&&mode!=='card'){fcWrap.remove();fcWrap=null;}
+  if(quizBox&&mode!=='quiz'){quizBox.remove();quizBox=null;}
+  document.body.classList.remove('mode-info','mode-card','mode-quiz','answered');
   document.body.classList.add('mode-'+mode);
   if(modes){
    var b=modes.querySelectorAll('.md'),i;
    for(i=0;i<b.length;i++)
     b[i].setAttribute('aria-pressed',b[i].dataset.mode===mode?'true':'false');
   }
-  if(mode==='card'){buildFlipNote();flip(false);}
-  if(mode==='quiz'){buildQuiz();drawQuiz();}
+  if(mode==='card')buildCard();
+  if(mode==='quiz')buildQuiz();
+  draw();
   try{localStorage.setItem('wb.mode',mode);}catch(e){}
  }
 
@@ -525,23 +1008,198 @@
   var b=e.target.closest?e.target.closest('[data-mode]'):null;
   if(!b)return;
   setMode(b.dataset.mode);
-  // Let the button go. A toolbar button that keeps focus swallows the space
-  // bar, and in card mode the space bar is how you turn the card over — so
-  // choosing card mode would have stopped the one key that mode is about.
+  // Let the button go: a toolbar button that keeps focus swallows the space
+  // bar, and the space bar is how a card is turned over.
   b.blur();
  });
- // Chosen once, kept: a reader who studies with cards wants cards on lesson
- // four as well as lesson one.
- if(cards.length){
-  try{var keep=localStorage.getItem('wb.mode');
-      setMode(keep||'info');}catch(e){setMode('info');}
- }
 
- // Space turns the card over; in the other modes it is the browser's own
- // scroll and stays that way.
  document.addEventListener('keydown',function(e){
   if(e.target&&/INPUT|TEXTAREA|BUTTON/.test(e.target.tagName))return;
   if(e.key===' '&&mode==='card'){e.preventDefault();flip();}
+  // The options are numbered, so the numbers answer.
+  if(mode==='quiz'&&e.key>='1'&&e.key<='9'){
+   var b=quizBox?quizBox.querySelectorAll('.qopt')[+e.key-1]:null;
+   if(b&&!b.disabled){e.preventDefault();b.click();}
+  }
+ });
+
+ if(cards.length){
+  buildOrder();
+  try{setMode(localStorage.getItem('wb.mode')||'info');}catch(e){setMode('info');}
+ }
+
+ // ---------------------------------------------------------- the ☰ menu
+ //
+ // Everything here is the site rather than the course: how it looks, what it
+ // shows, and how you are getting on. Each one does its work and says it has
+ // in the same breath, and each is remembered.
+ var rail=document.getElementById('rail'),
+     mmBtn=document.getElementById('burger'),
+     mmEl=document.getElementById('mainmenu');
+
+ function mmOpen(on){
+  document.body.classList.toggle('mm-open',on);
+  if(mmBtn)mmBtn.setAttribute('aria-expanded',on?'true':'false');
+ }
+ if(mmBtn)mmBtn.addEventListener('click',function(e){
+  e.stopPropagation();mmOpen(!document.body.classList.contains('mm-open'));
+ });
+ document.addEventListener('click',function(e){
+  if(!document.body.classList.contains('mm-open'))return;
+  if(rail&&rail.contains(e.target))return;
+  mmOpen(false);
+ });
+ document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.body.classList.contains('mm-open'))mmOpen(false);
+ });
+
+ // --- light and dark
+ function setTheme(light){
+  document.body.classList.toggle('light',light);
+  var b=document.getElementById('mm-theme');
+  if(b){b.setAttribute('aria-pressed',light?'true':'false');
+        b.querySelector('.t').textContent=light?'Dark mode':'Light mode';
+        b.querySelector('.i').textContent=light?'◑':'◐';}
+  try{localStorage.setItem('wb.theme',light?'light':'dark');}catch(e){}
+ }
+ var themeBtn=document.getElementById('mm-theme');
+ if(themeBtn)themeBtn.addEventListener('click',function(){
+  setTheme(!document.body.classList.contains('light'));
+ });
+
+ // --- the lessons panel
+ function setLessons(on){
+  document.body.classList.toggle('no-lessons',!on);
+  var b=document.getElementById('mm-lessons');
+  if(b){b.setAttribute('aria-pressed',on?'true':'false');
+        b.querySelector('.t').textContent=on?'Hide the lessons'
+                                            :'Show the lessons';}
+  try{localStorage.setItem('wb.lessons',on?'1':'0');}catch(e){}
+ }
+ var lesBtn=document.getElementById('mm-lessons');
+ if(lesBtn)lesBtn.addEventListener('click',function(){
+  setLessons(document.body.classList.contains('no-lessons'));
+ });
+
+ // --- a panel, for the three that open one
+ function panel(title,build){
+  var old=document.querySelector('.sheet');if(old)old.remove();
+  var back=document.createElement('div');
+  back.className='sheet';
+  var box=document.createElement('div');
+  box.className='sheet-box';
+  var head=document.createElement('div');
+  head.className='sheet-head';
+  head.innerHTML='<b></b><button class="x" aria-label="Close">✕</button>';
+  head.querySelector('b').textContent=title;
+  var body=document.createElement('div');
+  body.className='sheet-body';
+  box.appendChild(head);box.appendChild(body);back.appendChild(box);
+  back.addEventListener('click',function(e){if(e.target===back)back.remove();});
+  head.querySelector('.x').addEventListener('click',function(){back.remove();});
+  document.body.appendChild(back);
+  build(body);
+  return back;
+ }
+
+ // --- how you are getting on
+ function progressPanel(){
+  mmOpen(false);
+  panel('My progress',function(body){
+   body.innerHTML='<p class="sheet-p">Kept in this browser only. Nothing is '
+    +'sent anywhere, and clearing your browser data clears it.</p>'
+    +'<div class="pstat"></div><div class="plist"></div>';
+   Progress.all().then(function(rows){
+    var known=rows.filter(function(r){return r.state==='known';}),
+        learn=rows.filter(function(r){return r.state!=='known';}),
+        seen=0,right=0,wrong=0,i;
+    for(i=0;i<rows.length;i++){
+     seen+=rows[i].seen||0;right+=rows[i].right||0;wrong+=rows[i].wrong||0;
+    }
+    var asked=right+wrong,
+        acc=asked?Math.round(100*right/asked):null;
+    var st=body.querySelector('.pstat');
+    st.innerHTML='<div class="pc ok"><b>'+known.length+'</b>known</div>'
+     +'<div class="pc warn"><b>'+learn.length+'</b>still learning</div>'
+     +'<div class="pc"><b>'+(acc===null?'—':acc+'%')+'</b>answered right</div>'
+     +'<div class="pc"><b>'+seen+'</b>times seen</div>';
+    var list=body.querySelector('.plist');
+    if(!rows.length){
+     list.innerHTML='<p class="sheet-p">Nothing yet. Answer a question, or '
+      +'press <b>✓ I know it</b> on a card, and it will show up here.</p>';
+     return;
+    }
+    // Worst first: the point of a list like this is the words that are not
+    // sticking, and they should not be at the bottom of it.
+    rows.sort(function(a,b){
+     var wa=(a.state==='known'?1:0),wb=(b.state==='known'?1:0);
+     if(wa!==wb)return wa-wb;
+     return (b.wrong||0)-(a.wrong||0)||(b.at||0)-(a.at||0);
+    });
+    var html='<table class="ptab"><tr><th>Word</th><th>Meaning</th>'
+     +'<th>Seen</th><th>Right</th><th>Wrong</th><th>Run</th>'
+     +'<th>How it stands</th></tr>';
+    for(i=0;i<rows.length&&i<400;i++){
+     var r=rows[i],ok2=r.state==='known';
+     html+='<tr><td lang="'+(document.documentElement.lang||'')+'">'
+      +esc(r.word||r.id)+'</td><td>'+esc(r.mean||'')+'</td>'
+      +'<td class="n">'+(r.seen||0)+'</td>'
+      +'<td class="n">'+(r.right||0)+'</td>'
+      +'<td class="n">'+(r.wrong||0)+'</td>'
+      +'<td class="n">'+(r.streak||0)
+      +(r.best>(r.streak||0)?' <span class="best">best '+r.best+'</span>':'')
+      +'</td>'
+      +'<td class="'+(ok2?'ok':'warn')+'">'
+      +(ok2?'known':'still learning')+'</td></tr>';
+    }
+    list.innerHTML=html+'</table>'
+     +'<p class="sheet-p" style="margin:14px 0 0">A word counts as known once '
+     +'you have got it twice in a row, or when you say so on a card. '
+     +'<span class="dimq">Kept by '+Progress.engine()+'.</span></p>'
+     +'<div class="sheet-row"><button class="wipe">Forget all of it</button></div>';
+    list.querySelector('.wipe').addEventListener('click',function(){
+     Progress.clear().then(function(){knownNow={};progressPanel();});
+    });
+   });
+  });
+ }
+ function esc(t){var d=document.createElement('div');d.textContent=t||'';
+                 return d.innerHTML;}
+
+ var pBtn=document.getElementById('mm-progress');
+ if(pBtn)pBtn.addEventListener('click',progressPanel);
+
+ // --- the two that are still to be written
+ function stub(title,line){
+  return function(){
+   mmOpen(false);
+   panel(title,function(body){
+    body.innerHTML='<p class="sheet-p">'+line+'</p>';
+   });
+  };
+ }
+ var aBtn=document.getElementById('mm-about');
+ if(aBtn)aBtn.addEventListener('click',stub('About',
+  'This is a free vocabulary course, built with WordBase and studied with '
+  +'flashcards. More to say here shortly.'));
+ var gBtn=document.getElementById('mm-guide');
+ if(gBtn)gBtn.addEventListener('click',stub('Guide',
+  'How to get the most out of the lessons, the flashcards and the quiz. '
+  +'Being written.'));
+
+ // What was chosen last time, before the first paint has anything to argue
+ // with. The theme is also set in the head, so the page never flashes dark.
+ try{document.documentElement.classList.remove('light-pre');
+     setTheme(localStorage.getItem('wb.theme')==='light');
+     // On a phone the lessons are a drawer over the lesson you came to read,
+     // so they start put away; on a wide screen they are a column beside it
+     // and start open. Either way, what you chose last wins.
+     var lk=localStorage.getItem('wb.lessons');
+     setLessons(lk===null?!phone():lk!=='0');}catch(e){}
+ // and what you already know, so a card can say so the moment it is drawn
+ Progress.all().then(function(rows){
+  for(var i=0;i<rows.length;i++)knownNow[rows[i].id]=rows[i].state;
+  if(mode==='card')drawCard();
  });
 
  // ----------------------------------------------------- the video column
@@ -582,7 +1240,7 @@
  function cue(byUser){
   if(!player||!player.seekTo)return;
   if(sync!=='slide'&&!(sync==='video'&&byUser))return;
-  var ms=atOf(cards[at]);
+  var ms=atOf(cardAtPos(at));
   if(ms===null)return;
   seeking=Date.now();
   player.seekTo(ms/1000,true);
