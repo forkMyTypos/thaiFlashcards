@@ -97,7 +97,8 @@ article h1{font-size:28px;color:var(--bright);line-height:1.25;margin-bottom:10p
   --violet:#a78bfa;
   --violet2:#c4b5fd;
   --violetbg:#2a1a4a;
-  --menu:220px;--rail:50px;--bar:3em;--line:var(--line);--panel:var(--s2);--dim:var(--muted)
+  --menu:220px;--rail:50px;--bar:3em;
+  --panel:#12121b
 }
 /* Daylight. The same palette, the same jobs — only the values
    change, which is the whole reason the colours have names. */
@@ -140,6 +141,7 @@ html.light-pre body,body.light{
   --violet:#6d3fd4;
   --violet2:#5327b5;
   --violetbg:#e7defb;
+  --panel:#ffffff;
 }
 body.light img{filter:none}
 
@@ -207,21 +209,26 @@ body.resizing iframe{pointer-events:none}
 
 /* the video column */
 .yt{grid-row:3;grid-column:ytc;min-width:0;min-height:0;display:flex;
-  flex-direction:column;
+  flex-direction:column;justify-content:safe center;
   background:var(--s0);padding:14px 14px 10px;gap:10px;overflow:hidden}
-.ytframe{width:100%;aspect-ratio:16/9;background:var(--ink);border-radius:10px;
+/* The video sits in the middle of its column rather than pinned to the
+   top of it, and stops growing before it dwarfs the words beside it. */
+.ytframe{width:100%;max-width:640px;margin:0 auto;
+  aspect-ratio:16/9;background:var(--ink);border-radius:10px;
   overflow:hidden;flex:none;display:flex;align-items:center;
   justify-content:center}
 .ytframe iframe{width:100%;height:100%;border:0;display:block}
 .ytload{color:var(--faint);font-size:12.5px}
-.ytbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ytbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  width:100%;max-width:640px;margin:0 auto}
 .ytbar button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer;
   font-family:inherit}
 .ytbar button:hover{border-color:var(--accent);color:var(--bright)}
 .ytbar .ymode.on{border-color:var(--accent);background:var(--accentbg);color:var(--accent3)}
 .ytbar .yspace{flex:1}
-.ytwho{font-size:12px;color:var(--faint);line-height:1.4;
+.ytwho{width:100%;max-width:640px;margin:0 auto;
+  font-size:12px;color:var(--faint);line-height:1.4;
   overflow:hidden;text-overflow:ellipsis;display:-webkit-box;
   -webkit-line-clamp:2;-webkit-box-orient:vertical}
 .slider .ytbtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
@@ -334,14 +341,20 @@ body.no-lessons .menu{display:none}
 .slider .md[aria-pressed="true"]{border-color:var(--accent);background:var(--accentbg);
   color:var(--accent3)}
 
-/* the two buttons that say whether you knew it */
-.fknow{display:flex;gap:8px;justify-content:center;padding:0 0 10px;
-  flex-shrink:0}
-.fknow .kno{background:var(--s3);border:1px solid var(--edge);
-  color:var(--text2);border-radius:8px;padding:5px 13px;font-size:12.5px;
-  cursor:pointer;font-family:inherit}
+/* The three answers, along the foot of the card itself — where you are
+   looking the moment you have turned it over and are deciding. */
+.fknow{display:flex;gap:6px;flex-shrink:0;padding:8px 10px;
+  border-top:1px solid var(--frontedge);border-radius:0 0 10px 10px;
+  background:var(--frontbar);transition:background .4s,border-color .4s}
+.fshell.flipped .fknow{background:var(--backbar);
+  border-top-color:var(--backedge)}
+.fknow .kno{flex:1;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;padding:5px 8px;font-size:12px;
+  cursor:pointer;font-family:inherit;white-space:nowrap}
 .fknow .kno:hover{border-color:var(--accent);color:var(--bright)}
 .fknow .kno[data-know="known"].on{border-color:var(--ok);color:var(--ok)}
+.fknow .kno[data-know="unsure"].on{border-color:var(--violet2);
+  color:var(--violet2)}
 .fknow .kno[data-know="learning"].on{border-color:var(--gold2);
   color:var(--gold2)}
 
@@ -465,8 +478,14 @@ body.mode-card .info .cta,body.mode-quiz .info .cta{display:none}
   text-transform:uppercase;padding:2px 8px;border-radius:20px;
   pointer-events:none;background:var(--accentbg);color:var(--accent2);transition:background .4s,color .4s}
 .fshell.flipped .fbadge{background:var(--badbg);color:var(--bad2)}
-.fbody{flex:1;min-height:0;position:relative;overflow:hidden;
-  border-radius:0 0 10px 10px}
+/* what goes on each side, asked on the card rather than in the bar */
+.fbar .fcog{background:transparent;border:1px solid var(--frontedge);
+  color:var(--text2);border-radius:7px;padding:2px 9px;font-size:11px;
+  cursor:pointer;font-family:inherit;flex-shrink:0;line-height:1.6;
+  transition:border-color .4s,color .4s}
+.fbar .fcog:hover{border-color:var(--accent);color:var(--bright)}
+.fshell.flipped .fbar .fcog{border-color:var(--backedge)}
+.fbody{flex:1;min-height:0;position:relative;overflow:hidden}
 .finner{position:absolute;inset:0;transform-style:preserve-3d;
   transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
 .fshell.flipped .finner{transform:rotateY(180deg)}
@@ -490,6 +509,11 @@ body.mode-card .info .cta,body.mode-quiz .info .cta{display:none}
 .fface .f-hook{font-size:14px;color:var(--gold);font-weight:700}
 .fface .f-ex{font-size:13px;color:var(--muted)}
 .fface img{max-width:100%;max-height:200px;object-fit:contain;border-radius:8px}
+.fface .f-snd{display:flex;gap:8px;justify-content:center}
+.fface .f-snd button{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;padding:6px 11px;font-size:12.5px;
+  cursor:pointer;font-family:inherit}
+.fface .f-snd button:hover{border-color:var(--accent);color:var(--bright)}
 .fface .f-empty{color:var(--faint);font-size:13px;font-style:italic}
 .fresize{position:absolute;right:-4px;bottom:-4px;width:16px;height:16px;
   cursor:nwse-resize}
