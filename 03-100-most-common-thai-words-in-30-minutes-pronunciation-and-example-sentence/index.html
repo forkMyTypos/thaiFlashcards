@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="The Thai words used in “100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)” by Thai Educator."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=96c86770"/>
+<link rel="stylesheet" href="../style.css?v=79e252be"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -31,6 +31,7 @@
       <button class="mm" id="mm-theme" aria-pressed="false"><span class="i">&#9680;</span><span class="t">Light mode</span></button>
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
+      <button class="mm" id="mm-reset" title="Column widths, the card's place and size, what is on each side of it, and the number of wrong answers"><span class="i">&#10226;</span><span class="t">Reset the layout</span></button>
       <div class="mm-sep"></div>
       <button class="mm" id="mm-about"><span class="i">&#9432;</span><span class="t">About</span></button>
       <button class="mm" id="mm-guide"><span class="i">?</span><span class="t">Guide</span></button>
@@ -1330,7 +1331,9 @@
      var row=was||{id:id,seen:0,right:0,wrong:0,streak:0,best:0,first:Date.now()};
      row.state=state;row.said=state;row.at=Date.now();
      if(state==='known'&&!row.streak)row.streak=1;
-     if(state==='learning')row.streak=0;
+     // "Not sure" is not "no" — it keeps the word out of the known pile
+     // without pretending you have never met it.
+     if(state==='learning'||state==='unsure')row.streak=0;
      if(extra)for(var k in extra)if(extra.hasOwnProperty(k))row[k]=extra[k];
      return Promise.resolve(impl.put(row)).then(function(){return row;});
     });
@@ -1391,12 +1394,13 @@
   {k:'pos',   label:'Part of speech', sel:'.pos', cls:'f-pos'},
   {k:'mean',  label:'English meaning',sel:'.en',  cls:'f-mean'},
   {k:'image', label:'Picture',        img:true},
+  {k:'sound', label:'Sound',          snd:true},
   {k:'hook',  label:'Memory hook',    sel:'.aid', cls:'f-hook'},
   {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'}
  ];
  // Thai one side, English and the picture the other. What a vocabulary card
  // is for, and what the quiz then asks in that direction by default.
- var SIDES_DEFAULT={front:['word'],back:['image','mean','rom']};
+ var SIDES_DEFAULT={front:['word','rom','sound'],back:['mean','image']};
 
  function loadSides(){
   try{var raw=localStorage.getItem('wb.sides');
@@ -1421,6 +1425,16 @@
     var im=new Image();im.alt=card.dataset.alt||'';im.loading='eager';
     im.onerror=function(){this.remove();};
     im.src=src;host.appendChild(im);n++;continue;
+   }
+   if(f.snd){
+    // The play buttons themselves, copied over. They carry the clip's URL on
+    // a data attribute and the page already listens for a click on one
+    // anywhere, so a copy works exactly as the original does.
+    var plays=card.querySelector('.plays');
+    if(!plays)continue;
+    var box=plays.cloneNode(true);
+    box.className='f-snd';
+    host.appendChild(box);n++;continue;
    }
    var el=card.querySelector(f.sel);
    if(!el)continue;
@@ -1468,22 +1482,25 @@
  function bar(kind){
   var b=document.createElement('div');
   b.className='mbar';
-  var html='<button data-act="shuffle" title="Mix the order of the words">'
-   +'⇄ Shuffle</button>'
-   +'<button data-act="reverse" title="'
-   +(kind==='card'?'Start on the back and turn to the front'
-                  :'Ask it the other way round')+'">⇋ Reverse</button>'
-   +'<button data-act="reset" title="Start again">↺ Reset</button>';
+  var html='';
   if(kind==='quiz')
    html+='<div class="grp"><b>Wrong answers</b>'
     +'<button class="nbtn" data-n="2">2</button>'
     +'<button class="nbtn" data-n="3">3</button>'
     +'<button class="nbtn" data-n="4">4</button>'
     +'<button class="nbtn" data-n="5">5</button></div>'
-    +'<span class="score"></span>';
+    +'<span class="score"></span>'
+    +'<button data-act="sides" title="Choose what to show">'
+    +'⚙ Show</button>';
+  // Shuffle, reverse and reset sit at the right-hand end: they are what you
+  // do to the whole run, not to the word in front of you.
   html+='<span class="sp"></span>'
-   +'<button data-act="sides" title="Choose what goes on each side">'
-   +'⚙ Sides</button>';
+   +'<button data-act="shuffle" title="Mix the order of the words">'
+   +'⇄ Shuffle</button>'
+   +'<button data-act="reverse" title="'
+   +(kind==='card'?'Start on the back and turn to the front'
+                  :'Ask it the other way round')+'">⇋ Reverse</button>'
+   +'<button data-act="reset" title="Start again">↺ Reset</button>';
   b.innerHTML=html;
   b.querySelector('[data-act=shuffle]').classList.toggle('on',shuffled);
   b.querySelector('[data-act=reverse]').classList.toggle('on',reversed);
@@ -1559,14 +1576,21 @@
   fcWrap.innerHTML='<div class="grab"><div class="fshell">'
    +'<div class="fbar"><div class="fdots"><span></span><span></span>'
    +'<span></span></div><div class="fbadge">Front</div>'
-   +'<div style="width:38px"></div></div>'
+   +'<button class="fcog" data-act="sides" title="Choose what to show">'
+   +'⚙ Show</button></div>'
    +'<div class="fbody"><div class="finner">'
    +'<div class="fface ffront"></div><div class="fface fback"></div>'
-   +'</div></div><div class="fresize"></div></div></div>'
-   +'<div class="fknow"><button class="kno" data-know="learning">'
-   +'✗ Not yet</button><button class="kno" data-know="known">'
-   +'✓ I know it</button></div>'
-   +'<div class="fhint"><span>← → navigate</span><span>space turns it over</span>'
+   +'</div></div>'
+   // At the foot of the card, because that is where you are looking when you
+   // have just turned it over and are deciding.
+   +'<div class="fknow">'
+   +'<button class="kno" data-know="learning">✗ Not yet</button>'
+   +'<button class="kno" data-know="unsure">~ Not sure</button>'
+   +'<button class="kno" data-know="known">✓ I know it</button>'
+   +'</div>'
+   +'<div class="fresize"></div></div></div>'
+   +'<div class="fhint"><span>← → navigate</span>'
+   +'<span>space turns it over</span>'
    +'<span>drag the bar, pull the corner</span></div>';
   right.appendChild(barEl);right.appendChild(fcWrap);
 
@@ -1636,7 +1660,18 @@
   document.addEventListener('pointerup',up);
   document.addEventListener('pointercancel',up);
   inner.addEventListener('click',function(e){
-   if(!moved&&!resizing)flip();e.stopPropagation();});
+   // A sound button is on the face; pressing it plays the word, and turning
+   // the card over at the same time would hide what you just asked to hear.
+   var snd=e.target.closest?e.target.closest('.f-snd'):null;
+   if(!snd&&!moved&&!resizing)flip();
+   e.stopPropagation();});
+  fcWrap.querySelector('.fcog').addEventListener('click',function(e){
+   e.stopPropagation();e.target.blur();sidesPanel();
+  });
+  // and it must not start a drag of the bar it sits in
+  fcWrap.querySelector('.fcog').addEventListener('pointerdown',function(e){
+   e.stopPropagation();
+  });
   fcWrap.querySelector('.fknow').addEventListener('click',function(e){
    var b=e.target.closest?e.target.closest('[data-know]'):null;
    if(!b)return;b.blur();
@@ -1710,7 +1745,7 @@
   var already=answered[at];
 
   quizBox.innerHTML='<div class="qsplit"><div><div class="qcard">'
-   +'<div class="qbadge">Which one</div><div class="qface"></div></div></div>'
+   +'<div class="qface"></div></div></div>'
    +'<div><div class="qopts"></div><div class="qresult"></div></div></div>';
   faceInto(quizBox.querySelector('.qface'),card,qSide);
 
@@ -1933,7 +1968,9 @@
     +'<div class="pstat"></div><div class="plist"></div>';
    Progress.all().then(function(rows){
     var known=rows.filter(function(r){return r.state==='known';}),
-        learn=rows.filter(function(r){return r.state!=='known';}),
+        shaky=rows.filter(function(r){return r.state==='unsure';}),
+        learn=rows.filter(function(r){
+          return r.state!=='known'&&r.state!=='unsure';}),
         seen=0,right=0,wrong=0,i;
     for(i=0;i<rows.length;i++){
      seen+=rows[i].seen||0;right+=rows[i].right||0;wrong+=rows[i].wrong||0;
@@ -1942,6 +1979,7 @@
         acc=asked?Math.round(100*right/asked):null;
     var st=body.querySelector('.pstat');
     st.innerHTML='<div class="pc ok"><b>'+known.length+'</b>known</div>'
+     +'<div class="pc warn"><b>'+shaky.length+'</b>not sure</div>'
      +'<div class="pc warn"><b>'+learn.length+'</b>still learning</div>'
      +'<div class="pc"><b>'+(acc===null?'—':acc+'%')+'</b>answered right</div>'
      +'<div class="pc"><b>'+seen+'</b>times seen</div>';
@@ -1962,7 +2000,8 @@
      +'<th>Seen</th><th>Right</th><th>Wrong</th><th>Run</th>'
      +'<th>How it stands</th></tr>';
     for(i=0;i<rows.length&&i<400;i++){
-     var r=rows[i],ok2=r.state==='known';
+     var r=rows[i],ok2=r.state==='known',
+         how=ok2?'known':(r.state==='unsure'?'not sure':'still learning');
      html+='<tr><td lang="'+(document.documentElement.lang||'')+'">'
       +esc(r.word||r.id)+'</td><td>'+esc(r.mean||'')+'</td>'
       +'<td class="n">'+(r.seen||0)+'</td>'
@@ -1971,8 +2010,7 @@
       +'<td class="n">'+(r.streak||0)
       +(r.best>(r.streak||0)?' <span class="best">best '+r.best+'</span>':'')
       +'</td>'
-      +'<td class="'+(ok2?'ok':'warn')+'">'
-      +(ok2?'known':'still learning')+'</td></tr>';
+      +'<td class="'+(ok2?'ok':'warn')+'">'+how+'</td></tr>';
     }
     list.innerHTML=html+'</table>'
      +'<p class="sheet-p" style="margin:14px 0 0">A word counts as known once '
@@ -2004,6 +2042,41 @@
  if(aBtn)aBtn.addEventListener('click',stub('About',
   'This is a free vocabulary course, built with WordBase and studied with '
   +'flashcards. More to say here shortly.'));
+ // --- everything back where it started
+ //
+ // Four separate things get moved about — the width of the columns, where the
+ // card sits and how big it is, what is written on each side of it, and how
+ // many wrong answers the quiz offers. One press puts all four back, because
+ // a reader who has made a mess of the layout does not want to hunt for four
+ // different ways out of it.
+ function resetLayout(){
+  mmOpen(false);
+  // Cleared first, because the card reads where it was left when it is built
+  // and would otherwise be rebuilt back into the corner it was dragged to.
+  try{localStorage.removeItem('wb.fc');localStorage.removeItem('wb.cols');
+      localStorage.removeItem('wb.sides');
+      localStorage.removeItem('wb.wrongs');}catch(e){}
+  resetWidths();
+  sides={front:SIDES_DEFAULT.front.slice(),back:SIDES_DEFAULT.back.slice()};
+  wrongs=3;
+  // Rebuilding the mode is what actually moves the card back to the middle:
+  // its position is set when it is made, not on every draw.
+  var was=mode;
+  setMode('info');
+  setMode(was);
+  // And cleared again: resetWidths and the rebuilt quiz bar each write down
+  // what they have just set. What is wanted is no preference at all, so that
+  // a later change of default is picked up rather than overwritten.
+  try{localStorage.removeItem('wb.cols');
+      localStorage.removeItem('wb.wrongs');}catch(e){}
+  // and say so, briefly, on the button that was pressed
+  if(lBtn){var t=lBtn.querySelector('.t'),was2=t.textContent;
+           t.textContent='Layout reset';
+           setTimeout(function(){t.textContent=was2;},1600);}
+ }
+ var lBtn=document.getElementById('mm-reset');
+ if(lBtn)lBtn.addEventListener('click',resetLayout);
+
  var gBtn=document.getElementById('mm-guide');
  if(gBtn)gBtn.addEventListener('click',stub('Guide',
   'How to get the most out of the lessons, the flashcards and the quiz. '
