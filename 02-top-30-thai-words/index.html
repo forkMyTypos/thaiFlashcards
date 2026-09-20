@@ -18,8 +18,8 @@
 <meta name="twitter:description" content="The Top 30 Thai words by rank."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=79e252be"/>
-<script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");}catch(e){}</script>
+<link rel="stylesheet" href="../style.css?v=78e6cae8"/>
+<script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
 <body class="shell" data-root=".." data-lesson="02-top-30-thai-words">
@@ -31,6 +31,7 @@
       <button class="mm" id="mm-theme" aria-pressed="false"><span class="i">&#9680;</span><span class="t">Light mode</span></button>
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
+      <div class="mm-row" id="mm-text"><span class="i">A</span><span class="t">Text size</span><span class="fsc"><button type="button" data-fs="-1" aria-label="Smaller text">&#8722;</button><span class="fsnow">100%</span><button type="button" data-fs="1" aria-label="Bigger text">+</button></span></div>
       <button class="mm" id="mm-reset" title="Column widths, the card's place and size, what is on each side of it, and the number of wrong answers"><span class="i">&#10226;</span><span class="t">Reset the layout</span></button>
       <div class="mm-sep"></div>
       <button class="mm" id="mm-about"><span class="i">&#9432;</span><span class="t">About</span></button>
@@ -336,10 +337,17 @@
   var start=parseInt((location.hash||'').slice(1),10);
   show(isFinite(start)&&start>0?start-1:0);
  }
+ function playHit(e){
+  return e.target.closest?e.target.closest('[data-play]'):null;
+ }
  document.addEventListener('click',function(e){
-  var b=e.target.closest?e.target.closest('[data-play]'):null;
-  if(b){new Audio(b.dataset.play).play();}
- });
+  var b=playHit(e);
+  if(!b)return;
+  // It is only ever a sound. A clip that will not load should not take the
+  // rest of the click down with it.
+  try{var a=new Audio(b.dataset.play);var p=a.play();
+      if(p&&p.catch)p.catch(function(){});}catch(err){}
+ },true);
 
  // Remember where the reader got to, so the front page can send them back.
  // Only a real lesson page writes it: the front page renders lesson one for
@@ -840,8 +848,7 @@
   inner.addEventListener('click',function(e){
    // A sound button is on the face; pressing it plays the word, and turning
    // the card over at the same time would hide what you just asked to hear.
-   var snd=e.target.closest?e.target.closest('.f-snd'):null;
-   if(!snd&&!moved&&!resizing)flip();
+   if(!playHit(e)&&!moved&&!resizing)flip();
    e.stopPropagation();});
   fcWrap.querySelector('.fcog').addEventListener('click',function(e){
    e.stopPropagation();e.target.blur();sidesPanel();
@@ -871,6 +878,19 @@
   fcWrap.querySelector('.fbadge').textContent=showFront?'Front':'Back';
  }
 
+ // Put the card face up with no turn at all: kill the transition, take the
+ // class off, force the browser to work out the new geometry there and then,
+ // and only give the transition back afterwards.
+ function faceUp(){
+  if(!fcWrap)return;
+  var shell=fcWrap._shell,inner=fcWrap.querySelector('.finner');
+  if(!shell.classList.contains('flipped'))return flip(false);
+  inner.classList.add('noturn');
+  flip(false);
+  void inner.offsetWidth;
+  inner.classList.remove('noturn');
+ }
+
  function markKnown(state){
   if(!fcWrap)return;
   var b=fcWrap.querySelectorAll('[data-know]'),i;
@@ -882,7 +902,7 @@
   if(!fcWrap||!cards.length)return;
   var card=cardAtPos(at);
   if(!card)return;
-  flip(false);
+  faceUp();
   markKnown(knownNow[wordKey(card)]||'');
   // Reverse swaps what is written on each face, not which face you are
   // looking at — so you still start on the side facing you.
@@ -940,7 +960,12 @@
     b.disabled=true;
     if(k===meIdx)b.classList.add('qok');
     else if(already.picked===k)b.classList.add('qno');
-   }else b.onclick=function(){b.blur();answer(k,meIdx);};
+   }else b.onclick=function(ev){
+    // The answer may have a sound on it. Asking to hear a word is not the
+    // same as choosing it, and choosing by accident cannot be undone.
+    if(playHit(ev))return;
+    b.blur();answer(k,meIdx);
+   };
    opts.appendChild(b);
   })(all[i],i);
 
@@ -1220,6 +1245,32 @@
  if(aBtn)aBtn.addEventListener('click',stub('About',
   'This is a free vocabulary course, built with WordBase and studied with '
   +'flashcards. More to say here shortly.'));
+ // --- how big the words are
+ //
+ // Not the browser's zoom, which scales the gaps and the pictures with it
+ // and eventually pushes the columns off the screen. This turns type size
+ // alone: one number, which every size in the stylesheet is a multiple of.
+ var FS=[0.85,0.925,1,1.1,1.25,1.4,1.6],FSDEF=2;
+ function setFS(i,save){
+  i=Math.max(0,Math.min(FS.length-1,i));
+  fsAt=i;
+  document.documentElement.style.setProperty('--fs',FS[i]);
+  var row=document.getElementById('mm-text');
+  if(row){
+   row.querySelector('.fsnow').textContent=Math.round(FS[i]*100)+'%';
+   row.querySelector('[data-fs="-1"]').disabled=(i===0);
+   row.querySelector('[data-fs="1"]').disabled=(i===FS.length-1);
+  }
+  if(save)try{localStorage.setItem('wb.fs',String(i));}catch(e){}
+ }
+ var fsAt=FSDEF,fsRow=document.getElementById('mm-text');
+ if(fsRow)fsRow.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('[data-fs]'):null;
+  if(!b||b.disabled)return;
+  b.blur();
+  setFS(fsAt+parseInt(b.dataset.fs,10),true);
+ });
+
  // --- everything back where it started
  //
  // Four separate things get moved about — the width of the columns, where the
@@ -1264,6 +1315,8 @@
  // with. The theme is also set in the head, so the page never flashes dark.
  try{document.documentElement.classList.remove('light-pre');
      setTheme(localStorage.getItem('wb.theme')==='light');
+     var fk=parseInt(localStorage.getItem('wb.fs'),10);
+     setFS(isNaN(fk)?FSDEF:fk,false);
      // On a phone the lessons are a drawer over the lesson you came to read,
      // so they start put away; on a wide screen they are a column beside it
      // and start open. Either way, what you chose last wins.
