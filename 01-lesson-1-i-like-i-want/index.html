@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Learn the Thai words for lesson 1 — i like, i want — with script, romanization and English. Free flashcards you can study online."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=78e6cae8"/>
+<link rel="stylesheet" href="../style.css?v=0e61529d"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -43,7 +43,7 @@
   <div class="find"><input id="find" type="search" placeholder="Search lessons and words" aria-label="Search lessons and words" autocomplete="off"/></div>
   <nav id="nav">
     <div class="grp" data-grp>Lessons</div>
-<a class="item" href="https://thai.inaflash.cards/03-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" data-title="100 most common thai words in 30 minutes (pronunciation and example sentence)">100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)<span class="sub">03 · 165 words</span></a><a class="item on" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">01 · 29 words</span></a><a class="item" href="https://thai.inaflash.cards/02-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">02 · 30 words</span></a><a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">04</span></a><a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">05</span></a>
+<a class="item" href="https://thai.inaflash.cards/03-lesson-2-asking-for-things/" data-title="lesson 2 — asking for things">Lesson 2 — Asking for things<span class="sub">03 · 14 words</span></a><a class="item" href="https://thai.inaflash.cards/04-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" data-title="100 most common thai words in 30 minutes (pronunciation and example sentence)">100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)<span class="sub">04 · 165 words</span></a><a class="item on" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">01 · 29 words</span></a><a class="item" href="https://thai.inaflash.cards/02-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">02 · 30 words</span></a><a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">05</span></a><a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">06</span></a>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
 </aside>
@@ -663,15 +663,10 @@
   var b=document.createElement('div');
   b.className='mbar';
   var html='';
-  if(kind==='quiz')
-   html+='<div class="grp"><b>Wrong answers</b>'
-    +'<button class="nbtn" data-n="2">2</button>'
-    +'<button class="nbtn" data-n="3">3</button>'
-    +'<button class="nbtn" data-n="4">4</button>'
-    +'<button class="nbtn" data-n="5">5</button></div>'
-    +'<span class="score"></span>'
-    +'<button data-act="sides" title="Choose what to show">'
-    +'⚙ Show</button>';
+  // How many wrong answers, and what goes on each side, are settings for
+  // the run rather than controls you reach for mid-question — so they live
+  // in the panel under Reset, not up here beside it.
+  if(kind==='quiz')html+='<span class="score"></span>';
   // Shuffle, reverse and reset sit at the right-hand end: they are what you
   // do to the whole run, not to the word in front of you.
   html+='<span class="sp"></span>'
@@ -701,7 +696,7 @@
 
  function setWrongs(n){
   wrongs=n;
-  if(barEl)barEl.querySelectorAll('.nbtn').forEach(function(b){
+  if(quizBox)quizBox.querySelectorAll('.nbtn').forEach(function(b){
    b.classList.toggle('on',parseInt(b.dataset.n,10)===n);});
   try{localStorage.setItem('wb.wrongs',String(n));}catch(e){}
   if(!answered[at])draw();
@@ -910,6 +905,23 @@
   barEl=bar('quiz');
   quizBox=document.createElement('div');
   quizBox.className='quiz';
+  // Built once and left alone. Every question redraws .qbody underneath it,
+  // so these keep their place and their handlers instead of being thrown
+  // away and rebuilt five times a lesson.
+  quizBox.innerHTML='<div class="qtools">'
+   +'<div class="qwrongs"><b>Wrong answers</b>'
+   +'<button class="nbtn" data-n="2">2</button>'
+   +'<button class="nbtn" data-n="3">3</button>'
+   +'<button class="nbtn" data-n="4">4</button>'
+   +'<button class="nbtn" data-n="5">5</button></div>'
+   +'<button class="qshow" data-act="sides" title="Choose what to show">'
+   +'⚙ Show</button></div><div class="qbody"></div>';
+  quizBox.querySelector('.qtools').addEventListener('click',function(e){
+   var t=e.target.closest?e.target.closest('[data-n],[data-act]'):null;
+   if(!t)return;t.blur();
+   if(t.dataset.n)setWrongs(parseInt(t.dataset.n,10));
+   else sidesPanel();
+  });
   right.appendChild(barEl);right.appendChild(quizBox);
   setWrongs(wrongs);
  }
@@ -936,9 +948,12 @@
   var all=seeded(picked.concat([meIdx]),at+7);
   var already=answered[at];
 
-  quizBox.innerHTML='<div class="qsplit"><div><div class="qcard">'
-   +'<div class="qface"></div></div></div>'
-   +'<div><div class="qopts"></div><div class="qresult"></div></div></div>';
+  // The word, then the answers to it, in one column. A question and its
+  // options are a short list read downwards, not two things side by side
+  // with the screen split between them.
+  quizBox.querySelector('.qbody').innerHTML=
+   '<div class="qsplit"><div class="qcard"><div class="qface"></div></div>'
+   +'<div class="qopts"></div><div class="qresult"></div></div>';
   faceInto(quizBox.querySelector('.qface'),card,qSide);
 
   var opts=quizBox.querySelector('.qopts');
