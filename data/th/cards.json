@@ -47,7 +47,7 @@
   "sound_hook": null,
   "hook_visual": null,
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A chef is desperately trying to combine complementary foods, but the foods keep trying to separate from each other.\n\nFor example, the chef is assembling mango sticky rice, but:\n\nthe mango slices are running away\nthe sticky rice is stretching away in the opposite direction\nthe chef is desperately grabbing both\nmaybe other food pairings are escaping around the kitchen too\neverything is chaotic, but the chef is determined to keep the pair together",
-  "mnemonic_concept": null,
+  "mnemonic_concept": "Two completely different Thai objects being deliberately joined together as one pair.",
   "sentences": [],
   "lessons": [
    "TH_L000001",
@@ -236,6 +236,7 @@
   "sentences": [],
   "lessons": [
    "TH_L000001",
+   "TH_L000003",
    "TH_L000018"
   ],
   "images": [
@@ -358,6 +359,7 @@
   "sentences": [],
   "lessons": [
    "TH_L000001",
+   "TH_L000003",
    "TH_L000018"
   ],
   "images": [
@@ -389,6 +391,7 @@
   "sentences": [],
   "lessons": [
    "TH_L000001",
+   "TH_L000003",
    "TH_L000018"
   ],
   "images": [
@@ -959,7 +962,7 @@
   "sound_hook": "con",
   "hook_visual": "convict in a striped jail uniform",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A gigantic unmistakable CONVICT stands proudly at the center of a bustling crowd of ordinary PEOPLE. The convict wears a classic black-and-white striped prison uniform, has a distinctive mischievous expression, and stands dramatically taller than everyone around him.\n\nThe surrounding crowd consists of many clearly recognizable individual people, emphasizing the meaning PERSON / PEOPLE. The convict is the dominant central figure, providing the immediate visual association with CON.\n\nRich painterly digital textures, dramatic cinematic lighting, vibrant colors, strong silhouettes, exaggerated scale, expressive character poses, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork, absurd but memorable visual storytelling.\n\nThe central convict must be immediately recognizable as a CONVICT, while the surrounding figures must clearly be PEOPLE. Keep the composition simple and readable. No text, no labels, no prison violence, no weapons, no clutter, no unrelated props.",
-  "mnemonic_concept": null,
+  "mnemonic_concept": "A crowd of ordinary people gathered together in a Thai market.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -1779,12 +1782,14 @@
   "sound_hook": null,
   "hook_visual": null,
   "mnemonic": "Digital collectible card art, 1:1 square ratio. An enormous, glowing metallic equal sign ($=$) standing tall on an ancient stone pedestal, projecting two massive beams of golden light that fuse a pristine crown and a royal scepter together into one unified, blinding object. Epic heroic scale, dramatic cinematic lighting, rich textures, vivid color palette.",
-  "mnemonic_concept": null,
+  "mnemonic_concept": "A Thai person unmistakably identifying one object as another in a simple visual identification scene.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000062.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000062.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000062_slow.mp3"
@@ -3228,6 +3233,7 @@
   "mnemonic_concept": "A black crow cawing loudly to ask for a shiny coin.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
   "images": [
@@ -4078,6 +4084,7 @@
   "mnemonic_concept": "A shiny silver urn overflowing with money.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
   "images": [
@@ -4128,10 +4135,10 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "shoe",
+  "hook_visual": "a shoe",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A spectacular oversized SHOE standing proudly like a celebrity in the center of a Thai setting, with a clearly visible personal identity badge attached to it, communicating that the shoe has a NAME. The shoe should be unmistakably a shoe and the central visual focus. Make the identity concept visually obvious without relying on readable writing. Rich textures, cinematic lighting, vibrant colors, strong silhouette, playful absurdity, clean central composition. No captions, speech bubbles, explanatory labels, or readable words.",
+  "mnemonic_concept": "A giant shoe proudly displaying its identity through a distinctive name-like personal badge.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -4421,8 +4428,12 @@
   "mnemonic": "A shopper's hand quickly grabbing a brightly labeled cheap sale item from a messy bargain bin in a discount store, photorealistic, high contrast",
   "mnemonic_concept": "A shopper who eagerly took the suspiciously cheap item from the bargain bin.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000003"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000162.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000162.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000162_slow.mp3"
@@ -4921,13 +4932,16 @@
   "level": null,
   "sound_hook": "tour",
   "hook_visual": "an animal on a tour guide's flag",
-  "mnemonic": "A cheerful tour guide leading a group, holding up a small flag that features a detailed illustration of an animal body, photorealistic, outdoor sunny day",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA very **DOUR, miserable-looking man** standing beside a large open **DOOR**, reluctantly counting animals as they walk through the doorway one by one.\n\nThe dour man is the clear main character: extremely gloomy expression, downturned mouth, heavy eyelids, slumped posture, looking utterly fed up.\n\nSeveral different animals are visibly **passing through the door in a line**, while the man counts them with his fingers, clearly keeping track of how many animals have entered.\n\nMake the visual story instantly readable:\n\n**DOUR MAN → DOOR → COUNTING ANIMALS**\n\nThe animals should be healthy, colorful, friendly, and clearly recognizable. The counting action should be obvious, with the man holding up fingers while watching the animals pass through the doorway.\n\nFunny, absurd, exaggerated visual storytelling. Clean central composition, strong silhouettes, cinematic lighting, vibrant colors, rich textures, polished digital collectible card artwork.\n\nNo text, letters, numbers, Thai script, phonetic symbols, logos, or watermark.\n",
   "mnemonic_concept": "A tour guide holding up a flag with a picture of a distinctive animal body.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000181.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000181.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000181_slow.mp3"
@@ -5339,13 +5353,15 @@
   "level": null,
   "sound_hook": null,
   "hook_visual": null,
-  "mnemonic": "A Catholic nun in traditional black and white habit standing in a church, holding up a single index finger to represent the number one, photorealistic, dramatic lighting",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nA hilariously confident Thai man named Mr. Nueng standing proudly on the highest first-place podium, clearly the undisputed number one at absolutely everything. He has an exaggerated champion pose, huge confident grin, and absurdly over-the-top self-confidence. Around him are trophies and medals representing completely unrelated talents: cooking, boxing, football, music, business, painting, and science. He is somehow holding a chef's trophy, wearing a championship medal, and casually balancing a musical instrument while standing on the first-place podium.\n\nMake the visual joke instantly obvious: Mr. Nueng is ridiculously good at everything and is always number one.\n\nFun, absurd, energetic character design, strong silhouette, expressive face, vibrant colors, cinematic lighting, rich textures, clean central composition, exaggerated scale, polished collectible-card artwork.\n\nNo text, no letters, no numbers, no Thai writing, no labels, no logos, no watermark.\n",
   "mnemonic_concept": "A nun holding up exactly one finger.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000197.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000197.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000197_slow.mp3"
@@ -6151,10 +6167,10 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "lawn",
+  "hook_visual": "a huge green lawn",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. An impossibly enormous lush green lawn stretches all the way to the horizon, covered by a vast organized multitude of tiny everyday objects creating the overwhelming visual sense of ONE MILLION. Make the gigantic lawn itself the unmistakable visual focus and the direct sound bridge for “lawn.” Natural tropical Thai landscape subtly blended into the scene, epic scale, atmospheric depth, rich grass and environmental textures, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "A gigantic lawn stretches beyond the horizon, covered with an overwhelming multitude of objects representing one million.",
   "sentences": [],
   "lessons": [],
   "images": [],
@@ -7494,10 +7510,10 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "deck",
+  "hook_visual": "a wooden deck",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A cheerful Thai CHILD standing prominently on a large beautiful wooden DECK, proudly looking around as though the deck belongs to them. Make the child and the deck both unmistakable, creating the simple sound bridge DECK while the child provides the meaning. The child is the main character, with the wooden deck clearly visible beneath them. Warm Thai outdoor setting, rich textures, cinematic lighting, vibrant colors, strong silhouette, clean central composition, playful and memorable. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A Thai child happily standing on a large wooden deck.",
   "sentences": [],
   "lessons": [],
   "images": [],
@@ -13195,10 +13211,10 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "cow",
+  "hook_visual": "a cow",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A humorous Thai scene with a Thai man in the foreground pointing dramatically toward a large friendly cow beside him, while another Thai person stands clearly as the person being referred to. The visual joke connects HE or SHE with COW through the man's obvious pointing gesture and the cow's exaggerated presence. Clear central composition, expressive characters, rich textures, cinematic lighting, vibrant colors, absurd but immediately understandable. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A man points dramatically toward a cow while clearly referring to another person beside it.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -13329,10 +13345,10 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "row",
+  "hook_visual": "someone rowing a boat",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A cheerful group of Thai friends rowing one boat together on a beautiful river, all working together with oars in perfect rhythm. Make the group clearly represent WE, while the rowing action creates the sound bridge ROW. The people are the visual focus, with the shared rowing action unmistakable. Authentic Thai riverside atmosphere, rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean central composition, playful and memorable. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A group of Thai friends all rowing the same boat together.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -15036,11 +15052,15 @@
   "level": null,
   "sound_hook": "buy",
   "hook_visual": "buying a leaf",
-  "mnemonic": "A customer at a store checkout counter paying money to buy a single, large, vibrant green leaf, photorealistic, vivid colors",
+  "mnemonic": "Digital collectible card art, 1:1 square composition.\n\nAt a colorful Thai market stall, a customer is enthusiastically BUYING one enormous, beautiful, vibrant green leaf from the seller. The customer is clearly handing over money with one hand while firmly taking the single giant leaf with the other hand. The leaf is the unmistakable star of the scene: fresh, vivid green, oversized, healthy and visually striking. Make the buying action extremely obvious and immediate.\n\nAbsurd but believable visual comedy, strong character expressions, dynamic hand interaction, vibrant Thai market atmosphere, cinematic lighting, rich textures, strong silhouettes, clean central composition, polished collectible-card artwork.\n\nNo text, no letters, no numbers, no Thai writing, no labels, no logos, no watermark.\n",
   "mnemonic_concept": "A person buying a single green leaf at a store counter.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000003"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000566.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000566.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000566_slow.mp3"
@@ -15142,13 +15162,16 @@
   "level": null,
   "sound_hook": "Ann",
   "hook_visual": "Ann holding a small object",
-  "mnemonic": "A woman wearing a nametag that says 'Ann' holding a glowing, generic small object in the palm of her hand, photorealistic, studio lighting",
+  "mnemonic": "Digital collectible card art, 1:1 square composition. A man in an unexpected place where an ant absolutely should not be, crouching down and looking through a large magnifying glass at ONE tiny ant on the ground. The magnifying glass makes the single ant clearly visible and visually important. The man looks surprised and intensely fascinated by this tiny unexpected visitor. Make the ant unmistakable, with the ant as the central visual focus. Absurd but believable scene, exaggerated scale, strong silhouettes, rich textures, cinematic lighting, vibrant colors, clean uncluttered composition. No text, letters, numbers, Thai writing, phonetic symbols, labels, logos, signs, or watermarks.\n\n",
   "mnemonic_concept": "A woman named Ann holding a small, unidentifiable object.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000570.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000570.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000570_slow.mp3"
@@ -15900,10 +15923,10 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "cry",
+  "hook_visual": "someone crying",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A funny but immediately understandable Thai scene: one person is visibly CRYING while desperately looking around a busy Thai market, searching for an UNKNOWN PERSON. Their exaggerated confused expression and tears make the crying action unmistakable, while their frantic searching communicates WHO? The crying person is the clear visual focus, with several possible people in the background but no obvious answer about which person they are looking for. Rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean central composition, memorable visual storytelling. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A person crying while desperately looking around to find the unknown person they are searching for.",
   "sentences": [],
   "lessons": [],
   "images": [],
@@ -16944,11 +16967,13 @@
   "level": null,
   "sound_hook": "song",
   "hook_visual": "singing a song as a duet",
-  "mnemonic": "Two singers sharing a microphone on stage, passionately singing a duet song together, photorealistic, concert lighting",
+  "mnemonic": "Digital collectible card art, 1:1 square composition. Exactly TWO Thai singers performing a lively duet on a small Thai outdoor concert stage. The two singers are the unmistakable focus, standing side by side and enthusiastically singing into one shared microphone, clearly performing a SONG together. Their expressions and open mouths should make it immediately obvious that they are singing, not talking. A subtle Thai atmosphere with a colorful local outdoor venue and a few distinctly Thai visual details in the background. Make the scene energetic, funny, and instantly readable: TWO Thai people singing a SONG together. Strong silhouettes, vibrant colors, rich textures, cinematic lighting, clean central composition. No other performers, no crowd blocking the singers, no text, letters, numbers, Thai writing, phonetic symbols, labels, logos, signs, or watermarks.\n\n",
   "mnemonic_concept": "Two people singing a song together as a duet.",
   "sentences": [],
   "lessons": [],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000639.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000639.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000639_slow.mp3"
@@ -19222,13 +19247,16 @@
   "level": null,
   "sound_hook": "ow",
   "hook_visual": "saying ow when taking something sharp",
-  "mnemonic": "Close up of a person's hand taking a sharp rose stem, getting pricked and reacting with an 'ow' expression, photorealistic, macro photography",
+  "mnemonic": "Digital collectible card art, 1:1 square composition, designed as a clear two-panel visual story with a natural left-to-right sequence.\n\nLEFT PANEL: A Thai man in a Thai garden eagerly reaching naturally toward a beautiful rose bush and grabbing a rose by the stem because he wants to take it. Make the grabbing and picking action unmistakable, with natural human anatomy and believable hand positioning.\n\nRIGHT PANEL: Immediately afterward, the sharp thorn has pricked his finger. The same Thai man recoils naturally with a dramatic shocked expression of pain, instinctively dropping the rose from his hand. Make the “OW!” reaction extremely obvious through his facial expression and body language.\n\nThe two panels should clearly show cause and effect: FIRST he wants and takes the rose, THEN the thorn causes the painful OW reaction. Keep the same character, clothing, rose bush, and visual environment in both panels for continuity. Subtle Thai garden atmosphere. Funny, absurd, instantly readable mnemonic storytelling, vibrant colors, rich textures, cinematic lighting, strong silhouettes, clean composition.\n\nNo actual words or text anywhere in the image, no letters, numbers, Thai writing, phonetic symbols, labels, logos, signs, speech bubbles, captions, or watermarks.\n",
   "mnemonic_concept": "A person saying 'ow!' after taking a sharp rose thorn.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000726.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000726.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000726_slow.mp3"
@@ -19748,11 +19776,13 @@
   "level": null,
   "sound_hook": "Sam",
   "hook_visual": "Sam holding up three fingers",
-  "mnemonic": "Uncle Sam in his iconic top hat and suit, looking at the camera and holding up exactly three fingers, photorealistic, highly detailed",
+  "mnemonic": "Premium painterly fantasy/game-card illustration. Painterly digital illustration with clearly visible brushwork, soft edges, textured painted surfaces, expressive forms, strong silhouettes, cinematic depth, dramatic highlights and shadows, vibrant but controlled color relationships, polished collectible-card-art appearance. NOT photorealistic. NOT photographic. No borders.\n\nUncle Sam must be unmistakably American and instantly recognizable: iconic white beard, tall red-white-and-blue top hat, classic red-white-and-blue patriotic suit. He is standing naturally in a distinctly Thai street-market setting, with colorful Thai market stalls, tropical plants, and subtle Thai environmental details.\n\nUncle Sam is proudly holding up EXACTLY THREE fingers on one hand. All three raised fingers must be clearly separated and fully visible. Make the three fingers an immediate visual focus while keeping Uncle Sam's iconic appearance unmistakable.\n\nFunny, slightly absurd situation: iconic American Uncle Sam casually standing in a Thai market. Clean central composition, natural anatomy, natural hand positioning, strong visual storytelling.\n\nNo text, letters, numbers, Thai writing, phonetic symbols, labels, logos, signs, watermarks, borders, or photographic elements.\n",
   "mnemonic_concept": "Uncle Sam holding up three fingers.",
   "sentences": [],
   "lessons": [],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000746.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000746.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000746_slow.mp3"
@@ -19852,11 +19882,15 @@
   "level": null,
   "sound_hook": "ran",
   "hook_visual": "ran into a shop",
-  "mnemonic": "A funny moment of a person who just ran face-first into the clear glass door of a retail shop, looking surprised, storefront setting, photorealistic, daylight",
+  "mnemonic": "Premium painterly fantasy/game-card illustration. Painterly digital illustration — visible brushwork, soft edges, textured surfaces rather than photorealistic rendering. Expressive forms, strong silhouettes, rich surface detail, cinematic depth, dramatic highlights and shadows, vibrant but controlled color relationships, polished collectible-card-art appearance. No borders.\n\nSQUARE 1:1 COLLECTIBLE CARD COMPOSITION.\n\nA Thai man is RUNNING DIRECTLY TOWARD A SHOP.\n\nShow the man from behind, in the foreground, actively running AWAY FROM THE VIEWER and STRAIGHT TOWARD the shop entrance. His entire body and running direction point directly toward the shop.\n\nThe SHOP ENTRANCE IS DIRECTLY AHEAD OF HIM, centered in the image.\n\nHis running path forms a completely straight line from the foreground man → directly to the shop doorway. He is clearly APPROACHING THE ENTRANCE and is about to run into the shop.\n\nThe shop is his obvious DESTINATION and the dominant object in the middle/background of the composition.\n\nLarge, attractive, full-sized urban Thai retail shop with a wide open entrance, clearly recognizable as a normal shop/store. Authentic Thai street environment and subtle Thai details.\n\nIMPORTANT VISUAL STORY:\nMAN RUNNING → TOWARD → SHOP.\nHe is NOT running past the shop, beside the shop, away from the shop, or across the storefront.\n\nNo side-running. No diagonal movement past the building. No second shop. No distracting background action.\n\nThe image must make the relationship immediately readable even without any explanation: **he is running to the shop.**\n",
   "mnemonic_concept": "Someone who just ran headfirst into the glass door of a shop.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000003"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000750.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000750.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000750_slow.mp3"
@@ -24086,8 +24120,8 @@
   "level": null,
   "sound_hook": null,
   "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A cheerful Thai family scene showing a clearly YOUNGER SIBLING following an older brother or sister around a Thai home, copying everything they do. Make the age difference obvious: the younger sibling is noticeably smaller and younger, staying close behind the older sibling. The younger sibling is the visual focus. Warm family atmosphere, expressive faces, rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean composition, immediately understandable. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A younger Thai sibling happily following their older sibling around the house.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -25888,8 +25922,8 @@
   "level": null,
   "sound_hook": null,
   "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. Two close Thai FRIENDS laughing together and naturally helping each other carry a shopping basket through a colorful Thai street market. Make the friendship unmistakable through their relaxed body language, smiles, and cooperative action. Focus on the relationship between the two people rather than the market itself. Authentic Thai atmosphere, rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean central composition, warm and memorable. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "Two close Thai friends happily helping each other at a street market.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -26412,13 +26446,16 @@
   "level": "beginner",
   "sound_hook": "John",
   "hook_visual": "John holding a plate",
-  "mnemonic": "A man wearing a nametag that says 'John' holding up a massive, oversized white dinner plate, photorealistic, well lit",
+  "mnemonic": "Premium painterly fantasy/game-card illustration. Painterly digital illustration with visible brushwork, soft edges, textured surfaces rather than photorealistic rendering. Expressive forms, strong silhouettes, rich surface detail, cinematic depth, dramatic highlights and shadows, vibrant but controlled color relationships, polished collectible-card-art appearance. No borders.\n\nA surreal and hilarious New Year's celebration in Thailand at midnight.\n\nTHE MAIN CHARACTER IS JAAN — A PLATE THAT IS A GUY.\n\nJaan is literally a living, humanoid dinner plate. His entire body is a large, round, beautiful white ceramic dinner plate, with a face, expressive eyes, arms and legs integrated naturally into the plate. He is unmistakably BOTH a person and a dinner plate at the same time.\n\nHe is NOT a human holding a plate.\nHe is NOT a man carrying a plate.\nHe IS the plate.\n\nGive Jaan a strong, charismatic personality through his expression and body language. He is proudly participating in the New Year's celebration like a normal person, despite being an enormous anthropomorphic dinner plate.\n\nAround Jaan, Thai people are celebrating New Year's Eve: fireworks, festive decorations, midnight celebration, laughter, movement and colorful Thai atmosphere. Jaan should fit naturally into the celebration as though everyone accepts that this bizarre plate-man is there.\n\nThe New Year's setting should subtly evoke the beginning of January and create a natural mental association with the sound \"Jaan.\" Do not rely on a giant written January label.\n\nMake Jaan visually unforgettable: a beautiful ceramic plate surface, distinctive expressive face, human-like arms and legs, confident celebratory pose, absurd but charming character design.\n\nIMPORTANT:\nJAAN = PLATE GUY.\nThe viewer should immediately understand: \"That guy IS a plate.\"\n\nDo NOT show a normal human holding a plate.\nDo NOT show a normal human carrying a plate.\nDo NOT make Jaan merely wear a plate as clothing.\nDo NOT put the name Jaan on him.\nDo NOT use prominent text or labels.\nDo NOT introduce jam, jelly, fruit spread, or jam jars.\n\nGo wonderfully absurd with the character design and New Year's chaos, but keep the central visual joke crystal clear: **JAAN IS A DINNER PLATE THAT IS A GUY.**\n",
   "mnemonic_concept": "A man named John holding a giant dinner plate.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001001.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001001.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001001_slow.mp3"
@@ -27170,11 +27207,15 @@
   "level": "beginner",
   "sound_hook": "toe rye",
   "hook_visual": "asking the price of rye bread shaped like a toe",
-  "mnemonic": "A bakery counter displaying a loaf of dark rye bread baked in the distinct shape of a human toe, a customer pointing at it to ask the price, photorealistic, warm bakery lighting",
+  "mnemonic": "Premium painterly fantasy/game-card illustration, designed as a 1:1 square collectible card.\n\nA spectacular, slightly absurd Thai market scene.\n\nStanding proudly in the center of a busy Thai market is **ONE extraordinarily cool towel**. The towel is upright like a proud celebrity, beautifully draped and flowing, with luxurious fabric, striking patterns, rich texture and an impressive heroic presence. It is clearly a TOWEL, but its ridiculous confidence makes it feel like the star attraction of the market.\n\nA large crowd of curious Thai shoppers surrounds the towel, all looking at it with excitement and obvious curiosity. People are pointing toward the towel, raising their hands, gesturing toward the towel and toward the market seller as though they are all asking the same question:\n\n**HOW MUCH?**\n\nMake the crowd's gestures and expressions unmistakably communicate people asking the price of the towel.\n\nThe towel is the visual focus. It should look desirable, impressive and strangely important, as though everyone in the market desperately wants to know its price.\n\nAuthentic Thai market atmosphere, Thai people, colorful stalls and subtle local details, but keep the composition clean enough that the central visual idea is immediately readable.\n\nThe mnemonic should feel like:\n\n**TOWEL → a crowd asking \"HOW MUCH?\" → เท่าไหร่**\n\nPremium painterly fantasy/game-card illustration, visible brushwork, expressive forms, strong silhouettes, cinematic lighting, rich textured surfaces, vibrant but controlled color relationships, polished collectible-card artwork.\n\nNo written words, captions, speech bubbles, price tags or explanatory labels.\n",
   "mnemonic_concept": "A customer asking the price of a loaf of rye bread shaped like a giant toe.",
   "sentences": [],
-  "lessons": [],
-  "images": [],
+  "lessons": [
+   "TH_L000003"
+  ],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001030.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001030.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001030_slow.mp3"
@@ -27276,10 +27317,10 @@
   "examples": "แม่กำลังทำกับข้าว",
   "example_translation": "Mom is cooking food.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "May",
+  "hook_visual": "a woman named May",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A warm, unmistakably Thai MOTHER lovingly caring for her young child in a cozy Thai home. The mother is the clear visual focus, with a subtle visual cue connecting her to the name MAY: a beautiful spring-like atmosphere with fresh flowers around her, suggesting May without using written words. Make her role as a mother immediately obvious through affectionate interaction with her child. Rich textures, cinematic lighting, vibrant colors, strong silhouettes, polished collectible-card artwork. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A warm Thai mother named May lovingly caring for her child.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -27436,10 +27477,10 @@
   "examples": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
   "example_translation": "Today I bought two apples.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": null,
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "Luke",
+  "hook_visual": "a man named Luke",
+  "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A lovable young Thai CHILD happily playing beside his mother in a Thai home. The boy is clearly the mother's child and the visual focus. Give the child a subtle heroic Luke-like presence without making him famous or adult, creating the sound bridge LUKE while the parent-child relationship provides the meaning. Warm family interaction, authentic Thai details, rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. No captions, speech bubbles, labels, or explanatory text.",
+  "mnemonic_concept": "A little Thai boy named Luke happily playing beside his mother.",
   "sentences": [],
   "lessons": [
    "TH_L000018"
@@ -29237,13 +29278,16 @@
   "level": "beginner",
   "sound_hook": "chin",
   "hook_visual": "a slice of cake resting on a chin",
-  "mnemonic": "A close up portrait of a person balancing a delicious slice of chocolate cake on their prominent chin, funny and photorealistic, warm lighting",
+  "mnemonic": "Premium painterly fantasy/game-card illustration, designed as a 1:1 square collectible card.\n\nA funny, visually absurd close-up portrait of a Thai person with a very prominent chin, balancing ONE delicious, clearly separated piece of chocolate cake directly on their chin.\n\nThe SINGLE PIECE OF CAKE is the visual focus: rich chocolate layers, beautiful frosting, highly appetizing, unmistakably one piece of cake rather than a whole cake. The person's chin is large and clearly visible beneath it, creating an immediately obvious visual connection between CHIN and PIECE.\n\nThe cake is precariously balanced on the chin, making the situation funny and slightly ridiculous. The person looks surprised and carefully holds completely still so the cake does not fall.\n\nStrong central composition, clear silhouette, expressive face, rich textures, cinematic lighting, vibrant colors, polished collectible-card artwork, absurd but instantly understandable.\n\nNo extra cakes, no whole cake, no distracting objects, no explanatory text, no captions, no labels, no watermark.\n\nMnemonic focus: CHIN → one PIECE of cake.\n",
   "mnemonic_concept": "A slice of cake balancing precariously on someone's chin.",
   "sentences": [],
   "lessons": [
+   "TH_L000003",
    "TH_L000018"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001156.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001156.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001156_slow.mp3"
@@ -29949,6 +29993,734 @@
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001195.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001195_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001196",
+  "seq": 1196,
+  "rank": null,
+  "word": "สี่",
+  "romanization": "sìi",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "four",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "see",
+  "hook_visual": "a person pointing and saying “see!”",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A Thai street scene with exactly four people dramatically pointing toward something and shouting with the visual energy of “see!”, with four large clearly countable objects prominently arranged around them. Make the number FOUR the unmistakable visual focus while the pointing and seeing action creates the sound bridge. Natural Thai atmosphere, subtle Thai architecture and clothing, absurd but coherent scale, rich textures. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Four people point at something and shout “see!” while four giant objects make the scene unmistakably four.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001196.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001196_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001197",
+  "seq": 1197,
+  "rank": null,
+  "word": "ห้า",
+  "romanization": "hâa",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "five",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "ha!",
+  "hook_visual": "someone laughing and shouting “ha!”",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai market scene with exactly five people laughing dramatically and throwing their heads back with an obvious “ha!” expression, surrounded by five huge playful objects that are easy to count. Make FIVE the dominant visual idea and the laughter the sound bridge. Natural Thai setting, subtle Thai market details and clothing, absurd scale, rich textures, cinematic light. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Five people are laughing and shouting “ha!” around five enormous funny objects.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001197.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001197_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001198",
+  "seq": 1198,
+  "rank": null,
+  "word": "หก",
+  "romanization": "hòk",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "six",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "hawk",
+  "hook_visual": "a hawk swooping down",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A dramatic Thai countryside scene featuring exactly six enormous hawks swooping through the air while six people below point upward and frantically count them. Make SIX and the hawks the unmistakable visual focus, using the hawk as the strong sound bridge. Natural Thai landscape and subtle local clothing, absurd scale, rich feathers and textures, dynamic cinematic lighting, clean readable composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Six enormous hawks swoop around six people who are desperately trying to count them.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001198.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001198_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001199",
+  "seq": 1199,
+  "rank": null,
+  "word": "แปด",
+  "romanization": "bpàet",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "eight",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "pet",
+  "hook_visual": "a cute pet dog",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A cheerful Thai neighborhood courtyard containing exactly eight adorable pets gathered tightly around one delighted owner. Make the EIGHT pets extremely obvious and easy to count, with the pets themselves dominating the image as the sound bridge for “pet.” Natural Thai residential setting, subtle tropical plants and architecture, varied dogs and cats, absurd but coherent scale, rich painterly textures, vibrant cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Eight cute pets crowd around their owner in an absurdly oversized pet gathering.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001199.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001199_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001200",
+  "seq": 1200,
+  "rank": null,
+  "word": "เก้า",
+  "romanization": "gâo",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "nine",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "cow",
+  "hook_visual": "a large cow",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A Thai farmyard packed with exactly nine enormous cows, clearly separated enough to count, while a farmer stands in the middle desperately counting them. Make the NINE cows the overwhelming visual focus, using the cows as the direct sound bridge for “cow.” Natural Thai countryside atmosphere, tropical vegetation, simple Thai farm structures, absurd scale, rich fur and environmental textures, dramatic cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Nine enormous cows crowd into a Thai farmyard while their owner desperately tries to count them.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001200.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001200_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001201",
+  "seq": 1201,
+  "rank": null,
+  "word": "สิบ",
+  "romanization": "sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "ten",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip",
+  "hook_visual": "someone taking a sip from a cup",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A colorful Thai street gathering with exactly ten people simultaneously taking huge exaggerated sips from ten enormous cups. Make the ten drinkers and their giant sipping action the unmistakable focus, with the act of sipping creating the sound bridge. Natural Thai street atmosphere, subtle Thai clothing and architecture, absurd scale, rich liquid and cup textures, cinematic lighting, clean central composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Ten people simultaneously take enormous sips from ten giant drinks.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001201.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001201_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001202",
+  "seq": 1202,
+  "rank": null,
+  "word": "สิบเอ็ด",
+  "romanization": "sìp-èt",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "eleven",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip it",
+  "hook_visual": "someone offering a drink and saying “sip it”",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai gathering with exactly eleven people enthusiastically handing around eleven enormous drinks, clearly urging one another to take a sip. Make ELEVEN and the obvious drinking action the visual focus, turning “sip it” into the sound bridge. Natural Thai setting with subtle local clothing and architecture, absurd oversized drinks, expressive gestures, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Eleven people urgently tell each other to “sip it” while eleven giant drinks are being passed around.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001202.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001202_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001203",
+  "seq": 1203,
+  "rank": null,
+  "word": "สิบสอง",
+  "romanization": "sìp-sɔ̌ɔng",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "twelve",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip song",
+  "hook_visual": "someone sipping while singing a song",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A joyful Thai outdoor gathering with exactly twelve people simultaneously taking exaggerated sips from twelve giant cups while singing together in a dramatic musical performance. Make TWELVE people and the combined sip-and-song action unmistakable, with sipping creating the sound bridge. Natural Thai festival atmosphere without signs or writing, subtle Thai clothing and scenery, absurd scale, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Twelve people take twelve giant sips while singing one huge song together.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001203.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001203_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001204",
+  "seq": 1204,
+  "rank": null,
+  "word": "สิบสาม",
+  "romanization": "sìp-sǎam",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "thirteen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip Sam",
+  "hook_visual": "a man named Sam taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai street gathering featuring exactly thirteen visually distinct but similar-looking men representing “Sam,” all simultaneously taking exaggerated sips from giant cups. Make THIRTEEN Sams and their sipping action the dominant visual focus, using the character name Sam as the sound bridge. Natural Thai street atmosphere, subtle local clothing and architecture, absurd scale, rich textures, cinematic lighting, clean silhouettes. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Thirteen people named Sam all take a sip together in an absurd crowd of identical Sams.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001204.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001204_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001205",
+  "seq": 1205,
+  "rank": null,
+  "word": "สิบสี่",
+  "romanization": "sìp-sìi",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "fourteen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip, see",
+  "hook_visual": "someone taking a sip and pointing to something",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai market scene with exactly fourteen people, each taking a sip from a drink while dramatically pointing toward the same spectacular sight. Make FOURTEEN people, sipping, and seeing the sight the dominant visual elements, combining “sip” and “see” into one memorable scene. Natural Thai market atmosphere, subtle local clothing and architecture, absurd but coherent scale, rich textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Fourteen people take a sip and point excitedly at what they see.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001205.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001205_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001206",
+  "seq": 1206,
+  "rank": null,
+  "word": "สิบห้า",
+  "romanization": "sìp-hâa",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "fifteen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip, ha!",
+  "hook_visual": "someone taking a sip and laughing",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A hilarious Thai gathering with exactly fifteen people taking exaggerated sips from giant cups and immediately bursting into dramatic laughter. Make FIFTEEN people, drinking, and laughing the unmistakable visual focus, using “sip, ha!” as the sound bridge. Natural Thai setting, subtle local clothing and architecture, absurd scale, rich painterly textures, expressive poses, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Fifteen people take huge sips and burst into laughter with exaggerated “ha!” reactions.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001206.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001206_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001207",
+  "seq": 1207,
+  "rank": null,
+  "word": "สิบหก",
+  "romanization": "sìp-hòk",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "sixteen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip hawk",
+  "hook_visual": "a hawk taking a sip from a cup",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai countryside scene with exactly sixteen enormous hawks swooping down and taking sips from sixteen giant cups arranged below them. Make SIXTEEN hawks and the absurd sipping action the dominant focus, combining hawk and sip into one strong sound bridge. Natural Thai landscape, subtle local details, dramatic wings, oversized cups, rich feathers and textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Sixteen enormous hawks swoop down to take sips from sixteen giant cups.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001207.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001207_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001208",
+  "seq": 1208,
+  "rank": null,
+  "word": "สิบเจ็ด",
+  "romanization": "sìp-jèt",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "seventeen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip jet",
+  "hook_visual": "a jet taking a sip from a giant cup",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai landscape featuring exactly seventeen miniature passenger jets swooping dramatically toward seventeen enormous cups and somehow taking giant sips. Make SEVENTEEN jets and the bizarre sipping action unmistakable, combining “jet” and “sip” as the sound bridge. Natural tropical Thai environment below, absurd scale, dramatic motion, rich painterly textures, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Seventeen tiny jets swoop down and take absurd sips from giant cups.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001208.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001208_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001209",
+  "seq": 1209,
+  "rank": null,
+  "word": "สิบแปด",
+  "romanization": "sìp-bpàet",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "eighteen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip pet",
+  "hook_visual": "someone giving a pet a drink",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A cheerful Thai neighborhood courtyard with exactly eighteen adorable pets drinking from eighteen enormous bowls. Make EIGHTEEN pets and their drinking action the unmistakable visual focus, combining “pet” and “sip” into one memorable sound bridge. Natural Thai residential setting, tropical plants and subtle local architecture, absurd oversized bowls, rich fur and painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Eighteen adorable pets all drink from giant bowls while their owners cheer.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001209.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001209_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001210",
+  "seq": 1210,
+  "rank": null,
+  "word": "สิบเก้า",
+  "romanization": "sìp-gâo",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "nineteen",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sip cow",
+  "hook_visual": "a cow taking a sip from a giant cup",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai farmyard containing exactly nineteen enormous cows lined up and taking exaggerated sips from nineteen giant cups. Make NINETEEN cows and their sipping action the dominant visual focus, combining “cow” and “sip” as the sound bridge. Natural Thai countryside atmosphere, tropical vegetation and simple farm structures, absurd scale, rich fur and environmental textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Nineteen enormous cows line up to take giant sips from a row of huge cups.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001210.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001210_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001211",
+  "seq": 1211,
+  "rank": null,
+  "word": "ยี่สิบ",
+  "romanization": "yîi-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "twenty",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "yea, sip",
+  "hook_visual": "someone agreeing and taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai gathering with exactly twenty people enthusiastically nodding agreement and taking enormous sips from twenty giant cups at the same time. Make TWENTY people and the combined “yea” agreement plus sipping action the unmistakable focus. Natural Thai atmosphere, subtle local clothing and architecture, absurd scale, rich painterly textures, cinematic lighting, clean central composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Twenty people enthusiastically agree “yea” and take twenty enormous sips together.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001211.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001211_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001212",
+  "seq": 1212,
+  "rank": null,
+  "word": "ยี่สิบเอ็ด",
+  "romanization": "yîi-sìp-èt",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "twenty-one",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "yea, sip it",
+  "hook_visual": "someone agreeing and telling another person to sip a drink",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A playful Thai gathering with exactly twenty-one people passing around twenty-one enormous drinks, enthusiastically encouraging each other to drink. Make TWENTY-ONE people and the obvious “sip it” action the dominant visual focus, with enthusiastic agreement creating the “yea” sound bridge. Natural Thai setting, subtle local clothing and architecture, absurd oversized drinks, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Twenty-one people enthusiastically tell one another “yea, sip it!” while passing around twenty-one giant drinks.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001212.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001212_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001213",
+  "seq": 1213,
+  "rank": null,
+  "word": "สามสิบ",
+  "romanization": "sǎam-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "thirty",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "Sam sip",
+  "hook_visual": "Sam taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai outdoor gathering featuring exactly thirty men representing “Sam,” all taking enormous exaggerated sips from giant cups. Make THIRTY Sams and the synchronized sipping action the dominant visual focus, using the character Sam plus sip as the sound bridge. Natural Thai atmosphere, subtle Thai clothing and scenery, absurd scale, rich textures, cinematic lighting, clear silhouettes. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Thirty men named Sam take giant sips together in an absurd crowd.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001213.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001213_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001214",
+  "seq": 1214,
+  "rank": null,
+  "word": "สี่สิบ",
+  "romanization": "sìi-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "forty",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "see sip",
+  "hook_visual": "someone saying “see” while taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A spectacular Thai street scene with exactly forty people taking sips from drinks while all pointing toward one astonishing sight. Make FORTY people and the combined seeing-and-sipping action unmistakable, using “see sip” as the sound bridge. Natural Thai street atmosphere, subtle local clothing and architecture, dramatic spectacle, absurd scale, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Forty people all point at the same spectacle while taking a sip.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001214.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001214_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001215",
+  "seq": 1215,
+  "rank": null,
+  "word": "ห้าสิบ",
+  "romanization": "hâa-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "fifty",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "ha, sip",
+  "hook_visual": "someone laughing and taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A huge joyful Thai gathering with exactly fifty people taking enormous sips from giant cups while laughing dramatically. Make FIFTY people, the sipping action, and the exaggerated “ha!” laughter the dominant visual focus. Natural Thai outdoor setting, subtle local clothing and architecture, absurd scale, rich painterly textures, cinematic lighting, clear silhouettes. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Fifty people laugh loudly and take giant sips together.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001215.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001215_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001216",
+  "seq": 1216,
+  "rank": null,
+  "word": "หกสิบ",
+  "romanization": "hòk-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "sixty",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "hawk sip",
+  "hook_visual": "a hawk taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A spectacular Thai countryside scene filled with exactly sixty enormous hawks swooping down toward giant cups and taking exaggerated sips. Make SIXTY hawks and the sipping action the dominant visual focus, combining hawk and sip into the sound bridge. Natural Thai landscape, tropical vegetation, dramatic wings and feathers, absurd scale, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Sixty enormous hawks swoop down and take giant sips from a vast field of cups.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001216.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001216_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001217",
+  "seq": 1217,
+  "rank": null,
+  "word": "เจ็ดสิบ",
+  "romanization": "jèt-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "seventy",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "jet sip",
+  "hook_visual": "a jet taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai landscape with exactly seventy miniature passenger jets swooping dramatically toward enormous cups and somehow taking giant sips. Make SEVENTY jets and the impossible sipping action the unmistakable focus, combining “jet” and “sip” as the sound bridge. Tropical Thai environment, absurd scale, dramatic motion, rich painterly textures, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Seventy miniature jets swoop together and take giant sips from enormous cups.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001217.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001217_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001218",
+  "seq": 1218,
+  "rank": null,
+  "word": "แปดสิบ",
+  "romanization": "bpàet-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "eighty",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "pet sip",
+  "hook_visual": "a pet taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A spectacular Thai neighborhood courtyard packed with exactly eighty adorable pets drinking from enormous bowls. Make EIGHTY pets the dominant visual focus, with the animals actively sipping as the sound bridge for “pet sip.” Natural Thai residential atmosphere, tropical plants and subtle architecture, varied dogs and cats, absurd scale, rich fur textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Eighty adorable pets crowd together drinking from enormous bowls.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001218.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001218_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001219",
+  "seq": 1219,
+  "rank": null,
+  "word": "เก้าสิบ",
+  "romanization": "gâo-sìp",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "ninety",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "cow sip",
+  "hook_visual": "a cow taking a sip",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai farm landscape containing exactly ninety enormous cows arranged in a vast but readable line, each taking a giant sip from a huge cup. Make NINETY cows and their sipping action the overwhelming visual focus, combining cow and sip as the sound bridge. Natural Thai countryside, tropical vegetation, simple farm structures, absurd scale, rich fur and environmental textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "Ninety enormous cows form a giant line to take sips from ninety huge cups.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001219.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001219_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001220",
+  "seq": 1220,
+  "rank": null,
+  "word": "ร้อย",
+  "romanization": "rɔ́ɔi",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "hundred",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "Roy",
+  "hook_visual": "a man named Roy",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A charismatic man representing Roy stands proudly in the center of a Thai marketplace surrounded by exactly one hundred clearly countable everyday objects arranged in an orderly dramatic display. Make ONE HUNDRED the dominant visual idea while Roy provides the direct sound bridge. The objects should be large enough and separated enough to suggest an enormous count without becoming cluttered. Natural Thai market atmosphere, subtle architecture and clothing, rich textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "A character named Roy stands proudly in the middle of a spectacular scene containing exactly one hundred objects.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001220.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001220_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001221",
+  "seq": 1221,
+  "rank": null,
+  "word": "พัน",
+  "romanization": "phan",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "thousand",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "fan",
+  "hook_visual": "a spinning electric fan",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A gigantic industrial electric fan dominates a Thai workshop, blasting an enormous swirling cloud of countless everyday objects through the air to create an overwhelming sense of THOUSANDS. Make the huge spinning fan the unmistakable visual focus and use it as the direct sound bridge for “fan.” Absurd scale, dramatic wind movement, rich mechanical textures, subtle Thai workshop atmosphere, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "A gigantic electric fan blows thousands of objects through the air in a spectacular whirlwind.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001221.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001221_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001222",
+  "seq": 1222,
+  "rank": null,
+  "word": "หมื่น",
+  "romanization": "mʉ̀ʉn",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "ten thousand",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "mean",
+  "hook_visual": "a very mean-looking person",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A gigantic extremely mean-looking character stands above a vast organized crowd stretching into the distance, creating an overwhelming visual impression of TEN THOUSAND people. Make the mean character the strong sound bridge while the immense crowd communicates the meaning. Keep the crowd visually coherent rather than chaotic, with a natural Thai public-space atmosphere and subtle local details. Epic scale, rich painterly textures, dramatic cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "A gigantic mean-looking character glares over a vast crowd of countless people, making the scene feel like ten thousand.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001222.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001222_slow.mp3"
+  }
+ },
+ {
+  "id": "TH_001223",
+  "seq": 1223,
+  "rank": null,
+  "word": "แสน",
+  "romanization": "sɛ̌ɛn",
+  "ipa": null,
+  "part_of_speech": null,
+  "meanings": "hundred thousand",
+  "emoji": null,
+  "categories": null,
+  "examples": null,
+  "example_translation": null,
+  "level": null,
+  "sound_hook": "sane",
+  "hook_visual": "a completely sane person calmly sitting in a room",
+  "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A completely calm and sane-looking character stands serenely in the foreground while an immense sea of people stretches impossibly far into the distance, communicating ONE HUNDRED THOUSAND. Make the calm sane character the sound bridge for “sane,” while the enormous crowd carries the meaning. Natural Thai landscape and subtle Thai public gathering details, epic scale, atmospheric depth, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
+  "mnemonic_concept": "A perfectly sane character calmly stands beside an immense sea of countless people representing one hundred thousand.",
+  "sentences": [],
+  "lessons": [],
+  "images": [],
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001223.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001223_slow.mp3"
   }
  }
 ]
