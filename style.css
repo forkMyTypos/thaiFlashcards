@@ -256,6 +256,25 @@ body.resizing iframe{pointer-events:none}
 .menu a.item .sub{display:block;font-size:0.6875rem;color:var(--dim)}
 .menu a.item.on .sub{color:var(--accentq)}
 .menu .none{padding:10px 8px;font-size:0.75rem;color:var(--dim)}
+/* A category is a way in, not a lesson: a touch brighter than the rows under
+   it, and marked, so the eye can tell the two lists apart at a glance without
+   a second heading doing the work. */
+.menu a.item.cat{color:var(--text);font-weight:600}
+.menu a.item.cat::before{content:"\203A\00a0";color:var(--accent)}
+.menu a.item.cat .sub{font-weight:400}
+
+/* Every approved sentence, to read down. Wider spacing than the ones on a
+   word card, because here they are the content rather than an illustration
+   of it. */
+.sent-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.sent-list li{padding:14px 16px;border:1px solid var(--edge);border-radius:11px;
+  background:var(--s3);margin-bottom:8px}
+.sent-list .sx{font-size:1.125rem;color:var(--text);line-height:1.5}
+.sent-list .sr{font-size:0.8125rem;color:var(--accent2);margin-top:3px}
+.sent-list .st{font-size:0.875rem;color:var(--muted);margin-top:4px}
+.sent-list .sl{font-size:0.6875rem;color:var(--dim);margin-top:7px}
+.sent-list .sl a{color:var(--dim);text-decoration:none}
+.sent-list .sl a:hover{color:var(--accent)}
 .menu .acts{border-top:1px solid var(--line);padding:10px 10px 4px;
   display:flex;flex-wrap:wrap;gap:6px}
 .menu .acts .btn{padding:6px 10px;font-size:0.75rem;border-radius:7px;
