@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="The five Thai tones: what each one sounds like, the words in this course that differ only by tone, and the rule that tells you a word&#x27;s tone from its spelling."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=84072b11"/>
+<link rel="stylesheet" href="../style.css?v=5b438c05"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -43,12 +43,12 @@
   <div class="find"><input id="find" type="search" placeholder="Search lessons and words" aria-label="Search lessons and words" autocomplete="off"/></div>
   <nav id="nav">
     <div class="grp" data-grp>Categories</div>
-    <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner">Beginner<span class="sub">3 lessons · 76 words</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner">Beginner<span class="sub">4 lessons · 91 words</span></a>
     <a class="item cat" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons">Video lessons<span class="sub">1 lesson · 165 words</span></a>
     <a class="item cat" href="https://thai.inaflash.cards/c-top-words/" data-title="top words">Top Words<span class="sub">1 lesson · 30 words</span></a>
     <a class="item cat on" href="https://thai.inaflash.cards/tones/" data-title="tones">Tones<span class="sub">4 pairs that differ only by tone</span></a>
     <div class="grp" data-grp>Latest lessons</div>
-<a class="item" href="https://thai.inaflash.cards/03-numbers-1-to-1-million/" data-title="numbers 1 to 1 million">Numbers 1 to 1 million<span class="sub">03 · 33 words</span></a><a class="item" href="https://thai.inaflash.cards/04-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" data-title="100 most common thai words in 30 minutes (pronunciation and example sentence)">100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)<span class="sub">04 · 165 words</span></a><a class="item" href="https://thai.inaflash.cards/05-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">05 · 30 words</span></a><a class="item" href="https://thai.inaflash.cards/02-lesson-2-asking-for-things/" data-title="lesson 2 — asking for things">Lesson 2 — Asking for things<span class="sub">02 · 14 words</span></a><a class="item" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">01 · 29 words</span></a><a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">06</span></a><a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">07</span></a>
+<a class="item" href="https://thai.inaflash.cards/04-lesson-3-people-and-family/" data-title="lesson 3 — people and family">Lesson 3 — People and family<span class="sub">04 · 15 words</span></a><a class="item" href="https://thai.inaflash.cards/03-numbers-1-to-1-million/" data-title="numbers 1 to 1 million">Numbers 1 to 1 million<span class="sub">03 · 33 words</span></a><a class="item" href="https://thai.inaflash.cards/05-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" data-title="100 most common thai words in 30 minutes (pronunciation and example sentence)">100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)<span class="sub">05 · 165 words</span></a><a class="item" href="https://thai.inaflash.cards/06-top-30-thai-words/" data-title="top 30 thai words">Top 30 Thai words<span class="sub">06 · 30 words</span></a><a class="item" href="https://thai.inaflash.cards/02-lesson-2-asking-for-things/" data-title="lesson 2 — asking for things">Lesson 2 — Asking for things<span class="sub">02 · 14 words</span></a><a class="item" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" data-title="lesson 1 — i like, i want">Lesson 1 — I like, I want<span class="sub">01 · 29 words</span></a><a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">07</span></a><a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">08</span></a>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
 </aside>
@@ -131,6 +131,76 @@
   else if(PICMODES.indexOf(raw)>=0)picMode=raw;
  }catch(e){}
  var picsOff=false;      // kept for the places that only ask "any picture?"
+ // WHAT A CARD SHOWS, decided once.
+ //
+ // Dan: "quiz/flashcard mode needs to show the users chosen art style. We will
+ // include ascii art also."
+ //
+ // It did not, and the reason it did not is that there were two answers to the
+ // same question. The reading pane worked through artwork, then the drawn
+ // recipe, then the ASCII art, then the bare letter, honouring the reader's
+ // Pictures setting at every step; a flashcard face asked only `data-img` and
+ // showed nothing at all when there was no photograph — which on this course
+ // is most words. One function now, used by both, so "the picture" means the
+ // same thing in all three modes and a fourth stand-in only has to be added
+ // once.
+ //
+ // `big` is the reading pane, which gets the figure and the lazy <img>
+ // fallback; a card face gets the same contents without them.
+ function pictureFor(me,big){
+  var box=document.createElement(big?'figure':'div');
+  if(!big)box.className='f-img';
+  var ch=me.dataset.ch||'',alt=me.dataset.alt||'',
+      src=(picMode==='art')?(me.dataset.img||''):'';
+
+  function blank(){
+   var v=me.querySelector('.vis'),d;
+   if(picMode==='off'){
+    var t=document.createElement('div');t.className='nopic';
+    t.textContent=ch;return t;}
+   // Three stand-ins, in the order of how much they say. A recipe is a
+   // deliberate picture of the meaning; ASCII art is a deliberate picture
+   // drawn a different way; and the `.vis` of a word with neither is only the
+   // emoji or the first letter in a frame, so the art beats it. Both ship
+   // inside the card already, so this moves markup rather than fetching.
+   if(!me.dataset.vis&&me.dataset.asc){
+    var a=me.querySelector('.asc');
+    if(a){
+     d=document.createElement('div');d.className='nopic ascii';
+     // A box, then the <pre> inside it. The box is the card-shaped frame;
+     // the <pre> is the drawing, sized off the box's own width so it fills
+     // the frame whatever the column is doing.
+     var bx=document.createElement('div');bx.className='asciibox';
+     var pr=document.createElement('pre'),txt=a.textContent||'';
+     pr.textContent=txt;
+     // How wide and how tall the drawing is, handed to the stylesheet so it
+     // can size the type to fill the frame. CSS cannot measure text; without
+     // these two numbers the only option is a fixed size, which is a speck
+     // for a six-column drawing and an overflow for a forty-column one.
+     var ls=txt.split('\n'),wide=0,li;
+     for(li=0;li<ls.length;li++)if(ls[li].length>wide)wide=ls[li].length;
+     bx.style.setProperty('--cols',Math.max(1,wide));
+     bx.style.setProperty('--rows',Math.max(1,ls.length));
+     bx.appendChild(pr);d.appendChild(bx);return d;}
+   }
+   if(v&&v.firstChild){
+    d=document.createElement('div');d.className='nopic drawn';
+    d.innerHTML=v.innerHTML;return d;}
+   var t2=document.createElement('div');t2.className='nopic';
+   t2.textContent=ch;return t2;
+  }
+
+  if(src){
+   var im=new Image();im.alt=alt;im.loading=big?'eager':'lazy';
+   // a picture that will not load leaves the alt text sitting in the middle
+   // of an empty column, which reads as a broken page rather than as a word
+   // without a picture yet
+   im.onerror=function(){box.innerHTML='';box.appendChild(blank());};
+   im.src=src;box.appendChild(im);
+  }else{box.appendChild(blank());}
+  return box;
+ }
+
  // `byUser` marks a move somebody made themselves — a button, a key, the
  // scrubber. It matters only while the video is the one leading: without it,
  // pressing → moved the card and the next tick of the video moved it straight
@@ -149,82 +219,8 @@
   if(next)next.disabled=at===cards.length-1;
   if(scrub)scrub.value=at+1;
   if(pic){
-   // `picsOff` is the reader's choice, not the course's: one of them
-   // said the drawn pictures were too much and he would rather have
-   // the emoji. Both are already on the card, so this swaps which of
-   // the two is shown rather than fetching anything different.
-   var c=cards[meIdx],src=(picMode==='art')?(c.dataset.img||''):'',
-       alt=c.dataset.alt||'',ch=c.dataset.ch||'';
    pic.innerHTML='';
-   var f=document.createElement('figure');
-   // Behind the photograph there is a drawn card, and behind that a bare
-   // character. The drawn one ships inside the card as a hidden <div>, so
-   // this clones it rather than fetching anything — a word with no artwork
-   // still gets a picture, and every word gets its tone contour.
-   function blank(){
-    var me=cards[meIdx],v=me.querySelector('.vis'),d;
-    if(picMode==='off'){
-     var t=document.createElement('div');t.className='nopic';
-     t.textContent=ch;return t;}
-    // Three stand-ins, in the order of how much they say. A recipe is a
-    // deliberate picture of the meaning; ASCII art is a deliberate picture
-    // drawn a different way; and the `.vis` of a word with neither is only
-    // the emoji or the first letter in a frame, so the art beats it. The art
-    // is already in the page as a hidden <pre>, so this moves markup rather
-    // than fetching anything.
-    if(!me.dataset.vis&&me.dataset.asc){
-     var a=me.querySelector('.asc');
-     if(a){d=document.createElement('div');
-           d.className='nopic ascii';
-           // A box, then the <pre> inside it. The box is the card-shaped
-           // frame; the <pre> is the drawing, sized off the box's own width
-           // so it fills the frame whatever the column is doing.
-           var bx=document.createElement('div');bx.className='asciibox';
-           var pr=document.createElement('pre');
-           var txt=a.textContent||'';
-           pr.textContent=txt;
-           // How wide and how tall the drawing is, handed to the stylesheet
-           // so it can size the type to fill the frame. CSS cannot measure
-           // text; without these two numbers the only option is a fixed size,
-           // which is a speck for a six-column drawing and an overflow for a
-           // forty-column one.
-           var ls=txt.split('\n'),wide=0,li;
-           for(li=0;li<ls.length;li++)if(ls[li].length>wide)wide=ls[li].length;
-           bx.style.setProperty('--cols',Math.max(1,wide));
-           bx.style.setProperty('--rows',Math.max(1,ls.length));
-           bx.appendChild(pr);d.appendChild(bx);
-           // And the tone, which a drawn card gets for free and this one
-           // nearly lost. The band is inside the recipe card's SVG, so taking
-           // the ASCII branch early meant a word filled in from the ASCII
-           // screen published with no contour at all — the one thing every
-           // card can have, missing on exactly the cards nobody would think
-           // to check. Lifted out of that SVG as a strip of its own.
-           var band=v&&v.querySelector('.tband');
-           if(band){
-            var sv=document.createElementNS('http://www.w3.org/2000/svg','svg');
-            // the band occupies the bottom 150 of the card's 1000-unit box
-            sv.setAttribute('viewBox','0 850 1000 150');
-            sv.setAttribute('class','tstrip');
-            sv.appendChild(band.cloneNode(true));
-            d.appendChild(sv);
-           }
-           return d;}
-    }
-    if(v&&v.firstChild){
-     d=document.createElement('div');
-     d.className='nopic drawn';
-     d.innerHTML=v.innerHTML;return d;}
-    var t2=document.createElement('div');t2.className='nopic';
-    t2.textContent=ch;return t2;}
-   if(src){
-    var im=new Image();im.alt=alt;im.loading='eager';
-    // a picture that will not load leaves the alt text sitting in the middle
-    // of an empty column, which reads as a broken page rather than a word
-    // without a picture yet
-    im.onerror=function(){f.innerHTML='';f.appendChild(blank());};
-    im.src=src;f.appendChild(im);
-   }else{f.appendChild(blank());}
-   pic.appendChild(f);
+   pic.appendChild(pictureFor(cards[meIdx],true));
   }
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
   cue(byUser);
@@ -670,22 +666,31 @@
  var FIELDS=[
   {k:'word',  label:'The word',       sel:'.th',  cls:'f-word'},
   {k:'rom',   label:'Romanization',   sel:'.rom', cls:'f-rom'},
+  // Dan: "Tone needs to be a separate thing, it will be part of the show
+  // menu", and then: "We need tone in flashcard/quiz mode, wherever there is
+  // Thai." It is its own element on the card now rather than a band drawn
+  // inside the picture, so it is a field like any other: it can be hidden,
+  // and it can be put on either side of a flashcard. `node:true` says it is
+  // copied as markup — it is a drawing, and `textContent` on an <svg> is the
+  // empty string.
+  //
+  // Listed here, next to the romanization, because this order is the order a
+  // face is built in: at the end of the list the contour came out below the
+  // play buttons, a long way from the word it describes.
+  {k:'tone',  label:'Tone contour',   sel:'.tone', cls:'f-tone', node:true},
   {k:'pos',   label:'Part of speech', sel:'.pos', cls:'f-pos'},
   {k:'mean',  label:'English meaning',sel:'.en',  cls:'f-mean'},
   {k:'image', label:'Picture',        img:true},
   {k:'sound', label:'Sound',          snd:true},
   {k:'hook',  label:'Memory hook',    sel:'.aid', cls:'f-hook'},
-  {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'},
-  // Dan: "Tone needs to be a separate thing, it will be part of the show
-  // menu." It is drawn into the picture's own SVG rather than written on the
-  // page, so it cannot be moved to a side of a flashcard the way a line of
-  // text can — `only:'show'` says so, and keeps it out of the front/back
-  // chooser where it would be a checkbox that does nothing.
-  {k:'tone',  label:'Tone contour',   only:'show'}
+  {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'}
  ];
  // Thai one side, English and the picture the other. What a vocabulary card
  // is for, and what the quiz then asks in that direction by default.
- var SIDES_DEFAULT={front:['word','rom','sound'],back:['mean','image']};
+ // Thai one side, English and the picture the other — and the tone goes with
+// the Thai, because หมา and ม้า are different words and a card that asks you
+// to read one without it is asking the wrong question.
+var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
 
  // Info mode shows the whole card, so its chooser is a single list of what
  // is visible rather than a front and a back. It was the one mode without the
@@ -794,11 +799,12 @@
    var f=FIELDS[i];
    if(want.indexOf(f.k)<0)continue;
    if(f.img){
-    var src=card.dataset.img||'';
-    if(!src)continue;
-    var im=new Image();im.alt=card.dataset.alt||'';im.loading='eager';
-    im.onerror=function(){this.remove();};
-    im.src=src;host.appendChild(im);n++;continue;
+    // The reader's chosen art style, the same resolution the reading pane
+    // uses — artwork, then the drawn recipe, then the ASCII drawing, then the
+    // letter. It used to ask for `data-img` and give up, so on a course where
+    // most words have no photograph yet the picture side of a flashcard was
+    // simply blank.
+    host.appendChild(pictureFor(card,false));n++;continue;
    }
    if(f.snd){
     // The play buttons themselves, copied over. They carry the clip's URL on
@@ -812,6 +818,18 @@
    }
    var el=card.querySelector(f.sel);
    if(!el)continue;
+   if(f.node){
+    // A drawing, not a line of text: copied as markup, because
+    // `textContent` on an <svg> is the empty string and the field would
+    // silently never appear.
+    var g=el.cloneNode(true);
+    // ADDED to the original class, not instead of it. Replacing it dropped
+    // `.tone`, so every rule that sizes the contour stopped matching and the
+    // mark rendered at whatever width its box happened to be — a tone
+    // contour the height of the question it belonged to.
+    g.className=el.className+' '+f.cls;
+    host.appendChild(g);n++;continue;
+   }
    var txt=(el.textContent||'').trim();
    if(!txt)continue;
    var d=document.createElement('div');
@@ -906,7 +924,6 @@
   var rows='';
   for(var i=0;i<FIELDS.length;i++){
    var f=FIELDS[i];
-   if(f.only==='show')continue;   // not something a side can carry
    rows+='<tr><td>'+f.label+'</td>'
     +'<td class="c"><input type="checkbox" data-side="front" data-k="'+f.k+'"'
     +(sides.front.indexOf(f.k)>=0?' checked':'')+'/></td>'
