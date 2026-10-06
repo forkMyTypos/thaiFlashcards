@@ -322,6 +322,16 @@ body.no-lessons .menu{display:none}
 .left .nopic{width:min(360px,100%);aspect-ratio:4/3;border-radius:12px;
   border:1px dashed var(--edge);background:var(--s2);display:flex;align-items:center;
   justify-content:center;color:var(--faint);font-size:4rem}
+/* A drawn card is a picture, not a placeholder: square, no dashed "nothing
+   here yet" border, and it fills its box. The colour tokens let the card take
+   the site's palette in both themes without the renderer knowing anything
+   about either. */
+.left .nopic.drawn{aspect-ratio:1/1;border:1px solid var(--edge);padding:0;
+  background:transparent;overflow:hidden;
+  --vis-bg:var(--s2);--vis-ink:var(--accent,#2f6f8f);--vis-soft:var(--s1);
+  --vis-accent:#d2691e;--vis-tone:#3f9156;--vis-toneband:var(--s1);
+  --vis-rule:var(--edge)}
+.left .nopic.drawn svg{display:block;width:100%;height:100%}
 .left figcaption{font-size:0.6875rem;color:var(--faint);text-align:center}
 
 /* the word */
@@ -780,3 +790,97 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
   body:not(.no-lessons) .scrim{display:block}
   body:not(.no-lessons){overflow:hidden}
 }
+
+/* Where the work went, inside My progress. A learner asks "am I done with
+   Lesson 2?", and a list of four hundred words sorted by how often they were
+   missed cannot answer it. */
+.plesson{margin:14px 0 4px}
+.plesson .ph{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-bottom:8px}
+.pl{display:grid;grid-template-columns:1fr 110px auto;gap:12px;
+  align-items:center;padding:8px 10px;border-radius:8px;text-decoration:none;
+  color:var(--text2)}
+.pl:hover{background:var(--s3);color:var(--bright)}
+.pln{font-size:0.8125rem;text-transform:capitalize;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.plb{height:6px;border-radius:3px;background:var(--s2);overflow:hidden}
+.plb i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+.plc{font-size:0.75rem;color:var(--dim);font-variant-numeric:tabular-nums}
+
+/* What info mode shows. The chooser writes these on <body>; the rules live
+   here so turning a field off costs one class rather than a walk of the DOM
+   on every card change. */
+body.hide-word  .info .th   { display: none }
+body.hide-rom   .info .rom  { display: none }
+body.hide-pos   .info .pos  { display: none }
+body.hide-mean  .info .en   { display: none }
+body.hide-hook  .info .aid  { display: none }
+body.hide-ex    .info .ex   { display: none }
+body.hide-sound .info .plays{ display: none }
+body.hide-image .left figure{ display: none }
+/* the cog sits with the modes but is only about this one */
+.mdcog { font-size: 0.95em }
+body:not(.mode-info) .mdcog { display: none }
+
+/* ------------------------------------------------------------------ tones */
+/* The five shapes. A contour IS the sound, so it is drawn rather than named —
+   the caption is there to learn the name by, not to read the shape from. */
+.tshapes { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0 22px }
+.tshape { margin: 0; flex: 1 1 130px; background: var(--s2);
+  border: 1px solid var(--edge); border-radius: 12px; padding: 12px 10px 8px;
+  color: var(--accent, #6fd08c) }
+.tshape svg { display: block; width: 100%; height: auto }
+.tshape figcaption { text-align: center; margin-top: 6px; font-size: .8125rem;
+  color: var(--faint); text-transform: capitalize }
+/* Minimal pairs. The whole argument for the page: a tone on its own is a fact,
+   a tone against the word it would otherwise be is the distinction. */
+.tpairs { list-style: none; margin: 10px 0 24px; padding: 0;
+  display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)) }
+.tpair { display: flex; gap: 10px; background: var(--s2);
+  border: 1px solid var(--edge); border-radius: 12px; padding: 11px }
+.tw { flex: 1; min-width: 0 }
+.tw .play { margin-bottom: 5px }
+.tw-x { font-size: 1.35rem; line-height: 1.2; color: var(--bright) }
+.tw-r { font-size: .8125rem; color: var(--accent, #6fd08c) }
+.tw-t { display: flex; gap: 3px; margin: 4px 0 2px; color: var(--accent, #6fd08c) }
+.tmini { width: 30px; height: 18px }
+.tw-m { font-size: .75rem; color: var(--faint); line-height: 1.35 }
+/* The rule, generated from the function that actually computes it. */
+.trule { overflow-x: auto; margin: 10px 0 14px }
+.trule table { border-collapse: collapse; font-size: .8125rem; min-width: 520px }
+.trule th, .trule td { border: 1px solid var(--edge); padding: 7px 10px;
+  text-align: center; white-space: nowrap }
+.trule th { color: var(--faint); font-weight: 600 }
+.trule th.cls { text-align: left; color: var(--bright); text-transform: capitalize }
+
+/* ------------------------------------------------- the reader's own copy */
+/* A field the reader has changed. Marked, quietly, so they can tell their
+   own words from the course's — without it an edit is indistinguishable from
+   a fact, which is how somebody ends up trusting a typo of their own. */
+.info .mine { border-left: 2px solid var(--accent, #6fd08c); padding-left: 8px }
+/* Editing is off by default, so nothing here applies until it is asked for. */
+body.editing .info .th, body.editing .info .rom, body.editing .info .pos,
+body.editing .info .en, body.editing .info .aid, body.editing .info .ex,
+body.editing .info .mynote {
+  cursor: text; border-radius: 6px;
+  outline: 1px dashed color-mix(in srgb, var(--edge) 70%, transparent);
+  outline-offset: 3px;
+}
+body.editing .info .th:hover, body.editing .info .rom:hover,
+body.editing .info .pos:hover, body.editing .info .en:hover,
+body.editing .info .aid:hover, body.editing .info .ex:hover,
+body.editing .info .mynote:hover { outline-color: var(--accent, #6fd08c) }
+.edin { width: 100%; font: inherit; color: inherit; background: var(--s1);
+  border: 1px solid var(--accent, #6fd08c); border-radius: 6px;
+  padding: 4px 7px; resize: vertical }
+.mynote { margin-top: 12px; padding: 9px 11px; background: var(--s2);
+  border: 1px solid var(--edge); border-left: 2px solid var(--accent, #6fd08c);
+  border-radius: 8px; font-size: .875rem; white-space: pre-wrap }
+.mynote.empty::before { content: "Add a note…"; color: var(--faint) }
+body:not(.editing) .mynote.empty { display: none }
+#edtoast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+  background: var(--s1); color: var(--bright); border: 1px solid var(--edge);
+  border-radius: 10px; padding: 9px 15px; font-size: .8125rem; z-index: 60;
+  opacity: 0; pointer-events: none; transition: opacity .2s }
+#edtoast.on { opacity: 1 }
+.myedits td .dim { color: var(--faint); font-size: .75rem }
