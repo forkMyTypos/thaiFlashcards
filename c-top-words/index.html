@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="1 Thai lesson, 30 words in all."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=b03cfc71"/>
+<link rel="stylesheet" href="../style.css?v=84072b11"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -28,6 +28,7 @@
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
       <button class="mm" id="mm-pics" aria-pressed="true"><span class="i">&#127748;</span><span class="t">Pictures on</span></button>
+      <button class="mm" id="mm-show"><span class="i">&#9881;</span><span class="t">What to show</span></button>
       <button class="mm" id="mm-edit" aria-pressed="false"><span class="i">&#9998;</span><span class="t">Edit this course</span></button>
       <button class="mm" id="mm-myedits"><span class="i">&#9112;</span><span class="t">My changes</span></button>
       <div class="mm-row" id="mm-text"><span class="i">A</span><span class="t">Text size</span><span class="fsc"><button type="button" data-fs="-1" aria-label="Smaller text">&#8722;</button><span class="fsnow">100%</span><button type="button" data-fs="1" aria-label="Bigger text">+</button></span></div>
@@ -152,13 +153,60 @@
    // this clones it rather than fetching anything — a word with no artwork
    // still gets a picture, and every word gets its tone contour.
    function blank(){
-    var v=cards[meIdx].querySelector('.vis');
-    if(picMode!=='off'&&v&&v.firstChild){
-     var d=document.createElement('div');
+    var me=cards[meIdx],v=me.querySelector('.vis'),d;
+    if(picMode==='off'){
+     var t=document.createElement('div');t.className='nopic';
+     t.textContent=ch;return t;}
+    // Three stand-ins, in the order of how much they say. A recipe is a
+    // deliberate picture of the meaning; ASCII art is a deliberate picture
+    // drawn a different way; and the `.vis` of a word with neither is only
+    // the emoji or the first letter in a frame, so the art beats it. The art
+    // is already in the page as a hidden <pre>, so this moves markup rather
+    // than fetching anything.
+    if(!me.dataset.vis&&me.dataset.asc){
+     var a=me.querySelector('.asc');
+     if(a){d=document.createElement('div');
+           d.className='nopic ascii';
+           // A box, then the <pre> inside it. The box is the card-shaped
+           // frame; the <pre> is the drawing, sized off the box's own width
+           // so it fills the frame whatever the column is doing.
+           var bx=document.createElement('div');bx.className='asciibox';
+           var pr=document.createElement('pre');
+           var txt=a.textContent||'';
+           pr.textContent=txt;
+           // How wide and how tall the drawing is, handed to the stylesheet
+           // so it can size the type to fill the frame. CSS cannot measure
+           // text; without these two numbers the only option is a fixed size,
+           // which is a speck for a six-column drawing and an overflow for a
+           // forty-column one.
+           var ls=txt.split('\n'),wide=0,li;
+           for(li=0;li<ls.length;li++)if(ls[li].length>wide)wide=ls[li].length;
+           bx.style.setProperty('--cols',Math.max(1,wide));
+           bx.style.setProperty('--rows',Math.max(1,ls.length));
+           bx.appendChild(pr);d.appendChild(bx);
+           // And the tone, which a drawn card gets for free and this one
+           // nearly lost. The band is inside the recipe card's SVG, so taking
+           // the ASCII branch early meant a word filled in from the ASCII
+           // screen published with no contour at all — the one thing every
+           // card can have, missing on exactly the cards nobody would think
+           // to check. Lifted out of that SVG as a strip of its own.
+           var band=v&&v.querySelector('.tband');
+           if(band){
+            var sv=document.createElementNS('http://www.w3.org/2000/svg','svg');
+            // the band occupies the bottom 150 of the card's 1000-unit box
+            sv.setAttribute('viewBox','0 850 1000 150');
+            sv.setAttribute('class','tstrip');
+            sv.appendChild(band.cloneNode(true));
+            d.appendChild(sv);
+           }
+           return d;}
+    }
+    if(v&&v.firstChild){
+     d=document.createElement('div');
      d.className='nopic drawn';
      d.innerHTML=v.innerHTML;return d;}
-    var t=document.createElement('div');t.className='nopic';
-    t.textContent=ch;return t;}
+    var t2=document.createElement('div');t2.className='nopic';
+    t2.textContent=ch;return t2;}
    if(src){
     var im=new Image();im.alt=alt;im.loading='eager';
     // a picture that will not load leaves the alt text sitting in the middle
@@ -618,7 +666,13 @@
   {k:'image', label:'Picture',        img:true},
   {k:'sound', label:'Sound',          snd:true},
   {k:'hook',  label:'Memory hook',    sel:'.aid', cls:'f-hook'},
-  {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'}
+  {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'},
+  // Dan: "Tone needs to be a separate thing, it will be part of the show
+  // menu." It is drawn into the picture's own SVG rather than written on the
+  // page, so it cannot be moved to a side of a flashcard the way a line of
+  // text can — `only:'show'` says so, and keeps it out of the front/back
+  // chooser where it would be a checkbox that does nothing.
+  {k:'tone',  label:'Tone contour',   only:'show'}
  ];
  // Thai one side, English and the picture the other. What a vocabulary card
  // is for, and what the quiz then asks in that direction by default.
@@ -629,15 +683,45 @@
  // control at all: card and quiz both have ⚙ Show and info had nothing, so
  // the one mode you spend most of your time in was the one you could not
  // quieten down.
+ //
+ // It then had the control and Dan still reported it missing, twice, which was
+ // fair: a gear in a four-button toolbar is not where anybody looks for a
+ // setting on this page, because every other setting is in the ☰ menu. So the
+ // same panel opens from "What to show" there as well — see mm-show below.
  var infoShow=null;
+ // What was saved, PLUS anything that did not exist when it was saved.
+ //
+ // The stored value is an allow-list, so a field added to the card after a
+ // reader last touched this panel is a field they never said yes to — and it
+ // arrives switched off, invisibly, on every card. Tone was the first one to
+ // hit that: the control was added because the tone band needed a switch, and
+ // the switch would have started in the off position for everybody who had
+ // ever opened the panel. `known` records which fields the reader was actually
+ // offered, so a new one is new rather than refused.
  function loadInfo(){
-  try{var raw=localStorage.getItem('wb.info');
-      if(raw){var got=JSON.parse(raw);if(got&&got.length!==undefined)return got;}}
-  catch(e){}
-  return FIELDS.map(function(f){return f.k;});      // everything, to start
+  var all=FIELDS.map(function(f){return f.k;}),i;
+  try{
+   var raw=localStorage.getItem('wb.info');
+   if(raw){
+    var got=JSON.parse(raw);
+    // the original shape: a bare array, from before `known` was recorded
+    var show=got&&got.length!==undefined?got:(got&&got.show)||null;
+    if(show){
+     var known=(got&&got.known&&got.known.length!==undefined)?got.known:show;
+     for(i=0;i<all.length;i++)
+      if(known.indexOf(all[i])<0&&show.indexOf(all[i])<0)show.push(all[i]);
+     return show;
+    }
+   }
+  }catch(e){}
+  return all;                                       // everything, to start
  }
- function saveInfo(){try{localStorage.setItem('wb.info',JSON.stringify(infoShow));}
-                     catch(e){}}
+ function saveInfo(){
+  try{localStorage.setItem('wb.info',JSON.stringify({
+   show:infoShow,
+   known:FIELDS.map(function(f){return f.k;})}));}
+  catch(e){}
+ }
  function applyInfo(){
   for(var i=0;i<FIELDS.length;i++){
    var k=FIELDS[i].k;
@@ -813,6 +897,7 @@
   var rows='';
   for(var i=0;i<FIELDS.length;i++){
    var f=FIELDS[i];
+   if(f.only==='show')continue;   // not something a side can carry
    rows+='<tr><td>'+f.label+'</td>'
     +'<td class="c"><input type="checkbox" data-side="front" data-k="'+f.k+'"'
     +(sides.front.indexOf(f.k)>=0?' checked':'')+'/></td>'
@@ -1417,6 +1502,19 @@
   picsOff=(picMode==='off');
   paintPics();
  }
+
+ // --- what to show, from the menu rather than from the gear
+ //
+ // The same two panels the toolbar opens, chosen by the mode you are in,
+ // because "what to show" means a different list in each: in read mode it is
+ // which fields are visible, and in flashcards it is which side each one is
+ // on. Opening the wrong one of those is worse than not having the button.
+ var showBtn=document.getElementById('mm-show');
+ if(showBtn)showBtn.addEventListener('click',function(){
+  mmOpen(false);
+  if(typeof mode!=='undefined'&&(mode==='card'||mode==='quiz'))sidesPanel();
+  else infoPanel();
+ });
 
  // --- the lessons panel
  function setLessons(on){
