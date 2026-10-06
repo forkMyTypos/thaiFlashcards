@@ -178,23 +178,6 @@ body.yt-on .page{grid-template-columns:[rail] var(--rail) [menu] var(--menu)
 .right{grid-row:3;grid-column:txt;min-width:0;min-height:0;overflow-y:auto;
   padding:26px 28px 34px;border-left:1px solid var(--line)}
 
-/* The courses, across the top. Its own row, which is `auto` — so on a site
-   with no courses to show the row collapses to nothing and the page is
-   exactly what it was. */
-.coursebar{grid-row:2;grid-column:3/-1;display:flex;gap:6px;flex-wrap:wrap;
-  align-items:center;padding:7px 16px;background:var(--s0);
-  border-bottom:1px solid var(--line);overflow-x:auto;
-  scrollbar-width:none}
-.coursebar::-webkit-scrollbar{display:none}
-.coursebar .cs{display:inline-flex;gap:6px;align-items:center;
-  padding:3px 11px;border-radius:20px;border:1px solid var(--edge);
-  color:var(--muted);text-decoration:none;font-size:0.7812rem;white-space:nowrap}
-.coursebar .cs:hover{border-color:var(--accent);color:var(--accent3)}
-.coursebar .cs.on{border-color:var(--accent);background:var(--accentbg);color:var(--accent3);
-  font-weight:600}
-.coursebar .cs .n{font-family:monospace;font-size:0.6875rem;color:var(--faint)}
-.coursebar .cs.on .n{color:var(--accentq)}
-
 /* the grips. A hidden panel must leave the grid entirely, or its empty cell
    still takes a column's worth of room. */
 .yt[hidden],.grip[hidden]{display:none}
@@ -768,9 +751,6 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
   .page,body.yt-on .page{grid-template-columns:1fr;
     grid-template-rows:var(--bar) auto auto auto auto;height:auto;
     min-height:100vh;align-content:start}
-  /* One line that scrolls sideways, not four lines of chips: wrapped, five
-     courses took 180px off the top of the screen with the least of it. */
-  .coursebar{grid-column:1;grid-row:2;padding:7px 14px;flex-wrap:nowrap}
   .slider{grid-column:1;grid-row:1;position:sticky;top:0;z-index:12}
   .slider .scrub{display:none}
   .grip{display:none}
@@ -821,6 +801,61 @@ body.hide-image .left figure{ display: none }
 /* the cog sits with the modes but is only about this one */
 .mdcog { font-size: 0.95em }
 body:not(.mode-info) .mdcog { display: none }
+/* Tone is its own item in that list, and the band is drawn inside the
+   picture's SVG — so one class here turns it off on every card at once, with
+   nothing re-rendered and no second copy of the picture shipped. The strip it
+   occupied stays as background rather than the scene growing into it, because
+   the scene's geometry is fixed at build time. */
+body.hide-tone .tband { display: none }
+
+/* ASCII art: the third stand-in, and the only one where the characters ARE
+   the picture. Monospace and pre-wrap are load-bearing — the author lined the
+   columns up by counting characters, and a proportional font throws that
+   away. It is sized off the container rather than in points so a long line
+   shrinks to fit instead of overflowing the column. */
+/* An explicit width, where the drawn card gets away with a percentage. The
+   <figure> around it shrink-wraps its contents, so a box whose only width is
+   `100%` and whose only content is also `100%` resolves to two pixels — which
+   is exactly what it did. The SVG card escapes that because it carries an
+   intrinsic size in its viewBox; characters in a <pre> carry none. */
+.left .nopic.ascii { width: 360px; max-width: 100%; aspect-ratio: 1/1;
+  border: 1px solid var(--edge); background: var(--s2); overflow: hidden;
+  padding: 0 }
+/* The drawing itself. Monospace and `pre` are load-bearing — the author lined
+   the columns up by counting characters, and a proportional font or a
+   collapsed run of spaces throws that away.
+   The size comes from the element's own width (`cqw`) rather than from the
+   viewport, because this box is a column of the page and not a share of the
+   screen: sized in vw it was a postage stamp beside the lesson panel and
+   overflowed once the panel was closed. `ch` units do the arithmetic the
+   author did — 40 columns is 40 characters wide whatever the font — so the
+   widest drawing we accept fits exactly, and a narrower one is simply
+   smaller rather than stretched. */
+/* Sized to FILL the box, from the drawing's own dimensions. The page sets
+   --cols and --rows on the box; the two terms below are "as big as the width
+   allows" and "as big as the height allows", and the smaller wins. 0.6em is
+   the advance width of a monospaced glyph, which is the one constant that
+   makes this arithmetic possible at all. Without it the choice is a fixed
+   font size — tiny for a six-column drawing, overflowing for a forty-column
+   one — because CSS cannot see how wide the art is. */
+.left .nopic.ascii { flex-direction: column }
+/* The tone band, lifted out of the recipe card's SVG so an ASCII card has one
+   too — see `blank()` in shell.js for why it nearly did not. Its own strip
+   under the drawing, in the proportion it has on a drawn card: 150 of that
+   card's 1000 units. The colour tokens are the ones the drawn card sets, so
+   the two bands match in both themes. */
+.tstrip { display: block; width: 100%; height: 15%; flex: none;
+  --vis-tone: #3f9156; --vis-toneband: var(--s1); --vis-rule: var(--edge) }
+.asciibox { container-type: size; width: 100%; flex: 1; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  --cols: 20; --rows: 10 }
+.asciibox pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+  "Liberation Mono", monospace;
+  white-space: pre; line-height: 1.12; letter-spacing: 0; margin: 0;
+  text-align: left; color: var(--text2);
+  font-size: min(calc(92cqw / (var(--cols) * 0.6)),
+                 calc(88cqh / (var(--rows) * 1.12))) }
+.card .asc { display: none }
 
 /* ------------------------------------------------------------------ tones */
 /* The five shapes. A contour IS the sound, so it is drawn rather than named —
