@@ -309,12 +309,17 @@ body.no-lessons .menu{display:none}
    here yet" border, and it fills its box. The colour tokens let the card take
    the site's palette in both themes without the renderer knowing anything
    about either. */
-.left .nopic.drawn{aspect-ratio:1/1;border:1px solid var(--edge);padding:0;
+/* The palette a drawn card takes. On `.nopic.drawn` itself and not on
+   `.left .nopic.drawn`, because the same card is now shown on a flashcard
+   face and in a quiz option — and scoped to the column it used to live in it
+   left those two rendering the SVG's own light defaults, which on this theme
+   is a white tile. */
+.nopic.drawn{aspect-ratio:1/1;border:1px solid var(--edge);padding:0;
   background:transparent;overflow:hidden;
   --vis-bg:var(--s2);--vis-ink:var(--accent,#2f6f8f);--vis-soft:var(--s1);
   --vis-accent:#d2691e;--vis-tone:#3f9156;--vis-toneband:var(--s1);
   --vis-rule:var(--edge)}
-.left .nopic.drawn svg{display:block;width:100%;height:100%}
+.nopic.drawn svg{display:block;width:100%;height:100%}
 .left figcaption{font-size:0.6875rem;color:var(--faint);text-align:center}
 
 /* the word */
@@ -544,6 +549,19 @@ body.mode-card .info .cta,body.mode-quiz .info .cta{display:none}
    200px, so making the card bigger makes the picture bigger. */
 .fface img{flex:1 1 auto;min-height:60px;width:100%;max-height:100%;
   object-fit:contain;border-radius:8px}
+/* The picture box on a face, whichever of the four stand-ins ends up in it.
+   Before this a face asked only for a photograph and showed nothing when
+   there was none, which on this course is most words. */
+.f-img{flex:1 1 auto;min-height:60px;width:100%;display:flex;
+  align-items:center;justify-content:center;overflow:hidden}
+.f-img .nopic{width:auto;height:100%;max-width:100%;aspect-ratio:1/1;
+  font-size:2.5rem}
+.fface .f-img .nopic.drawn svg{height:100%;width:auto}
+.qcard .f-img{max-height:190px}
+/* An option is a row, so its picture is a thumbnail beside the text rather
+   than a block above it. */
+.qopt .f-img{flex:none;width:56px;height:56px;min-height:0}
+.qopt .f-img .nopic{font-size:1.75rem}
 /* The copied play buttons. Not .fface-only: the quiz copies the same block
    on to its question and, when it is asking the other way round, on to the
    answers as well — and an unstyled button in either place looks like a
@@ -801,26 +819,42 @@ body.hide-image .left figure{ display: none }
 /* the cog sits with the modes but is only about this one */
 .mdcog { font-size: 0.95em }
 body:not(.mode-info) .mdcog { display: none }
-/* Tone is its own item in that list, and the band is drawn inside the
-   picture's SVG — so one class here turns it off on every card at once, with
-   nothing re-rendered and no second copy of the picture shipped. The strip it
-   occupied stays as background rather than the scene growing into it, because
-   the scene's geometry is fixed at build time. */
-body.hide-tone .tband { display: none }
+/* ---------------------------------------------------------------- the tone */
+/* Its own element beside the word, not a band inside the picture — see
+   `tone_inline` in app/altvis.py for why that move was the whole point. It
+   follows the text it belongs to: `em`, `currentColor`, and a contour sized
+   like a line of type. The picture setting cannot reach it, and a flashcard
+   face carries it the way it carries any other field. */
+.tone { display: flex; align-items: center; gap: 0.5em; margin-top: 2px;
+  color: var(--accent2) }
+.tone .tmark { height: 1.05em; width: auto; flex: none;
+  overflow: visible }
+.tone .tname { font-size: 0.75rem; color: var(--dim);
+  letter-spacing: .02em }
+body.hide-tone .tone, body.hide-tone .f-tone { display: none }
+/* On a card face the mark carries the name with it, a little larger, because
+   a face has room and nothing else on it to read the shape against. */
+.fface .f-tone { color: var(--accent2); justify-content: center }
+.fface .f-tone .tmark { height: 1.1em }
+.qcard .f-tone { justify-content: center }
+.qopt .f-tone .tname { display: none }
 
 /* ASCII art: the third stand-in, and the only one where the characters ARE
    the picture. Monospace and pre-wrap are load-bearing — the author lined the
    columns up by counting characters, and a proportional font throws that
    away. It is sized off the container rather than in points so a long line
    shrinks to fit instead of overflowing the column. */
-/* An explicit width, where the drawn card gets away with a percentage. The
-   <figure> around it shrink-wraps its contents, so a box whose only width is
-   `100%` and whose only content is also `100%` resolves to two pixels — which
-   is exactly what it did. The SVG card escapes that because it carries an
-   intrinsic size in its viewBox; characters in a <pre> carry none. */
-.left .nopic.ascii { width: 360px; max-width: 100%; aspect-ratio: 1/1;
-  border: 1px solid var(--edge); background: var(--s2); overflow: hidden;
-  padding: 0 }
+/* The ASCII card's own frame, wherever it is shown — the reading pane, a
+   flashcard face, a quiz option. */
+.nopic.ascii { aspect-ratio: 1/1; border: 1px solid var(--edge);
+  background: var(--s2); overflow: hidden; padding: 0 }
+/* An explicit width in the reading pane, where the drawn card gets away with
+   a percentage. The <figure> around it shrink-wraps its contents, so a box
+   whose only width is `100%` and whose only content is also `100%` resolves
+   to two pixels — which is exactly what it did. The SVG card escapes that
+   because it carries an intrinsic size in its viewBox; characters in a <pre>
+   carry none. */
+.left .nopic.ascii { width: 360px; max-width: 100% }
 /* The drawing itself. Monospace and `pre` are load-bearing — the author lined
    the columns up by counting characters, and a proportional font or a
    collapsed run of spaces throws that away.
@@ -838,15 +872,7 @@ body.hide-tone .tband { display: none }
    makes this arithmetic possible at all. Without it the choice is a fixed
    font size — tiny for a six-column drawing, overflowing for a forty-column
    one — because CSS cannot see how wide the art is. */
-.left .nopic.ascii { flex-direction: column }
-/* The tone band, lifted out of the recipe card's SVG so an ASCII card has one
-   too — see `blank()` in shell.js for why it nearly did not. Its own strip
-   under the drawing, in the proportion it has on a drawn card: 150 of that
-   card's 1000 units. The colour tokens are the ones the drawn card sets, so
-   the two bands match in both themes. */
-.tstrip { display: block; width: 100%; height: 15%; flex: none;
-  --vis-tone: #3f9156; --vis-toneband: var(--s1); --vis-rule: var(--edge) }
-.asciibox { container-type: size; width: 100%; flex: 1; min-height: 0;
+.asciibox { container-type: size; width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   --cols: 20; --rows: 10 }
 .asciibox pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
