@@ -23,6 +23,7 @@
   "sentences": [],
   "lessons": [
    "TH_L000001",
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [
@@ -125,6 +126,7 @@
   "sentences": [],
   "lessons": [
    "TH_L000001",
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [
@@ -1344,6 +1346,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -1524,6 +1527,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -1613,6 +1617,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -1796,6 +1801,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -1916,6 +1922,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -2186,6 +2193,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -3623,7 +3631,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000118.mp3",
@@ -4068,7 +4078,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000133.mp3",
@@ -4243,6 +4255,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -4361,6 +4374,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -5579,7 +5593,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000184.mp3",
@@ -7455,6 +7471,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -9630,7 +9647,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000322.mp3",
@@ -10214,7 +10233,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000342.mp3",
@@ -11001,7 +11022,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000369.mp3",
@@ -14547,6 +14570,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -16746,7 +16770,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000565.mp3",
@@ -19236,7 +19262,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000005"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000650.mp3",
@@ -21984,6 +22012,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
@@ -30962,6 +30991,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000005",
    "TH_L000018"
   ],
   "images": [],
