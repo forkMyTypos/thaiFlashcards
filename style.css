@@ -327,9 +327,25 @@ body.resizing iframe{pointer-events:none}
   border-left:1px solid var(--edge);
   max-height:min(46vh,420px);overflow-y:auto;overscroll-behavior:contain;
   scrollbar-width:thin}
-/* The category's own page, UNDER the scrolling box rather than inside it: a
-   link eighty rows down a nested scroller is a link nobody finds. */
-.menu details > .item.all{margin:0 0 6px 14px}
+/* `full` takes the cap off and lets the whole list stand at its own height —
+   the column behind it is the thing that scrolls then, which is what you want
+   when you have asked to see all of it. */
+.menu .kids.full{max-height:none;overflow:visible}
+/* [Expand], under the box rather than inside it: a control eighty rows down a
+   nested scroller is a control nobody finds. Hidden until the script has
+   measured that there is something to expand. */
+.menu .catfoot{display:flex;align-items:center;gap:8px;margin:0 0 7px 14px}
+/* The category's own page: last, small, and not in the way. It is here only
+   so three indexed pages are not orphaned — the home page of this site is
+   lesson one, so this column is the only thing that can link them. */
+.menu .catpage{margin-left:auto;padding:3px 7px;border-radius:6px;
+  color:var(--faint);text-decoration:none;font-size:0.6875rem}
+.menu .catpage:hover{color:var(--accent3);background:var(--s3)}
+.menu .morebtn{display:block;padding:3px 8px;
+  background:none;border:0;border-radius:6px;color:var(--muted);
+  font-family:inherit;font-size:0.71875rem;font-weight:600;cursor:pointer}
+.menu .morebtn:hover{background:var(--s3);color:var(--accent3)}
+.menu .morebtn[hidden]{display:none}
 .menu .kids .item{font-size:0.78125rem}
 /* A lesson inside a category is one line: number, title, size. Twice as many
    in view as the two-line form, and the numbers line up down the left edge
@@ -344,9 +360,6 @@ body.resizing iframe{pointer-events:none}
 .menu a.item.seq .w{flex:none;font-size:0.6875rem;color:var(--faint);
   font-variant-numeric:tabular-nums}
 .menu a.item.seq.on .w{color:var(--accentq)}
-.menu .item.all{color:var(--muted);font-size:0.71875rem;font-weight:600;
-  padding:4px 8px}
-.menu .item.all:hover{color:var(--accent3)}
 /* A category that is a single page — Tones, Videos, Sentences — has nothing
    to disclose, so it gets a chevron rather than a triangle. A triangle that
    does not turn is how a reader learns to stop trusting the triangles. */
