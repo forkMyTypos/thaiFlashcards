@@ -239,9 +239,59 @@ body.resizing iframe{pointer-events:none}
 .menu a.item .sub{display:block;font-size:0.6875rem;color:var(--dim)}
 .menu a.item.on .sub{color:var(--accentq)}
 .menu .none{padding:10px 8px;font-size:0.75rem;color:var(--dim)}
-/* A category is a way in, not a lesson: a touch brighter than the rows under
-   it, and marked, so the eye can tell the two lists apart at a glance without
-   a second heading doing the work. */
+/* ------------------------------------------------------------- the tree */
+/* The column is a flex COLUMN with one scrolling region in it — the header,
+   the search box and the heading hold their place while `nav` takes the rest
+   and scrolls. `min-height:0` on `.menu` (above) is what makes that work: a
+   flex item's default minimum size is its content, so without it the nav
+   grows the whole column instead of scrolling inside it, and opening a
+   category pushes the search box off the top of the screen.
+
+   A category is a way in, not a lesson: a touch brighter than the rows under
+   it, so the eye can tell the two lists apart without a second heading doing
+   the work. */
+.menu details.cat{margin:1px 0}
+/* Sticky, which only matters once a course is big. Open a band of eighty
+   lessons and the other bands are eighty rows below the fold — you can no
+   longer see what else there is, or which band you are inside, without
+   scrolling back. Stuck to the top of the scrolling region, the heading you
+   are under stays visible and the next one pushes it off, so the column
+   always answers "where am I" without a second control. */
+.menu summary.cath{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;
+  padding:7px 8px;border-radius:7px;cursor:pointer;color:var(--text);
+  font-weight:600;font-size:0.8125rem;line-height:1.35;list-style:none;
+  position:sticky;top:0;z-index:2;background:var(--s0)}
+/* The heading is opaque so the rows scroll UNDER it rather than through it;
+   the hairline is what makes that read as deliberate rather than as a row
+   that happens to be cut off behind another one. */
+.menu details[open]>summary.cath{border-radius:7px 7px 0 0;
+  box-shadow:0 1px 0 var(--line)}
+.menu summary.cath::-webkit-details-marker{display:none}
+/* The triangle, drawn rather than typed, so it turns. `summary` carries the
+   open state itself, which is why nothing here has to be kept in step with
+   any JavaScript. */
+.menu summary.cath::before{content:"";flex:none;width:0;height:0;
+  border-left:5px solid var(--accent);border-top:4px solid transparent;
+  border-bottom:4px solid transparent;margin-right:2px;
+  transform:translateY(-1px);transition:transform .12s ease}
+.menu details[open]>summary.cath::before{transform:rotate(90deg) translateX(-1px)}
+.menu summary.cath:hover{background:var(--s3);color:var(--bright)}
+.menu summary.cath:focus-visible{outline:2px solid var(--accent);
+  outline-offset:-2px}
+.menu summary.cath .nm{flex:1 1 auto;min-width:0}
+.menu summary.cath .sub{flex:0 0 100%;font-size:0.6875rem;color:var(--dim);
+  font-weight:400;padding-left:13px}
+/* The lessons inside. Indented to the depth of the triangle and ruled, so a
+   long branch still reads as belonging to its heading once the heading has
+   scrolled away above it. */
+.menu .kids{margin:1px 0 6px 7px;padding-left:7px;
+  border-left:1px solid var(--edge)}
+.menu .kids .item{font-size:0.78125rem}
+.menu .item.all{color:var(--muted);font-size:0.71875rem;font-weight:600}
+.menu .item.all:hover{color:var(--accent3)}
+/* A category that is a single page — Tones, Videos, Sentences — has nothing
+   to disclose, so it gets a chevron rather than a triangle. A triangle that
+   does not turn is how a reader learns to stop trusting the triangles. */
 .menu a.item.cat{color:var(--text);font-weight:600}
 .menu a.item.cat::before{content:"\203A\00a0";color:var(--accent)}
 .menu a.item.cat .sub{font-weight:400}
