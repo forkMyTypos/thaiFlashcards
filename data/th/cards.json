@@ -1542,7 +1542,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000024"
   ],
   "images": [],
   "audio": {
@@ -15266,7 +15267,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000002",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000024"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000507.jpg"
@@ -20370,7 +20372,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000024"
   ],
   "images": [],
   "audio": {
@@ -23012,7 +23015,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000769.mp3",
@@ -25124,7 +25129,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000002",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000024"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000841.jpg"
@@ -27172,7 +27178,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000911.mp3",
@@ -45736,7 +45744,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001613.mp3",
@@ -54094,7 +54104,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001934.mp3",
@@ -63463,7 +63475,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002255.mp3",
@@ -63492,7 +63506,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002256.mp3",
@@ -63521,7 +63537,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002257.mp3",
@@ -63550,7 +63568,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002258.mp3",
@@ -63579,7 +63599,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002259.mp3",
@@ -63608,7 +63630,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002260.mp3",
@@ -63637,7 +63661,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000024"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002261.mp3",
