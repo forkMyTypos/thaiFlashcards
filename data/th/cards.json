@@ -1408,7 +1408,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant, mysterious glowing metallic thing smashing through a massive checkered finish line banner on a track. Painterly digital illustration, rich textures, dramatic dynamic motion lighting, vibrant metallic reflections, clear physical action, simple uncluttered background.",
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000043.mp3",
@@ -2162,6 +2164,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000006",
    "TH_L000018"
   ],
   "images": [],
@@ -2895,7 +2898,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A shy figure blushing intensely and hiding their face behind a giant open book, using the book as a physical shield to push away a pile of gold coins and hourglasses. Expressive character pose, rich painterly textures, warm soft lighting.",
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000093.mp3",
@@ -3011,7 +3016,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A small red robin bird using its beak to physically pull open a giant glowing metallic vault door, revealing bright golden light within. Magical atmosphere, dramatic lighting contrast, rich feather textures.",
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000097.mp3",
@@ -3040,7 +3047,9 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant black-and-white dairy cow squeezing its enormous body sideways into a tiny arched stone doorway, wedging firmly in the entrance. Humorous absurd scale, high contrast rim light, rich textures.",
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000098.mp3",
@@ -4315,7 +4324,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000141.mp3",
@@ -4405,7 +4416,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000144.mp3",
@@ -5061,7 +5074,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000166.mp3",
@@ -7560,7 +7575,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000251.mp3",
@@ -8475,6 +8492,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000006",
    "TH_L000018"
   ],
   "images": [],
@@ -8650,7 +8668,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000288.mp3",
@@ -8947,7 +8967,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000298.mp3",
@@ -9035,6 +9057,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000006",
    "TH_L000018"
   ],
   "images": [],
@@ -11112,6 +11135,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000006",
    "TH_L000018"
   ],
   "images": [],
@@ -12219,7 +12243,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000410.mp3",
@@ -13395,7 +13421,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000450.mp3",
@@ -14811,7 +14839,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000498.mp3",
@@ -17569,6 +17599,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000006",
    "TH_L000018"
   ],
   "images": [],
@@ -18558,7 +18589,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000626.mp3",
@@ -19145,6 +19178,7 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
+   "TH_L000006",
    "TH_L000018"
   ],
   "images": [],
@@ -21632,7 +21666,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000731.mp3",
@@ -22346,7 +22382,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000755.mp3",
@@ -29881,7 +29919,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000006"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001014.mp3",
