@@ -230,6 +230,37 @@ body.resizing iframe{pointer-events:none}
   border:1px solid var(--edge);background:var(--s2);color:var(--text);font-size:0.8125rem}
 .menu .find input:focus{outline:none;border-color:var(--accent)}
 .menu nav{flex:1;overflow-y:auto;padding:0 8px 8px}
+
+/* ------------------------------------------------- where you are, and next */
+/* Going THROUGH a course is a different movement from choosing a lesson out
+   of it, and the tree only serves the second. This is the first, and it sits
+   OUTSIDE the scrolling nav so it is in the same place on every page rather
+   than wherever the list happens to have been left. */
+.menu .where{flex:0 0 auto;padding:8px 12px 10px;margin:0 0 2px;
+  border-bottom:1px solid var(--line)}
+.menu .wk{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-bottom:4px}
+/* Two lines at most. A video lesson's title can run to seventy characters,
+   and four lines of it pushes the two rows that are the point of this block
+   — where to go next — down out of the corner of the eye. The full title is
+   on the row below in the tree, and in the breadcrumb. */
+.menu .wnow{font-size:0.8125rem;font-weight:600;color:var(--bright);
+  line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden}
+.menu .wnow .wsub{-webkit-line-clamp:none}
+.menu .wsub{display:block;font-size:0.6875rem;color:var(--dim);font-weight:400;
+  margin-top:1px}
+.menu .step{display:flex;align-items:baseline;gap:7px;margin-top:5px;
+  padding:5px 7px;border-radius:7px;text-decoration:none;color:var(--text2);
+  font-size:0.75rem;line-height:1.3}
+.menu a.step:hover{background:var(--s3);color:var(--bright)}
+.menu .step .k{flex:none;font-size:0.6875rem;color:var(--accent);
+  font-weight:700}
+.menu .step .t{flex:1 1 auto;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+/* The end of the course, said rather than left as a dead button. */
+.menu .step.off{color:var(--faint);cursor:default}
+.menu .step.off .k{color:var(--faint)}
 .menu .grp{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
   color:var(--dim);font-weight:700;padding:12px 8px 6px}
 .menu a.item{display:block;padding:7px 8px;border-radius:7px;font-size:0.8125rem;
@@ -284,10 +315,37 @@ body.resizing iframe{pointer-events:none}
 /* The lessons inside. Indented to the depth of the triangle and ruled, so a
    long branch still reads as belonging to its heading once the heading has
    scrolled away above it. */
-.menu .kids{margin:1px 0 6px 7px;padding-left:7px;
-  border-left:1px solid var(--edge)}
+/* Every lesson in the category is here, and the list scrolls once it
+   outgrows this box. Dan: "I want to be able to see all lessons in each
+   category. We can use overflow-y:auto if the div gets too big." A band of
+   eighty lessons would otherwise push the other bands a screen and a half
+   down the column — the complaint one level deeper.
+   `overscroll-behavior:contain` stops a flick inside this box from carrying
+   on into the column behind it once it hits the end, which is what makes a
+   scroller inside a scroller usable rather than infuriating. */
+.menu .kids{margin:1px 0 2px 7px;padding-left:7px;
+  border-left:1px solid var(--edge);
+  max-height:min(46vh,420px);overflow-y:auto;overscroll-behavior:contain;
+  scrollbar-width:thin}
+/* The category's own page, UNDER the scrolling box rather than inside it: a
+   link eighty rows down a nested scroller is a link nobody finds. */
+.menu details > .item.all{margin:0 0 6px 14px}
 .menu .kids .item{font-size:0.78125rem}
-.menu .item.all{color:var(--muted);font-size:0.71875rem;font-weight:600}
+/* A lesson inside a category is one line: number, title, size. Twice as many
+   in view as the two-line form, and the numbers line up down the left edge
+   where a list you are working THROUGH is read. The title truncates rather
+   than wraps, because a ragged second line destroys that column. */
+.menu a.item.seq{display:flex;gap:8px;align-items:baseline;padding:5px 8px}
+.menu a.item.seq .n{flex:none;font-size:0.6875rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.menu a.item.seq.on .n{color:var(--accentq)}
+.menu a.item.seq .t{flex:1 1 auto;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.menu a.item.seq .w{flex:none;font-size:0.6875rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.menu a.item.seq.on .w{color:var(--accentq)}
+.menu .item.all{color:var(--muted);font-size:0.71875rem;font-weight:600;
+  padding:4px 8px}
 .menu .item.all:hover{color:var(--accent3)}
 /* A category that is a single page — Tones, Videos, Sentences — has nothing
    to disclose, so it gets a chevron rather than a triangle. A triangle that
@@ -866,9 +924,22 @@ body.hide-hook  .info .aid  { display: none }
 body.hide-ex    .info .ex   { display: none }
 body.hide-sound .info .plays{ display: none }
 body.hide-image .left figure{ display: none }
-/* the cog sits with the modes but is only about this one */
-.mdcog { font-size: 0.95em }
-body:not(.mode-info) .mdcog { display: none }
+/* ------------------------------------------------------- the Show button */
+/* In the top-right corner of the pane it governs, which is where Dan asked
+   for it and where it belongs: it was a cog in the MODE toolbar, among three
+   mode buttons, which made it read as a fourth mode.
+   `height:0` so it overlays the corner instead of pushing the word down, and
+   `sticky` rather than `absolute` because this pane scrolls — a control that
+   scrolls away is a control you have to go back for. Only in read mode:
+   flashcards and the quiz each have their own, about their own sides. */
+.showbar { position: sticky; top: 0; z-index: 5; height: 0;
+  display: flex; justify-content: flex-end; pointer-events: none }
+body:not(.mode-info) .showbar { display: none }
+.showbtn { pointer-events: auto; transform: translateY(-10px);
+  background: var(--s2); border: 1px solid var(--edge); color: var(--muted);
+  border-radius: 8px; padding: 5px 10px; font-size: 0.75rem;
+  font-family: inherit; cursor: pointer; white-space: nowrap }
+.showbtn:hover { border-color: var(--accent); color: var(--bright) }
 /* ---------------------------------------------------------------- the tone */
 /* Its own element beside the word, not a band inside the picture — see
    `tone_inline` in app/altvis.py for why that move was the whole point. It
