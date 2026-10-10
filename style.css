@@ -98,7 +98,7 @@ article h1{font-size:1.75rem;color:var(--bright);line-height:1.25;margin-bottom:
   --violet:#a78bfa;
   --violet2:#c4b5fd;
   --violetbg:#2a1a4a;
-  --menu:220px;--rail:50px;--bar:3em;
+  --menu:272px;--rail:50px;--bar:3em;
   --panel:#12121b
 }
 /* Daylight. The same palette, the same jobs — only the values
@@ -270,102 +270,84 @@ body.resizing iframe{pointer-events:none}
 .menu a.item .sub{display:block;font-size:0.6875rem;color:var(--dim)}
 .menu a.item.on .sub{color:var(--accentq)}
 .menu .none{padding:10px 8px;font-size:0.75rem;color:var(--dim)}
-/* ------------------------------------------------------------- the tree */
-/* The column is a flex COLUMN with one scrolling region in it — the header,
-   the search box and the heading hold their place while `nav` takes the rest
-   and scrolls. `min-height:0` on `.menu` (above) is what makes that work: a
-   flex item's default minimum size is its content, so without it the nav
-   grows the whole column instead of scrolling inside it, and opening a
-   category pushes the search box off the top of the screen.
+/* ------------------------------------------------------- the launcher */
+/* The column is a flex COLUMN with ONE scrolling region in it — the header,
+   the search box and the current-lesson block hold their place while `nav`
+   takes the rest and scrolls. `min-height:0` on `.menu` is what makes that
+   work: a flex item's default minimum size is its content, so without it the
+   nav grows the whole column instead of scrolling inside it.
 
-   A category is a way in, not a lesson: a touch brighter than the rows under
-   it, so the eye can tell the two lists apart without a second heading doing
-   the work. */
-.menu details.cat{margin:1px 0}
-/* Sticky, which only matters once a course is big. Open a band of eighty
-   lessons and the other bands are eighty rows below the fold — you can no
-   longer see what else there is, or which band you are inside, without
-   scrolling back. Stuck to the top of the scrolling region, the heading you
-   are under stays visible and the next one pushes it off, so the column
-   always answers "where am I" without a second control. */
-.menu summary.cath{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;
-  padding:7px 8px;border-radius:7px;cursor:pointer;color:var(--text);
-  font-weight:600;font-size:0.8125rem;line-height:1.35;list-style:none;
-  position:sticky;top:0;z-index:2;background:var(--s0)}
-/* The heading is opaque so the rows scroll UNDER it rather than through it;
-   the hairline is what makes that read as deliberate rather than as a row
-   that happens to be cut off behind another one. */
-.menu details[open]>summary.cath{border-radius:7px 7px 0 0;
-  box-shadow:0 1px 0 var(--line)}
-.menu summary.cath::-webkit-details-marker{display:none}
-/* The triangle, drawn rather than typed, so it turns. `summary` carries the
-   open state itself, which is why nothing here has to be kept in step with
-   any JavaScript. */
-.menu summary.cath::before{content:"";flex:none;width:0;height:0;
-  border-left:5px solid var(--accent);border-top:4px solid transparent;
-  border-bottom:4px solid transparent;margin-right:2px;
-  transform:translateY(-1px);transition:transform .12s ease}
-.menu details[open]>summary.cath::before{transform:rotate(90deg) translateX(-1px)}
-.menu summary.cath:hover{background:var(--s3);color:var(--bright)}
-.menu summary.cath:focus-visible{outline:2px solid var(--accent);
+   Dan: "Two scroll bars looks kinda janky." They were: the column scrolled,
+   and so did the lesson list inside each open category. There is one now,
+   because the lessons are not in here any more — they are in the catalogue,
+   which is what "All lessons" opens. */
+.menu .mhead{display:flex;align-items:center;gap:6px;
+  border-bottom:1px solid var(--line);padding-right:8px}
+.menu .mhead .brand{flex:1 1 auto;min-width:0;border-bottom:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* The toggle, in the header where the mockup puts it. The burger in the top
+   bar does the same thing and still works; this is the one you find without
+   having to look for it. */
+.menu .mcollapse{flex:none;background:none;border:0;color:var(--faint);
+  font-size:0.9375rem;line-height:1;padding:6px 7px;border-radius:7px;
+  cursor:pointer}
+.menu .mcollapse:hover{background:var(--s3);color:var(--accent3)}
+.menu .mcollapse:focus-visible{outline:2px solid var(--accent);
   outline-offset:-2px}
-.menu summary.cath .nm{flex:1 1 auto;min-width:0}
-.menu summary.cath .sub{flex:0 0 100%;font-size:0.6875rem;color:var(--dim);
-  font-weight:400;padding-left:13px}
-/* The lessons inside. Indented to the depth of the triangle and ruled, so a
-   long branch still reads as belonging to its heading once the heading has
-   scrolled away above it. */
-/* Every lesson in the category is here, and the list scrolls once it
-   outgrows this box. Dan: "I want to be able to see all lessons in each
-   category. We can use overflow-y:auto if the div gets too big." A band of
-   eighty lessons would otherwise push the other bands a screen and a half
-   down the column — the complaint one level deeper.
-   `overscroll-behavior:contain` stops a flick inside this box from carrying
-   on into the column behind it once it hits the end, which is what makes a
-   scroller inside a scroller usable rather than infuriating. */
-.menu .kids{margin:1px 0 2px 7px;padding-left:7px;
-  border-left:1px solid var(--edge);
-  max-height:min(46vh,420px);overflow-y:auto;overscroll-behavior:contain;
-  scrollbar-width:thin}
-/* `full` takes the cap off and lets the whole list stand at its own height —
-   the column behind it is the thing that scrolls then, which is what you want
-   when you have asked to see all of it. */
-.menu .kids.full{max-height:none;overflow:visible}
-/* [Expand], under the box rather than inside it: a control eighty rows down a
-   nested scroller is a control nobody finds. Hidden until the script has
-   measured that there is something to expand. */
-.menu .catfoot{display:flex;align-items:center;gap:8px;margin:0 0 7px 14px}
-/* The category's own page: last, small, and not in the way. It is here only
-   so three indexed pages are not orphaned — the home page of this site is
-   lesson one, so this column is the only thing that can link them. */
-.menu .catpage{margin-left:auto;padding:3px 7px;border-radius:6px;
-  color:var(--faint);text-decoration:none;font-size:0.6875rem}
-.menu .catpage:hover{color:var(--accent3);background:var(--s3)}
-.menu .morebtn{display:block;padding:3px 8px;
-  background:none;border:0;border-radius:6px;color:var(--muted);
-  font-family:inherit;font-size:0.71875rem;font-weight:600;cursor:pointer}
-.menu .morebtn:hover{background:var(--s3);color:var(--accent3)}
-.menu .morebtn[hidden]{display:none}
-.menu .kids .item{font-size:0.78125rem}
-/* A lesson inside a category is one line: number, title, size. Twice as many
-   in view as the two-line form, and the numbers line up down the left edge
-   where a list you are working THROUGH is read. The title truncates rather
-   than wraps, because a ragged second line destroys that column. */
-.menu a.item.seq{display:flex;gap:8px;align-items:baseline;padding:5px 8px}
-.menu a.item.seq .n{flex:none;font-size:0.6875rem;color:var(--faint);
-  font-variant-numeric:tabular-nums}
-.menu a.item.seq.on .n{color:var(--accentq)}
-.menu a.item.seq .t{flex:1 1 auto;min-width:0;overflow:hidden;
+
+/* A row of the launcher: icon, label, count. One line, always, whatever the
+   course grows to — the count is the only part that changes with the data. */
+.menu a.item{display:flex;align-items:center;gap:10px;padding:8px 9px;
+  border-radius:8px;font-size:0.8125rem;color:var(--text2);
+  text-decoration:none;line-height:1.35}
+.menu a.item[hidden]{display:none}
+.menu a.item:hover{background:var(--s3);color:var(--bright)}
+.menu a.item.on{background:var(--accentbg);color:var(--accent3)}
+.menu a.item .ic{flex:none;width:17px;text-align:center;color:var(--faint);
+  font-size:0.875rem}
+.menu a.item:hover .ic,.menu a.item.on .ic{color:var(--accent)}
+.menu a.item .lb{flex:1 1 auto;min-width:0;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
-.menu a.item.seq .w{flex:none;font-size:0.6875rem;color:var(--faint);
+.menu a.item .sub{display:block;font-size:0.6875rem;color:var(--dim);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu a.item.on .sub{color:var(--accentq)}
+/* The count, hard right and in tabular figures so the column of them lines
+   up — which is what makes the sizes comparable at a glance. */
+.menu a.item .n{flex:none;font-size:0.6875rem;color:var(--faint);
   font-variant-numeric:tabular-nums}
-.menu a.item.seq.on .w{color:var(--accentq)}
-/* A category that is a single page — Tones, Videos, Sentences — has nothing
-   to disclose, so it gets a chevron rather than a triangle. A triangle that
-   does not turn is how a reader learns to stop trusting the triangles. */
+.menu a.item.on .n{color:var(--accentq)}
+/* All lessons: the one row whose usefulness does not change as the course
+   grows, so it is the one row that is allowed to be loud. */
+.menu a.item.big{font-weight:700;color:var(--text);background:var(--s2);
+  border:1px solid var(--edge);margin-bottom:6px}
+.menu a.item.big:hover{border-color:var(--accent)}
+.menu a.item.big .ic{color:var(--accent)}
+/* A category opens its own page in the main area — the chevron says "through
+   here", not "unfold". A triangle that does not turn is how a reader learns
+   to stop trusting the triangles. */
 .menu a.item.cat{color:var(--text);font-weight:600}
-.menu a.item.cat::before{content:"\203A\00a0";color:var(--accent)}
-.menu a.item.cat .sub{font-weight:400}
+.menu a.item.also{font-weight:500}
+.menu .grp{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;padding:14px 9px 5px}
+.menu .none{padding:10px 9px;font-size:0.75rem;color:var(--dim)}
+/* Search results, under the box. The lesson titles are no longer in this
+   column's markup — that is the whole point of the change — so a search shows
+   what it found rather than hiding what it did not. */
+.menu .hits{margin-top:4px}
+.menu .hits[hidden]{display:none}
+.menu .hits a.hit{display:block;padding:6px 9px;border-radius:7px;
+  font-size:0.78125rem;color:var(--text2);text-decoration:none;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .hits a.hit:hover{background:var(--s3);color:var(--bright)}
+.menu .hits a.hit .w{color:var(--faint);font-size:0.6875rem;margin-left:6px}
+.menu .hits .hmore{display:block;padding:7px 9px;font-size:0.71875rem;
+  color:var(--accent);text-decoration:none;font-weight:600}
+/* The star on the current lesson. Here rather than on the card itself,
+   because this is navigation chrome and the flashcard is not. */
+.menu .fav{float:right;background:none;border:0;color:var(--faint);
+  font-size:0.875rem;line-height:1;cursor:pointer;padding:0 2px}
+.menu .fav:hover{color:var(--accent3)}
+.menu .fav[aria-pressed="true"]{color:var(--accent)}
 
 /* Every approved sentence, to read down. Wider spacing than the ones on a
    word card, because here they are the content rather than an illustration
@@ -1079,3 +1061,35 @@ body:not(.editing) .mynote.empty { display: none }
   opacity: 0; pointer-events: none; transition: opacity .2s }
 #edtoast.on { opacity: 1 }
 .myedits td .dim { color: var(--faint); font-size: .75rem }
+
+/* ------------------------------------------------------- the catalogue */
+/* Every lesson on one page, narrowed rather than paged. Four hundred rows is
+   about sixty kilobytes of markup — less than one picture on a card — so the
+   page is complete before any script runs and the filters only ever HIDE
+   rows. That is why narrowing four hundred lessons is instant. */
+.catalogue .catbar{display:flex;flex-direction:column;gap:10px;
+  margin:0 0 16px}
+.catalogue .cfind{width:100%;padding:11px 14px;border-radius:10px;
+  border:1px solid var(--edge);background:var(--s2);color:var(--text);
+  font-size:0.9375rem;font-family:inherit}
+.catalogue .cfind:focus{outline:none;border-color:var(--accent)}
+.catalogue .chips{display:flex;flex-wrap:wrap;gap:6px}
+.catalogue .chip{display:inline-flex;align-items:center;gap:6px;
+  padding:6px 11px;border-radius:999px;border:1px solid var(--edge);
+  background:var(--s2);color:var(--text2);font-family:inherit;
+  font-size:0.75rem;font-weight:600;cursor:pointer;line-height:1.3}
+.catalogue .chip:hover{border-color:var(--accent);color:var(--bright)}
+.catalogue .chip.on{background:var(--accentbg);border-color:var(--accent);
+  color:var(--accent3)}
+.catalogue .chip .cn{font-size:0.6875rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.catalogue .chip.on .cn{color:var(--accentq)}
+.catalogue .cstat{font-size:0.75rem;color:var(--dim)}
+/* Tighter than the category page's list: this one is read by scanning a few
+   hundred titles, not by looking at a dozen. */
+.catalogue .lesson-list{gap:6px}
+.catalogue .lesson-link{padding:11px 14px}
+.catalogue .lesson-link .lt{font-size:0.9375rem}
+.catalogue .lrow[hidden]{display:none}
+.catalogue .none{color:var(--dim);font-size:0.875rem;padding:20px 0}
+.catalogue .none[hidden]{display:none}
