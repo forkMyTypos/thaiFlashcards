@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="Recognise common Southern Thai vocabulary and speech patterns"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=e9eb3553"/>
+<link rel="stylesheet" href="../style.css?v=e4f9bc29"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -41,587 +41,51 @@
     </div>
   </nav>
 <aside class="menu">
-  <a class="brand" href="https://thai.inaflash.cards/"><span class="bolt">⚡</span> Thai.inaflash</a>
-  <div class="find"><input id="find" type="search" placeholder="Search lessons and words" aria-label="Search lessons and words" autocomplete="off"/></div>
+  <div class="mhead">
+    <a class="brand" href="https://thai.inaflash.cards/"><span class="bolt">⚡</span> Thai.inaflash</a>
+    <button type="button" class="mcollapse" id="menu-collapse" aria-label="Collapse the menu" title="Collapse the menu">◨</button>
+  </div>
+  <div class="find"><input id="find" type="search" placeholder="Search lessons or words" aria-label="Search lessons and words" autocomplete="off"/></div>
+  <nav id="nav">
+    <a class="item big" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="ic" aria-hidden="true">▤</span><span class="lb">All lessons</span><span class="n">432</span></a>
+    <a class="item" href="https://thai.inaflash.cards/" data-title="home"><span class="ic" aria-hidden="true">⌂</span><span class="lb">Home</span></a>
+    <a class="item" id="m-fav" href="#" hidden data-title="favourites"><span class="ic" aria-hidden="true">♡</span><span class="lb">Favourites</span><span class="n"></span></a>
+    <a class="item" id="m-recent" href="#" hidden data-title="recently viewed"><span class="ic" aria-hidden="true">↺</span><span class="lb">Recently viewed</span><span class="n"></span></a>
+    <div class="grp" data-grp>Categories</div>
+    <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner"><span class="ic" aria-hidden="true">›</span><span class="lb">Beginner</span><span class="n">42</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="ic" aria-hidden="true">›</span><span class="lb">Video lessons</span><span class="n">1</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="ic" aria-hidden="true">›</span><span class="lb">Top Words</span><span class="n">1</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-food/" data-title="thai food"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Food</span><span class="n">50</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-conversation/" data-title="thai conversation"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Conversation</span><span class="n">55</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-natural-thai/" data-title="natural thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Natural Thai</span><span class="n">17</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-culture-social-nuance/" data-title="thai culture &amp; social nuance"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Culture &amp; Social Nuance</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-humor-banter-warning-mostly-use-with-friends/" data-title="thai humor &amp; banter -warning. mostly use with friends!"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Humor &amp; Banter -Warning. Mostly use with friends!</span><span class="n">16</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-professional-thai/" data-title="professional thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Professional Thai</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-relationships-dating-thai/" data-title="relationships &amp; dating thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Relationships &amp; Dating Thai</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-friends-social-thai/" data-title="friends &amp; social thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Friends &amp; Social Thai</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-news-formal-thai/" data-title="news &amp; formal thai"><span class="ic" aria-hidden="true">›</span><span class="lb">News &amp; Formal Thai</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-regional-thai-isaan-northern-southern/" data-title="regional thai — isaan / northern / southern"><span class="ic" aria-hidden="true">›</span><span class="lb">Regional Thai — Isaan / Northern / Southern</span><span class="n">16</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-listening/" data-title="thai listening"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Listening</span><span class="n">19</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-tv-entertainment/" data-title="thai tv &amp; entertainment"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai TV &amp; Entertainment</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-music-lyrics/" data-title="thai music &amp; lyrics"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Music &amp; Lyrics</span><span class="n">19</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-sports-in-thai/" data-title="sports in thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Sports In Thai</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-tourism-hotels/" data-title="thai tourism &amp; hotels"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Tourism &amp; Hotels</span><span class="n">17</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-thai-phone-calls/" data-title="thai phone calls"><span class="ic" aria-hidden="true">›</span><span class="lb">Thai Phone Calls</span><span class="n">18</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-real-world-situational-thai/" data-title="real-world situational thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Real-World Situational Thai</span><span class="n">17</span></a>
+    <a class="item cat" href="https://thai.inaflash.cards/c-fast-messy-thai/" data-title="fast / messy thai"><span class="ic" aria-hidden="true">›</span><span class="lb">Fast / Messy Thai</span><span class="n">18</span></a>
+    <div class="grp" data-grp>Also</div>
+    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
+    <div class="hits" id="hits" hidden></div>
+    <div class="none" id="nohits" hidden>Nothing matches.</div>
+  </nav>
   <div class="where">
-    <div class="wk">Current lesson</div>
+    <div class="wk">Current lesson<button type="button" class="fav" id="fav-btn" data-folder="280-southern-thai-basics" data-title="Southern Thai Basics" aria-pressed="false" title="Keep this lesson in Favourites">♡</button></div>
     <div class="wnow">Southern Thai Basics<span class="wsub">280 of 432 · 10 words</span></div>
     <a class="step pv" href="https://thai.inaflash.cards/279-northern-thai-food-culture/" data-title="northern thai food &amp; culture"><span class="k">‹ Previous</span><span class="t">Northern Thai Food &amp; Culture</span></a>
     <a class="step nx" href="https://thai.inaflash.cards/281-southern-thai-conversation/" data-title="southern thai conversation"><span class="k">Next ›</span><span class="t">Southern Thai Conversation</span></a>
   </div>
-  <nav id="nav">
-    <div class="grp" data-grp>Categories</div>
-    <details class="cat" data-cat="c-beginner">
-      <summary class="cath" data-title="beginner"><span class="nm">Beginner</span><span class="sub">42 lessons · 643 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/01-lesson-1-i-like-i-want/" title="Lesson 1 — I like, I want — 29 words" data-title="lesson 1 — i like, i want"><span class="n">01</span><span class="t">Lesson 1 — I like, I want</span><span class="w">29</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/02-lesson-2-asking-for-things/" title="Lesson 2 — Asking for things — 14 words" data-title="lesson 2 — asking for things"><span class="n">02</span><span class="t">Lesson 2 — Asking for things</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/03-numbers-1-to-1-million/" title="Numbers 1 to 1 million — 33 words" data-title="numbers 1 to 1 million"><span class="n">03</span><span class="t">Numbers 1 to 1 million</span><span class="w">33</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/04-lesson-3-people-and-family/" title="Lesson 3 — People and family — 15 words" data-title="lesson 3 — people and family"><span class="n">04</span><span class="t">Lesson 3 — People and family</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/05-lesson-4-where-things-are/" title="Lesson 4 — Where things are — 22 words" data-title="lesson 4 — where things are"><span class="n">05</span><span class="t">Lesson 4 — Where things are</span><span class="w">22</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/06-lesson-5-everyday-actions/" title="Lesson 5 — Everyday actions — 23 words" data-title="lesson 5 — everyday actions"><span class="n">06</span><span class="t">Lesson 5 — Everyday actions</span><span class="w">23</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/07-lesson-6-when/" title="Lesson 6 — When — 17 words" data-title="lesson 6 — when"><span class="n">07</span><span class="t">Lesson 6 — When</span><span class="w">17</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/08-lesson-7-describing/" title="Lesson 7 — Describing — 15 words" data-title="lesson 7 — describing"><span class="n">08</span><span class="t">Lesson 7 — Describing</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/09-lesson-8-thinking-and-feeling/" title="Lesson 8 — Thinking and feeling — 9 words" data-title="lesson 8 — thinking and feeling"><span class="n">09</span><span class="t">Lesson 8 — Thinking and feeling</span><span class="w">9</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/10-lesson-9-more-food/" title="Lesson 9 — More food — 16 words" data-title="lesson 9 — more food"><span class="n">10</span><span class="t">Lesson 9 — More food</span><span class="w">16</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/11-lesson-10-fruit-and-vegetables/" title="Lesson 10 — Fruit and vegetables — 8 words" data-title="lesson 10 — fruit and vegetables"><span class="n">11</span><span class="t">Lesson 10 — Fruit and vegetables</span><span class="w">8</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/12-lesson-11-around-the-house/" title="Lesson 11 — Around the house — 6 words" data-title="lesson 11 — around the house"><span class="n">12</span><span class="t">Lesson 11 — Around the house</span><span class="w">6</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/13-lesson-12-getting-around/" title="Lesson 12 — Getting around — 14 words" data-title="lesson 12 — getting around"><span class="n">13</span><span class="t">Lesson 12 — Getting around</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/14-lesson-13-joining-ideas/" title="Lesson 13 — Joining ideas — 18 words" data-title="lesson 13 — joining ideas"><span class="n">14</span><span class="t">Lesson 13 — Joining ideas</span><span class="w">18</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/15-lesson-14-more-people-more-work/" title="Lesson 14 — More people, more work — 6 words" data-title="lesson 14 — more people, more work"><span class="n">15</span><span class="t">Lesson 14 — More people, more work</span><span class="w">6</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/16-lesson-15-amounts-and-change/" title="Lesson 15 — Amounts and change — 16 words" data-title="lesson 15 — amounts and change"><span class="n">16</span><span class="t">Lesson 15 — Amounts and change</span><span class="w">16</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/17-lesson-16-tying-it-off/" title="Lesson 16 — Tying it off — 15 words" data-title="lesson 16 — tying it off"><span class="n">17</span><span class="t">Lesson 16 — Tying it off</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/18-feelings/" title="Feelings — 30 words" data-title="feelings"><span class="n">18</span><span class="t">Feelings</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/19-daily-routine/" title="Daily routine — 14 words" data-title="daily routine"><span class="n">19</span><span class="t">Daily routine</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/20-shopping/" title="Shopping — 14 words" data-title="shopping"><span class="n">20</span><span class="t">Shopping</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/21-weather/" title="Weather — 14 words" data-title="weather"><span class="n">21</span><span class="t">Weather</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/22-body/" title="Body — 15 words" data-title="body"><span class="n">22</span><span class="t">Body</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/23-health/" title="Health — 14 words" data-title="health"><span class="n">23</span><span class="t">Health</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/24-conversation/" title="Conversation — 14 words" data-title="conversation"><span class="n">24</span><span class="t">Conversation</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/25-work-and-study/" title="Work and study — 14 words" data-title="work and study"><span class="n">25</span><span class="t">Work and study</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/26-travel/" title="Travel — 14 words" data-title="travel"><span class="n">26</span><span class="t">Travel</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/27-directions/" title="Directions — 14 words" data-title="directions"><span class="n">27</span><span class="t">Directions</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/28-home-and-furniture/" title="Home and furniture — 14 words" data-title="home and furniture"><span class="n">28</span><span class="t">Home and furniture</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/29-clothing/" title="Clothing — 14 words" data-title="clothing"><span class="n">29</span><span class="t">Clothing</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/30-communication/" title="Communication — 14 words" data-title="communication"><span class="n">30</span><span class="t">Communication</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/31-restaurants/" title="Restaurants — 14 words" data-title="restaurants"><span class="n">31</span><span class="t">Restaurants</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/32-cooking-and-food/" title="Cooking and food — 14 words" data-title="cooking and food"><span class="n">32</span><span class="t">Cooking and food</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/33-free-time/" title="Free time — 14 words" data-title="free time"><span class="n">33</span><span class="t">Free time</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/34-making-plans/" title="Making plans — 14 words" data-title="making plans"><span class="n">34</span><span class="t">Making plans</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/35-invitations/" title="Invitations — 14 words" data-title="invitations"><span class="n">35</span><span class="t">Invitations</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/36-opinions-and-preferences/" title="Opinions and preferences — 14 words" data-title="opinions and preferences"><span class="n">36</span><span class="t">Opinions and preferences</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/37-describing-people/" title="Describing people — 14 words" data-title="describing people"><span class="n">37</span><span class="t">Describing people</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/38-describing-places/" title="Describing places — 14 words" data-title="describing places"><span class="n">38</span><span class="t">Describing places</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/39-problems-and-solutions/" title="Problems and solutions — 14 words" data-title="problems and solutions"><span class="n">39</span><span class="t">Problems and solutions</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/40-past-experiences/" title="Past experiences — 14 words" data-title="past experiences"><span class="n">40</span><span class="t">Past experiences</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/41-future-plans/" title="Future plans — 14 words" data-title="future plans"><span class="n">41</span><span class="t">Future plans</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/42-real-life-thai/" title="Real-life Thai — 14 words" data-title="real-life thai"><span class="n">42</span><span class="t">Real-life Thai</span><span class="w">14</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 42">Show all 42</button><a class="catpage" href="https://thai.inaflash.cards/c-beginner/" title="The Beginner page" data-title="beginner">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-video-lessons">
-      <summary class="cath" data-title="video lessons"><span class="nm">Video lessons</span><span class="sub">1 lesson · 165 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/43-100-most-common-thai-words-in-30-minutes-pronunciation-and-example-sentence/" title="100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence) — 165 words" data-title="100 most common thai words in 30 minutes (pronunciation and example sentence)"><span class="n">43</span><span class="t">100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)</span><span class="w">165</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 1">Show all 1</button><a class="catpage" href="https://thai.inaflash.cards/c-video-lessons/" title="The Video lessons page" data-title="video lessons">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-top-words">
-      <summary class="cath" data-title="top words"><span class="nm">Top Words</span><span class="sub">1 lesson · 30 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/44-top-30-thai-words/" title="Top 30 Thai words — 30 words" data-title="top 30 thai words"><span class="n">44</span><span class="t">Top 30 Thai words</span><span class="w">30</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 1">Show all 1</button><a class="catpage" href="https://thai.inaflash.cards/c-top-words/" title="The Top Words page" data-title="top words">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-food">
-      <summary class="cath" data-title="thai food"><span class="nm">Thai Food</span><span class="sub">50 lessons · 1340 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/45-thai-food-1-essential-dishes/" title="Thai Food 1 — Essential dishes — 20 words" data-title="thai food 1 — essential dishes"><span class="n">45</span><span class="t">Thai Food 1 — Essential dishes</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/46-thai-food-2-noodles/" title="Thai Food 2 — Noodles — 19 words" data-title="thai food 2 — noodles"><span class="n">46</span><span class="t">Thai Food 2 — Noodles</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/47-thai-food-3-curries/" title="Thai Food 3 — Curries — 20 words" data-title="thai food 3 — curries"><span class="n">47</span><span class="t">Thai Food 3 — Curries</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/48-thai-food-4-meat-and-seafood/" title="Thai Food 4 — Meat and seafood — 20 words" data-title="thai food 4 — meat and seafood"><span class="n">48</span><span class="t">Thai Food 4 — Meat and seafood</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/49-thai-food-5-vegetables-and-herbs/" title="Thai Food 5 — Vegetables and herbs — 21 words" data-title="thai food 5 — vegetables and herbs"><span class="n">49</span><span class="t">Thai Food 5 — Vegetables and herbs</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/50-thai-food-6-flavors/" title="Thai Food 6 — Flavors — 21 words" data-title="thai food 6 — flavors"><span class="n">50</span><span class="t">Thai Food 6 — Flavors</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/51-thai-food-7-sauces-and-condiments/" title="Thai Food 7 — Sauces and condiments — 21 words" data-title="thai food 7 — sauces and condiments"><span class="n">51</span><span class="t">Thai Food 7 — Sauces and condiments</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/52-thai-food-8-street-food/" title="Thai Food 8 — Street food — 24 words" data-title="thai food 8 — street food"><span class="n">52</span><span class="t">Thai Food 8 — Street food</span><span class="w">24</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/53-thai-food-9-desserts/" title="Thai Food 9 — Desserts — 23 words" data-title="thai food 9 — desserts"><span class="n">53</span><span class="t">Thai Food 9 — Desserts</span><span class="w">23</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/54-thai-food-10-drinks/" title="Thai Food 10 — Drinks — 22 words" data-title="thai food 10 — drinks"><span class="n">54</span><span class="t">Thai Food 10 — Drinks</span><span class="w">22</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/55-thai-food-11-ordering-food/" title="Thai Food 11 — Ordering food — 26 words" data-title="thai food 11 — ordering food"><span class="n">55</span><span class="t">Thai Food 11 — Ordering food</span><span class="w">26</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/56-thai-food-12-menu-thai/" title="Thai Food 12 — Menu Thai — 29 words" data-title="thai food 12 — menu thai"><span class="n">56</span><span class="t">Thai Food 12 — Menu Thai</span><span class="w">29</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/57-thai-food-13-rice-dishes/" title="Thai Food 13 — Rice dishes — 14 words" data-title="thai food 13 — rice dishes"><span class="n">57</span><span class="t">Thai Food 13 — Rice dishes</span><span class="w">14</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/58-thai-food-14-isaan-food/" title="Thai Food 14 — Isaan food — 18 words" data-title="thai food 14 — isaan food"><span class="n">58</span><span class="t">Thai Food 14 — Isaan food</span><span class="w">18</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/59-thai-food-15-northern-thai-food/" title="Thai Food 15 — Northern Thai food — 15 words" data-title="thai food 15 — northern thai food"><span class="n">59</span><span class="t">Thai Food 15 — Northern Thai food</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/60-thai-food-16-southern-thai-food/" title="Thai Food 16 — Southern Thai food — 15 words" data-title="thai food 16 — southern thai food"><span class="n">60</span><span class="t">Thai Food 16 — Southern Thai food</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/61-thai-food-17-breakfast-and-light-meals/" title="Thai Food 17 — Breakfast and light meals — 16 words" data-title="thai food 17 — breakfast and light meals"><span class="n">61</span><span class="t">Thai Food 17 — Breakfast and light meals</span><span class="w">16</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/62-thai-food-18-snacks-and-market-food/" title="Thai Food 18 — Snacks and market food — 20 words" data-title="thai food 18 — snacks and market food"><span class="n">62</span><span class="t">Thai Food 18 — Snacks and market food</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/63-thai-food-19-regional-sauces-and-dips/" title="Thai Food 19 — Regional sauces and dips — 20 words" data-title="thai food 19 — regional sauces and dips"><span class="n">63</span><span class="t">Thai Food 19 — Regional sauces and dips</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/64-thai-food-20-seafood/" title="Thai Food 20 — Seafood — 25 words" data-title="thai food 20 — seafood"><span class="n">64</span><span class="t">Thai Food 20 — Seafood</span><span class="w">25</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/65-thai-food-21-thai-desserts/" title="Thai Food 21 — Thai Desserts — 37 words" data-title="thai food 21 — thai desserts"><span class="n">65</span><span class="t">Thai Food 21 — Thai Desserts</span><span class="w">37</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/66-thai-food-22-thai-fruits/" title="Thai Food 22 — Thai Fruits — 30 words" data-title="thai food 22 — thai fruits"><span class="n">66</span><span class="t">Thai Food 22 — Thai Fruits</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/67-thai-food-23-thai-drinks-cafe-culture/" title="Thai Food 23 — Thai Drinks &amp; Café Culture — 30 words" data-title="thai food 23 — thai drinks &amp; café culture"><span class="n">67</span><span class="t">Thai Food 23 — Thai Drinks &amp; Café Culture</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/68-thai-food-24-thai-ingredients-pantry/" title="Thai Food 24 — Thai Ingredients &amp; Pantry — 36 words" data-title="thai food 24 — thai ingredients &amp; pantry"><span class="n">68</span><span class="t">Thai Food 24 — Thai Ingredients &amp; Pantry</span><span class="w">36</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/69-thai-food-25-thai-herbs-aromatics/" title="Thai Food 25 — Thai Herbs &amp; Aromatics — 35 words" data-title="thai food 25 — thai herbs &amp; aromatics"><span class="n">69</span><span class="t">Thai Food 25 — Thai Herbs &amp; Aromatics</span><span class="w">35</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/70-thai-food-26-cooking-methods/" title="Thai Food 26 — Cooking Methods — 43 words" data-title="thai food 26 — cooking methods"><span class="n">70</span><span class="t">Thai Food 26 — Cooking Methods</span><span class="w">43</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/71-thai-food-27-pork-dishes/" title="Thai Food 27 — Pork Dishes — 20 words" data-title="thai food 27 — pork dishes"><span class="n">71</span><span class="t">Thai Food 27 — Pork Dishes</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/72-thai-food-28-chicken-dishes/" title="Thai Food 28 — Chicken Dishes — 20 words" data-title="thai food 28 — chicken dishes"><span class="n">72</span><span class="t">Thai Food 28 — Chicken Dishes</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/73-thai-food-29-beef-dishes/" title="Thai Food 29 — Beef Dishes — 20 words" data-title="thai food 29 — beef dishes"><span class="n">73</span><span class="t">Thai Food 29 — Beef Dishes</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/74-thai-food-30-vegetarian-tofu/" title="Thai Food 30 — Vegetarian &amp; Tofu — 30 words" data-title="thai food 30 — vegetarian &amp; tofu"><span class="n">74</span><span class="t">Thai Food 30 — Vegetarian &amp; Tofu</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/75-thai-food-31-soups/" title="Thai Food 31 — Soups — 30 words" data-title="thai food 31 — soups"><span class="n">75</span><span class="t">Thai Food 31 — Soups</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/76-thai-food-32-thai-bbq-grilling/" title="Thai Food 32 — Thai BBQ &amp; Grilling — 29 words" data-title="thai food 32 — thai bbq &amp; grilling"><span class="n">76</span><span class="t">Thai Food 32 — Thai BBQ &amp; Grilling</span><span class="w">29</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/77-thai-food-33-moo-kratha-suki/" title="Thai Food 33 — Moo Kratha &amp; Suki — 33 words" data-title="thai food 33 — moo kratha &amp; suki"><span class="n">77</span><span class="t">Thai Food 33 — Moo Kratha &amp; Suki</span><span class="w">33</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/78-thai-food-34-thai-stir-fries/" title="Thai Food 34 — Thai Stir-Fries — 30 words" data-title="thai food 34 — thai stir-fries"><span class="n">78</span><span class="t">Thai Food 34 — Thai Stir-Fries</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/79-thai-food-35-thai-egg-dishes/" title="Thai Food 35 — Thai Egg Dishes — 30 words" data-title="thai food 35 — thai egg dishes"><span class="n">79</span><span class="t">Thai Food 35 — Thai Egg Dishes</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/80-thai-food-36-thai-noodles-deep-dive/" title="Thai Food 36 — Thai Noodles Deep Dive — 30 words" data-title="thai food 36 — thai noodles deep dive"><span class="n">80</span><span class="t">Thai Food 36 — Thai Noodles Deep Dive</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/81-thai-food-37-thai-curries-deep-dive/" title="Thai Food 37 — Thai Curries Deep Dive — 29 words" data-title="thai food 37 — thai curries deep dive"><span class="n">81</span><span class="t">Thai Food 37 — Thai Curries Deep Dive</span><span class="w">29</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/82-thai-food-38-thai-salads-spicy-salads/" title="Thai Food 38 — Thai Salads &amp; Spicy Salads — 30 words" data-title="thai food 38 — thai salads &amp; spicy salads"><span class="n">82</span><span class="t">Thai Food 38 — Thai Salads &amp; Spicy Salads</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/83-thai-food-39-thai-street-food-deep-dive/" title="Thai Food 39 — Thai Street Food Deep Dive — 30 words" data-title="thai food 39 — thai street food deep dive"><span class="n">83</span><span class="t">Thai Food 39 — Thai Street Food Deep Dive</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/84-thai-food-40-thai-markets-food-shopping/" title="Thai Food 40 — Thai Markets &amp; Food Shopping — 43 words" data-title="thai food 40 — thai markets &amp; food shopping"><span class="n">84</span><span class="t">Thai Food 40 — Thai Markets &amp; Food Shopping</span><span class="w">43</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/85-food-phrases-restaurant-interactions/" title="Food Phrases &amp; Restaurant Interactions — 26 words" data-title="food phrases &amp; restaurant interactions"><span class="n">85</span><span class="t">Food Phrases &amp; Restaurant Interactions</span><span class="w">26</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/86-spice-sweetness-flavor-requests/" title="Spice, Sweetness &amp; Flavor Requests — 26 words" data-title="spice, sweetness &amp; flavor requests"><span class="n">86</span><span class="t">Spice, Sweetness &amp; Flavor Requests</span><span class="w">26</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/87-customizing-your-order/" title="Customizing Your Order — 25 words" data-title="customizing your order"><span class="n">87</span><span class="t">Customizing Your Order</span><span class="w">25</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/88-restaurant-problems-special-requests/" title="Restaurant Problems &amp; Special Requests — 30 words" data-title="restaurant problems &amp; special requests"><span class="n">88</span><span class="t">Restaurant Problems &amp; Special Requests</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/89-eating-together-thai-food-culture/" title="Eating Together &amp; Thai Food Culture — 30 words" data-title="eating together &amp; thai food culture"><span class="n">89</span><span class="t">Eating Together &amp; Thai Food Culture</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/90-convenience-store-food/" title="Convenience Store Food — 30 words" data-title="convenience store food"><span class="n">90</span><span class="t">Convenience Store Food</span><span class="w">30</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/91-cafes-bakeries/" title="Cafés &amp; Bakeries — 31 words" data-title="cafés &amp; bakeries"><span class="n">91</span><span class="t">Cafés &amp; Bakeries</span><span class="w">31</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/92-smoothies-shakes-fresh-drinks/" title="Smoothies, Shakes &amp; Fresh Drinks — 29 words" data-title="smoothies, shakes &amp; fresh drinks"><span class="n">92</span><span class="t">Smoothies, Shakes &amp; Fresh Drinks</span><span class="w">29</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/93-rare-regional-thai-foods/" title="Rare &amp; Regional Thai Foods — 29 words" data-title="rare &amp; regional thai foods"><span class="n">93</span><span class="t">Rare &amp; Regional Thai Foods</span><span class="w">29</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/94-ultimate-thai-food-vocabulary/" title="Ultimate Thai Food Vocabulary — 60 words" data-title="ultimate thai food vocabulary"><span class="n">94</span><span class="t">Ultimate Thai Food Vocabulary</span><span class="w">60</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 50">Show all 50</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-food/" title="The Thai Food page" data-title="thai food">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-conversation">
-      <summary class="cath" data-title="thai conversation"><span class="nm">Thai Conversation</span><span class="sub">55 lessons · 1124 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/95-greetings-introductions/" title="Greetings &amp; Introductions — 18 words" data-title="greetings &amp; introductions"><span class="n">95</span><span class="t">Greetings &amp; Introductions</span><span class="w">18</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/96-meeting-someone/" title="Meeting Someone — 20 words" data-title="meeting someone"><span class="n">96</span><span class="t">Meeting Someone</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/97-where-are-you-from/" title="Where Are You From? — 19 words" data-title="where are you from?"><span class="n">97</span><span class="t">Where Are You From?</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/98-what-are-you-doing/" title="What Are You Doing? — 20 words" data-title="what are you doing?"><span class="n">98</span><span class="t">What Are You Doing?</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/99-likes-dislikes/" title="Likes &amp; Dislikes — 22 words" data-title="likes &amp; dislikes"><span class="n">99</span><span class="t">Likes &amp; Dislikes</span><span class="w">22</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/100-asking-simple-questions/" title="Asking Simple Questions — 21 words" data-title="asking simple questions"><span class="n">100</span><span class="t">Asking Simple Questions</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/101-making-plans/" title="Making Plans — 21 words" data-title="making plans"><span class="n">101</span><span class="t">Making Plans</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/102-shopping-conversation/" title="Shopping Conversation — 21 words" data-title="shopping conversation"><span class="n">102</span><span class="t">Shopping Conversation</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/103-getting-around/" title="Getting Around — 23 words" data-title="getting around"><span class="n">103</span><span class="t">Getting Around</span><span class="w">23</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/104-everyday-small-talk/" title="Everyday Small Talk — 22 words" data-title="everyday small talk"><span class="n">104</span><span class="t">Everyday Small Talk</span><span class="w">22</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/105-telling-short-stories/" title="Telling Short Stories — 20 words" data-title="telling short stories"><span class="n">105</span><span class="t">Telling Short Stories</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/106-explaining-what-happened/" title="Explaining What Happened — 20 words" data-title="explaining what happened"><span class="n">106</span><span class="t">Explaining What Happened</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/107-making-requests-naturally/" title="Making Requests Naturally — 20 words" data-title="making requests naturally"><span class="n">107</span><span class="t">Making Requests Naturally</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/108-giving-reasons/" title="Giving Reasons — 21 words" data-title="giving reasons"><span class="n">108</span><span class="t">Giving Reasons</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/109-opinions-simple-reactions/" title="Opinions &amp; Simple Reactions — 20 words" data-title="opinions &amp; simple reactions"><span class="n">109</span><span class="t">Opinions &amp; Simple Reactions</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/110-invitations-social-plans/" title="Invitations &amp; Social Plans — 21 words" data-title="invitations &amp; social plans"><span class="n">110</span><span class="t">Invitations &amp; Social Plans</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/111-phone-messaging/" title="Phone &amp; Messaging — 20 words" data-title="phone &amp; messaging"><span class="n">111</span><span class="t">Phone &amp; Messaging</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/112-talking-about-experiences/" title="Talking About Experiences — 21 words" data-title="talking about experiences"><span class="n">112</span><span class="t">Talking About Experiences</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/113-describing-people-naturally/" title="Describing People Naturally — 20 words" data-title="describing people naturally"><span class="n">113</span><span class="t">Describing People Naturally</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/114-talking-about-work-daily-life/" title="Talking About Work &amp; Daily Life — 21 words" data-title="talking about work &amp; daily life"><span class="n">114</span><span class="t">Talking About Work &amp; Daily Life</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/115-problems-solutions/" title="Problems &amp; Solutions — 20 words" data-title="problems &amp; solutions"><span class="n">115</span><span class="t">Problems &amp; Solutions</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/116-suggestions-advice/" title="Suggestions &amp; Advice — 21 words" data-title="suggestions &amp; advice"><span class="n">116</span><span class="t">Suggestions &amp; Advice</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/117-plans-changes-cancellations/" title="Plans, Changes &amp; Cancellations — 20 words" data-title="plans, changes &amp; cancellations"><span class="n">117</span><span class="t">Plans, Changes &amp; Cancellations</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/118-feelings-stress-reactions/" title="Feelings, Stress &amp; Reactions — 21 words" data-title="feelings, stress &amp; reactions"><span class="n">118</span><span class="t">Feelings, Stress &amp; Reactions</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/119-longer-everyday-conversations/" title="Longer Everyday Conversations — 20 words" data-title="longer everyday conversations"><span class="n">119</span><span class="t">Longer Everyday Conversations</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/120-telling-better-stories/" title="Telling Better Stories — 20 words" data-title="telling better stories"><span class="n">120</span><span class="t">Telling Better Stories</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/121-explaining-opinions/" title="Explaining Opinions — 20 words" data-title="explaining opinions"><span class="n">121</span><span class="t">Explaining Opinions</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/122-handling-misunderstandings/" title="Handling Misunderstandings — 20 words" data-title="handling misunderstandings"><span class="n">122</span><span class="t">Handling Misunderstandings</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/123-comparing-choosing/" title="Comparing &amp; Choosing — 20 words" data-title="comparing &amp; choosing"><span class="n">123</span><span class="t">Comparing &amp; Choosing</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/124-keeping-a-conversation-going/" title="Keeping a Conversation Going — 22 words" data-title="keeping a conversation going"><span class="n">124</span><span class="t">Keeping a Conversation Going</span><span class="w">22</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/125-negotiating-finding-agreement/" title="Negotiating &amp; Finding Agreement — 24 words" data-title="negotiating &amp; finding agreement"><span class="n">125</span><span class="t">Negotiating &amp; Finding Agreement</span><span class="w">24</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/126-work-social-situations/" title="Work &amp; Social Situations — 21 words" data-title="work &amp; social situations"><span class="n">126</span><span class="t">Work &amp; Social Situations</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/127-describing-causes-results/" title="Describing Causes &amp; Results — 20 words" data-title="describing causes &amp; results"><span class="n">127</span><span class="t">Describing Causes &amp; Results</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/128-natural-thai-fillers-nuance/" title="Natural Thai Fillers &amp; Nuance — 23 words" data-title="natural thai fillers &amp; nuance"><span class="n">128</span><span class="t">Natural Thai Fillers &amp; Nuance</span><span class="w">23</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/129-social-conflict-difficult-conversations/" title="Social Conflict &amp; Difficult Conversations — 21 words" data-title="social conflict &amp; difficult conversations"><span class="n">129</span><span class="t">Social Conflict &amp; Difficult Conversations</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/130-explaining-defending-your-position/" title="Explaining &amp; Defending Your Position — 21 words" data-title="explaining &amp; defending your position"><span class="n">130</span><span class="t">Explaining &amp; Defending Your Position</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/131-hypotheticals-what-ifs/" title="Hypotheticals &amp; What-Ifs — 21 words" data-title="hypotheticals &amp; what-ifs"><span class="n">131</span><span class="t">Hypotheticals &amp; What-Ifs</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/132-plans-goals-decisions/" title="Plans, Goals &amp; Decisions — 22 words" data-title="plans, goals &amp; decisions"><span class="n">132</span><span class="t">Plans, Goals &amp; Decisions</span><span class="w">22</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/133-relationships-social-dynamics/" title="Relationships &amp; Social Dynamics — 20 words" data-title="relationships &amp; social dynamics"><span class="n">133</span><span class="t">Relationships &amp; Social Dynamics</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/134-real-world-thai-conversations/" title="Real-World Thai Conversations — 21 words" data-title="real-world thai conversations"><span class="n">134</span><span class="t">Real-World Thai Conversations</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/135-arguing-a-point-naturally/" title="Arguing a Point Naturally — 21 words" data-title="arguing a point naturally"><span class="n">135</span><span class="t">Arguing a Point Naturally</span><span class="w">21</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/136-explaining-complex-ideas/" title="Explaining Complex Ideas — 20 words" data-title="explaining complex ideas"><span class="n">136</span><span class="t">Explaining Complex Ideas</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/137-reading-between-the-lines/" title="Reading Between the Lines — 19 words" data-title="reading between the lines"><span class="n">137</span><span class="t">Reading Between the Lines</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/138-indirect-language-politeness/" title="Indirect Language &amp; Politeness — 19 words" data-title="indirect language &amp; politeness"><span class="n">138</span><span class="t">Indirect Language &amp; Politeness</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/139-persuasion-negotiation/" title="Persuasion &amp; Negotiation — 19 words" data-title="persuasion &amp; negotiation"><span class="n">139</span><span class="t">Persuasion &amp; Negotiation</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/140-sarcasm-humor-teasing/" title="Sarcasm, Humor &amp; Teasing — 20 words" data-title="sarcasm, humor &amp; teasing"><span class="n">140</span><span class="t">Sarcasm, Humor &amp; Teasing</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/141-storytelling-like-a-native/" title="Storytelling Like a Native — 20 words" data-title="storytelling like a native"><span class="n">141</span><span class="t">Storytelling Like a Native</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/142-emotional-sensitive-conversations/" title="Emotional &amp; Sensitive Conversations — 19 words" data-title="emotional &amp; sensitive conversations"><span class="n">142</span><span class="t">Emotional &amp; Sensitive Conversations</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/143-social-status-relationships/" title="Social Status &amp; Relationships — 19 words" data-title="social status &amp; relationships"><span class="n">143</span><span class="t">Social Status &amp; Relationships</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/144-workplace-politics-difficult-situations/" title="Workplace Politics &amp; Difficult Situations — 19 words" data-title="workplace politics &amp; difficult situations"><span class="n">144</span><span class="t">Workplace Politics &amp; Difficult Situations</span><span class="w">19</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/145-making-plans-under-pressure/" title="Making Plans Under Pressure — 20 words" data-title="making plans under pressure"><span class="n">145</span><span class="t">Making Plans Under Pressure</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/146-debating-challenging-ideas/" title="Debating &amp; Challenging Ideas — 20 words" data-title="debating &amp; challenging ideas"><span class="n">146</span><span class="t">Debating &amp; Challenging Ideas</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/147-fast-messy-everyday-thai/" title="Fast, Messy Everyday Thai — 20 words" data-title="fast, messy everyday thai"><span class="n">147</span><span class="t">Fast, Messy Everyday Thai</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/148-cultural-nuance-unspoken-meaning/" title="Cultural Nuance &amp; Unspoken Meaning — 20 words" data-title="cultural nuance &amp; unspoken meaning"><span class="n">148</span><span class="t">Cultural Nuance &amp; Unspoken Meaning</span><span class="w">20</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/149-real-world-advanced-thai/" title="Real-World Advanced Thai — 20 words" data-title="real-world advanced thai"><span class="n">149</span><span class="t">Real-World Advanced Thai</span><span class="w">20</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 55">Show all 55</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-conversation/" title="The Thai Conversation page" data-title="thai conversation">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-natural-thai">
-      <summary class="cath" data-title="natural thai"><span class="nm">Natural Thai</span><span class="sub">17 lessons · 255 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/150-just-say-it-naturally/" title="Just Say It Naturally — 15 words" data-title="just say it naturally"><span class="n">150</span><span class="t">Just Say It Naturally</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/151-thai-conversation-glue/" title="Thai Conversation Glue — 15 words" data-title="thai conversation glue"><span class="n">151</span><span class="t">Thai Conversation Glue</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/152-thai-softening-words/" title="Thai Softening Words — 15 words" data-title="thai softening words"><span class="n">152</span><span class="t">Thai Softening Words</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/153-natural-reactions/" title="Natural Reactions — 15 words" data-title="natural reactions"><span class="n">153</span><span class="t">Natural Reactions</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/154-saying-things-less-directly/" title="Saying Things Less Directly — 15 words" data-title="saying things less directly"><span class="n">154</span><span class="t">Saying Things Less Directly</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/155-natural-agreement/" title="Natural Agreement — 15 words" data-title="natural agreement"><span class="n">155</span><span class="t">Natural Agreement</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/156-natural-disagreement/" title="Natural Disagreement — 15 words" data-title="natural disagreement"><span class="n">156</span><span class="t">Natural Disagreement</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/157-natural-questions/" title="Natural Questions — 15 words" data-title="natural questions"><span class="n">157</span><span class="t">Natural Questions</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/158-natural-time-talk/" title="Natural Time Talk — 15 words" data-title="natural time talk"><span class="n">158</span><span class="t">Natural Time Talk</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/159-natural-uncertainty/" title="Natural Uncertainty — 15 words" data-title="natural uncertainty"><span class="n">159</span><span class="t">Natural Uncertainty</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/160-natural-emphasis/" title="Natural Emphasis — 15 words" data-title="natural emphasis"><span class="n">160</span><span class="t">Natural Emphasis</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/161-natural-shortcuts/" title="Natural Shortcuts — 15 words" data-title="natural shortcuts"><span class="n">161</span><span class="t">Natural Shortcuts</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/162-natural-social-language/" title="Natural Social Language — 15 words" data-title="natural social language"><span class="n">162</span><span class="t">Natural Social Language</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/163-natural-problem-talk/" title="Natural Problem Talk — 15 words" data-title="natural problem talk"><span class="n">163</span><span class="t">Natural Problem Talk</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/164-natural-thai-about-people/" title="Natural Thai About People — 15 words" data-title="natural thai about people"><span class="n">164</span><span class="t">Natural Thai About People</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/165-ending-naturally/" title="Ending Naturally — 15 words" data-title="ending naturally"><span class="n">165</span><span class="t">Ending Naturally</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/166-natural-thai-the-little-things/" title="Natural Thai: The Little Things — 15 words" data-title="natural thai: the little things"><span class="n">166</span><span class="t">Natural Thai: The Little Things</span><span class="w">15</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 17">Show all 17</button><a class="catpage" href="https://thai.inaflash.cards/c-natural-thai/" title="The Natural Thai page" data-title="natural thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-culture-social-nuance">
-      <summary class="cath" data-title="thai culture &amp; social nuance"><span class="nm">Thai Culture &amp; Social Nuance</span><span class="sub">18 lessons · 271 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/167-respect-hierarchy/" title="Respect &amp; Hierarchy — 15 words" data-title="respect &amp; hierarchy"><span class="n">167</span><span class="t">Respect &amp; Hierarchy</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/168-social-consideration/" title="เกรงใจ — Social Consideration — 15 words" data-title="เกรงใจ — social consideration"><span class="n">168</span><span class="t">เกรงใจ — Social Consideration</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/169-face-social-harmony/" title="หน้า — Face &amp; Social Harmony — 15 words" data-title="หน้า — face &amp; social harmony"><span class="n">169</span><span class="t">หน้า — Face &amp; Social Harmony</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/170-kindness-goodwill/" title="น้ำใจ — Kindness &amp; Goodwill — 15 words" data-title="น้ำใจ — kindness &amp; goodwill"><span class="n">170</span><span class="t">น้ำใจ — Kindness &amp; Goodwill</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/171-indirectness-reading-the-room/" title="Indirectness &amp; Reading the Room — 15 words" data-title="indirectness &amp; reading the room"><span class="n">171</span><span class="t">Indirectness &amp; Reading the Room</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/172-politeness-social-distance/" title="Politeness &amp; Social Distance — 15 words" data-title="politeness &amp; social distance"><span class="n">172</span><span class="t">Politeness &amp; Social Distance</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/173-age-status-thai-address/" title="Age, Status &amp; Thai Address — 15 words" data-title="age, status &amp; thai address"><span class="n">173</span><span class="t">Age, Status &amp; Thai Address</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/174-invitations-offers-refusing/" title="Invitations, Offers &amp; Refusing — 15 words" data-title="invitations, offers &amp; refusing"><span class="n">174</span><span class="t">Invitations, Offers &amp; Refusing</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/175-social-boundaries/" title="Social Boundaries — 15 words" data-title="social boundaries"><span class="n">175</span><span class="t">Social Boundaries</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/176-apologizing-repairing-social-harmony/" title="Apologizing &amp; Repairing Social Harmony — 15 words" data-title="apologizing &amp; repairing social harmony"><span class="n">176</span><span class="t">Apologizing &amp; Repairing Social Harmony</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/177-social-obligation-reciprocity/" title="Social Obligation &amp; Reciprocity — 16 words" data-title="social obligation &amp; reciprocity"><span class="n">177</span><span class="t">Social Obligation &amp; Reciprocity</span><span class="w">16</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/178-thai-hospitality/" title="Thai Hospitality — 15 words" data-title="thai hospitality"><span class="n">178</span><span class="t">Thai Hospitality</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/179-conflict-harmony-saving-relationships/" title="Conflict, Harmony &amp; Saving Relationships — 15 words" data-title="conflict, harmony &amp; saving relationships"><span class="n">179</span><span class="t">Conflict, Harmony &amp; Saving Relationships</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/180-social-taboos-sensitive-topics/" title="Social Taboos &amp; Sensitive Topics — 15 words" data-title="social taboos &amp; sensitive topics"><span class="n">180</span><span class="t">Social Taboos &amp; Sensitive Topics</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/181-reading-the-room/" title="Reading the Room — 15 words" data-title="reading the room"><span class="n">181</span><span class="t">Reading the Room</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/182-when-yes-doesn-t-mean-yes/" title="When “Yes” Doesn&#x27;t Mean Yes — 15 words" data-title="when “yes” doesn&#x27;t mean yes"><span class="n">182</span><span class="t">When “Yes” Doesn&#x27;t Mean Yes</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/183-the-thai-idea-of-in-action/" title="The Thai Idea of “เกรงใจ” in Action — 15 words" data-title="the thai idea of “เกรงใจ” in action"><span class="n">183</span><span class="t">The Thai Idea of “เกรงใจ” in Action</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/184-putting-social-nuance-together/" title="Putting Social Nuance Together — 15 words" data-title="putting social nuance together"><span class="n">184</span><span class="t">Putting Social Nuance Together</span><span class="w">15</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-culture-social-nuance/" title="The Thai Culture &amp; Social Nuance page" data-title="thai culture &amp; social nuance">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-humor-banter-warning-mostly-use-with-friends">
-      <summary class="cath" data-title="thai humor &amp; banter -warning. mostly use with friends!"><span class="nm">Thai Humor &amp; Banter -Warning. Mostly use with friends!</span><span class="sub">16 lessons · 240 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/185-teasing-your-friends/" title="Teasing Your Friends — 15 words" data-title="teasing your friends"><span class="n">185</span><span class="t">Teasing Your Friends</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/186-playful-insults/" title="Playful Insults — 15 words" data-title="playful insults"><span class="n">186</span><span class="t">Playful Insults</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/187-sarcasm-yeah-right/" title="Sarcasm &amp; “Yeah, Right” — 15 words" data-title="sarcasm &amp; “yeah, right”"><span class="n">187</span><span class="t">Sarcasm &amp; “Yeah, Right”</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/188-exaggerating-for-comedy/" title="Exaggerating for Comedy — 15 words" data-title="exaggerating for comedy"><span class="n">188</span><span class="t">Exaggerating for Comedy</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/189-pretending-to-be-annoyed/" title="Pretending to Be Annoyed — 15 words" data-title="pretending to be annoyed"><span class="n">189</span><span class="t">Pretending to Be Annoyed</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/190-self-deprecating-humor/" title="Self-Deprecating Humor — 15 words" data-title="self-deprecating humor"><span class="n">190</span><span class="t">Self-Deprecating Humor</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/191-no-way-reactions/" title="“No Way!” Reactions — 15 words" data-title="“no way!” reactions"><span class="n">191</span><span class="t">“No Way!” Reactions</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/192-friendly-challenge-one-upping/" title="Friendly Challenge &amp; One-Upping — 15 words" data-title="friendly challenge &amp; one-upping"><span class="n">192</span><span class="t">Friendly Challenge &amp; One-Upping</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/193-playful-complaints/" title="Playful Complaints — 15 words" data-title="playful complaints"><span class="n">193</span><span class="t">Playful Complaints</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/194-banter-between-close-friends/" title="Banter Between Close Friends — 15 words" data-title="banter between close friends"><span class="n">194</span><span class="t">Banter Between Close Friends</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/195-come-on-seriously/" title="“Come On!” &amp; “Seriously?” — 15 words" data-title="“come on!” &amp; “seriously?”"><span class="n">195</span><span class="t">“Come On!” &amp; “Seriously?”</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/196-knowing-when-it-s-a-joke/" title="Knowing When It&#x27;s a Joke — 15 words" data-title="knowing when it&#x27;s a joke"><span class="n">196</span><span class="t">Knowing When It&#x27;s a Joke</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/197-timing-the-joke/" title="Timing the Joke — 15 words" data-title="timing the joke"><span class="n">197</span><span class="t">Timing the Joke</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/198-friendly-mockery/" title="Friendly Mockery — 15 words" data-title="friendly mockery"><span class="n">198</span><span class="t">Friendly Mockery</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/199-banter-without-crossing-the-line/" title="Banter Without Crossing the Line — 15 words" data-title="banter without crossing the line"><span class="n">199</span><span class="t">Banter Without Crossing the Line</span><span class="w">15</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/200-real-thai-banter/" title="Real Thai Banter — 15 words" data-title="real thai banter"><span class="n">200</span><span class="t">Real Thai Banter</span><span class="w">15</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 16">Show all 16</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-humor-banter-warning-mostly-use-with-friends/" title="The Thai Humor &amp; Banter -Warning. Mostly use with friends! page" data-title="thai humor &amp; banter -warning. mostly use with friends!">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-professional-thai">
-      <summary class="cath" data-title="professional thai"><span class="nm">Professional Thai</span><span class="sub">18 lessons · 181 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/201-1-workplace-basics/" title="1. Workplace Basics — 10 words" data-title="1. workplace basics"><span class="t">1. Workplace Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/202-2-talking-to-your-boss/" title="2. Talking to Your Boss — 10 words" data-title="2. talking to your boss"><span class="t">2. Talking to Your Boss</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/203-3-meetings/" title="3. Meetings — 11 words" data-title="3. meetings"><span class="t">3. Meetings</span><span class="w">11</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/204-4-projects-responsibilities/" title="4. Projects &amp; Responsibilities — 10 words" data-title="4. projects &amp; responsibilities"><span class="t">4. Projects &amp; Responsibilities</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/205-5-deadlines-time/" title="5. Deadlines &amp; Time — 10 words" data-title="5. deadlines &amp; time"><span class="t">5. Deadlines &amp; Time</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/206-6-email-written-communication/" title="6. Email &amp; Written Communication — 10 words" data-title="6. email &amp; written communication"><span class="t">6. Email &amp; Written Communication</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/207-7-presentations/" title="7. Presentations — 10 words" data-title="7. presentations"><span class="t">7. Presentations</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/208-8-clients-customers/" title="8. Clients &amp; Customers — 10 words" data-title="8. clients &amp; customers"><span class="t">8. Clients &amp; Customers</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/209-9-problems-mistakes/" title="9. Problems &amp; Mistakes — 10 words" data-title="9. problems &amp; mistakes"><span class="t">9. Problems &amp; Mistakes</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/210-10-giving-opinions-professionally/" title="10. Giving Opinions Professionally — 10 words" data-title="10. giving opinions professionally"><span class="t">10. Giving Opinions Professionally</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/211-11-disagreeing-politely/" title="11. Disagreeing Politely — 10 words" data-title="11. disagreeing politely"><span class="t">11. Disagreeing Politely</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/212-12-negotiation-agreement/" title="12. Negotiation &amp; Agreement — 10 words" data-title="12. negotiation &amp; agreement"><span class="t">12. Negotiation &amp; Agreement</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/213-13-money-budgets-costs/" title="13. Money, Budgets &amp; Costs — 10 words" data-title="13. money, budgets &amp; costs"><span class="t">13. Money, Budgets &amp; Costs</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/214-14-feedback-performance/" title="14. Feedback &amp; Performance — 10 words" data-title="14. feedback &amp; performance"><span class="t">14. Feedback &amp; Performance</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/215-15-job-interviews/" title="15. Job Interviews — 10 words" data-title="15. job interviews"><span class="t">15. Job Interviews</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/216-16-phone-calls-at-work/" title="16. Phone Calls at Work — 10 words" data-title="16. phone calls at work"><span class="t">16. Phone Calls at Work</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/217-17-office-politics-reading-between-the-lines/" title="17. Office Politics &amp; Reading Between the Lines — 10 words" data-title="17. office politics &amp; reading between the lines"><span class="t">17. Office Politics &amp; Reading Between the Lines</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/218-18-professional-thai-in-difficult-situations/" title="18. Professional Thai in Difficult Situations — 10 words" data-title="18. professional thai in difficult situations"><span class="t">18. Professional Thai in Difficult Situations</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-professional-thai/" title="The Professional Thai page" data-title="professional thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-relationships-dating-thai">
-      <summary class="cath" data-title="relationships &amp; dating thai"><span class="nm">Relationships &amp; Dating Thai</span><span class="sub">18 lessons · 180 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/219-1-meeting-someone-first-impressions/" title="1. Meeting Someone &amp; First Impressions — 10 words" data-title="1. meeting someone &amp; first impressions"><span class="t">1. Meeting Someone &amp; First Impressions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/220-2-flirting-showing-interest/" title="2. Flirting &amp; Showing Interest — 10 words" data-title="2. flirting &amp; showing interest"><span class="t">2. Flirting &amp; Showing Interest</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/221-3-asking-someone-out/" title="3. Asking Someone Out — 10 words" data-title="3. asking someone out"><span class="t">3. Asking Someone Out</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/222-4-dates-dating/" title="4. Dates &amp; Dating — 10 words" data-title="4. dates &amp; dating"><span class="t">4. Dates &amp; Dating</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/223-5-becoming-a-couple/" title="5. Becoming a Couple — 10 words" data-title="5. becoming a couple"><span class="t">5. Becoming a Couple</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/224-6-affection-romance/" title="6. Affection &amp; Romance — 10 words" data-title="6. affection &amp; romance"><span class="t">6. Affection &amp; Romance</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/225-7-texting-messaging-your-partner/" title="7. Texting &amp; Messaging Your Partner — 10 words" data-title="7. texting &amp; messaging your partner"><span class="t">7. Texting &amp; Messaging Your Partner</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/226-8-trust-feeling-secure/" title="8. Trust &amp; Feeling Secure — 10 words" data-title="8. trust &amp; feeling secure"><span class="t">8. Trust &amp; Feeling Secure</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/227-9-jealousy-insecurity/" title="9. Jealousy &amp; Insecurity — 10 words" data-title="9. jealousy &amp; insecurity"><span class="t">9. Jealousy &amp; Insecurity</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/228-10-boundaries-personal-space/" title="10. Boundaries &amp; Personal Space — 10 words" data-title="10. boundaries &amp; personal space"><span class="t">10. Boundaries &amp; Personal Space</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/229-11-arguments-conflict/" title="11. Arguments &amp; Conflict — 10 words" data-title="11. arguments &amp; conflict"><span class="t">11. Arguments &amp; Conflict</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/230-12-apologies-making-up/" title="12. Apologies &amp; Making Up — 10 words" data-title="12. apologies &amp; making up"><span class="t">12. Apologies &amp; Making Up</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/231-13-love-sex-intimacy/" title="13. Love, Sex &amp; Intimacy — 10 words" data-title="13. love, sex &amp; intimacy"><span class="t">13. Love, Sex &amp; Intimacy</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/232-14-meeting-the-family/" title="14. Meeting the Family — 10 words" data-title="14. meeting the family"><span class="t">14. Meeting the Family</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/233-15-serious-relationships-future-plans/" title="15. Serious Relationships &amp; Future Plans — 10 words" data-title="15. serious relationships &amp; future plans"><span class="t">15. Serious Relationships &amp; Future Plans</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/234-16-long-distance-relationships/" title="16. Long-Distance Relationships — 10 words" data-title="16. long-distance relationships"><span class="t">16. Long-Distance Relationships</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/235-17-breaking-up/" title="17. Breaking Up — 10 words" data-title="17. breaking up"><span class="t">17. Breaking Up</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/236-18-complicated-relationships/" title="18. Complicated Relationships — 10 words" data-title="18. complicated relationships"><span class="t">18. Complicated Relationships</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-relationships-dating-thai/" title="The Relationships &amp; Dating Thai page" data-title="relationships &amp; dating thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-friends-social-thai">
-      <summary class="cath" data-title="friends &amp; social thai"><span class="nm">Friends &amp; Social Thai</span><span class="sub">18 lessons · 180 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/237-making-friends/" title="Making Friends — 10 words" data-title="making friends"><span class="n">237</span><span class="t">Making Friends</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/238-introducing-your-friends/" title="Introducing Your Friends — 10 words" data-title="introducing your friends"><span class="n">238</span><span class="t">Introducing Your Friends</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/239-hanging-out/" title="Hanging Out — 10 words" data-title="hanging out"><span class="n">239</span><span class="t">Hanging Out</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/240-making-plans/" title="Making Plans — 10 words" data-title="making plans"><span class="n">240</span><span class="t">Making Plans</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/241-inviting-someone-somewhere/" title="Inviting Someone Somewhere — 10 words" data-title="inviting someone somewhere"><span class="n">241</span><span class="t">Inviting Someone Somewhere</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/242-cancelling-changing-plans/" title="Cancelling &amp; Changing Plans — 10 words" data-title="cancelling &amp; changing plans"><span class="n">242</span><span class="t">Cancelling &amp; Changing Plans</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/243-everyday-friend-chat/" title="Everyday Friend Chat — 10 words" data-title="everyday friend chat"><span class="n">243</span><span class="t">Everyday Friend Chat</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/244-asking-friends-for-favors/" title="Asking Friends for Favors — 10 words" data-title="asking friends for favors"><span class="n">244</span><span class="t">Asking Friends for Favors</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/245-offering-to-help/" title="Offering to Help — 10 words" data-title="offering to help"><span class="n">245</span><span class="t">Offering to Help</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/246-borrowing-lending/" title="Borrowing &amp; Lending — 10 words" data-title="borrowing &amp; lending"><span class="n">246</span><span class="t">Borrowing &amp; Lending</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/247-sharing-food-paying/" title="Sharing Food &amp; Paying — 10 words" data-title="sharing food &amp; paying"><span class="n">247</span><span class="t">Sharing Food &amp; Paying</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/248-going-out-together/" title="Going Out Together — 10 words" data-title="going out together"><span class="n">248</span><span class="t">Going Out Together</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/249-friends-at-work/" title="Friends at Work — 10 words" data-title="friends at work"><span class="n">249</span><span class="t">Friends at Work</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/250-talking-about-other-people/" title="Talking About Other People — 10 words" data-title="talking about other people"><span class="n">250</span><span class="t">Talking About Other People</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/251-gossip-did-you-hear/" title="Gossip &amp; Did You Hear...? — 10 words" data-title="gossip &amp; did you hear...?"><span class="n">251</span><span class="t">Gossip &amp; Did You Hear...?</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/252-being-a-good-friend/" title="Being a Good Friend — 10 words" data-title="being a good friend"><span class="n">252</span><span class="t">Being a Good Friend</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/253-when-friends-annoy-you/" title="When Friends Annoy You — 10 words" data-title="when friends annoy you"><span class="n">253</span><span class="t">When Friends Annoy You</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/254-real-thai-friend-talk/" title="Real Thai Friend Talk — 10 words" data-title="real thai friend talk"><span class="n">254</span><span class="t">Real Thai Friend Talk</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-friends-social-thai/" title="The Friends &amp; Social Thai page" data-title="friends &amp; social thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-news-formal-thai">
-      <summary class="cath" data-title="news &amp; formal thai"><span class="nm">News &amp; Formal Thai</span><span class="sub">18 lessons · 180 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/255-news-headlines-basic-reports/" title="News Headlines &amp; Basic Reports — 10 words" data-title="news headlines &amp; basic reports"><span class="n">255</span><span class="t">News Headlines &amp; Basic Reports</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/256-politics-government/" title="Politics &amp; Government — 10 words" data-title="politics &amp; government"><span class="n">256</span><span class="t">Politics &amp; Government</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/257-economy-business-news/" title="Economy &amp; Business News — 10 words" data-title="economy &amp; business news"><span class="n">257</span><span class="t">Economy &amp; Business News</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/258-crime-police-reports/" title="Crime &amp; Police Reports — 10 words" data-title="crime &amp; police reports"><span class="n">258</span><span class="t">Crime &amp; Police Reports</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/259-accidents-disasters/" title="Accidents &amp; Disasters — 10 words" data-title="accidents &amp; disasters"><span class="n">259</span><span class="t">Accidents &amp; Disasters</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/260-weather-warnings/" title="Weather &amp; Warnings — 10 words" data-title="weather &amp; warnings"><span class="n">260</span><span class="t">Weather &amp; Warnings</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/261-health-public-health/" title="Health &amp; Public Health — 10 words" data-title="health &amp; public health"><span class="n">261</span><span class="t">Health &amp; Public Health</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/262-education-schools/" title="Education &amp; Schools — 10 words" data-title="education &amp; schools"><span class="n">262</span><span class="t">Education &amp; Schools</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/263-society-social-issues/" title="Society &amp; Social Issues — 10 words" data-title="society &amp; social issues"><span class="n">263</span><span class="t">Society &amp; Social Issues</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/264-official-announcements/" title="Official Announcements — 10 words" data-title="official announcements"><span class="n">264</span><span class="t">Official Announcements</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/265-formal-requests-statements/" title="Formal Requests &amp; Statements — 10 words" data-title="formal requests &amp; statements"><span class="n">265</span><span class="t">Formal Requests &amp; Statements</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/266-government-departments/" title="Government Departments — 10 words" data-title="government departments"><span class="n">266</span><span class="t">Government Departments</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/267-legal-administrative-language/" title="Legal &amp; Administrative Language — 10 words" data-title="legal &amp; administrative language"><span class="n">267</span><span class="t">Legal &amp; Administrative Language</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/268-formal-written-thai/" title="Formal Written Thai — 10 words" data-title="formal written thai"><span class="n">268</span><span class="t">Formal Written Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/269-reporting-what-happened/" title="Reporting What Happened — 10 words" data-title="reporting what happened"><span class="n">269</span><span class="t">Reporting What Happened</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/270-quoting-sources-statements/" title="Quoting Sources &amp; Statements — 10 words" data-title="quoting sources &amp; statements"><span class="n">270</span><span class="t">Quoting Sources &amp; Statements</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/271-news-analysis-opinions/" title="News Analysis &amp; Opinions — 10 words" data-title="news analysis &amp; opinions"><span class="n">271</span><span class="t">News Analysis &amp; Opinions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/272-reading-real-thai-news/" title="Reading Real Thai News — 10 words" data-title="reading real thai news"><span class="n">272</span><span class="t">Reading Real Thai News</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-news-formal-thai/" title="The News &amp; Formal Thai page" data-title="news &amp; formal thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-regional-thai-isaan-northern-southern" open>
-      <summary class="cath" data-title="regional thai — isaan / northern / southern"><span class="nm">Regional Thai — Isaan / Northern / Southern</span><span class="sub">16 lessons · 160 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/273-isaan-basics/" title="Isaan Basics — 10 words" data-title="isaan basics"><span class="n">273</span><span class="t">Isaan Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/274-isaan-food-everyday-life/" title="Isaan Food &amp; Everyday Life — 10 words" data-title="isaan food &amp; everyday life"><span class="n">274</span><span class="t">Isaan Food &amp; Everyday Life</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/275-isaan-conversation/" title="Isaan Conversation — 10 words" data-title="isaan conversation"><span class="n">275</span><span class="t">Isaan Conversation</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/276-isaan-particles-tone-of-speech/" title="Isaan Particles &amp; Tone of Speech — 10 words" data-title="isaan particles &amp; tone of speech"><span class="n">276</span><span class="t">Isaan Particles &amp; Tone of Speech</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/277-northern-thai-basics/" title="Northern Thai Basics — 10 words" data-title="northern thai basics"><span class="n">277</span><span class="t">Northern Thai Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/278-northern-thai-everyday-talk/" title="Northern Thai Everyday Talk — 10 words" data-title="northern thai everyday talk"><span class="n">278</span><span class="t">Northern Thai Everyday Talk</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/279-northern-thai-food-culture/" title="Northern Thai Food &amp; Culture — 10 words" data-title="northern thai food &amp; culture"><span class="n">279</span><span class="t">Northern Thai Food &amp; Culture</span><span class="w">10</span></a>
-        <a class="item seq on" href="https://thai.inaflash.cards/280-southern-thai-basics/" title="Southern Thai Basics — 10 words" data-title="southern thai basics"><span class="n">280</span><span class="t">Southern Thai Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/281-southern-thai-conversation/" title="Southern Thai Conversation — 10 words" data-title="southern thai conversation"><span class="n">281</span><span class="t">Southern Thai Conversation</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/282-southern-thai-food/" title="Southern Thai Food — 10 words" data-title="southern thai food"><span class="n">282</span><span class="t">Southern Thai Food</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/283-regional-words-for-people/" title="Regional Words for People — 10 words" data-title="regional words for people"><span class="n">283</span><span class="t">Regional Words for People</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/284-regional-words-for-food-eating/" title="Regional Words for Food &amp; Eating — 10 words" data-title="regional words for food &amp; eating"><span class="n">284</span><span class="t">Regional Words for Food &amp; Eating</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/285-regional-yes-no-question-words/" title="Regional Yes, No &amp; Question Words — 10 words" data-title="regional yes, no &amp; question words"><span class="n">285</span><span class="t">Regional Yes, No &amp; Question Words</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/286-regional-expressions-you-will-actually-hear/" title="Regional Expressions You Will Actually Hear — 10 words" data-title="regional expressions you will actually hear"><span class="n">286</span><span class="t">Regional Expressions You Will Actually Hear</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/287-switching-between-central-regional-thai/" title="Switching Between Central &amp; Regional Thai — 10 words" data-title="switching between central &amp; regional thai"><span class="n">287</span><span class="t">Switching Between Central &amp; Regional Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/288-regional-thai-in-real-conversations/" title="Regional Thai in Real Conversations — 10 words" data-title="regional thai in real conversations"><span class="n">288</span><span class="t">Regional Thai in Real Conversations</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 16">Show all 16</button><a class="catpage" href="https://thai.inaflash.cards/c-regional-thai-isaan-northern-southern/" title="The Regional Thai — Isaan / Northern / Southern page" data-title="regional thai — isaan / northern / southern">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-listening">
-      <summary class="cath" data-title="thai listening"><span class="nm">Thai Listening</span><span class="sub">19 lessons · 190 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/289-listening-basics/" title="Listening Basics — 10 words" data-title="listening basics"><span class="n">289</span><span class="t">Listening Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/290-asking-someone-to-repeat/" title="Asking Someone to Repeat — 10 words" data-title="asking someone to repeat"><span class="n">290</span><span class="t">Asking Someone to Repeat</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/291-spoken-thai-shortcuts/" title="Spoken Thai Shortcuts — 10 words" data-title="spoken thai shortcuts"><span class="n">291</span><span class="t">Spoken Thai Shortcuts</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/292-thai-conversation-glue/" title="Thai Conversation Glue — 10 words" data-title="thai conversation glue"><span class="n">292</span><span class="t">Thai Conversation Glue</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/293-particles-you-need-to-hear/" title="Particles You Need to Hear — 10 words" data-title="particles you need to hear"><span class="n">293</span><span class="t">Particles You Need to Hear</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/294-fast-thai/" title="Fast Thai — 10 words" data-title="fast thai"><span class="n">294</span><span class="t">Fast Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/295-thai-numbers-in-real-speech/" title="Thai Numbers in Real Speech — 10 words" data-title="thai numbers in real speech"><span class="n">295</span><span class="t">Thai Numbers in Real Speech</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/296-time-words-in-spoken-thai/" title="Time Words in Spoken Thai — 10 words" data-title="time words in spoken thai"><span class="n">296</span><span class="t">Time Words in Spoken Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/297-negation-in-fast-speech/" title="Negation in Fast Speech — 10 words" data-title="negation in fast speech"><span class="n">297</span><span class="t">Negation in Fast Speech</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/298-casual-questions/" title="Casual Questions — 10 words" data-title="casual questions"><span class="n">298</span><span class="t">Casual Questions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/299-listening-for-emphasis/" title="Listening for Emphasis — 10 words" data-title="listening for emphasis"><span class="n">299</span><span class="t">Listening for Emphasis</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/300-listening-for-uncertainty/" title="Listening for Uncertainty — 10 words" data-title="listening for uncertainty"><span class="n">300</span><span class="t">Listening for Uncertainty</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/301-listening-to-reactions/" title="Listening to Reactions — 10 words" data-title="listening to reactions"><span class="n">301</span><span class="t">Listening to Reactions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/302-listening-for-agreement-disagreement/" title="Listening for Agreement &amp; Disagreement — 10 words" data-title="listening for agreement &amp; disagreement"><span class="n">302</span><span class="t">Listening for Agreement &amp; Disagreement</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/303-listening-for-hidden-meaning/" title="Listening for Hidden Meaning — 10 words" data-title="listening for hidden meaning"><span class="n">303</span><span class="t">Listening for Hidden Meaning</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/304-listening-through-context/" title="Listening Through Context — 10 words" data-title="listening through context"><span class="n">304</span><span class="t">Listening Through Context</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/305-two-people-talking-fast/" title="Two People Talking Fast — 10 words" data-title="two people talking fast"><span class="n">305</span><span class="t">Two People Talking Fast</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/306-messy-real-world-listening/" title="Messy Real-World Listening — 10 words" data-title="messy real-world listening"><span class="n">306</span><span class="t">Messy Real-World Listening</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/307-real-thai-listening-challenge/" title="Real Thai Listening Challenge — 10 words" data-title="real thai listening challenge"><span class="n">307</span><span class="t">Real Thai Listening Challenge</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 19">Show all 19</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-listening/" title="The Thai Listening page" data-title="thai listening">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-tv-entertainment">
-      <summary class="cath" data-title="thai tv &amp; entertainment"><span class="nm">Thai TV &amp; Entertainment</span><span class="sub">18 lessons · 180 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/308-thai-tv-basics/" title="Thai TV Basics — 10 words" data-title="thai tv basics"><span class="n">308</span><span class="t">Thai TV Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/309-talking-about-shows/" title="Talking About Shows — 10 words" data-title="talking about shows"><span class="n">309</span><span class="t">Talking About Shows</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/310-genres-types/" title="Genres &amp; Types — 10 words" data-title="genres &amp; types"><span class="n">310</span><span class="t">Genres &amp; Types</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/311-episodes-seasons/" title="Episodes &amp; Seasons — 10 words" data-title="episodes &amp; seasons"><span class="n">311</span><span class="t">Episodes &amp; Seasons</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/312-characters-cast/" title="Characters &amp; Cast — 10 words" data-title="characters &amp; cast"><span class="n">312</span><span class="t">Characters &amp; Cast</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/313-plot-story/" title="Plot &amp; Story — 10 words" data-title="plot &amp; story"><span class="n">313</span><span class="t">Plot &amp; Story</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/314-thai-entertainment-reactions/" title="Thai Entertainment Reactions — 10 words" data-title="thai entertainment reactions"><span class="n">314</span><span class="t">Thai Entertainment Reactions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/315-spoilers-secrets/" title="Spoilers &amp; Secrets — 10 words" data-title="spoilers &amp; secrets"><span class="n">315</span><span class="t">Spoilers &amp; Secrets</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/316-talking-about-actors/" title="Talking About Actors — 10 words" data-title="talking about actors"><span class="n">316</span><span class="t">Talking About Actors</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/317-youtube-online-entertainment/" title="YouTube &amp; Online Entertainment — 10 words" data-title="youtube &amp; online entertainment"><span class="n">317</span><span class="t">YouTube &amp; Online Entertainment</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/318-interviews-celebrity-talk/" title="Interviews &amp; Celebrity Talk — 10 words" data-title="interviews &amp; celebrity talk"><span class="n">318</span><span class="t">Interviews &amp; Celebrity Talk</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/319-thai-fan-language/" title="Thai Fan Language — 10 words" data-title="thai fan language"><span class="n">319</span><span class="t">Thai Fan Language</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/320-thai-drama-language/" title="Thai Drama Language — 10 words" data-title="thai drama language"><span class="n">320</span><span class="t">Thai Drama Language</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/321-entertainment-gossip/" title="Entertainment Gossip — 10 words" data-title="entertainment gossip"><span class="n">321</span><span class="t">Entertainment Gossip</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/322-reading-thai-subtitles/" title="Reading Thai Subtitles — 10 words" data-title="reading thai subtitles"><span class="n">322</span><span class="t">Reading Thai Subtitles</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/323-live-shows-events/" title="Live Shows &amp; Events — 10 words" data-title="live shows &amp; events"><span class="n">323</span><span class="t">Live Shows &amp; Events</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/324-critiquing-entertainment/" title="Critiquing Entertainment — 10 words" data-title="critiquing entertainment"><span class="n">324</span><span class="t">Critiquing Entertainment</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/325-real-thai-entertainment-chat/" title="Real Thai Entertainment Chat — 10 words" data-title="real thai entertainment chat"><span class="n">325</span><span class="t">Real Thai Entertainment Chat</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-tv-entertainment/" title="The Thai TV &amp; Entertainment page" data-title="thai tv &amp; entertainment">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-music-lyrics">
-      <summary class="cath" data-title="thai music &amp; lyrics"><span class="nm">Thai Music &amp; Lyrics</span><span class="sub">19 lessons · 190 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/326-thai-music-basics/" title="Thai Music Basics — 10 words" data-title="thai music basics"><span class="n">326</span><span class="t">Thai Music Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/327-talking-about-music-taste/" title="Talking About Music Taste — 10 words" data-title="talking about music taste"><span class="n">327</span><span class="t">Talking About Music Taste</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/328-music-genres/" title="Music Genres — 10 words" data-title="music genres"><span class="n">328</span><span class="t">Music Genres</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/329-instruments/" title="Instruments — 10 words" data-title="instruments"><span class="n">329</span><span class="t">Instruments</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/330-singing-performing/" title="Singing &amp; Performing — 10 words" data-title="singing &amp; performing"><span class="n">330</span><span class="t">Singing &amp; Performing</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/331-song-lyrics/" title="Song Lyrics — 10 words" data-title="song lyrics"><span class="n">331</span><span class="t">Song Lyrics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/332-music-you-can-sing-along-to/" title="Music You Can Sing Along To — 10 words" data-title="music you can sing along to"><span class="n">332</span><span class="t">Music You Can Sing Along To</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/333-music-emotions/" title="Music Emotions — 10 words" data-title="music emotions"><span class="n">333</span><span class="t">Music Emotions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/334-talking-about-lyrics/" title="Talking About Lyrics — 10 words" data-title="talking about lyrics"><span class="n">334</span><span class="t">Talking About Lyrics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/335-thai-love-songs/" title="Thai Love Songs — 10 words" data-title="thai love songs"><span class="n">335</span><span class="t">Thai Love Songs</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/336-thai-music-slang/" title="Thai Music Slang — 10 words" data-title="thai music slang"><span class="n">336</span><span class="t">Thai Music Slang</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/337-discovering-thai-artists/" title="Discovering Thai Artists — 10 words" data-title="discovering thai artists"><span class="n">337</span><span class="t">Discovering Thai Artists</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/338-concert-thai/" title="Concert Thai — 10 words" data-title="concert thai"><span class="n">338</span><span class="t">Concert Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/339-music-online/" title="Music Online — 10 words" data-title="music online"><span class="n">339</span><span class="t">Music Online</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/340-music-reviews-opinions/" title="Music Reviews &amp; Opinions — 10 words" data-title="music reviews &amp; opinions"><span class="n">340</span><span class="t">Music Reviews &amp; Opinions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/341-thai-music-interviews/" title="Thai Music Interviews — 10 words" data-title="thai music interviews"><span class="n">341</span><span class="t">Thai Music Interviews</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/342-understanding-thai-lyrics/" title="Understanding Thai Lyrics — 10 words" data-title="understanding thai lyrics"><span class="n">342</span><span class="t">Understanding Thai Lyrics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/343-thai-music-culture/" title="Thai Music Culture — 10 words" data-title="thai music culture"><span class="n">343</span><span class="t">Thai Music Culture</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/344-real-thai-music-talk/" title="Real Thai Music Talk — 10 words" data-title="real thai music talk"><span class="n">344</span><span class="t">Real Thai Music Talk</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 19">Show all 19</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-music-lyrics/" title="The Thai Music &amp; Lyrics page" data-title="thai music &amp; lyrics">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-sports-in-thai">
-      <summary class="cath" data-title="sports in thai"><span class="nm">Sports In Thai</span><span class="sub">18 lessons · 180 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/345-thai-sports-basics/" title="Thai Sports Basics — 10 words" data-title="thai sports basics"><span class="n">345</span><span class="t">Thai Sports Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/346-sports-exercise/" title="Sports &amp; Exercise — 10 words" data-title="sports &amp; exercise"><span class="n">346</span><span class="t">Sports &amp; Exercise</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/347-football-thai/" title="Football Thai — 10 words" data-title="football thai"><span class="n">347</span><span class="t">Football Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/348-football-match-talk/" title="Football Match Talk — 10 words" data-title="football match talk"><span class="n">348</span><span class="t">Football Match Talk</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/349-thai-sports-reactions/" title="Thai Sports Reactions — 10 words" data-title="thai sports reactions"><span class="n">349</span><span class="t">Thai Sports Reactions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/350-muay-thai-basics/" title="Muay Thai Basics — 10 words" data-title="muay thai basics"><span class="n">350</span><span class="t">Muay Thai Basics</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/351-badminton-tennis-racquet-sports/" title="Badminton, Tennis &amp; Racquet Sports — 10 words" data-title="badminton, tennis &amp; racquet sports"><span class="n">351</span><span class="t">Badminton, Tennis &amp; Racquet Sports</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/352-basketball-volleyball-thai/" title="Basketball &amp; Volleyball Thai — 10 words" data-title="basketball &amp; volleyball thai"><span class="n">352</span><span class="t">Basketball &amp; Volleyball Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/353-running-fitness-thai/" title="Running &amp; Fitness Thai — 10 words" data-title="running &amp; fitness thai"><span class="n">353</span><span class="t">Running &amp; Fitness Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/354-competitions-tournaments/" title="Competitions &amp; Tournaments — 10 words" data-title="competitions &amp; tournaments"><span class="n">354</span><span class="t">Competitions &amp; Tournaments</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/355-sports-news/" title="Sports News — 10 words" data-title="sports news"><span class="n">355</span><span class="t">Sports News</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/356-fans-supporters/" title="Fans &amp; Supporters — 10 words" data-title="fans &amp; supporters"><span class="n">356</span><span class="t">Fans &amp; Supporters</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/357-sports-injuries/" title="Sports Injuries — 10 words" data-title="sports injuries"><span class="n">357</span><span class="t">Sports Injuries</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/358-sports-strategy/" title="Sports Strategy — 10 words" data-title="sports strategy"><span class="n">358</span><span class="t">Sports Strategy</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/359-referees-rules-decisions/" title="Referees, Rules &amp; Decisions — 10 words" data-title="referees, rules &amp; decisions"><span class="n">359</span><span class="t">Referees, Rules &amp; Decisions</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/360-sports-commentary-thai/" title="Sports Commentary Thai — 10 words" data-title="sports commentary thai"><span class="n">360</span><span class="t">Sports Commentary Thai</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/361-talking-like-a-sports-fan/" title="Talking Like a Sports Fan — 10 words" data-title="talking like a sports fan"><span class="n">361</span><span class="t">Talking Like a Sports Fan</span><span class="w">10</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/362-thai-sports-talk/" title="Thai Sports Talk — 10 words" data-title="thai sports talk"><span class="n">362</span><span class="t">Thai Sports Talk</span><span class="w">10</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-sports-in-thai/" title="The Sports In Thai page" data-title="sports in thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-tourism-hotels">
-      <summary class="cath" data-title="thai tourism &amp; hotels"><span class="nm">Thai Tourism &amp; Hotels</span><span class="sub">17 lessons · 205 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/363-hotel-basics/" title="Hotel Basics — 12 words" data-title="hotel basics"><span class="n">363</span><span class="t">Hotel Basics</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/364-booking-a-hotel/" title="Booking a Hotel — 12 words" data-title="booking a hotel"><span class="n">364</span><span class="t">Booking a Hotel</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/365-checking-in/" title="Checking In — 12 words" data-title="checking in"><span class="n">365</span><span class="t">Checking In</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/366-your-hotel-room/" title="Your Hotel Room — 12 words" data-title="your hotel room"><span class="n">366</span><span class="t">Your Hotel Room</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/367-hotel-requests/" title="Hotel Requests — 12 words" data-title="hotel requests"><span class="n">367</span><span class="t">Hotel Requests</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/368-hotel-problems/" title="Hotel Problems — 12 words" data-title="hotel problems"><span class="n">368</span><span class="t">Hotel Problems</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/369-housekeeping-hotel-services/" title="Housekeeping &amp; Hotel Services — 12 words" data-title="housekeeping &amp; hotel services"><span class="n">369</span><span class="t">Housekeeping &amp; Hotel Services</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/370-paying-hotel-costs/" title="Paying &amp; Hotel Costs — 13 words" data-title="paying &amp; hotel costs"><span class="n">370</span><span class="t">Paying &amp; Hotel Costs</span><span class="w">13</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/371-checking-out/" title="Checking Out — 12 words" data-title="checking out"><span class="n">371</span><span class="t">Checking Out</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/372-getting-around-as-a-tourist/" title="Getting Around as a Tourist — 12 words" data-title="getting around as a tourist"><span class="n">372</span><span class="t">Getting Around as a Tourist</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/373-beaches-islands-attractions/" title="Beaches, Islands &amp; Attractions — 12 words" data-title="beaches, islands &amp; attractions"><span class="n">373</span><span class="t">Beaches, Islands &amp; Attractions</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/374-tours-tickets/" title="Tours &amp; Tickets — 12 words" data-title="tours &amp; tickets"><span class="n">374</span><span class="t">Tours &amp; Tickets</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/375-tourist-thai-in-restaurants/" title="Tourist Thai in Restaurants — 12 words" data-title="tourist thai in restaurants"><span class="n">375</span><span class="t">Tourist Thai in Restaurants</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/376-tourist-problems-complaints/" title="Tourist Problems &amp; Complaints — 12 words" data-title="tourist problems &amp; complaints"><span class="n">376</span><span class="t">Tourist Problems &amp; Complaints</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/377-thai-tourist-safety/" title="Thai Tourist Safety — 12 words" data-title="thai tourist safety"><span class="n">377</span><span class="t">Thai Tourist Safety</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/378-talking-about-your-trip/" title="Talking About Your Trip — 12 words" data-title="talking about your trip"><span class="n">378</span><span class="t">Talking About Your Trip</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/379-real-thai-tourism-talk/" title="Real Thai Tourism Talk — 12 words" data-title="real thai tourism talk"><span class="n">379</span><span class="t">Real Thai Tourism Talk</span><span class="w">12</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 17">Show all 17</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-tourism-hotels/" title="The Thai Tourism &amp; Hotels page" data-title="thai tourism &amp; hotels">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-thai-phone-calls">
-      <summary class="cath" data-title="thai phone calls"><span class="nm">Thai Phone Calls</span><span class="sub">18 lessons · 216 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/380-phone-thai-basics/" title="Phone Thai Basics — 12 words" data-title="phone thai basics"><span class="n">380</span><span class="t">Phone Thai Basics</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/381-making-a-phone-call/" title="Making a Phone Call — 12 words" data-title="making a phone call"><span class="n">381</span><span class="t">Making a Phone Call</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/382-calling-someone-you-know/" title="Calling Someone You Know — 12 words" data-title="calling someone you know"><span class="n">382</span><span class="t">Calling Someone You Know</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/383-bad-connection/" title="Bad Connection — 12 words" data-title="bad connection"><span class="n">383</span><span class="t">Bad Connection</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/384-asking-someone-to-repeat/" title="Asking Someone to Repeat — 12 words" data-title="asking someone to repeat"><span class="n">384</span><span class="t">Asking Someone to Repeat</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/385-leaving-a-message/" title="Leaving a Message — 12 words" data-title="leaving a message"><span class="n">385</span><span class="t">Leaving a Message</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/386-phone-calls-at-work/" title="Phone Calls at Work — 12 words" data-title="phone calls at work"><span class="n">386</span><span class="t">Phone Calls at Work</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/387-customer-service-calls/" title="Customer Service Calls — 12 words" data-title="customer service calls"><span class="n">387</span><span class="t">Customer Service Calls</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/388-phone-thai-numbers/" title="Phone Thai &amp; Numbers — 12 words" data-title="phone thai &amp; numbers"><span class="n">388</span><span class="t">Phone Thai &amp; Numbers</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/389-messaging-chat-apps/" title="Messaging &amp; Chat Apps — 12 words" data-title="messaging &amp; chat apps"><span class="n">389</span><span class="t">Messaging &amp; Chat Apps</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/390-fast-casual-phone-thai/" title="Fast &amp; Casual Phone Thai — 12 words" data-title="fast &amp; casual phone thai"><span class="n">390</span><span class="t">Fast &amp; Casual Phone Thai</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/391-phone-thai-in-real-situations/" title="Phone Thai in Real Situations — 12 words" data-title="phone thai in real situations"><span class="n">391</span><span class="t">Phone Thai in Real Situations</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/392-delivery-courier-calls/" title="Delivery &amp; Courier Calls — 12 words" data-title="delivery &amp; courier calls"><span class="n">392</span><span class="t">Delivery &amp; Courier Calls</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/393-drivers-transport-calls/" title="Drivers &amp; Transport Calls — 12 words" data-title="drivers &amp; transport calls"><span class="n">393</span><span class="t">Drivers &amp; Transport Calls</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/394-calling-hotels-businesses/" title="Calling Hotels &amp; Businesses — 12 words" data-title="calling hotels &amp; businesses"><span class="n">394</span><span class="t">Calling Hotels &amp; Businesses</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/395-services-repairs-appointments/" title="Services, Repairs &amp; Appointments — 12 words" data-title="services, repairs &amp; appointments"><span class="n">395</span><span class="t">Services, Repairs &amp; Appointments</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/396-medical-emergency-calls/" title="Medical &amp; Emergency Calls — 12 words" data-title="medical &amp; emergency calls"><span class="n">396</span><span class="t">Medical &amp; Emergency Calls</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/397-fast-unclear-unexpected-calls/" title="Fast, Unclear &amp; Unexpected Calls — 12 words" data-title="fast, unclear &amp; unexpected calls"><span class="n">397</span><span class="t">Fast, Unclear &amp; Unexpected Calls</span><span class="w">12</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 18">Show all 18</button><a class="catpage" href="https://thai.inaflash.cards/c-thai-phone-calls/" title="The Thai Phone Calls page" data-title="thai phone calls">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-real-world-situational-thai">
-      <summary class="cath" data-title="real-world situational thai"><span class="nm">Real-World Situational Thai</span><span class="sub">17 lessons · 204 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/398-shops-convenience-stores/" title="Shops &amp; Convenience Stores — 12 words" data-title="shops &amp; convenience stores"><span class="n">398</span><span class="t">Shops &amp; Convenience Stores</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/399-markets-street-vendors/" title="Markets &amp; Street Vendors — 12 words" data-title="markets &amp; street vendors"><span class="n">399</span><span class="t">Markets &amp; Street Vendors</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/400-restaurants-cafes/" title="Restaurants &amp; Cafés — 12 words" data-title="restaurants &amp; cafés"><span class="n">400</span><span class="t">Restaurants &amp; Cafés</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/401-food-orders-takeaway/" title="Food Orders &amp; Takeaway — 12 words" data-title="food orders &amp; takeaway"><span class="n">401</span><span class="t">Food Orders &amp; Takeaway</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/402-taxis-ride-apps-getting-picked-up/" title="Taxis, Ride Apps &amp; Getting Picked Up — 12 words" data-title="taxis, ride apps &amp; getting picked up"><span class="n">402</span><span class="t">Taxis, Ride Apps &amp; Getting Picked Up</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/403-hotels-accommodation/" title="Hotels &amp; Accommodation — 12 words" data-title="hotels &amp; accommodation"><span class="n">403</span><span class="t">Hotels &amp; Accommodation</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/404-delivery-online-orders/" title="Delivery &amp; Online Orders — 12 words" data-title="delivery &amp; online orders"><span class="n">404</span><span class="t">Delivery &amp; Online Orders</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/405-banks-atms-money/" title="Banks, ATMs &amp; Money — 12 words" data-title="banks, atms &amp; money"><span class="n">405</span><span class="t">Banks, ATMs &amp; Money</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/406-government-offices-everyday-bureaucracy/" title="Government Offices &amp; Everyday Bureaucracy — 12 words" data-title="government offices &amp; everyday bureaucracy"><span class="n">406</span><span class="t">Government Offices &amp; Everyday Bureaucracy</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/407-doctors-pharmacies-everyday-health/" title="Doctors, Pharmacies &amp; Everyday Health — 12 words" data-title="doctors, pharmacies &amp; everyday health"><span class="n">407</span><span class="t">Doctors, Pharmacies &amp; Everyday Health</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/408-police-lost-property-problems/" title="Police, Lost Property &amp; Problems — 12 words" data-title="police, lost property &amp; problems"><span class="n">408</span><span class="t">Police, Lost Property &amp; Problems</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/409-repairs-household-services/" title="Repairs &amp; Household Services — 12 words" data-title="repairs &amp; household services"><span class="n">409</span><span class="t">Repairs &amp; Household Services</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/410-everyday-problems/" title="Everyday Problems — 12 words" data-title="everyday problems"><span class="n">410</span><span class="t">Everyday Problems</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/411-asking-for-directions-in-real-life/" title="Asking for Directions in Real Life — 12 words" data-title="asking for directions in real life"><span class="n">411</span><span class="t">Asking for Directions in Real Life</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/412-booking-appointments-reservations/" title="Booking, Appointments &amp; Reservations — 12 words" data-title="booking, appointments &amp; reservations"><span class="n">412</span><span class="t">Booking, Appointments &amp; Reservations</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/413-asking-for-help/" title="Asking for Help — 12 words" data-title="asking for help"><span class="n">413</span><span class="t">Asking for Help</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/414-real-thai-service-interactions/" title="Real Thai Service Interactions — 12 words" data-title="real thai service interactions"><span class="n">414</span><span class="t">Real Thai Service Interactions</span><span class="w">12</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 17">Show all 17</button><a class="catpage" href="https://thai.inaflash.cards/c-real-world-situational-thai/" title="The Real-World Situational Thai page" data-title="real-world situational thai">page ↗</a></div>
-    </details>
-    <details class="cat" data-cat="c-fast-messy-thai">
-      <summary class="cath" data-title="fast / messy thai"><span class="nm">Fast / Messy Thai</span><span class="sub">3 lessons · 36 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/415-1-thai-spoken-shortcuts/" title="1. Thai Spoken Shortcuts — 12 words" data-title="1. thai spoken shortcuts"><span class="t">1. Thai Spoken Shortcuts</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/416-2-words-disappear/" title="2. Words Disappear — 12 words" data-title="2. words disappear"><span class="t">2. Words Disappear</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/417-3-fast-questions/" title="3. Fast Questions — 12 words" data-title="3. fast questions"><span class="t">3. Fast Questions</span><span class="w">12</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 3">Show all 3</button><a class="catpage" href="https://thai.inaflash.cards/c-fast-messy-thai/" title="The Fast / Messy Thai page" data-title="fast / messy thai">page ↗</a></div>
-    </details>
-    <a class="item cat leaf" href="https://thai.inaflash.cards/tones/" data-title="tones">Tones<span class="sub">52 pairs that differ only by tone</span></a>
-    <details class="cat" data-cat="more">
-      <summary class="cath" data-title="more"><span class="nm">More</span><span class="sub">15 lessons · 180 words</span></summary>
-      <div class="kids">
-        <a class="item seq" href="https://thai.inaflash.cards/418-4-thai-fillers-at-speed/" title="4. Thai Fillers at Speed — 12 words" data-title="4. thai fillers at speed"><span class="t">4. Thai Fillers at Speed</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/419-5-hearing-particles/" title="5. Hearing Particles — 12 words" data-title="5. hearing particles"><span class="t">5. Hearing Particles</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/420-6-fast-negatives/" title="6. Fast Negatives — 12 words" data-title="6. fast negatives"><span class="t">6. Fast Negatives</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/421-7-fast-numbers-time/" title="7. Fast Numbers &amp; Time — 12 words" data-title="7. fast numbers &amp; time"><span class="t">7. Fast Numbers &amp; Time</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/422-8-talking-over-each-other/" title="8. Talking Over Each Other — 12 words" data-title="8. talking over each other"><span class="t">8. Talking Over Each Other</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/423-9-self-correction-messy-speech/" title="9. Self-Correction &amp; Messy Speech — 12 words" data-title="9. self-correction &amp; messy speech"><span class="t">9. Self-Correction &amp; Messy Speech</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/424-10-context-does-the-work/" title="10. Context Does the Work — 12 words" data-title="10. context does the work"><span class="t">10. Context Does the Work</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/425-11-casual-pronunciation/" title="11. Casual Pronunciation — 12 words" data-title="11. casual pronunciation"><span class="t">11. Casual Pronunciation</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/426-12-thai-english-code-switching/" title="12. Thai-English Code Switching — 12 words" data-title="12. thai-english code switching"><span class="t">12. Thai-English Code Switching</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/427-13-when-you-miss-something/" title="13. When You Miss Something — 12 words" data-title="13. when you miss something"><span class="t">13. When You Miss Something</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/428-14-fast-casual-friend-talk/" title="14. Fast &amp; Casual Friend Talk — 12 words" data-title="14. fast &amp; casual friend talk"><span class="t">14. Fast &amp; Casual Friend Talk</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/429-15-fast-rude-close-friend-thai/" title="15. Fast, Rude &amp; Close-Friend Thai — 12 words" data-title="15. fast, rude &amp; close-friend thai"><span class="t">15. Fast, Rude &amp; Close-Friend Thai</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/430-16-half-sentences/" title="16. Half-Sentences — 12 words" data-title="16. half-sentences"><span class="t">16. Half-Sentences</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/431-17-fast-thai-in-real-conversations/" title="17. Fast Thai in Real Conversations — 12 words" data-title="17. fast thai in real conversations"><span class="t">17. Fast Thai in Real Conversations</span><span class="w">12</span></a>
-        <a class="item seq" href="https://thai.inaflash.cards/432-18-the-fast-thai-survival-test/" title="18. The Fast Thai Survival Test — 12 words" data-title="18. the fast thai survival test"><span class="t">18. The Fast Thai Survival Test</span><span class="w">12</span></a>
-      </div>
-      <div class="catfoot"><button type="button" class="morebtn" hidden data-all="Show all 15">Show all 15</button></div>
-    </details>
-    <div class="grp" data-grp>Also</div>
-    <a class="item" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100">Thai Basics 100<span class="sub">433</span></a>
-    <a class="item" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list">Thai Class 9 Complete Vocab List<span class="sub">434</span></a>
-    <div class="none" id="nohits" hidden>Nothing matches.</div>
-  </nav>
-  <script>(function(){try{var o=JSON.parse(localStorage.getItem("wb.open")||"null");if(!o||!o.length)return;var d=document.querySelectorAll(".menu details.cat"),i;for(i=0;i<d.length;i++)if(o.indexOf(d[i].dataset.cat)>=0)d[i].open=true;}catch(e){}})();</script>
 </aside>
 <div class="scrim" id="scrim"></div>
   <div class="slider">
@@ -717,154 +181,270 @@
 <script>
 (function(){
  var nav=document.getElementById('nav'),find=document.getElementById('find'),
-     none=document.getElementById('nohits'),idx=null,idxTried=false;
+     none=document.getElementById('nohits'),hits=document.getElementById('hits'),
+     idx=null,idxTried=false;
  function items(){return nav?nav.querySelectorAll('a.item'):[];}
- function cats(){return nav?nav.querySelectorAll('details.cat'):[];}
+ function base(){return document.body.dataset.root||'';}
+ function read(k,d){try{var v=localStorage.getItem(k);
+  return v?JSON.parse(v):d;}catch(e){return d;}}
+ function write(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 
- // ----------------------------------------------------------- the tree
+ // ------------------------------------------------------- collapse / show
  //
- // Dan: "The sidebar should behave more like a collapsible tree."
+ // Dan: "It should also be toggled, collapse/show."
  //
- // The part that is not obvious: every lesson is its OWN PAGE. This is a
- // static site, so clicking a lesson is a full page load and anything the
- // tree remembers in a variable is gone. A tree that collapsed on every
- // click would be worse than the flat list it replaces — you would open
- // Beginner, choose lesson 3, and arrive to find it shut again. So the open
- // set lives in localStorage, and a small script printed under the menu
- // markup applies it before the browser paints; this half only keeps it up
- // to date.
- function saveOpen(){
-  try{
-   var d=cats(),o=[],i;
-   for(i=0;i<d.length;i++)if(d[i].open)o.push(d[i].dataset.cat);
-   localStorage.setItem('wb.open',JSON.stringify(o));
-  }catch(e){}
- }
- function saveFull(){
-  try{
-   var d=cats(),o=[],i,k;
-   for(i=0;i<d.length;i++){
-    k=d[i].querySelector('.kids');
-    if(k&&k.classList.contains('full'))o.push(d[i].dataset.cat);
-   }
-   localStorage.setItem('wb.full',JSON.stringify(o));
-  }catch(e){}
- }
+ // One state, two controls: the button in the menu header and the burger in
+ // the top bar. `body.no-lessons` is the state and was already here — the
+ // burger has always set it — so this adds the control the mockup puts in the
+ // header rather than a second way of being collapsed.
+ var mc=document.getElementById('menu-collapse');
+ if(mc)mc.addEventListener('click',function(){
+  // setLessons is the one function that owns this state — it also keeps the
+  // main menu's own "Show the lessons" row in step and writes the setting.
+  // Declared further down this same closure, so it is hoisted and callable
+  // from here; duplicating its three lines was how the two controls got out
+  // of step in the first place.
+  setLessons(document.body.classList.contains('no-lessons'));
+ });
 
- // [Expand] — Dan: "instead of clicking all and going to /c-beginner/ I want
- // [expand] to show All lessons in beginner."
+ // -------------------------------------------- favourites, recently viewed
  //
- // The list is capped so that one big category cannot push the others a
- // screen and a half down the column; this takes the cap off where you want
- // the whole thing at once. It only appears where there IS more to show:
- // measured, not guessed, because a button offering to expand five rows that
- // are all on screen is exactly the "there must be more, hidden" that sent
- // Dan looking for a lesson that was only ever a draft.
- function sizeMore(d){
-  var k=d.querySelector('.kids'),btn=d.querySelector('.morebtn');
-  if(!k||!btn)return;
-  var full=k.classList.contains('full');
-  // A shut branch has no height to measure, so the question is only
-  // answerable while it is open — and it is asked again on every toggle.
-  if(!d.open){btn.hidden=true;return;}
-  btn.hidden=!full&&k.scrollHeight<=k.clientHeight+2;
-  btn.textContent=full?'Show fewer':(btn.dataset.all||'Show all');
+ // Both are the reader's own history, kept in their browser and never sent
+ // anywhere. Printed hidden and shown only when there is something in them:
+ // two dead rows are worse than no rows.
+ function favs(){return read('wb.fav',[])||[];}
+ function recents(){return read('wb.recent',[])||[];}
+ function fill(id,list,label){
+  var el=document.getElementById(id);
+  if(!el)return;
+  if(!list.length){el.hidden=true;return;}
+  el.hidden=false;
+  el.querySelector('.n').textContent=list.length;
+  // The row opens the catalogue, which is the one page that can show a set
+  // of lessons — rather than this column growing a list of its own again.
+  el.setAttribute('href',base()+'/lessons/#'+label);
  }
- (function(){
-  var d=cats(),i,wantFull=[];
-  try{wantFull=JSON.parse(localStorage.getItem('wb.full')||'[]')||[];}catch(e){}
-  for(i=0;i<d.length;i++)(function(el){
-   var k=el.querySelector('.kids'),btn=el.querySelector('.morebtn');
-   if(k&&wantFull.indexOf(el.dataset.cat)>=0)k.classList.add('full');
-   el.addEventListener('toggle',function(){
-    // Only a reader's own toggle is worth storing. While a search is open
-    // every branch is forced open to show its hits, and saving THAT would
-    // mean clearing the box left the whole course unfolded.
-    if(!searching)saveOpen();
-    sizeMore(el);
-   });
-   if(btn)btn.addEventListener('click',function(){
-    k.classList.toggle('full');
-    sizeMore(el);saveFull();
-    // Expanding from the bottom of a long list leaves you looking at empty
-    // space where the rows used to be.
-    if(!k.classList.contains('full'))
-     el.scrollIntoView({block:'nearest'});
-   });
-   sizeMore(el);
-  })(d[i]);
-  // The lesson you are on, brought into view inside the scrolling region
-  // rather than the page — on a long course the branch you want can be four
-  // hundred pixels below the fold on arrival.
-  var me=nav&&nav.querySelector('a.item.on');
-  if(me&&me.scrollIntoView)me.scrollIntoView({block:'nearest'});
- })();
+ fill('m-fav',favs(),'fav');
+ fill('m-recent',recents(),'recent');
+
+ var fb=document.getElementById('fav-btn');
+ if(fb){
+  var me=fb.dataset.folder,ttl=fb.dataset.title||me;
+  var paint=function(){
+   var on=favs().some(function(x){return x.folder===me;});
+   fb.setAttribute('aria-pressed',on?'true':'false');
+   fb.textContent=on?'♥':'♡';
+   fb.title=on?'Remove from Favourites':'Keep this lesson in Favourites';
+  };
+  paint();
+  fb.addEventListener('click',function(){
+   var l=favs().filter(function(x){return x.folder!==me;});
+   if(l.length===favs().length)l.unshift({folder:me,title:ttl});
+   write('wb.fav',l.slice(0,100));
+   paint();fill('m-fav',favs(),'fav');
+  });
+  // Arriving IS the visit, so it is recorded here rather than on a click
+  // somewhere else — which would miss every arrival by link or by Back.
+  var r=recents().filter(function(x){return x.folder!==me;});
+  r.unshift({folder:me,title:ttl});
+  write('wb.recent',r.slice(0,30));
+  fill('m-recent',recents(),'recent');
+ }
 
  // ----------------------------------------------------------- searching
  //
- // Filtering has to beat the tree: a hit inside a closed branch is a hit
- // nobody can see. So a search opens everything and remembers what was open
- // before, and clearing the box puts it back exactly as it was.
- var searching=false,wasOpen=null;
- function filter(q){
+ // The lesson titles are no longer in this column — that is the whole point
+ // of the launcher — so a search cannot filter the markup and find anything.
+ // It shows what it found instead: the matching rows that ARE here
+ // (categories, the pages under "Also") plus lessons read from search.json,
+ // which was already being published for exactly this.
+ function navFilter(q){
   q=(q||'').trim().toLowerCase();
-  var hits=0,i,a=items(),d=cats();
-  if(q&&!searching){
-   searching=true;wasOpen=[];
-   for(i=0;i<d.length;i++){wasOpen.push(d[i].open);d[i].open=true;}
-  }else if(!q&&searching){
-   searching=false;
-   for(i=0;i<d.length;i++)if(wasOpen)d[i].open=wasOpen[i];
-   wasOpen=null;
-  }
+  var i,a=items(),live=0;
   for(i=0;i<a.length;i++){
-   var t=a[i].dataset.title||'',w=a[i].dataset.words||'',
-       dup=a[i].classList.contains('dup');
-   var on=q?(!dup&&(t.indexOf(q)>=0||w.indexOf(q)>=0)):true;
-   a[i].hidden=!on;if(on&&q)hits++;
-  }
-  // A branch with nothing left in it is noise, so it goes too — but the
-  // category's OWN name still counts as a hit, or searching "beginner"
-  // would empty the thing it was looking for.
-  for(i=0;i<d.length;i++){
-   var nm=d[i].querySelector('.cath'),mine=d[i].querySelectorAll('a.item'),
-       live=0,j;
-   for(j=0;j<mine.length;j++)
-    if(!mine[j].hidden)live++;
-   var named=q&&nm&&(nm.dataset.title||'').indexOf(q)>=0;
-   if(named)for(j=0;j<mine.length;j++)mine[j].hidden=false;
-   d[i].hidden=!!q&&!live&&!named;
-   if(named&&!live)hits++;
+   // The fixed rows — All lessons, Home — are the way out of a search, so
+   // they are never filtered away.
+   if(a[i].classList.contains('big')||a[i].id==='m-all'){continue;}
+   if(a[i].hasAttribute('data-empty'))continue;
+   var t=a[i].dataset.title||'';
+   var on=q?t.indexOf(q)>=0:true;
+   // A row hidden because it is empty stays hidden whatever is typed.
+   if(a[i].id==='m-fav'&&!favs().length)on=false;
+   if(a[i].id==='m-recent'&&!recents().length)on=false;
+   a[i].hidden=!on;
+   if(on&&q)live++;
   }
   var g=nav?nav.querySelectorAll('[data-grp]'):[];
   for(i=0;i<g.length;i++)g[i].hidden=!!q;
-  // Opening and closing branches changes what is taller than its box, so the
-  // [Expand] buttons are asked again rather than left saying what was true
-  // before the search.
-  for(i=0;i<d.length;i++)sizeMore(d[i]);
-  if(none)none.hidden=!q||hits>0;
+  live+=lessonHits(q);
+  if(none)none.hidden=!q||live>0;
+ }
+ // Up to eight lessons, and a way to the rest. A column that answers a search
+ // with four hundred rows is the thing this redesign removed.
+ var CAP=8;
+ function lessonHits(q){
+  if(!hits)return 0;
+  if(!q||!idx||!idx.lessons){hits.hidden=true;hits.innerHTML='';return 0;}
+  var out=[],i,L=idx.lessons;
+  for(i=0;i<L.length&&out.length<=CAP;i++){
+   var t=(L[i].title||'').toLowerCase(),w=L[i].words||'';
+   if(t.indexOf(q)>=0||w.indexOf(q)>=0)out.push(L[i]);
+  }
+  var total=0;
+  for(i=0;i<L.length;i++){
+   var t2=(L[i].title||'').toLowerCase(),w2=L[i].words||'';
+   if(t2.indexOf(q)>=0||w2.indexOf(q)>=0)total++;
+  }
+  hits.innerHTML='';
+  if(!total){hits.hidden=true;return 0;}
+  hits.hidden=false;
+  for(i=0;i<out.length&&i<CAP;i++){
+   var a=document.createElement('a');
+   a.className='hit';a.href=base()+'/'+out[i].folder+'/';
+   a.textContent=out[i].title;
+   hits.appendChild(a);
+  }
+  if(total>CAP){
+   var m=document.createElement('a');
+   m.className='hmore';
+   m.href=base()+'/lessons/?q='+encodeURIComponent(q);
+   m.textContent='All '+total+' matches →';
+   hits.appendChild(m);
+  }
+  return total;
  }
  function loadIndex(){
   if(idxTried)return;idxTried=true;
-  var base=document.body.dataset.root||'';
-  fetch(base+'/search.json').then(function(r){return r.json();}).then(function(j){
-   idx=j;var a=items(),by={},i;
-   for(i=0;i<(j.lessons||[]).length;i++)by[j.lessons[i].folder]=j.lessons[i].words;
-   for(i=0;i<a.length;i++){
-    var m=a[i].getAttribute('href').replace(/\/$/,'').split('/').pop();
-    if(by[m])a[i].dataset.words=by[m];
-   }
-   filter(find?find.value:'');
-  }).catch(function(){});
+  fetch(base()+'/search.json').then(function(r){return r.json();})
+   .then(function(j){idx=j;navFilter(find?find.value:'');}).catch(function(){});
  }
- if(find){find.addEventListener('input',function(){loadIndex();filter(find.value);});
+ if(find){find.addEventListener('input',function(){loadIndex();navFilter(find.value);});
           find.addEventListener('focus',loadIndex);
-          // Escape clears the box, which is also what puts the tree back —
-          // without it the only way out of a search is to delete it by hand.
           find.addEventListener('keydown',function(e){
            if(e.key==='Escape'&&find.value){e.stopPropagation();
-            find.value='';filter('');}
+            find.value='';navFilter('');}
           });}
+
+ // ----------------------------------------------------- the catalogue page
+ //
+ // Four hundred rows are already in the markup, so every filter here only
+ // HIDES rows — which is why narrowing is instant and needs no request. The
+ // taught words arrive from the same search.json the menu reads, on the first
+ // keystroke and not before.
+ (function(){
+  var list=document.getElementById('clist');
+  if(!list)return;
+  var rows=[].slice.call(list.querySelectorAll('.lrow')),
+      box=document.getElementById('cfind'),
+      stat=document.getElementById('cstat'),
+      empty=document.getElementById('cnone'),
+      cat='',lv='',words={},tried=false;
+
+  // A set of folders to show and the order to show them in — how Favourites
+  // and Recently viewed are rendered. Empty means "no such filter"; the rows
+  // are otherwise untouched, so clearing it puts the full list back.
+  var keep=null;
+
+  function apply(){
+   var q=(box?box.value:'').trim().toLowerCase(),i,n=0;
+   for(i=0;i<rows.length;i++){
+    var r=rows[i],ok=true;
+    if(keep)ok=keep.hasOwnProperty(r.dataset.folder);
+    if(ok&&cat==='none')ok=r.dataset.cat==='none';
+    else if(ok&&cat)ok=r.dataset.cat===cat;
+    if(ok&&lv)ok=r.dataset.lv===lv;
+    if(ok&&q){
+     var w=words[r.dataset.folder]||'';
+     ok=(r.dataset.find||'').indexOf(q)>=0||w.indexOf(q)>=0;
+    }
+    r.hidden=!ok;
+    if(ok)n++;
+   }
+   if(stat)stat.textContent=(keep||cat||lv||q)
+     ?n+' of '+rows.length+' lessons'
+     :rows.length+' lessons';
+   if(empty)empty.hidden=n>0;
+  }
+  function load(){
+   if(tried)return;tried=true;
+   fetch(base()+'/search.json').then(function(r){return r.json();})
+    .then(function(j){var i,L=j.lessons||[];
+     for(i=0;i<L.length;i++)words[L[i].folder]=L[i].words||'';
+     apply();}).catch(function(){});
+  }
+  function chips(id,set){
+   var host=document.getElementById(id);
+   if(!host)return;
+   host.addEventListener('click',function(e){
+    var b=e.target.closest('.chip');
+    if(!b)return;
+    // Picking a category is leaving Favourites: two filters that both say
+    // "only these" cannot both be on without one of them lying.
+    if(id==='cchips'&&keep){keep=null;unorder();}
+    var all=host.querySelectorAll('.chip'),i;
+    for(i=0;i<all.length;i++)all[i].classList.toggle('on',all[i]===b);
+    set(b.dataset.cat!==undefined?b.dataset.cat:b.dataset.lv);
+    apply();
+   });
+  }
+  chips('cchips',function(v){cat=v||'';});
+  chips('lchips',function(v){lv=v||'';});
+  if(box){box.addEventListener('input',function(){load();apply();});
+          box.addEventListener('focus',load);
+          box.addEventListener('keydown',function(e){
+           if(e.key==='Escape'&&box.value){e.stopPropagation();
+            box.value='';apply();}});}
+
+  // Favourites and Recently viewed are shown in the order they were kept —
+  // most recent first — because that order IS the information in those two
+  // lists. The rows are moved rather than copied, and `unorder` puts the
+  // catalogue back into course order when the filter is dropped.
+  var home=rows.slice();
+  function unorder(){
+   for(var i=0;i<home.length;i++)list.appendChild(home[i]);
+  }
+  function showKept(which){
+   var L=read(which==='fav'?'wb.fav':'wb.recent',[])||[],i;
+   keep={};
+   for(i=0;i<L.length;i++)keep[L[i].folder]=i;
+   cat='';lv='';
+   var h=document.getElementById('cchips'),c;
+   if(h){c=h.querySelectorAll('.chip');
+         for(i=0;i<c.length;i++)c[i].classList.remove('on');}
+   rows.slice().sort(function(a,b){
+    return (keep[a.dataset.folder]===undefined?1e9:keep[a.dataset.folder])
+         - (keep[b.dataset.folder]===undefined?1e9:keep[b.dataset.folder]);})
+    .forEach(function(r){if(keep.hasOwnProperty(r.dataset.folder))
+     list.appendChild(r);});
+   apply();
+  }
+  function pickCat(v){
+   keep=null;unorder();cat=v;lv='';
+   var h=document.getElementById('cchips');
+   if(h){var c=h.querySelectorAll('.chip'),i;
+         for(i=0;i<c.length;i++)
+          c[i].classList.toggle('on',(c[i].dataset.cat||'')===v);}
+   apply();
+  }
+
+  // What was asked for on the way in: ?q= from the menu's "All N matches",
+  // and #fav / #recent / #none from the rows that have no page of their own.
+  //
+  // Answered on hashchange as well as on load, because this page is where
+  // those rows LINK TO — and following a link to a different hash on the page
+  // you are already on does not reload anything.
+  function fromUrl(){
+   var want=(location.hash||'').replace('#','');
+   if(want==='fav'||want==='recent')showKept(want);
+   else if(want==='none')pickCat('none');
+   else {keep=null;unorder();apply();}
+  }
+  window.addEventListener('hashchange',fromUrl);
+  var q=/[?&]q=([^&]*)/.exec(location.search);
+  if(q&&box){box.value=decodeURIComponent(q[1].replace(/\+/g,' '));load();}
+  fromUrl();
+  apply();
+ })();
 
  var cards=[].slice.call(document.querySelectorAll('.card')),at=0,
      prev=document.getElementById('prev'),next=document.getElementById('next'),
