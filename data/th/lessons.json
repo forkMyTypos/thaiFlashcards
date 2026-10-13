@@ -14623,6 +14623,34 @@
   "word_count": 18
  },
  {
+  "id": "TH_L000460",
+  "seq": 460,
+  "position": 460,
+  "title": "Requests and quantities",
+  "subtitle": null,
+  "description": "Ask for things, count everyday items, talk about prices, and make simple requests",
+  "level": "beginner",
+  "status": "published",
+  "colour": null,
+  "icon": null,
+  "tags": [],
+  "words": [
+   "TH_000012",
+   "TH_000317",
+   "TH_000092",
+   "TH_006208",
+   "TH_002538",
+   "TH_006209",
+   "TH_002146",
+   "TH_001173",
+   "TH_000074",
+   "TH_002287",
+   "TH_000521"
+  ],
+  "sentences": [],
+  "word_count": 11
+ },
+ {
   "id": "TH_L000461",
   "seq": 461,
   "position": 461,
