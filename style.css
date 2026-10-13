@@ -383,8 +383,8 @@ body.no-lessons{--menu:0;--mheadw:236px}
    column used to vanish whole, taking its own button with it.
    It is laid over the left end of the controls bar rather than given a column
    of its own: a column holding one header would be 236px of empty screen
-   beside the lesson. The bar makes room for it, and drops its own title
-   (the crumb), which said the same thing. */
+   beside the lesson. The bar makes room for it and keeps its crumb —
+   category / lesson — which the menu is no longer there to say. */
 body.no-lessons .page{position:relative}
 body.no-lessons .menu{display:block;position:absolute;left:0;top:0;
   width:var(--mheadw);height:var(--bar);z-index:13;border-right:0;
@@ -393,7 +393,6 @@ body.no-lessons .menu>:not(.mhead){display:none}
 body.no-lessons .menu .mhead{height:100%;border-bottom:1px solid var(--line)}
 body.no-lessons .menu .mhead .brand{padding:0 6px 0 14px;font-size:1rem}
 body.no-lessons .slider{padding-left:calc(var(--mheadw) + 14px)}
-body.no-lessons .slider .name{display:none}
 body.no-lessons .menu .mcollapse{color:var(--text2);border:1px solid var(--edge);
   background:var(--s3)}
 
@@ -906,7 +905,11 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
      the first line, and the range runs the full width under them. */
   .slider{grid-column:2;grid-row:1;position:sticky;top:0;z-index:12;
     flex-wrap:wrap;gap:6px 8px;padding:8px 10px 6px 4px;align-content:center}
-  .slider .name{flex:1 1 0;min-width:0}
+  /* The crumb — category / lesson — gets a line of its own between the
+     controls and the scrubber. Squeezed in beside the pager it was cut to
+     "Beginn…", which is the one thing the collapsed menu left to say where you
+     are. */
+  .slider .name{order:9;flex:1 1 100%;min-width:0;font-size:0.8125rem}
   .slider .scrub{display:block;order:10;flex:1 1 100%;min-width:0;width:100%;
     height:22px;margin:0}
   .slider .pager button{width:40px;height:34px}
@@ -934,8 +937,12 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
      row is `auto`, so the pane was as tall as its toolbar and the flashcard,
      which is 100% of nothing, was not drawn at all. So give it the screen:
      what is left under the controls bar. */
+  /* 112 is the controls bar with its crumb and scrubber; the collapsed menu's
+     strip under it is another 46. */
   body.mode-card .right,body.mode-quiz .right{
-    height:calc(100vh - 126px);height:calc(100dvh - 126px);min-height:420px}
+    height:calc(100vh - 112px);height:calc(100dvh - 112px);min-height:420px}
+  body.no-lessons.mode-card .right,body.no-lessons.mode-quiz .right{
+    height:calc(100vh - 158px);height:calc(100dvh - 158px)}
   /* The flashcard is a card you drag by its bar and resize by its corner on a
      desk. Under a thumb that is a way to lose it, and the swipe is the thing
      the thumb is for — so on a phone it simply fills the pane. The sizes the
