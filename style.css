@@ -376,8 +376,26 @@ body.resizing iframe{pointer-events:none}
 /* Collapsed. The menu is a reference, not a companion — on a laptop the two
    panes are the work, and 220px of lesson titles is 220px the picture could
    have had. ☰ puts it back, and the choice is remembered. */
-body.no-lessons{--menu:0}
-body.no-lessons .menu{display:none}
+body.no-lessons{--menu:0;--mheadw:236px}
+/* Dan: "when we collapse the menu I want .mhead to be visible, just the menu
+   title, and the collapse/expand button." So collapsing puts away everything
+   BUT the header, and the header is what you press to bring it back — the
+   column used to vanish whole, taking its own button with it.
+   It is laid over the left end of the controls bar rather than given a column
+   of its own: a column holding one header would be 236px of empty screen
+   beside the lesson. The bar makes room for it, and drops its own title
+   (the crumb), which said the same thing. */
+body.no-lessons .page{position:relative}
+body.no-lessons .menu{display:block;position:absolute;left:0;top:0;
+  width:var(--mheadw);height:var(--bar);z-index:13;border-right:0;
+  background:var(--s0);overflow:hidden}
+body.no-lessons .menu>:not(.mhead){display:none}
+body.no-lessons .menu .mhead{height:100%;border-bottom:1px solid var(--line)}
+body.no-lessons .menu .mhead .brand{padding:0 6px 0 14px;font-size:1rem}
+body.no-lessons .slider{padding-left:calc(var(--mheadw) + 14px)}
+body.no-lessons .slider .name{display:none}
+body.no-lessons .menu .mcollapse{color:var(--text2);border:1px solid var(--edge);
+  background:var(--s3)}
 
 /* slider bar */
 .slider .burger{display:block;background:var(--s3);border:1px solid var(--edge);
@@ -905,6 +923,38 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
      outside these two panes, so their own drags are unaffected. */
   html,body{overscroll-behavior-x:none}
   .left,.right{touch-action:pan-y pinch-zoom}
+  /* Flashcards and the quiz put the study pane across "pic/-1" — line names
+     that only exist in the wide layout. On a phone there is one column and no
+     such line, so the browser invented columns for it and the pane landed
+     off to the right, cut off. Same rule, stated for one column. */
+  body.mode-card .right,body.mode-quiz .right{grid-column:1/-1}
+  /* Those two panes size their insides as a percentage of the pane ("the
+     deck is the pane's height less its toolbar"), which is a sum that needs
+     a pane with a height. On the wide layout the grid gives it one. Here the
+     row is `auto`, so the pane was as tall as its toolbar and the flashcard,
+     which is 100% of nothing, was not drawn at all. So give it the screen:
+     what is left under the controls bar. */
+  body.mode-card .right,body.mode-quiz .right{
+    height:calc(100vh - 126px);height:calc(100dvh - 126px);min-height:420px}
+  /* The flashcard is a card you drag by its bar and resize by its corner on a
+     desk. Under a thumb that is a way to lose it, and the swipe is the thing
+     the thumb is for — so on a phone it simply fills the pane. The sizes the
+     script writes onto it are overridden, not removed, so the desk layout
+     comes back untouched when the window is wide again. */
+  .grab{left:0!important;top:0!important;width:100%!important;height:100%!important;
+    transform:none!important}
+  .fshell{width:100%!important;height:100%!important;min-width:0;min-height:0;
+    border-radius:0;border-left:0;border-right:0;box-shadow:none}
+  .fbar{cursor:default;border-radius:0}
+  .fresize{display:none}
+  .fhint{display:none}
+  /* The quiz is a row on the desk — settings on one side, the question on the
+     other — and on a phone that put the settings strip beside a question
+     squeezed into what was left. One column: settings above, question under. */
+  body.mode-quiz .quiz{flex-direction:column;align-items:stretch;
+    justify-content:flex-start;padding:14px 14px 28px}
+  .qbody{width:100%;min-width:0}
+  .qcard .f-word{font-size:2rem}
   .yt{padding:12px 14px}
   .left{padding:16px}
   .left img{max-height:46vh}
@@ -914,6 +964,14 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
     border-right:1px solid var(--line);transform:translateX(-100%);
     transition:transform .18s ease;box-shadow:0 0 40px rgba(0,0,0,.6)}
   body:not(.no-lessons) .menu{transform:none}
+  /* Collapsed on a phone: not a drawer at all but a slim strip under the
+     controls, the title and the button that opens the drawer. */
+  body.no-lessons .menu{position:static;width:auto;height:auto;
+    grid-column:1/-1;grid-row:2;transform:none;box-shadow:none;
+    border-right:0;z-index:auto;overflow:visible}
+  body.no-lessons .menu .mhead{height:auto;padding:2px 8px 2px 0}
+  body.no-lessons .menu .mhead .brand{padding:9px 6px 9px 14px;font-size:0.9375rem}
+  body.no-lessons .slider{padding-left:4px}
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20}
   body:not(.no-lessons) .scrim{display:block}
   body:not(.no-lessons){overflow:hidden}
