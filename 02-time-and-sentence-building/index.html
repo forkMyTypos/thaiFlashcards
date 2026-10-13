@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="Talk about sequence, obligation, ongoing actions, past experience, and future plans"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=4c6c8e42"/>
+<link rel="stylesheet" href="../style.css?v=a6e770cd"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -2324,6 +2324,15 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   if(b){b.setAttribute('aria-pressed',on?'true':'false');
         b.querySelector('.t').textContent=on?'Hide the lessons'
                                             :'Show the lessons';}
+  // The header's own button stays on screen when the rest of the menu is put
+  // away, so it has to say which way it will go.
+  var mcb=document.getElementById('menu-collapse');
+  if(mcb){
+   var t=on?'Collapse the menu':'Expand the menu';
+   mcb.setAttribute('aria-expanded',on?'true':'false');
+   mcb.setAttribute('aria-label',t);mcb.title=t;
+   mcb.textContent=on?'\u25e8':'\u25e7';
+  }
   try{localStorage.setItem('wb.lessons',on?'1':'0');}catch(e){}
  }
  var lesBtn=document.getElementById('mm-lessons');
