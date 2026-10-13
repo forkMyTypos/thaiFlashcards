@@ -413,7 +413,8 @@
    "TH_L000037",
    "TH_L000018",
    "TH_L000001",
-   "TH_L000182"
+   "TH_L000182",
+   "TH_L000460"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000012.jpg"
@@ -2438,7 +2439,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000022",
-   "TH_L000056"
+   "TH_L000056",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -2986,7 +2988,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000014"
+   "TH_L000014",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -9899,7 +9902,8 @@
    "TH_L000037",
    "TH_L000018",
    "TH_L000297",
-   "TH_L000420"
+   "TH_L000420",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -16085,7 +16089,8 @@
   "lessons": [
    "TH_L000014",
    "TH_L000018",
-   "TH_L000131"
+   "TH_L000131",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -34167,7 +34172,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000018",
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -61617,7 +61623,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000460"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002146.mp3",
@@ -65906,7 +65914,8 @@
    "TH_L000030",
    "TH_L000033",
    "TH_L000085",
-   "TH_L000400"
+   "TH_L000400",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -74021,7 +74030,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000055",
-   "TH_L000085"
+   "TH_L000085",
+   "TH_L000460"
   ],
   "images": [],
   "audio": {
@@ -188666,9 +188676,14 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000460"
+  ],
   "images": [],
-  "audio": {}
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006208.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006208_slow.mp3"
+  }
  },
  {
   "id": "TH_006209",
@@ -188692,8 +188707,13 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000460"
+  ],
   "images": [],
-  "audio": {}
+  "audio": {
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006209.mp3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006209_slow.mp3"
+  }
  }
 ]
