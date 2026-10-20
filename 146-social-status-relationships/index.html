@@ -11,12 +11,14 @@
 <meta property="og:description" content="Navigate closeness, respect, hierarchy, boundaries, and social expectations"/>
 <meta property="og:url" content="https://thai.inaflash.cards/146-social-status-relationships/"/>
 <meta property="og:site_name" content="Learn Thai with Flashcards"/>
-<meta name="twitter:card" content="summary"/>
+<meta property="og:image" content="https://thai.inaflash.cards/og.png"/>
+<meta name="twitter:image" content="https://thai.inaflash.cards/og.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Thai Vocabulary: Social Status &amp; Relationships"/>
 <meta name="twitter:description" content="Navigate closeness, respect, hierarchy, boundaries, and social expectations"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=1cc2c185"/>
+<link rel="stylesheet" href="../style.css?v=a4bba798"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -30,6 +32,7 @@
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
       <button class="mm" id="mm-pics" aria-pressed="true"><span class="i">&#127748;</span><span class="t">Pictures on</span></button>
+      <button class="mm" id="mm-preload" aria-pressed="false" title="Load this page's sounds in the background so they play at once"><span class="i">&#9835;</span><span class="t">Preload sounds</span></button>
       <button class="mm" id="mm-show"><span class="i">&#9881;</span><span class="t">What to show</span></button>
       <button class="mm" id="mm-edit" aria-pressed="false"><span class="i">&#9998;</span><span class="t">Edit this course</span></button>
       <button class="mm" id="mm-myedits"><span class="i">&#9112;</span><span class="t">My changes</span></button>
@@ -221,6 +224,9 @@
       <div class="catbox" hidden></div>
     </div>
     <div class="grp" data-grp>Also</div>
+    <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">198 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
     <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
@@ -1079,14 +1085,98 @@
  function playHit(e){
   return e.target.closest?e.target.closest('[data-play]'):null;
  }
+ // ---- sounds
+ //
+ // "Audio seems quite slow, on the site." A button used to make a brand new
+ // Audio on every press, so the clip started downloading only once it was
+ // pressed, and downloaded again each time. Now one element per clip is kept:
+ // the second press is instant, a press that follows a pointer arriving on
+ // the button has a head start, and a reader who wants it can have the whole
+ // page's sounds fetched ahead of time (menu: Preload sounds).
+ var SND={},SNDN=[];
+ function snd(u){
+  var a=SND[u];
+  if(!a){
+   a=new Audio();a.preload='auto';a.src=u;SND[u]=a;SNDN.push(u);
+   // a long session should not hold every clip it ever met
+   if(SNDN.length>300){var old=SNDN.shift();delete SND[old];}
+  }
+  return a;
+ }
+ var preloadOn=false;
+ try{preloadOn=localStorage.getItem('wb.preload')==='1';}catch(e){}
+ function lean(){
+  // saving data is a choice the reader made in their browser; honour it
+  try{return !!(navigator.connection&&navigator.connection.saveData);}catch(e){return false;}
+ }
+ function warm(){
+  if(!preloadOn||lean())return;
+  var list=[],seen={},els=document.querySelectorAll('[data-play]');
+  for(var k=0;k<els.length;k++){
+   var u=els[k].dataset.play;
+   if(u&&!seen[u]){seen[u]=1;list.push(u);}
+  }
+  var i=0,busy=0;
+  function start(u){
+   var a=snd(u);
+   if(a.readyState>=3)return;
+   busy++;
+   var done=false,fin=function(){if(done)return;done=true;busy--;pump();};
+   a.addEventListener('canplaythrough',fin,{once:true});
+   a.addEventListener('error',fin,{once:true});
+   setTimeout(fin,6000);
+  }
+  // three at a time: the page's own pictures and scripts are still arriving
+  function pump(){
+   while(preloadOn&&busy<3&&i<list.length)start(list[i++]);
+  }
+  pump();
+ }
+ var preBtn=document.getElementById('mm-preload');
+ function paintPre(){
+  if(!preBtn)return;
+  preBtn.setAttribute('aria-pressed',preloadOn?'true':'false');
+  preBtn.querySelector('.t').textContent=preloadOn?'Sounds preloaded':'Preload sounds';
+ }
+ if(preBtn){
+  preBtn.addEventListener('click',function(){
+   preloadOn=!preloadOn;
+   try{localStorage.setItem('wb.preload',preloadOn?'1':'0');}catch(e){}
+   paintPre();
+   if(preloadOn)warm();
+  });
+  paintPre();
+ }
+ // after the page has settled, not while it is still drawing
+ setTimeout(warm,900);
+ document.addEventListener('pointerover',function(e){
+  var b=playHit(e);
+  if(b&&b.dataset.play&&!lean())snd(b.dataset.play);
+ },true);
  document.addEventListener('click',function(e){
   var b=playHit(e);
   if(!b)return;
   // It is only ever a sound. A clip that will not load should not take the
   // rest of the click down with it.
-  try{var a=new Audio(b.dataset.play);var p=a.play();
+  try{var a=snd(b.dataset.play);
+      try{a.currentTime=0;}catch(err){}
+      var p=a.play();
       if(p&&p.catch)p.catch(function(){});}catch(err){}
  },true);
+
+ // ‹ the sentence › under a word. Every sentence is in the markup; this
+ // shows one of them and moves between them, wrapping at the ends.
+ document.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('.sents [data-sdir]'):null;
+  if(!b)return;
+  var box=b.closest('.sents'),all=box.querySelectorAll('.sent'),i=0,n=all.length;
+  if(n<2)return;
+  for(var k=0;k<n;k++)if(all[k].classList.contains('on')){i=k;break;}
+  all[i].classList.remove('on');
+  i=(i+(+b.dataset.sdir)+n)%n;
+  all[i].classList.add('on');
+  var c=box.querySelector('.scount');if(c)c.textContent=(i+1)+' / '+n;
+ });
 
  // Remember where the reader got to, so the front page can send them back.
  // Only a real lesson page writes it: the front page renders lesson one for
@@ -2520,19 +2610,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  var pBtn=document.getElementById('mm-progress');
  if(pBtn)pBtn.addEventListener('click',progressPanel);
 
- // --- the two that are still to be written
- function stub(title,line){
-  return function(){
-   mmOpen(false);
-   panel(title,function(body){
-    body.innerHTML='<p class="sheet-p">'+line+'</p>';
-   });
-  };
- }
+ // --- About and Guide are one page: the start-here guide
  var aBtn=document.getElementById('mm-about');
- if(aBtn)aBtn.addEventListener('click',stub('About',
-  'This is a free vocabulary course, built with WordBase and studied with '
-  +'flashcards. More to say here shortly.'));
+ if(aBtn)aBtn.addEventListener('click',function(){
+  location.href=base()+'/start/#about';
+ });
  // --- how big the words are
  //
  // Not the browser's zoom, which scales the gaps and the pictures with it
@@ -2595,9 +2677,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  if(lBtn)lBtn.addEventListener('click',resetLayout);
 
  var gBtn=document.getElementById('mm-guide');
- if(gBtn)gBtn.addEventListener('click',stub('Guide',
-  'How to get the most out of the lessons, the flashcards and the quiz. '
-  +'Being written.'));
+ if(gBtn)gBtn.addEventListener('click',function(){
+  location.href=base()+'/start/';
+ });
 
  // What was chosen last time, before the first paint has anything to argue
  // with. The theme is also set in the head, so the page never flashes dark.

@@ -1274,3 +1274,76 @@ body.mresize iframe{pointer-events:none}
 /* Numbers the script fills in: nothing to show until it has, and no jump when it does */
 .menu a.item .n:empty{display:none}
 .menu .wsub[data-fill]{min-height:1.3em}
+
+/* Sentences under a word: ‹ the sentence › one at a time */
+.info .sents{margin-top:18px}
+.info .sents .sec-h{margin:0 0 8px}
+.info .sents .sbody{display:flex;align-items:stretch;gap:6px}
+.info .sents .sslides{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--s2,transparent)}
+.info .sents .sent{display:none}
+.info .sents .sent.on{display:block}
+.info .sents .sx{font-size:1.125rem;color:var(--text);line-height:1.5}
+.info .sents .sr{font-size:0.7812rem;color:var(--accent2);margin-top:2px}
+.info .sents .st{font-size:0.8438rem;color:var(--muted);margin-top:2px}
+.info .sents .splay{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.info .sents .splay button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);padding:5px 11px;border-radius:8px;font-size:0.8125rem;cursor:pointer}
+.info .sents .splay button:hover{border-color:var(--accent);color:var(--bright)}
+.info .sents .snav{flex:0 0 32px;background:var(--s3);border:1px solid var(--edge);color:var(--text2);border-radius:8px;font-size:1.4rem;line-height:1;cursor:pointer}
+.info .sents .snav:hover{border-color:var(--accent);color:var(--bright)}
+.info .sents .scount{text-align:center;font-size:0.7188rem;color:var(--dim);margin-top:6px}
+body.hide-ex .info .sents{display:none}
+
+/* Plain-text pages: the start-here guide and the word lists on topic pages.
+   Ordinary visible text, so a reader, a search engine and an assistant all
+   get the same thing. */
+.g-list{margin:0 0 6px 1.2em;line-height:1.6;color:var(--text3)}
+.g-list li{margin:4px 0}
+.g-list a{color:var(--accent)}
+.g-h{font-size:1rem;color:var(--text);margin:18px 0 6px;font-weight:600}
+.g-h a{color:inherit;text-decoration:none}
+.g-h a:hover{color:var(--accent)}
+.guide p{line-height:1.6;color:var(--text3);margin:0 0 10px}
+.guide p a{color:var(--accent)}
+.wordlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:4px 18px;margin:0 0 8px}
+.wordlist div{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid var(--edge)}
+.wordlist dt{font-size:1.05rem;color:var(--text)}
+.wordlist .rom{font-size:0.8125rem;color:var(--accent2);margin-left:4px}
+.wordlist dd{margin:0;font-size:0.875rem;color:var(--muted)}
+
+/* A page for one word: no menu, no script bundle, just the word. */
+body.lean{display:block;min-height:100vh;overflow:auto;background:var(--s0);color:var(--text)}
+.lbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;
+  border-bottom:1px solid var(--edge);position:sticky;top:0;background:var(--s0);z-index:2}
+.lbar a{color:var(--text3);text-decoration:none;font-size:0.9rem}
+.lbar a:hover{color:var(--accent)}
+.lbar .lhome{color:var(--text);font-weight:600}
+.lbar nav{display:flex;gap:16px}
+.lmain{max-width:720px;margin:0 auto;padding:28px 20px 64px}
+.lword{font-size:3.4rem;line-height:1.2;font-weight:600;margin:6px 0 2px;color:var(--text)}
+.lrom{font-size:1.25rem;color:var(--accent2);margin-bottom:6px}
+.lmean{font-size:1.15rem;color:var(--text);margin:10px 0 14px;line-height:1.5}
+.lmain .pos{font-size:0.8125rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.lmain .tone{display:flex;align-items:center;gap:8px;color:var(--dim);font-size:0.875rem;margin:6px 0}
+.lmain .plays{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lmain button{font:inherit;font-size:0.9rem;padding:8px 14px;border-radius:9px;cursor:pointer;
+  background:var(--s2);color:var(--text);border:1px solid var(--edge)}
+.lmain button:hover{border-color:var(--accent)}
+.lmain .btn{display:inline-block;padding:9px 16px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none;font-size:0.9rem}
+.lmain .study{margin:14px 0 0}
+.lmain .aid{color:var(--text3);line-height:1.6}
+.lmain .aid .hook{font-weight:600;color:var(--text)}
+.lmain .sent-list li{list-style:none}
+.lmain .splay{margin-top:6px;display:flex;gap:6px}
+.lmain .splay button{padding:4px 10px}
+.relwords{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;padding:0;margin:0}
+.relwords a{display:block;padding:10px 12px;border:1px solid var(--edge);border-radius:10px;
+  background:var(--s2);color:var(--text);text-decoration:none;line-height:1.35}
+.relwords a:hover{border-color:var(--accent)}
+.relwords .rom{color:var(--accent2);font-size:0.8125rem}
+.relwords .mn{display:block;color:var(--muted);font-size:0.8125rem}
+.relwords.big{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:4px 14px}
+.relwords.big a{border:0;background:none;padding:6px 2px;border-bottom:1px solid var(--edge);border-radius:0}
+.azjump{display:flex;flex-wrap:wrap;gap:6px 12px;margin:0 0 6px}
+.azjump a{color:var(--accent);text-decoration:none;font-weight:600}
+.wordlist a{color:inherit;text-decoration:none}
+.wordlist a:hover{color:var(--accent)}

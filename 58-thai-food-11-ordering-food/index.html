@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Order exactly what you want and customise a Thai dish"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=1cc2c185"/>
+<link rel="stylesheet" href="../style.css?v=a4bba798"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -32,6 +32,7 @@
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
       <button class="mm" id="mm-pics" aria-pressed="true"><span class="i">&#127748;</span><span class="t">Pictures on</span></button>
+      <button class="mm" id="mm-preload" aria-pressed="false" title="Load this page's sounds in the background so they play at once"><span class="i">&#9835;</span><span class="t">Preload sounds</span></button>
       <button class="mm" id="mm-show"><span class="i">&#9881;</span><span class="t">What to show</span></button>
       <button class="mm" id="mm-edit" aria-pressed="false"><span class="i">&#9998;</span><span class="t">Edit this course</span></button>
       <button class="mm" id="mm-myedits"><span class="i">&#9112;</span><span class="t">My changes</span></button>
@@ -223,6 +224,9 @@
       <div class="catbox" hidden></div>
     </div>
     <div class="grp" data-grp>Also</div>
+    <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">198 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
     <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
@@ -266,14 +270,14 @@
   <div class="th" lang="th">ขอ</div>
   <div class="rom">khɔ̌ɔ</div><div class="tone" title="tone: rising"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: rising" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>rising tone</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g></svg><span class="tname">rising</span></div><div class="pos">Auxiliary verb; Verb</div>
   <div class="en">to ask for, request, may I... [request permission]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000117.mp3" aria-label="Play ขอ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000117_slow.mp3" aria-label="Play ขอ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">caw</div><p>A black crow cawing loudly to ask for a shiny coin.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000117.mp3" aria-label="Play ขอ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000117_slow.mp3" aria-label="Play ขอ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">caw</div><p>A black crow cawing loudly to ask for a shiny coin.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอจานหนึ่งใบได้ไหม</div><div class="sr">khɔ̌ɔ jaan nʉ̀ng bai dâai mái</div><div class="st">Can I have one plate?</div></li><li><div class="sx" lang="th">ขอช้อนหนึ่งคันครับ</div><div class="sr">khɔ̌ɔ chɔ́ɔn nʉ̀ng khan khráp</div><div class="st">I&#x27;d like one spoon, please.</div></li><li><div class="sx" lang="th">ขอส้อมหนึ่งคันค่ะ</div><div class="sr">khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ</div><div class="st">I&#x27;d like one fork, please.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000726.jpg" data-alt="to take, get, want, bring, have [sex] — เอา" data-wid="TH_000726" data-ch="✋" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for เอา"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>✋</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>📦</text></svg></div>
   <div class="th" lang="th">เอา</div>
   <div class="rom">ao</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Verb</div>
   <div class="en">to take, get, want, bring, have [sex]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000726.mp3" aria-label="Play เอา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000726_slow.mp3" aria-label="Play เอา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">ow</div><p>A person saying &#x27;ow!&#x27; after taking a sharp rose thorn.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000726.mp3" aria-label="Play เอา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000726_slow.mp3" aria-label="Play เอา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">ow</div><p>A person saying &#x27;ow!&#x27; after taking a sharp rose thorn.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">เอากลับบ้านครับ</div><div class="sr">ao glàp bâan khráp</div><div class="st">I&#x27;ll take it home, please.</div></li><li><div class="sx" lang="th">ช่วยเอาน้ำให้ฉันหน่อย</div><div class="sr">chûai ao náam hâi chǎn nɔ̀i</div><div class="st">Please get me some water.</div></li><li><div class="sx" lang="th">กินที่นี่หรือเอากลับบ้าน</div><div class="sr">gin thîi-nîi rʉ̌ʉ ao glàp bâan</div><div class="st">Are you eating here or taking it home?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="don&#x27;t want, no thanks — ไม่เอา" data-wid="TH_002314" data-ch="✋" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ไม่เอา"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🧑</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>✋</text></svg></div>
@@ -301,7 +305,7 @@
   <div class="th" lang="th">เพิ่ม</div>
   <div class="rom">phôem</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Verb</div>
   <div class="en">to add, increase</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000235.mp3" aria-label="Play เพิ่ม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000235_slow.mp3" aria-label="Play เพิ่ม slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000235.mp3" aria-label="Play เพิ่ม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000235_slow.mp3" aria-label="Play เพิ่ม slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันขอเพิ่มข้าวได้ไหม</div><div class="sr">chǎn khɔ̌ɔ phə̂əm khâao dâai mái</div><div class="st">Can I get more rice?</div></li><li><div class="sx" lang="th">ขอข้าวเพิ่มอีกหนึ่งจาน</div><div class="sr">khɔ̌ɔ khâao phə̂əm ìik nʉ̀ng jaan</div><div class="st">I&#x27;d like one more plate of rice.</div></li><li><div class="sx" lang="th">ใส่กระเทียมเพิ่มอีกหน่อย</div><div class="sr">sài grà-thiam phə̂əm ìik nɔ̀i</div><div class="st">Add a little more garlic.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="ask for more — ขอเพิ่ม" data-wid="TH_002318" data-ch="➕" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ขอเพิ่ม"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🧑</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🍚</text></svg></div>
@@ -315,14 +319,14 @@
   <div class="th" lang="th">น้อย</div>
   <div class="rom">nɔ́ɔi</div><div class="tone" title="tone: high"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: high" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>high tone</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g></svg><span class="tname">high</span></div><div class="pos">Adjective; Adverb</div>
   <div class="en">small [amount], little, few, less, slightly</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000739.mp3" aria-label="Play น้อย">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000739_slow.mp3" aria-label="Play น้อย slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000739.mp3" aria-label="Play น้อย">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000739_slow.mp3" aria-label="Play น้อย slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ช่วยทำให้เผ็ดน้อยหน่อย</div><div class="sr">chûai tham hâi phèt nɔ́ɔi nɔ̀i</div><div class="st">Please make it less spicy.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000296.jpg" data-alt="very, much, many, a lot, numerous — มาก" data-wid="TH_000296" data-ch="●" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for มาก"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="154.4" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="327.2" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="500.0" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="672.8" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="845.6" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="154.4" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="327.2" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="500.0" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="672.8" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="845.6" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text></svg></div>
   <div class="th" lang="th">มาก</div>
   <div class="rom">mâak</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Adjective; Adverb</div>
   <div class="en">very, much, many, a lot, numerous</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296.mp3" aria-label="Play มาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296_slow.mp3" aria-label="Play มาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">mock</div><p>A tiny person stands beside an absurdly enormous mountain of objects and reacts to how much there is.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296.mp3" aria-label="Play มาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296_slow.mp3" aria-label="Play มาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">mock</div><p>A tiny person stands beside an absurdly enormous mountain of objects and reacts to how much there is.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ปลาหมึกย่างหอมมาก</div><div class="sr">bplaa-mʉ̀k yâang hɔ̌ɔm mâak</div><div class="st">The grilled squid smells very good.</div></li><li><div class="sx" lang="th">ฉันชอบกินข้าวมาก</div><div class="sr">chǎn chɔ̂ɔp gin khâao mâak</div><div class="st">I really like eating rice.</div></li><li><div class="sx" lang="th">กาแฟแก้วนี้ร้อนมาก</div><div class="sr">gaa-faae gâaeo níi rɔ́ɔn mâak</div><div class="st">This cup of coffee is very hot.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="don&#x27;t put in — ไม่ใส่" data-wid="TH_002534" data-ch="✖" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ไม่ใส่"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🍛</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>✖</text></svg></div>
@@ -336,7 +340,7 @@
   <div class="th" lang="th">ใส่</div>
   <div class="rom">sài</div><div class="tone" title="tone: low"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: low" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>low tone</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g></svg><span class="tname">low</span></div><div class="pos">verb</div>
   <div class="en">to put in, to add, to include, put in</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001014.mp3" aria-label="Play ใส่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001014_slow.mp3" aria-label="Play ใส่ slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001014.mp3" aria-label="Play ใส่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001014_slow.mp3" aria-label="Play ใส่ slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันใส่หัวหอมในสลัด</div><div class="sr">chǎn sài hǔa-hɔ̌ɔm nai sà-làat</div><div class="st">I put onion in the salad.</div></li><li><div class="sx" lang="th">ฉันขอไม่ใส่พริก</div><div class="sr">chǎn khɔ̌ɔ mâi sài phrík</div><div class="st">I&#x27;d like it without chili.</div></li><li><div class="sx" lang="th">ข้าวผัดนี้ใส่ไข่ไหม</div><div class="sr">khâao-phàt níi sài khài mái</div><div class="st">Does this fried rice have egg in it?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="not spicy — ไม่เผ็ด" data-wid="TH_002471" data-ch="○" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ไม่เผ็ด"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🌶</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>○</text></svg></div>
@@ -392,7 +396,7 @@
   <div class="th" lang="th">จาน</div>
   <div class="rom">jaan</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">noun, classifier</div>
   <div class="en">plate, dish, classifier for plates, classifier for plates of food</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001001.mp3" aria-label="Play จาน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001001_slow.mp3" aria-label="Play จาน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">John</div><p>A man named John holding a giant dinner plate.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001001.mp3" aria-label="Play จาน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001001_slow.mp3" aria-label="Play จาน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">John</div><p>A man named John holding a giant dinner plate.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">อาหารจานนี้เผ็ดมาก</div><div class="sr">aa-hǎan jaan níi phèt mâak</div><div class="st">This dish is very spicy.</div></li><li><div class="sx" lang="th">อาหารจานนี้ใหญ่เกินไป</div><div class="sr">aa-hǎan jaan níi yài gəən bpai</div><div class="st">This dish is too big.</div></li><li><div class="sx" lang="th">ขอจานหนึ่งใบได้ไหม</div><div class="sr">khɔ̌ɔ jaan nʉ̀ng bai dâai mái</div><div class="st">Can I have one plate?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="bowl — ชาม" data-wid="TH_001080" data-ch="🥣" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ชาม"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🥣</text></svg></div>
@@ -413,14 +417,14 @@
   <div class="th" lang="th">ช้อน</div>
   <div class="rom">chɔ́ɔn</div><div class="tone" title="tone: high"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: high" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>high tone</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g></svg><span class="tname">high</span></div><div class="pos">noun</div>
   <div class="en">spoon</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001081.mp3" aria-label="Play ช้อน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001081_slow.mp3" aria-label="Play ช้อน slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001081.mp3" aria-label="Play ช้อน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001081_slow.mp3" aria-label="Play ช้อน slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอช้อนหนึ่งคันครับ</div><div class="sr">khɔ̌ɔ chɔ́ɔn nʉ̀ng khan khráp</div><div class="st">I&#x27;d like one spoon, please.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="fork — ส้อม" data-wid="TH_001131" data-ch="🍴" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ส้อม"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🍴</text></svg></div>
   <div class="th" lang="th">ส้อม</div>
   <div class="rom">sɔ̂ɔm</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">noun</div>
   <div class="en">fork</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001131.mp3" aria-label="Play ส้อม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001131_slow.mp3" aria-label="Play ส้อม slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001131.mp3" aria-label="Play ส้อม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001131_slow.mp3" aria-label="Play ส้อม slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอส้อมหนึ่งคันค่ะ</div><div class="sr">khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ</div><div class="st">I&#x27;d like one fork, please.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="chopsticks — ตะเกียบ" data-wid="TH_002539" data-ch="🥢" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ตะเกียบ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🥢</text></svg></div>
@@ -1130,14 +1134,98 @@
  function playHit(e){
   return e.target.closest?e.target.closest('[data-play]'):null;
  }
+ // ---- sounds
+ //
+ // "Audio seems quite slow, on the site." A button used to make a brand new
+ // Audio on every press, so the clip started downloading only once it was
+ // pressed, and downloaded again each time. Now one element per clip is kept:
+ // the second press is instant, a press that follows a pointer arriving on
+ // the button has a head start, and a reader who wants it can have the whole
+ // page's sounds fetched ahead of time (menu: Preload sounds).
+ var SND={},SNDN=[];
+ function snd(u){
+  var a=SND[u];
+  if(!a){
+   a=new Audio();a.preload='auto';a.src=u;SND[u]=a;SNDN.push(u);
+   // a long session should not hold every clip it ever met
+   if(SNDN.length>300){var old=SNDN.shift();delete SND[old];}
+  }
+  return a;
+ }
+ var preloadOn=false;
+ try{preloadOn=localStorage.getItem('wb.preload')==='1';}catch(e){}
+ function lean(){
+  // saving data is a choice the reader made in their browser; honour it
+  try{return !!(navigator.connection&&navigator.connection.saveData);}catch(e){return false;}
+ }
+ function warm(){
+  if(!preloadOn||lean())return;
+  var list=[],seen={},els=document.querySelectorAll('[data-play]');
+  for(var k=0;k<els.length;k++){
+   var u=els[k].dataset.play;
+   if(u&&!seen[u]){seen[u]=1;list.push(u);}
+  }
+  var i=0,busy=0;
+  function start(u){
+   var a=snd(u);
+   if(a.readyState>=3)return;
+   busy++;
+   var done=false,fin=function(){if(done)return;done=true;busy--;pump();};
+   a.addEventListener('canplaythrough',fin,{once:true});
+   a.addEventListener('error',fin,{once:true});
+   setTimeout(fin,6000);
+  }
+  // three at a time: the page's own pictures and scripts are still arriving
+  function pump(){
+   while(preloadOn&&busy<3&&i<list.length)start(list[i++]);
+  }
+  pump();
+ }
+ var preBtn=document.getElementById('mm-preload');
+ function paintPre(){
+  if(!preBtn)return;
+  preBtn.setAttribute('aria-pressed',preloadOn?'true':'false');
+  preBtn.querySelector('.t').textContent=preloadOn?'Sounds preloaded':'Preload sounds';
+ }
+ if(preBtn){
+  preBtn.addEventListener('click',function(){
+   preloadOn=!preloadOn;
+   try{localStorage.setItem('wb.preload',preloadOn?'1':'0');}catch(e){}
+   paintPre();
+   if(preloadOn)warm();
+  });
+  paintPre();
+ }
+ // after the page has settled, not while it is still drawing
+ setTimeout(warm,900);
+ document.addEventListener('pointerover',function(e){
+  var b=playHit(e);
+  if(b&&b.dataset.play&&!lean())snd(b.dataset.play);
+ },true);
  document.addEventListener('click',function(e){
   var b=playHit(e);
   if(!b)return;
   // It is only ever a sound. A clip that will not load should not take the
   // rest of the click down with it.
-  try{var a=new Audio(b.dataset.play);var p=a.play();
+  try{var a=snd(b.dataset.play);
+      try{a.currentTime=0;}catch(err){}
+      var p=a.play();
       if(p&&p.catch)p.catch(function(){});}catch(err){}
  },true);
+
+ // ‹ the sentence › under a word. Every sentence is in the markup; this
+ // shows one of them and moves between them, wrapping at the ends.
+ document.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('.sents [data-sdir]'):null;
+  if(!b)return;
+  var box=b.closest('.sents'),all=box.querySelectorAll('.sent'),i=0,n=all.length;
+  if(n<2)return;
+  for(var k=0;k<n;k++)if(all[k].classList.contains('on')){i=k;break;}
+  all[i].classList.remove('on');
+  i=(i+(+b.dataset.sdir)+n)%n;
+  all[i].classList.add('on');
+  var c=box.querySelector('.scount');if(c)c.textContent=(i+1)+' / '+n;
+ });
 
  // Remember where the reader got to, so the front page can send them back.
  // Only a real lesson page writes it: the front page renders lesson one for
@@ -2571,19 +2659,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  var pBtn=document.getElementById('mm-progress');
  if(pBtn)pBtn.addEventListener('click',progressPanel);
 
- // --- the two that are still to be written
- function stub(title,line){
-  return function(){
-   mmOpen(false);
-   panel(title,function(body){
-    body.innerHTML='<p class="sheet-p">'+line+'</p>';
-   });
-  };
- }
+ // --- About and Guide are one page: the start-here guide
  var aBtn=document.getElementById('mm-about');
- if(aBtn)aBtn.addEventListener('click',stub('About',
-  'This is a free vocabulary course, built with WordBase and studied with '
-  +'flashcards. More to say here shortly.'));
+ if(aBtn)aBtn.addEventListener('click',function(){
+  location.href=base()+'/start/#about';
+ });
  // --- how big the words are
  //
  // Not the browser's zoom, which scales the gaps and the pictures with it
@@ -2646,9 +2726,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  if(lBtn)lBtn.addEventListener('click',resetLayout);
 
  var gBtn=document.getElementById('mm-guide');
- if(gBtn)gBtn.addEventListener('click',stub('Guide',
-  'How to get the most out of the lessons, the flashcards and the quiz. '
-  +'Being written.'));
+ if(gBtn)gBtn.addEventListener('click',function(){
+  location.href=base()+'/start/';
+ });
 
  // What was chosen last time, before the first paint has anything to argue
  // with. The theme is also set in the head, so the page never flashes dark.

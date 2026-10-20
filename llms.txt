@@ -1,0 +1,46 @@
+# Learn Thai with Flashcards
+
+> A free Thai vocabulary course with 460 lessons, 4,778 words and 198 example sentences. Words are shown in Thai script with romanization and an English meaning, many have audio, and each lesson can be studied as flashcards or a quiz. No sign-up.
+
+## Start here
+
+- [How the course works](https://thai.inaflash.cards/start/): what it is, how a lesson works, where to begin
+- [Questions and connections](https://thai.inaflash.cards/01-questions-and-connections/): the first lesson
+- [All lessons](https://thai.inaflash.cards/lessons/): every lesson, searchable
+
+## Topics
+
+- [Support Words](https://thai.inaflash.cards/c-support-words/): 3 lessons · 41 words
+- [Beginner](https://thai.inaflash.cards/c-beginner/): Everyday vocabulary, one topic at a time.
+- [Video lessons](https://thai.inaflash.cards/c-video-lessons/): Words taken from real videos, timed to the second they are said.
+- [Top Words](https://thai.inaflash.cards/c-top-words/): 1 lesson · 30 words
+- [Thai Food](https://thai.inaflash.cards/c-thai-food/): 50 lessons · 1340 words
+- [Thai Conversation](https://thai.inaflash.cards/c-thai-conversation/): 55 lessons · 1124 words
+- [Natural Thai](https://thai.inaflash.cards/c-natural-thai/): 17 lessons · 255 words
+- [Thai Culture & Social Nuance](https://thai.inaflash.cards/c-thai-culture-social-nuance/): 18 lessons · 271 words
+- [Thai Humor & Banter -Warning. Mostly use with friends!](https://thai.inaflash.cards/c-thai-humor-banter-warning-mostly-use-with-friends/): 16 lessons · 240 words
+- [Professional Thai](https://thai.inaflash.cards/c-professional-thai/): 18 lessons · 181 words
+- [Relationships & Dating Thai](https://thai.inaflash.cards/c-relationships-dating-thai/): 18 lessons · 180 words
+- [Friends & Social Thai](https://thai.inaflash.cards/c-friends-social-thai/): 18 lessons · 180 words
+- [News & Formal Thai](https://thai.inaflash.cards/c-news-formal-thai/): 18 lessons · 180 words
+- [Regional Thai — Isaan / Northern / Southern](https://thai.inaflash.cards/c-regional-thai-isaan-northern-southern/): 16 lessons · 160 words
+- [Thai Listening](https://thai.inaflash.cards/c-thai-listening/): 19 lessons · 190 words
+- [Thai TV & Entertainment](https://thai.inaflash.cards/c-thai-tv-entertainment/): 18 lessons · 180 words
+- [Thai Music & Lyrics](https://thai.inaflash.cards/c-thai-music-lyrics/): 19 lessons · 190 words
+- [Sports In Thai](https://thai.inaflash.cards/c-sports-in-thai/): 18 lessons · 180 words
+- [Thai Tourism & Hotels](https://thai.inaflash.cards/c-thai-tourism-hotels/): 17 lessons · 205 words
+- [Thai Phone Calls](https://thai.inaflash.cards/c-thai-phone-calls/): 18 lessons · 216 words
+- [Real-World Situational Thai](https://thai.inaflash.cards/c-real-world-situational-thai/): 17 lessons · 204 words
+- [Fast / Messy Thai](https://thai.inaflash.cards/c-fast-messy-thai/): 18 lessons · 216 words
+- [Thai Two Person Conversations](https://thai.inaflash.cards/c-thai-two-person-conversations/): 12 lessons · 120 words
+- [Thai Group Conversations](https://thai.inaflash.cards/c-thai-group-conversations/): 12 lessons · 122 words
+
+## Reference
+
+- [Example sentences](https://thai.inaflash.cards/sentences/): 198 sentences with romanization and English
+- [All words A–Z](https://thai.inaflash.cards/words/): every word with romanization and meaning, each on its own page
+- [Thai tones](https://thai.inaflash.cards/tones/): the five tones, tone pairs and the spelling rule
+
+## Optional
+
+- [Sitemap](https://thai.inaflash.cards/sitemap.xml): every page on the site
