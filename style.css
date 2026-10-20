@@ -1367,21 +1367,34 @@ body.light .tw.t-high{color:#a87600}
 body.light .tw.t-rising{color:#1c8f4c}
 body.hide-tone .tw .tm{display:none}
 
-/* A sentence's picture in the reading pane: small, beside the sentence —
-   it is one part of the word's card, not the card. */
-.info .sents .sent.on.haspic{display:flex;gap:12px;align-items:flex-start}
-.info .sents .stext{flex:1;min-width:0}
-.sthumb{flex:none;width:64px;height:64px;border-radius:8px;overflow:hidden;
-  background:var(--s3);display:flex;align-items:center;justify-content:center}
-.sthumb img,.sthumb svg{width:100%;height:100%;object-fit:cover;display:block}
-.sthumb.sicon{font-size:1.9rem;line-height:1}
-body.pics-off .sthumb{display:none}
-
 /* A sentence as a flashcard or a quiz question: the same faces as a word, at
    a size a whole sentence fits. */
 .sface .f-word{font-size:1.75rem;line-height:1.5;font-weight:500}
 .qcard.sface .f-word,.sface.qcard .f-word{font-size:1.6rem}
 .qopt.sface .f-word,.sface .qtext .f-word{font-size:1.15rem}
-.mbar .deck{display:inline-flex;border:1px solid var(--edge);border-radius:8px;overflow:hidden;margin-right:8px}
-.mbar .deck button{border:0;border-radius:0;background:transparent;padding:4px 10px;font-size:.8125rem;color:var(--text2);cursor:pointer}
-.mbar .deck button.on{background:var(--accent);color:var(--on-accent,#06131f)}
+/* A sentence page: the same reading pane, with a sentence where the word is */
+.info .card.sc .th{font-size:2rem;line-height:1.5}
+
+/* Word lessons | Sentence lessons — building blocks and what you can build.
+   One switch at the top of the menu's list, the same pair at the top of the
+   two catalogues. */
+.menu .mtabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:10px 4px 8px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--s2)}
+.menu .mtabs button{display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 4px;border:0;border-radius:8px;background:transparent;color:var(--text2);font:inherit;font-size:0.8125rem;font-weight:700;cursor:pointer;line-height:1.2}
+.menu .mtabs button small{font-size:0.6562rem;font-weight:500;color:var(--dim)}
+.menu .mtabs button:hover{color:var(--bright)}
+.menu .mtabs button.on{background:var(--accent);color:#fff}
+.menu .mtabs button.on small{color:rgba(255,255,255,.8)}
+.menu .mtabs button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.menu .mlist[hidden]{display:none}
+.menu .mnote{font-size:0.7188rem;color:var(--dim);padding:8px 10px 4px;line-height:1.4}
+.pswitch{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-width:480px;margin:6px 0 22px;padding:3px;border:1px solid var(--line);border-radius:12px;background:var(--s2)}
+.pswitch a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 6px;border-radius:9px;text-decoration:none;color:var(--text2);font-size:0.875rem;font-weight:700}
+.pswitch a small{font-size:0.6875rem;font-weight:500;color:var(--dim)}
+.pswitch a:hover{color:var(--bright)}
+.pswitch a.on{background:var(--accent);color:#fff}
+.pswitch a.on small{color:rgba(255,255,255,.8)}
+.info .sents .sec-h{display:flex;align-items:baseline;gap:8px}
+.info .sents .vsl{margin-left:auto;font-size:0.7188rem;text-transform:none;letter-spacing:0;font-weight:600;color:var(--accent2);text-decoration:none}
+.info .sents .vsl:hover{color:var(--accent3);text-decoration:underline}
+.builtfrom{display:inline-block;margin:0 0 12px;font-size:0.7812rem;color:var(--accent2);text-decoration:none}
+.builtfrom:hover{text-decoration:underline}

@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="The Thai words used in “100 Most Common Thai Words in 30 minutes (Pronunciation and Example Sentence)” by Thai Educator."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=df51ccfe"/>
+<link rel="stylesheet" href="../style.css?v=e9415b89"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -54,7 +54,8 @@
     <a class="item" href="https://thai.inaflash.cards/" data-title="home"><span class="ic" aria-hidden="true">⌂</span><span class="lb">Home</span></a>
     <a class="item" id="m-fav" href="#" hidden data-title="favourites"><span class="ic" aria-hidden="true">♡</span><span class="lb">Favourites</span><span class="n"></span></a>
     <a class="item" id="m-recent" href="#" hidden data-title="recently viewed"><span class="ic" aria-hidden="true">↺</span><span class="lb">Recently viewed</span><span class="n"></span></a>
-    <div class="grp" data-grp>Categories</div>
+    <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
+    <div class="mlist" data-list="w">
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Support Words">+</button>
@@ -223,10 +224,21 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    </div>
+    <div class="mlist" data-list="s" hidden>
+    <div class="catwrap" data-cat="s:c-beginner" data-name="Beginner">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Beginner">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/sentences/c-beginner/" data-title="beginner"><span class="ic" aria-hidden="true">›</span><span class="lb">Beginner</span><span class="n" data-fill="scat:c-beginner"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+      <div class="mnote">More appear as lessons reach 10 approved sentences.</div>
+    </div>
     <div class="grp" data-grp>Also</div>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">198 to read through</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">336 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
     <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
@@ -324,7 +336,7 @@
   <div class="th" lang="th">คน</div>
   <div class="rom">khon</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Classifier; Noun</div>
   <div class="en">person, people, [classifier for people]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000032.mp3" aria-label="Play คน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000032_slow.mp3" aria-label="Play คน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">con</div><p>A crowd of ordinary people gathered together in a Thai market.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ร้านนี้คนเยอะเพราะอาหารอร่อย</div><div class="sr">ráan níi khon yə́ phráw aa-hǎan à-rɔ̀i</div><div class="st">This restaurant is crowded because the food is delicious.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000032.mp3" aria-label="Play คน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000032_slow.mp3" aria-label="Play คน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">con</div><p>A crowd of ordinary people gathered together in a Thai market.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ร้านนี้คนเยอะเพราะอาหารอร่อย</div><div class="sr">ráan níi khon yə́ phráw aa-hǎan à-rɔ̀i</div><div class="st">This restaurant is crowded because the food is delicious.</div></li><li><div class="sx" lang="th">มี สาม คน</div><div class="sr">mii sǎam khon</div><div class="st">There are three people</div></li><li><div class="sx" lang="th">มีสี่คน</div><div class="sr">mii sìi khon</div><div class="st">There are four people</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="fragment of ครอบครัว (family) — ค" data-wid="TH_001071" data-ch="👪" data-vis="1" data-at="132000" data-end="135000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ค"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👪</text></svg></div>
@@ -415,14 +427,14 @@
   <div class="th" lang="th">ใน</div>
   <div class="rom">nai</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Preposition</div>
   <div class="en">in, inside, within</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000004.mp3" aria-label="Play ใน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000004_slow.mp3" aria-label="Play ใน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">nigh</div><p>nigh</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผักสดอยู่ในตู้เย็น</div><div class="sr">phàk sòt yùu nai dtûu-yen</div><div class="st">The fresh vegetables are in the refrigerator.</div></li><li><div class="sx" lang="th">ฉันใส่หัวหอมในสลัด</div><div class="sr">chǎn sài hǔa-hɔ̌ɔm nai sà-làat</div><div class="st">I put onion in the salad.</div></li><li><div class="sx" lang="th">ฉันเติมน้ำปลาในข้าว</div><div class="sr">chǎn dteerm náam-bplaa nai khâao</div><div class="st">I add fish sauce to my rice.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000004.mp3" aria-label="Play ใน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000004_slow.mp3" aria-label="Play ใน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">nigh</div><p>nigh</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผักสดอยู่ในตู้เย็น</div><div class="sr">phàk sòt yùu nai dtûu-yen</div><div class="st">The fresh vegetables are in the refrigerator.</div></li><li><div class="sx" lang="th">ฉันใส่หัวหอมในสลัด</div><div class="sr">chǎn sài hǔa-hɔ̌ɔm nai sà-làat</div><div class="st">I put onion in the salad.</div></li><li><div class="sx" lang="th">ใส่น้ำมันในกระทะก่อน</div><div class="sr">sài náam-man nai grà-thá gɔ̀ɔn</div><div class="st">Put oil in the pan first.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000751.jpg" data-alt="polite ending particle for male speakers — ครับ" data-wid="TH_000751" data-ch="🙏" data-vis="1" data-at="124000" data-end="128000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ครับ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🙏</text></svg></div>
   <div class="th" lang="th">ครับ</div>
   <div class="rom">khráp</div><div class="tone" title="tone: high"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: high" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>high tone</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g></svg><span class="tname">high</span></div><div class="pos">Particle</div>
   <div class="en">polite ending particle for male speakers</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000751.mp3" aria-label="Play ครับ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000751_slow.mp3" aria-label="Play ครับ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">crab</div><p>A polite man holds up a cheerful red crab while respectfully acknowledging someone.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอช้อนหนึ่งคันครับ</div><div class="sr">khɔ̌ɔ chɔ́ɔn nʉ̀ng khan khráp</div><div class="st">I&#x27;d like one spoon, please.</div></li><li><div class="sx" lang="th">ฉันขอเมนูหน่อยครับ</div><div class="sr">chǎn khɔ̌ɔ mee-nuu nɔ̀i khráp</div><div class="st">Could I have the menu, please?</div></li><li><div class="sx" lang="th">ทั้งหมดเท่าไหร่ครับ</div><div class="sr">tháng-mòt thâo-rài khráp</div><div class="st">How much is the total?</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000751.mp3" aria-label="Play ครับ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000751_slow.mp3" aria-label="Play ครับ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">crab</div><p>A polite man holds up a cheerful red crab while respectfully acknowledging someone.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผมอยากกินไข่ครับ</div><div class="sr">phǒm yàak gin khài khráp</div><div class="st">I want to eat eggs.</div></li><li><div class="sx" lang="th">ผมอยากกินข้าวครับ</div><div class="sr">phǒm yàak gin khâao khráp</div><div class="st">I&#x27;d like some rice.</div></li><li><div class="sx" lang="th">ผมไม่ชอบอาหารเผ็ดครับ</div><div class="sr">phǒm mâi châawp aa-hǎan pèt khráp</div><div class="st">I don&#x27;t like spicy food.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="enough — พอ" data-wid="TH_001020" data-ch="✋" data-vis="1" data-at="124000" data-end="128000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for พอ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>✋</text></svg></div>
@@ -464,7 +476,7 @@
   <div class="th" lang="th">ค่ะ</div>
   <div class="rom">khâ</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Particle</div>
   <div class="en">polite particle used by females [falling tone for statements/questions]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000489.mp3" aria-label="Play ค่ะ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000489_slow.mp3" aria-label="Play ค่ะ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A cheerful woman presses a giant glowing politeness button whenever she answers politely.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอส้อมหนึ่งคันค่ะ</div><div class="sr">khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ</div><div class="st">I&#x27;d like one fork, please.</div></li><li><div class="sx" lang="th">ฉันชอบปลาค่ะ</div><div class="sr">chǎn chɔ̂ɔp plaa khâ</div><div class="st">I like fish.</div></li><li><div class="sx" lang="th">ฉันชอบอาหารสดค่ะ</div><div class="sr">chǎn chɔ̂ɔp aa-hǎan sòt khâ</div><div class="st">I like fresh food.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000489.mp3" aria-label="Play ค่ะ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000489_slow.mp3" aria-label="Play ค่ะ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A cheerful woman presses a giant glowing politeness button whenever she answers politely.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันอยากกินปลา ค่ะ</div><div class="sr">chǎn yàak gin plaa khâ</div><div class="st">I&#x27;d like to eat fish.</div></li><li><div class="sx" lang="th">ฉันไม่ชอบกาแฟร้อนค่ะ</div><div class="sr">chǎn mâi châawp gaa-fɛɛ rɔ́ɔn khâ</div><div class="st">I don&#x27;t like hot coffee.</div></li><li><div class="sx" lang="th">อาหารนี้อร่อยค่ะ</div><div class="sr">aa-hǎan níi à-ròi khâ</div><div class="st">This food is delicious.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000117.jpg" data-alt="to ask for, request, may I... [request permission] — ขอ" data-wid="TH_000117" data-ch="🙏" data-vis="1" data-at="179000" data-end="186000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ขอ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🙏</text></svg></div>
@@ -478,7 +490,7 @@
   <div class="th" lang="th">คุณ</div>
   <div class="rom">khun</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Noun; Pronoun; Title</div>
   <div class="en">you [polite], Mr./Mrs./Miss, virtue, quality, benefit, kindness</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000430.mp3" aria-label="Play คุณ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000430_slow.mp3" aria-label="Play คุณ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Kuhn</div><p>A person named Kuhn wears a giant crown and everyone politely addresses them.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">คุณอยากกินอะไร</div><div class="sr">khun yàak gin à-rai</div><div class="st">What do you want to eat?</div></li><li><div class="sx" lang="th">คุณชอบกินข้าวมากไหม</div><div class="sr">khun chɔ̂ɔp gin khâao mâak mái</div><div class="st">Do you really like eating rice?</div></li><li><div class="sx" lang="th">คุณชอบกินไก่มากไหม</div><div class="sr">khun chɔ̂ɔp gin gài mâak mái</div><div class="st">Do you really like eating chicken?</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000430.mp3" aria-label="Play คุณ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000430_slow.mp3" aria-label="Play คุณ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Kuhn</div><p>A person named Kuhn wears a giant crown and everyone politely addresses them.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">คุณดื่มกาแฟไหมครับ</div><div class="sr">khun dʉ̀ʉm gaa-fɛɛ mǎi khráp</div><div class="st">Do you drink coffee?</div></li><li><div class="sx" lang="th">คุณอยากดื่มชาเย็นไหมครับ</div><div class="sr">khun yàak dʉ̀ʉm chaa yen mǎi khráp</div><div class="st">Would you like iced tea?</div></li><li><div class="sx" lang="th">คุณชอบไข่ไหมครับ</div><div class="sr">khun châawp khài mǎi khráp</div><div class="st">Do you like eggs?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="here, this — นี่" data-wid="TH_001095" data-ch="👉" data-vis="1" data-at="146000" data-end="151000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for นี่"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👉</text></svg></div>
@@ -492,14 +504,14 @@
   <div class="th" lang="th">ไม่</div>
   <div class="rom">mâi</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Adverb</div>
   <div class="en">not</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039.mp3" aria-label="Play ไม่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039_slow.mp3" aria-label="Play ไม่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">my</div><p>A person dramatically shakes their head and pushes away a giant forbidden object.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันไม่กินพริก</div><div class="sr">chǎn mâi gin phrík</div><div class="st">I don&#x27;t eat chili.</div></li><li><div class="sx" lang="th">ฉันขอไม่ใส่พริก</div><div class="sr">chǎn khɔ̌ɔ mâi sài phrík</div><div class="st">I&#x27;d like it without chili.</div></li><li><div class="sx" lang="th">ฉันไม่ค่อยกินเนื้อวัว</div><div class="sr">chǎn mâi khɔ̂i gin nʉ́ʉa wua</div><div class="st">I don&#x27;t eat beef very often.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039.mp3" aria-label="Play ไม่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039_slow.mp3" aria-label="Play ไม่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">my</div><p>A person dramatically shakes their head and pushes away a giant forbidden object.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันไม่ชอบชาเย็นค่ะ</div><div class="sr">chǎn mâi châawp chaa yen khâ</div><div class="st">I don&#x27;t like iced tea.</div></li><li><div class="sx" lang="th">คุณไม่กินไข่หรือครับ</div><div class="sr">khun mâi gin khài rǔe khráp</div><div class="st">You don&#x27;t eat eggs?</div></li><li><div class="sx" lang="th">ผมไม่อยากกินอาหารเผ็ดครับ</div><div class="sr">phǒm mâi yàak gin aa-hǎan pèt khráp</div><div class="st">I don&#x27;t want to eat spicy food.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000007.jpg" data-alt="to be, is, am, are, able to, as — เป็น" data-wid="TH_000007" data-ch="=" data-vis="1" data-at="497000" data-end="505000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for เป็น"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>=</text></svg></div>
   <div class="th" lang="th">เป็น</div>
   <div class="rom">pen</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Auxiliary verb; Verb</div>
   <div class="en">to be, is, am, are, able to, as</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000007.mp3" aria-label="Play เป็น">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000007_slow.mp3" aria-label="Play เป็น slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">pen</div><p>pen</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันเป็นเด็ก</div><div class="sr">chǎn pen dèk</div><div class="st">I is a child</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000007.mp3" aria-label="Play เป็น">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000007_slow.mp3" aria-label="Play เป็น slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">pen</div><p>pen</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">เขาเป็นเด็ก</div><div class="sr">khǎo pen dèk</div><div class="st">he is a child</div></li><li><div class="sx" lang="th">ฉันเป็นเด็ก</div><div class="sr">chǎn pen dèk</div><div class="st">I is a child</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001157.jpg" data-alt="seven — เจ็ด" data-wid="TH_001157" data-ch="⑦" data-vis="1" data-at="186000" data-end="194000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for เจ็ด"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>⑦</text></svg></div>
@@ -534,7 +546,7 @@
   <div class="th" lang="th">ผม</div>
   <div class="rom">phǒm</div><div class="tone" title="tone: rising"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: rising" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>rising tone</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g></svg><span class="tname">rising</span></div><div class="pos">Noun; Pronoun</div>
   <div class="en">I, me [male polite], hair</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000507.mp3" aria-label="Play ผม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000507_slow.mp3" aria-label="Play ผม slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">POM</div><p>Two cheeky Aussie or Kiwi guys point at an absurdly pompous British bloke—their unmistakable POM.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผมชอบกาแฟครับ</div><div class="sr">phǒm chɔ̂ɔp gaa-fɛɛ khráp</div><div class="st">I like coffee.</div></li><li><div class="sx" lang="th">ผมชอบปลาครับ</div><div class="sr">phǒm chɔ̂ɔp plaa khráp</div><div class="st">I like fish.</div></li><li><div class="sx" lang="th">ผมอยากดื่มน้ำ</div><div class="sr">phǒm yàak dʉ̀ʉm náam</div><div class="st">I want to drink water.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000507.mp3" aria-label="Play ผม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000507_slow.mp3" aria-label="Play ผม slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">POM</div><p>Two cheeky Aussie or Kiwi guys point at an absurdly pompous British bloke—their unmistakable POM.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผมชอบกาแฟครับ</div><div class="sr">phǒm chɔ̂ɔp gaa-fɛɛ khráp</div><div class="st">I like coffee.</div></li><li><div class="sx" lang="th">ผมอยากกินปลาเผ็ดครับ</div><div class="sr">phǒm yàak gin plaa pèt khráp</div><div class="st">I want to eat spicy fish.</div></li><li><div class="sx" lang="th">ผมไม่ดื่มชาเย็นครับ</div><div class="sr">phǒm mâi dʉ̀ʉm chaa yen khráp</div><div class="st">I don&#x27;t drink iced tea.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="yes, that&#x27;s right, correct — ใช่" data-wid="TH_001190" data-ch="👍" data-vis="1" data-at="228000" data-end="232000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ใช่"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>✅</text></svg></div>
@@ -569,7 +581,7 @@
   <div class="th" lang="th">ชื่อ</div>
   <div class="rom">chûue</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Noun; Verb</div>
   <div class="en">name, to be named</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000151.mp3" aria-label="Play ชื่อ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000151_slow.mp3" aria-label="Play ชื่อ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Choo</div><p>A choo choo train missing it&#x27;s name tag</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000151.mp3" aria-label="Play ชื่อ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000151_slow.mp3" aria-label="Play ชื่อ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Choo</div><p>A choo choo train missing it&#x27;s name tag</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ชื่อของเขา</div><div class="sr">chûue khɔ̌ɔng khǎo</div><div class="st">The name of him</div></li><li><div class="sx" lang="th">แม่มีชื่อ</div><div class="sr">mɛ̂ɛ mii chûue</div><div class="st">mother has a name</div></li><li><div class="sx" lang="th">ชื่อของแม่</div><div class="sr">chûue khɔ̌ɔng mɛ̂ɛ</div><div class="st">The name of mother</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="which?, where?, any — ไหน" data-wid="TH_000722" data-ch="❓" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ไหน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>❓</text></svg></div>
@@ -590,7 +602,7 @@
   <div class="th" lang="th">อยู่</div>
   <div class="rom">yùu</div><div class="tone" title="tone: low"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: low" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>low tone</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g></svg><span class="tname">low</span></div><div class="pos">Verb</div>
   <div class="en">to be located, live, stay, [marks ongoing/progressive aspect]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000060.mp3" aria-label="Play อยู่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000060_slow.mp3" aria-label="Play อยู่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">you</div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผักสดอยู่ในตู้เย็น</div><div class="sr">phàk sòt yùu nai dtûu-yen</div><div class="st">The fresh vegetables are in the refrigerator.</div></li><li><div class="sx" lang="th">อาหารยังร้อนอยู่ ระวังนะ</div><div class="sr">aa-hǎan yang rɔ́ɔn yùu rá-wang ná</div><div class="st">The food is still hot, be careful.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000060.mp3" aria-label="Play อยู่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000060_slow.mp3" aria-label="Play อยู่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">you</div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผักสดอยู่ในตู้เย็น</div><div class="sr">phàk sòt yùu nai dtûu-yen</div><div class="st">The fresh vegetables are in the refrigerator.</div></li><li><div class="sx" lang="th">อาหารยังร้อนอยู่ ระวังนะ</div><div class="sr">aa-hǎan yang rɔ́ɔn yùu rá-wang ná</div><div class="st">The food is still hot, be careful.</div></li><li><div class="sx" lang="th">น้องอยู่ใกล้โรงเรียน</div><div class="sr">nɔ́ɔng yùu glâi roong-rian</div><div class="st">the younger sibling is near the school</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000841.jpg" data-alt="I, me [female informal/neutral; male poetic/intimate] — ฉัน" data-wid="TH_000841" data-ch="👤" data-vis="1" data-at="318000" data-end="325000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ฉัน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text></svg></div>
@@ -611,14 +623,14 @@
   <div class="th" lang="th">เขา</div>
   <div class="rom">khǎo</div><div class="tone" title="tone: rising"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: rising" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>rising tone</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g></svg><span class="tname">rising</span></div><div class="pos">Noun; Pronoun</div>
   <div class="en">he, she, they [can be impolite depending on context], mountain, horn</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000496.mp3" aria-label="Play เขา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000496_slow.mp3" aria-label="Play เขา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">cow</div><p>A man, and a woman point at each other with a cow in the background.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000496.mp3" aria-label="Play เขา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000496_slow.mp3" aria-label="Play เขา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">cow</div><p>A man, and a woman point at each other with a cow in the background.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">เขาเป็นเด็ก</div><div class="sr">khǎo pen dèk</div><div class="st">he is a child</div></li><li><div class="sx" lang="th">เขาอยู่หน้าโรงพยาบาล</div><div class="sr">khǎo yùu nâa roong-phá-yaa-baan</div><div class="st">he is in front of the hospital</div></li><li><div class="sx" lang="th">เขาอยู่ในห้อง</div><div class="sr">khǎo yùu nai hâwng</div><div class="st">he is in the room</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000296.jpg" data-alt="very, much, many, a lot, numerous — มาก" data-wid="TH_000296" data-ch="●" data-vis="1" data-at="362000" data-end="368000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for มาก"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="154.4" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="327.2" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="500.0" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="672.8" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="845.6" y="246.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="154.4" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="327.2" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="500.0" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="672.8" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="845.6" y="603.5" font-size="131.3" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text></svg></div>
   <div class="th" lang="th">มาก</div>
   <div class="rom">mâak</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Adjective; Adverb</div>
   <div class="en">very, much, many, a lot, numerous</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296.mp3" aria-label="Play มาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296_slow.mp3" aria-label="Play มาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">mock</div><p>A tiny person stands beside an absurdly enormous mountain of objects and reacts to how much there is.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ปลาหมึกย่างหอมมาก</div><div class="sr">bplaa-mʉ̀k yâang hɔ̌ɔm mâak</div><div class="st">The grilled squid smells very good.</div></li><li><div class="sx" lang="th">ฉันชอบกินข้าวมาก</div><div class="sr">chǎn chɔ̂ɔp gin khâao mâak</div><div class="st">I really like eating rice.</div></li><li><div class="sx" lang="th">กาแฟแก้วนี้ร้อนมาก</div><div class="sr">gaa-faae gâaeo níi rɔ́ɔn mâak</div><div class="st">This cup of coffee is very hot.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296.mp3" aria-label="Play มาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296_slow.mp3" aria-label="Play มาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">mock</div><p>A tiny person stands beside an absurdly enormous mountain of objects and reacts to how much there is.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ปลาหมึกย่างหอมมาก</div><div class="sr">bplaa-mʉ̀k yâang hɔ̌ɔm mâak</div><div class="st">The grilled squid smells very good.</div></li><li><div class="sx" lang="th">ฉันชอบชาเย็นมากค่ะ</div><div class="sr">chǎn châawp chaa yen mâak khâ</div><div class="st">I really like iced tea.</div></li><li><div class="sx" lang="th">คุณกินเผ็ดมากไหมครับ</div><div class="sr">khun gin pèt mâak mǎi khráp</div><div class="st">Do you eat very spicy food?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="they, them — พวกเขา" data-wid="TH_000842" data-ch="👥" data-vis="1" data-at="374000" data-end="380000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for พวกเขา"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="212.0" y="425.0" font-size="218.9" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><text x="500.0" y="425.0" font-size="218.9" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><text x="788.0" y="425.0" font-size="218.9" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text></svg></div>
@@ -632,7 +644,7 @@
   <div class="th" lang="th">ชอบ</div>
   <div class="rom">châawp</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Verb</div>
   <div class="en">to like, be fond of, tend to, be apt to</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000472.mp3" aria-label="Play ชอบ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000472_slow.mp3" aria-label="Play ชอบ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">chop</div><p>A happy person enthusiastically chops their favorite food with an enormous kitchen knife.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันชอบกินข้าวมาก</div><div class="sr">chǎn chɔ̂ɔp gin khâao mâak</div><div class="st">I really like eating rice.</div></li><li><div class="sx" lang="th">ฉันชอบขนมปังกับเนย</div><div class="sr">chǎn chɔ̂ɔp khà-nǒm-bpang gàp noei</div><div class="st">I like bread with butter.</div></li><li><div class="sx" lang="th">ฉันชอบกินสับปะรด</div><div class="sr">chǎn chɔ̂ɔp gin sàp-bpà-rót</div><div class="st">I like eating pineapple.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000472.mp3" aria-label="Play ชอบ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000472_slow.mp3" aria-label="Play ชอบ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">chop</div><p>A happy person enthusiastically chops their favorite food with an enormous kitchen knife.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">คุณชอบกินไข่ไหมครับ</div><div class="sr">khun châawp gin khài mǎi khráp</div><div class="st">Do you like eating eggs?</div></li><li><div class="sx" lang="th">ผมชอบกินไข่ครับ</div><div class="sr">phǒm châawp gin khài khráp</div><div class="st">I like eating eggs.</div></li><li><div class="sx" lang="th">คุณชอบดื่มชาไหม</div><div class="sr">khun châawp dʉ̀ʉm chaa mǎi</div><div class="st">Do you like drinking tea?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="full, complete, fully, to fill — เต็ม" data-wid="TH_000978" data-ch="🔵" data-vis="1" data-at="390000" data-end="393000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for เต็ม"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🔵</text></svg></div>
@@ -660,7 +672,7 @@
   <div class="th" lang="th">ของ</div>
   <div class="rom">khɔ̌ɔng</div><div class="tone" title="tone: rising"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: rising" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>rising tone</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g></svg><span class="tname">rising</span></div><div class="pos">Noun; Preposition</div>
   <div class="en">of, belonging to, thing, item</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000005.mp3" aria-label="Play ของ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000005_slow.mp3" aria-label="Play ของ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Kong</div><p>Kong</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันอยากซื้อของกินก่อนกลับบ้าน</div><div class="sr">chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan</div><div class="st">I want to buy something to eat before going home.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000005.mp3" aria-label="Play ของ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000005_slow.mp3" aria-label="Play ของ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">Kong</div><p>Kong</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันอยากซื้อของกินก่อนกลับบ้าน</div><div class="sr">chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan</div><div class="st">I want to buy something to eat before going home.</div></li><li><div class="sx" lang="th">ชื่อของแม่</div><div class="sr">chûue khɔ̌ɔng mɛ̂ɛ</div><div class="st">The name of mother</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000570.jpg" data-alt="that which, [general classifier for small items], piece, item, danger [อันตราย] — อัน" data-wid="TH_000570" data-ch="🔹" data-vis="1" data-at="461000" data-end="465000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for อัน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🔹</text></svg></div>
@@ -674,7 +686,7 @@
   <div class="th" lang="th">อยาก</div>
   <div class="rom">yàak</div><div class="tone" title="tone: low"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: low" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>low tone</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g></svg><span class="tname">low</span></div><div class="pos">Auxiliary verb; Verb</div>
   <div class="en">to want to, would like to</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000417.mp3" aria-label="Play อยาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000417_slow.mp3" aria-label="Play อยาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">yak</div><p>A shaggy yak stares intensely at a giant plate of food because it desperately wants to eat it.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">คุณอยากกินอะไร</div><div class="sr">khun yàak gin à-rai</div><div class="st">What do you want to eat?</div></li><li><div class="sx" lang="th">วันนี้ฉันอยากกินก๋วยเตี๋ยว</div><div class="sr">wan-níi chǎn yàak gin gǔai-dtǐao</div><div class="st">Today I want to eat noodles.</div></li><li><div class="sx" lang="th">ฉันอยากกินอาหารไทย</div><div class="sr">chǎn yàak gin aa-hǎan thai</div><div class="st">I want to eat Thai food.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000417.mp3" aria-label="Play อยาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000417_slow.mp3" aria-label="Play อยาก slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">yak</div><p>A shaggy yak stares intensely at a giant plate of food because it desperately wants to eat it.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">คุณอยากกินอะไร</div><div class="sr">khun yàak gin à-rai</div><div class="st">What do you want to eat?</div></li><li><div class="sx" lang="th">คุณอยากกินปลาไหมครับ</div><div class="sr">khun yàak gin plaa mǎi khráp</div><div class="st">Would you like to eat fish?</div></li><li><div class="sx" lang="th">ฉันอยากดื่มชาเย็นค่ะ</div><div class="sr">chǎn yàak dʉ̀ʉm chaa yen khâ</div><div class="st">I want to drink iced tea.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000012.jpg" data-alt="to get, receive, obtain, [past tense/completion marker], can, able to — ได้" data-wid="TH_000012" data-ch="👍" data-vis="1" data-at="449000" data-end="455000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ได้"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🎁</text></svg></div>
@@ -695,7 +707,7 @@
   <div class="th" lang="th">หรือ</div>
   <div class="rom">rǔue</div><div class="tone" title="tone: rising"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: rising" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>rising tone</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g></svg><span class="tname">rising</span></div><div class="pos">Conjunction</div>
   <div class="en">or</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000037.mp3" aria-label="Play หรือ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000037_slow.mp3" aria-label="Play หรือ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A fork in a wooden track where a massive train splits physically into two separate glowing paths</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">กินที่นี่หรือเอากลับบ้าน</div><div class="sr">gin thîi-nîi rʉ̌ʉ ao glàp bâan</div><div class="st">Are you eating here or taking it home?</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000037.mp3" aria-label="Play หรือ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000037_slow.mp3" aria-label="Play หรือ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A fork in a wooden track where a massive train splits physically into two separate glowing paths</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">กินที่นี่หรือเอากลับบ้าน</div><div class="sr">gin thîi-nîi rʉ̌ʉ ao glàp bâan</div><div class="st">Are you eating here or taking it home?</div></li><li><div class="sx" lang="th">คุณไม่กินไข่หรือครับ</div><div class="sr">khun mâi gin khài rǔe khráp</div><div class="st">You don&#x27;t eat eggs?</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="Thai person, Thailand, Thai [language, culture] — ไทย" data-wid="TH_000083" data-ch="🇹🇭" data-vis="1" data-at="522000" data-end="527000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ไทย"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🇹🇭</text></svg></div>
@@ -716,7 +728,7 @@
   <div class="th" lang="th">แม่</div>
   <div class="rom">mɛ̂ɛ</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">noun</div>
   <div class="en">mother, mom</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001034.mp3" aria-label="Play แม่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001034_slow.mp3" aria-label="Play แม่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">May</div><p>A warm Thai mother named May lovingly caring for her child.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">แม่กำลังทำกับข้าว</div><div class="sr">mâae gam-lang tham gàp-khâao</div><div class="st">Mom is cooking food.</div></li><li><div class="sx" lang="th">ฉันช่วยแม่ทำอาหาร</div><div class="sr">chǎn chûai mâae tham aa-hǎan</div><div class="st">I help Mom cook.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001034.mp3" aria-label="Play แม่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001034_slow.mp3" aria-label="Play แม่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">May</div><p>A warm Thai mother named May lovingly caring for her child.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">แม่กำลังทำกับข้าว</div><div class="sr">mâae gam-lang tham gàp-khâao</div><div class="st">Mom is cooking food.</div></li><li><div class="sx" lang="th">ฉันช่วยแม่ทำอาหาร</div><div class="sr">chǎn chûai mâae tham aa-hǎan</div><div class="st">I help Mom cook.</div></li><li><div class="sx" lang="th">แม่มีหน้า</div><div class="sr">mɛ̂ɛ mii nâa</div><div class="st">mother has a face</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="classifier for fruits, classifier for round objects, fruits — ลูก" data-wid="TH_001042" data-ch="🍊" data-vis="1" data-at="544000" data-end="547000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ลูก"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🍊</text></svg></div>
@@ -765,7 +777,7 @@
   <div class="th" lang="th">น้อง</div>
   <div class="rom">nɔ́ɔng</div><div class="tone" title="tone: high"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: high" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>high tone</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g></svg><span class="tname">high</span></div><div class="pos">Noun; Pronoun</div>
   <div class="en">younger sibling, younger person [term of address], you [to younger person]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000912.mp3" aria-label="Play น้อง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000912_slow.mp3" aria-label="Play น้อง slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A younger Thai sibling happily following their older sibling around the house.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000912.mp3" aria-label="Play น้อง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000912_slow.mp3" aria-label="Play น้อง slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A younger Thai sibling happily following their older sibling around the house.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">น้องคือเพื่อน</div><div class="sr">nɔ́ɔng khue phûean</div><div class="st">younger sibling is a friend</div></li><li><div class="sx" lang="th">น้องอยู่ใกล้โรงเรียน</div><div class="sr">nɔ́ɔng yùu glâi roong-rian</div><div class="st">the younger sibling is near the school</div></li><li><div class="sx" lang="th">น้องอยู่บนถนน</div><div class="sr">nɔ́ɔng yùu bon thà-nǒn</div><div class="st">the younger sibling is on the road</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="house, home, village, [classifier for houses] — บ้าน" data-wid="TH_000139" data-ch="🏠" data-vis="1" data-at="602000" data-end="606000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for บ้าน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🏠</text></svg></div>
@@ -779,7 +791,7 @@
   <div class="th" lang="th">โรงเรียน</div>
   <div class="rom">roong-rian</div><div class="tone" title="tone: mid-mid"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: mid-mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone — syllable 1 of 2</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g><g transform="translate(126,0)"><title>mid tone — syllable 2 of 2</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid-mid</span></div><div class="pos">Noun</div>
   <div class="en">school</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000069.mp3" aria-label="Play โรงเรียน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000069_slow.mp3" aria-label="Play โรงเรียน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">wrong + ring</div></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000069.mp3" aria-label="Play โรงเรียน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000069_slow.mp3" aria-label="Play โรงเรียน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">wrong + ring</div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">น้องอยู่ใกล้โรงเรียน</div><div class="sr">nɔ́ɔng yùu glâi roong-rian</div><div class="st">the younger sibling is near the school</div></li><li><div class="sx" lang="th">โรงเรียนอยู่กลางเมือง</div><div class="sr">roong-rian yùu glaang mueang</div><div class="st">The school is in the middle of the city</div></li><li><div class="sx" lang="th">โรงเรียนอยู่นอกเมือง</div><div class="sr">roong-rian yùu nâawk mueang</div><div class="st">The school is outside the city</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="to study, learn, address [formal letter opening Dear...] — เรียน" data-wid="TH_000497" data-ch="📚" data-vis="1" data-at="627000" data-end="633000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for เรียน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>📚</text></svg></div>
@@ -800,7 +812,7 @@
   <div class="th" lang="th">หน้า</div>
   <div class="rom">nâa</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Adjective; Noun; Preposition</div>
   <div class="en">face, page, front, season, next, in front of</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000047.mp3" aria-label="Play หน้า">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000047_slow.mp3" aria-label="Play หน้า slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">nah</div></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000047.mp3" aria-label="Play หน้า">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000047_slow.mp3" aria-label="Play หน้า slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">nah</div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">แม่มีหน้า</div><div class="sr">mɛ̂ɛ mii nâa</div><div class="st">mother has a face</div></li><li><div class="sx" lang="th">เขาอยู่หน้าโรงพยาบาล</div><div class="sr">khǎo yùu nâa roong-phá-yaa-baan</div><div class="st">he is in front of the hospital</div></li><li><div class="sx" lang="th">น้องอยู่หน้าโรงพยาบาล</div><div class="sr">nɔ́ɔng yùu nâa roong-phá-yaa-baan</div><div class="st">the younger sibling is in front of the hospital</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="[marks future tense or intention] will, shall — จะ" data-wid="TH_000036" data-ch="🔮" data-vis="1" data-at="665000" data-end="669000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for จะ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>⏭</text></svg></div>
@@ -856,7 +868,7 @@
   <div class="th" lang="th">ชา</div>
   <div class="rom">chaa</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">noun</div>
   <div class="en">tea</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001085.mp3" aria-label="Play ชา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001085_slow.mp3" aria-label="Play ชา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">char</div><p>A steaming cup of tea sits beside a piece of wood turning into glowing charcoal.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันดื่มชาทุกเช้า</div><div class="sr">chǎn dʉ̀ʉm chaa thúk cháao</div><div class="st">I drink tea every morning.</div></li><li><div class="sx" lang="th">คุณชอบชาไหมครับ</div><div class="sr">khun chɔ̂ɔp chaa mǎi khráp</div><div class="st">Do you like tea?</div></li><li><div class="sx" lang="th">ฉันไม่ชอบชาหวาน</div><div class="sr">chǎn mâi chɔ̂ɔp chaa wǎan</div><div class="st">I don&#x27;t like sweet tea.</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001085.mp3" aria-label="Play ชา">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001085_slow.mp3" aria-label="Play ชา slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">char</div><p>A steaming cup of tea sits beside a piece of wood turning into glowing charcoal.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ชาเย็นค่ะ</div><div class="sr">chaa yen khâ</div><div class="st">Iced tea, please.</div></li><li><div class="sx" lang="th">คุณอยากดื่มชาไหมครับ</div><div class="sr">khun yàak dʉ̀ʉm chaa mǎi khráp</div><div class="st">Would you like some tea?</div></li><li><div class="sx" lang="th">ผมไม่ดื่มชาหวานครับ</div><div class="sr">phǒm mâi dʉ̀ʉm chaa wǎan khráp</div><div class="st">I don&#x27;t drink sweet tea.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000027.jpg" data-alt="[prefix turning verbs into abstract nouns], affair, matter, work, activity — การ" data-wid="TH_000027" data-ch="⚙️" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for การ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>⚙</text></svg></div>
@@ -996,7 +1008,7 @@
   <div class="th" lang="th">คือ</div>
   <div class="rom">khue</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Verb</div>
   <div class="en">to be [equating identity], is, am, are, namely</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000062.mp3" aria-label="Play คือ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000062_slow.mp3" aria-label="Play คือ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A Thai person unmistakably identifying one object as another in a simple visual identification scene.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันคือเด็ก</div><div class="sr">chǎn khue dèk</div><div class="st">I is a child</div></li></ul></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000062.mp3" aria-label="Play คือ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000062_slow.mp3" aria-label="Play คือ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>A Thai person unmistakably identifying one object as another in a simple visual identification scene.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">น้องคือเพื่อน</div><div class="sr">nɔ́ɔng khue phûean</div><div class="st">younger sibling is a friend</div></li><li><div class="sx" lang="th">ฉันคือเด็ก</div><div class="sr">chǎn khue dèk</div><div class="st">I is a child</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="teacher [general term] — ครู" data-wid="TH_000233" data-ch="👨‍🏫" data-vis="1" data-at="978000" data-end="985000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ครู"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👨‍🏫</text></svg></div>
@@ -1283,7 +1295,7 @@
   <div class="th" lang="th">บน</div>
   <div class="rom">bon</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">Adverb; Preposition</div>
   <div class="en">on, upon, above, upstairs</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000490.mp3" aria-label="Play บน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000490_slow.mp3" aria-label="Play บน slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000490.mp3" aria-label="Play บน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000490_slow.mp3" aria-label="Play บน slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">น้องอยู่บนถนน</div><div class="sr">nɔ́ɔng yùu bon thà-nǒn</div><div class="st">the younger sibling is on the road</div></li><li><div class="sx" lang="th">เพื่อนอยู่บนถนน</div><div class="sr">phûean yùu bon thà-nǒn</div><div class="st">the friend is on the road</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="to die, dead, fixed, rigid — ตาย" data-wid="TH_000935" data-ch="💀" data-vis="1" data-at="1526000" data-end="1536000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ตาย"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>💀</text></svg></div>
@@ -1297,7 +1309,7 @@
   <div class="th" lang="th">ห้อง</div>
   <div class="rom">hâwng</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Classifier; Noun</div>
   <div class="en">room, [classifier for rooms]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000248.mp3" aria-label="Play ห้อง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000248_slow.mp3" aria-label="Play ห้อง slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000248.mp3" aria-label="Play ห้อง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000248_slow.mp3" aria-label="Play ห้อง slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">เพื่อนอยู่ในห้อง</div><div class="sr">phûean yùu nai hâwng</div><div class="st">the friend is in the room</div></li><li><div class="sx" lang="th">เขาอยู่ในห้อง</div><div class="sr">khǎo yùu nai hâwng</div><div class="st">he is in the room</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="per, each [e.g., รายวัน daily], case, instance, item, income, list — ราย" data-wid="TH_000111" data-ch="👤" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ราย"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="166.7" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><text x="500.0" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><text x="833.3" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text></svg></div>
@@ -1311,7 +1323,7 @@
   <div class="th" lang="th">นอก</div>
   <div class="rom">nâawk</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Adverb; Preposition</div>
   <div class="en">outside, outer, external, except [นอกจาก]</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744.mp3" aria-label="Play นอก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744_slow.mp3" aria-label="Play นอก slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744.mp3" aria-label="Play นอก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744_slow.mp3" aria-label="Play นอก slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">โรงเรียนอยู่นอกเมือง</div><div class="sr">roong-rian yùu nâawk mueang</div><div class="st">The school is outside the city</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000002.jpg" data-alt="and — และ" data-wid="TH_000002" data-ch="➕" data-vis="1" data-at="1579000" data-end="1591000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for และ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="250.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👨</text><text x="750.0" y="425.0" font-size="344.4" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👩</text></svg></div>
@@ -1388,7 +1400,7 @@
   <div class="th" lang="th">เพื่อน</div>
   <div class="rom">phûean</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">Noun</div>
   <div class="en">friend</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000981.mp3" aria-label="Play เพื่อน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000981_slow.mp3" aria-label="Play เพื่อน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>Two close Thai friends happily helping each other at a street market.</p></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000981.mp3" aria-label="Play เพื่อน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000981_slow.mp3" aria-label="Play เพื่อน slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><p>Two close Thai friends happily helping each other at a street market.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">น้องคือเพื่อน</div><div class="sr">nɔ́ɔng khue phûean</div><div class="st">younger sibling is a friend</div></li><li><div class="sx" lang="th">เพื่อนอยู่ในห้อง</div><div class="sr">phûean yùu nai hâwng</div><div class="st">the friend is in the room</div></li><li><div class="sx" lang="th">เพื่อนอยู่ใกล้บ้าน</div><div class="sr">phûean yùu glâi bâan</div><div class="st">the friend is near the house</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="to reduce, decrease, lower, discount — ลด" data-wid="TH_000164" data-ch="📉" data-vis="1" data-at="1810000" data-end="1813000">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ลด"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><g><line x1="500.0" y1="132.3" x2="500.0" y2="518.7" stroke="var(--vis-accent,#d2691e)" stroke-width="76.1" stroke-linecap="round"/><polygon points="500.0,717.7 382.9,518.7 617.1,518.7" fill="var(--vis-accent,#d2691e)"/></g></svg></div>
@@ -1409,7 +1421,7 @@
   <div class="th" lang="th">ชาม</div>
   <div class="rom">chaam</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">noun</div>
   <div class="en">bowl</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001080.mp3" aria-label="Play ชาม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001080_slow.mp3" aria-label="Play ชาม slowly">🐢 Slowly</button></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001080.mp3" aria-label="Play ชาม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001080_slow.mp3" aria-label="Play ชาม slowly">🐢 Slowly</button></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอชามอีกหนึ่งใบ</div><div class="sr">khɔ̌ɔ chaam ìik nʉ̀ng bai</div><div class="st">One more bowl, please.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="fragment of ต้มยำ (tom yum) — ้มยำ" data-wid="TH_001188" data-ch="🍲" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ้มยำ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🍲</text></svg></div>
@@ -1530,6 +1542,24 @@
   });
  })();
 
+ // ------------------------------------- Word lessons | Sentence lessons
+ // The switch at the top of the menu's categories. The page decides which side
+ // it opens on (a sentence lesson opens on Sentence lessons); a press changes
+ // it for this page only.
+ (function(){
+  var tabs=nav?nav.querySelector('.mtabs'):null;
+  if(!tabs)return;
+  tabs.addEventListener('click',function(e){
+   var b=e.target.closest?e.target.closest('[data-side]'):null;
+   if(!b)return;
+   var side=b.dataset.side;
+   tabs.querySelectorAll('[data-side]').forEach(function(x){
+    var on=x.dataset.side===side;
+    x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false');});
+   nav.querySelectorAll('.mlist').forEach(function(l){l.hidden=l.dataset.list!==side;});
+  });
+ })();
+
  // ------------------------------------- a category, opened where it stands
  //
  // Dan: "being able to expand the categories with a fixed size div, like 10em
@@ -1543,6 +1573,14 @@
  var PAGE=6;
  function catRows(folder){
   if(!idx||!idx.lessons)return null;
+  // the Sentences row lists the lessons that have sentence pages, and a
+  // category on the Sentence lessons side lists its own
+  if(folder==='sentences')return idx.sentences||[];
+  if(folder.indexOf('s:')===0){
+   var c=folder.slice(2),S=idx.sentences||[],o=[],k;
+   for(k=0;k<S.length;k++)if(S[k].cat===c)o.push(S[k]);
+   return o;
+  }
   var out=[],i;
   for(i=0;i<idx.lessons.length;i++)
    if(idx.lessons[i].cat===folder)out.push(idx.lessons[i]);
@@ -1564,7 +1602,7 @@
    // makes you turn seven pages to find yourself. So it opens where you ARE,
    // and only remembers a page once you have turned one yourself.
    var mineIx=-1,m;
-   for(m=0;m<rows.length;m++)if(rows[m].folder===here){mineIx=m;break;}
+   for(m=0;m<rows.length;m++)if(isHere(rows[m].folder)){mineIx=m;break;}
    page=mineIx<0?0:Math.floor(mineIx/PAGE);
   }
   page=Math.max(0,Math.min(pages-1,page||0));
@@ -1572,7 +1610,7 @@
   var pg=el('div','catpage'),i;
   for(i=page*PAGE;i<Math.min(rows.length,(page+1)*PAGE);i++){
    var l=rows[i],a=document.createElement('a');
-   a.className='item seq'+(l.folder===here?' on':'');
+   a.className='item seq'+(isHere(l.folder)?' on':'');
    a.href=base()+'/'+l.folder+'/';
    a.title=l.title;
    a.appendChild(el('span','n',String(l.n)));
@@ -1594,10 +1632,17 @@
    nav.appendChild(pbtn('›',page+1,page===pages-1,wrap));
   }
   var all=document.createElement('a');
-  all.className='all';all.href=base()+'/'+folder+'/';
+  all.className='all';
+  all.href=base()+'/'+(folder.indexOf('s:')===0?'sentences/'+folder.slice(2):folder)+'/';
   all.textContent='Open page →';
   nav.appendChild(all);
   box.appendChild(nav);
+ }
+ // A folder can be two deep (sentences/03-lesson-1), so "here" is matched
+ // against the end of the address, not only its last part.
+ function isHere(folder){
+  return location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')
+   .slice(-(folder.length+1))==='/'+folder;
  }
  function el(tag,cls,text){
   var e=document.createElement(tag);e.className=cls;
@@ -1684,8 +1729,13 @@
   var marks=document.querySelectorAll('[data-fill]');
   if(!marks.length)return;
   fetch(base()+'/nav.json').then(function(r){return r.json();}).then(function(j){
-   var L=j.l||[],counts={},i,pos=-1,cur='',
-       here=location.pathname.replace(/\/$/,'').split('/').pop();
+   // On a sentence lesson the course is the sentence half: its numbers, its
+   // "Sentence lesson 2 of 9 in Beginner".
+   var sent=document.body.dataset.kind==='sentences',
+       L=(sent?j.s:j.l)||[],counts={},i,pos=-1,cur='',
+       here=location.pathname.replace(/index\.html$/,'').replace(/\/$/,'').split('/').pop(),
+       S=j.s||[],scounts={};
+   for(i=0;i<S.length;i++)scounts[S[i][1]]=(scounts[S[i][1]]||0)+1;
    for(i=0;i<L.length;i++){
     counts[L[i][1]]=(counts[L[i][1]]||0)+1;
     if(L[i][0]===here){pos=i;cur=L[i][1];}
@@ -1694,16 +1744,19 @@
    if(pos>=0&&cur)for(i=0;i<=pos;i++)if(L[i][1]===cur)at++;
    for(i=0;i<marks.length;i++){
     var m=marks[i],k=m.getAttribute('data-fill');
-    if(k==='all')m.textContent=L.length;
-    else if(k.indexOf('cat:')===0)m.textContent=counts[k.slice(4)]||'';
+    if(k==='all')m.textContent=(j.l||[]).length;
+    else if(k.indexOf('cat:')===0)m.textContent=(sent?(function(){var c={},q;
+      for(q=0;q<(j.l||[]).length;q++)c[j.l[q][1]]=(c[j.l[q][1]]||0)+1;return c;})():counts)[k.slice(4)]||'';
+    else if(k.indexOf('scat:')===0)m.textContent=scounts[k.slice(5)]||'';
     else if(k==='pos')m.textContent=pos>=0?(pos+1)+'. ':'';
     else if(k==='first')m.textContent=L.length?'1. ':'';
     else if(k==='all-n')m.textContent=L.length+' lessons in all';
     else if(k==='sub'){
      var cn=m.getAttribute('data-cname');
+     var word=sent?'Sentence lesson ':'Lesson ';
      m.textContent=pos<0?'':(cn&&cur
-      ?'Lesson '+at+' of '+counts[cur]+' in '+cn
-      :'Lesson '+(pos+1)+' of '+L.length);
+      ?word+at+' of '+counts[cur]+' in '+cn
+      :word+(pos+1)+' of '+L.length);
     }
    }
   }).catch(function(){});
@@ -1933,10 +1986,6 @@
  })();
 
  var cards=[].slice.call(document.querySelectorAll('.card')),at=0,
-     // The lesson's own sentences, as cards of their own (see _sentence_card).
-     // Flashcards and Quiz can run on either deck; reading is always words.
-     wordCards=cards,sentCards=[].slice.call(document.querySelectorAll('.scard')),
-     deck='w',deckWanted='w',
      prev=document.getElementById('prev'),next=document.getElementById('next'),
      count=document.getElementById('count'),scrub=document.getElementById('scrub'),
      pic=document.getElementById('pic');
@@ -2749,7 +2798,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  function faceInto(host,card,which){
   host.innerHTML='';
   var want=sides[which]||[],n=0,i,j;
-  var isS=!!(card&&card.classList&&card.classList.contains('scard'));
+  // A sentence page's cards (class `sc`): the Thai is coloured by tone with
+  // marks above each word, so it is copied as markup, not as text.
+  var isS=!!(card&&card.classList&&card.classList.contains('sc'));
   host.classList.toggle('sface',isS);
   for(i=0;i<FIELDS.length;i++){
    var f=FIELDS[i];
@@ -2837,33 +2888,10 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   draw();
  }
 
- // Words or Sentences. Dan: "in quiz+flashcard, if in sentence mode,
- // everything should be the same as words, but with sentences." So it is the
- // same machinery on a different list of cards: shuffle, reverse, the sides,
- // the wrong answers and what you marked as known all carry on as they were.
- function setDeck(d,quiet){
-  d=(d==='s'&&sentCards.length)?'s':'w';
-  if(!quiet){deckWanted=d;try{localStorage.setItem('wb.deck',d);}catch(e){}}
-  if(barEl)barEl.querySelectorAll('[data-deck]').forEach(function(x){
-   x.classList.toggle('on',x.dataset.deck===d);});
-  if(d===deck)return;
-  deck=d;cards=(d==='s')?sentCards:wordCards;
-  document.body.classList.toggle('deck-s',d==='s');
-  if(scrub){scrub.max=String(Math.max(1,cards.length));
-   scrub.setAttribute('aria-label',d==='s'?'Move through the sentences':'Move through the words');}
-  buildOrder();
-  if(mode==='quiz'){answered={};score=0;asked=0;}
-  show(0,!quiet);
- }
- try{if(localStorage.getItem('wb.deck')==='s')deckWanted='s';}catch(e){}
-
  function bar(kind){
   var b=document.createElement('div');
   b.className='mbar';
   var html='';
-  if(sentCards.length)html+='<span class="deck" role="group" aria-label="What to study">'
-   +'<button data-deck="w"'+(deck==='w'?' class="on"':'')+'>Words</button>'
-   +'<button data-deck="s"'+(deck==='s'?' class="on"':'')+'>Sentences</button></span>';
   // How many wrong answers, and what goes on each side, are settings for
   // the run rather than controls you reach for mid-question — so they live
   // in the panel under Reset, not up here beside it.
@@ -2881,9 +2909,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   b.querySelector('[data-act=shuffle]').classList.toggle('on',shuffled);
   b.querySelector('[data-act=reverse]').classList.toggle('on',reversed);
   b.addEventListener('click',function(e){
-   var t=e.target.closest?e.target.closest('[data-act],[data-n],[data-deck]'):null;
+   var t=e.target.closest?e.target.closest('[data-act],[data-n]'):null;
    if(!t)return;t.blur();
-   if(t.dataset.deck){setDeck(t.dataset.deck);return;}
    if(t.dataset.n){setWrongs(parseInt(t.dataset.n,10));return;}
    if(t.dataset.act==='shuffle')toggleShuffle();
    if(t.dataset.act==='reverse')toggleReverse();
@@ -3258,9 +3285,6 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
 
  function setMode(m){
   mode=(m==='card'||m==='quiz')?m:'info';
-  // Reading is the words of the lesson; the sentence deck is for the two
-  // study modes, and comes back as it was left when one of them is opened.
-  setDeck(mode==='info'?'w':deckWanted,true);
   var panel=right?right.querySelector('.sides'):null;if(panel)panel.remove();
   if(barEl){barEl.remove();barEl=null;}
   if(fcWrap&&mode!=='card'){fcWrap.remove();fcWrap=null;}
