@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Playful exaggeration and dramatic reactions used to make ordinary situations funny."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=a4bba798"/>
+<link rel="stylesheet" href="../style.css?v=df51ccfe"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -871,6 +871,10 @@
  })();
 
  var cards=[].slice.call(document.querySelectorAll('.card')),at=0,
+     // The lesson's own sentences, as cards of their own (see _sentence_card).
+     // Flashcards and Quiz can run on either deck; reading is always words.
+     wordCards=cards,sentCards=[].slice.call(document.querySelectorAll('.scard')),
+     deck='w',deckWanted='w',
      prev=document.getElementById('prev'),next=document.getElementById('next'),
      count=document.getElementById('count'),scrub=document.getElementById('scrub'),
      pic=document.getElementById('pic');
@@ -970,6 +974,7 @@
  // pressing → moved the card and the next tick of the video moved it straight
  // back, which reads as a broken arrow rather than as the video being in
  // charge. So a deliberate move takes the video with it.
+ document.body.classList.toggle('pics-off',picMode==='off');
  function show(n,byUser){
   if(!cards.length)return;
   at=Math.max(0,Math.min(cards.length-1,n));
@@ -1678,12 +1683,17 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
 
  // A face of a card, built from whichever fields that side is set to show.
+ function noStandIn(c){var d=c.dataset||{};return !(d.img||d.vis||d.asc||d.ch);}
  function faceInto(host,card,which){
   host.innerHTML='';
   var want=sides[which]||[],n=0,i,j;
+  var isS=!!(card&&card.classList&&card.classList.contains('scard'));
+  host.classList.toggle('sface',isS);
   for(i=0;i<FIELDS.length;i++){
    var f=FIELDS[i];
    if(want.indexOf(f.k)<0)continue;
+   // A sentence with no picture of any kind shows none — not a letter.
+   if(f.img&&isS&&noStandIn(card))continue;
    if(f.img){
     // The reader's chosen art style, the same resolution the reading pane
     // uses — artwork, then the drawn recipe, then the ASCII drawing, then the
@@ -1704,6 +1714,14 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    }
    var el=card.querySelector(f.sel);
    if(!el)continue;
+   // A sentence's Thai is coloured by tone with the marks above each word,
+   // so it is copied as markup; the marks go with the Tone field's tick.
+   if(isS&&f.k==='word'){
+    var sw=el.cloneNode(true);sw.className='f-word';
+    sw.setAttribute('lang',document.documentElement.lang||'');
+    if(want.indexOf('tone')<0)sw.querySelectorAll('.tm').forEach(function(x){x.remove();});
+    host.appendChild(sw);n++;continue;
+   }
    if(f.node){
     // A drawing, not a line of text: copied as markup, because
     // `textContent` on an <svg> is the empty string and the field would
@@ -1757,10 +1775,33 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   draw();
  }
 
+ // Words or Sentences. Dan: "in quiz+flashcard, if in sentence mode,
+ // everything should be the same as words, but with sentences." So it is the
+ // same machinery on a different list of cards: shuffle, reverse, the sides,
+ // the wrong answers and what you marked as known all carry on as they were.
+ function setDeck(d,quiet){
+  d=(d==='s'&&sentCards.length)?'s':'w';
+  if(!quiet){deckWanted=d;try{localStorage.setItem('wb.deck',d);}catch(e){}}
+  if(barEl)barEl.querySelectorAll('[data-deck]').forEach(function(x){
+   x.classList.toggle('on',x.dataset.deck===d);});
+  if(d===deck)return;
+  deck=d;cards=(d==='s')?sentCards:wordCards;
+  document.body.classList.toggle('deck-s',d==='s');
+  if(scrub){scrub.max=String(Math.max(1,cards.length));
+   scrub.setAttribute('aria-label',d==='s'?'Move through the sentences':'Move through the words');}
+  buildOrder();
+  if(mode==='quiz'){answered={};score=0;asked=0;}
+  show(0,!quiet);
+ }
+ try{if(localStorage.getItem('wb.deck')==='s')deckWanted='s';}catch(e){}
+
  function bar(kind){
   var b=document.createElement('div');
   b.className='mbar';
   var html='';
+  if(sentCards.length)html+='<span class="deck" role="group" aria-label="What to study">'
+   +'<button data-deck="w"'+(deck==='w'?' class="on"':'')+'>Words</button>'
+   +'<button data-deck="s"'+(deck==='s'?' class="on"':'')+'>Sentences</button></span>';
   // How many wrong answers, and what goes on each side, are settings for
   // the run rather than controls you reach for mid-question — so they live
   // in the panel under Reset, not up here beside it.
@@ -1778,8 +1819,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   b.querySelector('[data-act=shuffle]').classList.toggle('on',shuffled);
   b.querySelector('[data-act=reverse]').classList.toggle('on',reversed);
   b.addEventListener('click',function(e){
-   var t=e.target.closest?e.target.closest('[data-act],[data-n]'):null;
+   var t=e.target.closest?e.target.closest('[data-act],[data-n],[data-deck]'):null;
    if(!t)return;t.blur();
+   if(t.dataset.deck){setDeck(t.dataset.deck);return;}
    if(t.dataset.n){setWrongs(parseInt(t.dataset.n,10));return;}
    if(t.dataset.act==='shuffle')toggleShuffle();
    if(t.dataset.act==='reverse')toggleReverse();
@@ -2154,6 +2196,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
 
  function setMode(m){
   mode=(m==='card'||m==='quiz')?m:'info';
+  // Reading is the words of the lesson; the sentence deck is for the two
+  // study modes, and comes back as it was left when one of them is opened.
+  setDeck(mode==='info'?'w':deckWanted,true);
   var panel=right?right.querySelector('.sides'):null;if(panel)panel.remove();
   if(barEl){barEl.remove();barEl=null;}
   if(fcWrap&&mode!=='card'){fcWrap.remove();fcWrap=null;}
@@ -2347,6 +2392,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  function setPics(m){
   picMode=(PICMODES.indexOf(m)>=0)?m:'art';
   picsOff=(picMode==='off');
+  document.body.classList.toggle('pics-off',picsOff);
   paintPics();
   try{localStorage.setItem('wb.pics',picMode);}catch(e){}
   show(at,true);

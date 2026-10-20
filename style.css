@@ -1347,3 +1347,41 @@ body.lean{display:block;min-height:100vh;overflow:auto;background:var(--s0);colo
 .azjump a{color:var(--accent);text-decoration:none;font-weight:600}
 .wordlist a{color:inherit;text-decoration:none}
 .wordlist a:hover{color:var(--accent)}
+
+/* ---------------------------------------------------------- tones in sentences
+   Dan: "need tones in sentences". Each word coloured by its tone, with the
+   same marks the word cards use set above it. A word whose syllables are on
+   different tones keeps the plain colour; its marks still show each one. */
+.tw{display:inline-flex;flex-direction:column;align-items:center;vertical-align:bottom;line-height:1.25}
+.tw .tm{display:block;font-style:normal;height:.62em;line-height:0;margin-bottom:1px;opacity:.85}
+.tw .tm .tmark{height:100%;width:auto;display:block}
+.tw.t-mid{color:var(--tone-mid,#8fa8bf)}
+.tw.t-low{color:var(--tone-low,#6aa7ff)}
+.tw.t-falling{color:var(--tone-falling,#ff7b72)}
+.tw.t-high{color:var(--tone-high,#f2c14e)}
+.tw.t-rising{color:var(--tone-rising,#58d68d)}
+body.light .tw.t-mid{color:#4f6475}
+body.light .tw.t-low{color:#1f62d0}
+body.light .tw.t-falling{color:#c83c32}
+body.light .tw.t-high{color:#a87600}
+body.light .tw.t-rising{color:#1c8f4c}
+body.hide-tone .tw .tm{display:none}
+
+/* A sentence's picture in the reading pane: small, beside the sentence —
+   it is one part of the word's card, not the card. */
+.info .sents .sent.on.haspic{display:flex;gap:12px;align-items:flex-start}
+.info .sents .stext{flex:1;min-width:0}
+.sthumb{flex:none;width:64px;height:64px;border-radius:8px;overflow:hidden;
+  background:var(--s3);display:flex;align-items:center;justify-content:center}
+.sthumb img,.sthumb svg{width:100%;height:100%;object-fit:cover;display:block}
+.sthumb.sicon{font-size:1.9rem;line-height:1}
+body.pics-off .sthumb{display:none}
+
+/* A sentence as a flashcard or a quiz question: the same faces as a word, at
+   a size a whole sentence fits. */
+.sface .f-word{font-size:1.75rem;line-height:1.5;font-weight:500}
+.qcard.sface .f-word,.sface.qcard .f-word{font-size:1.6rem}
+.qopt.sface .f-word,.sface .qtext .f-word{font-size:1.15rem}
+.mbar .deck{display:inline-flex;border:1px solid var(--edge);border-radius:8px;overflow:hidden;margin-right:8px}
+.mbar .deck button{border:0;border-radius:0;background:transparent;padding:4px 10px;font-size:.8125rem;color:var(--text2);cursor:pointer}
+.mbar .deck button.on{background:var(--accent);color:var(--on-accent,#06131f)}
