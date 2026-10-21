@@ -1398,3 +1398,4 @@ body.hide-tone .tw .tm{display:none}
 .info .sents .vsl:hover{color:var(--accent3);text-decoration:underline}
 .builtfrom{display:inline-block;margin:0 0 12px;font-size:0.7812rem;color:var(--accent2);text-decoration:none}
 .builtfrom:hover{text-decoration:underline}
+.menu .mlist>a.item.cat{margin-left:24px}
