@@ -56,6 +56,15 @@
     "difficulty": "intermediate",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000208",
+    "text": "ใครอยู่ที่สถานี",
+    "romanization": "khrai yùu thîi sà-thǎa-nii",
+    "translation": "Who is at the station?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -201,11 +210,29 @@
     "role": null
    },
    {
+    "id": "TH_S000093",
+    "text": "ใส่น้ำมันในกระทะก่อน",
+    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
+    "translation": "Put oil in the pan first.",
+    "difficulty": "intermediate",
+    "is_target": false,
+    "role": null
+   },
+   {
     "id": "TH_S000123",
     "text": "ฉันเติมน้ำปลาในข้าว",
     "romanization": "chǎn dteerm náam-bplaa nai khâao",
     "translation": "I add fish sauce to my rice.",
     "difficulty": "intermediate",
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000204",
+    "text": "เพื่อนอยู่ในห้อง",
+    "romanization": "phûean yùu nai hâwng",
+    "translation": "the friend is in the room",
+    "difficulty": null,
     "is_target": false,
     "role": null
    }
@@ -251,6 +278,15 @@
     "romanization": "chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan",
     "translation": "I want to buy something to eat before going home.",
     "difficulty": "intermediate",
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000217",
+    "text": "ชื่อของแม่",
+    "romanization": "chûue khɔ̌ɔng mɛ̂ɛ",
+    "translation": "The name of mother",
+    "difficulty": null,
     "is_target": false,
     "role": null
    }
@@ -328,6 +364,15 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant, ornate fountain pen pierces a shadowy human silhouette, instantly transforming the dark figure into a solid, vibrant golden statue where the ink touches. Rich textures, dramatic cinematic lighting, vibrant colors, clear visual hierarchy, hyper-focused central composition.",
   "mnemonic_concept": "pen",
   "sentences": [
+   {
+    "id": "TH_S000199",
+    "text": "เขาเป็นเด็ก",
+    "romanization": "khǎo pen dèk",
+    "translation": "he is a child",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
    {
     "id": "TH_S000214",
     "text": "ฉันเป็นเด็ก",
@@ -1403,6 +1448,42 @@
     "difficulty": "intermediate",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000197",
+    "text": "มี สาม คน",
+    "romanization": "mii sǎam khon",
+    "translation": "There are three people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000210",
+    "text": "มีสี่คน",
+    "romanization": "mii sìi khon",
+    "translation": "There are four people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000212",
+    "text": "มี ห้า คน",
+    "romanization": "mii hâa khon",
+    "translation": "There are five people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000225",
+    "text": "มีหกคน",
+    "romanization": "mii hòk khon",
+    "translation": "There are six people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -1597,6 +1678,15 @@
     "difficulty": "beginner",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000260",
+    "text": "คุณไม่กินไข่หรือครับ",
+    "romanization": "khun mâi gin khài rǔe khráp",
+    "translation": "You don't eat eggs?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -1664,48 +1754,48 @@
   "mnemonic_concept": "A person dramatically shakes their head and pushes away a giant forbidden object.",
   "sentences": [
    {
-    "id": "TH_S000027",
-    "text": "ฉันไม่กินพริก",
-    "romanization": "chǎn mâi gin phrík",
-    "translation": "I don't eat chili.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000259",
+    "text": "ฉันไม่ชอบชาเย็นค่ะ",
+    "romanization": "chǎn mâi châawp chaa yen khâ",
+    "translation": "I don't like iced tea.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000031",
-    "text": "ฉันขอไม่ใส่พริก",
-    "romanization": "chǎn khɔ̌ɔ mâi sài phrík",
-    "translation": "I'd like it without chili.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000260",
+    "text": "คุณไม่กินไข่หรือครับ",
+    "romanization": "khun mâi gin khài rǔe khráp",
+    "translation": "You don't eat eggs?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000058",
-    "text": "ฉันไม่ค่อยกินเนื้อวัว",
-    "romanization": "chǎn mâi khɔ̂i gin nʉ́ʉa wua",
-    "translation": "I don't eat beef very often.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000261",
+    "text": "ผมไม่อยากกินอาหารเผ็ดครับ",
+    "romanization": "phǒm mâi yàak gin aa-hǎan pèt khráp",
+    "translation": "I don't want to eat spicy food.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000070",
-    "text": "ฉันยังไม่อิ่ม",
-    "romanization": "chǎn yang mâi ìm",
-    "translation": "I'm not full yet.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000262",
+    "text": "ฉันไม่ดื่มน้ำร้อนค่ะ",
+    "romanization": "chǎn mâi dʉ̀ʉm náam rɔ́ɔn khâ",
+    "translation": "I don't drink hot water.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000080",
-    "text": "ฉันมีเงินสดไม่พอ",
-    "romanization": "chǎn mii ngoen sòt mâi phɔɔ",
-    "translation": "I don't have enough cash.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000263",
+    "text": "คุณไม่ชอบกาแฟหวานไหมครับ",
+    "romanization": "khun mâi châawp gaa-fɛɛ wǎan mǎi khráp",
+    "translation": "You don't like sweet coffee?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2022,7 +2112,35 @@
   "hook_visual": "person shaking head back and forth",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant floating stylized human face turning away in disagreement while shaking back and forth against an open book. Painterly digital illustration, rich textures, dramatic directional lighting, vibrant expressive details, absurd scale, clear central visual focal point.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000201",
+    "text": "แม่มีหน้า",
+    "romanization": "mɛ̂ɛ mii nâa",
+    "translation": "mother has a face",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000206",
+    "text": "เขาอยู่หน้าโรงพยาบาล",
+    "romanization": "khǎo yùu nâa roong-phá-yaa-baan",
+    "translation": "he is in front of the hospital",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000221",
+    "text": "น้องอยู่หน้าโรงพยาบาล",
+    "romanization": "nɔ́ɔng yùu nâa roong-phá-yaa-baan",
+    "translation": "the younger sibling is in front of the hospital",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000024",
@@ -2625,6 +2743,33 @@
     "difficulty": "intermediate",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000203",
+    "text": "น้องอยู่ใกล้โรงเรียน",
+    "romanization": "nɔ́ɔng yùu glâi roong-rian",
+    "translation": "the younger sibling is near the school",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000204",
+    "text": "เพื่อนอยู่ในห้อง",
+    "romanization": "phûean yùu nai hâwng",
+    "translation": "the friend is in the room",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000205",
+    "text": "โรงเรียนอยู่กลางเมือง",
+    "romanization": "roong-rian yùu glaang mueang",
+    "translation": "The school is in the middle of the city",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -2688,6 +2833,15 @@
   "mnemonic": "Digital collectible card art, 1:1 square ratio. An enormous, glowing metallic equal sign ($=$) standing tall on an ancient stone pedestal, projecting two massive beams of golden light that fuse a pristine crown and a royal scepter together into one unified, blinding object. Epic heroic scale, dramatic cinematic lighting, rich textures, vivid color palette.",
   "mnemonic_concept": "A Thai person unmistakably identifying one object as another in a simple visual identification scene.",
   "sentences": [
+   {
+    "id": "TH_S000200",
+    "text": "น้องคือเพื่อน",
+    "romanization": "nɔ́ɔng khue phûean",
+    "translation": "younger sibling is a friend",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
    {
     "id": "TH_S000215",
     "text": "ฉันคือเด็ก",
@@ -2975,7 +3129,35 @@
   "hook_visual": "a large red wrong checkmark next to a shiny gold ring",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant glowing red \"X\" mark physically clamping shut over a shiny golden wedding ring on top of an old wooden schoolhouse desk. High contrast lighting, sharp metallic sheen, clear visual hierarchy.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000203",
+    "text": "น้องอยู่ใกล้โรงเรียน",
+    "romanization": "nɔ́ɔng yùu glâi roong-rian",
+    "translation": "the younger sibling is near the school",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000205",
+    "text": "โรงเรียนอยู่กลางเมือง",
+    "romanization": "roong-rian yùu glaang mueang",
+    "translation": "The school is in the middle of the city",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000220",
+    "text": "โรงเรียนอยู่นอกเมือง",
+    "romanization": "roong-rian yùu nâawk mueang",
+    "translation": "The school is outside the city",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000018",
@@ -3733,6 +3915,15 @@
     "translation": "I'll come back to eat at this restaurant again.",
     "difficulty": "intermediate",
     "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000043",
+    "text": "ขอชามอีกหนึ่งใบ",
+    "romanization": "khɔ̌ɔ chaam ìik nʉ̀ng bai",
+    "translation": "One more bowl, please.",
+    "difficulty": "beginner",
+    "is_target": false,
     "role": null
    },
    {
@@ -4591,19 +4782,19 @@
     "role": null
    },
    {
-    "id": "TH_S000061",
-    "text": "ขอลองชิมได้ไหม",
-    "romanization": "khɔ̌ɔ lɔɔng chim dâai mái",
-    "translation": "Can I try a taste?",
+    "id": "TH_S000043",
+    "text": "ขอชามอีกหนึ่งใบ",
+    "romanization": "khɔ̌ɔ chaam ìik nʉ̀ng bai",
+    "translation": "One more bowl, please.",
     "difficulty": "beginner",
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000109",
-    "text": "ขอใส่ถุงกลับบ้านครับ",
-    "romanization": "khɔ̌ɔ sài thǔng glàp bâan khráp",
-    "translation": "Please put it in a bag to take home.",
+    "id": "TH_S000061",
+    "text": "ขอลองชิมได้ไหม",
+    "romanization": "khɔ̌ɔ lɔɔng chim dâai mái",
+    "translation": "Can I try a taste?",
     "difficulty": "beginner",
     "is_target": true,
     "role": null
@@ -5193,7 +5384,17 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000220",
+    "text": "โรงเรียนอยู่นอกเมือง",
+    "romanization": "roong-rian yùu nâawk mueang",
+    "translation": "The school is outside the city",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005"
   ],
@@ -5650,6 +5851,15 @@
     "role": null
    },
    {
+    "id": "TH_S000093",
+    "text": "ใส่น้ำมันในกระทะก่อน",
+    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
+    "translation": "Put oil in the pan first.",
+    "difficulty": "intermediate",
+    "is_target": false,
+    "role": null
+   },
+   {
     "id": "TH_S000125",
     "text": "ฉันอยากซื้อของกินก่อนกลับบ้าน",
     "romanization": "chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan",
@@ -5804,6 +6014,24 @@
     "difficulty": "beginner",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000198",
+    "text": "มีเงิน หนึ่งร้อย",
+    "romanization": "mii ngoen nùeng rɔ́ɔi",
+    "translation": "There is one hundred money",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000211",
+    "text": "มีเงินร้อย",
+    "romanization": "mii ngoen rɔ́ɔi",
+    "translation": "There is a hundred in money",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -5871,7 +6099,35 @@
   "hook_visual": "A choo choo train missing it's name tag",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouette, playful absurdity, clean central composition.\n\nA spectacular oversized vintage CHOO-CHOO steam train dramatically making a loud CHOO-CHOO sound in the center of a distinctly Thai setting.\n\nThe locomotive is actively blasting steam from its front in TWO big, distinct rhythmic bursts, clearly showing that the train is going “CHOO! CHOO!” The first and second steam bursts should be visually separate and unmistakable, with energetic motion and playful force. Make the sound-producing action obvious through the dramatic steam puffs, vibrating machinery, and lively expression of the locomotive.\n\nThe train has an enormous, highly visible personal NAME TAG attached prominently to its front, like a celebrity name badge. The name tag is clearly designed to contain a name, but the actual name is mysteriously missing: the tag is completely blank. The blank name tag creates an obvious visual joke that the train has a name tag but no name.\n\nThe train is the unmistakable central focus. The CHOO-CHOO action and the giant blank name tag should be immediately readable at a glance.\n\nThai environmental details can add local flavor but remain secondary and uncluttered.\n\nRich metal and painted textures, cinematic lighting, vibrant colors, strong readable silhouette, playful absurdity.\n\nNo actual text, letters, numbers, phonetics, captions, speech bubbles, logos, watermarks, UI, or readable writing anywhere in the image.\n",
   "mnemonic_concept": "A choo choo train missing it's name tag",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000202",
+    "text": "ชื่อของเขา",
+    "romanization": "chûue khɔ̌ɔng khǎo",
+    "translation": "The name of him",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000216",
+    "text": "แม่มีชื่อ",
+    "romanization": "mɛ̂ɛ mii chûue",
+    "translation": "mother has a name",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000217",
+    "text": "ชื่อของแม่",
+    "romanization": "chûue khɔ̌ɔng mɛ̂ɛ",
+    "translation": "The name of mother",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000004",
    "TH_L000018",
@@ -6203,6 +6459,15 @@
   "mnemonic_concept": "A shopper who eagerly took the suspiciously cheap item from the bargain bin.",
   "sentences": [
    {
+    "id": "TH_S000227",
+    "text": "อันนี้ถูก",
+    "romanization": "an níi thùuk",
+    "translation": "This one is cheap.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
     "id": "TH_S000228",
     "text": "อันนี้ไม่ถูก",
     "romanization": "an níi mâi thùuk",
@@ -6415,21 +6680,21 @@
     "role": null
    },
    {
-    "id": "TH_S000007",
-    "text": "ฉันขอน้ำเย็นหนึ่งแก้ว",
-    "romanization": "chǎn khɔ̌ɔ náam yen nʉ̀ng gâaeo",
-    "translation": "I'd like one glass of cold water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000239",
+    "text": "คุณชอบน้ำเย็นไหมครับ",
+    "romanization": "khun châawp náam yen mǎi khráp",
+    "translation": "Do you like cold water?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000010",
-    "text": "วันนี้อากาศร้อน ฉันอยากดื่มน้ำ",
-    "romanization": "wan-níi aa-gàat rɔ́ɔn chǎn yàak dʉ̀ʉm náam",
-    "translation": "The weather is hot today, so I want to drink water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000282",
+    "text": "ผมไม่ดื่มน้ำหวานครับ",
+    "romanization": "phǒm mâi dʉ̀ʉm náam wǎan khráp",
+    "translation": "I don't drink sweet drinks.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -6991,6 +7256,24 @@
     "difficulty": "beginner",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000207",
+    "text": "น้องอยู่บนถนน",
+    "romanization": "nɔ́ɔng yùu bon thà-nǒn",
+    "translation": "the younger sibling is on the road",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000222",
+    "text": "เพื่อนอยู่บนถนน",
+    "romanization": "phûean yùu bon thà-nǒn",
+    "translation": "the friend is on the road",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -7427,10 +7710,10 @@
     "role": null
    },
    {
-    "id": "TH_S000045",
-    "text": "ฉันสั่งข้าวผัดหนึ่งจาน",
-    "romanization": "chǎn sàng khâao-phàt nʉ̀ng jaan",
-    "translation": "I ordered one plate of fried rice.",
+    "id": "TH_S000043",
+    "text": "ขอชามอีกหนึ่งใบ",
+    "romanization": "khɔ̌ɔ chaam ìik nʉ̀ng bai",
+    "translation": "One more bowl, please.",
     "difficulty": "beginner",
     "is_target": false,
     "role": null
@@ -9094,7 +9377,26 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000204",
+    "text": "เพื่อนอยู่ในห้อง",
+    "romanization": "phûean yùu nai hâwng",
+    "translation": "the friend is in the room",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000219",
+    "text": "เขาอยู่ในห้อง",
+    "romanization": "khǎo yùu nai hâwng",
+    "translation": "he is in the room",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000018",
@@ -10211,6 +10513,15 @@
   "mnemonic_concept": "A Thai child happily standing on a large wooden deck.",
   "sentences": [
    {
+    "id": "TH_S000199",
+    "text": "เขาเป็นเด็ก",
+    "romanization": "khǎo pen dèk",
+    "translation": "he is a child",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
     "id": "TH_S000214",
     "text": "ฉันเป็นเด็ก",
     "romanization": "chǎn pen dèk",
@@ -10803,39 +11114,39 @@
     "role": null
    },
    {
-    "id": "TH_S000001",
-    "text": "ฉันชอบกินข้าวมาก",
-    "romanization": "chǎn chɔ̂ɔp gin khâao mâak",
-    "translation": "I really like eating rice.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000264",
+    "text": "ฉันชอบชาเย็นมากค่ะ",
+    "romanization": "chǎn châawp chaa yen mâak khâ",
+    "translation": "I really like iced tea.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000008",
-    "text": "กาแฟแก้วนี้ร้อนมาก",
-    "romanization": "gaa-faae gâaeo níi rɔ́ɔn mâak",
-    "translation": "This cup of coffee is very hot.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000265",
+    "text": "คุณกินเผ็ดมากไหมครับ",
+    "romanization": "khun gin pèt mâak mǎi khráp",
+    "translation": "Do you eat very spicy food?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000014",
-    "text": "ไข่ใบนี้สดมาก",
-    "romanization": "khài bai níi sòt mâak",
-    "translation": "This egg is very fresh.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000266",
+    "text": "ผมอยากดื่มน้ำมากครับ",
+    "romanization": "phǒm yàak dʉ̀ʉm náam mâak khráp",
+    "translation": "I really want some water.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000016",
-    "text": "กล้วยลูกนี้หวานมาก",
-    "romanization": "glûai lûuk níi wǎan mâak",
-    "translation": "This banana is very sweet.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000267",
+    "text": "อาหารนี้หวานมากค่ะ",
+    "romanization": "aa-hǎan níi wǎan mâak khâ",
+    "translation": "This food is very sweet.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -12329,7 +12640,26 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000206",
+    "text": "เขาอยู่หน้าโรงพยาบาล",
+    "romanization": "khǎo yùu nâa roong-phá-yaa-baan",
+    "translation": "he is in front of the hospital",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000221",
+    "text": "น้องอยู่หน้าโรงพยาบาล",
+    "romanization": "nɔ́ɔng yùu nâa roong-phá-yaa-baan",
+    "translation": "the younger sibling is in front of the hospital",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000025",
@@ -13140,7 +13470,26 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000203",
+    "text": "น้องอยู่ใกล้โรงเรียน",
+    "romanization": "nɔ́ɔng yùu glâi roong-rian",
+    "translation": "the younger sibling is near the school",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000218",
+    "text": "เพื่อนอยู่ใกล้บ้าน",
+    "romanization": "phûean yùu glâi bâan",
+    "translation": "the friend is near the house",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000040"
@@ -14172,7 +14521,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000093",
+    "text": "ใส่น้ำมันในกระทะก่อน",
+    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
+    "translation": "Put oil in the pan first.",
+    "difficulty": "intermediate",
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000056"
   ],
@@ -14638,39 +14997,39 @@
     "role": null
    },
    {
-    "id": "TH_S000003",
-    "text": "วันนี้ฉันอยากกินก๋วยเตี๋ยว",
-    "romanization": "wan-níi chǎn yàak gin gǔai-dtǐao",
-    "translation": "Today I want to eat noodles.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000234",
+    "text": "คุณอยากกินปลาไหมครับ",
+    "romanization": "khun yàak gin plaa mǎi khráp",
+    "translation": "Would you like to eat fish?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000005",
-    "text": "ฉันอยากกินอาหารไทย",
-    "romanization": "chǎn yàak gin aa-hǎan thai",
-    "translation": "I want to eat Thai food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000257",
+    "text": "ฉันอยากดื่มชาเย็นค่ะ",
+    "romanization": "chǎn yàak dʉ̀ʉm chaa yen khâ",
+    "translation": "I want to drink iced tea.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000010",
-    "text": "วันนี้อากาศร้อน ฉันอยากดื่มน้ำ",
-    "romanization": "wan-níi aa-gàat rɔ́ɔn chǎn yàak dʉ̀ʉm náam",
-    "translation": "The weather is hot today, so I want to drink water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000258",
+    "text": "ผมอยากได้กาแฟครับ",
+    "romanization": "phǒm yàak dâai gaa-fɛɛ khráp",
+    "translation": "I'd like a coffee.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000015",
-    "text": "ฉันอยากกินผลไม้หลังอาหาร",
-    "romanization": "chǎn yàak gin phǒn-lá-mái lǎng aa-hǎan",
-    "translation": "I want to eat fruit after the meal.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000333",
+    "text": "ผมอยากกินผักครับ",
+    "romanization": "phǒm yàak gin pàk khráp",
+    "translation": "I want to eat vegetables.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -15125,47 +15484,47 @@
   "mnemonic_concept": "A person named Kuhn wears a giant crown and everyone politely addresses them.",
   "sentences": [
    {
+    "id": "TH_S000246",
+    "text": "คุณดื่มกาแฟไหมครับ",
+    "romanization": "khun dʉ̀ʉm gaa-fɛɛ mǎi khráp",
+    "translation": "Do you drink coffee?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000247",
+    "text": "คุณอยากดื่มชาเย็นไหมครับ",
+    "romanization": "khun yàak dʉ̀ʉm chaa yen mǎi khráp",
+    "translation": "Would you like iced tea?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000331",
+    "text": "คุณชอบไข่ไหมครับ",
+    "romanization": "khun châawp khài mǎi khráp",
+    "translation": "Do you like eggs?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000332",
+    "text": "คุณอยากกินผักไหมครับ",
+    "romanization": "khun yàak gin pàk mǎi khráp",
+    "translation": "Would you like some vegetables?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
     "id": "TH_S000106",
     "text": "คุณอยากกินอะไร",
     "romanization": "khun yàak gin à-rai",
     "translation": "What do you want to eat?",
     "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000137",
-    "text": "คุณชอบกินข้าวมากไหม",
-    "romanization": "khun chɔ̂ɔp gin khâao mâak mái",
-    "translation": "Do you really like eating rice?",
-    "difficulty": null,
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000138",
-    "text": "คุณชอบกินไก่มากไหม",
-    "romanization": "khun chɔ̂ɔp gin gài mâak mái",
-    "translation": "Do you really like eating chicken?",
-    "difficulty": null,
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000139",
-    "text": "คุณชอบกินปลามากไหม",
-    "romanization": "khun chɔ̂ɔp gin bplaa mâak mái",
-    "translation": "Do you really like eating fish?",
-    "difficulty": null,
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000140",
-    "text": "คุณชอบกินก๋วยเตี๋ยวมากไหม",
-    "romanization": "khun chɔ̂ɔp gin gǔai-dtǐao mâak mái",
-    "translation": "Do you really like eating noodles?",
-    "difficulty": null,
     "is_target": false,
     "role": null
    }
@@ -16476,48 +16835,48 @@
   "mnemonic_concept": "A happy person enthusiastically chops their favorite food with an enormous kitchen knife.",
   "sentences": [
    {
-    "id": "TH_S000001",
-    "text": "ฉันชอบกินข้าวมาก",
-    "romanization": "chǎn chɔ̂ɔp gin khâao mâak",
-    "translation": "I really like eating rice.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000230",
+    "text": "คุณชอบกินไข่ไหมครับ",
+    "romanization": "khun châawp gin khài mǎi khráp",
+    "translation": "Do you like eating eggs?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000013",
-    "text": "ฉันชอบขนมปังกับเนย",
-    "romanization": "chǎn chɔ̂ɔp khà-nǒm-bpang gàp noei",
-    "translation": "I like bread with butter.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000248",
+    "text": "ผมชอบกินไข่ครับ",
+    "romanization": "phǒm châawp gin khài khráp",
+    "translation": "I like eating eggs.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000020",
-    "text": "ฉันชอบกินสับปะรด",
-    "romanization": "chǎn chɔ̂ɔp gin sàp-bpà-rót",
-    "translation": "I like eating pineapple.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000249",
+    "text": "คุณชอบดื่มชาไหม",
+    "romanization": "khun châawp dʉ̀ʉm chaa mǎi",
+    "translation": "Do you like drinking tea?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000023",
-    "text": "ฉันชอบกินผักมากกว่าเนื้อ",
-    "romanization": "chǎn chɔ̂ɔp gin phàk mâak gwàa nʉ́ʉa",
-    "translation": "I like eating vegetables more than meat.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000250",
+    "text": "ฉันชอบน้ำเย็นค่ะ",
+    "romanization": "chǎn châawp náam yen khâ",
+    "translation": "I like cold water.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000029",
-    "text": "ฉันชอบอาหารเผ็ด",
-    "romanization": "chǎn chɔ̂ɔp aa-hǎan phèt",
-    "translation": "I like spicy food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000251",
+    "text": "ผมชอบอาหารร้อนครับ",
+    "romanization": "phǒm châawp aa-hǎan rɔ́ɔn khráp",
+    "translation": "I like hot food.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -17048,6 +17407,33 @@
   "mnemonic_concept": "A cheerful woman presses a giant glowing politeness button whenever she answers politely.",
   "sentences": [
    {
+    "id": "TH_S000276",
+    "text": "ฉันอยากกินปลา ค่ะ",
+    "romanization": "chǎn yàak gin plaa khâ",
+    "translation": "I'd like to eat fish.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000277",
+    "text": "ฉันไม่ชอบกาแฟร้อนค่ะ",
+    "romanization": "chǎn mâi châawp gaa-fɛɛ rɔ́ɔn khâ",
+    "translation": "I don't like hot coffee.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000278",
+    "text": "อาหารนี้อร่อยค่ะ",
+    "romanization": "aa-hǎan níi à-ròi khâ",
+    "translation": "This food is delicious.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
     "id": "TH_S000041",
     "text": "ขอส้อมหนึ่งคันค่ะ",
     "romanization": "khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ",
@@ -17061,33 +17447,6 @@
     "text": "ฉันชอบปลาค่ะ",
     "romanization": "chǎn chɔ̂ɔp plaa khâ",
     "translation": "I like fish.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000154",
-    "text": "ฉันชอบอาหารสดค่ะ",
-    "romanization": "chǎn chɔ̂ɔp aa-hǎan sòt khâ",
-    "translation": "I like fresh food.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000163",
-    "text": "อาหารอร่อยมากค่ะ",
-    "romanization": "aa-hǎan à-ròi mâak khâ",
-    "translation": "The food is very delicious.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000171",
-    "text": "ฉันชอบชาร้อนค่ะ",
-    "romanization": "chǎn chɔ̂ɔp chaa rɔ́ɔn khâ",
-    "translation": "I like hot tea.",
     "difficulty": "beginner",
     "is_target": false,
     "role": null
@@ -17128,7 +17487,26 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000207",
+    "text": "น้องอยู่บนถนน",
+    "romanization": "nɔ́ɔng yùu bon thà-nǒn",
+    "translation": "the younger sibling is on the road",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000222",
+    "text": "เพื่อนอยู่บนถนน",
+    "romanization": "phûean yùu bon thà-nǒn",
+    "translation": "the friend is on the road",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000018"
@@ -17312,7 +17690,35 @@
   "hook_visual": "a cow",
   "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition.\n\nA humorous Thai scene with a large friendly COW as the dominant visual element. The cow is dramatically raising its head and horns upward, with its neck extended and its whole pose clearly moving upward, creating a natural visual cue for a RISING tone. Its mouth is open as though it is loudly calling out.\n\nIn the foreground, a Thai MAN and Thai WOMAN stand clearly beside the cow and POINT AT EACH OTHER dramatically, creating an obvious visual joke about referring to HE or SHE. Their gestures should be unmistakable: the man points directly at the woman, while the woman points directly back at the man.\n\nThe visual should immediately communicate: HE / SHE + COW + RISING.\n\nKeep the cow, man, and woman clearly separated and fully visible. Use a wide, uncluttered composition with strong visual hierarchy. Warm Thai outdoor environment in the background, but keep it secondary.\n\nPlayful, slightly absurd, memorable, expressive characters, rich painterly textures, cinematic lighting.\n\nNo text, letters, numbers, Thai writing, romanization, tone marks, arrows, symbols, captions, speech bubbles, labels, signs, logos, watermarks, or UI elements.\n",
   "mnemonic_concept": "A man, and a woman point at each other with a cow in the background.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000199",
+    "text": "เขาเป็นเด็ก",
+    "romanization": "khǎo pen dèk",
+    "translation": "he is a child",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000206",
+    "text": "เขาอยู่หน้าโรงพยาบาล",
+    "romanization": "khǎo yùu nâa roong-phá-yaa-baan",
+    "translation": "he is in front of the hospital",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000219",
+    "text": "เขาอยู่ในห้อง",
+    "romanization": "khǎo yùu nai hâwng",
+    "translation": "he is in the room",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000004",
    "TH_L000018"
@@ -17708,39 +18114,39 @@
     "role": null
    },
    {
-    "id": "TH_S000161",
-    "text": "ผมชอบปลาครับ",
-    "romanization": "phǒm chɔ̂ɔp plaa khráp",
-    "translation": "I like fish.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000326",
+    "text": "ผมอยากกินปลาเผ็ดครับ",
+    "romanization": "phǒm yàak gin plaa pèt khráp",
+    "translation": "I want to eat spicy fish.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000164",
-    "text": "ผมอยากดื่มน้ำ",
-    "romanization": "phǒm yàak dʉ̀ʉm náam",
-    "translation": "I want to drink water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000327",
+    "text": "ผมไม่ดื่มชาเย็นครับ",
+    "romanization": "phǒm mâi dʉ̀ʉm chaa yen khráp",
+    "translation": "I don't drink iced tea.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000167",
-    "text": "ผมไม่มีผัก",
-    "romanization": "phǒm mâi mii pàk",
-    "translation": "I don't have vegetables.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000328",
+    "text": "ผมชอบไข่หวานครับ",
+    "romanization": "phǒm châawp khài wǎan khráp",
+    "translation": "I like sweet eggs.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000174",
-    "text": "ผมอยากดื่มกาแฟ",
-    "romanization": "phǒm yàak dʉ̀ʉm gaa-fɛɛ",
-    "translation": "I want to drink coffee.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000329",
+    "text": "ผมอยากได้อาหารสดครับ",
+    "romanization": "phǒm yàak dâai aa-hǎan sòt khráp",
+    "translation": "I want fresh food.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -19567,6 +19973,15 @@
     "difficulty": null,
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000223",
+    "text": "ใครอยู่ที่ตลาด",
+    "romanization": "khrai yùu thîi dtà-làat",
+    "translation": "Who is at the market?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -19620,6 +20035,15 @@
     "text": "ขอจานหนึ่งใบได้ไหม",
     "romanization": "khɔ̌ɔ jaan nʉ̀ng bai dâai mái",
     "translation": "Can I have one plate?",
+    "difficulty": "beginner",
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000043",
+    "text": "ขอชามอีกหนึ่งใบ",
+    "romanization": "khɔ̌ɔ chaam ìik nʉ̀ng bai",
+    "translation": "One more bowl, please.",
     "difficulty": "beginner",
     "is_target": false,
     "role": null
@@ -20692,7 +21116,26 @@
   "hook_visual": "someone crying",
   "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A funny but immediately understandable Thai scene: one person is visibly CRYING while desperately looking around a busy Thai market, searching for an UNKNOWN PERSON. Their exaggerated confused expression and tears make the crying action unmistakable, while their frantic searching communicates WHO? The crying person is the clear visual focus, with several possible people in the background but no obvious answer about which person they are looking for. Rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean central composition, memorable visual storytelling. No captions, speech bubbles, labels, or explanatory text.",
   "mnemonic_concept": "A person crying while desperately looking around to find the unknown person they are searching for.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000208",
+    "text": "ใครอยู่ที่สถานี",
+    "romanization": "khrai yùu thîi sà-thǎa-nii",
+    "translation": "Who is at the station?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000223",
+    "text": "ใครอยู่ที่ตลาด",
+    "romanization": "khrai yùu thîi dtà-làat",
+    "translation": "Who is at the market?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000004",
    "TH_L000100"
@@ -22255,7 +22698,17 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000208",
+    "text": "ใครอยู่ที่สถานี",
+    "romanization": "khrai yùu thîi sà-thǎa-nii",
+    "translation": "Who is at the station?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005"
   ],
@@ -25196,7 +25649,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000220",
+    "text": "โรงเรียนอยู่นอกเมือง",
+    "romanization": "roong-rian yùu nâawk mueang",
+    "translation": "The school is outside the city",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000005",
    "TH_L000018"
@@ -25259,7 +25722,17 @@
   "hook_visual": "Sam holding up three fingers",
   "mnemonic": "Premium painterly fantasy/game-card illustration. Painterly digital illustration with clearly visible brushwork, soft edges, textured painted surfaces, expressive forms, strong silhouettes, cinematic depth, dramatic highlights and shadows, vibrant but controlled color relationships, polished collectible-card-art appearance. NOT photorealistic. NOT photographic. No borders.\n\nUncle Sam must be unmistakably American and instantly recognizable: iconic white beard, tall red-white-and-blue top hat, classic red-white-and-blue patriotic suit. He is standing naturally in a distinctly Thai street-market setting, with colorful Thai market stalls, tropical plants, and subtle Thai environmental details.\n\nUncle Sam is proudly holding up EXACTLY THREE fingers on one hand. All three raised fingers must be clearly separated and fully visible. Make the three fingers an immediate visual focus while keeping Uncle Sam's iconic appearance unmistakable.\n\nFunny, slightly absurd situation: iconic American Uncle Sam casually standing in a Thai market. Clean central composition, natural anatomy, natural hand positioning, strong visual storytelling.\n\nNo text, letters, numbers, Thai writing, phonetic symbols, labels, logos, signs, watermarks, borders, or photographic elements.\n",
   "mnemonic_concept": "Uncle Sam holding up three fingers.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000197",
+    "text": "มี สาม คน",
+    "romanization": "mii sǎam khon",
+    "translation": "There are three people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019",
    "TH_L000295",
@@ -25465,6 +25938,33 @@
   "mnemonic_concept": "A polite man holds up a cheerful red crab while respectfully acknowledging someone.",
   "sentences": [
    {
+    "id": "TH_S000237",
+    "text": "ผมอยากกินไข่ครับ",
+    "romanization": "phǒm yàak gin khài khráp",
+    "translation": "I want to eat eggs.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000274",
+    "text": "ผมอยากกินข้าวครับ",
+    "romanization": "phǒm yàak gin khâao khráp",
+    "translation": "I'd like some rice.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000275",
+    "text": "ผมไม่ชอบอาหารเผ็ดครับ",
+    "romanization": "phǒm mâi châawp aa-hǎan pèt khráp",
+    "translation": "I don't like spicy food.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
     "id": "TH_S000040",
     "text": "ขอช้อนหนึ่งคันครับ",
     "romanization": "khɔ̌ɔ chɔ́ɔn nʉ̀ng khan khráp",
@@ -25478,33 +25978,6 @@
     "text": "ฉันขอเมนูหน่อยครับ",
     "romanization": "chǎn khɔ̌ɔ mee-nuu nɔ̀i khráp",
     "translation": "Could I have the menu, please?",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000076",
-    "text": "ทั้งหมดเท่าไหร่ครับ",
-    "romanization": "tháng-mòt thâo-rài khráp",
-    "translation": "How much is the total?",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000077",
-    "text": "คิดเงินด้วยครับ",
-    "romanization": "khít ngoen dûai khráp",
-    "translation": "The bill, please.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000108",
-    "text": "เอากลับบ้านครับ",
-    "romanization": "ao glàp bâan khráp",
-    "translation": "I'll take it home, please.",
     "difficulty": "beginner",
     "is_target": false,
     "role": null
@@ -30394,7 +30867,44 @@
   "hook_visual": null,
   "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. A cheerful Thai family scene showing a clearly YOUNGER SIBLING following an older brother or sister around a Thai home, copying everything they do. Make the age difference obvious: the younger sibling is noticeably smaller and younger, staying close behind the older sibling. The younger sibling is the visual focus. Warm family atmosphere, expressive faces, rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean composition, immediately understandable. No captions, speech bubbles, labels, or explanatory text.",
   "mnemonic_concept": "A younger Thai sibling happily following their older sibling around the house.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000200",
+    "text": "น้องคือเพื่อน",
+    "romanization": "nɔ́ɔng khue phûean",
+    "translation": "younger sibling is a friend",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000203",
+    "text": "น้องอยู่ใกล้โรงเรียน",
+    "romanization": "nɔ́ɔng yùu glâi roong-rian",
+    "translation": "the younger sibling is near the school",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000207",
+    "text": "น้องอยู่บนถนน",
+    "romanization": "nɔ́ɔng yùu bon thà-nǒn",
+    "translation": "the younger sibling is on the road",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000221",
+    "text": "น้องอยู่หน้าโรงพยาบาล",
+    "romanization": "nɔ́ɔng yùu nâa roong-phá-yaa-baan",
+    "translation": "the younger sibling is in front of the hospital",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000004",
    "TH_L000018",
@@ -32448,7 +32958,44 @@
   "hook_visual": null,
   "mnemonic": "Premium painterly fantasy game-card illustration, designed as a 1:1 square collectible card. Two close Thai FRIENDS laughing together and naturally helping each other carry a shopping basket through a colorful Thai street market. Make the friendship unmistakable through their relaxed body language, smiles, and cooperative action. Focus on the relationship between the two people rather than the market itself. Authentic Thai atmosphere, rich textures, cinematic lighting, vibrant colors, strong silhouettes, clean central composition, warm and memorable. No captions, speech bubbles, labels, or explanatory text.",
   "mnemonic_concept": "Two close Thai friends happily helping each other at a street market.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000200",
+    "text": "น้องคือเพื่อน",
+    "romanization": "nɔ́ɔng khue phûean",
+    "translation": "younger sibling is a friend",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000204",
+    "text": "เพื่อนอยู่ในห้อง",
+    "romanization": "phûean yùu nai hâwng",
+    "translation": "the friend is in the room",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000218",
+    "text": "เพื่อนอยู่ใกล้บ้าน",
+    "romanization": "phûean yùu glâi bâan",
+    "translation": "the friend is near the house",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000222",
+    "text": "เพื่อนอยู่บนถนน",
+    "romanization": "phûean yùu bon thà-nǒn",
+    "translation": "the friend is on the road",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000004",
    "TH_L000018",
@@ -33163,12 +33710,12 @@
     "role": null
    },
    {
-    "id": "TH_S000001",
-    "text": "ฉันชอบกินข้าวมาก",
-    "romanization": "chǎn chɔ̂ɔp gin khâao mâak",
-    "translation": "I really like eating rice.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000231",
+    "text": "ฉันกินไข่ค่ะ",
+    "romanization": "chǎn gin khài khâ",
+    "translation": "I eat eggs.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33318,21 +33865,21 @@
     "role": null
    },
    {
-    "id": "TH_S000039",
-    "text": "ขอจานหนึ่งใบได้ไหม",
-    "romanization": "khɔ̌ɔ jaan nʉ̀ng bai dâai mái",
-    "translation": "Can I have one plate?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000235",
+    "text": "คุณชอบอาหารเผ็ดไหมครับ",
+    "romanization": "khun châawp aa-hǎan pèt mǎi khráp",
+    "translation": "Do you like spicy food?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000046",
-    "text": "ข้าวผัดนี้ใส่ไข่ไหม",
-    "romanization": "khâao-phàt níi sài khài mái",
-    "translation": "Does this fried rice have egg in it?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000236",
+    "text": "คุณอยากกินไข่ไหมครับ",
+    "romanization": "khun yàak gin khài mǎi khráp",
+    "translation": "Would you like an egg?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33482,21 +34029,21 @@
     "role": null
    },
    {
-    "id": "TH_S000008",
-    "text": "กาแฟแก้วนี้ร้อนมาก",
-    "romanization": "gaa-faae gâaeo níi rɔ́ɔn mâak",
-    "translation": "This cup of coffee is very hot.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000315",
+    "text": "คุณอยากดื่มน้ำร้อนไหมครับ",
+    "romanization": "khun yàak dʉ̀ʉm náam rɔ́ɔn mǎi khráp",
+    "translation": "Would you like hot water?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000010",
-    "text": "วันนี้อากาศร้อน ฉันอยากดื่มน้ำ",
-    "romanization": "wan-níi aa-gàat rɔ́ɔn chǎn yàak dʉ̀ʉm náam",
-    "translation": "The weather is hot today, so I want to drink water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000316",
+    "text": "ชาร้อนอร่อยค่ะ",
+    "romanization": "chaa rɔ́ɔn à-ròi khâ",
+    "translation": "Hot tea is delicious.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33575,12 +34122,12 @@
     "role": null
    },
    {
-    "id": "TH_S000014",
-    "text": "ไข่ใบนี้สดมาก",
-    "romanization": "khài bai níi sòt mâak",
-    "translation": "This egg is very fresh.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000322",
+    "text": "คุณชอบกินผักสดไหมครับ",
+    "romanization": "khun châawp gin pàk sòt mǎi khráp",
+    "translation": "Do you like eating fresh vegetables?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33740,12 +34287,12 @@
     "role": null
    },
    {
-    "id": "TH_S000016",
-    "text": "กล้วยลูกนี้หวานมาก",
-    "romanization": "glûai lûuk níi wǎan mâak",
-    "translation": "This banana is very sweet.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000311",
+    "text": "คุณชอบชาเย็นหวานไหมครับ",
+    "romanization": "khun châawp chaa yen wǎan mǎi khráp",
+    "translation": "Do you like sweet iced tea?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33809,30 +34356,30 @@
     "role": null
    },
    {
-    "id": "TH_S000028",
-    "text": "อาหารจานนี้เผ็ดมาก",
-    "romanization": "aa-hǎan jaan níi phèt mâak",
-    "translation": "This dish is very spicy.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000242",
+    "text": "อาหารนี้เผ็ดไหมครับ",
+    "romanization": "aa-hǎan níi pèt mǎi khráp",
+    "translation": "Is this food spicy?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000029",
-    "text": "ฉันชอบอาหารเผ็ด",
-    "romanization": "chǎn chɔ̂ɔp aa-hǎan phèt",
-    "translation": "I like spicy food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000309",
+    "text": "ผมไม่กินปลาเผ็ดครับ",
+    "romanization": "phǒm mâi gin plaa pèt khráp",
+    "translation": "I don't eat spicy fish.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000030",
-    "text": "ช่วยทำให้เผ็ดน้อยหน่อย",
-    "romanization": "chûai tham hâi phèt nɔ́ɔi nɔ̀i",
-    "translation": "Please make it less spicy.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000310",
+    "text": "อาหารเผ็ดอร่อยค่ะ",
+    "romanization": "aa-hǎan pèt à-ròi khâ",
+    "translation": "Spicy food is delicious.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33902,21 +34449,21 @@
     "role": null
    },
    {
-    "id": "TH_S000053",
-    "text": "วันนี้ฉันอยากกินปลา",
-    "romanization": "wan-níi chǎn yàak gin bplaa",
-    "translation": "Today I want to eat fish.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000284",
+    "text": "คุณชอบกินปลาไหมครับ",
+    "romanization": "khun châawp gin plaa mǎi khráp",
+    "translation": "Do you like eating fish?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000054",
-    "text": "ปลาตัวนี้สดมาก",
-    "romanization": "bplaa dtua níi sòt mâak",
-    "translation": "This fish is very fresh.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000285",
+    "text": "ผมอยากกินปลาสดครับ",
+    "romanization": "phǒm yàak gin plaa sòt khráp",
+    "translation": "I want to eat fresh fish.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -33985,20 +34532,20 @@
     "role": null
    },
    {
-    "id": "TH_S000097",
-    "text": "ใส่น้ำตาลนิดเดียวก็พอ",
-    "romanization": "sài náam-dtaan nít diao gɔ̂ɔ phɔɔ",
-    "translation": "Just a little sugar is enough.",
+    "id": "TH_S000093",
+    "text": "ใส่น้ำมันในกระทะก่อน",
+    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
+    "translation": "Put oil in the pan first.",
     "difficulty": "intermediate",
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000099",
-    "text": "ใส่กระเทียมเพิ่มอีกหน่อย",
-    "romanization": "sài grà-thiam phə̂əm ìik nɔ̀i",
-    "translation": "Add a little more garlic.",
-    "difficulty": "intermediate",
+    "id": "TH_S000096",
+    "text": "อย่าลืมใส่เกลือ",
+    "romanization": "yàa lʉʉm sài gleuua",
+    "translation": "Don't forget to add salt.",
+    "difficulty": "beginner",
     "is_target": false,
     "role": null
    }
@@ -35065,30 +35612,48 @@
   "mnemonic_concept": "A giant Japanese yen coin sits inside a block of sparkling ice.",
   "sentences": [
    {
-    "id": "TH_S000007",
-    "text": "ฉันขอน้ำเย็นหนึ่งแก้ว",
-    "romanization": "chǎn khɔ̌ɔ náam yen nʉ̀ng gâaeo",
-    "translation": "I'd like one glass of cold water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000319",
+    "text": "กาแฟเย็นอร่อยมากครับ",
+    "romanization": "gaa-fɛɛ yen à-ròi mâak khráp",
+    "translation": "Iced coffee is very good.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000019",
-    "text": "แตงโมลูกนี้หวานและเย็น",
-    "romanization": "dtaeng-moo lûuk níi wǎan láe yen",
-    "translation": "This watermelon is sweet and cold.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000320",
+    "text": "ผมไม่อยากกินอาหารเย็นครับ",
+    "romanization": "phǒm mâi yàak gin aa-hǎan yen khráp",
+    "translation": "I don't want to eat cold food.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000192",
-    "text": "ผมอยากดื่มน้ำเย็น",
-    "romanization": "phǒm yàak dʉ̀ʉm náam yen",
-    "translation": "I want to drink cold water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000321",
+    "text": "น้ำเย็นนี้อร่อยค่ะ",
+    "romanization": "náam yen níi à-ròi khâ",
+    "translation": "This cold water tastes good.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000334",
+    "text": "คุณอยากดื่มน้ำเย็นไหมครับ",
+    "romanization": "khun yàak dʉ̀ʉm náam yen mǎi khráp",
+    "translation": "Would you like cold water?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000335",
+    "text": "ฉันชอบชาเย็นค่ะ",
+    "romanization": "chǎn châawp chaa yen khâ",
+    "translation": "I like iced tea.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -35145,6 +35710,33 @@
     "romanization": "chǎn chûai mâae tham aa-hǎan",
     "translation": "I help Mom cook.",
     "difficulty": "beginner",
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000201",
+    "text": "แม่มีหน้า",
+    "romanization": "mɛ̂ɛ mii nâa",
+    "translation": "mother has a face",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000216",
+    "text": "แม่มีชื่อ",
+    "romanization": "mɛ̂ɛ mii chûue",
+    "translation": "mother has a name",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000217",
+    "text": "ชื่อของแม่",
+    "romanization": "chûue khɔ̌ɔng mɛ̂ɛ",
+    "translation": "The name of mother",
+    "difficulty": null,
     "is_target": false,
     "role": null
    }
@@ -35258,6 +35850,15 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [
+   {
+    "id": "TH_S000093",
+    "text": "ใส่น้ำมันในกระทะก่อน",
+    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
+    "translation": "Put oil in the pan first.",
+    "difficulty": "intermediate",
+    "is_target": false,
+    "role": null
+   },
    {
     "id": "TH_S000094",
     "text": "กระทะร้อนแล้ว",
@@ -35517,48 +36118,48 @@
   "mnemonic_concept": "A giant steaming cup of coffee stands dramatically in front of a sleepy person.",
   "sentences": [
    {
-    "id": "TH_S000008",
-    "text": "กาแฟแก้วนี้ร้อนมาก",
-    "romanization": "gaa-faae gâaeo níi rɔ́ɔn mâak",
-    "translation": "This cup of coffee is very hot.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000240",
+    "text": "กาแฟร้อนครับ",
+    "romanization": "gaa-fɛɛ rɔ́ɔn khráp",
+    "translation": "A hot coffee, please.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000147",
-    "text": "ผมชอบกาแฟครับ",
-    "romanization": "phǒm chɔ̂ɔp gaa-fɛɛ khráp",
-    "translation": "I like coffee.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000295",
+    "text": "คุณอยากดื่มกาแฟไหมครับ",
+    "romanization": "khun yàak dʉ̀ʉm gaa-fɛɛ mǎi khráp",
+    "translation": "Would you like some coffee?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000155",
-    "text": "ฉันไม่ชอบกาแฟหวาน",
-    "romanization": "chǎn mâi chɔ̂ɔp gaa-fɛɛ wǎan",
-    "translation": "I don't like sweet coffee.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000296",
+    "text": "ฉันชอบกาแฟเย็นค่ะ",
+    "romanization": "chǎn châawp gaa-fɛɛ yen khâ",
+    "translation": "I like iced coffee.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000170",
-    "text": "คุณชอบกาแฟไหม",
-    "romanization": "khun chɔ̂ɔp gaa-fɛɛ mǎi",
-    "translation": "Do you like coffee?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000297",
+    "text": "ผมไม่ดื่มกาแฟหวานครับ",
+    "romanization": "phǒm mâi dʉ̀ʉm gaa-fɛɛ wǎan khráp",
+    "translation": "I don't drink sweet coffee.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000174",
-    "text": "ผมอยากดื่มกาแฟ",
-    "romanization": "phǒm yàak dʉ̀ʉm gaa-fɛɛ",
-    "translation": "I want to drink coffee.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000298",
+    "text": "กาแฟนี้อร่อยมากค่ะ",
+    "romanization": "gaa-fɛɛ níi à-ròi mâak khâ",
+    "translation": "This coffee is very good.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -36354,7 +36955,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000043",
+    "text": "ขอชามอีกหนึ่งใบ",
+    "romanization": "khɔ̌ɔ chaam ìik nʉ̀ng bai",
+    "translation": "One more bowl, please.",
+    "difficulty": "beginner",
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000018",
    "TH_L000055",
@@ -36553,46 +37164,46 @@
   "mnemonic_concept": "A steaming cup of tea sits beside a piece of wood turning into glowing charcoal.",
   "sentences": [
    {
+    "id": "TH_S000241",
+    "text": "ชาเย็นค่ะ",
+    "romanization": "chaa yen khâ",
+    "translation": "Iced tea, please.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000299",
+    "text": "คุณอยากดื่มชาไหมครับ",
+    "romanization": "khun yàak dʉ̀ʉm chaa mǎi khráp",
+    "translation": "Would you like some tea?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000300",
+    "text": "ผมไม่ดื่มชาหวานครับ",
+    "romanization": "phǒm mâi dʉ̀ʉm chaa wǎan khráp",
+    "translation": "I don't drink sweet tea.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000301",
+    "text": "ชานี้อร่อยมากครับ",
+    "romanization": "chaa níi à-ròi mâak khráp",
+    "translation": "This tea is very good.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
     "id": "TH_S000009",
     "text": "ฉันดื่มชาทุกเช้า",
     "romanization": "chǎn dʉ̀ʉm chaa thúk cháao",
     "translation": "I drink tea every morning.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000160",
-    "text": "คุณชอบชาไหมครับ",
-    "romanization": "khun chɔ̂ɔp chaa mǎi khráp",
-    "translation": "Do you like tea?",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000166",
-    "text": "ฉันไม่ชอบชาหวาน",
-    "romanization": "chǎn mâi chɔ̂ɔp chaa wǎan",
-    "translation": "I don't like sweet tea.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000171",
-    "text": "ฉันชอบชาร้อนค่ะ",
-    "romanization": "chǎn chɔ̂ɔp chaa rɔ́ɔn khâ",
-    "translation": "I like hot tea.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000182",
-    "text": "ฉันอยากดื่มชา",
-    "romanization": "chǎn yàak dʉ̀ʉm chaa",
-    "translation": "I want to drink tea.",
     "difficulty": "beginner",
     "is_target": false,
     "role": null
@@ -37461,12 +38072,48 @@
   "mnemonic_concept": "A friendly person gives a gentle little nudge while casually saying “nah” to soften what they are saying.",
   "sentences": [
    {
-    "id": "TH_S000110",
-    "text": "อาหารยังร้อนอยู่ ระวังนะ",
-    "romanization": "aa-hǎan yang rɔ́ɔn yùu rá-wang ná",
-    "translation": "The food is still hot, be careful.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000243",
+    "text": "กินข้าวนะครับ",
+    "romanization": "gin khâao ná khráp",
+    "translation": "Please eat.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000244",
+    "text": "ไม่กินเผ็ดนะครับ",
+    "romanization": "mâi gin pèt ná khráp",
+    "translation": "Please don't eat spicy food.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000245",
+    "text": "ดื่มชานะครับ",
+    "romanization": "dʉ̀ʉm chaa ná khráp",
+    "translation": "Please drink tea.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000325",
+    "text": "อาหารร้อนนะครับ",
+    "romanization": "aa-hǎan rɔ́ɔn ná khráp",
+    "translation": "The food is hot, you know.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000336",
+    "text": "กินไข่นะครับ",
+    "romanization": "gin khài ná khráp",
+    "translation": "Please eat the egg.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -37996,7 +38643,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000096",
+    "text": "อย่าลืมใส่เกลือ",
+    "romanization": "yàa lʉʉm sài gleuua",
+    "translation": "Don't forget to add salt.",
+    "difficulty": "beginner",
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [],
   "images": [],
   "audio": {
@@ -38025,7 +38682,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000096",
+    "text": "อย่าลืมใส่เกลือ",
+    "romanization": "yàa lʉʉm sài gleuua",
+    "translation": "Don't forget to add salt.",
+    "difficulty": "beginner",
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000068",
    "TH_L000094"
@@ -39545,7 +40212,17 @@
   "hook_visual": "a person pointing and saying “see!”",
   "mnemonic": "Exactly four concrete pillars inside an empty abandoned building, with exactly one bundle of dynamite firmly attached to each pillar. Four pillars and four dynamite bundles total, with a clear one-to-one relationship: one pillar, one bundle. The four pillars should be spaced apart so each bundle is clearly visible and easy to count. The dynamite bundles should have the compact cylindrical appearance commonly associated with C4-style explosive bundles, but the scene is completely static and inactive. No people, no explosions, no flames, no smoke, no sparks, no wires, no detonators, and no damage.\n\nPremium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, natural perspective, atmospheric depth, dramatic abandoned-building interior, subtle shafts of light through dusty air, rich concrete textures, clean central composition. The four pillars and four bundles are the unmistakable visual focus.\n\nNo additional pillars, no additional dynamite bundles, no loose explosives, no weapons, no people, no text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.\n",
   "mnemonic_concept": "C4, an explosive idea.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000210",
+    "text": "มีสี่คน",
+    "romanization": "mii sìi khon",
+    "translation": "There are four people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019",
    "TH_L000295",
@@ -39580,7 +40257,17 @@
   "hook_visual": "someone laughing and shouting “ha!”",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition.\n\nA playful Thai market scene with EXACTLY FIVE Thai people, each holding EXACTLY ONE funny oversized object. Five people total and five objects total, with a clear one-person-to-one-object relationship. Space the five people apart enough that every person and every object is clearly visible and easy to count.\n\nAll five people are laughing enthusiastically, with exaggerated joyful expressions and open mouths, creating a strong visual impression of “HA!” The funny oversized objects should be absurd, colorful, and visually memorable, adding humor without cluttering the scene.\n\nNatural Thai atmosphere with Thai clothing, market stalls, tropical surroundings, warm local details, and subtle cultural flavor. Keep the composition lively but uncluttered, with the five people and their five objects as the unmistakable visual focus.\n\nIMPORTANT: EXACTLY FIVE PEOPLE. EXACTLY FIVE OBJECTS. ONE OBJECT HELD BY EACH PERSON. No sixth person, no sixth object, no extra objects being held or lying around.\n\nNo text, letters, numbers, writing, labels, logos, watermarks, phonetics, captions, or UI.\n",
   "mnemonic_concept": "Five people are laughing and shouting “ha!” around five enormous funny objects.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000212",
+    "text": "มี ห้า คน",
+    "romanization": "mii hâa khon",
+    "translation": "There are five people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019",
    "TH_L000295",
@@ -39615,7 +40302,17 @@
   "hook_visual": "a hawk swooping down",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition.\n\nA Thai countryside scene containing EXACTLY SIX hawks and absolutely no other birds. Arrange the six hawks in a clear, widely separated composition so the viewer can easily count them individually: one hawk at upper left, one at upper center, one at upper right, one at lower left, one at lower center, and one at lower right. Each hawk must be fully visible, with its entire body and wings clearly separated from the other five. Do not overlap the hawks. Do not hide any hawk behind another object. Make all six hawks large, unmistakable, and equally visible.\n\nThe six hawks are the entire visual focus. Natural Thai countryside background kept simple and secondary. Rich feather detail, dramatic movement, cinematic lighting, painterly fantasy game-card quality.\n\nCRITICAL: EXACTLY SIX HAWKS — NOT FIVE, NOT SEVEN. The viewer must be able to point to and count all six individually.\n\nNo people, no other animals, no additional birds, no text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.\n",
   "mnemonic_concept": "Six enormous hawks swoop around six people who are desperately trying to count them.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000225",
+    "text": "มีหกคน",
+    "romanization": "mii hòk khon",
+    "translation": "There are six people",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019",
    "TH_L000295",
@@ -40313,7 +41010,26 @@
   "hook_visual": "a man named Roy",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A charismatic man representing Roy stands proudly in the center of a Thai marketplace surrounded by exactly one hundred clearly countable everyday objects arranged in an orderly dramatic display. Make ONE HUNDRED the dominant visual idea while Roy provides the direct sound bridge. The objects should be large enough and separated enough to suggest an enormous count without becoming cluttered. Natural Thai market atmosphere, subtle architecture and clothing, rich textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "A character named Roy stands proudly in the middle of a spectacular scene containing exactly one hundred objects.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000198",
+    "text": "มีเงิน หนึ่งร้อย",
+    "romanization": "mii ngoen nùeng rɔ́ɔi",
+    "translation": "There is one hundred money",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000211",
+    "text": "มีเงินร้อย",
+    "romanization": "mii ngoen rɔ́ɔi",
+    "translation": "There is a hundred in money",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -40344,7 +41060,26 @@
   "hook_visual": "a spinning electric fan",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A gigantic industrial electric fan dominates a Thai workshop, blasting an enormous swirling cloud of countless everyday objects through the air to create an overwhelming sense of THOUSANDS. Make the huge spinning fan the unmistakable visual focus and use it as the direct sound bridge for “fan.” Absurd scale, dramatic wind movement, rich mechanical textures, subtle Thai workshop atmosphere, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "A gigantic electric fan blows thousands of objects through the air in a spectacular whirlwind.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000213",
+    "text": "มีเงิน หนึ่งพัน",
+    "romanization": "mii ngoen nùeng phan",
+    "translation": "There is one thousand money",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000226",
+    "text": "มีเงินพัน",
+    "romanization": "mii ngoen phan",
+    "translation": "There is a thousand in money",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -57243,7 +57978,17 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000202",
+    "text": "ชื่อของเขา",
+    "romanization": "chûue khɔ̌ɔng khǎo",
+    "translation": "The name of him",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [],
   "images": [],
   "audio": {
@@ -60328,10 +61073,28 @@
   "mnemonic_concept": null,
   "sentences": [
    {
+    "id": "TH_S000227",
+    "text": "อันนี้ถูก",
+    "romanization": "an níi thùuk",
+    "translation": "This one is cheap.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
     "id": "TH_S000228",
     "text": "อันนี้ไม่ถูก",
     "romanization": "an níi mâi thùuk",
     "translation": "This one is not cheap.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000229",
+    "text": "อันนี้ถูกไหม",
+    "romanization": "an níi thùuk mǎi",
+    "translation": "Is this one cheap?",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -73516,7 +74279,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000205",
+    "text": "โรงเรียนอยู่กลางเมือง",
+    "romanization": "roong-rian yùu glaang mueang",
+    "translation": "The school is in the middle of the city",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000040"
   ],
@@ -102231,7 +103004,17 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000229",
+    "text": "อันนี้ถูกไหม",
+    "romanization": "an níi thùuk mǎi",
+    "translation": "Is this one cheap?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000102"
   ],
