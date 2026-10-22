@@ -1399,3 +1399,26 @@ body.hide-tone .tw .tm{display:none}
 .builtfrom{display:inline-block;margin:0 0 12px;font-size:0.7812rem;color:var(--accent2);text-decoration:none}
 .builtfrom:hover{text-decoration:underline}
 .menu .mlist>a.item.cat{margin-left:24px}
+
+/* Male and female. ♂ blue, ♀ pink, ♀♂ (ฉัน, used by both) violet. */
+.gicon{font-weight:700;line-height:1;font-size:1.35em}
+.gicon.g-male{color:#4f8ff7}
+.gicon.g-female{color:#e0609a}
+.gicon.g-neutral{color:#a07be0}
+.gword{margin:10px 0 4px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--s2);font-size:0.875rem;color:var(--text2)}
+.gword .gme{display:flex;gap:6px;align-items:baseline}
+.gword .gsay{font-weight:600}
+.gword .gothers{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+.gword .gother{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.gword .glead{color:var(--dim)}
+.gword .gother b{font-size:1.1rem;color:var(--bright)}
+.gword .gother a{text-decoration:none}
+.gword .gother a:hover b{text-decoration:underline}
+.gword .rom{color:var(--accent2)}
+.gword .mn{color:var(--muted)}
+.gsw{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:999px;background:var(--s2);margin:0 0 6px;font-size:0.75rem}
+.gsw button{display:inline-flex;gap:5px;align-items:center;padding:3px 10px;border:1px solid transparent;border-radius:999px;background:transparent;color:var(--dim);font:inherit;cursor:pointer}
+.gsw button:hover{color:var(--bright)}
+.gsw button.on{background:var(--accentbg);border-color:var(--accent);color:var(--bright)}
+.gsw.solo{padding:3px 10px;gap:5px;align-items:center;color:var(--dim)}
+.info .card.sc .gsw{margin-top:6px}

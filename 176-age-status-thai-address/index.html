@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Understanding common Thai ways of addressing people based on age, role, and relationship."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=996095b2"/>
+<link rel="stylesheet" href="../style.css?v=f92f8440"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -296,6 +296,7 @@
   <div class="th" lang="th">ลุง</div>
   <div class="rom">lung</div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname">mid</span></div><div class="pos">noun</div>
   <div class="en">uncle; older man</div>
+  <div class="gword"><div class="gme"><span class="gicon g-male" aria-hidden="true">♂</span> <span class="gsay">uncle (older)</span></div><div class="gothers"><span class="gother"><span class="gicon g-female" aria-hidden="true">♀</span> <span class="glead"></span> <a href="https://thai.inaflash.cards/word/04272-aunt/"><b lang="th">ป้า</b></a> <span class="rom">bpâa</span> <span class="mn">aunt / older woman</span></span></div></div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001390.mp3" aria-label="Play ลุง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001390_slow.mp3" aria-label="Play ลุง slowly">🐢 Slowly</button></div>
 </article>
 <article class="card" data-img="" data-alt="aunt / older woman — ป้า" data-wid="TH_004272" data-ch="👵" data-vis="1">
@@ -303,6 +304,7 @@
   <div class="th" lang="th">ป้า</div>
   <div class="rom">bpâa</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div>
   <div class="en">aunt / older woman</div>
+  <div class="gword"><div class="gme"><span class="gicon g-female" aria-hidden="true">♀</span> <span class="gsay">aunt (older)</span></div><div class="gothers"><span class="gother"><span class="gicon g-male" aria-hidden="true">♂</span> <span class="glead"></span> <a href="https://thai.inaflash.cards/word/01390-uncle/"><b lang="th">ลุง</b></a> <span class="rom">lung</span> <span class="mn">uncle</span></span></div></div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004272.mp3" aria-label="Play ป้า">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004272_slow.mp3" aria-label="Play ป้า slowly">🐢 Slowly</button></div>
 </article>
 <article class="card" data-img="" data-alt="maternal aunt or uncle younger than mother — น้า" data-wid="TH_001411" data-ch="👩" data-vis="1">
@@ -1202,6 +1204,33 @@
   i=(i+(+b.dataset.sdir)+n)%n;
   all[i].classList.add('on');
   var c=box.querySelector('.scount');if(c)c.textContent=(i+1)+' / '+n;
+ });
+
+ // ♂ male | ♀ female — the other version of a sentence, in place. Under a
+ // word both versions are in the markup and one is hidden; on a sentence card
+ // the other version waits in a <template> and is swapped in.
+ document.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('.gsw [data-gv]'):null;
+  if(!b)return;
+  e.preventDefault();
+  var v=b.dataset.gv,sw=b.closest('.gsw');
+  sw.querySelectorAll('[data-gv]').forEach(function(x){
+   var on=x.dataset.gv===v;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});
+  var slide=sw.closest('.sent');
+  if(slide){
+   var parts=slide.querySelectorAll(':scope > .stext');
+   for(var i=0;i<parts.length;i++)parts[i].hidden=String(i)!==v;
+   return;
+  }
+  var card=sw.closest('.card'),t=card?card.querySelector('template.galt'):null;
+  if(!t)return;
+  if(!card._g0){card._g0={};['.th','.rom','.en','.plays'].forEach(function(k){
+   var el=card.querySelector(k);card._g0[k]=el?el.innerHTML:null;});}
+  ['.th','.rom','.en','.plays'].forEach(function(k){
+   var el=card.querySelector(k);if(!el)return;
+   if(v==='1'){var n=t.content.querySelector(k);el.innerHTML=n?n.innerHTML:'';}
+   else if(card._g0[k]!==null)el.innerHTML=card._g0[k];
+  });
  });
 
  // Remember where the reader got to, so the front page can send them back.

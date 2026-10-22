@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Lesson 3 — People and family: 15 Thai words — เขา (khǎo) he, เรา (rao) we, คน (khon) person. Script, romanization, English and free flashcards."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=996095b2"/>
+<link rel="stylesheet" href="../style.css?v=f92f8440"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -317,6 +317,7 @@
   <div class="th" lang="th">แม่</div>
   <div class="rom">mɛ̂ɛ</div><div class="tone" title="tone: falling"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: falling" preserveAspectRatio="xMinYMid meet"><g transform="translate(0,0)"><title>falling tone</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname">falling</span></div><div class="pos">noun</div>
   <div class="en">mother, mom</div>
+  <div class="gword"><div class="gme"><span class="gicon g-female" aria-hidden="true">♀</span> <span class="gsay">mother</span></div><div class="gothers"><span class="gother"><span class="gicon g-male" aria-hidden="true">♂</span> <span class="glead"></span> <a href="https://thai.inaflash.cards/word/01192-father/"><b lang="th">พ่อ</b></a> <span class="rom">phɔ̂ɔ</span> <span class="mn">father</span></span></div></div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001034.mp3" aria-label="Play แม่">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001034_slow.mp3" aria-label="Play แม่ slowly">🐢 Slowly</button></div><div class="aid"><div class="k">Remember it by</div><div class="hook">May</div><p>A warm Thai mother named May lovingly caring for her child.</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">แม่กำลังทำกับข้าว</div><div class="sr">mâae gam-lang tham gàp-khâao</div><div class="st">Mom is cooking food.</div></li><li><div class="sx" lang="th">ฉันช่วยแม่ทำอาหาร</div><div class="sr">chǎn chûai mâae tham aa-hǎan</div><div class="st">I help Mom cook.</div></li><li><div class="sx" lang="th">แม่มีหน้า</div><div class="sr">mɛ̂ɛ mii nâa</div><div class="st">mother has a face</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="classifier for fruits, classifier for round objects, fruits — ลูก" data-wid="TH_001042" data-ch="🍊" data-vis="1">
@@ -1202,6 +1203,33 @@
   i=(i+(+b.dataset.sdir)+n)%n;
   all[i].classList.add('on');
   var c=box.querySelector('.scount');if(c)c.textContent=(i+1)+' / '+n;
+ });
+
+ // ♂ male | ♀ female — the other version of a sentence, in place. Under a
+ // word both versions are in the markup and one is hidden; on a sentence card
+ // the other version waits in a <template> and is swapped in.
+ document.addEventListener('click',function(e){
+  var b=e.target.closest?e.target.closest('.gsw [data-gv]'):null;
+  if(!b)return;
+  e.preventDefault();
+  var v=b.dataset.gv,sw=b.closest('.gsw');
+  sw.querySelectorAll('[data-gv]').forEach(function(x){
+   var on=x.dataset.gv===v;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});
+  var slide=sw.closest('.sent');
+  if(slide){
+   var parts=slide.querySelectorAll(':scope > .stext');
+   for(var i=0;i<parts.length;i++)parts[i].hidden=String(i)!==v;
+   return;
+  }
+  var card=sw.closest('.card'),t=card?card.querySelector('template.galt'):null;
+  if(!t)return;
+  if(!card._g0){card._g0={};['.th','.rom','.en','.plays'].forEach(function(k){
+   var el=card.querySelector(k);card._g0[k]=el?el.innerHTML:null;});}
+  ['.th','.rom','.en','.plays'].forEach(function(k){
+   var el=card.querySelector(k);if(!el)return;
+   if(v==='1'){var n=t.content.querySelector(k);el.innerHTML=n?n.innerHTML:'';}
+   else if(card._g0[k]!==null)el.innerHTML=card._g0[k];
+  });
  });
 
  // Remember where the reader got to, so the front page can send them back.
