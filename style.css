@@ -1405,20 +1405,37 @@ body.hide-tone .tw .tm{display:none}
 .gicon.g-male{color:#4f8ff7}
 .gicon.g-female{color:#e0609a}
 .gicon.g-neutral{color:#a07be0}
-.gword{margin:10px 0 4px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--s2);font-size:0.875rem;color:var(--text2)}
-.gword .gme{display:flex;gap:6px;align-items:baseline}
-.gword .gsay{font-weight:600}
-.gword .gothers{display:flex;flex-direction:column;gap:2px;margin-top:4px}
-.gword .gother{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
-.gword .glead{color:var(--dim)}
-.gword .gother b{font-size:1.1rem;color:var(--bright)}
-.gword .gother a{text-decoration:none}
-.gword .gother a:hover b{text-decoration:underline}
-.gword .rom{color:var(--accent2)}
-.gword .mn{color:var(--muted)}
+.gword{margin:8px 0 2px}
+.gbadge{position:relative;display:inline-flex;gap:5px;align-items:center;padding:2px 8px 2px 9px;border:1px solid var(--line);border-radius:999px;background:var(--s2);font-size:0.75rem;color:var(--text2);cursor:help;outline:none}
+.gbadge:focus-visible{border-color:var(--accent)}
+.gbadge .gicon{font-size:1.3em}
+.gbadge .ginfo{display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;border:1px solid var(--edge);font:italic 700 9px/1 Georgia,serif;color:var(--dim)}
+.gpop{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:30;min-width:240px;max-width:min(340px,80vw);padding:10px 12px;border:1px solid var(--edge);border-radius:10px;background:var(--s1,var(--s2));box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:0.8125rem;line-height:1.45;color:var(--text2);cursor:auto;white-space:normal}
+.gbadge:hover .gpop,.gbadge:focus .gpop,.gbadge:focus-within .gpop{display:block}
+.gpop::before{content:"";position:absolute;left:0;right:0;top:-8px;height:8px}
+.gpop .gme{display:flex;gap:6px;align-items:baseline}
+.gpop .gsay{font-weight:600}
+.gpop .gothers{display:flex;flex-direction:column;gap:2px;margin-top:5px}
+.gpop .gother{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.gpop .glead{color:var(--dim)}
+.gpop .gother b{font-size:1.05rem;color:var(--bright)}
+.gpop .gother a{text-decoration:none}
+.gpop .gother a:hover b{text-decoration:underline}
+.gpop .rom{color:var(--accent2)}
+.gpop .mn{color:var(--muted)}
 .gsw{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:999px;background:var(--s2);margin:0 0 6px;font-size:0.75rem}
 .gsw button{display:inline-flex;gap:5px;align-items:center;padding:3px 10px;border:1px solid transparent;border-radius:999px;background:transparent;color:var(--dim);font:inherit;cursor:pointer}
 .gsw button:hover{color:var(--bright)}
 .gsw button.on{background:var(--accentbg);border-color:var(--accent);color:var(--bright)}
 .gsw.solo{padding:3px 10px;gap:5px;align-items:center;color:var(--dim)}
 .info .card.sc .gsw{margin-top:6px}
+.qg{display:inline-flex;gap:6px;align-items:center;margin:0 0 8px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--s2);font-size:0.75rem;color:var(--text2)}
+
+/* The end of a lesson: what next */
+.lend{margin:18px 0 8px;padding:12px 14px;border:1px solid var(--accent);border-radius:12px;background:var(--accentbg);display:flex;flex-direction:column;gap:6px}
+.lend-msg{font-size:0.8125rem;color:var(--text2)}
+.lend-go{align-self:flex-start;padding:9px 16px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;font-size:0.9375rem}
+.lend-go:hover{filter:brightness(1.1)}
+.lend-tip{font-size:0.7188rem;color:var(--dim)}
+#next.tonext{background:var(--accent);color:#fff;border-color:var(--accent)}
+.qnextlesson{display:inline-block;margin-left:8px;padding:8px 14px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
