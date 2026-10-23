@@ -31,39 +31,39 @@
     "role": null
    },
    {
-    "id": "TH_S000081",
-    "text": "ฉันซื้อขนมที่ตลาด",
-    "romanization": "chǎn sʉ́ʉ khà-nǒm thîi dtà-làat",
-    "translation": "I bought snacks at the market.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000088",
-    "text": "วันนี้เราทำอาหารที่บ้าน",
-    "romanization": "wan-níi rao tham aa-hǎan thîi bâan",
-    "translation": "Today we are cooking at home.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000100",
-    "text": "อาหารที่บ้านอร่อยที่สุด",
-    "romanization": "aa-hǎan thîi bâan à-rɔ̀i thîi-sùt",
-    "translation": "Home-cooked food is the most delicious.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000208",
-    "text": "ใครอยู่ที่สถานี",
-    "romanization": "khrai yùu thîi sà-thǎa-nii",
-    "translation": "Who is at the station?",
+    "id": "TH_S000659",
+    "text": "ทางที่ไปตลาด",
+    "romanization": "thaang thîi bpai dtà-làat",
+    "translation": "The way to the market.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000660",
+    "text": "ห้องที่อยู่ข้างบน",
+    "romanization": "hâwng thîi yùu kâang bon",
+    "translation": "The room upstairs.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000661",
+    "text": "โรงเรียนที่อยู่ใกล้บ้าน",
+    "romanization": "roong-rian thîi yùu glâi bâan",
+    "translation": "The school near the house.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000707",
+    "text": "บ้านที่ตลาด",
+    "romanization": "bâan thîi dtà-làat",
+    "translation": "The house at the market.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -104,21 +104,48 @@
   "mnemonic_concept": "Two completely different Thai objects being deliberately joined together as one pair.",
   "sentences": [
    {
-    "id": "TH_S000019",
-    "text": "แตงโมลูกนี้หวานและเย็น",
-    "romanization": "dtaeng-moo lûuk níi wǎan láe yen",
-    "translation": "This watermelon is sweet and cold.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000627",
+    "text": "เขาและเราเป็นเพื่อน",
+    "romanization": "khǎo láe rao pen phûean",
+    "translation": "He and we are friends.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000055",
-    "text": "กุ้งตัวใหญ่และสดมาก",
-    "romanization": "gûng dtua yài láe sòt mâak",
-    "translation": "The shrimp are big and very fresh.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000628",
+    "text": "เด็กและแม่",
+    "romanization": "dèk láe mɛ̂ɛ",
+    "translation": "A child and mother.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000629",
+    "text": "ชื่อและของ",
+    "romanization": "chûue láe khɔ̌ɔng",
+    "translation": "Names and things.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000630",
+    "text": "เพื่อนและน้อง",
+    "romanization": "phûean láe nɔ́ɔng",
+    "translation": "A friend and younger sibling.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000650",
+    "text": "แม่และลูกเป็นเพื่อน",
+    "romanization": "mâe láe lûuk pen phûean",
+    "translation": "Mother and child are friends.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -192,48 +219,48 @@
   "mnemonic_concept": "nigh",
   "sentences": [
    {
-    "id": "TH_S000022",
-    "text": "ผักสดอยู่ในตู้เย็น",
-    "romanization": "phàk sòt yùu nai dtûu-yen",
-    "translation": "The fresh vegetables are in the refrigerator.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000025",
-    "text": "ฉันใส่หัวหอมในสลัด",
-    "romanization": "chǎn sài hǔa-hɔ̌ɔm nai sà-làat",
-    "translation": "I put onion in the salad.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000093",
-    "text": "ใส่น้ำมันในกระทะก่อน",
-    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
-    "translation": "Put oil in the pan first.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000123",
-    "text": "ฉันเติมน้ำปลาในข้าว",
-    "romanization": "chǎn dteerm náam-bplaa nai khâao",
-    "translation": "I add fish sauce to my rice.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000204",
-    "text": "เพื่อนอยู่ในห้อง",
-    "romanization": "phûean yùu nai hâwng",
-    "translation": "the friend is in the room",
+    "id": "TH_S000662",
+    "text": "ตลาดอยู่ในเมือง",
+    "romanization": "dtà-làat yùu nai mueang",
+    "translation": "The market is in the city.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000663",
+    "text": "มาในห้องค่ะ",
+    "romanization": "maa nai hâwng khâ",
+    "translation": "Come into the room.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000709",
+    "text": "ในบ้านครับ",
+    "romanization": "nai bâan khráp",
+    "translation": "Inside the house.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000710",
+    "text": "ในห้องค่ะ",
+    "romanization": "nai hâwng khâ",
+    "translation": "Inside the room.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000711",
+    "text": "ในตลาดครับ",
+    "romanization": "nai dtà-làat khráp",
+    "translation": "Inside the market.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -273,30 +300,48 @@
   "mnemonic_concept": "Kong",
   "sentences": [
    {
-    "id": "TH_S000125",
-    "text": "ฉันอยากซื้อของกินก่อนกลับบ้าน",
-    "romanization": "chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan",
-    "translation": "I want to buy something to eat before going home.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000621",
+    "text": "ของเขากับของเรา",
+    "romanization": "khɔ̌ɔng khǎo gàp khɔ̌ɔng rao",
+    "translation": "His and ours.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000217",
-    "text": "ชื่อของแม่",
-    "romanization": "chûue khɔ̌ɔng mɛ̂ɛ",
-    "translation": "The name of mother",
+    "id": "TH_S000622",
+    "text": "น้องคือของใครครับ",
+    "romanization": "nɔ́ɔng khue khɔ̌ɔng khrai khráp",
+    "translation": "Whose younger sibling is this?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000399",
-    "text": "เงินนี้ของร้าน",
-    "romanization": "ngoen níi khǎawng ráan",
-    "translation": "This money belongs to the shop.",
+    "id": "TH_S000642",
+    "text": "ของเพื่อน",
+    "romanization": "khɔ̌ɔng phûean",
+    "translation": "The friend's thing.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000647",
+    "text": "ของน้องคือของแม่",
+    "romanization": "khɔ̌ɔng nɔ́ɔng khue khɔ̌ɔng mâe",
+    "translation": "The younger sibling's things are mother's.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000648",
+    "text": "ของเพื่อนและของเรา",
+    "romanization": "khɔ̌ɔng phûean láe khɔ̌ɔng rao",
+    "translation": "The friend's things and ours.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -374,21 +419,48 @@
   "mnemonic_concept": "pen",
   "sentences": [
    {
-    "id": "TH_S000199",
-    "text": "เขาเป็นเด็ก",
-    "romanization": "khǎo pen dèk",
-    "translation": "he is a child",
+    "id": "TH_S000631",
+    "text": "เขาเป็นเพื่อนของเรา",
+    "romanization": "khǎo pen phûean khɔ̌ɔng rao",
+    "translation": "He is our friend.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000214",
-    "text": "ฉันเป็นเด็ก",
-    "romanization": "chǎn pen dèk",
-    "translation": "I is a child",
+    "id": "TH_S000632",
+    "text": "แม่เป็นแม่ของน้อง",
+    "romanization": "mɛ̂ɛ pen mɛ̂ɛ khɔ̌ɔng nɔ́ɔng",
+    "translation": "Mother is the younger sibling's mother.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000633",
+    "text": "น้องเป็นลูกของแม่",
+    "romanization": "nɔ́ɔng pen lûuk khɔ̌ɔng mɛ̂ɛ",
+    "translation": "The younger sibling is mother's child.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000651",
+    "text": "เราเป็นคนครับ",
+    "romanization": "rao pen khon khráp",
+    "translation": "We are people.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000652",
+    "text": "เพื่อนเป็นน้องของแม่",
+    "romanization": "phûean pen nɔ́ɔng khɔ̌ɔng mâe",
+    "translation": "The friend is mother's younger sibling.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -1040,48 +1112,48 @@
   "mnemonic_concept": "gap",
   "sentences": [
    {
-    "id": "TH_S000002",
-    "text": "ตอนเช้าฉันกินข้าวกับไข่",
-    "romanization": "dtaawn cháao chǎn gin khâao gàp khài",
-    "translation": "In the morning I eat rice with eggs.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000623",
+    "text": "แม่กับน้องเป็นเพื่อน",
+    "romanization": "mɛ̂ɛ gàp nɔ́ɔng pen phûean",
+    "translation": "Mother and younger sibling are friends.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000012",
-    "text": "อาหารเช้าวันนี้มีไข่กับขนมปัง",
-    "romanization": "aa-hǎan cháao wan-níi mii khài gàp khà-nǒm-bpang",
-    "translation": "Today's breakfast has eggs and bread.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000624",
+    "text": "เขากับเราเป็นเพื่อน",
+    "romanization": "khǎo gàp rao pen phûean",
+    "translation": "He and we are friends.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000013",
-    "text": "ฉันชอบขนมปังกับเนย",
-    "romanization": "chǎn chɔ̂ɔp khà-nǒm-bpang gàp noei",
-    "translation": "I like bread with butter.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000625",
+    "text": "เด็กกับเพื่อน",
+    "romanization": "dèk gàp phûean",
+    "translation": "A child and a friend.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000087",
-    "text": "ฉันกินข้าวกับครอบครัวทุกวัน",
-    "romanization": "chǎn gin khâao gàp khrɔ̂ɔp-khrua thúk wan",
-    "translation": "I eat meals with my family every day.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000626",
+    "text": "เรากับแม่เป็นเพื่อน",
+    "romanization": "rao gàp mɛ̂ɛ pen phûean",
+    "translation": "Mother and we are friends.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000089",
-    "text": "แม่กำลังทำกับข้าว",
-    "romanization": "mâae gam-lang tham gàp-khâao",
-    "translation": "Mom is cooking food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000649",
+    "text": "เขากับน้องเป็นเด็กครับ",
+    "romanization": "khǎo gàp nɔ́ɔng pen dèk khráp",
+    "translation": "He and his younger sibling are children.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -1495,48 +1567,48 @@
   "mnemonic_concept": "A crowd of ordinary people gathered together in a Thai market.",
   "sentences": [
    {
-    "id": "TH_S000126",
-    "text": "ร้านนี้คนเยอะเพราะอาหารอร่อย",
-    "romanization": "ráan níi khon yə́ phráw aa-hǎan à-rɔ̀i",
-    "translation": "This restaurant is crowded because the food is delicious.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000589",
+    "text": "คนนี้เป็นเพื่อน",
+    "romanization": "khon níi pen phûean",
+    "translation": "This person is a friend.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000197",
-    "text": "มี สาม คน",
-    "romanization": "mii sǎam khon",
-    "translation": "There are three people",
+    "id": "TH_S000590",
+    "text": "คนนั้นคือใครครับ",
+    "romanization": "khon nán khue khrai khráp",
+    "translation": "Who is that person?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000210",
-    "text": "มีสี่คน",
-    "romanization": "mii sìi khon",
-    "translation": "There are four people",
+    "id": "TH_S000591",
+    "text": "คนกับเด็ก",
+    "romanization": "khon gàp dèk",
+    "translation": "A person and a child.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000212",
-    "text": "มี ห้า คน",
-    "romanization": "mii hâa khon",
-    "translation": "There are five people",
+    "id": "TH_S000592",
+    "text": "คนนี้ชื่ออะไรคะ",
+    "romanization": "khon níi chûue à-rai khá",
+    "translation": "What is this person's name?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000225",
-    "text": "มีหกคน",
-    "romanization": "mii hòk khon",
-    "translation": "There are six people",
+    "id": "TH_S000645",
+    "text": "คนนี้เป็นแม่ครับ",
+    "romanization": "khon níi pen mâe khráp",
+    "translation": "This person is a mother.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -1741,6 +1813,33 @@
     "difficulty": null,
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000478",
+    "text": "หนึ่งหรือสอง",
+    "romanization": "nùeng rǔe sɔ̌ɔng",
+    "translation": "One or two.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000481",
+    "text": "สองหรือสาม",
+    "romanization": "sɔ̌ɔng rǔe sǎam",
+    "translation": "Two or three.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000484",
+    "text": "สามหรือสี่",
+    "romanization": "sǎam rǔe sìi",
+    "translation": "Three or four.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -1920,48 +2019,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000033",
-    "text": "แกงนี้หวานไปนิด",
-    "romanization": "gaeng níi wǎan bpai nít",
-    "translation": "This curry is a little too sweet.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000036",
-    "text": "ซุปนี้ร้อนเกินไป",
-    "romanization": "súp níi rɔ́ɔn gəən bpai",
-    "translation": "This soup is too hot.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000038",
-    "text": "อาหารจานนี้ใหญ่เกินไป",
-    "romanization": "aa-hǎan jaan níi yài gəən bpai",
-    "translation": "This dish is too big.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000111",
-    "text": "อย่ากินเร็วเกินไป",
-    "romanization": "yàa gin reo gəən bpai",
-    "translation": "Don't eat too quickly.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000209",
-    "text": "ทางนี้ไปตลาด",
-    "romanization": "thaang níi bpai dtà-làat",
-    "translation": "This way goes to the market",
+    "id": "TH_S000695",
+    "text": "ไปบ้านครับ",
+    "romanization": "bpai bâan khráp",
+    "translation": "I'm going home.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000696",
+    "text": "ไปตลาดค่ะ",
+    "romanization": "bpai dtà-làat khâ",
+    "translation": "I'm going to the market.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000697",
+    "text": "ไปโรงเรียนก่อนครับ",
+    "romanization": "bpai roong-rian gɔ̀ɔn khráp",
+    "translation": "I'm going to school first.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000698",
+    "text": "ไปสถานีแล้วค่ะ",
+    "romanization": "bpai sà-thǎa-nii láew khâ",
+    "translation": "I've gone to the station.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000699",
+    "text": "ไปโรงพยาบาลได้ครับ",
+    "romanization": "bpai roong-phá-yaa-baan dâai khráp",
+    "translation": "I can go to the hospital.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2168,46 +2267,46 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000859",
-    "text": "หน้าเขาค่ะ",
-    "romanization": "nâa khǎo khâ",
-    "translation": "His face.",
+    "id": "TH_S000667",
+    "text": "ตลาดอยู่หน้าโรงพยาบาล",
+    "romanization": "dtà-làat yùu nâa roong-phá-yaa-baan",
+    "translation": "The market is in front of the hospital.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000860",
-    "text": "หน้าเด็กค่ะ",
-    "romanization": "nâa dèk khâ",
-    "translation": "The child's face.",
+    "id": "TH_S000668",
+    "text": "หน้าเมืองอยู่ทางนี้",
+    "romanization": "nâa mueang yùu thaang níi",
+    "translation": "The front of the city is this way.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000862",
-    "text": "หน้าแม่ค่ะ",
-    "romanization": "nâa mâe khâ",
-    "translation": "Mum's face.",
+    "id": "TH_S000719",
+    "text": "หน้าบ้านครับ",
+    "romanization": "nâa bâan khráp",
+    "translation": "In front of the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000863",
-    "text": "หน้าเขาถูกค่ะ",
-    "romanization": "nâa khǎo thùuk khâ",
-    "translation": "His face is correct.",
+    "id": "TH_S000720",
+    "text": "หน้าโรงเรียนค่ะ",
+    "romanization": "nâa roong-rian khâ",
+    "translation": "In front of the school.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000864",
-    "text": "หน้าเพื่อนฉันค่ะ",
-    "romanization": "nâa phûean chǎn khâ",
-    "translation": "My friend's face.",
+    "id": "TH_S000721",
+    "text": "หน้าโรงพยาบาลครับ",
+    "romanization": "nâa roong-phá-yaa-baan khráp",
+    "translation": "In front of the hospital.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -2306,39 +2405,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000209",
-    "text": "ทางนี้ไปตลาด",
-    "romanization": "thaang níi bpai dtà-làat",
-    "translation": "This way goes to the market",
+    "id": "TH_S000693",
+    "text": "ไปทางนี้ค่ะ",
+    "romanization": "bpai thaang níi khâ",
+    "translation": "Go this way.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000224",
-    "text": "ทางนี้ไปสถานี",
-    "romanization": "thaang níi bpai sà-thǎa-nii",
-    "translation": "This way goes to the station",
+    "id": "TH_S000759",
+    "text": "ทางไปบ้านครับ",
+    "romanization": "thaang bpai bâan khráp",
+    "translation": "The way home.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000804",
-    "text": "เขาอยู่กลางทาง",
-    "romanization": "khǎo yùu glaang thaang",
-    "translation": "He is halfway along the way.",
+    "id": "TH_S000760",
+    "text": "ทางไปตลาดค่ะ",
+    "romanization": "thaang bpai dtà-làat khâ",
+    "translation": "The way to the market.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000868",
-    "text": "ตลาดอยู่กลางทาง",
-    "romanization": "dtà-làat yùu glaang thaang",
-    "translation": "The market is halfway along the way.",
+    "id": "TH_S000761",
+    "text": "ทางไปโรงเรียนครับ",
+    "romanization": "thaang bpai roong-rian khráp",
+    "translation": "The way to school.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000762",
+    "text": "ทางไปสถานีค่ะ",
+    "romanization": "thaang bpai sà-thǎa-nii khâ",
+    "translation": "The way to the station.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2634,30 +2742,39 @@
     "role": null
    },
    {
-    "id": "TH_S000017",
-    "text": "ฉันซื้อส้มมาจากตลาด",
-    "romanization": "chǎn sʉ́ʉ sôm maa jàak dtà-làat",
-    "translation": "I bought oranges from the market.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000656",
+    "text": "มาในห้องก่อนครับ",
+    "romanization": "maa nai hâwng gɔ̀ɔn khráp",
+    "translation": "Come into the room first.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000037",
-    "text": "รอสักครู่นะ อาหารกำลังมา",
-    "romanization": "rɔɔ sàk khrûu ná aa-hǎan gam-lang maa",
-    "translation": "Wait a moment, the food is coming.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000700",
+    "text": "มาบ้านค่ะ",
+    "romanization": "maa bâan khâ",
+    "translation": "I'm coming home.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000066",
-    "text": "อาหารมาเร็วมาก",
-    "romanization": "aa-hǎan maa reo mâak",
-    "translation": "The food came very quickly.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000701",
+    "text": "มาตลาดครับ",
+    "romanization": "maa dtà-làat khráp",
+    "translation": "I'm coming to the market.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000702",
+    "text": "มาที่โรงเรียนค่ะ",
+    "romanization": "maa thîi roong-rian khâ",
+    "translation": "I'm coming to the school.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2854,30 +2971,30 @@
     "role": null
    },
    {
-    "id": "TH_S000110",
-    "text": "อาหารยังร้อนอยู่ ระวังนะ",
-    "romanization": "aa-hǎan yang rɔ́ɔn yùu rá-wang ná",
-    "translation": "The food is still hot, be careful.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000658",
+    "text": "ห้องอยู่ข้างหน้า",
+    "romanization": "hâwng yùu kâang nâa",
+    "translation": "The room is up ahead.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000203",
-    "text": "น้องอยู่ใกล้โรงเรียน",
-    "romanization": "nɔ́ɔng yùu glâi roong-rian",
-    "translation": "the younger sibling is near the school",
+    "id": "TH_S000704",
+    "text": "อยู่ในบ้านครับ",
+    "romanization": "yùu nai bâan khráp",
+    "translation": "I'm inside the house.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000204",
-    "text": "เพื่อนอยู่ในห้อง",
-    "romanization": "phûean yùu nai hâwng",
-    "translation": "the friend is in the room",
+    "id": "TH_S000705",
+    "text": "อยู่ในห้องค่ะ",
+    "romanization": "yùu nai hâwng khâ",
+    "translation": "I'm in the room.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2943,48 +3060,48 @@
   "mnemonic_concept": "A Thai person unmistakably identifying one object as another in a simple visual identification scene.",
   "sentences": [
    {
-    "id": "TH_S000200",
-    "text": "น้องคือเพื่อน",
-    "romanization": "nɔ́ɔng khue phûean",
-    "translation": "younger sibling is a friend",
+    "id": "TH_S000634",
+    "text": "เพื่อนของเราคือเขา",
+    "romanization": "phûean khɔ̌ɔng rao khue khǎo",
+    "translation": "Our friend is him.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000215",
-    "text": "ฉันคือเด็ก",
-    "romanization": "chǎn khue dèk",
-    "translation": "I is a child",
+    "id": "TH_S000635",
+    "text": "แม่คือแม่ของเรา",
+    "romanization": "mɛ̂ɛ khue mɛ̂ɛ khɔ̌ɔng rao",
+    "translation": "Mother is our mother.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000836",
-    "text": "ชื่อฉันคืออะไรคะ",
-    "romanization": "chûue chǎn khʉʉ à-rai khá",
-    "translation": "What is my name?",
+    "id": "TH_S000636",
+    "text": "น้องคือใครครับ",
+    "romanization": "nɔ́ɔng khue khrai khráp",
+    "translation": "Who is the younger sibling?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000837",
-    "text": "ชื่อเขาคืออะไรครับ",
-    "romanization": "chûue khǎo khʉʉ à-rai khráp",
-    "translation": "What is his name?",
+    "id": "TH_S000653",
+    "text": "คนนี้คือเพื่อนของแม่",
+    "romanization": "khon níi khue phûean khɔ̌ɔng mâe",
+    "translation": "This person is mother's friend.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000838",
-    "text": "ชื่อคุณคืออะไรคะ",
-    "romanization": "chûue khun khʉʉ à-rai khá",
-    "translation": "What is your name?",
+    "id": "TH_S000654",
+    "text": "เขาคือแม่ของเรา",
+    "romanization": "khǎo khue mâe khɔ̌ɔng rao",
+    "translation": "He is our mother.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -3267,46 +3384,46 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000797",
-    "text": "เขาอยู่ในโรงเรียนครับ",
-    "romanization": "khǎo yùu nai roong-rian khráp",
-    "translation": "He is at school.",
+    "id": "TH_S000685",
+    "text": "โรงเรียนอยู่ในเมือง",
+    "romanization": "roong-rian yùu nai mueang",
+    "translation": "The school is in the city.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000798",
-    "text": "น้องไปโรงเรียนกับเพื่อน",
-    "romanization": "nɔ́ɔng bpai roong-rian gàp phûean",
-    "translation": "My younger sibling goes to school with a friend.",
+    "id": "TH_S000747",
+    "text": "โรงเรียนอยู่ในเมืองครับ",
+    "romanization": "roong-rian yùu nai mueang khráp",
+    "translation": "The school is in the city.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000799",
-    "text": "โรงเรียนอยู่ในเมืองนี้",
-    "romanization": "roong-rian yùu nai mʉʉang níi",
-    "translation": "The school is in this city.",
+    "id": "TH_S000748",
+    "text": "โรงเรียนอยู่ใกล้บ้านค่ะ",
+    "romanization": "roong-rian yùu glâi bâan khâ",
+    "translation": "The school is near the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000865",
-    "text": "ฉันชอบโรงเรียนนี้ค่ะ",
-    "romanization": "chǎn châawp roong-rian níi khâ",
-    "translation": "I like this school.",
+    "id": "TH_S000749",
+    "text": "โรงเรียนอยู่ข้างตลาดครับ",
+    "romanization": "roong-rian yùu kâang dtà-làat khráp",
+    "translation": "The school is beside the market.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000866",
-    "text": "โรงเรียนมีเด็กมาก",
-    "romanization": "roong-rian mii dèk mâak",
-    "translation": "The school has many children.",
+    "id": "TH_S000750",
+    "text": "โรงเรียนอยู่หลังสถานีค่ะ",
+    "romanization": "roong-rian yùu lǎng sà-thǎa-nii khâ",
+    "translation": "The school is behind the station.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -3477,46 +3594,46 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000767",
-    "text": "ฉันมีสามบาทค่ะ",
-    "romanization": "chǎn mii sǎam bàat khâ",
-    "translation": "I have three baht.",
+    "id": "TH_S000418",
+    "text": "หนึ่งล้านบาท",
+    "romanization": "nùeng láan bàat",
+    "translation": "One million baht.",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000776",
-    "text": "เขามีเงินหนึ่งล้านบาท",
-    "romanization": "khǎo mii ngern nʉ̀ng láan bàat",
-    "translation": "He has one million baht.",
+    "id": "TH_S000419",
+    "text": "หนึ่งพันบาทค่ะ",
+    "romanization": "nùeng phan bàat khâ",
+    "translation": "One thousand baht.",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000786",
-    "text": "น้องมีเงินห้าสิบบาท",
-    "romanization": "nɔ́ɔng mii ngern hâa-sìp bàat",
-    "translation": "My younger sibling has fifty baht.",
+    "id": "TH_S000420",
+    "text": "สองล้านบาท",
+    "romanization": "sɔ̌ɔng láan bàat",
+    "translation": "Two million baht.",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000791",
-    "text": "เพื่อนมีเงินหนึ่งพันบาท",
-    "romanization": "phûean mii ngern nʉ̀ng phan bàat",
-    "translation": "My friend has one thousand baht.",
+    "id": "TH_S000421",
+    "text": "สองพันบาทครับ",
+    "romanization": "sɔ̌ɔng phan bàat khráp",
+    "translation": "Two thousand baht.",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000796",
-    "text": "แม่มีเงินหนึ่งหมื่นบาท",
-    "romanization": "mâe mii ngern nʉ̀ng mʉ̀ʉn bàat",
-    "translation": "Mum has ten thousand baht.",
+    "id": "TH_S000422",
+    "text": "สามล้านบาท",
+    "romanization": "sǎam láan bàat",
+    "translation": "Three million baht.",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -5093,21 +5210,39 @@
     "role": null
    },
    {
-    "id": "TH_S000026",
-    "text": "แครอทนี้กรอบมาก",
-    "romanization": "khae-rɔ̂ɔt níi grɔ̀ɔp mâak",
-    "translation": "This carrot is very crunchy.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000676",
+    "text": "ตลาดอยู่รอบโรงเรียน",
+    "romanization": "dtà-làat yùu rɔ̂ɔp roong-rian",
+    "translation": "The market is around the school.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000087",
-    "text": "ฉันกินข้าวกับครอบครัวทุกวัน",
-    "romanization": "chǎn gin khâao gàp khrɔ̂ɔp-khrua thúk wan",
-    "translation": "I eat meals with my family every day.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000731",
+    "text": "รอบบ้านครับ",
+    "romanization": "rɔ̂ɔp bâan khráp",
+    "translation": "Around the house.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000732",
+    "text": "รอบห้องค่ะ",
+    "romanization": "rɔ̂ɔp hâwng khâ",
+    "translation": "Around the room.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000733",
+    "text": "รอบตลาดครับ",
+    "romanization": "rɔ̂ɔp dtà-làat khráp",
+    "translation": "Around the market.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -5633,48 +5768,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000220",
-    "text": "โรงเรียนอยู่นอกเมือง",
-    "romanization": "roong-rian yùu nâawk mueang",
-    "translation": "The school is outside the city",
+    "id": "TH_S000694",
+    "text": "เมืองนี้อยู่ใกล้บ้าน",
+    "romanization": "mueang níi yùu glâi bâan",
+    "translation": "This city is near home.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000684",
-    "text": "ตลาดอยู่กลางเมือง",
-    "romanization": "dtà-làat yùu glaang mueang",
-    "translation": "The market is in the city centre.",
+    "id": "TH_S000763",
+    "text": "เมืองนี้อยู่ใกล้บ้านครับ",
+    "romanization": "mueang níi yùu glâi bâan khráp",
+    "translation": "This city is near the house.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000686",
-    "text": "โรงพยาบาลอยู่ในเมือง",
-    "romanization": "roong-phá-yaa-baan yùu nai mueang",
-    "translation": "The hospital is in the city.",
+    "id": "TH_S000764",
+    "text": "เมืองอยู่ในทางนี้ครับ",
+    "romanization": "mueang yùu nai thaang níi khráp",
+    "translation": "The city is along this way.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000688",
-    "text": "สถานีอยู่กลางเมือง",
-    "romanization": "sà-thǎa-nii yùu glaang mueang",
-    "translation": "The station is in the city centre.",
+    "id": "TH_S000765",
+    "text": "เมืองอยู่กลางทางค่ะ",
+    "romanization": "mueang yùu glaang thaang khâ",
+    "translation": "The city is halfway along the way.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000799",
-    "text": "โรงเรียนอยู่ในเมืองนี้",
-    "romanization": "roong-rian yùu nai mʉʉang níi",
-    "translation": "The school is in this city.",
+    "id": "TH_S000766",
+    "text": "เมืองอยู่ใกล้สถานีครับ",
+    "romanization": "mueang yùu glâi sà-thǎa-nii khráp",
+    "translation": "The city is near the station.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -5863,6 +5998,24 @@
   "mnemonic_concept": null,
   "sentences": [
    {
+    "id": "TH_S000679",
+    "text": "บ้านอยู่หลังโรงเรียน",
+    "romanization": "bâan yùu lǎng roong-rian",
+    "translation": "The house is behind the school.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000738",
+    "text": "บ้านอยู่ในเมืองครับ",
+    "romanization": "bâan yùu nai mueang khráp",
+    "translation": "The house is in the city.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
     "id": "TH_S000739",
     "text": "บ้านอยู่ใกล้ตลาดค่ะ",
     "romanization": "bâan yùu glâi dtà-làat khâ",
@@ -5872,37 +6025,19 @@
     "role": null
    },
    {
-    "id": "TH_S000841",
-    "text": "เขาไปบ้านเพื่อน",
-    "romanization": "khǎo bpai bâan phûean",
-    "translation": "He goes to a friend's house.",
+    "id": "TH_S000740",
+    "text": "บ้านอยู่ข้างโรงเรียนครับ",
+    "romanization": "bâan yùu kâang roong-rian khráp",
+    "translation": "The house is beside the school.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000842",
-    "text": "บ้านนี้มีห้องสองห้อง",
-    "romanization": "bâan níi mii hâwng sǎawng hâwng",
-    "translation": "This house has two rooms.",
-    "difficulty": null,
-    "is_target": true,
-    "role": null
-   },
-   {
-    "id": "TH_S000843",
-    "text": "บ้านอยู่ในเมืองนี้",
-    "romanization": "bâan yùu nai mʉʉang níi",
-    "translation": "The house is in this city.",
-    "difficulty": null,
-    "is_target": true,
-    "role": null
-   },
-   {
-    "id": "TH_S000871",
-    "text": "บ้านฉันอยู่ใกล้โรงเรียนค่ะ",
-    "romanization": "bâan chǎn yùu glâi roong-rian khâ",
-    "translation": "My house is near the school.",
+    "id": "TH_S000741",
+    "text": "บ้านอยู่หลังตลาดค่ะ",
+    "romanization": "bâan yùu lǎng dtà-làat khâ",
+    "translation": "The house is behind the market.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -6034,21 +6169,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000015",
-    "text": "ฉันอยากกินผลไม้หลังอาหาร",
-    "romanization": "chǎn yàak gin phǒn-lá-mái lǎng aa-hǎan",
-    "translation": "I want to eat fruit after the meal.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000670",
+    "text": "หลังห้องอยู่ข้างบ้าน",
+    "romanization": "lǎng hâwng yùu kâang bâan",
+    "translation": "Behind the room is beside the house.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000085",
-    "text": "ฉันอยากกินเค้กหลังอาหาร",
-    "romanization": "chǎn yàak gin khéek lǎng aa-hǎan",
-    "translation": "I want to eat cake after the meal.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000722",
+    "text": "หลังบ้านครับ",
+    "romanization": "lǎng bâan khráp",
+    "translation": "Behind the house.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000723",
+    "text": "หลังห้องค่ะ",
+    "romanization": "lǎng hâwng khâ",
+    "translation": "Behind the room.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000724",
+    "text": "หลังตลาดครับ",
+    "romanization": "lǎng dtà-làat khráp",
+    "translation": "Behind the market.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000725",
+    "text": "หลังโรงเรียนค่ะ",
+    "romanization": "lǎng roong-rian khâ",
+    "translation": "Behind the school.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -6394,46 +6556,46 @@
   "mnemonic_concept": "A choo choo train missing it's name tag",
   "sentences": [
    {
-    "id": "TH_S000836",
-    "text": "ชื่อฉันคืออะไรคะ",
-    "romanization": "chûue chǎn khʉʉ à-rai khá",
-    "translation": "What is my name?",
-    "difficulty": null,
-    "is_target": true,
-    "role": null
-   },
-   {
-    "id": "TH_S000837",
-    "text": "ชื่อเขาคืออะไรครับ",
-    "romanization": "chûue khǎo khʉʉ à-rai khráp",
+    "id": "TH_S000616",
+    "text": "ชื่อของเขาคืออะไรคะ",
+    "romanization": "chûue khɔ̌ɔng khǎo khue à-rai khá",
     "translation": "What is his name?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000838",
-    "text": "ชื่อคุณคืออะไรคะ",
-    "romanization": "chûue khun khʉʉ à-rai khá",
-    "translation": "What is your name?",
+    "id": "TH_S000617",
+    "text": "เราชื่อน้อง",
+    "romanization": "rao chûue nɔ́ɔng",
+    "translation": "Our name is Nong.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000839",
-    "text": "ขอชื่อด้วยค่ะ",
-    "romanization": "khǎaw chûue dûay khâ",
-    "translation": "Your name, please.",
+    "id": "TH_S000618",
+    "text": "เพื่อนของเราชื่ออะไรครับ",
+    "romanization": "phûean khɔ̌ɔng rao chûue à-rai khráp",
+    "translation": "What is our friend's name?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000840",
-    "text": "ชื่อเพื่อนฉันคืออะไรคะ",
-    "romanization": "chûue phûean chǎn khʉʉ à-rai khá",
-    "translation": "What is my friend's name?",
+    "id": "TH_S000619",
+    "text": "แม่ชื่ออะไรคะ",
+    "romanization": "mɛ̂ɛ chûue à-rai khá",
+    "translation": "What is mother's name?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000620",
+    "text": "เขาชื่อเพื่อน",
+    "romanization": "khǎo chûue phûean",
+    "translation": "His name is Friend.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -6920,6 +7082,15 @@
     "romanization": "sài náam-dtaan nít diao gɔ̂ɔ phɔɔ",
     "translation": "Just a little sugar is enough.",
     "difficulty": "intermediate",
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000982",
+    "text": "หนึ่งหมื่นบาทก็ได้ครับ",
+    "romanization": "nʉ̀ng mʉ̀ʉn bàat gâw dâai khráp",
+    "translation": "Ten thousand baht is fine.",
+    "difficulty": null,
     "is_target": false,
     "role": null
    }
@@ -7615,39 +7786,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000103",
-    "text": "ฉันซื้ออาหารจากร้านข้างถนน",
-    "romanization": "chǎn sʉ́ʉ aa-hǎan jàak ráan khâang thà-nǒn",
-    "translation": "I bought food from a street stall.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000690",
+    "text": "ถนนนี้ไปตลาด",
+    "romanization": "thà-nǒn níi bpai dtà-làat",
+    "translation": "This road goes to the market.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000207",
-    "text": "น้องอยู่บนถนน",
-    "romanization": "nɔ́ɔng yùu bon thà-nǒn",
-    "translation": "the younger sibling is on the road",
+    "id": "TH_S000691",
+    "text": "โรงเรียนอยู่ข้างถนน",
+    "romanization": "roong-rian yùu kâang thà-nǒn",
+    "translation": "The school is beside the road.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000222",
-    "text": "เพื่อนอยู่บนถนน",
-    "romanization": "phûean yùu bon thà-nǒn",
-    "translation": "the friend is on the road",
+    "id": "TH_S000692",
+    "text": "ถนนอยู่กลางเมือง",
+    "romanization": "thà-nǒn yùu glaang mueang",
+    "translation": "The road is in the middle of the city.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000677",
-    "text": "ตลาดอยู่กลางถนน",
-    "romanization": "dtà-làat yùu glaang thà-nǒn",
-    "translation": "The market is in the middle of the road.",
+    "id": "TH_S000757",
+    "text": "ถนนอยู่ในเมืองครับ",
+    "romanization": "thà-nǒn yùu nai mueang khráp",
+    "translation": "The road is in the city.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000758",
+    "text": "ถนนอยู่ใกล้บ้านค่ะ",
+    "romanization": "thà-nǒn yùu glâi bâan khâ",
+    "translation": "The road is near the house.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -8049,48 +8229,48 @@
   "mnemonic_concept": "A nun holding up exactly one finger.",
   "sentences": [
    {
-    "id": "TH_S000007",
-    "text": "ฉันขอน้ำเย็นหนึ่งแก้ว",
-    "romanization": "chǎn khɔ̌ɔ náam yen nʉ̀ng gâaeo",
-    "translation": "I'd like one glass of cold water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000418",
+    "text": "หนึ่งล้านบาท",
+    "romanization": "nùeng láan bàat",
+    "translation": "One million baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000039",
-    "text": "ขอจานหนึ่งใบได้ไหม",
-    "romanization": "khɔ̌ɔ jaan nʉ̀ng bai dâai mái",
-    "translation": "Can I have one plate?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000419",
+    "text": "หนึ่งพันบาทค่ะ",
+    "romanization": "nùeng phan bàat khâ",
+    "translation": "One thousand baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000040",
-    "text": "ขอช้อนหนึ่งคันครับ",
-    "romanization": "khɔ̌ɔ chɔ́ɔn nʉ̀ng khan khráp",
-    "translation": "I'd like one spoon, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000478",
+    "text": "หนึ่งหรือสอง",
+    "romanization": "nùeng rǔe sɔ̌ɔng",
+    "translation": "One or two.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000041",
-    "text": "ขอส้อมหนึ่งคันค่ะ",
-    "romanization": "khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ",
-    "translation": "I'd like one fork, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000479",
+    "text": "หนึ่งร้อย",
+    "romanization": "nùeng rɔ́ɔi",
+    "translation": "One hundred.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000043",
-    "text": "ขอชามอีกหนึ่งใบ",
-    "romanization": "khɔ̌ɔ chaam ìik nʉ̀ng bai",
-    "translation": "One more bowl, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000480",
+    "text": "หนึ่งหมื่นบาทครับ",
+    "romanization": "nùeng mèuun bàat khráp",
+    "translation": "Ten thousand baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -9069,12 +9249,48 @@
   "mnemonic_concept": "A gigantic lawn stretches beyond the horizon, covered with an overwhelming multitude of objects representing one million.",
   "sentences": [
    {
-    "id": "TH_S000776",
-    "text": "เขามีเงินหนึ่งล้านบาท",
-    "romanization": "khǎo mii ngern nʉ̀ng láan bàat",
-    "translation": "He has one million baht.",
+    "id": "TH_S000576",
+    "text": "ล้านบาทครับ",
+    "romanization": "láan bàat khráp",
+    "translation": "One million baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000577",
+    "text": "สองล้านบาทค่ะ",
+    "romanization": "sɔ̌ɔng láan bàat khâ",
+    "translation": "Two million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000578",
+    "text": "ล้านหรือแสน",
+    "romanization": "láan rǔe sɛ̌ɛn",
+    "translation": "A million or a hundred thousand.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000579",
+    "text": "ห้าล้านบาทครับ",
+    "romanization": "hâa láan bàat khráp",
+    "translation": "Five million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000580",
+    "text": "สิบล้านบาทค่ะ",
+    "romanization": "sìp láan bàat khâ",
+    "translation": "Ten million baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -9773,37 +9989,37 @@
     "role": null
    },
    {
-    "id": "TH_S000800",
-    "text": "ฉันอยู่ในห้องค่ะ",
-    "romanization": "chǎn yùu nai hâwng khâ",
-    "translation": "I am in the room.",
+    "id": "TH_S000681",
+    "text": "ห้องอยู่ใกล้ถนน",
+    "romanization": "hâwng yùu glâi thà-nǒn",
+    "translation": "The room is near the road.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000801",
-    "text": "ห้องนี้มีโต๊ะหนึ่งตัว",
-    "romanization": "hâwng níi mii tó nʉ̀ng dtua",
-    "translation": "This room has one table.",
+    "id": "TH_S000682",
+    "text": "ห้องอยู่ข้างตลาด",
+    "romanization": "hâwng yùu kâang dtà-làat",
+    "translation": "The room is beside the market.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000861",
-    "text": "เขาไปจากห้องแล้ว",
-    "romanization": "khǎo bpai jàak hâwng láew",
-    "translation": "He has gone from the room.",
+    "id": "TH_S000742",
+    "text": "ห้องอยู่ในบ้านครับ",
+    "romanization": "hâwng yùu nai bâan khráp",
+    "translation": "The room is in the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000867",
-    "text": "เขาอยู่ในห้องกับเพื่อน",
-    "romanization": "khǎo yùu nai hâwng gàp phûean",
-    "translation": "He is in the room with a friend.",
+    "id": "TH_S000743",
+    "text": "ห้องอยู่ข้างโรงเรียนค่ะ",
+    "romanization": "hâwng yùu kâang roong-rian khâ",
+    "translation": "The room is beside the school.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -10926,46 +11142,46 @@
   "mnemonic_concept": "A Thai child happily standing on a large wooden deck.",
   "sentences": [
    {
-    "id": "TH_S000777",
-    "text": "เด็กกินข้าวค่ะ",
-    "romanization": "dèk gin khâao khâ",
-    "translation": "The child is eating rice.",
+    "id": "TH_S000593",
+    "text": "เด็กคนนี้เป็นเพื่อน",
+    "romanization": "dèk khon níi pen phûean",
+    "translation": "This child is a friend.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000778",
-    "text": "เด็กชอบปลา",
-    "romanization": "dèk châawp bplaa",
-    "translation": "The child likes fish.",
+    "id": "TH_S000594",
+    "text": "เด็กคนนั้นชื่ออะไรคะ",
+    "romanization": "dèk khon nán chûue à-rai khá",
+    "translation": "What is that child's name?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000779",
-    "text": "เด็กอยู่ในห้อง",
-    "romanization": "dèk yùu nai hâwng",
-    "translation": "The child is in the room.",
+    "id": "TH_S000595",
+    "text": "เด็กกับแม่",
+    "romanization": "dèk gàp mɛ̂ɛ",
+    "translation": "A child and mother.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000780",
-    "text": "เด็กอยากได้ไข่สองฟอง",
-    "romanization": "dèk yàak dâai khài sǎawng fɔɔng",
-    "translation": "The child wants two eggs.",
+    "id": "TH_S000596",
+    "text": "เด็กเป็นลูกของแม่",
+    "romanization": "dèk pen lûuk khɔ̌ɔng mɛ̂ɛ",
+    "translation": "The child is mother's child.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000781",
-    "text": "เด็กไปโรงเรียนแล้ว",
-    "romanization": "dèk bpai roong-rian láew",
-    "translation": "The child has gone to school.",
+    "id": "TH_S000597",
+    "text": "เด็กคนนี้คือใครครับ",
+    "romanization": "dèk khon níi khue khrai khráp",
+    "translation": "Who is this child?",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -12442,37 +12658,37 @@
     "role": null
    },
    {
-    "id": "TH_S000802",
-    "text": "ฉันอยู่กลางห้องค่ะ",
-    "romanization": "chǎn yùu glaang hâwng khâ",
-    "translation": "I am in the middle of the room.",
+    "id": "TH_S000678",
+    "text": "บ้านอยู่กลางทาง",
+    "romanization": "bâan yùu glaang thaang",
+    "translation": "The house is halfway along the way.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000803",
-    "text": "โรงเรียนอยู่กลางเมืองนี้",
-    "romanization": "roong-rian yùu glaang mʉʉang níi",
-    "translation": "The school is in the centre of this city.",
+    "id": "TH_S000735",
+    "text": "กลางบ้านครับ",
+    "romanization": "glaang bâan khráp",
+    "translation": "In the middle of the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000804",
-    "text": "เขาอยู่กลางทาง",
-    "romanization": "khǎo yùu glaang thaang",
-    "translation": "He is halfway along the way.",
+    "id": "TH_S000736",
+    "text": "กลางห้องค่ะ",
+    "romanization": "glaang hâwng khâ",
+    "translation": "In the middle of the room.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000805",
-    "text": "บ้านอยู่กลางเมือง",
-    "romanization": "bâan yùu glaang mʉʉang",
-    "translation": "The house is in the city centre.",
+    "id": "TH_S000737",
+    "text": "กลางตลาดครับ",
+    "romanization": "glaang dtà-làat khráp",
+    "translation": "In the middle of the market.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -13130,37 +13346,37 @@
     "role": null
    },
    {
-    "id": "TH_S000806",
-    "text": "เขาไปโรงพยาบาลแล้ว",
-    "romanization": "khǎo bpai roong-phá-yaa-baan láew",
-    "translation": "He has gone to the hospital.",
+    "id": "TH_S000751",
+    "text": "โรงพยาบาลอยู่ในเมืองครับ",
+    "romanization": "roong-phá-yaa-baan yùu nai mueang khráp",
+    "translation": "The hospital is in the city.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000807",
-    "text": "โรงพยาบาลอยู่ใกล้สถานี",
-    "romanization": "roong-phá-yaa-baan yùu glâi sà-thǎa-nii",
-    "translation": "The hospital is near the station.",
+    "id": "TH_S000752",
+    "text": "โรงพยาบาลอยู่ใกล้บ้านค่ะ",
+    "romanization": "roong-phá-yaa-baan yùu glâi bâan khâ",
+    "translation": "The hospital is near the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000808",
-    "text": "เด็กอยู่ที่โรงพยาบาลค่ะ",
-    "romanization": "dèk yùu thîi roong-phá-yaa-baan khâ",
-    "translation": "The child is at the hospital.",
+    "id": "TH_S000753",
+    "text": "โรงพยาบาลอยู่ข้างตลาดครับ",
+    "romanization": "roong-phá-yaa-baan yùu kâang dtà-làat khráp",
+    "translation": "The hospital is beside the market.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000809",
-    "text": "โรงพยาบาลอยู่ใกล้โรงเรียน",
-    "romanization": "roong-phá-yaa-baan yùu glâi roong-rian",
-    "translation": "The hospital is near the school.",
+    "id": "TH_S000754",
+    "text": "โรงพยาบาลอยู่หลังโรงเรียนค่ะ",
+    "romanization": "roong-phá-yaa-baan yùu lǎng roong-rian khâ",
+    "translation": "The hospital is behind the school.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -13988,39 +14204,39 @@
     "role": null
    },
    {
-    "id": "TH_S000203",
-    "text": "น้องอยู่ใกล้โรงเรียน",
-    "romanization": "nɔ́ɔng yùu glâi roong-rian",
-    "translation": "the younger sibling is near the school",
+    "id": "TH_S000675",
+    "text": "โรงเรียนอยู่ใกล้โรงพยาบาล",
+    "romanization": "roong-rian yùu glâi roong-phá-yaa-baan",
+    "translation": "The school is near the hospital.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000218",
-    "text": "เพื่อนอยู่ใกล้บ้าน",
-    "romanization": "phûean yùu glâi bâan",
-    "translation": "the friend is near the house",
+    "id": "TH_S000728",
+    "text": "ใกล้บ้านครับ",
+    "romanization": "glâi bâan khráp",
+    "translation": "Near the house.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000657",
-    "text": "โรงเรียนอยู่ใกล้บ้าน",
-    "romanization": "roong-rian yùu glâi bâan",
-    "translation": "The school is near the house.",
+    "id": "TH_S000729",
+    "text": "ใกล้ตลาดค่ะ",
+    "romanization": "glâi dtà-làat khâ",
+    "translation": "Near the market.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000683",
-    "text": "ตลาดอยู่ใกล้สถานี",
-    "romanization": "dtà-làat yùu glâi sà-thǎa-nii",
-    "translation": "The market is near the station.",
+    "id": "TH_S000730",
+    "text": "ใกล้โรงเรียนครับ",
+    "romanization": "glâi roong-rian khráp",
+    "translation": "Near the school.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -17995,12 +18211,12 @@
     "role": null
    },
    {
-    "id": "TH_S000041",
-    "text": "ขอส้อมหนึ่งคันค่ะ",
-    "romanization": "khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ",
-    "translation": "I'd like one fork, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000979",
+    "text": "น้ำนี้เย็นค่ะ",
+    "romanization": "náam níi yen khâ",
+    "translation": "This water is cold.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -18050,30 +18266,39 @@
     "role": null
    },
    {
-    "id": "TH_S000207",
-    "text": "น้องอยู่บนถนน",
-    "romanization": "nɔ́ɔng yùu bon thà-nǒn",
-    "translation": "the younger sibling is on the road",
+    "id": "TH_S000665",
+    "text": "อยู่บนทางนี้",
+    "romanization": "yùu bon thaang níi",
+    "translation": "It's on this path.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000222",
-    "text": "เพื่อนอยู่บนถนน",
-    "romanization": "phûean yùu bon thà-nǒn",
-    "translation": "the friend is on the road",
+    "id": "TH_S000666",
+    "text": "ตลาดอยู่บนถนนนี้",
+    "romanization": "dtà-làat yùu bon thà-nǒn níi",
+    "translation": "The market is on this road.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000680",
-    "text": "ห้องนี้อยู่บนบ้าน",
-    "romanization": "hâwng níi yùu bon bâan",
-    "translation": "This room is upstairs in the house.",
+    "id": "TH_S000712",
+    "text": "บนบ้านครับ",
+    "romanization": "bon bâan khráp",
+    "translation": "On the house.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000713",
+    "text": "บนถนนค่ะ",
+    "romanization": "bon thà-nǒn khâ",
+    "translation": "On the road.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -18262,46 +18487,46 @@
   "mnemonic_concept": "A man, and a woman point at each other with a cow in the background.",
   "sentences": [
    {
-    "id": "TH_S000772",
-    "text": "เขาอยู่ที่บ้านครับ",
-    "romanization": "khǎo yùu thîi bâan khráp",
-    "translation": "He is at home.",
+    "id": "TH_S000581",
+    "text": "เขาเป็นเพื่อนครับ",
+    "romanization": "khǎo pen phûean khráp",
+    "translation": "He is a friend.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000773",
-    "text": "เขาชอบกินปลา",
-    "romanization": "khǎo châawp gin bplaa",
-    "translation": "He likes eating fish.",
+    "id": "TH_S000582",
+    "text": "เขาชื่อน้อง",
+    "romanization": "khǎo chûue nɔ́ɔng",
+    "translation": "His name is Nong.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000774",
-    "text": "เขาอยากได้กาแฟครับ",
-    "romanization": "khǎo yàak dâai gaa-fɛɛ khráp",
-    "translation": "He wants coffee.",
+    "id": "TH_S000583",
+    "text": "เขากับแม่",
+    "romanization": "khǎo gàp mɛ̂ɛ",
+    "translation": "He and mother.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000775",
-    "text": "เขาไปตลาดแล้ว",
-    "romanization": "khǎo bpai dtà-làat láew",
-    "translation": "He has gone to the market.",
+    "id": "TH_S000584",
+    "text": "เขาคือใครคะ",
+    "romanization": "khǎo khue khrai khá",
+    "translation": "Who is he?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000776",
-    "text": "เขามีเงินหนึ่งล้านบาท",
-    "romanization": "khǎo mii ngern nʉ̀ng láan bàat",
-    "translation": "He has one million baht.",
+    "id": "TH_S000643",
+    "text": "เขาเป็นลูกของแม่ครับ",
+    "romanization": "khǎo pen lûuk khɔ̌ɔng mâe khráp",
+    "translation": "He is his mother's child.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -18475,21 +18700,48 @@
   "mnemonic_concept": "A group of Thai friends all rowing the same boat together.",
   "sentences": [
    {
-    "id": "TH_S000065",
-    "text": "เราสั่งอาหารแล้ว",
-    "romanization": "rao sàng aa-hǎan láaeo",
-    "translation": "We've already ordered the food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000585",
+    "text": "เรากับแม่",
+    "romanization": "rao gàp mɛ̂ɛ",
+    "translation": "Mother and us.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000088",
-    "text": "วันนี้เราทำอาหารที่บ้าน",
-    "romanization": "wan-níi rao tham aa-hǎan thîi bâan",
-    "translation": "Today we are cooking at home.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000586",
+    "text": "เราชื่ออะไรคะ",
+    "romanization": "rao chûue à-rai khá",
+    "translation": "What is our name?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000587",
+    "text": "เราคือเพื่อน",
+    "romanization": "rao khue phûean",
+    "translation": "We are friends.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000588",
+    "text": "เราเป็นเด็ก",
+    "romanization": "rao pen dèk",
+    "translation": "We are children.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000644",
+    "text": "เราเป็นลูกของแม่ค่ะ",
+    "romanization": "rao pen lûuk khɔ̌ɔng mâe khâ",
+    "translation": "We are mother's children.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -20546,28 +20798,28 @@
     "role": null
    },
    {
-    "id": "TH_S000814",
-    "text": "ฉันไปตลาดค่ะ",
-    "romanization": "chǎn bpai dtà-làat khâ",
-    "translation": "I am going to the market.",
+    "id": "TH_S000744",
+    "text": "ตลาดอยู่ในเมืองครับ",
+    "romanization": "dtà-làat yùu nai mueang khráp",
+    "translation": "The market is in the city.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000815",
-    "text": "ตลาดอยู่ใกล้บ้าน",
-    "romanization": "dtà-làat yùu glâi bâan",
-    "translation": "The market is near home.",
+    "id": "TH_S000745",
+    "text": "ตลาดอยู่ใกล้บ้านค่ะ",
+    "romanization": "dtà-làat yùu glâi bâan khâ",
+    "translation": "The market is near the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000816",
-    "text": "เขาไปตลาดกับเพื่อน",
-    "romanization": "khǎo bpai dtà-làat gàp phûean",
-    "translation": "He goes to the market with a friend.",
+    "id": "TH_S000746",
+    "text": "ตลาดอยู่ข้างสถานีครับ",
+    "romanization": "dtà-làat yùu kâang sà-thǎa-nii khráp",
+    "translation": "The market is beside the station.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -20778,19 +21030,19 @@
     "role": null
    },
    {
-    "id": "TH_S000836",
-    "text": "ชื่อฉันคืออะไรคะ",
-    "romanization": "chûue chǎn khʉʉ à-rai khá",
-    "translation": "What is my name?",
+    "id": "TH_S000586",
+    "text": "เราชื่ออะไรคะ",
+    "romanization": "rao chûue à-rai khá",
+    "translation": "What is our name?",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000837",
-    "text": "ชื่อเขาคืออะไรครับ",
-    "romanization": "chûue khǎo khʉʉ à-rai khráp",
-    "translation": "What is his name?",
+    "id": "TH_S000592",
+    "text": "คนนี้ชื่ออะไรคะ",
+    "romanization": "khon níi chûue à-rai khá",
+    "translation": "What is this person's name?",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -21790,21 +22042,48 @@
   "mnemonic_concept": "A person crying while desperately looking around to find the unknown person they are searching for.",
   "sentences": [
    {
-    "id": "TH_S000208",
-    "text": "ใครอยู่ที่สถานี",
-    "romanization": "khrai yùu thîi sà-thǎa-nii",
-    "translation": "Who is at the station?",
+    "id": "TH_S000637",
+    "text": "เขาคือใครครับ",
+    "romanization": "khǎo khue khrai khráp",
+    "translation": "Who is he?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000223",
-    "text": "ใครอยู่ที่ตลาด",
-    "romanization": "khrai yùu thîi dtà-làat",
-    "translation": "Who is at the market?",
+    "id": "TH_S000638",
+    "text": "คนนี้คือใครคะ",
+    "romanization": "khon níi khue khrai khá",
+    "translation": "Who is this person?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000639",
+    "text": "เพื่อนของเราเป็นใคร",
+    "romanization": "phûean khɔ̌ɔng rao pen khrai",
+    "translation": "Who is our friend?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000640",
+    "text": "แม่กับน้องคือใครครับ",
+    "romanization": "mɛ̂ɛ gàp nɔ́ɔng khue khrai khráp",
+    "translation": "Who are mother and younger sibling?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000641",
+    "text": "ใครเป็นเพื่อนของเขาคะ",
+    "romanization": "khrai pen phûean khɔ̌ɔng khǎo khá",
+    "translation": "Who is his friend?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -23026,48 +23305,48 @@
   "mnemonic_concept": "Two people singing a song together as a duet.",
   "sentences": [
    {
-    "id": "TH_S000021",
-    "text": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
-    "romanization": "wan-níi chǎn sʉ́ʉ áep-bpə̂n sɔ̌ɔng lûuk",
-    "translation": "Today I bought two apples.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000420",
+    "text": "สองล้านบาท",
+    "romanization": "sɔ̌ɔng láan bàat",
+    "translation": "Two million baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000780",
-    "text": "เด็กอยากได้ไข่สองฟอง",
-    "romanization": "dèk yàak dâai khài sǎawng fɔɔng",
-    "translation": "The child wants two eggs.",
+    "id": "TH_S000421",
+    "text": "สองพันบาทครับ",
+    "romanization": "sɔ̌ɔng phan bàat khráp",
+    "translation": "Two thousand baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000824",
-    "text": "เขามีเงินสองร้อยบาทครับ",
-    "romanization": "khǎo mii ngern sǎawng rɔ́ɔi bàat khráp",
-    "translation": "He has two hundred baht.",
+    "id": "TH_S000481",
+    "text": "สองหรือสาม",
+    "romanization": "sɔ̌ɔng rǔe sǎam",
+    "translation": "Two or three.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000842",
-    "text": "บ้านนี้มีห้องสองห้อง",
-    "romanization": "bâan níi mii hâwng sǎawng hâwng",
-    "translation": "This house has two rooms.",
+    "id": "TH_S000482",
+    "text": "สองร้อยบาท",
+    "romanization": "sɔ̌ɔng rɔ́ɔi bàat",
+    "translation": "Two hundred baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000855",
-    "text": "เขามีเงินสองพันบาทครับ",
-    "romanization": "khǎo mii ngern sǎawng phan bàat khráp",
-    "translation": "He has two thousand baht.",
+    "id": "TH_S000483",
+    "text": "สองหมื่นบาทค่ะ",
+    "romanization": "sɔ̌ɔng mèuun bàat khâ",
+    "translation": "Twenty thousand baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -23426,28 +23705,28 @@
     "role": null
    },
    {
-    "id": "TH_S000810",
-    "text": "สถานีอยู่ในเมือง",
-    "romanization": "sà-thǎa-nii yùu nai mʉʉang",
+    "id": "TH_S000689",
+    "text": "บ้านอยู่ข้างสถานี",
+    "romanization": "bâan yùu kâang sà-thǎa-nii",
+    "translation": "The house is beside the station.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000755",
+    "text": "สถานีอยู่ในเมืองครับ",
+    "romanization": "sà-thǎa-nii yùu nai mueang khráp",
     "translation": "The station is in the city.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000811",
-    "text": "เขาไปสถานีแล้ว",
-    "romanization": "khǎo bpai sà-thǎa-nii láew",
-    "translation": "He has gone to the station.",
-    "difficulty": null,
-    "is_target": true,
-    "role": null
-   },
-   {
-    "id": "TH_S000812",
-    "text": "สถานีอยู่ใกล้บ้าน",
-    "romanization": "sà-thǎa-nii yùu glâi bâan",
-    "translation": "The station is near home.",
+    "id": "TH_S000756",
+    "text": "สถานีอยู่ใกล้บ้านค่ะ",
+    "romanization": "sà-thǎa-nii yùu glâi bâan khâ",
+    "translation": "The station is near the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -26414,46 +26693,46 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000844",
-    "text": "เด็กอยู่นอกบ้าน",
-    "romanization": "dèk yùu nâawk bâan",
-    "translation": "The child is outside the house.",
+    "id": "TH_S000714",
+    "text": "นอกบ้านครับ",
+    "romanization": "nâawk bâan khráp",
+    "translation": "Outside the house.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000845",
-    "text": "เขาอยู่นอกห้องครับ",
-    "romanization": "khǎo yùu nâawk hâwng khráp",
-    "translation": "He is outside the room.",
+    "id": "TH_S000715",
+    "text": "นอกห้องค่ะ",
+    "romanization": "nâawk hâwng khâ",
+    "translation": "Outside the room.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000846",
-    "text": "น้องอยู่นอกโรงเรียน",
-    "romanization": "nɔ́ɔng yùu nâawk roong-rian",
-    "translation": "My younger sibling is outside the school.",
+    "id": "TH_S000716",
+    "text": "นอกเมืองครับ",
+    "romanization": "nâawk mueang khráp",
+    "translation": "Outside the city.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000847",
-    "text": "เพื่อนอยู่ข้างนอกค่ะ",
-    "romanization": "phûean yùu khâang nâawk khâ",
-    "translation": "My friend is outside.",
+    "id": "TH_S000717",
+    "text": "นอกโรงเรียนค่ะ",
+    "romanization": "nâawk roong-rian khâ",
+    "translation": "Outside the school.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000848",
-    "text": "แม่อยู่นอกบ้านแล้ว",
-    "romanization": "mâe yùu nâawk bâan láew",
-    "translation": "Mum is already outside the house.",
+    "id": "TH_S000718",
+    "text": "นอกโรงพยาบาลครับ",
+    "romanization": "nâawk roong-phá-yaa-baan khráp",
+    "translation": "Outside the hospital.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -26524,46 +26803,46 @@
   "mnemonic_concept": "Uncle Sam holding up three fingers.",
   "sentences": [
    {
-    "id": "TH_S000767",
-    "text": "ฉันมีสามบาทค่ะ",
-    "romanization": "chǎn mii sǎam bàat khâ",
-    "translation": "I have three baht.",
+    "id": "TH_S000422",
+    "text": "สามล้านบาท",
+    "romanization": "sǎam láan bàat",
+    "translation": "Three million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000768",
-    "text": "เขามีสามใบครับ",
-    "romanization": "khǎo mii sǎam bai khráp",
-    "translation": "He has three leaves.",
+    "id": "TH_S000423",
+    "text": "สามพันบาทค่ะ",
+    "romanization": "sǎam phan bàat khâ",
+    "translation": "Three thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000769",
-    "text": "ขอสามแก้วค่ะ",
-    "romanization": "khǎaw sǎam gâew khâ",
-    "translation": "Three glasses, please.",
+    "id": "TH_S000484",
+    "text": "สามหรือสี่",
+    "romanization": "sǎam rǔe sìi",
+    "translation": "Three or four.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000770",
-    "text": "เด็กสามคนอยู่ที่บ้าน",
-    "romanization": "dèk sǎam khon yùu thîi bâan",
-    "translation": "Three children are at home.",
+    "id": "TH_S000485",
+    "text": "สามร้อยบาท",
+    "romanization": "sǎam rɔ́ɔi bàat",
+    "translation": "Three hundred baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000771",
-    "text": "ฉันอยากได้สามชิ้นค่ะ",
-    "romanization": "chǎn yàak dâai sǎam chín khâ",
-    "translation": "I want three pieces.",
+    "id": "TH_S000486",
+    "text": "สามหมื่นบาทครับ",
+    "romanization": "sǎam mèuun bàat khráp",
+    "translation": "Thirty thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -31707,46 +31986,46 @@
   "mnemonic_concept": "A younger Thai sibling happily following their older sibling around the house.",
   "sentences": [
    {
-    "id": "TH_S000782",
-    "text": "น้องกินข้าวค่ะ",
-    "romanization": "nɔ́ɔng gin khâao khâ",
-    "translation": "My younger sibling is eating rice.",
+    "id": "TH_S000611",
+    "text": "น้องเป็นเด็ก",
+    "romanization": "nɔ́ɔng pen dèk",
+    "translation": "The younger sibling is a child.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000783",
-    "text": "น้องอยู่ในห้อง",
-    "romanization": "nɔ́ɔng yùu nai hâwng",
-    "translation": "My younger sibling is in the room.",
+    "id": "TH_S000612",
+    "text": "น้องของเรา",
+    "romanization": "nɔ́ɔng khɔ̌ɔng rao",
+    "translation": "Our younger sibling.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000784",
-    "text": "น้องอยากได้กาแฟไหมคะ",
-    "romanization": "nɔ́ɔng yàak dâai gaa-fɛɛ mái khá",
-    "translation": "Does my younger sibling want coffee?",
+    "id": "TH_S000613",
+    "text": "น้องกับแม่",
+    "romanization": "nɔ́ɔng gàp mɛ̂ɛ",
+    "translation": "Younger sibling and mother.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000785",
-    "text": "น้องไปตลาดกับแม่",
-    "romanization": "nɔ́ɔng bpai dtà-làat gàp mâe",
-    "translation": "My younger sibling goes to the market with Mum.",
+    "id": "TH_S000614",
+    "text": "น้องชื่ออะไรคะ",
+    "romanization": "nɔ́ɔng chûue à-rai khá",
+    "translation": "What is your younger sibling's name?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000786",
-    "text": "น้องมีเงินห้าสิบบาท",
-    "romanization": "nɔ́ɔng mii ngern hâa-sìp bàat",
-    "translation": "My younger sibling has fifty baht.",
+    "id": "TH_S000615",
+    "text": "เขาคือน้องของเรา",
+    "romanization": "khǎo khue nɔ́ɔng khɔ̌ɔng rao",
+    "translation": "He is our younger sibling.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -32386,7 +32665,17 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000669",
+    "text": "หลังจากไปโรงเรียน",
+    "romanization": "lǎng jàak bpai roong-rian",
+    "translation": "After going to school.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000042",
    "TH_L000461"
@@ -33808,46 +34097,46 @@
   "mnemonic_concept": "Two close Thai friends happily helping each other at a street market.",
   "sentences": [
    {
-    "id": "TH_S000787",
-    "text": "เพื่อนอยู่ที่บ้านครับ",
-    "romanization": "phûean yùu thîi bâan khráp",
-    "translation": "My friend is at home.",
+    "id": "TH_S000598",
+    "text": "เพื่อนของเรา",
+    "romanization": "phûean khɔ̌ɔng rao",
+    "translation": "Our friend.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000788",
-    "text": "เพื่อนชอบกินเผ็ด",
-    "romanization": "phûean châawp gin phèt",
-    "translation": "My friend likes spicy food.",
+    "id": "TH_S000599",
+    "text": "เพื่อนกับแม่",
+    "romanization": "phûean gàp mɛ̂ɛ",
+    "translation": "A friend and mother.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000789",
-    "text": "เพื่อนไปตลาดแล้ว",
-    "romanization": "phûean bpai dtà-làat láew",
-    "translation": "My friend has gone to the market.",
+    "id": "TH_S000600",
+    "text": "เขาคือเพื่อนของเรา",
+    "romanization": "khǎo khue phûean khɔ̌ɔng rao",
+    "translation": "He is our friend.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000790",
-    "text": "ฉันอยากได้เพื่อนค่ะ",
-    "romanization": "chǎn yàak dâai phûean khâ",
-    "translation": "I want a friend.",
+    "id": "TH_S000601",
+    "text": "เพื่อนคนนี้ชื่ออะไรคะ",
+    "romanization": "phûean khon níi chûue à-rai khá",
+    "translation": "What is this friend's name?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000791",
-    "text": "เพื่อนมีเงินหนึ่งพันบาท",
-    "romanization": "phûean mii ngern nʉ̀ng phan bàat",
-    "translation": "My friend has one thousand baht.",
+    "id": "TH_S000646",
+    "text": "เขาและเพื่อนเป็นเด็กครับ",
+    "romanization": "khǎo láe phûean pen dèk khráp",
+    "translation": "He and his friend are children.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -36581,46 +36870,46 @@
   "mnemonic_concept": "A warm Thai mother named May lovingly caring for her child.",
   "sentences": [
    {
-    "id": "TH_S000792",
-    "text": "แม่อยู่ที่บ้านค่ะ",
-    "romanization": "mâe yùu thîi bâan khâ",
-    "translation": "Mum is at home.",
+    "id": "TH_S000602",
+    "text": "แม่เป็นเพื่อนของเรา",
+    "romanization": "mɛ̂ɛ pen phûean khɔ̌ɔng rao",
+    "translation": "Mother is our friend.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000793",
-    "text": "แม่ชอบกินปลา",
-    "romanization": "mâe châawp gin bplaa",
-    "translation": "Mum likes eating fish.",
+    "id": "TH_S000603",
+    "text": "แม่ของเขาชื่ออะไรคะ",
+    "romanization": "mɛ̂ɛ khɔ̌ɔng khǎo chûue à-rai khá",
+    "translation": "What is his mother's name?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000794",
-    "text": "แม่ไปตลาดแล้ว",
-    "romanization": "mâe bpai dtà-làat láew",
-    "translation": "Mum has gone to the market.",
+    "id": "TH_S000604",
+    "text": "แม่กับน้อง",
+    "romanization": "mɛ̂ɛ gàp nɔ́ɔng",
+    "translation": "Mother and younger sibling.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000795",
-    "text": "แม่อยากได้กาแฟค่ะ",
-    "romanization": "mâe yàak dâai gaa-fɛɛ khâ",
-    "translation": "Mum wants coffee.",
+    "id": "TH_S000605",
+    "text": "แม่คือใครครับ",
+    "romanization": "mɛ̂ɛ khue khrai khráp",
+    "translation": "Who is mother?",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000796",
-    "text": "แม่มีเงินหนึ่งหมื่นบาท",
-    "romanization": "mâe mii ngern nʉ̀ng mʉ̀ʉn bàat",
-    "translation": "Mum has ten thousand baht.",
+    "id": "TH_S000606",
+    "text": "เราเป็นลูกของแม่",
+    "romanization": "rao pen lûuk khɔ̌ɔng mɛ̂ɛ",
+    "translation": "We are mother's children.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -36925,48 +37214,48 @@
   "mnemonic_concept": "A little Thai boy named Luke happily playing beside his mother.",
   "sentences": [
    {
-    "id": "TH_S000016",
-    "text": "กล้วยลูกนี้หวานมาก",
-    "romanization": "glûai lûuk níi wǎan mâak",
-    "translation": "This banana is very sweet.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000607",
+    "text": "ลูกของแม่",
+    "romanization": "lûuk khɔ̌ɔng mɛ̂ɛ",
+    "translation": "Mother's child.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000018",
-    "text": "มะม่วงลูกนี้อร่อยมาก",
-    "romanization": "má-mûang lûuk níi à-rɔ̀i mâak",
-    "translation": "This mango is very delicious.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000608",
+    "text": "เขาเป็นลูกของเรา",
+    "romanization": "khǎo pen lûuk khɔ̌ɔng rao",
+    "translation": "He is our child.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000019",
-    "text": "แตงโมลูกนี้หวานและเย็น",
-    "romanization": "dtaeng-moo lûuk níi wǎan láe yen",
-    "translation": "This watermelon is sweet and cold.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000609",
+    "text": "ลูกคนนี้ชื่ออะไรคะ",
+    "romanization": "lûuk khon níi chûue à-rai khá",
+    "translation": "What is this child's name?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000021",
-    "text": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
-    "romanization": "wan-níi chǎn sʉ́ʉ áep-bpə̂n sɔ̌ɔng lûuk",
-    "translation": "Today I bought two apples.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000610",
+    "text": "แม่กับลูก",
+    "romanization": "mɛ̂ɛ gàp lûuk",
+    "translation": "Mother and child.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000024",
-    "text": "มะเขือเทศลูกนี้แดงมาก",
-    "romanization": "má-khʉ̌ʉa-thêet lûuk níi daeng mâak",
-    "translation": "This tomato is very red.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000655",
+    "text": "ลูกนี้ของแม่ครับ",
+    "romanization": "lûuk níi khɔ̌ɔng mâe khráp",
+    "translation": "This fruit belongs to mother.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -37553,21 +37842,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000103",
-    "text": "ฉันซื้ออาหารจากร้านข้างถนน",
-    "romanization": "chǎn sʉ́ʉ aa-hǎan jàak ráan khâang thà-nǒn",
-    "translation": "I bought food from a street stall.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000671",
+    "text": "บ้านอยู่ข้างโรงเรียน",
+    "romanization": "bâan yùu kâang roong-rian",
+    "translation": "The house is beside the school.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000847",
-    "text": "เพื่อนอยู่ข้างนอกค่ะ",
-    "romanization": "phûean yùu khâang nâawk khâ",
-    "translation": "My friend is outside.",
+    "id": "TH_S000672",
+    "text": "ตลาดอยู่ข้างถนน",
+    "romanization": "dtà-làat yùu kâang thà-nǒn",
+    "translation": "The market is beside the road.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000673",
+    "text": "โรงพยาบาลอยู่ข้างตลาด",
+    "romanization": "roong-phá-yaa-baan yùu kâang dtà-làat",
+    "translation": "The hospital is beside the market.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000726",
+    "text": "ข้างบ้านครับ",
+    "romanization": "kâang bâan khráp",
+    "translation": "Beside the house.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000727",
+    "text": "ข้างห้องค่ะ",
+    "romanization": "kâang hâwng khâ",
+    "translation": "Beside the room.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -40109,12 +40425,48 @@
   "mnemonic_concept": "Seven fighter jets flying in a perfect V-formation.",
   "sentences": [
    {
-    "id": "TH_S000011",
-    "text": "ฉันกินข้าวเช้าตอนเจ็ดโมง",
-    "romanization": "chǎn gin khâao cháao dtaawn jèt moong",
-    "translation": "I eat breakfast at seven o'clock.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000430",
+    "text": "เจ็ดล้านบาท",
+    "romanization": "jèt láan bàat",
+    "translation": "Seven million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000431",
+    "text": "เจ็ดพันบาทค่ะ",
+    "romanization": "jèt phan bàat khâ",
+    "translation": "Seven thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000496",
+    "text": "เจ็ดหรือแปด",
+    "romanization": "jèt rǔe bpàet",
+    "translation": "Seven or eight.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000497",
+    "text": "เจ็ดร้อยบาท",
+    "romanization": "jèt rɔ́ɔi bàat",
+    "translation": "Seven hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000498",
+    "text": "เจ็ดหมื่นบาทครับ",
+    "romanization": "jèt mèuun bàat khráp",
+    "translation": "Seventy thousand baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -41145,46 +41497,46 @@
   "mnemonic_concept": "C4, an explosive idea.",
   "sentences": [
    {
-    "id": "TH_S000818",
-    "text": "ฉันมีสี่บาทค่ะ",
-    "romanization": "chǎn mii sìi bàat khâ",
-    "translation": "I have four baht.",
+    "id": "TH_S000424",
+    "text": "สี่ล้านบาท",
+    "romanization": "sìi láan bàat",
+    "translation": "Four million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000819",
-    "text": "ขอไข่สี่ฟองค่ะ",
-    "romanization": "khǎaw khài sìi fɔɔng khâ",
-    "translation": "Four eggs, please.",
+    "id": "TH_S000425",
+    "text": "สี่พันบาทครับ",
+    "romanization": "sìi phan bàat khráp",
+    "translation": "Four thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000820",
-    "text": "เขามีสี่ใบครับ",
-    "romanization": "khǎo mii sìi bai khráp",
-    "translation": "He has four leaves.",
+    "id": "TH_S000487",
+    "text": "สี่หรือห้า",
+    "romanization": "sìi rǔe hâa",
+    "translation": "Four or five.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000821",
-    "text": "เด็กสี่คนอยู่ที่บ้าน",
-    "romanization": "dèk sìi khon yùu thîi bâan",
-    "translation": "Four children are at home.",
+    "id": "TH_S000488",
+    "text": "สี่ร้อยบาท",
+    "romanization": "sìi rɔ́ɔi bàat",
+    "translation": "Four hundred baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000822",
-    "text": "ฉันอยากได้สี่ชิ้นค่ะ",
-    "romanization": "chǎn yàak dâai sìi chín khâ",
-    "translation": "I want four pieces.",
+    "id": "TH_S000489",
+    "text": "สี่หมื่นบาทค่ะ",
+    "romanization": "sìi mèuun bàat khâ",
+    "translation": "Forty thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -41227,46 +41579,46 @@
   "mnemonic_concept": "Five people are laughing and shouting “ha!” around five enormous funny objects.",
   "sentences": [
    {
-    "id": "TH_S000828",
-    "text": "ฉันมีห้าบาทค่ะ",
-    "romanization": "chǎn mii hâa bàat khâ",
-    "translation": "I have five baht.",
+    "id": "TH_S000426",
+    "text": "ห้าล้านบาท",
+    "romanization": "hâa láan bàat",
+    "translation": "Five million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000829",
-    "text": "ขอไข่ห้าฟองค่ะ",
-    "romanization": "khǎaw khài hâa fɔɔng khâ",
-    "translation": "Five eggs, please.",
+    "id": "TH_S000427",
+    "text": "ห้าพันบาทค่ะ",
+    "romanization": "hâa phan bàat khâ",
+    "translation": "Five thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000830",
-    "text": "เขามีห้าใบครับ",
-    "romanization": "khǎo mii hâa bai khráp",
-    "translation": "He has five leaves.",
+    "id": "TH_S000490",
+    "text": "ห้าหรือหก",
+    "romanization": "hâa rǔe hòk",
+    "translation": "Five or six.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000831",
-    "text": "เด็กห้าคนอยู่ที่บ้าน",
-    "romanization": "dèk hâa khon yùu thîi bâan",
-    "translation": "Five children are at home.",
+    "id": "TH_S000491",
+    "text": "ห้าร้อยบาท",
+    "romanization": "hâa rɔ́ɔi bàat",
+    "translation": "Five hundred baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000832",
-    "text": "ฉันอยากได้ห้าชิ้นค่ะ",
-    "romanization": "chǎn yàak dâai hâa chín khâ",
-    "translation": "I want five pieces.",
+    "id": "TH_S000492",
+    "text": "ห้าหมื่นบาทครับ",
+    "romanization": "hâa mèuun bàat khráp",
+    "translation": "Fifty thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -41309,46 +41661,46 @@
   "mnemonic_concept": "Six enormous hawks swoop around six people who are desperately trying to count them.",
   "sentences": [
    {
-    "id": "TH_S000849",
-    "text": "ฉันมีหกบาทค่ะ",
-    "romanization": "chǎn mii hòk bàat khâ",
-    "translation": "I have six baht.",
+    "id": "TH_S000428",
+    "text": "หกล้านบาท",
+    "romanization": "hòk láan bàat",
+    "translation": "Six million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000850",
-    "text": "ขอไข่หกฟองค่ะ",
-    "romanization": "khǎaw khài hòk fɔɔng khâ",
-    "translation": "Six eggs, please.",
+    "id": "TH_S000429",
+    "text": "หกพันบาทครับ",
+    "romanization": "hòk phan bàat khráp",
+    "translation": "Six thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000851",
-    "text": "เขามีหกใบครับ",
-    "romanization": "khǎo mii hòk bai khráp",
-    "translation": "He has six leaves.",
+    "id": "TH_S000493",
+    "text": "หกหรือเจ็ด",
+    "romanization": "hòk rǔe jèt",
+    "translation": "Six or seven.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000852",
-    "text": "เด็กหกคนอยู่ที่บ้าน",
-    "romanization": "dèk hòk khon yùu thîi bâan",
-    "translation": "Six children are at home.",
+    "id": "TH_S000494",
+    "text": "หกร้อยบาท",
+    "romanization": "hòk rɔ́ɔi bàat",
+    "translation": "Six hundred baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000853",
-    "text": "ฉันอยากได้หกชิ้นค่ะ",
-    "romanization": "chǎn yàak dâai hòk chín khâ",
-    "translation": "I want six pieces.",
+    "id": "TH_S000495",
+    "text": "หกหมื่นบาทค่ะ",
+    "romanization": "hòk mèuun bàat khâ",
+    "translation": "Sixty thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -41389,7 +41741,53 @@
   "hook_visual": "a cute pet dog",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A cheerful Thai neighborhood courtyard containing exactly eight adorable pets gathered tightly around one delighted owner. Make the EIGHT pets extremely obvious and easy to count, with the pets themselves dominating the image as the sound bridge for “pet.” Natural Thai residential setting, subtle tropical plants and architecture, varied dogs and cats, absurd but coherent scale, rich painterly textures, vibrant cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Eight enormous bats swarm dramatically through a Thai night sky.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000432",
+    "text": "แปดล้านบาท",
+    "romanization": "bpàet láan bàat",
+    "translation": "Eight million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000433",
+    "text": "แปดพันบาทครับ",
+    "romanization": "bpàet phan bàat khráp",
+    "translation": "Eight thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000499",
+    "text": "แปดหรือเก้า",
+    "romanization": "bpàet rǔe gâo",
+    "translation": "Eight or nine.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000500",
+    "text": "แปดร้อยบาท",
+    "romanization": "bpàet rɔ́ɔi bàat",
+    "translation": "Eight hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000501",
+    "text": "แปดหมื่นบาทค่ะ",
+    "romanization": "bpàet mèuun bàat khâ",
+    "translation": "Eighty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019",
    "TH_L000295",
@@ -41424,7 +41822,53 @@
   "hook_visual": "a large cow",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A Thai farmyard packed with exactly nine enormous cows, clearly separated enough to count, while a farmer stands in the middle desperately counting them. Make the NINE cows the overwhelming visual focus, using the cows as the direct sound bridge for “cow.” Natural Thai countryside atmosphere, tropical vegetation, simple Thai farm structures, absurd scale, rich fur and environmental textures, dramatic cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Nine people saying 'ow'. The 'g' part comes from there being no gow sound. Grrr.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000434",
+    "text": "เก้าล้านบาท",
+    "romanization": "gâo láan bàat",
+    "translation": "Nine million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000435",
+    "text": "เก้าพันบาทค่ะ",
+    "romanization": "gâo phan bàat khâ",
+    "translation": "Nine thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000502",
+    "text": "เก้าหรือสิบ",
+    "romanization": "gâo rǔe sìp",
+    "translation": "Nine or ten.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000503",
+    "text": "เก้าร้อยบาท",
+    "romanization": "gâo rɔ́ɔi bàat",
+    "translation": "Nine hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000504",
+    "text": "เก้าหมื่นบาทครับ",
+    "romanization": "gâo mèuun bàat khráp",
+    "translation": "Ninety thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019",
    "TH_L000295",
@@ -41461,12 +41905,48 @@
   "mnemonic_concept": "Ten people simultaneously take enormous sips from ten giant drinks.",
   "sentences": [
    {
-    "id": "TH_S000884",
-    "text": "เด็กมีเงินสิบบาท",
-    "romanization": "dèk mii ngern sìp bàat",
-    "translation": "The child has ten baht.",
+    "id": "TH_S000436",
+    "text": "สิบล้านบาท",
+    "romanization": "sìp láan bàat",
+    "translation": "Ten million baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000437",
+    "text": "สิบพันบาทครับ",
+    "romanization": "sìp phan bàat khráp",
+    "translation": "Ten thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000505",
+    "text": "สิบหรือสิบเอ็ด",
+    "romanization": "sìp rǔe sìp-èt",
+    "translation": "Ten or eleven.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000506",
+    "text": "สิบร้อยบาท",
+    "romanization": "sìp rɔ́ɔi bàat",
+    "translation": "One thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000507",
+    "text": "สิบหมื่นบาทค่ะ",
+    "romanization": "sìp mèuun bàat khâ",
+    "translation": "One hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -41504,7 +41984,53 @@
   "hook_visual": "someone offering a drink and saying “sip it”",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai gathering with exactly eleven people enthusiastically handing around eleven enormous drinks, clearly urging one another to take a sip. Make ELEVEN and the obvious drinking action the visual focus, turning “sip it” into the sound bridge. Natural Thai setting with subtle local clothing and architecture, absurd oversized drinks, expressive gestures, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Eleven people urgently tell each other to “sip it” while eleven giant drinks are being passed around.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000438",
+    "text": "สิบเอ็ดล้านบาท",
+    "romanization": "sìp-èt láan bàat",
+    "translation": "Eleven million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000439",
+    "text": "สิบเอ็ดพันบาทค่ะ",
+    "romanization": "sìp-èt phan bàat khâ",
+    "translation": "Eleven thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000508",
+    "text": "สิบเอ็ดหรือสิบสอง",
+    "romanization": "sìp-èt rǔe sìp-sɔ̌ɔng",
+    "translation": "Eleven or twelve.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000509",
+    "text": "สิบเอ็ดร้อยบาท",
+    "romanization": "sìp-èt rɔ́ɔi bàat",
+    "translation": "Eleven hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000510",
+    "text": "สิบเอ็ดหมื่นบาทครับ",
+    "romanization": "sìp-èt mèuun bàat khráp",
+    "translation": "One hundred ten thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41535,7 +42061,53 @@
   "hook_visual": "someone sipping while singing a song",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A joyful Thai outdoor gathering with exactly twelve people simultaneously taking exaggerated sips from twelve giant cups while singing together in a dramatic musical performance. Make TWELVE people and the combined sip-and-song action unmistakable, with sipping creating the sound bridge. Natural Thai festival atmosphere without signs or writing, subtle Thai clothing and scenery, absurd scale, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Twelve people take twelve giant sips while singing one huge song together.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000440",
+    "text": "สิบสองล้านบาท",
+    "romanization": "sìp-sɔ̌ɔng láan bàat",
+    "translation": "Twelve million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000441",
+    "text": "สิบสองพันบาทครับ",
+    "romanization": "sìp-sɔ̌ɔng phan bàat khráp",
+    "translation": "Twelve thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000511",
+    "text": "สิบสองหรือสิบสาม",
+    "romanization": "sìp-sɔ̌ɔng rǔe sìp-sǎam",
+    "translation": "Twelve or thirteen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000512",
+    "text": "สิบสองร้อยบาท",
+    "romanization": "sìp-sɔ̌ɔng rɔ́ɔi bàat",
+    "translation": "Twelve hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000513",
+    "text": "สิบสองหมื่นบาทค่ะ",
+    "romanization": "sìp-sɔ̌ɔng mèuun bàat khâ",
+    "translation": "One hundred twenty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41566,7 +42138,53 @@
   "hook_visual": "a man named Sam taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai street gathering featuring exactly thirteen visually distinct but similar-looking men representing “Sam,” all simultaneously taking exaggerated sips from giant cups. Make THIRTEEN Sams and their sipping action the dominant visual focus, using the character name Sam as the sound bridge. Natural Thai street atmosphere, subtle local clothing and architecture, absurd scale, rich textures, cinematic lighting, clean silhouettes. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Thirteen people named Sam all take a sip together in an absurd crowd of identical Sams.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000442",
+    "text": "สิบสามล้านบาท",
+    "romanization": "sìp-sǎam láan bàat",
+    "translation": "Thirteen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000443",
+    "text": "สิบสามพันบาทค่ะ",
+    "romanization": "sìp-sǎam phan bàat khâ",
+    "translation": "Thirteen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000514",
+    "text": "สิบสามหรือสิบสี่",
+    "romanization": "sìp-sǎam rǔe sìp-sìi",
+    "translation": "Thirteen or fourteen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000515",
+    "text": "สิบสามร้อยบาท",
+    "romanization": "sìp-sǎam rɔ́ɔi bàat",
+    "translation": "Thirteen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000516",
+    "text": "สิบสามหมื่นบาทครับ",
+    "romanization": "sìp-sǎam mèuun bàat khráp",
+    "translation": "One hundred thirty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41597,7 +42215,53 @@
   "hook_visual": "someone taking a sip and pointing to something",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai market scene with exactly fourteen people, each taking a sip from a drink while dramatically pointing toward the same spectacular sight. Make FOURTEEN people, sipping, and seeing the sight the dominant visual elements, combining “sip” and “see” into one memorable scene. Natural Thai market atmosphere, subtle local clothing and architecture, absurd but coherent scale, rich textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Fourteen people take a sip and point excitedly at what they see.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000444",
+    "text": "สิบสี่ล้านบาท",
+    "romanization": "sìp-sìi láan bàat",
+    "translation": "Fourteen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000445",
+    "text": "สิบสี่พันบาทครับ",
+    "romanization": "sìp-sìi phan bàat khráp",
+    "translation": "Fourteen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000517",
+    "text": "สิบสี่หรือสิบห้า",
+    "romanization": "sìp-sìi rǔe sìp-hâa",
+    "translation": "Fourteen or fifteen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000518",
+    "text": "สิบสี่ร้อยบาท",
+    "romanization": "sìp-sìi rɔ́ɔi bàat",
+    "translation": "Fourteen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000519",
+    "text": "สิบสี่หมื่นบาทค่ะ",
+    "romanization": "sìp-sìi mèuun bàat khâ",
+    "translation": "One hundred forty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41628,7 +42292,53 @@
   "hook_visual": "someone taking a sip and laughing",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A hilarious Thai gathering with exactly fifteen people taking exaggerated sips from giant cups and immediately bursting into dramatic laughter. Make FIFTEEN people, drinking, and laughing the unmistakable visual focus, using “sip, ha!” as the sound bridge. Natural Thai setting, subtle local clothing and architecture, absurd scale, rich painterly textures, expressive poses, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Fifteen people take huge sips and burst into laughter with exaggerated “ha!” reactions.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000446",
+    "text": "สิบห้าล้านบาท",
+    "romanization": "sìp-hâa láan bàat",
+    "translation": "Fifteen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000447",
+    "text": "สิบห้าพันบาทค่ะ",
+    "romanization": "sìp-hâa phan bàat khâ",
+    "translation": "Fifteen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000520",
+    "text": "สิบห้าหรือสิบหก",
+    "romanization": "sìp-hâa rǔe sìp-hòk",
+    "translation": "Fifteen or sixteen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000521",
+    "text": "สิบห้าร้อยบาท",
+    "romanization": "sìp-hâa rɔ́ɔi bàat",
+    "translation": "Fifteen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000522",
+    "text": "สิบห้าหมื่นบาทครับ",
+    "romanization": "sìp-hâa mèuun bàat khráp",
+    "translation": "One hundred fifty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41659,7 +42369,53 @@
   "hook_visual": "a hawk taking a sip from a cup",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai countryside scene with exactly sixteen enormous hawks swooping down and taking sips from sixteen giant cups arranged below them. Make SIXTEEN hawks and the absurd sipping action the dominant focus, combining hawk and sip into one strong sound bridge. Natural Thai landscape, subtle local details, dramatic wings, oversized cups, rich feathers and textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Sixteen enormous hawks swoop down to take sips from sixteen giant cups.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000448",
+    "text": "สิบหกล้านบาท",
+    "romanization": "sìp-hòk láan bàat",
+    "translation": "Sixteen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000449",
+    "text": "สิบหกพันบาทครับ",
+    "romanization": "sìp-hòk phan bàat khráp",
+    "translation": "Sixteen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000523",
+    "text": "สิบหกหรือสิบเจ็ด",
+    "romanization": "sìp-hòk rǔe sìp-jèt",
+    "translation": "Sixteen or seventeen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000524",
+    "text": "สิบหกร้อยบาท",
+    "romanization": "sìp-hòk rɔ́ɔi bàat",
+    "translation": "Sixteen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000525",
+    "text": "สิบหกหมื่นบาทค่ะ",
+    "romanization": "sìp-hòk mèuun bàat khâ",
+    "translation": "One hundred sixty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41690,7 +42446,53 @@
   "hook_visual": "a jet taking a sip from a giant cup",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai landscape featuring exactly seventeen miniature passenger jets swooping dramatically toward seventeen enormous cups and somehow taking giant sips. Make SEVENTEEN jets and the bizarre sipping action unmistakable, combining “jet” and “sip” as the sound bridge. Natural tropical Thai environment below, absurd scale, dramatic motion, rich painterly textures, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Seventeen tiny jets swoop down and take absurd sips from giant cups.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000450",
+    "text": "สิบเจ็ดล้านบาท",
+    "romanization": "sìp-jèt láan bàat",
+    "translation": "Seventeen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000451",
+    "text": "สิบเจ็ดพันบาทค่ะ",
+    "romanization": "sìp-jèt phan bàat khâ",
+    "translation": "Seventeen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000526",
+    "text": "สิบเจ็ดหรือสิบแปด",
+    "romanization": "sìp-jèt rǔe sìp-bpàet",
+    "translation": "Seventeen or eighteen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000527",
+    "text": "สิบเจ็ดร้อยบาท",
+    "romanization": "sìp-jèt rɔ́ɔi bàat",
+    "translation": "Seventeen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000528",
+    "text": "สิบเจ็ดหมื่นบาทครับ",
+    "romanization": "sìp-jèt mèuun bàat khráp",
+    "translation": "One hundred seventy thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41721,7 +42523,53 @@
   "hook_visual": "someone giving a pet a drink",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A cheerful Thai neighborhood courtyard with exactly eighteen adorable pets drinking from eighteen enormous bowls. Make EIGHTEEN pets and their drinking action the unmistakable visual focus, combining “pet” and “sip” into one memorable sound bridge. Natural Thai residential setting, tropical plants and subtle local architecture, absurd oversized bowls, rich fur and painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Eighteen adorable pets all drink from giant bowls while their owners cheer.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000452",
+    "text": "สิบแปดล้านบาท",
+    "romanization": "sìp-bpàet láan bàat",
+    "translation": "Eighteen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000453",
+    "text": "สิบแปดพันบาทครับ",
+    "romanization": "sìp-bpàet phan bàat khráp",
+    "translation": "Eighteen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000529",
+    "text": "สิบแปดหรือสิบเก้า",
+    "romanization": "sìp-bpàet rǔe sìp-gâo",
+    "translation": "Eighteen or nineteen.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000530",
+    "text": "สิบแปดร้อยบาท",
+    "romanization": "sìp-bpàet rɔ́ɔi bàat",
+    "translation": "Eighteen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000531",
+    "text": "สิบแปดหมื่นบาทค่ะ",
+    "romanization": "sìp-bpàet mèuun bàat khâ",
+    "translation": "One hundred eighty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41752,7 +42600,53 @@
   "hook_visual": "a cow taking a sip from a giant cup",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai farmyard containing exactly nineteen enormous cows lined up and taking exaggerated sips from nineteen giant cups. Make NINETEEN cows and their sipping action the dominant visual focus, combining “cow” and “sip” as the sound bridge. Natural Thai countryside atmosphere, tropical vegetation and simple farm structures, absurd scale, rich fur and environmental textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Nineteen enormous cows line up to take giant sips from a row of huge cups.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000454",
+    "text": "สิบเก้าล้านบาท",
+    "romanization": "sìp-gâo láan bàat",
+    "translation": "Nineteen million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000455",
+    "text": "สิบเก้าพันบาทค่ะ",
+    "romanization": "sìp-gâo phan bàat khâ",
+    "translation": "Nineteen thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000532",
+    "text": "สิบเก้าหรือยี่สิบ",
+    "romanization": "sìp-gâo rǔe yîi-sìp",
+    "translation": "Nineteen or twenty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000533",
+    "text": "สิบเก้าร้อยบาท",
+    "romanization": "sìp-gâo rɔ́ɔi bàat",
+    "translation": "Nineteen hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000534",
+    "text": "สิบเก้าหมื่นบาทครับ",
+    "romanization": "sìp-gâo mèuun bàat khráp",
+    "translation": "One hundred ninety thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41783,7 +42677,53 @@
   "hook_visual": "someone agreeing and taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A lively Thai gathering with exactly twenty people enthusiastically nodding agreement and taking enormous sips from twenty giant cups at the same time. Make TWENTY people and the combined “yea” agreement plus sipping action the unmistakable focus. Natural Thai atmosphere, subtle local clothing and architecture, absurd scale, rich painterly textures, cinematic lighting, clean central composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Twenty people enthusiastically agree “yea” and take twenty enormous sips together.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000456",
+    "text": "ยี่สิบล้านบาท",
+    "romanization": "yîi-sìp láan bàat",
+    "translation": "Twenty million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000457",
+    "text": "ยี่สิบพันบาทครับ",
+    "romanization": "yîi-sìp phan bàat khráp",
+    "translation": "Twenty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000535",
+    "text": "ยี่สิบหรือสามสิบ",
+    "romanization": "yîi-sìp rǔe sǎam-sìp",
+    "translation": "Twenty or thirty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000536",
+    "text": "ยี่สิบร้อยบาท",
+    "romanization": "yîi-sìp rɔ́ɔi bàat",
+    "translation": "Two thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000537",
+    "text": "ยี่สิบหมื่นบาทค่ะ",
+    "romanization": "yîi-sìp mèuun bàat khâ",
+    "translation": "Two hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41814,7 +42754,53 @@
   "hook_visual": "someone agreeing and telling another person to sip a drink",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A playful Thai gathering with exactly twenty-one people passing around twenty-one enormous drinks, enthusiastically encouraging each other to drink. Make TWENTY-ONE people and the obvious “sip it” action the dominant visual focus, with enthusiastic agreement creating the “yea” sound bridge. Natural Thai setting, subtle local clothing and architecture, absurd oversized drinks, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Twenty-one people enthusiastically tell one another “yea, sip it!” while passing around twenty-one giant drinks.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000458",
+    "text": "ยี่สิบเอ็ดล้านบาท",
+    "romanization": "yîi-sìp-èt láan bàat",
+    "translation": "Twenty-one million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000459",
+    "text": "ยี่สิบเอ็ดพันบาทค่ะ",
+    "romanization": "yîi-sìp-èt phan bàat khâ",
+    "translation": "Twenty-one thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000538",
+    "text": "ยี่สิบเอ็ดหรือสามสิบ",
+    "romanization": "yîi-sìp-èt rǔe sǎam-sìp",
+    "translation": "Twenty-one or thirty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000539",
+    "text": "ยี่สิบเอ็ดร้อยบาท",
+    "romanization": "yîi-sìp-èt rɔ́ɔi bàat",
+    "translation": "Twenty-one hundred baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000540",
+    "text": "ยี่สิบเอ็ดหมื่นบาทครับ",
+    "romanization": "yîi-sìp-èt mèuun bàat khráp",
+    "translation": "Two hundred ten thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41845,7 +42831,53 @@
   "hook_visual": "Sam taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai outdoor gathering featuring exactly thirty men representing “Sam,” all taking enormous exaggerated sips from giant cups. Make THIRTY Sams and the synchronized sipping action the dominant visual focus, using the character Sam plus sip as the sound bridge. Natural Thai atmosphere, subtle Thai clothing and scenery, absurd scale, rich textures, cinematic lighting, clear silhouettes. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Thirty men named Sam take giant sips together in an absurd crowd.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000460",
+    "text": "สามสิบล้านบาท",
+    "romanization": "sǎam-sìp láan bàat",
+    "translation": "Thirty million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000461",
+    "text": "สามสิบพันบาทครับ",
+    "romanization": "sǎam-sìp phan bàat khráp",
+    "translation": "Thirty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000541",
+    "text": "สามสิบหรือสี่สิบ",
+    "romanization": "sǎam-sìp rǔe sìi-sìp",
+    "translation": "Thirty or forty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000542",
+    "text": "สามสิบร้อยบาท",
+    "romanization": "sǎam-sìp rɔ́ɔi bàat",
+    "translation": "Three thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000543",
+    "text": "สามสิบหมื่นบาทค่ะ",
+    "romanization": "sǎam-sìp mèuun bàat khâ",
+    "translation": "Three hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41876,7 +42908,53 @@
   "hook_visual": "someone saying “see” while taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A spectacular Thai street scene with exactly forty people taking sips from drinks while all pointing toward one astonishing sight. Make FORTY people and the combined seeing-and-sipping action unmistakable, using “see sip” as the sound bridge. Natural Thai street atmosphere, subtle local clothing and architecture, dramatic spectacle, absurd scale, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Forty people all point at the same spectacle while taking a sip.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000462",
+    "text": "สี่สิบล้านบาท",
+    "romanization": "sìi-sìp láan bàat",
+    "translation": "Forty million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000463",
+    "text": "สี่สิบพันบาทค่ะ",
+    "romanization": "sìi-sìp phan bàat khâ",
+    "translation": "Forty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000544",
+    "text": "สี่สิบหรือห้าสิบ",
+    "romanization": "sìi-sìp rǔe hâa-sìp",
+    "translation": "Forty or fifty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000545",
+    "text": "สี่สิบร้อยบาท",
+    "romanization": "sìi-sìp rɔ́ɔi bàat",
+    "translation": "Four thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000546",
+    "text": "สี่สิบหมื่นบาทครับ",
+    "romanization": "sìi-sìp mèuun bàat khráp",
+    "translation": "Four hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41909,12 +42987,48 @@
   "mnemonic_concept": "Fifty people laugh loudly and take giant sips together.",
   "sentences": [
    {
-    "id": "TH_S000786",
-    "text": "น้องมีเงินห้าสิบบาท",
-    "romanization": "nɔ́ɔng mii ngern hâa-sìp bàat",
-    "translation": "My younger sibling has fifty baht.",
+    "id": "TH_S000464",
+    "text": "ห้าสิบล้านบาท",
+    "romanization": "hâa-sìp láan bàat",
+    "translation": "Fifty million baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000465",
+    "text": "ห้าสิบพันบาทครับ",
+    "romanization": "hâa-sìp phan bàat khráp",
+    "translation": "Fifty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000547",
+    "text": "ห้าสิบหรือหกสิบ",
+    "romanization": "hâa-sìp rǔe hòk-sìp",
+    "translation": "Fifty or sixty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000548",
+    "text": "ห้าสิบร้อยบาท",
+    "romanization": "hâa-sìp rɔ́ɔi bàat",
+    "translation": "Five thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000549",
+    "text": "ห้าสิบหมื่นบาทค่ะ",
+    "romanization": "hâa-sìp mèuun bàat khâ",
+    "translation": "Five hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -41948,7 +43062,53 @@
   "hook_visual": "a hawk taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A spectacular Thai countryside scene filled with exactly sixty enormous hawks swooping down toward giant cups and taking exaggerated sips. Make SIXTY hawks and the sipping action the dominant visual focus, combining hawk and sip into the sound bridge. Natural Thai landscape, tropical vegetation, dramatic wings and feathers, absurd scale, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Sixty enormous hawks swoop down and take giant sips from a vast field of cups.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000466",
+    "text": "หกสิบล้านบาท",
+    "romanization": "hòk-sìp láan bàat",
+    "translation": "Sixty million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000467",
+    "text": "หกสิบพันบาทค่ะ",
+    "romanization": "hòk-sìp phan bàat khâ",
+    "translation": "Sixty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000550",
+    "text": "หกสิบหรือเจ็ดสิบ",
+    "romanization": "hòk-sìp rǔe jèt-sìp",
+    "translation": "Sixty or seventy.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000551",
+    "text": "หกสิบร้อยบาท",
+    "romanization": "hòk-sìp rɔ́ɔi bàat",
+    "translation": "Six thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000552",
+    "text": "หกสิบหมื่นบาทครับ",
+    "romanization": "hòk-sìp mèuun bàat khráp",
+    "translation": "Six hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -41979,7 +43139,53 @@
   "hook_visual": "a jet taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai landscape with exactly seventy miniature passenger jets swooping dramatically toward enormous cups and somehow taking giant sips. Make SEVENTY jets and the impossible sipping action the unmistakable focus, combining “jet” and “sip” as the sound bridge. Tropical Thai environment, absurd scale, dramatic motion, rich painterly textures, cinematic lighting, clean composition. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Seventy miniature jets swoop together and take giant sips from enormous cups.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000468",
+    "text": "เจ็ดสิบล้านบาท",
+    "romanization": "jèt-sìp láan bàat",
+    "translation": "Seventy million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000469",
+    "text": "เจ็ดสิบพันบาทครับ",
+    "romanization": "jèt-sìp phan bàat khráp",
+    "translation": "Seventy thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000553",
+    "text": "เจ็ดสิบหรือแปดสิบ",
+    "romanization": "jèt-sìp rǔe bpàet-sìp",
+    "translation": "Seventy or eighty.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000554",
+    "text": "เจ็ดสิบร้อยบาท",
+    "romanization": "jèt-sìp rɔ́ɔi bàat",
+    "translation": "Seven thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000555",
+    "text": "เจ็ดสิบหมื่นบาทค่ะ",
+    "romanization": "jèt-sìp mèuun bàat khâ",
+    "translation": "Seven hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -42010,7 +43216,53 @@
   "hook_visual": "a pet taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A spectacular Thai neighborhood courtyard packed with exactly eighty adorable pets drinking from enormous bowls. Make EIGHTY pets the dominant visual focus, with the animals actively sipping as the sound bridge for “pet sip.” Natural Thai residential atmosphere, tropical plants and subtle architecture, varied dogs and cats, absurd scale, rich fur textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Eighty adorable pets crowd together drinking from enormous bowls.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000470",
+    "text": "แปดสิบล้านบาท",
+    "romanization": "bpàet-sìp láan bàat",
+    "translation": "Eighty million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000471",
+    "text": "แปดสิบพันบาทค่ะ",
+    "romanization": "bpàet-sìp phan bàat khâ",
+    "translation": "Eighty thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000556",
+    "text": "แปดสิบหรือเก้าสิบ",
+    "romanization": "bpàet-sìp rǔe gâo-sìp",
+    "translation": "Eighty or ninety.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000557",
+    "text": "แปดสิบร้อยบาท",
+    "romanization": "bpàet-sìp rɔ́ɔi bàat",
+    "translation": "Eight thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000558",
+    "text": "แปดสิบหมื่นบาทครับ",
+    "romanization": "bpàet-sìp mèuun bàat khráp",
+    "translation": "Eight hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -42041,7 +43293,53 @@
   "hook_visual": "a cow taking a sip",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A surreal Thai farm landscape containing exactly ninety enormous cows arranged in a vast but readable line, each taking a giant sip from a huge cup. Make NINETY cows and their sipping action the overwhelming visual focus, combining cow and sip as the sound bridge. Natural Thai countryside, tropical vegetation, simple farm structures, absurd scale, rich fur and environmental textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "Ninety enormous cows form a giant line to take sips from ninety huge cups.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000472",
+    "text": "เก้าสิบล้านบาท",
+    "romanization": "gâo-sìp láan bàat",
+    "translation": "Ninety million baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000473",
+    "text": "เก้าสิบพันบาทครับ",
+    "romanization": "gâo-sìp phan bàat khráp",
+    "translation": "Ninety thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000559",
+    "text": "เก้าสิบหรือร้อย",
+    "romanization": "gâo-sìp rǔe rɔ́ɔi",
+    "translation": "Ninety or one hundred.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000560",
+    "text": "เก้าสิบร้อยบาท",
+    "romanization": "gâo-sìp rɔ́ɔi bàat",
+    "translation": "Nine thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000561",
+    "text": "เก้าสิบหมื่นบาทค่ะ",
+    "romanization": "gâo-sìp mèuun bàat khâ",
+    "translation": "Nine hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -42074,46 +43372,46 @@
   "mnemonic_concept": "A character named Roy stands proudly in the middle of a spectacular scene containing exactly one hundred objects.",
   "sentences": [
    {
-    "id": "TH_S000823",
-    "text": "ฉันมีเงินหนึ่งร้อยบาทค่ะ",
-    "romanization": "chǎn mii ngern nʉ̀ng rɔ́ɔi bàat khâ",
-    "translation": "I have one hundred baht.",
+    "id": "TH_S000474",
+    "text": "ร้อยล้านบาท",
+    "romanization": "rɔ́ɔi láan bàat",
+    "translation": "One hundred million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000824",
-    "text": "เขามีเงินสองร้อยบาทครับ",
-    "romanization": "khǎo mii ngern sǎawng rɔ́ɔi bàat khráp",
-    "translation": "He has two hundred baht.",
+    "id": "TH_S000475",
+    "text": "ร้อยพันบาทครับ",
+    "romanization": "rɔ́ɔi phan bàat khráp",
+    "translation": "One hundred thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000825",
-    "text": "ขอเงินร้อยบาทค่ะ",
-    "romanization": "khǎaw ngern rɔ́ɔi bàat khâ",
-    "translation": "One hundred baht, please.",
+    "id": "TH_S000562",
+    "text": "ร้อยหรือพัน",
+    "romanization": "rɔ́ɔi rǔe phan",
+    "translation": "One hundred or one thousand.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000826",
-    "text": "หนึ่งร้อยบาทได้ไหมคะ",
-    "romanization": "nʉ̀ng rɔ́ɔi bàat dâai mái khá",
-    "translation": "Would one hundred baht be okay?",
+    "id": "TH_S000563",
+    "text": "ร้อยบาทครับ",
+    "romanization": "rɔ́ɔi bàat khráp",
+    "translation": "One hundred baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000827",
-    "text": "เขาให้เงินฉันหนึ่งร้อยบาท",
-    "romanization": "khǎo hâi ngern chǎn nʉ̀ng rɔ́ɔi bàat",
-    "translation": "He gives me one hundred baht.",
+    "id": "TH_S000564",
+    "text": "ร้อยหมื่นบาทค่ะ",
+    "romanization": "rɔ́ɔi mèuun bàat khâ",
+    "translation": "One million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -42152,46 +43450,46 @@
   "mnemonic_concept": "A gigantic electric fan blows thousands of objects through the air in a spectacular whirlwind.",
   "sentences": [
    {
-    "id": "TH_S000854",
-    "text": "ฉันมีเงินหนึ่งพันบาทค่ะ",
-    "romanization": "chǎn mii ngern nʉ̀ng phan bàat khâ",
-    "translation": "I have one thousand baht.",
+    "id": "TH_S000476",
+    "text": "พันล้านบาท",
+    "romanization": "phan láan bàat",
+    "translation": "One billion baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000855",
-    "text": "เขามีเงินสองพันบาทครับ",
-    "romanization": "khǎo mii ngern sǎawng phan bàat khráp",
-    "translation": "He has two thousand baht.",
+    "id": "TH_S000477",
+    "text": "พันบาทค่ะ",
+    "romanization": "phan bàat khâ",
+    "translation": "One thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000856",
-    "text": "ขอเงินพันบาทค่ะ",
-    "romanization": "khǎaw ngern phan bàat khâ",
-    "translation": "One thousand baht, please.",
+    "id": "TH_S000565",
+    "text": "พันหรือหมื่น",
+    "romanization": "phan rǔe mèuun",
+    "translation": "One thousand or ten thousand.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000857",
-    "text": "เงินพันบาทได้ไหมคะ",
-    "romanization": "ngern phan bàat dâai mái khá",
-    "translation": "Would one thousand baht be okay?",
+    "id": "TH_S000566",
+    "text": "พันหมื่นบาท",
+    "romanization": "phan mèuun bàat",
+    "translation": "Ten million baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000858",
-    "text": "เขาให้เงินฉันหนึ่งพันบาท",
-    "romanization": "khǎo hâi ngern chǎn nʉ̀ng phan bàat",
-    "translation": "He gives me one thousand baht.",
+    "id": "TH_S000567",
+    "text": "สามพันบาทครับ",
+    "romanization": "sǎam phan bàat khráp",
+    "translation": "Three thousand baht.",
     "difficulty": null,
     "is_target": true,
     "role": null
@@ -42230,12 +43528,48 @@
   "mnemonic_concept": "A gigantic mean-looking character glares over a vast crowd of countless people, making the scene feel like ten thousand.",
   "sentences": [
    {
-    "id": "TH_S000796",
-    "text": "แม่มีเงินหนึ่งหมื่นบาท",
-    "romanization": "mâe mii ngern nʉ̀ng mʉ̀ʉn bàat",
-    "translation": "Mum has ten thousand baht.",
+    "id": "TH_S000568",
+    "text": "หมื่นบาทครับ",
+    "romanization": "mèuun bàat khráp",
+    "translation": "Ten thousand baht.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000569",
+    "text": "หมื่นหรือแสน",
+    "romanization": "mèuun rǔe sɛ̌ɛn",
+    "translation": "Ten thousand or one hundred thousand.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000570",
+    "text": "หมื่นล้านบาท",
+    "romanization": "mèuun láan bàat",
+    "translation": "Ten billion baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000981",
+    "text": "หนึ่งหมื่นบาทหรือหนึ่งแสนบาทครับ",
+    "romanization": "nʉ̀ng mʉ̀ʉn bàat rʉ̌ʉ nʉ̀ng sǎen bàat khráp",
+    "translation": "Ten thousand or one hundred thousand baht?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000982",
+    "text": "หนึ่งหมื่นบาทก็ได้ครับ",
+    "romanization": "nʉ̀ng mʉ̀ʉn bàat gâw dâai khráp",
+    "translation": "Ten thousand baht is fine.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42269,7 +43603,53 @@
   "hook_visual": "a completely sane person calmly sitting in a room",
   "mnemonic": "Premium painterly fantasy game-card illustration, square composition, no border, visible brushwork, cinematic lighting, vibrant colors, strong silhouettes, clean central composition. A completely calm and sane-looking character stands serenely in the foreground while an immense sea of people stretches impossibly far into the distance, communicating ONE HUNDRED THOUSAND. Make the calm sane character the sound bridge for “sane,” while the enormous crowd carries the meaning. Natural Thai landscape and subtle Thai public gathering details, epic scale, atmospheric depth, rich painterly textures, cinematic lighting. No text, letters, numbers, writing, labels, logos, watermarks, phonetics, or UI.",
   "mnemonic_concept": "A perfectly sane character calmly stands beside an immense sea of countless people representing one hundred thousand.",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000571",
+    "text": "แสนบาทค่ะ",
+    "romanization": "sɛ̌ɛn bàat khâ",
+    "translation": "One hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000572",
+    "text": "สองแสนบาทครับ",
+    "romanization": "sɔ̌ɔng sɛ̌ɛn bàat khráp",
+    "translation": "Two hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000573",
+    "text": "แสนหรือหมื่น",
+    "romanization": "sɛ̌ɛn rǔe mèuun",
+    "translation": "One hundred thousand or ten thousand.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000574",
+    "text": "แสนล้านบาท",
+    "romanization": "sɛ̌ɛn láan bàat",
+    "translation": "One hundred trillion baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000575",
+    "text": "ห้าแสนบาทค่ะ",
+    "romanization": "hâa sɛ̌ɛn bàat khâ",
+    "translation": "Five hundred thousand baht.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000019"
   ],
@@ -186513,37 +187893,37 @@
     "role": null
    },
    {
-    "id": "TH_S000784",
-    "text": "น้องอยากได้กาแฟไหมคะ",
-    "romanization": "nɔ́ɔng yàak dâai gaa-fɛɛ mái khá",
-    "translation": "Does my younger sibling want coffee?",
+    "id": "TH_S000584",
+    "text": "เขาคือใครคะ",
+    "romanization": "khǎo khue khrai khá",
+    "translation": "Who is he?",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000826",
-    "text": "หนึ่งร้อยบาทได้ไหมคะ",
-    "romanization": "nʉ̀ng rɔ́ɔi bàat dâai mái khá",
-    "translation": "Would one hundred baht be okay?",
+    "id": "TH_S000586",
+    "text": "เราชื่ออะไรคะ",
+    "romanization": "rao chûue à-rai khá",
+    "translation": "What is our name?",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000836",
-    "text": "ชื่อฉันคืออะไรคะ",
-    "romanization": "chûue chǎn khʉʉ à-rai khá",
-    "translation": "What is my name?",
+    "id": "TH_S000592",
+    "text": "คนนี้ชื่ออะไรคะ",
+    "romanization": "khon níi chûue à-rai khá",
+    "translation": "What is this person's name?",
     "difficulty": null,
     "is_target": false,
     "role": null
    },
    {
-    "id": "TH_S000838",
-    "text": "ชื่อคุณคืออะไรคะ",
-    "romanization": "chûue khun khʉʉ à-rai khá",
-    "translation": "What is your name?",
+    "id": "TH_S000594",
+    "text": "เด็กคนนั้นชื่ออะไรคะ",
+    "romanization": "dèk khon nán chûue à-rai khá",
+    "translation": "What is that child's name?",
     "difficulty": null,
     "is_target": false,
     "role": null
