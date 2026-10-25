@@ -39656,30 +39656,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000017",
-    "text": "ฉันซื้อส้มมาจากตลาด",
-    "romanization": "chǎn sʉ́ʉ sôm maa jàak dtà-làat",
-    "translation": "I bought oranges from the market.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001678",
+    "text": "ส้มกี่บาทครับ",
+    "romanization": "sôm gìi bàat khráp",
+    "translation": "How much are the oranges?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000048",
-    "text": "ฉันอยากกินส้มตำ",
-    "romanization": "chǎn yàak gin sôm-dtam",
-    "translation": "I want to eat som tam.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001679",
+    "text": "ส้มกับมะม่วงครับ",
+    "romanization": "sôm gàp má-mûang khráp",
+    "translation": "Oranges and mangoes, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000049",
-    "text": "ส้มตำนี้เผ็ดมากไหม",
-    "romanization": "sôm-dtam níi phèt mâak mái",
-    "translation": "Is this som tam very spicy?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001680",
+    "text": "ส้มอีกครับ",
+    "romanization": "sôm ìik khráp",
+    "translation": "More oranges, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001691",
+    "text": "ส้มนี้ครับ",
+    "romanization": "sôm níi khráp",
+    "translation": "This orange, please.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001696",
+    "text": "ส้มกับสับปะรดครับ",
+    "romanization": "sôm gàp sàp-pà-rót khráp",
+    "translation": "Oranges and pineapple, please.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -39772,30 +39790,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000044",
-    "text": "ข้าวจานนี้หอมมาก",
-    "romanization": "khâao jaan níi hɔ̌ɔm mâak",
-    "translation": "The rice on this plate smells very fragrant.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001662",
+    "text": "กระเทียมหอมครับ",
+    "romanization": "grà-tiam hɔ̌ɔm khráp",
+    "translation": "The garlic is fragrant.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000057",
-    "text": "ปลาหมึกย่างหอมมาก",
-    "romanization": "bplaa-mʉ̀k yâang hɔ̌ɔm mâak",
-    "translation": "The grilled squid smells very good.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001663",
+    "text": "มะม่วงหอมครับ",
+    "romanization": "má-mûang hɔ̌ɔm khráp",
+    "translation": "The mango smells fragrant.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000102",
-    "text": "หมูปิ้งร้านนี้หอมมาก",
-    "romanization": "mǔu-bpîng ráan níi hɔ̌ɔm mâak",
-    "translation": "The grilled pork at this shop smells amazing.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001664",
+    "text": "ส้มนี้หอมครับ",
+    "romanization": "sôm níi hɔ̌ɔm khráp",
+    "translation": "This orange smells fragrant.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001665",
+    "text": "กล้วยหอมครับ",
+    "romanization": "glûay hɔ̌ɔm khráp",
+    "translation": "The banana is fragrant.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001689",
+    "text": "หอมครับ",
+    "romanization": "hɔ̌ɔm khráp",
+    "translation": "It smells fragrant.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -40576,21 +40612,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000098",
-    "text": "ฉันชอบกลิ่นกระเทียม",
-    "romanization": "chǎn chɔ̂ɔp glìn grà-thiam",
-    "translation": "I like the smell of garlic.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001666",
+    "text": "กระเทียมกี่บาทครับ",
+    "romanization": "grà-tiam gìi bàat khráp",
+    "translation": "How much is the garlic?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000099",
-    "text": "ใส่กระเทียมเพิ่มอีกหน่อย",
-    "romanization": "sài grà-thiam phə̂əm ìik nɔ̀i",
-    "translation": "Add a little more garlic.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001667",
+    "text": "กระเทียมกับมะเขือเทศครับ",
+    "romanization": "grà-tiam gàp má-kʉ̌a-têet khráp",
+    "translation": "Garlic and tomatoes, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001668",
+    "text": "กระเทียมอีกครับ",
+    "romanization": "grà-tiam ìik khráp",
+    "translation": "More garlic, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001669",
+    "text": "กระเทียมนี้ครับ",
+    "romanization": "grà-tiam níi khráp",
+    "translation": "This garlic, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001697",
+    "text": "กระเทียมหรือมะเขือเทศครับ",
+    "romanization": "grà-tiam rʉ̌ʉ má-kʉ̌a-têet khráp",
+    "translation": "Garlic or tomato, please.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -40632,12 +40695,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000016",
-    "text": "กล้วยลูกนี้หวานมาก",
-    "romanization": "glûai lûuk níi wǎan mâak",
-    "translation": "This banana is very sweet.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001670",
+    "text": "กล้วยกี่บาทครับ",
+    "romanization": "glûay gìi bàat khráp",
+    "translation": "How much are the bananas?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001671",
+    "text": "กล้วยกับแอปเปิ้ลครับ",
+    "romanization": "glûay gàp ɛ́p-bpə̂n khráp",
+    "translation": "Bananas and apples, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001672",
+    "text": "กล้วยอีกครับ",
+    "romanization": "glûay ìik khráp",
+    "translation": "More bananas, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001673",
+    "text": "กล้วยนี้หอมครับ",
+    "romanization": "glûay níi hɔ̌ɔm khráp",
+    "translation": "These bananas smell fragrant.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001690",
+    "text": "กล้วยนี้ครับ",
+    "romanization": "glûay níi khráp",
+    "translation": "These bananas, please.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -41113,12 +41212,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000020",
-    "text": "ฉันชอบกินสับปะรด",
-    "romanization": "chǎn chɔ̂ɔp gin sàp-bpà-rót",
-    "translation": "I like eating pineapple.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001685",
+    "text": "สับปะรดกี่บาทครับ",
+    "romanization": "sàp-pà-rót gìi bàat khráp",
+    "translation": "How much is the pineapple?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001686",
+    "text": "สับปะรดกับส้มครับ",
+    "romanization": "sàp-pà-rót gàp sôm khráp",
+    "translation": "Pineapple and oranges, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001687",
+    "text": "สับปะรดอีกครับ",
+    "romanization": "sàp-pà-rót ìik khráp",
+    "translation": "More pineapple, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001688",
+    "text": "สับปะรดนี้หอมครับ",
+    "romanization": "sàp-pà-rót níi hɔ̌ɔm khráp",
+    "translation": "This pineapple smells fragrant.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001693",
+    "text": "สับปะรดนี้ครับ",
+    "romanization": "sàp-pà-rót níi khráp",
+    "translation": "This pineapple, please.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42421,12 +42556,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000018",
-    "text": "มะม่วงลูกนี้อร่อยมาก",
-    "romanization": "má-mûang lûuk níi à-rɔ̀i mâak",
-    "translation": "This mango is very delicious.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001681",
+    "text": "มะม่วงกี่บาทครับ",
+    "romanization": "má-mûang gìi bàat khráp",
+    "translation": "How much are the mangoes?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001682",
+    "text": "มะม่วงกับสับปะรดครับ",
+    "romanization": "má-mûang gàp sàp-pà-rót khráp",
+    "translation": "Mangoes and pineapples, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001683",
+    "text": "มะม่วงอีกครับ",
+    "romanization": "má-mûang ìik khráp",
+    "translation": "More mangoes, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001684",
+    "text": "มะม่วงนี้หอมครับ",
+    "romanization": "má-mûang níi hɔ̌ɔm khráp",
+    "translation": "This mango smells fragrant.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001692",
+    "text": "มะม่วงนี้ครับ",
+    "romanization": "má-mûang níi khráp",
+    "translation": "This mango, please.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42464,12 +42635,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000024",
-    "text": "มะเขือเทศลูกนี้แดงมาก",
-    "romanization": "má-khʉ̌ʉa-thêet lûuk níi daeng mâak",
-    "translation": "This tomato is very red.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001658",
+    "text": "มะเขือเทศนี้ครับ",
+    "romanization": "má-kʉ̌a-têet níi khráp",
+    "translation": "This tomato, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001659",
+    "text": "มะเขือเทศกับส้มครับ",
+    "romanization": "má-kʉ̌a-têet gàp sôm khráp",
+    "translation": "Tomatoes and oranges, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001660",
+    "text": "มะเขือเทศกี่บาทครับ",
+    "romanization": "má-kʉ̌a-têet gìi bàat khráp",
+    "translation": "How much are the tomatoes?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001661",
+    "text": "มะเขือเทศอีกครับ",
+    "romanization": "má-kʉ̌a-têet ìik khráp",
+    "translation": "More tomatoes, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001694",
+    "text": "มะเขือเทศหรือส้มครับ",
+    "romanization": "má-kʉ̌a-têet rʉ̌ʉ sôm khráp",
+    "translation": "Tomatoes or oranges, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -44585,12 +44792,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000021",
-    "text": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
-    "romanization": "wan-níi chǎn sʉ́ʉ áep-bpə̂n sɔ̌ɔng lûuk",
-    "translation": "Today I bought two apples.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001674",
+    "text": "แอปเปิ้ลกี่บาทครับ",
+    "romanization": "ɛ́p-bpə̂n gìi bàat khráp",
+    "translation": "How much are the apples?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001675",
+    "text": "แอปเปิ้ลกับกล้วยครับ",
+    "romanization": "ɛ́p-bpə̂n gàp glûay khráp",
+    "translation": "Apples and bananas, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001676",
+    "text": "แอปเปิ้ลอีกครับ",
+    "romanization": "ɛ́p-bpə̂n ìik khráp",
+    "translation": "More apples, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001677",
+    "text": "แอปเปิ้ลนี้ครับ",
+    "romanization": "ɛ́p-bpə̂n níi khráp",
+    "translation": "This apple, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001695",
+    "text": "แอปเปิ้ลหรือกล้วยครับ",
+    "romanization": "ɛ́p-bpə̂n rʉ̌ʉ glûay khráp",
+    "translation": "Apples or bananas, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
