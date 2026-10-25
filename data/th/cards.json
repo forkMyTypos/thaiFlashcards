@@ -1760,6 +1760,33 @@
     "difficulty": "intermediate",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000989",
+    "text": "จะทำหรือครับ",
+    "romanization": "jà tham rʉ̌ʉ khráp",
+    "translation": "Are you going to do it?\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000999",
+    "text": "จะเห็นได้ครับ",
+    "romanization": "jà hěn dâai khráp",
+    "translation": "You'll be able to see it.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001003",
+    "text": "จะพูดหรือครับ",
+    "romanization": "jà phûut rʉ̌ʉ khráp",
+    "translation": "Are you going to speak?\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -2128,7 +2155,53 @@
   "hook_visual": "an unidentified metallic object thing",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant, mysterious glowing metallic thing smashing through a massive checkered finish line banner on a track. Painterly digital illustration, rich textures, dramatic dynamic motion lighting, vibrant metallic reflections, clear physical action, simple uncluttered background.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001082",
+    "text": "ถึงแล้วครับ",
+    "romanization": "thǔeng láew khráp",
+    "translation": "I've arrived.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001083",
+    "text": "จะถึงแล้วครับ",
+    "romanization": "jà thǔeng láew khráp",
+    "translation": "I'll be there soon.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001084",
+    "text": "ถึงก่อนครับ",
+    "romanization": "thǔeng gɔ̀ɔn khráp",
+    "translation": "Arrive first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001085",
+    "text": "ถึงหรือยังครับ",
+    "romanization": "thǔeng rʉ̌ʉ yang khráp",
+    "translation": "Have you arrived yet?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001086",
+    "text": "ถึงโต๊ะแล้วครับ",
+    "romanization": "thǔeng dtó láew khráp",
+    "translation": "I've reached the table.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000459"
@@ -2698,6 +2771,15 @@
     "difficulty": null,
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000995",
+    "text": "ช่วยดูด้วยครับ",
+    "romanization": "chûay duu dûay khráp",
+    "translation": "Please help look too.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -3159,6 +3241,24 @@
     "difficulty": "intermediate",
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S000997",
+    "text": "เห็นหรือยังครับ",
+    "romanization": "hěn rʉ̌ʉ yang khráp",
+    "translation": "Have you seen it yet?\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001085",
+    "text": "ถึงหรือยังครับ",
+    "romanization": "thǔeng rʉ̌ʉ yang khráp",
+    "translation": "Have you arrived yet?\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -3315,39 +3415,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000088",
-    "text": "วันนี้เราทำอาหารที่บ้าน",
-    "romanization": "wan-níi rao tham aa-hǎan thîi bâan",
-    "translation": "Today we are cooking at home.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000986",
+    "text": "ทำอะไรครับ",
+    "romanization": "tham à-rai khráp",
+    "translation": "What are you doing?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000089",
-    "text": "แม่กำลังทำกับข้าว",
-    "romanization": "mâae gam-lang tham gàp-khâao",
-    "translation": "Mom is cooking food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000987",
+    "text": "ทำได้แล้วครับ",
+    "romanization": "tham dâai láew khráp",
+    "translation": "I can do it now.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000090",
-    "text": "ฉันช่วยแม่ทำอาหาร",
-    "romanization": "chǎn chûai mâae tham aa-hǎan",
-    "translation": "I help Mom cook.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S000988",
+    "text": "ต้องทำก่อนครับ",
+    "romanization": "dtɔ̂ng tham gɔ̀ɔn khráp",
+    "translation": "I have to do it first.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000091",
-    "text": "ต้องล้างผักก่อนทำอาหาร",
-    "romanization": "dtɔ̂ng láang phàk gɔ̀ɔn tham aa-hǎan",
-    "translation": "You have to wash the vegetables before cooking.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S000989",
+    "text": "จะทำหรือครับ",
+    "romanization": "jà tham rʉ̌ʉ khráp",
+    "translation": "Are you going to do it?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000990",
+    "text": "ทำที่โต๊ะครับ",
+    "romanization": "tham thîi dtó khráp",
+    "translation": "I do it at the table.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -4296,12 +4405,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000042",
-    "text": "ฉันใช้ตะเกียบกินก๋วยเตี๋ยว",
-    "romanization": "chǎn chái dtà-gìiap gin gǔai-dtǐao",
-    "translation": "I use chopsticks to eat noodles.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001038",
+    "text": "ใช้อะไรครับ",
+    "romanization": "chái à-rai khráp",
+    "translation": "What are you using?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001039",
+    "text": "ใช้ได้ครับ",
+    "romanization": "chái dâai khráp",
+    "translation": "You can use it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001040",
+    "text": "ใช้ก่อนครับ",
+    "romanization": "chái gɔ̀ɔn khráp",
+    "translation": "Use it first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001041",
+    "text": "ใช้กับโต๊ะได้ครับ",
+    "romanization": "chái gàp dtó dâai khráp",
+    "translation": "You can use it with the table.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001042",
+    "text": "ต้องใช้อีกครับ",
+    "romanization": "dtɔ̂ng chái ìik khráp",
+    "translation": "I need to use it again.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -4426,7 +4571,53 @@
   "hook_visual": "small robin perched on a branch",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A small red robin bird using its beak to physically pull open a giant glowing metallic vault door, revealing bright golden light within. Magical atmosphere, dramatic lighting contrast, rich feather textures.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001043",
+    "text": "เปิดอะไรครับ",
+    "romanization": "bpə̀ət à-rai khráp",
+    "translation": "What are you opening?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001044",
+    "text": "เปิดได้ครับ",
+    "romanization": "bpə̀ət dâai khráp",
+    "translation": "You can open it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001045",
+    "text": "เปิดแล้วครับ",
+    "romanization": "bpə̀ət láew khráp",
+    "translation": "It's open now.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001046",
+    "text": "เปิดก่อนครับ",
+    "romanization": "bpə̀ət gɔ̀ɔn khráp",
+    "translation": "Open it first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001047",
+    "text": "ช่วยเปิดด้วยครับ",
+    "romanization": "chûay bpə̀ət dûay khráp",
+    "translation": "Please open it too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006"
   ],
@@ -4457,7 +4648,53 @@
   "hook_visual": "black and white dairy cow",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant black-and-white dairy cow squeezing its enormous body sideways into a tiny arched stone doorway, wedging firmly in the entrance. Humorous absurd scale, high contrast rim light, rich textures.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001063",
+    "text": "เข้าได้ครับ",
+    "romanization": "khâo dâai khráp",
+    "translation": "You can come in.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001064",
+    "text": "เข้าแล้วครับ",
+    "romanization": "khâo láew khráp",
+    "translation": "I've gone in.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001065",
+    "text": "เข้าก่อนครับ",
+    "romanization": "khâo gɔ̀ɔn khráp",
+    "translation": "Go in first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001066",
+    "text": "จะเข้าหรือครับ",
+    "romanization": "jà khâo rʉ̌ʉ khráp",
+    "translation": "Are you going in?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001067",
+    "text": "เข้าอีกได้ครับ",
+    "romanization": "khâo ìik dâai khráp",
+    "translation": "You can go in again.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006"
   ],
@@ -4496,6 +4733,42 @@
     "translation": "You have to wash the vegetables before cooking.",
     "difficulty": "intermediate",
     "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000985",
+    "text": "ต้องจ่ายกี่บาทคะ",
+    "romanization": "dtɔ̂ng jàai gìi bàat khá",
+    "translation": "How many baht do I have to pay?\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000988",
+    "text": "ต้องทำก่อนครับ",
+    "romanization": "dtɔ̂ng tham gɔ̀ɔn khráp",
+    "translation": "I have to do it first.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001008",
+    "text": "ต้องบอกก่อนครับ",
+    "romanization": "dtɔ̂ng bɔ̀ɔk gɔ̀ɔn khráp",
+    "translation": "You must tell me first.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001026",
+    "text": "ต้องซื้อก่อนครับ",
+    "romanization": "dtɔ̂ng súue gɔ̀ɔn khráp",
+    "translation": "You have to buy it first.\\",
+    "difficulty": null,
+    "is_target": false,
     "role": null
    }
   ],
@@ -6104,7 +6377,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001072",
+    "text": "ขึ้นได้ครับ",
+    "romanization": "khûen dâai khráp",
+    "translation": "You can go up.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001073",
+    "text": "ขึ้นแล้วครับ",
+    "romanization": "khûen láew khráp",
+    "translation": "I've gone up.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001074",
+    "text": "ขึ้นก่อนครับ",
+    "romanization": "khûen gɔ̀ɔn khráp",
+    "translation": "Go up first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001075",
+    "text": "จะขึ้นหรือครับ",
+    "romanization": "jà khûen rʉ̌ʉ khráp",
+    "translation": "Are you going up?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001076",
+    "text": "ขึ้นอีกได้ครับ",
+    "romanization": "khûen ìik dâai khráp",
+    "translation": "You can go up again.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000028"
@@ -6245,7 +6564,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001077",
+    "text": "ลงได้ครับ",
+    "romanization": "long dâai khráp",
+    "translation": "You can go down.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001078",
+    "text": "ลงแล้วครับ",
+    "romanization": "long láew khráp",
+    "translation": "I've gone down.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001079",
+    "text": "ลงก่อนครับ",
+    "romanization": "long gɔ̀ɔn khráp",
+    "translation": "Go down first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001080",
+    "text": "จะลงหรือครับ",
+    "romanization": "jà long rʉ̌ʉ khráp",
+    "translation": "Are you going down?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001081",
+    "text": "ลงอีกได้ครับ",
+    "romanization": "long ìik dâai khráp",
+    "translation": "You can go down again.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000028"
@@ -7130,7 +7495,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001068",
+    "text": "ออกได้ครับ",
+    "romanization": "ɔ̀ɔk dâai khráp",
+    "translation": "You can go out.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001069",
+    "text": "ออกแล้วครับ",
+    "romanization": "ɔ̀ɔk láew khráp",
+    "translation": "I've gone out.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001070",
+    "text": "ออกก่อนครับ",
+    "romanization": "ɔ̀ɔk gɔ̀ɔn khráp",
+    "translation": "I'll go out first.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001071",
+    "text": "จะออกหรือครับ",
+    "romanization": "jà ɔ̀ɔk rʉ̌ʉ khráp",
+    "translation": "Are you going out?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001097",
+    "text": "ออกครับ",
+    "romanization": "ɔ̀ɔk khráp",
+    "translation": "I'm leaving.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006"
   ],
@@ -10138,21 +10549,30 @@
     "role": null
    },
    {
-    "id": "TH_S000006",
-    "text": "ช่วยเอาน้ำให้ฉันหน่อย",
-    "romanization": "chûai ao náam hâi chǎn nɔ̀i",
-    "translation": "Please get me some water.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001092",
+    "text": "ช่วยอะไรครับ",
+    "romanization": "chûay à-rai khráp",
+    "translation": "How can I help?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000030",
-    "text": "ช่วยทำให้เผ็ดน้อยหน่อย",
-    "romanization": "chûai tham hâi phèt nɔ́ɔi nɔ̀i",
-    "translation": "Please make it less spicy.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001093",
+    "text": "ช่วยได้ครับ",
+    "romanization": "chûay dâai khráp",
+    "translation": "I can help.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001094",
+    "text": "ช่วยทำได้ครับ",
+    "romanization": "chûay tham dâai khráp",
+    "translation": "I can help do it.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -11280,48 +11700,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000017",
-    "text": "ฉันซื้อส้มมาจากตลาด",
-    "romanization": "chǎn sʉ́ʉ sôm maa jàak dtà-làat",
-    "translation": "I bought oranges from the market.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001024",
+    "text": "ซื้ออะไรครับ",
+    "romanization": "súue à-rai khráp",
+    "translation": "What are you buying?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000021",
-    "text": "วันนี้ฉันซื้อแอปเปิ้ลสองลูก",
-    "romanization": "wan-níi chǎn sʉ́ʉ áep-bpə̂n sɔ̌ɔng lûuk",
-    "translation": "Today I bought two apples.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001025",
+    "text": "ซื้อได้ครับ",
+    "romanization": "súue dâai khráp",
+    "translation": "You can buy it.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000081",
-    "text": "ฉันซื้อขนมที่ตลาด",
-    "romanization": "chǎn sʉ́ʉ khà-nǒm thîi dtà-làat",
-    "translation": "I bought snacks at the market.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001026",
+    "text": "ต้องซื้อก่อนครับ",
+    "romanization": "dtɔ̂ng súue gɔ̀ɔn khráp",
+    "translation": "You have to buy it first.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000103",
-    "text": "ฉันซื้ออาหารจากร้านข้างถนน",
-    "romanization": "chǎn sʉ́ʉ aa-hǎan jàak ráan khâang thà-nǒn",
-    "translation": "I bought food from a street stall.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001027",
+    "text": "ซื้ออีกได้ครับ",
+    "romanization": "súue ìik dâai khráp",
+    "translation": "You can buy another.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000125",
-    "text": "ฉันอยากซื้อของกินก่อนกลับบ้าน",
-    "romanization": "chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan",
-    "translation": "I want to buy something to eat before going home.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001028",
+    "text": "ซื้อกี่ขวดครับ",
+    "romanization": "súue gìi khùat khráp",
+    "translation": "How many bottles are you buying?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -11510,7 +11930,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000983",
+    "text": "เห็นอะไรครับ",
+    "romanization": "hěn à-rai khráp",
+    "translation": "What do you see?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000996",
+    "text": "เห็นแล้วครับ",
+    "romanization": "hěn láew khráp",
+    "translation": "I've seen it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000997",
+    "text": "เห็นหรือยังครับ",
+    "romanization": "hěn rʉ̌ʉ yang khráp",
+    "translation": "Have you seen it yet?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000998",
+    "text": "เห็นโต๊ะครับ",
+    "romanization": "hěn dtó khráp",
+    "translation": "I see a table.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000999",
+    "text": "จะเห็นได้ครับ",
+    "romanization": "jà hěn dâai khráp",
+    "translation": "You'll be able to see it.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006"
   ],
@@ -11866,48 +12332,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000107",
-    "text": "กินที่นี่หรือเอากลับบ้าน",
-    "romanization": "gin thîi-nîi rʉ̌ʉ ao glàp bâan",
-    "translation": "Are you eating here or taking it home?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001058",
+    "text": "กลับแล้วครับ",
+    "romanization": "glàp láew khráp",
+    "translation": "I'm going back now.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000108",
-    "text": "เอากลับบ้านครับ",
-    "romanization": "ao glàp bâan khráp",
-    "translation": "I'll take it home, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001059",
+    "text": "กลับก่อนครับ",
+    "romanization": "glàp gɔ̀ɔn khráp",
+    "translation": "I'll head back first.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000109",
-    "text": "ขอใส่ถุงกลับบ้านครับ",
-    "romanization": "khɔ̌ɔ sài thǔng glàp bâan khráp",
-    "translation": "Please put it in a bag to take home.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001060",
+    "text": "จะกลับหรือครับ",
+    "romanization": "jà glàp rʉ̌ʉ khráp",
+    "translation": "Are you going back?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000125",
-    "text": "ฉันอยากซื้อของกินก่อนกลับบ้าน",
-    "romanization": "chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan",
-    "translation": "I want to buy something to eat before going home.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001061",
+    "text": "กลับถึงแล้วครับ",
+    "romanization": "glàp thǔeng láew khráp",
+    "translation": "I've returned.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000127",
-    "text": "ฉันจะกลับมากินร้านนี้อีก",
-    "romanization": "chǎn jà glàp maa gin ráan níi ìik",
-    "translation": "I'll come back to eat at this restaurant again.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001062",
+    "text": "กลับอีกได้ครับ",
+    "romanization": "glàp ìik dâai khráp",
+    "translation": "You can come back again.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -12003,7 +12469,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001019",
+    "text": "เขียนอะไรครับ",
+    "romanization": "khǐian à-rai khráp",
+    "translation": "What are you writing?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001020",
+    "text": "เขียนได้ครับ",
+    "romanization": "khǐian dâai khráp",
+    "translation": "You can write it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001021",
+    "text": "เขียนก่อนครับ",
+    "romanization": "khǐian gɔ̀ɔn khráp",
+    "translation": "Write it first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001022",
+    "text": "เขียนที่โต๊ะครับ",
+    "romanization": "khǐian thîi dtó khráp",
+    "translation": "Write at the table.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001023",
+    "text": "ช่วยเขียนด้วยครับ",
+    "romanization": "chûay khǐian dûay khráp",
+    "translation": "Please write it too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000018"
@@ -14329,7 +14841,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000991",
+    "text": "ดูอะไรครับ",
+    "romanization": "duu à-rai khráp",
+    "translation": "What are you looking at?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000992",
+    "text": "ดูได้ครับ",
+    "romanization": "duu dâai khráp",
+    "translation": "You can look.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000993",
+    "text": "ดูก่อนครับ",
+    "romanization": "duu gɔ̀ɔn khráp",
+    "translation": "Look first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000994",
+    "text": "ดูอีกได้ครับ",
+    "romanization": "duu ìik dâai khráp",
+    "translation": "You can look again.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000995",
+    "text": "ช่วยดูด้วยครับ",
+    "romanization": "chûay duu dûay khráp",
+    "translation": "Please help look too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000018",
@@ -15525,7 +16083,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001048",
+    "text": "ปิดอะไรครับ",
+    "romanization": "bpìt à-rai khráp",
+    "translation": "What are you closing?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001049",
+    "text": "ปิดได้ครับ",
+    "romanization": "bpìt dâai khráp",
+    "translation": "You can close it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001050",
+    "text": "ปิดแล้วครับ",
+    "romanization": "bpìt láew khráp",
+    "translation": "It's closed now.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001051",
+    "text": "ปิดก่อนครับ",
+    "romanization": "bpìt gɔ̀ɔn khráp",
+    "translation": "Close it first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001052",
+    "text": "ช่วยปิดด้วยครับ",
+    "romanization": "chûay bpìt dûay khráp",
+    "translation": "Please close it too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006"
   ],
@@ -16934,12 +17538,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000004",
-    "text": "ร้านนี้ขายอาหารอร่อย",
-    "romanization": "ráan níi khǎai aa-hǎan à-rɔ̀i",
-    "translation": "This restaurant sells delicious food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001029",
+    "text": "ขายอะไรครับ",
+    "romanization": "khǎai à-rai khráp",
+    "translation": "What are you selling?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001030",
+    "text": "ขายได้ครับ",
+    "romanization": "khǎai dâai khráp",
+    "translation": "You can sell it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001031",
+    "text": "ขายแล้วครับ",
+    "romanization": "khǎai láew khráp",
+    "translation": "It's already sold.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001032",
+    "text": "ขายอีกได้ครับ",
+    "romanization": "khǎai ìik dâai khráp",
+    "translation": "You can sell more.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001033",
+    "text": "ขายกี่ขวดครับ",
+    "romanization": "khǎai gìi khùat khráp",
+    "translation": "How many bottles are you selling?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -18602,7 +19242,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S000984",
+    "text": "ถามอะไรครับ",
+    "romanization": "thǎam à-rai khráp",
+    "translation": "What are you asking?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001010",
+    "text": "ถามได้ครับ",
+    "romanization": "thǎam dâai khráp",
+    "translation": "You can ask.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001011",
+    "text": "ถามก่อนครับ",
+    "romanization": "thǎam gɔ̀ɔn khráp",
+    "translation": "Ask first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001012",
+    "text": "ถามอีกได้ครับ",
+    "romanization": "thǎam ìik dâai khráp",
+    "translation": "You can ask again.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001013",
+    "text": "ช่วยถามด้วยครับ",
+    "romanization": "chûay thǎam dûay khráp",
+    "translation": "Please ask too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000100",
@@ -21833,7 +22519,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001014",
+    "text": "อ่านอะไรครับ",
+    "romanization": "àan à-rai khráp",
+    "translation": "What are you reading?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001015",
+    "text": "อ่านได้ครับ",
+    "romanization": "àan dâai khráp",
+    "translation": "You can read it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001016",
+    "text": "อ่านก่อนครับ",
+    "romanization": "àan gɔ̀ɔn khráp",
+    "translation": "Read it first, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001017",
+    "text": "อ่านอีกได้ครับ",
+    "romanization": "àan ìik dâai khráp",
+    "translation": "You can read it again.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001018",
+    "text": "ช่วยอ่านด้วยครับ",
+    "romanization": "chûay àan dûay khráp",
+    "translation": "Please read it too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000018",
@@ -22908,12 +23640,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000115",
-    "text": "ช่วยบอกส่วนผสมหน่อยได้ไหม",
-    "romanization": "chûai bɔ̀ɔk sùan-phà-sǒm nɔ̀i dâai mái",
-    "translation": "Could you tell me the ingredients?",
-    "difficulty": "advanced",
-    "is_target": false,
+    "id": "TH_S001005",
+    "text": "บอกอะไรครับ",
+    "romanization": "bɔ̀ɔk à-rai khráp",
+    "translation": "What are you telling me?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001006",
+    "text": "บอกแล้วครับ",
+    "romanization": "bɔ̀ɔk láew khráp",
+    "translation": "I've already told you.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001007",
+    "text": "บอกด้วยครับ",
+    "romanization": "bɔ̀ɔk dûay khráp",
+    "translation": "Please tell me too.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001008",
+    "text": "ต้องบอกก่อนครับ",
+    "romanization": "dtɔ̂ng bɔ̀ɔk gɔ̀ɔn khráp",
+    "translation": "You must tell me first.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001009",
+    "text": "บอกได้ครับ",
+    "romanization": "bɔ̀ɔk dâai khráp",
+    "translation": "You can tell me.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -23565,7 +24333,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001000",
+    "text": "พูดอะไรครับ",
+    "romanization": "phûut à-rai khráp",
+    "translation": "What are you saying?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001001",
+    "text": "พูดได้ครับ",
+    "romanization": "phûut dâai khráp",
+    "translation": "You can speak.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001002",
+    "text": "ช่วยพูดด้วยครับ",
+    "romanization": "chûay phûut dûay khráp",
+    "translation": "Please speak too.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001003",
+    "text": "จะพูดหรือครับ",
+    "romanization": "jà phûut rʉ̌ʉ khráp",
+    "translation": "Are you going to speak?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001004",
+    "text": "พูดก่อนครับ",
+    "romanization": "phûut gɔ̀ɔn khráp",
+    "translation": "Please speak first.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000006",
    "TH_L000018",
@@ -26260,12 +27074,39 @@
     "role": null
    },
    {
-    "id": "TH_S000037",
-    "text": "รอสักครู่นะ อาหารกำลังมา",
-    "romanization": "rɔɔ sàk khrûu ná aa-hǎan gam-lang maa",
-    "translation": "Wait a moment, the food is coming.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001087",
+    "text": "รออะไรครับ",
+    "romanization": "rɔɔ à-rai khráp",
+    "translation": "What are you waiting for?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001088",
+    "text": "รอได้ครับ",
+    "romanization": "rɔɔ dâai khráp",
+    "translation": "I can wait.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001089",
+    "text": "รอก่อนครับ",
+    "romanization": "rɔɔ gɔ̀ɔn khráp",
+    "translation": "Please wait first.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001090",
+    "text": "รออีกได้ครับ",
+    "romanization": "rɔɔ ìik dâai khráp",
+    "translation": "I can wait longer.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -27228,6 +28069,42 @@
     "romanization": "chǎn jàai ngoen dûai bàt",
     "translation": "I pay by card.",
     "difficulty": "beginner",
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S000985",
+    "text": "ต้องจ่ายกี่บาทคะ",
+    "romanization": "dtɔ̂ng jàai gìi bàat khá",
+    "translation": "How many baht do I have to pay?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001034",
+    "text": "จ่ายกี่บาทครับ",
+    "romanization": "jàai gìi bàat khráp",
+    "translation": "How many baht do I pay?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001035",
+    "text": "จ่ายแล้วครับ",
+    "romanization": "jàai láew khráp",
+    "translation": "I've paid.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001036",
+    "text": "ต้องจ่ายก่อนครับ",
+    "romanization": "dtɔ̂ng jàai gɔ̀ɔn khráp",
+    "translation": "You have to pay first.\\",
+    "difficulty": null,
     "is_target": true,
     "role": null
    }
@@ -35652,48 +36529,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000025",
-    "text": "ฉันใส่หัวหอมในสลัด",
-    "romanization": "chǎn sài hǔa-hɔ̌ɔm nai sà-làat",
-    "translation": "I put onion in the salad.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001053",
+    "text": "ใส่อะไรครับ",
+    "romanization": "sài à-rai khráp",
+    "translation": "What are you putting in?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000031",
-    "text": "ฉันขอไม่ใส่พริก",
-    "romanization": "chǎn khɔ̌ɔ mâi sài phrík",
-    "translation": "I'd like it without chili.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001054",
+    "text": "ใส่ถุงครับ",
+    "romanization": "sài thǔng khráp",
+    "translation": "Put it in a bag.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000046",
-    "text": "ข้าวผัดนี้ใส่ไข่ไหม",
-    "romanization": "khâao-phàt níi sài khài mái",
-    "translation": "Does this fried rice have egg in it?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001055",
+    "text": "ใส่ขวดได้ครับ",
+    "romanization": "sài khùat dâai khráp",
+    "translation": "You can put it in a bottle.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000093",
-    "text": "ใส่น้ำมันในกระทะก่อน",
-    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
-    "translation": "Put oil in the pan first.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001056",
+    "text": "ใส่แก้วครับ",
+    "romanization": "sài gâew khráp",
+    "translation": "Put it in a glass.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000096",
-    "text": "อย่าลืมใส่เกลือ",
-    "romanization": "yàa lʉʉm sài gleuua",
-    "translation": "Don't forget to add salt.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001057",
+    "text": "ต้องใส่ก่อนครับ",
+    "romanization": "dtɔ̂ng sài gɔ̀ɔn khráp",
+    "translation": "You have to put it in first.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -40891,6 +41768,15 @@
     "romanization": "khɔ̌ɔ sài thǔng glàp bâan khráp",
     "translation": "Please put it in a bag to take home.",
     "difficulty": "beginner",
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001054",
+    "text": "ใส่ถุงครับ",
+    "romanization": "sài thǔng khráp",
+    "translation": "Put it in a bag.\\",
+    "difficulty": null,
     "is_target": false,
     "role": null
    }
@@ -69767,7 +70653,35 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001028",
+    "text": "ซื้อกี่ขวดครับ",
+    "romanization": "súue gìi khùat khráp",
+    "translation": "How many bottles are you buying?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001033",
+    "text": "ขายกี่ขวดครับ",
+    "romanization": "khǎai gìi khùat khráp",
+    "translation": "How many bottles are you selling?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001055",
+    "text": "ใส่ขวดได้ครับ",
+    "romanization": "sài khùat dâai khráp",
+    "translation": "You can put it in a bottle.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000460"
   ],
@@ -74060,6 +74974,42 @@
     "text": "ห้องนี้มีโต๊ะหนึ่งตัว",
     "romanization": "hâwng níi mii tó nʉ̀ng dtua",
     "translation": "This room has one table.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000990",
+    "text": "ทำที่โต๊ะครับ",
+    "romanization": "tham thîi dtó khráp",
+    "translation": "I do it at the table.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000998",
+    "text": "เห็นโต๊ะครับ",
+    "romanization": "hěn dtó khráp",
+    "translation": "I see a table.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001022",
+    "text": "เขียนที่โต๊ะครับ",
+    "romanization": "khǐian thîi dtó khráp",
+    "translation": "Write at the table.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001041",
+    "text": "ใช้กับโต๊ะได้ครับ",
+    "romanization": "chái gàp dtó dâai khráp",
+    "translation": "You can use it with the table.\\",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -196958,6 +197908,42 @@
     "text": "มีจานกี่ใบ",
     "romanization": "mii jaan gìi bai",
     "translation": "How many plates are there?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S000985",
+    "text": "ต้องจ่ายกี่บาทคะ",
+    "romanization": "dtɔ̂ng jàai gìi bàat khá",
+    "translation": "How many baht do I have to pay?\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001028",
+    "text": "ซื้อกี่ขวดครับ",
+    "romanization": "súue gìi khùat khráp",
+    "translation": "How many bottles are you buying?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001033",
+    "text": "ขายกี่ขวดครับ",
+    "romanization": "khǎai gìi khùat khráp",
+    "translation": "How many bottles are you selling?",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001034",
+    "text": "จ่ายกี่บาทครับ",
+    "romanization": "jàai gìi bàat khráp",
+    "translation": "How many baht do I pay?\\",
     "difficulty": null,
     "is_target": false,
     "role": null
