@@ -454,6 +454,24 @@
     "difficulty": null,
     "is_target": true,
     "role": null
+   },
+   {
+    "id": "TH_S001420",
+    "text": "ปีนี้ได้ครับ",
+    "romanization": "bpii-níi dâai khráp",
+    "translation": "This year works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001421",
+    "text": "ปีนี้ไม่ได้ครับ",
+    "romanization": "bpii-níi mâi-dâai khráp",
+    "translation": "This year doesn't work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
    }
   ],
   "lessons": [
@@ -653,7 +671,53 @@
   "hook_visual": "directional signpost, wooden judge's gavel",
   "mnemonic": "A colossal multi-lane highway stretches dramatically into the distance, completely transformed into an absurd outdoor opera stage. In the exact center of the highway stands a gigantic, wildly overdramatic opera singer in an extravagant tuxedo, leaning backward with theatrical intensity and belting an impossibly long “LAAAA!” with his mouth enormously open. His powerful singing sends visible shockwaves through the air, violently rattling cars and road signs around him. Directly behind the singer towers a colossal glowing golden pocket watch, impossibly huge, its intricate gears visibly turning and radiating a sense of passing time. Traffic has come to a complete standstill because the singer has apparently decided that the middle of the highway is the perfect place for his performance. Drivers stare in disbelief while the singer remains completely oblivious, passionately continuing his enormous sustained note. The composition strongly connects the highway, singer, and giant clock into one absurd visual story: WAY + LAAAA + TIME.\n\nAnd I'd push the comedy even harder\n\nThe singer shouldn't look like a normal opera performer.\n\nMake him absurdly committed to the performance:\n\none foot planted on top of a car\none arm thrown dramatically into the air\ncheeks enormously puffed out\nneck veins bulging\ncoat and hair blowing backward from the force of his singing\nsheet music flying everywhere\ncompletely oblivious traffic jam behind him\nmotorists looking absolutely horrified\n\nThe clock should be enormous enough to tower over the entire highway, so the meaning TIME is impossible to miss.\n\nThe important thing is that we're not trying to literally depict the phrase “way-la.”\n\nWe're creating a ridiculous scene where:\n\nWAY → highway\nLAAAAAA! → opera singer\nTIME → giant clock\n\nAnd the three are interacting in one coherent situation rather than looking like three unrelated objects.",
   "mnemonic_concept": "way law",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001400",
+    "text": "เวลาอะไรครับ",
+    "romanization": "wee-laa-à-rai khráp",
+    "translation": "What time?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001401",
+    "text": "ตอนนี้เวลาอะไรครับ",
+    "romanization": "dtɔɔn-níi wee-laa-à-rai khráp",
+    "translation": "What time is it now?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001402",
+    "text": "เวลานี้ได้ครับ",
+    "romanization": "wee-laa-níi dâai khráp",
+    "translation": "This time works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001403",
+    "text": "เวลานี้ไม่ได้ครับ",
+    "romanization": "wee-laa-níi mâi-dâai khráp",
+    "translation": "This time doesn't work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001404",
+    "text": "เวลานี้ยังไม่ได้ครับ",
+    "romanization": "wee-laa-níi yang mâi-dâai khráp",
+    "translation": "This time isn't possible yet.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000007",
    "TH_L000001",
@@ -2232,48 +2296,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000105",
-    "text": "ฉันไม่รู้ว่าจะกินอะไรดี",
-    "romanization": "chǎn mâi rúu wâa jà gin à-rai dii",
-    "translation": "I don't know what I should eat.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000127",
-    "text": "ฉันจะกลับมากินร้านนี้อีก",
-    "romanization": "chǎn jà glàp maa gin ráan níi ìik",
-    "translation": "I'll come back to eat at this restaurant again.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000989",
-    "text": "จะทำหรือครับ",
-    "romanization": "jà tham rʉ̌ʉ khráp",
-    "translation": "Are you going to do it?\\",
+    "id": "TH_S001430",
+    "text": "จะได้ครับ",
+    "romanization": "jà-dâai khráp",
+    "translation": "It will work.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000999",
-    "text": "จะเห็นได้ครับ",
-    "romanization": "jà hěn dâai khráp",
-    "translation": "You'll be able to see it.",
+    "id": "TH_S001431",
+    "text": "จะไม่ได้ครับ",
+    "romanization": "jà-mâi-dâai khráp",
+    "translation": "It won't work.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001003",
-    "text": "จะพูดหรือครับ",
-    "romanization": "jà phûut rʉ̌ʉ khráp",
-    "translation": "Are you going to speak?\\",
+    "id": "TH_S001432",
+    "text": "วันนี้จะได้ครับ",
+    "romanization": "wan-níi jà-dâai khráp",
+    "translation": "It should work today.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001433",
+    "text": "ปีนี้จะได้ครับ",
+    "romanization": "bpii-níi jà-dâai khráp",
+    "translation": "It should work this year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001456",
+    "text": "เดือนนี้จะได้ครับ",
+    "romanization": "duean-níi jà-dâai khráp",
+    "translation": "It should be possible this month.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2769,12 +2833,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000087",
-    "text": "ฉันกินข้าวกับครอบครัวทุกวัน",
-    "romanization": "chǎn gin khâao gàp khrɔ̂ɔp-khrua thúk wan",
-    "translation": "I eat meals with my family every day.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001386",
+    "text": "วันนั้นได้ครับ",
+    "romanization": "wan-nán dâai khráp",
+    "translation": "That day works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001387",
+    "text": "วันนั้นไม่ได้ครับ",
+    "romanization": "wan-nán mâi-dâai khráp",
+    "translation": "That day doesn't work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001388",
+    "text": "วันก่อนครับ",
+    "romanization": "wan-gɔ̀ɔn khráp",
+    "translation": "The other day.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001389",
+    "text": "วันหรือเดือนครับ",
+    "romanization": "wan-rʉ̌ʉ-duean khráp",
+    "translation": "Day or month?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001454",
+    "text": "วันนั้นต้องได้ครับ",
+    "romanization": "wan-nán dtɔ̂ng-dâai khráp",
+    "translation": "That day, it has to work.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -3621,21 +3721,21 @@
     "role": null
    },
    {
-    "id": "TH_S000067",
-    "text": "อาหารมาแล้ว",
-    "romanization": "aa-hǎan maa láaeo",
-    "translation": "The food is here.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001434",
+    "text": "ได้แล้วครับ",
+    "romanization": "dâai-láeo khráp",
+    "translation": "Got it.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000068",
-    "text": "ฉันกินหมดแล้ว",
-    "romanization": "chǎn gin mòt láaeo",
-    "translation": "I've finished eating it all.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001435",
+    "text": "ตอนนี้ได้แล้วครับ",
+    "romanization": "dtɔɔn-níi dâai-láeo khráp",
+    "translation": "It works now.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -3906,30 +4006,39 @@
     "role": null
    },
    {
-    "id": "TH_S000110",
-    "text": "อาหารยังร้อนอยู่ ระวังนะ",
-    "romanization": "aa-hǎan yang rɔ́ɔn yùu rá-wang ná",
-    "translation": "The food is still hot, be careful.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001438",
+    "text": "ยังได้ครับ",
+    "romanization": "yang-dâai khráp",
+    "translation": "It is still possible.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000997",
-    "text": "เห็นหรือยังครับ",
-    "romanization": "hěn rʉ̌ʉ yang khráp",
-    "translation": "Have you seen it yet?\\",
+    "id": "TH_S001439",
+    "text": "ยังไม่ได้ครับ",
+    "romanization": "yang-mâi-dâai khráp",
+    "translation": "Not yet.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001085",
-    "text": "ถึงหรือยังครับ",
-    "romanization": "thǔeng rʉ̌ʉ yang khráp",
-    "translation": "Have you arrived yet?\\",
+    "id": "TH_S001440",
+    "text": "ได้หรือยังครับ",
+    "romanization": "dâai-rʉ̌ʉ-yang khráp",
+    "translation": "Is it ready yet?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001441",
+    "text": "ตอนนี้ยังได้ครับ",
+    "romanization": "dtɔɔn-níi yang-dâai khráp",
+    "translation": "It is still possible now.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -7408,48 +7517,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000064",
-    "text": "ฉันขอสั่งอาหารก่อน",
-    "romanization": "chǎn khɔ̌ɔ sàng aa-hǎan gɔ̀ɔn",
-    "translation": "I'd like to order food first.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000091",
-    "text": "ต้องล้างผักก่อนทำอาหาร",
-    "romanization": "dtɔ̂ng láang phàk gɔ̀ɔn tham aa-hǎan",
-    "translation": "You have to wash the vegetables before cooking.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000093",
-    "text": "ใส่น้ำมันในกระทะก่อน",
-    "romanization": "sài náam-man nai grà-thá gɔ̀ɔn",
-    "translation": "Put oil in the pan first.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000125",
-    "text": "ฉันอยากซื้อของกินก่อนกลับบ้าน",
-    "romanization": "chǎn yàak sʉ́ʉ khɔ̌ɔng-gin gɔ̀ɔn glàp bâan",
-    "translation": "I want to buy something to eat before going home.",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000372",
-    "text": "ให้เงินก่อน",
-    "romanization": "hâi ngoen gàawn",
-    "translation": "Give the money first.",
+    "id": "TH_S001425",
+    "text": "ก่อนหรือหลังจากนี้ครับ",
+    "romanization": "gɔ̀ɔn-rʉ̌ʉ-lǎng-jàak-níi khráp",
+    "translation": "Before or after this?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001426",
+    "text": "ก่อนนี้ไม่ได้ครับ",
+    "romanization": "gɔ̀ɔn-níi mâi-dâai khráp",
+    "translation": "Before this, it wasn't possible.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001427",
+    "text": "ต้องได้ก่อนครับ",
+    "romanization": "dtɔ̂ng-dâai-gɔ̀ɔn khráp",
+    "translation": "It must be obtained first.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001428",
+    "text": "ควรได้ก่อนครับ",
+    "romanization": "khuan-dâai-gɔ̀ɔn khráp",
+    "translation": "It should be obtained first.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001429",
+    "text": "ก่อนจะได้ครับ",
+    "romanization": "gɔ̀ɔn-jà-dâai khráp",
+    "translation": "Before it can be obtained.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -14008,7 +14117,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001379",
+    "text": "วันนี้ไม่ได้ครับ",
+    "romanization": "wan-níi mâi-dâai khráp",
+    "translation": "Today won't work.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001380",
+    "text": "วันนี้ยังไม่ได้ครับ",
+    "romanization": "wan-níi yang mâi-dâai khráp",
+    "translation": "Today isn't possible yet.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001382",
+    "text": "ตอนนี้ไม่ได้ครับ",
+    "romanization": "dtɔɔn-níi mâi-dâai khráp",
+    "translation": "Now doesn't work.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001383",
+    "text": "ตอนนี้ยังไม่ได้ครับ",
+    "romanization": "dtɔɔn-níi yang mâi-dâai khráp",
+    "translation": "It's not possible yet.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001387",
+    "text": "วันนั้นไม่ได้ครับ",
+    "romanization": "wan-nán mâi-dâai khráp",
+    "translation": "That day doesn't work.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000017",
    "TH_L000037",
@@ -14623,21 +14778,30 @@
     "role": null
    },
    {
-    "id": "TH_S000092",
-    "text": "ฉันกำลังหั่นผัก",
-    "romanization": "chǎn gam-lang hàn phàk",
-    "translation": "I'm cutting vegetables.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001442",
+    "text": "กำลังจะได้ครับ",
+    "romanization": "gam-lang-jà-dâai khráp",
+    "translation": "It should be possible soon.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000095",
-    "text": "ฉันกำลังทอดไข่",
-    "romanization": "chǎn gam-lang thɔ̂ɔt khài",
-    "translation": "I'm frying an egg.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001443",
+    "text": "ตอนนี้กำลังจะได้ครับ",
+    "romanization": "dtɔɔn-níi gam-lang-jà-dâai khráp",
+    "translation": "It should be possible soon.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001444",
+    "text": "กำลังจะได้แล้วครับ",
+    "romanization": "gam-lang-jà-dâai-láeo khráp",
+    "translation": "It is almost ready.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -18290,6 +18454,33 @@
     "role": null
    },
    {
+    "id": "TH_S001450",
+    "text": "ตอนเช้าได้ครับ",
+    "romanization": "dtɔɔn-cháo dâai khráp",
+    "translation": "The morning time works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001452",
+    "text": "ตอนก่อนนี้ครับ",
+    "romanization": "dtɔɔn-gɔ̀ɔn-níi khráp",
+    "translation": "The time before this.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001455",
+    "text": "ตอนเช้าไม่ได้ครับ",
+    "romanization": "dtɔɔn-cháo mâi-dâai khráp",
+    "translation": "The morning doesn’t work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
     "id": "TH_S000011",
     "text": "ฉันกินข้าวเช้าตอนเจ็ดโมง",
     "romanization": "chǎn gin khâao cháao dtaawn jèt moong",
@@ -19510,7 +19701,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001446",
+    "text": "เคยได้ครับ",
+    "romanization": "khoei-dâai khráp",
+    "translation": "I have gotten it before.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001447",
+    "text": "เคยไม่ได้ครับ",
+    "romanization": "khoei-mâi-dâai khráp",
+    "translation": "I have been unable to before.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001448",
+    "text": "เคยได้หรือยังครับ",
+    "romanization": "khoei-dâai-rʉ̌ʉ-yang khráp",
+    "translation": "Have you ever gotten it?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001453",
+    "text": "เคยได้จากที่นั้นครับ",
+    "romanization": "khoei-dâai-jàak-thîi-nán khráp",
+    "translation": "I've gotten it from that place before.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001459",
+    "text": "เคยได้ด้วยครับ",
+    "romanization": "khoei-dâai-dûay khráp",
+    "translation": "I’ve gotten it before, too.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000007",
    "TH_L000042",
@@ -24793,7 +25030,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001390",
+    "text": "คืนนี้ได้ครับ",
+    "romanization": "khʉʉn-níi dâai khráp",
+    "translation": "Tonight works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001391",
+    "text": "คืนนี้ไม่ได้ครับ",
+    "romanization": "khʉʉn-níi mâi-dâai khráp",
+    "translation": "Tonight doesn't work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001392",
+    "text": "คืนนี้ยังไม่ได้ครับ",
+    "romanization": "khʉʉn-níi yang mâi-dâai khráp",
+    "translation": "Tonight isn't possible yet.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001393",
+    "text": "คืนนี้เพิ่งได้ครับ",
+    "romanization": "khʉʉn-níi phə̂əng dâai khráp",
+    "translation": "I just got it tonight.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001394",
+    "text": "คืนนี้จะได้ครับ",
+    "romanization": "khʉʉn-níi jà dâai khráp",
+    "translation": "Tonight should work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000007"
   ],
@@ -26335,39 +26618,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000002",
-    "text": "ตอนเช้าฉันกินข้าวกับไข่",
-    "romanization": "dtaawn cháao chǎn gin khâao gàp khài",
-    "translation": "In the morning I eat rice with eggs.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001395",
+    "text": "เช้านี้ได้ครับ",
+    "romanization": "cháo-níi dâai khráp",
+    "translation": "This morning works.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000009",
-    "text": "ฉันดื่มชาทุกเช้า",
-    "romanization": "chǎn dʉ̀ʉm chaa thúk cháao",
-    "translation": "I drink tea every morning.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001396",
+    "text": "เช้านี้ไม่ได้ครับ",
+    "romanization": "cháo-níi mâi-dâai khráp",
+    "translation": "This morning doesn't work.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000011",
-    "text": "ฉันกินข้าวเช้าตอนเจ็ดโมง",
-    "romanization": "chǎn gin khâao cháao dtaawn jèt moong",
-    "translation": "I eat breakfast at seven o'clock.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001397",
+    "text": "เช้านี้ยังไม่ได้ครับ",
+    "romanization": "cháo-níi yang mâi-dâai khráp",
+    "translation": "This morning isn't possible yet.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000012",
-    "text": "อาหารเช้าวันนี้มีไข่กับขนมปัง",
-    "romanization": "aa-hǎan cháao wan-níi mii khài gàp khà-nǒm-bpang",
-    "translation": "Today's breakfast has eggs and bread.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001398",
+    "text": "เช้านี้เพิ่งได้ครับ",
+    "romanization": "cháo-níi phə̂əng dâai khráp",
+    "translation": "I just got it this morning.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001399",
+    "text": "เช้านี้จะได้ครับ",
+    "romanization": "cháo-níi jà dâai khráp",
+    "translation": "This morning should work.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -31249,7 +31541,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001381",
+    "text": "ตอนนี้ได้ครับ",
+    "romanization": "dtɔɔn-níi dâai khráp",
+    "translation": "Now works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001382",
+    "text": "ตอนนี้ไม่ได้ครับ",
+    "romanization": "dtɔɔn-níi mâi-dâai khráp",
+    "translation": "Now doesn't work.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001383",
+    "text": "ตอนนี้ยังไม่ได้ครับ",
+    "romanization": "dtɔɔn-níi yang mâi-dâai khráp",
+    "translation": "It's not possible yet.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001384",
+    "text": "ตอนนี้เพิ่งได้ครับ",
+    "romanization": "dtɔɔn-níi phə̂əng dâai khráp",
+    "translation": "I just got it now.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001385",
+    "text": "ตอนนี้จะได้ครับ",
+    "romanization": "dtɔɔn-níi jà dâai khráp",
+    "translation": "It should be possible now.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000007",
    "TH_L000101",
@@ -31311,7 +31649,17 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001428",
+    "text": "ควรได้ก่อนครับ",
+    "romanization": "khuan-dâai-gɔ̀ɔn khráp",
+    "translation": "It should be obtained first.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000009",
    "TH_L000018",
@@ -33121,7 +33469,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001405",
+    "text": "กี่ชั่วโมงครับ",
+    "romanization": "gìi-chûa-moong khráp",
+    "translation": "How many hours?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001406",
+    "text": "อีก 1 ชั่วโมงครับ",
+    "romanization": "ìik nʉ̀ng chûa-moong khráp",
+    "translation": "One more hour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001407",
+    "text": "อีก 2 ชั่วโมงครับ",
+    "romanization": "ìik sɔ̌ɔng chûa-moong khráp",
+    "translation": "Two more hours.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001408",
+    "text": "ได้ 1 ชั่วโมงครับ",
+    "romanization": "dâai nʉ̀ng chûa-moong khráp",
+    "translation": "I get one hour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001409",
+    "text": "ได้ 2 ชั่วโมงครับ",
+    "romanization": "dâai sɔ̌ɔng chûa-moong khráp",
+    "translation": "I get two hours.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000007"
   ],
@@ -34689,6 +35083,15 @@
     "text": "หลังจากไปโรงเรียน",
     "romanization": "lǎng jàak bpai roong-rian",
     "translation": "After going to school.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001425",
+    "text": "ก่อนหรือหลังจากนี้ครับ",
+    "romanization": "gɔ̀ɔn-rʉ̌ʉ-lǎng-jàak-níi khráp",
+    "translation": "Before or after this?\\",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -57911,7 +58314,35 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001384",
+    "text": "ตอนนี้เพิ่งได้ครับ",
+    "romanization": "dtɔɔn-níi phə̂əng dâai khráp",
+    "translation": "I just got it now.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001393",
+    "text": "คืนนี้เพิ่งได้ครับ",
+    "romanization": "khʉʉn-níi phə̂əng dâai khráp",
+    "translation": "I just got it tonight.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001398",
+    "text": "เช้านี้เพิ่งได้ครับ",
+    "romanization": "cháo-níi phə̂əng dâai khráp",
+    "translation": "I just got it this morning.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000461"
   ],
