@@ -4163,7 +4163,53 @@
   "hook_visual": "sparkling corsage on a wrist",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A gigantic sparkling corsage flower bracelet clamping tightly onto a runner's wrist right as they freeze at a track starting block line. High energy composition, shimmering specular highlights, dramatic cinematic lighting.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001607",
+    "text": "ข้าวผัดพร้อมแล้วครับ",
+    "romanization": "kâao-pàt phrɔ́ɔm láeo khráp",
+    "translation": "The fried rice is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001608",
+    "text": "ซุปพร้อมแล้วครับ",
+    "romanization": "súp phrɔ́ɔm láeo khráp",
+    "translation": "The soup is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001609",
+    "text": "พร้อมสั่งครับ",
+    "romanization": "phrɔ́ɔm sàng khráp",
+    "translation": "I'm ready to order.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001610",
+    "text": "สลัดพร้อมแล้วครับ",
+    "romanization": "sà-làt phrɔ́ɔm láeo khráp",
+    "translation": "The salad is ready.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001653",
+    "text": "พร้อมสั่งซุปครับ",
+    "romanization": "phrɔ́ɔm sàng súp khráp",
+    "translation": "I'm ready to order soup.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000010"
   ],
@@ -23900,7 +23946,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001602",
+    "text": "ข้าวผัดเสร็จแล้วครับ",
+    "romanization": "kâao-pàt sèt láeo khráp",
+    "translation": "The fried rice is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001603",
+    "text": "ซุปเสร็จแล้วครับ",
+    "romanization": "súp sèt láeo khráp",
+    "translation": "The soup is finished.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001604",
+    "text": "สลัดเสร็จแล้วครับ",
+    "romanization": "sà-làt sèt láeo khráp",
+    "translation": "The salad is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001605",
+    "text": "แกงเสร็จแล้วครับ",
+    "romanization": "gɛɛng sèt láeo khráp",
+    "translation": "The curry is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001606",
+    "text": "สั่งเสร็จแล้วครับ",
+    "romanization": "sàng sèt láeo khráp",
+    "translation": "The order is complete.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000010"
   ],
@@ -24000,30 +24092,39 @@
     "role": null
    },
    {
-    "id": "TH_S000045",
-    "text": "ฉันสั่งข้าวผัดหนึ่งจาน",
-    "romanization": "chǎn sàng khâao-phàt nʉ̀ng jaan",
-    "translation": "I ordered one plate of fried rice.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001597",
+    "text": "สั่งข้าวผัดครับ",
+    "romanization": "sàng kâao-pàt khráp",
+    "translation": "I'd like to order fried rice.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000050",
-    "text": "ฉันสั่งไก่ย่างหนึ่งจาน",
-    "romanization": "chǎn sàng gài-yâang nʉ̀ng jaan",
-    "translation": "I ordered one plate of grilled chicken.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001598",
+    "text": "สั่งซุปกับขนมปังครับ",
+    "romanization": "sàng súp gàp kà-nǒm-pang khráp",
+    "translation": "Order soup and bread, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000065",
-    "text": "เราสั่งอาหารแล้ว",
-    "romanization": "rao sàng aa-hǎan láaeo",
-    "translation": "We've already ordered the food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001599",
+    "text": "สั่งแกงหรือข้าวผัดครับ",
+    "romanization": "sàng gɛɛng rǔe kâao-pàt khráp",
+    "translation": "Order curry or fried rice.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001600",
+    "text": "สั่งสลัดอีกครับ",
+    "romanization": "sàng sà-làt ìik khráp",
+    "translation": "Order another salad, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -38986,21 +39087,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000081",
-    "text": "ฉันซื้อขนมที่ตลาด",
-    "romanization": "chǎn sʉ́ʉ khà-nǒm thîi dtà-làat",
-    "translation": "I bought snacks at the market.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001579",
+    "text": "ขนมกับไอศกรีมครับ",
+    "romanization": "kà-nǒm gàp ai-sà-kriim khráp",
+    "translation": "A snack and ice cream, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000082",
-    "text": "ขนมนี้หวานมาก",
-    "romanization": "khà-nǒm níi wǎan mâak",
-    "translation": "This snack is very sweet.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001580",
+    "text": "ขนมอีกถุงครับ",
+    "romanization": "kà-nǒm ìik thǔng khráp",
+    "translation": "Another bag of snacks, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001615",
+    "text": "ขนมนี้ครับ",
+    "romanization": "kà-nǒm níi khráp",
+    "translation": "This snack, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001616",
+    "text": "ขนมพร้อมแล้วครับ",
+    "romanization": "kà-nǒm phrɔ́ɔm láew khráp",
+    "translation": "The snack is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001617",
+    "text": "ขนมหรือไอศกรีมครับ",
+    "romanization": "kà-nǒm rʉ̌ʉ ai-sà-kriim khráp",
+    "translation": "A snack or ice cream?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -39038,21 +39166,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000012",
-    "text": "อาหารเช้าวันนี้มีไข่กับขนมปัง",
-    "romanization": "aa-hǎan cháao wan-níi mii khài gàp khà-nǒm-bpang",
-    "translation": "Today's breakfast has eggs and bread.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001578",
+    "text": "ขนมปังกับซุปครับ",
+    "romanization": "kà-nǒm-pang gàp súp khráp",
+    "translation": "Bread and soup, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000013",
-    "text": "ฉันชอบขนมปังกับเนย",
-    "romanization": "chǎn chɔ̂ɔp khà-nǒm-bpang gàp noei",
-    "translation": "I like bread with butter.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001611",
+    "text": "ขนมปังนี้ครับ",
+    "romanization": "kà-nǒm-pang níi khráp",
+    "translation": "This bread, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001612",
+    "text": "ขนมปังพร้อมแล้วครับ",
+    "romanization": "kà-nǒm-pang phrɔ́ɔm láew khráp",
+    "translation": "The bread is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001613",
+    "text": "ขนมปังรสเปรี้ยวครับ",
+    "romanization": "kà-nǒm-pang rót bprîao khráp",
+    "translation": "The bread has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001614",
+    "text": "ขนมปังหรือซุปครับ",
+    "romanization": "kà-nǒm-pang rʉ̌ʉ súp khráp",
+    "translation": "Bread or soup?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -39090,21 +39245,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000045",
-    "text": "ฉันสั่งข้าวผัดหนึ่งจาน",
-    "romanization": "chǎn sàng khâao-phàt nʉ̀ng jaan",
-    "translation": "I ordered one plate of fried rice.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001585",
+    "text": "ข้าวผัดกับซุปครับ",
+    "romanization": "kâao-pàt gàp súp khráp",
+    "translation": "Fried rice and soup, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000046",
-    "text": "ข้าวผัดนี้ใส่ไข่ไหม",
-    "romanization": "khâao-phàt níi sài khài mái",
-    "translation": "Does this fried rice have egg in it?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001586",
+    "text": "ข้าวผัดกับกุ้งครับ",
+    "romanization": "kâao-pàt gàp gûng khráp",
+    "translation": "Fried rice with shrimp, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001634",
+    "text": "ข้าวผัดหรือซุปครับ",
+    "romanization": "kâao-pàt rʉ̌ʉ súp khráp",
+    "translation": "Fried rice or soup?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001635",
+    "text": "ข้าวผัดรสเปรี้ยวครับ",
+    "romanization": "kâao-pàt rót bprîao khráp",
+    "translation": "The fried rice has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001654",
+    "text": "ข้าวผัดนี้ครับ",
+    "romanization": "kâao-pàt níi khráp",
+    "translation": "This fried rice, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -39269,39 +39451,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000035",
-    "text": "อาหารนี้รสชาติดีมาก",
-    "romanization": "aa-hǎan níi rót-châat dii mâak",
-    "translation": "This food tastes very good.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001592",
+    "text": "รสนี้เปรี้ยวครับ",
+    "romanization": "rót níi prîao khráp",
+    "translation": "This flavor is sour.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000083",
-    "text": "ฉันชอบไอศกรีมรสช็อกโกแลต",
-    "romanization": "chǎn chɔ̂ɔp ai-sà-griiam rót chɔ́ɔk-gɔ̀-leeht",
-    "translation": "I like chocolate-flavored ice cream.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001649",
+    "text": "รสเปรี้ยวหรือรสนี้ครับ",
+    "romanization": "rót bprîao rʉ̌ʉ rót níi khráp",
+    "translation": "The sour flavor or this flavor?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000119",
-    "text": "อาหารไทยมีหลายรสชาติ",
-    "romanization": "aa-hǎan thai mii lǎai rót-châat",
-    "translation": "Thai food has many different flavors.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001650",
+    "text": "รสนี้หรือรสนั้นครับ",
+    "romanization": "rót níi rʉ̌ʉ rót nán khráp",
+    "translation": "This flavor or that flavor?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000120",
-    "text": "ฉันชอบรสเปรี้ยวมากกว่ารสหวาน",
-    "romanization": "chǎn chɔ̂ɔp rót bprîiao mâak gwàa rót wǎan",
-    "translation": "I prefer sour flavors to sweet flavors.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001651",
+    "text": "รสนี้พร้อมแล้วครับ",
+    "romanization": "rót níi phrɔ́ɔm láew khráp",
+    "translation": "This flavor is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001652",
+    "text": "รสเปรี้ยวกับรสนี้ครับ",
+    "romanization": "rót bprîao gàp rót níi khráp",
+    "translation": "The sour flavor and this flavor.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -39927,21 +40118,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000023",
-    "text": "ฉันชอบกินผักมากกว่าเนื้อ",
-    "romanization": "chǎn chɔ̂ɔp gin phàk mâak gwàa nʉ́ʉa",
-    "translation": "I like eating vegetables more than meat.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001582",
+    "text": "เนื้อกับสลัดครับ",
+    "romanization": "nʉ́ʉa gàp sà-làt khráp",
+    "translation": "Meat and salad, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000116",
-    "text": "จานนี้ไม่มีเนื้อสัตว์",
-    "romanization": "jaan níi mâi mii nʉ́ʉa sàt",
-    "translation": "This dish has no meat.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001622",
+    "text": "เนื้อหรือกุ้งครับ",
+    "romanization": "nʉ́ʉa rʉ̌ʉ gûng khráp",
+    "translation": "Meat or shrimp?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001623",
+    "text": "เนื้อพร้อมแล้วครับ",
+    "romanization": "nʉ́ʉa phrɔ́ɔm láew khráp",
+    "translation": "The meat is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001624",
+    "text": "เนื้อรสเปรี้ยวครับ",
+    "romanization": "nʉ́ʉa rót bprîao khráp",
+    "translation": "The meat has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001625",
+    "text": "เนื้อกับแกงครับ",
+    "romanization": "nʉ́ʉa gàp gɛɛng khráp",
+    "translation": "Meat with curry.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -41039,12 +41257,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000055",
-    "text": "กุ้งตัวใหญ่และสดมาก",
-    "romanization": "gûng dtua yài láe sòt mâak",
-    "translation": "The shrimp are big and very fresh.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001583",
+    "text": "กุ้งกับสลัดครับ",
+    "romanization": "gûng gàp sà-làt khráp",
+    "translation": "Shrimp and salad, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001626",
+    "text": "กุ้งหรือเนื้อครับ",
+    "romanization": "gûng rʉ̌ʉ nʉ́ʉa khráp",
+    "translation": "Shrimp or meat?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001627",
+    "text": "กุ้งพร้อมแล้วครับ",
+    "romanization": "gûng phrɔ́ɔm láew khráp",
+    "translation": "The shrimp is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001628",
+    "text": "กุ้งรสเปรี้ยวครับ",
+    "romanization": "gûng rót bprîao khráp",
+    "translation": "The shrimp has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001629",
+    "text": "กุ้งกับซุปครับ",
+    "romanization": "gûng gàp súp khráp",
+    "translation": "Shrimp with soup.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -41498,12 +41752,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000036",
-    "text": "ซุปนี้ร้อนเกินไป",
-    "romanization": "súp níi rɔ́ɔn gəən bpai",
-    "translation": "This soup is too hot.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001587",
+    "text": "ซุปกับขนมปังครับ",
+    "romanization": "súp gàp kà-nǒm-pang khráp",
+    "translation": "Soup and bread, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001641",
+    "text": "ซุปหรือแกงครับ",
+    "romanization": "súp rʉ̌ʉ gɛɛng khráp",
+    "translation": "Soup or curry?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001642",
+    "text": "ซุปรสเปรี้ยวครับ",
+    "romanization": "súp rót bprîao khráp",
+    "translation": "The soup has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001643",
+    "text": "ซุปกับเนื้อวัวครับ",
+    "romanization": "súp gàp nʉ́ʉa-wua khráp",
+    "translation": "Soup with beef.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001655",
+    "text": "ซุปนี้ครับ",
+    "romanization": "súp níi khráp",
+    "translation": "This soup, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42429,21 +42719,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000032",
-    "text": "ต้มยำนี้เปรี้ยวมาก",
-    "romanization": "dtôm-yam níi bprîiao mâak",
-    "translation": "This tom yum is very sour.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001593",
+    "text": "รสเปรี้ยวครับ",
+    "romanization": "rót prîao khráp",
+    "translation": "It tastes sour.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000120",
-    "text": "ฉันชอบรสเปรี้ยวมากกว่ารสหวาน",
-    "romanization": "chǎn chɔ̂ɔp rót bprîiao mâak gwàa rót wǎan",
-    "translation": "I prefer sour flavors to sweet flavors.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001594",
+    "text": "ซุปเปรี้ยวครับ",
+    "romanization": "súp prîao khráp",
+    "translation": "The soup is sour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001595",
+    "text": "สลัดเปรี้ยวครับ",
+    "romanization": "sà-làt prîao khráp",
+    "translation": "The salad is sour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001596",
+    "text": "แกงเปรี้ยวครับ",
+    "romanization": "gɛɛng prîao khráp",
+    "translation": "The curry is sour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001657",
+    "text": "เนื้อเปรี้ยวครับ",
+    "romanization": "nʉ́ʉa bprîao khráp",
+    "translation": "The meat is sour.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42843,12 +43160,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000025",
-    "text": "ฉันใส่หัวหอมในสลัด",
-    "romanization": "chǎn sài hǔa-hɔ̌ɔm nai sà-làat",
-    "translation": "I put onion in the salad.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001588",
+    "text": "สลัดกับกุ้งครับ",
+    "romanization": "sà-làt gàp gûng khráp",
+    "translation": "Salad with shrimp, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001589",
+    "text": "สลัดนี้รสเปรี้ยวครับ",
+    "romanization": "sà-làt níi rót prîao khráp",
+    "translation": "This salad tastes sour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001644",
+    "text": "สลัดหรือซุปครับ",
+    "romanization": "sà-làt rʉ̌ʉ súp khráp",
+    "translation": "Salad or soup?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001645",
+    "text": "สลัดกับเนื้อวัวครับ",
+    "romanization": "sà-làt gàp nʉ́ʉa-wua khráp",
+    "translation": "Salad with beef.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001656",
+    "text": "สลัดพร้อมแล้วค่ะ",
+    "romanization": "sà-làt phrɔ́ɔm láew khâ",
+    "translation": "The salad is ready.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42966,12 +43319,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000059",
-    "text": "หมูจานนี้นุ่มมาก",
-    "romanization": "mǔu jaan níi nûm mâak",
-    "translation": "The pork on this plate is very tender.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001581",
+    "text": "หมูกับซุปครับ",
+    "romanization": "mǔu gàp súp khráp",
+    "translation": "Pork and soup, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001618",
+    "text": "หมูหรือกุ้งครับ",
+    "romanization": "mǔu rʉ̌ʉ gûng khráp",
+    "translation": "Pork or shrimp?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001619",
+    "text": "หมูพร้อมแล้วครับ",
+    "romanization": "mǔu phrɔ́ɔm láew khráp",
+    "translation": "The pork is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001620",
+    "text": "หมูรสเปรี้ยวครับ",
+    "romanization": "mǔu rót bprîao khráp",
+    "translation": "The pork has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001621",
+    "text": "หมูกับสลัดครับ",
+    "romanization": "mǔu gàp sà-làt khráp",
+    "translation": "Pork with salad.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -43463,12 +43852,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000058",
-    "text": "ฉันไม่ค่อยกินเนื้อวัว",
-    "romanization": "chǎn mâi khɔ̂i gin nʉ́ʉa wua",
-    "translation": "I don't eat beef very often.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001584",
+    "text": "เนื้อวัวกับซุปครับ",
+    "romanization": "nʉ́ʉa-wua gàp súp khráp",
+    "translation": "Beef and soup, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001630",
+    "text": "เนื้อวัวหรือหมูครับ",
+    "romanization": "nʉ́ʉa-wua rʉ̌ʉ mǔu khráp",
+    "translation": "Beef or pork?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001631",
+    "text": "เนื้อวัวพร้อมแล้วครับ",
+    "romanization": "nʉ́ʉa-wua phrɔ́ɔm láew khráp",
+    "translation": "The beef is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001632",
+    "text": "เนื้อวัวรสเปรี้ยวครับ",
+    "romanization": "nʉ́ʉa-wua rót bprîao khráp",
+    "translation": "The beef has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001633",
+    "text": "เนื้อวัวกับสลัดครับ",
+    "romanization": "nʉ́ʉa-wua gàp sà-làt khráp",
+    "translation": "Beef with salad.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -43958,12 +44383,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000033",
-    "text": "แกงนี้หวานไปนิด",
-    "romanization": "gaeng níi wǎan bpai nít",
-    "translation": "This curry is a little too sweet.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001636",
+    "text": "แกงหรือซุปครับ",
+    "romanization": "gɛɛng rʉ̌ʉ súp khráp",
+    "translation": "Curry or soup?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001637",
+    "text": "แกงพร้อมแล้วครับ",
+    "romanization": "gɛɛng phrɔ́ɔm láew khráp",
+    "translation": "The curry is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001638",
+    "text": "แกงรสเปรี้ยวครับ",
+    "romanization": "gɛɛng rót bprîao khráp",
+    "translation": "The curry has a sour flavor.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001639",
+    "text": "แกงกับสลัดครับ",
+    "romanization": "gɛɛng gàp sà-làt khráp",
+    "translation": "Curry with salad.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001640",
+    "text": "แกงหรือเนื้อครับ",
+    "romanization": "gɛɛng rʉ̌ʉ nʉ́ʉa khráp",
+    "translation": "Curry or meat?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -44418,21 +44879,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000083",
-    "text": "ฉันชอบไอศกรีมรสช็อกโกแลต",
-    "romanization": "chǎn chɔ̂ɔp ai-sà-griiam rót chɔ́ɔk-gɔ̀-leeht",
-    "translation": "I like chocolate-flavored ice cream.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001590",
+    "text": "ไอศกรีมกับขนมครับ",
+    "romanization": "ai-sà-kriim gàp kà-nǒm khráp",
+    "translation": "Ice cream and snacks, please.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000084",
-    "text": "ไอศกรีมนี้ละลายเร็วมาก",
-    "romanization": "ai-sà-griiam níi lá-laai reo mâak",
-    "translation": "This ice cream melts very quickly.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001591",
+    "text": "ไอศกรีมรสเปรี้ยวครับ",
+    "romanization": "ai-sà-kriim rót prîao khráp",
+    "translation": "This ice cream tastes sour.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001646",
+    "text": "ไอศกรีมหรือขนมครับ",
+    "romanization": "ai-sà-kriim rʉ̌ʉ kà-nǒm khráp",
+    "translation": "Ice cream or a snack?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001647",
+    "text": "ไอศกรีมพร้อมแล้วครับ",
+    "romanization": "ai-sà-kriim phrɔ́ɔm láew khráp",
+    "translation": "The ice cream is ready.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001648",
+    "text": "ไอศกรีมกับซุปครับ",
+    "romanization": "ai-sà-kriim gàp súp khráp",
+    "translation": "Ice cream with soup.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
