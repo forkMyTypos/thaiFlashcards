@@ -4768,7 +4768,17 @@
   "hook_visual": "calculator showing total plus sign",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A colossal digital calculator displaying a giant glowing golden plus sign that reaches out with energy tendrils, scooping up a wrapped birthday present. High-tech glow effects, strong central focal point, rich specular highlights.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001532",
+    "text": "สำคัญสำหรับโต๊ะครับ",
+    "romanization": "sǎm-khan sǎm-ràp dtó khráp",
+    "translation": "It is important for the table.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000459"
@@ -6444,6 +6454,42 @@
     "romanization": "chǎn chɔ̂ɔp lɔɔng aa-hǎan mài-mài",
     "translation": "I like trying new foods.",
     "difficulty": "beginner",
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001474",
+    "text": "โต๊ะใหม่ครับ",
+    "romanization": "tó mài khráp",
+    "translation": "The table is new.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001475",
+    "text": "ถุงใหม่ครับ",
+    "romanization": "thǔng mài khráp",
+    "translation": "The bag is new.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001476",
+    "text": "ขวดใหม่ครับ",
+    "romanization": "khùat mài khráp",
+    "translation": "The bottle is new.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001477",
+    "text": "แก้วใหม่ครับ",
+    "romanization": "gâeo mài khráp",
+    "translation": "The glass is new.\\",
+    "difficulty": null,
     "is_target": true,
     "role": null
    }
@@ -8926,7 +8972,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001483",
+    "text": "ยาวครับ",
+    "romanization": "yaao khráp",
+    "translation": "It's long.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001484",
+    "text": "ยาวจริงครับ",
+    "romanization": "yaao jing khráp",
+    "translation": "It's really long.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001485",
+    "text": "โต๊ะยาวครับ",
+    "romanization": "tó yaao khráp",
+    "translation": "The table is long.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001486",
+    "text": "ยาวเกินครับ",
+    "romanization": "yaao goen khráp",
+    "translation": "It's too long.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001487",
+    "text": "ยาวพอครับ",
+    "romanization": "yaao phɔɔ khráp",
+    "translation": "It's long enough.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008"
   ],
@@ -9906,30 +9998,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000035",
-    "text": "อาหารนี้รสชาติดีมาก",
-    "romanization": "aa-hǎan níi rót-châat dii mâak",
-    "translation": "This food tastes very good.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001460",
+    "text": "ดีครับ",
+    "romanization": "dii khráp",
+    "translation": "Good.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000097",
-    "text": "ใส่น้ำตาลนิดเดียวก็พอ",
-    "romanization": "sài náam-dtaan nít diao gɔ̂ɔ phɔɔ",
-    "translation": "Just a little sugar is enough.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001461",
+    "text": "ดีที่สุดครับ",
+    "romanization": "dii-thîi-sùt khráp",
+    "translation": "It's the best.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000105",
-    "text": "ฉันไม่รู้ว่าจะกินอะไรดี",
-    "romanization": "chǎn mâi rúu wâa jà gin à-rai dii",
-    "translation": "I don't know what I should eat.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001462",
+    "text": "ดีจริงครับ",
+    "romanization": "dii-jing khráp",
+    "translation": "It's really good.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001463",
+    "text": "โต๊ะดีครับ",
+    "romanization": "tó dii khráp",
+    "translation": "The table is good.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001529",
+    "text": "ดีหรือครับ",
+    "romanization": "dii rue khráp",
+    "translation": "Is it good?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -11365,7 +11475,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001493",
+    "text": "สูงครับ",
+    "romanization": "sǔung khráp",
+    "translation": "It's high.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001494",
+    "text": "สูงจริงครับ",
+    "romanization": "sǔung jing khráp",
+    "translation": "It's really high.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001495",
+    "text": "โต๊ะสูงครับ",
+    "romanization": "tó sǔung khráp",
+    "translation": "The table is high.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001496",
+    "text": "สูงเกินครับ",
+    "romanization": "sǔung goen khráp",
+    "translation": "It's too high.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001497",
+    "text": "สูงพอครับ",
+    "romanization": "sǔung phɔɔ khráp",
+    "translation": "It's high enough.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008",
    "TH_L000039"
@@ -17128,7 +17284,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001469",
+    "text": "โต๊ะเล็กครับ",
+    "romanization": "tó lék khráp",
+    "translation": "The table is small.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001470",
+    "text": "ถุงเล็กครับ",
+    "romanization": "thǔng lék khráp",
+    "translation": "The bag is small.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001471",
+    "text": "ขวดเล็กครับ",
+    "romanization": "khùat lék khráp",
+    "translation": "The bottle is small.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001472",
+    "text": "แก้วเล็กครับ",
+    "romanization": "gâeo lék khráp",
+    "translation": "The glass is small.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001473",
+    "text": "เล็กจริงครับ",
+    "romanization": "lék jing khráp",
+    "translation": "It's really small.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008",
    "TH_L000018"
@@ -18137,6 +18339,24 @@
     "text": "ชิ้นนั้นถูกที่สุดครับ",
     "romanization": "chín nán thùuk thîi-sùt khráp",
     "translation": "That piece is the cheapest.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001461",
+    "text": "ดีที่สุดครับ",
+    "romanization": "dii-thîi-sùt khráp",
+    "translation": "It's the best.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001509",
+    "text": "สำคัญที่สุดครับ",
+    "romanization": "sǎm-khan-thîi-sùt khráp",
+    "translation": "It's the most important.\\",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -22136,30 +22356,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000036",
-    "text": "ซุปนี้ร้อนเกินไป",
-    "romanization": "súp níi rɔ́ɔn gəən bpai",
-    "translation": "This soup is too hot.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001519",
+    "text": "เกิน 10 บาทครับ",
+    "romanization": "goen sìp bàat khráp",
+    "translation": "It's over 10 baht.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000038",
-    "text": "อาหารจานนี้ใหญ่เกินไป",
-    "romanization": "aa-hǎan jaan níi yài gəən bpai",
-    "translation": "This dish is too big.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001520",
+    "text": "เกิน 20 บาทครับ",
+    "romanization": "goen yîi-sìp bàat khráp",
+    "translation": "It's over 20 baht.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000111",
-    "text": "อย่ากินเร็วเกินไป",
-    "romanization": "yàa gin reo gəən bpai",
-    "translation": "Don't eat too quickly.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001521",
+    "text": "เกิน 100 บาทครับ",
+    "romanization": "goen nʉ̀ng-rɔ́ɔi bàat khráp",
+    "translation": "It's over 100 baht.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001522",
+    "text": "เกิน 2 ขวดครับ",
+    "romanization": "goen sɔ̌ɔng khùat khráp",
+    "translation": "It's more than two bottles.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001523",
+    "text": "เกิน 3 แก้วครับ",
+    "romanization": "goen sǎam gâeo khráp",
+    "translation": "It's more than three glasses.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -22253,7 +22491,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001508",
+    "text": "สำคัญครับ",
+    "romanization": "sǎm-khan khráp",
+    "translation": "It's important.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001509",
+    "text": "สำคัญที่สุดครับ",
+    "romanization": "sǎm-khan-thîi-sùt khráp",
+    "translation": "It's the most important.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001510",
+    "text": "สำคัญจริงครับ",
+    "romanization": "sǎm-khan-jing khráp",
+    "translation": "It's really important.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001530",
+    "text": "สำคัญหรือครับ",
+    "romanization": "sǎm-khan rue khráp",
+    "translation": "Is it important?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001532",
+    "text": "สำคัญสำหรับโต๊ะครับ",
+    "romanization": "sǎm-khan sǎm-ràp dtó khráp",
+    "translation": "It is important for the table.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008"
   ],
@@ -22496,21 +22780,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000038",
-    "text": "อาหารจานนี้ใหญ่เกินไป",
-    "romanization": "aa-hǎan jaan níi yài gəən bpai",
-    "translation": "This dish is too big.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001464",
+    "text": "โต๊ะใหญ่ครับ",
+    "romanization": "tó yài khráp",
+    "translation": "The table is big.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000055",
-    "text": "กุ้งตัวใหญ่และสดมาก",
-    "romanization": "gûng dtua yài láe sòt mâak",
-    "translation": "The shrimp are big and very fresh.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001465",
+    "text": "ถุงใหญ่ครับ",
+    "romanization": "thǔng yài khráp",
+    "translation": "The bag is big.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001466",
+    "text": "ขวดใหญ่ครับ",
+    "romanization": "khùat yài khráp",
+    "translation": "The bottle is big.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001467",
+    "text": "แก้วใหญ่ครับ",
+    "romanization": "gâeo yài khráp",
+    "translation": "The glass is big.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001468",
+    "text": "ใหญ่จริงครับ",
+    "romanization": "yài jing khráp",
+    "translation": "It's really big.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -27037,7 +27348,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001511",
+    "text": "จริงครับ",
+    "romanization": "jing khráp",
+    "translation": "That's true.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001512",
+    "text": "จริงหรือครับ",
+    "romanization": "jing-rʉ̌ʉ khráp",
+    "translation": "Really?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001513",
+    "text": "จริงที่สุดครับ",
+    "romanization": "jing-thîi-sùt khráp",
+    "translation": "It's absolutely true.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001533",
+    "text": "จริงหรือคะ",
+    "romanization": "jing rue khá",
+    "translation": "Is that true?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001462",
+    "text": "ดีจริงครับ",
+    "romanization": "dii-jing khráp",
+    "translation": "It's really good.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008",
    "TH_L000109"
@@ -27846,7 +28203,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001503",
+    "text": "ต่างจากนี้ครับ",
+    "romanization": "dtàang-jàak-níi khráp",
+    "translation": "It's different from this.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001504",
+    "text": "โต๊ะต่างจากถุงครับ",
+    "romanization": "tó dtàang-jàak-thǔng khráp",
+    "translation": "The table is different from the bag.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001505",
+    "text": "แก้วต่างจากขวดครับ",
+    "romanization": "gâeo dtàang-jàak-khùat khráp",
+    "translation": "The glass is different from the bottle.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001506",
+    "text": "ต่างจริงครับ",
+    "romanization": "dtàang jing khráp",
+    "translation": "It's truly different.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001507",
+    "text": "ต่างจากนั้นครับ",
+    "romanization": "dtàang-jàak-nán khráp",
+    "translation": "It's different from that.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008"
   ],
@@ -28617,21 +29020,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000023",
-    "text": "ฉันชอบกินผักมากกว่าเนื้อ",
-    "romanization": "chǎn chɔ̂ɔp gin phàk mâak gwàa nʉ́ʉa",
-    "translation": "I like eating vegetables more than meat.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001514",
+    "text": "มากกว่า 10 บาทครับ",
+    "romanization": "mâak-gwàa sìp bàat khráp",
+    "translation": "It's more than 10 baht.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000120",
-    "text": "ฉันชอบรสเปรี้ยวมากกว่ารสหวาน",
-    "romanization": "chǎn chɔ̂ɔp rót bprîiao mâak gwàa rót wǎan",
-    "translation": "I prefer sour flavors to sweet flavors.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001515",
+    "text": "มากกว่า 20 บาทครับ",
+    "romanization": "mâak-gwàa yîi-sìp bàat khráp",
+    "translation": "It's more than 20 baht.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001516",
+    "text": "มากกว่า 100 บาทครับ",
+    "romanization": "mâak-gwàa nʉ̀ng-rɔ́ɔi bàat khráp",
+    "translation": "It's more than 100 baht.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001517",
+    "text": "มากกว่า 2 ขวดครับ",
+    "romanization": "mâak-gwàa sɔ̌ɔng khùat khráp",
+    "translation": "It's more than two bottles.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001518",
+    "text": "มากกว่า 3 แก้วครับ",
+    "romanization": "mâak-gwàa sǎam gâeo khráp",
+    "translation": "It's more than three glasses.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -31382,12 +31812,30 @@
     "role": null
    },
    {
-    "id": "TH_S000084",
-    "text": "ไอศกรีมนี้ละลายเร็วมาก",
-    "romanization": "ai-sà-griiam níi lá-laai reo mâak",
-    "translation": "This ice cream melts very quickly.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001479",
+    "text": "เร็วครับ",
+    "romanization": "reo khráp",
+    "translation": "It's fast.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001480",
+    "text": "เร็วจริงครับ",
+    "romanization": "reo jing khráp",
+    "translation": "It's really fast.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001481",
+    "text": "เร็วเกินครับ",
+    "romanization": "reo goen khráp",
+    "translation": "It's too fast.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -35775,7 +36223,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001488",
+    "text": "สั้นครับ",
+    "romanization": "sân khráp",
+    "translation": "It's short.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001489",
+    "text": "สั้นจริงครับ",
+    "romanization": "sân jing khráp",
+    "translation": "It's really short.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001490",
+    "text": "สั้นเกินครับ",
+    "romanization": "sân goen khráp",
+    "translation": "It's too short.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001491",
+    "text": "สั้นพอครับ",
+    "romanization": "sân phɔɔ khráp",
+    "translation": "It's short enough.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001492",
+    "text": "โต๊ะสั้นครับ",
+    "romanization": "tó sân khráp",
+    "translation": "The table is short.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008"
   ],
@@ -36424,7 +36918,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001498",
+    "text": "แก้วเต็มครับ",
+    "romanization": "gâeo dtem khráp",
+    "translation": "The glass is full.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001499",
+    "text": "ขวดเต็มครับ",
+    "romanization": "khùat dtem khráp",
+    "translation": "The bottle is full.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001500",
+    "text": "ถุงเต็มครับ",
+    "romanization": "thǔng dtem khráp",
+    "translation": "The bag is full.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001501",
+    "text": "เต็มแล้วครับ",
+    "romanization": "dtem láeo khráp",
+    "translation": "It's full now.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001502",
+    "text": "เต็มเกินครับ",
+    "romanization": "dtem goen khráp",
+    "translation": "It's overfull.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000008",
    "TH_L000018",
@@ -38441,21 +38981,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000080",
-    "text": "ฉันมีเงินสดไม่พอ",
-    "romanization": "chǎn mii ngoen sòt mâi phɔɔ",
-    "translation": "I don't have enough cash.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S001524",
+    "text": "พอแล้วครับ",
+    "romanization": "phɔɔ láeo khráp",
+    "translation": "That's enough.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000097",
-    "text": "ใส่น้ำตาลนิดเดียวก็พอ",
-    "romanization": "sài náam-dtaan nít diao gɔ̂ɔ phɔɔ",
-    "translation": "Just a little sugar is enough.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S001525",
+    "text": "10 บาทพอครับ",
+    "romanization": "sìp bàat phɔɔ khráp",
+    "translation": "Ten baht is enough.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001526",
+    "text": "20 บาทพอครับ",
+    "romanization": "yîi-sìp bàat phɔɔ khráp",
+    "translation": "Twenty baht is enough.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001527",
+    "text": "แก้วพอครับ",
+    "romanization": "gâeo phɔɔ khráp",
+    "translation": "The glass is enough.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001528",
+    "text": "ถุงพอครับ",
+    "romanization": "thǔng phɔɔ khráp",
+    "translation": "The bag is enough.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -43320,6 +43887,33 @@
     "text": "ใส่ถุงครับ",
     "romanization": "sài thǔng khráp",
     "translation": "Put it in a bag.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001465",
+    "text": "ถุงใหญ่ครับ",
+    "romanization": "thǔng yài khráp",
+    "translation": "The bag is big.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001470",
+    "text": "ถุงเล็กครับ",
+    "romanization": "thǔng lék khráp",
+    "translation": "The bag is small.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001475",
+    "text": "ถุงใหม่ครับ",
+    "romanization": "thǔng mài khráp",
+    "translation": "The bag is new.\\",
     "difficulty": null,
     "is_target": false,
     "role": null
@@ -72387,6 +72981,24 @@
     "text": "ใส่ขวดได้ครับ",
     "romanization": "sài khùat dâai khráp",
     "translation": "You can put it in a bottle.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001466",
+    "text": "ขวดใหญ่ครับ",
+    "romanization": "khùat yài khráp",
+    "translation": "The bottle is big.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S001471",
+    "text": "ขวดเล็กครับ",
+    "romanization": "khùat lék khráp",
+    "translation": "The bottle is small.\\",
     "difficulty": null,
     "is_target": false,
     "role": null
