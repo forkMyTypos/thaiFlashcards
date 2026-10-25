@@ -183,7 +183,53 @@
   "hook_visual": "exactly one unmistakable object, steaming ceramic teacup",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A massive numeral \"1\" made of gleaming brass uses a giant teacup like a hammer to smash down onto a single grid square of a floating calendar, shattering the date square into glowing fragments. Rich textures, dramatic cinematic lighting, vibrant colors, clear visual hierarchy, hyper-focused central composition.",
   "mnemonic_concept": "one tea",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001229",
+    "text": "วันที่นี้ครับ",
+    "romanization": "wan-thîi níi khráp",
+    "translation": "This date.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001230",
+    "text": "วันที่นั้นค่ะ",
+    "romanization": "wan-thîi nán khâ",
+    "translation": "That date.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001231",
+    "text": "วันที่วันเกิดครับ",
+    "romanization": "wan-thîi wan-gə̀ət khráp",
+    "translation": "The birthday date.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001338",
+    "text": "วันที่ 5 ครับ",
+    "romanization": "wan-thîi hâa khráp",
+    "translation": "It's the 5th.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001339",
+    "text": "วันที่ 12 ค่ะ",
+    "romanization": "wan-thîi sìp-sǎawng khâ",
+    "translation": "It's the 12th.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000001"
@@ -381,7 +427,35 @@
   "hook_visual": "giant green pea",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A colossal, perfectly round green pea falls from the sky and completely squashes a massive twelve-month wall calendar flat onto the ground with a massive shockwave. Rich textures, dramatic cinematic lighting, vibrant colors, clear visual hierarchy, hyper-focused central composition.",
   "mnemonic_concept": "pea",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001350",
+    "text": "ปี 2026 ครับ",
+    "romanization": "pii sǒng-phan yîi-sìp-hòk khráp",
+    "translation": "The year is 2026.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001352",
+    "text": "วันเกิดปี 2024 ค่ะ",
+    "romanization": "wan-gə̀ət pii sǒng-phan yîi-sìp-sìi khâ",
+    "translation": "The birthday is in 2024.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001354",
+    "text": "ปี 2025 เดือนตุลาคมค่ะ",
+    "romanization": "pii sǒng-phan yîi-sìp-hâa duean dtù-laa-khom khâ",
+    "translation": "October 2025.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000007",
@@ -963,7 +1037,53 @@
   "hook_visual": "a person asking someone to come closer, looking far away through binoculars, next to an electric desk fan",
   "mnemonic": "A ridiculous, joyful Kumbaya campfire gathering at night.\n\nAround the huge campfire, a group of people are sitting in a circle, holding hands and singing together.\n\nAt the center of the group is a grandpa (Pa) who has completely misunderstood the assignment. Instead of singing, he's intensely cooking something in a huge metal frying pan over the campfire.\n\nEveryone else is singing and swaying together while Grandpa is completely focused on his cooking.\n\nThat gives us a really funny visual:",
   "mnemonic_concept": "come + far + fan",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001102",
+    "text": "วันเกิดเดือนกุมภาพันธ์ค่ะ",
+    "romanization": "wan-gə̀ət duean kum-phaa-phan khâ",
+    "translation": "My birthday is in February.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001184",
+    "text": "กุมภาพันธ์ครับ",
+    "romanization": "kum-phaa-phan khráp",
+    "translation": "February.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001185",
+    "text": "กุมภาพันธ์นี้ค่ะ",
+    "romanization": "kum-phaa-phan níi khâ",
+    "translation": "This February.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001186",
+    "text": "วันเกิดเดือนกุมภาพันธ์ครับ",
+    "romanization": "wan-gə̀ət duean kum-phaa-phan khráp",
+    "translation": "The birthday is in February.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001187",
+    "text": "กุมภาพันธ์ถึงเมษายนค่ะ",
+    "romanization": "kum-phaa-phan thʉ̌ng mee-sǎa-yon khâ",
+    "translation": "February to April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000001"
@@ -1226,7 +1346,53 @@
   "hook_visual": "a metal hand tool securing a heavy door lock on a cozy suburban home",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. An extremely old, grizzled Western cowboy stands dramatically in the center of an old frontier saloon. He looks unmistakably like a classic OLD COOT: deeply weathered face, enormous bushy white moustache, wrinkled skin, battered cowboy hat, dusty boots, worn western clothing, hunched posture, and a hilariously grumpy expression.\n\nDespite his rough old-cowboy appearance, the old coot is performing an unbelievably dramatic opera-style vocal performance, throwing his head backward and opening his mouth enormously as he belts out a powerful sustained “LAAAAAA!” His entire body is stretched into an exaggerated theatrical singing pose, one arm raised dramatically toward the ceiling.\n\nA second character is actively combing the old coot's enormous bushy moustache with a large old-fashioned hair comb while the coot continues his ridiculous singing performance completely seriously. The comb must visibly touch the moustache and pass through the hair, making the COMB unmistakable.\n\nThe scene should feel like an absurd collision between an old Western saloon and an operatic performance: a grumpy OLD COOT dramatically singing LAAAAAA while someone calmly COMBS his enormous moustache.\n\nRich painterly digital textures, dramatic cinematic lighting, vibrant warm colors, strong silhouettes, exaggerated scale, expressive physical storytelling, humorous absurdity, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork.\n\nExactly two characters. One old Western coot, one person combing his moustache. Exactly one large comb. The comb must physically touch and pass through the moustache. No bird, no animal, no microphone, no written words, no letters, no speech bubbles, no random props, no extra combs, no duplicate characters, no unrelated objects.",
   "mnemonic_concept": "tool + lock + home",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001110",
+    "text": "วันเกิดเดือนตุลาคมค่ะ",
+    "romanization": "wan-gə̀ət duean dtù-laa-khom khâ",
+    "translation": "My birthday is in October.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001216",
+    "text": "ตุลาคมครับ",
+    "romanization": "dtù-laa-khom khráp",
+    "translation": "October.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001217",
+    "text": "ตุลาคมนี้ค่ะ",
+    "romanization": "dtù-laa-khom níi khâ",
+    "translation": "This October.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001218",
+    "text": "วันเกิดเดือนตุลาคมครับ",
+    "romanization": "wan-gə̀ət duean dtù-laa-khom khráp",
+    "translation": "The birthday is in October.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001219",
+    "text": "ตุลาคมถึงธันวาคมค่ะ",
+    "romanization": "dtù-laa-khom thʉ̌ng than-waa-khom khâ",
+    "translation": "October to December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000001"
@@ -1327,7 +1493,53 @@
   "hook_visual": "a person pointing at themselves, holding a can of tuna, while letting out a wide mouth yawn",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A ridiculously exaggerated man stands triumphantly on the back of a gigantic tuna fish, pointing emphatically at his own chest with one hand to make “ME” unmistakable.\n\nThe enormous tuna beneath him is simultaneously performing an absurdly huge sleepy YAWN, stretching its mouth open to an exaggerated impossible size. The man's pose and the tuna's enormous yawning expression create one ridiculous coherent visual joke: a man pointing at HIMSELF while standing on a TUNA that is YAWNING.\n\nSet the entire scene in a bright tropical summer environment with intense sunlight, lush vegetation, blue sky, and a warm June atmosphere.\n\nThe three sound anchors must be visually unmistakable: ME = the man pointing directly at himself; TUNA = one enormous recognizable tuna; YAWN = the tuna's gigantic open mouth and sleepy expression.\n\nRich painterly digital textures, dramatic cinematic lighting, vibrant tropical colors, exaggerated scale, strong silhouettes, expressive physical storytelling, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork, absurd humorous energy.\n\nExactly one person, exactly one tuna, exactly one exaggerated yawn. The person's finger must clearly point toward his own chest. The tuna must have one enormous open mouth visibly yawning. No calendar, no written words, no labels, no speech bubbles, no extra fish, no random props, no unrelated characters.",
   "mnemonic_concept": "me + tuna + yawn",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001106",
+    "text": "วันเกิดเดือนมิถุนายนค่ะ",
+    "romanization": "wan-gə̀ət duean mí-thù-naa-yon khâ",
+    "translation": "My birthday is in June.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001200",
+    "text": "มิถุนายนครับ",
+    "romanization": "mí-thù-naa-yon khráp",
+    "translation": "June.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001201",
+    "text": "มิถุนายนนี้ค่ะ",
+    "romanization": "mí-thù-naa-yon níi khâ",
+    "translation": "This June.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001202",
+    "text": "วันเกิดเดือนมิถุนายนครับ",
+    "romanization": "wan-gə̀ət duean mí-thù-naa-yon khráp",
+    "translation": "The birthday is in June.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001203",
+    "text": "มิถุนายนถึงสิงหาคมค่ะ",
+    "romanization": "mí-thù-naa-yon thʉ̌ng sǐng-hǎa-khom khâ",
+    "translation": "June to August.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000001"
@@ -1464,7 +1676,53 @@
   "hook_visual": "handgun, ball of colorful yarn",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A wildly exaggerated pirate crew stands together on a rain-soaked tropical harbor during a torrential September monsoon. Heavy rain pours diagonally across the entire scene, with dark storm clouds, wet wooden docks, enormous puddles, mist, and lush tropical vegetation establishing a dramatic Thai rainy-season atmosphere.\n\nExactly three distinctive characters form one coherent scene. The first prominently holds an enormous stylized GUN with both hands, making the gun unmistakable. The second is a classic pirate captain dramatically leaning forward with an exaggerated open-mouthed expression and theatrical body language, unmistakably shouting a pirate “YARR!”. The third is an exhausted pirate crew member performing an enormous exaggerated YAWN, with sleepy eyes and a dramatically stretched open mouth.\n\nThe three characters interact naturally as one absurd pirate crew caught in the middle of a violent September rainstorm. The GUN, the pirate YARR, and the exaggerated YAWN must each be immediately visually recognizable and clearly separated in the composition.\n\nRich painterly digital textures, dramatic cinematic storm lighting, vibrant tropical colors contrasting against the dark rain clouds, glossy wet surfaces, powerful rain effects, strong silhouettes, expressive faces and body language, exaggerated scale, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork, sophisticated absurd humor.\n\nExactly three characters. One unmistakable gun. One unmistakable pirate. One unmistakably yawning character. Heavy September monsoon rain throughout the environment. No written words, no labels, no speech bubbles, no extra characters, no extra weapons, no random props.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001109",
+    "text": "วันเกิดเดือนกันยายนครับ",
+    "romanization": "wan-gə̀ət duean gan-yaa-yon khráp",
+    "translation": "My birthday is in September.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001212",
+    "text": "กันยายนครับ",
+    "romanization": "gan-yaa-yon khráp",
+    "translation": "September.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001213",
+    "text": "กันยายนนี้ค่ะ",
+    "romanization": "gan-yaa-yon níi khâ",
+    "translation": "This September.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001214",
+    "text": "กันยายนถึงพฤศจิกายนค่ะ",
+    "romanization": "gan-yaa-yon thʉ̌ng phrɯ́t-sà-jì-gaa-yon khâ",
+    "translation": "September to November.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001215",
+    "text": "กันยายนวันหยุดครับ",
+    "romanization": "gan-yaa-yon wan-yùt khráp",
+    "translation": "September is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000001"
@@ -1498,7 +1756,53 @@
   "hook_visual": "a cat making a purr sound at a knighted sir inside a red sports car while letting out a wide mouth yawn",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A surreal Thai November evening beside a calm tropical river. The atmosphere is cool and pleasant, with a clear night sky, lush tropical vegetation, gentle mist, and warm glowing lanterns reflecting across the water. Subtle Thai architectural details appear in the distant background.\n\nAt the center, a bizarre but highly memorable character named Poot is sitting comfortably on an oversized floating festival lantern, his legs dangling toward the water. Beside him stands an ordinary-looking GUY who is performing an enormous exaggerated YAWN, mouth stretched dramatically wide, eyes heavy with exhaustion.\n\nThe visual story is simple and unmistakable: POOT SAT, A GUY YAWNED. Poot is clearly sitting, the guy is clearly yawning, and the entire scene takes place during a distinctly Thai November evening.\n\nRich painterly digital textures, dramatic cinematic moonlight mixed with warm lantern glow, vibrant tropical colors, atmospheric reflections, expressive character poses, strong silhouettes, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork, absurd but charming humor.\n\nExactly two main characters: Poot and the guy. Poot must clearly be sitting. The guy must clearly be yawning. The November Thai environment should remain atmospheric and supportive rather than becoming the focal point. No text, no labels, no speech bubbles, no extra characters, no clutter, no random props.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001111",
+    "text": "วันเกิดเดือนพฤศจิกายนครับ",
+    "romanization": "wan-gə̀ət duean phrɯ́t-sà-jì-gaa-yon khráp",
+    "translation": "My birthday is in November.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001220",
+    "text": "พฤศจิกายนครับ",
+    "romanization": "phrɯ́t-sà-jì-gaa-yon khráp",
+    "translation": "November.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001221",
+    "text": "พฤศจิกายนนี้ค่ะ",
+    "romanization": "phrɯ́t-sà-jì-gaa-yon níi khâ",
+    "translation": "This November.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001222",
+    "text": "พฤศจิกายนถึงมกราคมค่ะ",
+    "romanization": "phrɯ́t-sà-jì-gaa-yon thʉ̌ng má-gà-raa-khom khâ",
+    "translation": "November to January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001223",
+    "text": "พฤศจิกายนวันหยุดครับ",
+    "romanization": "phrɯ́t-sà-jì-gaa-yon wan-yùt khráp",
+    "translation": "November is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000001"
@@ -1532,7 +1836,53 @@
   "hook_visual": "a sun tan lotion bottle leaning against a brick wall outside a cozy home",
   "mnemonic": "Tan-waa-com\n\nDigital collectible card art, 1:1 square ratio. A hilarious tropical December scene in Thailand during the cool season. Under a beautiful but weak winter sun, a bizarre little character named COM is desperately trying to get a TAN outdoors.\n\nCom is lying on a small beach towel covered in ridiculous amounts of tanning lotion, wearing oversized sunglasses and absurd summer beach clothes. Despite desperately trying to tan, he is absolutely freezing in the December cool-season air: his whole body is visibly shivering, he has exaggerated goosebumps, and he throws his arms into the air while screaming an enormous theatrical “WAAAAAA!” from the cold.\n\nThe visual story must immediately communicate: COM is trying to TAN, but December is so cold that he is screaming WAAAA!\n\nThailand's December cool season is clearly represented through crisp clear skies, pleasantly cool atmospheric conditions, tropical vegetation, and other subtle signs that this is the cooler part of the year.\n\nRich painterly digital textures, dramatic cinematic sunlight, vibrant tropical colors, expressive character acting, strong silhouette, exaggerated physical comedy, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork.\n\nOne main character: Com. He must be visibly attempting to tan and visibly freezing at the same time. His scream must be conveyed through an enormous exaggerated open-mouthed expression. No text, no labels, no speech bubbles, no extra characters, no clutter.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001112",
+    "text": "วันเกิดเดือนธันวาคมค่ะ",
+    "romanization": "wan-gə̀ət duean than-waa-khom khâ",
+    "translation": "My birthday is in December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001224",
+    "text": "ธันวาคมครับ",
+    "romanization": "than-waa-khom khráp",
+    "translation": "December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001225",
+    "text": "ธันวาคมนี้ค่ะ",
+    "romanization": "than-waa-khom níi khâ",
+    "translation": "This December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001226",
+    "text": "วันเกิดเดือนธันวาคมครับ",
+    "romanization": "wan-gə̀ət duean than-waa-khom khráp",
+    "translation": "The birthday is in December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001227",
+    "text": "ธันวาคมถึงกุมภาพันธ์ค่ะ",
+    "romanization": "than-waa-khom thʉ̌ng kum-phaa-phan khâ",
+    "translation": "December to February.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -1645,7 +1995,53 @@
   "hook_visual": "giant coffee mug, classic red sports car",
   "mnemonic": "-Mug-gara-com\nDigital collectible card art, 1:1 square ratio. A vibrant New Year's celebration in Thailand during January. At the center of the scene are three unmistakable visual anchors: a gigantic oversized coffee MUG, a clearly recognizable GARAGE, and COM, the distinctive small anthropomorphic computer character with a monitor head, expressive screen face, mechanical arms and legs, and recognizable quirky design.\n\nThe enormous coffee mug stands prominently beside the garage, while Com stands clearly next to them, looking toward the celebration. The three elements are visually separated and immediately recognizable rather than merged together.\n\nThe environment strongly communicates January and the New Year: festive decorations, celebratory lights, subtle fireworks in the night sky, a feeling of a fresh new beginning, and a pleasant cool-season Thai atmosphere.\n\nRich painterly digital textures, dramatic cinematic celebration lighting, vibrant colors, glowing highlights, strong silhouettes, exaggerated scale, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork, charming absurdity.\n\nExactly three primary mnemonic anchors: one gigantic mug, one unmistakable garage, and Com the computer. Keep all three clearly visible and visually distinct. No text, no labels, no speech bubbles, no calendar, no extra characters, no clutter.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001101",
+    "text": "วันเกิดเดือนมกราคมค่ะ",
+    "romanization": "wan-gə̀ət duean má-gà-raa-khom khâ",
+    "translation": "My birthday is in January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001180",
+    "text": "มกราคมครับ",
+    "romanization": "má-gà-raa-khom khráp",
+    "translation": "January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001181",
+    "text": "มกราคมนี้ค่ะ",
+    "romanization": "má-gà-raa-khom níi khâ",
+    "translation": "This January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001182",
+    "text": "วันเกิดเดือนมกราคมครับ",
+    "romanization": "wan-gə̀ət duean má-gà-raa-khom khráp",
+    "translation": "The birthday is in January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001183",
+    "text": "มกราคมถึงมีนาคมค่ะ",
+    "romanization": "má-gà-raa-khom thʉ̌ng mii-naa-khom khâ",
+    "translation": "January to March.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -1678,7 +2074,53 @@
   "hook_visual": "a cat purr vibration next to a knighted sir looking far away towards a cozy home",
   "mnemonic": "POOT — SAR — pAR — COM\n\nAnd crucially, we don't need to invent some arbitrary object for far. Distance itself becomes the cue.\n\nI'd make Com very obviously tiny in the distance, while Poot and Sar are huge in the foreground, both dramatically pointing toward him.\n\nPrompt\n\nDigital collectible card art, 1:1 square ratio. A dramatic, intensely hot Thai landscape during May, with blazing sunlight, humid tropical vegetation, shimmering heat haze, and enormous storm clouds beginning to build toward the rainy season.\n\nIn the foreground stand two highly distinctive characters: Poot, the small green creature covered in recognizable swirling patterns, and Sar, a unique eccentric character with a distinctive memorable appearance. Both Poot and Sar are dramatically pointing toward something extremely FAR away.\n\nIn the extreme distance, Com, the established anthropomorphic computer character, appears tiny against the vast landscape. Com is unmistakably separated from Poot and Sar by an enormous physical distance, making the concept of FAR immediately obvious.\n\nThe composition tells a simple visual story: Poot and Sar are pointing at Com, who is FAR away, during the hot Thai month of May.\n\nRich painterly digital textures, dramatic cinematic lighting, vibrant tropical colors, strong silhouettes, exaggerated depth and perspective, expressive character poses, clear visual hierarchy, hyper-focused central composition, polished digital collectible card artwork, charming absurd humor.\n\nPoot and Sar must be large and clearly visible in the foreground, both unmistakably pointing toward tiny Com in the extreme distance. Com must be clearly recognizable despite being far away. No text, no labels, no speech bubbles, no extra characters, no clutter.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001105",
+    "text": "วันเกิดเดือนพฤษภาคมครับ",
+    "romanization": "wan-gə̀ət duean phrɯ́t-sà-phaa-khom khráp",
+    "translation": "My birthday is in May.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001196",
+    "text": "พฤษภาคมครับ",
+    "romanization": "phrɯ́t-sà-phaa-khom khráp",
+    "translation": "May.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001197",
+    "text": "พฤษภาคมนี้ค่ะ",
+    "romanization": "phrɯ́t-sà-phaa-khom níi khâ",
+    "translation": "This May.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001198",
+    "text": "พฤษภาคมถึงกรกฎาคมค่ะ",
+    "romanization": "phrɯ́t-sà-phaa-khom thʉ̌ng gà-rá-gà-daa-khom khâ",
+    "translation": "May to July.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001199",
+    "text": "พฤษภาคมวันหยุดครับ",
+    "romanization": "phrɯ́t-sà-phaa-khom wan-yùt khráp",
+    "translation": "May is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -1711,7 +2153,53 @@
   "hook_visual": "a toy car hitting a large rock beside another car where a dad stands outside his home",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A massive toy car crashing violently into a giant rock, sending a father figure flying into a full-sized car outside a home. Painterly digital illustration, rich textures, dramatic cinematic action lighting, vibrant punchy colors, strong visual impact, uncluttered central composition.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001107",
+    "text": "วันเกิดเดือนกรกฎาคมครับ",
+    "romanization": "wan-gə̀ət duean gà-rá-gà-daa-khom khráp",
+    "translation": "My birthday is in July.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001204",
+    "text": "กรกฎาคมครับ",
+    "romanization": "gà-rá-gà-daa-khom khráp",
+    "translation": "July.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001205",
+    "text": "กรกฎาคมนี้ค่ะ",
+    "romanization": "gà-rá-gà-daa-khom níi khâ",
+    "translation": "This July.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001206",
+    "text": "กรกฎาคมถึงกันยายนค่ะ",
+    "romanization": "gà-rá-gà-daa-khom thʉ̌ng gan-yaa-yon khâ",
+    "translation": "July to September.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001207",
+    "text": "กรกฎาคมวันหยุดครับ",
+    "romanization": "gà-rá-gà-daa-khom wan-yùt khráp",
+    "translation": "July is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -1901,7 +2389,53 @@
   "hook_visual": "person singing into a microphone, person looking puzzled with a raised eyebrow",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A passionate singer belting into a gigantic microphone, blasting back a puzzled person with a raised eyebrow using soundwaves. Painterly digital illustration, rich textures, dramatic stage lighting, vibrant colors, clear visual contrast, simple background, uncluttered focus.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001108",
+    "text": "วันเกิดเดือนสิงหาคมค่ะ",
+    "romanization": "wan-gə̀ət duean sǐng-hǎa-khom khâ",
+    "translation": "My birthday is in August.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001208",
+    "text": "สิงหาคมครับ",
+    "romanization": "sǐng-hǎa-khom khráp",
+    "translation": "August.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001209",
+    "text": "สิงหาคมนี้ค่ะ",
+    "romanization": "sǐng-hǎa-khom níi khâ",
+    "translation": "This August.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001210",
+    "text": "วันเกิดเดือนสิงหาคมครับ",
+    "romanization": "wan-gə̀ət duean sǐng-hǎa-khom khráp",
+    "translation": "The birthday is in August.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001211",
+    "text": "สิงหาคมถึงตุลาคมค่ะ",
+    "romanization": "sǐng-hǎa-khom thʉ̌ng dtù-laa-khom khâ",
+    "translation": "August to October.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -2276,7 +2810,53 @@
   "hook_visual": "person pointing to themselves, person shaking head back and forth",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A person pointing directly to themselves while physically blocking another person who is vigorously shaking their head back and forth. Painterly digital illustration, rich textures, dramatic lighting, vivid expressive gestures, strong visual contrast, simple uncluttered central composition.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001103",
+    "text": "วันเกิดเดือนมีนาคมครับ",
+    "romanization": "wan-gə̀ət duean mii-naa-khom khráp",
+    "translation": "My birthday is in March.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001188",
+    "text": "มีนาคมครับ",
+    "romanization": "mii-naa-khom khráp",
+    "translation": "March.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001189",
+    "text": "มีนาคมนี้ค่ะ",
+    "romanization": "mii-naa-khom níi khâ",
+    "translation": "This March.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001190",
+    "text": "มีนาคมถึงพฤษภาคมค่ะ",
+    "romanization": "mii-naa-khom thʉ̌ng phrɯ́t-sà-phaa-khom khâ",
+    "translation": "March to May.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001191",
+    "text": "มีนาคมวันหยุดครับ",
+    "romanization": "mii-naa-khom wan-yùt khráp",
+    "translation": "March is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -2307,7 +2887,53 @@
   "hook_visual": "May pole ribbon tree, hand saw",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A colossal hand saw actively cutting down a colorful, ribbon-draped Maypole in a single massive stroke. Painterly digital illustration, rich textures, dramatic sunlight, vibrant multi-colored ribbons, strong physical action, absurd scale, clean background.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001104",
+    "text": "วันเกิดเดือนเมษายนค่ะ",
+    "romanization": "wan-gə̀ət duean mee-sǎa-yon khâ",
+    "translation": "My birthday is in April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001192",
+    "text": "เมษายนครับ",
+    "romanization": "mee-sǎa-yon khráp",
+    "translation": "April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001193",
+    "text": "เมษายนนี้ค่ะ",
+    "romanization": "mee-sǎa-yon níi khâ",
+    "translation": "This April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001194",
+    "text": "วันเกิดเดือนเมษายนครับ",
+    "romanization": "wan-gə̀ət duean mee-sǎa-yon khráp",
+    "translation": "The birthday is in April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001195",
+    "text": "เมษายนถึงมิถุนายนค่ะ",
+    "romanization": "mee-sǎa-yon thʉ̌ng mí-thù-naa-yon khâ",
+    "translation": "April to June.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -2635,7 +3261,53 @@
   "hook_visual": "sand dune in a desert",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A massive crescent moon half-buried and rising dramatically out of a colossal desert sand dune. Painterly digital illustration, rich textures, dramatic moonlight contrast, deep twilight indigo and golden sand colors, epic scale, clean uncluttered central composition.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001178",
+    "text": "เดือนมกราคมครับ",
+    "romanization": "duean má-gà-raa-khom khráp",
+    "translation": "January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001179",
+    "text": "เดือนธันวาคมค่ะ",
+    "romanization": "duean than-waa-khom khâ",
+    "translation": "December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001323",
+    "text": "เดือนมกราคมค่ะ",
+    "romanization": "duean-mók-gà-raa-khom khâ",
+    "translation": "January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001324",
+    "text": "เดือนธันวาคมครับ",
+    "romanization": "duean-than-waa-khom khráp",
+    "translation": "December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001337",
+    "text": "เดือนเมษายนครับ",
+    "romanization": "duean mee-sǎa-yon khráp",
+    "translation": "April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000007",
@@ -4926,7 +5598,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001122",
+    "text": "วันจันทร์ครับ",
+    "romanization": "wan-jan khráp",
+    "translation": "Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001123",
+    "text": "วันจันทร์นี้ครับ",
+    "romanization": "wan-jan níi khráp",
+    "translation": "This Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001125",
+    "text": "วันจันทร์วันหยุดครับ",
+    "romanization": "wan-jan wan-yùt khráp",
+    "translation": "Monday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001126",
+    "text": "วันจันทร์วันเกิดค่ะ",
+    "romanization": "wan-jan wan-gə̀ət khâ",
+    "translation": "Monday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001335",
+    "text": "วันจันทร์นี้วันหยุดครับ",
+    "romanization": "wan-jan níi wan-yùt khráp",
+    "translation": "Monday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -6455,7 +7173,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001142",
+    "text": "วันศุกร์ครับ",
+    "romanization": "wan-sùk khráp",
+    "translation": "Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001143",
+    "text": "วันศุกร์นี้ค่ะ",
+    "romanization": "wan-sùk níi khâ",
+    "translation": "This Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001144",
+    "text": "วันศุกร์ถึงวันอาทิตย์ครับ",
+    "romanization": "wan-sùk thʉ̌ng wan-aa-thít khráp",
+    "translation": "Friday to Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001145",
+    "text": "วันศุกร์วันหยุดค่ะ",
+    "romanization": "wan-sùk wan-yùt khâ",
+    "translation": "Friday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001146",
+    "text": "วันศุกร์วันเกิดครับ",
+    "romanization": "wan-sùk wan-gə̀ət khráp",
+    "translation": "Friday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -7088,7 +7852,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001132",
+    "text": "วันพุธครับ",
+    "romanization": "wan-phút khráp",
+    "translation": "Wednesday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001133",
+    "text": "วันพุธนี้ค่ะ",
+    "romanization": "wan-phút níi khâ",
+    "translation": "This Wednesday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001134",
+    "text": "วันพุธถึงวันศุกร์ครับ",
+    "romanization": "wan-phút thʉ̌ng wan-sùk khráp",
+    "translation": "Wednesday to Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001135",
+    "text": "วันพุธวันหยุดครับ",
+    "romanization": "wan-phút wan-yùt khráp",
+    "translation": "Wednesday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001136",
+    "text": "วันพุธวันเกิดค่ะ",
+    "romanization": "wan-phút wan-gə̀ət khâ",
+    "translation": "Wednesday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -7458,6 +8268,15 @@
     "difficulty": null,
     "is_target": false,
     "role": null
+   },
+   {
+    "id": "TH_S001100",
+    "text": "วันไหนก็ได้ค่ะ",
+    "romanization": "wan-nǎi kɔ̂ɔ dâai khâ",
+    "translation": "Any day is fine.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
    }
   ],
   "lessons": [
@@ -7774,7 +8593,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001147",
+    "text": "วันเสาร์ครับ",
+    "romanization": "wan-sǎo khráp",
+    "translation": "Saturday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001148",
+    "text": "วันเสาร์นี้ค่ะ",
+    "romanization": "wan-sǎo níi khâ",
+    "translation": "This Saturday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001149",
+    "text": "วันเสาร์ถึงวันอาทิตย์ครับ",
+    "romanization": "wan-sǎo thʉ̌ng wan-aa-thít khráp",
+    "translation": "Saturday to Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001150",
+    "text": "วันเสาร์วันหยุดครับ",
+    "romanization": "wan-sǎo wan-yùt khráp",
+    "translation": "Saturday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001151",
+    "text": "วันเสาร์วันเกิดค่ะ",
+    "romanization": "wan-sǎo wan-gə̀ət khâ",
+    "translation": "Saturday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -9296,7 +10161,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001127",
+    "text": "วันอังคารครับ",
+    "romanization": "wan-ang-khaan khráp",
+    "translation": "Tuesday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001128",
+    "text": "วันอังคารนี้ค่ะ",
+    "romanization": "wan-ang-khaan níi khâ",
+    "translation": "This Tuesday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001129",
+    "text": "วันอังคารถึงวันศุกร์ครับ",
+    "romanization": "wan-ang-khaan thʉ̌ng wan-sùk khráp",
+    "translation": "Tuesday to Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001130",
+    "text": "วันอังคารวันหยุดค่ะ",
+    "romanization": "wan-ang-khaan wan-yùt khâ",
+    "translation": "Tuesday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001131",
+    "text": "วันอังคารวันเกิดครับ",
+    "romanization": "wan-ang-khaan wan-gə̀ət khráp",
+    "translation": "Tuesday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -9596,7 +10507,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001137",
+    "text": "วันพฤหัสบดีครับ",
+    "romanization": "wan-phá-rɯ́-hàt-sà-bɔɔ-dii khráp",
+    "translation": "Thursday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001138",
+    "text": "วันพฤหัสบดีนี้ค่ะ",
+    "romanization": "wan-phá-rɯ́-hàt-sà-bɔɔ-dii níi khâ",
+    "translation": "This Thursday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001139",
+    "text": "วันพฤหัสบดีถึงวันศุกร์ครับ",
+    "romanization": "wan-phá-rɯ́-hàt-sà-bɔɔ-dii thʉ̌ng wan-sùk khráp",
+    "translation": "Thursday to Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001140",
+    "text": "วันพฤหัสบดีวันหยุดค่ะ",
+    "romanization": "wan-phá-rɯ́-hàt-sà-bɔɔ-dii wan-yùt khâ",
+    "translation": "Thursday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001141",
+    "text": "วันพฤหัสบดีวันเกิดครับ",
+    "romanization": "wan-phá-rɯ́-hàt-sà-bɔɔ-dii wan-gə̀ət khráp",
+    "translation": "Thursday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -11778,7 +12735,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001152",
+    "text": "วันอาทิตย์ครับ",
+    "romanization": "wan-aa-thít khráp",
+    "translation": "Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001153",
+    "text": "วันอาทิตย์นี้ค่ะ",
+    "romanization": "wan-aa-thít níi khâ",
+    "translation": "This Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001154",
+    "text": "วันอาทิตย์ถึงวันจันทร์ครับ",
+    "romanization": "wan-aa-thít thʉ̌ng wan-jan khráp",
+    "translation": "Sunday to Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001155",
+    "text": "วันอาทิตย์วันหยุดค่ะ",
+    "romanization": "wan-aa-thít wan-yùt khâ",
+    "translation": "Sunday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001156",
+    "text": "วันอาทิตย์วันเกิดครับ",
+    "romanization": "wan-aa-thít wan-gə̀ət khráp",
+    "translation": "Sunday is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -18542,7 +19545,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001172",
+    "text": "สัปดาห์ครับ",
+    "romanization": "sàp-daa khráp",
+    "translation": "A week.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001173",
+    "text": "สัปดาห์นี้ครับ",
+    "romanization": "sàp-daa níi khráp",
+    "translation": "This week.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001174",
+    "text": "สัปดาห์นี้วันหยุดครับ",
+    "romanization": "sàp-daa níi wan-yùt khráp",
+    "translation": "This week has a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001322",
+    "text": "สัปดาห์นี้วันเกิดค่ะ",
+    "romanization": "sàp-daa níi wan-gə̀ət khâ",
+    "translation": "The birthday is this week.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001336",
+    "text": "สัปดาห์ที่แล้วครับ",
+    "romanization": "sàp-daa thîi-láew khráp",
+    "translation": "Last week.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000007"
@@ -26623,7 +27672,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001288",
+    "text": "ปีนี้วันจันทร์ครับ",
+    "romanization": "bpii-níi wan-jan khráp",
+    "translation": "This year, Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001289",
+    "text": "ปีนี้เดือนมกราคมค่ะ",
+    "romanization": "bpii-níi duean má-gà-raa-khom khâ",
+    "translation": "January this year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001290",
+    "text": "ปีนี้เดือนธันวาคมครับ",
+    "romanization": "bpii-níi duean than-waa-khom khráp",
+    "translation": "December this year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001328",
+    "text": "ปีนี้เดือนมกราคมครับ",
+    "romanization": "pii-níi duean-mók-gà-raa-khom khráp",
+    "translation": "It's January this year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001329",
+    "text": "ปีนี้เดือนธันวาคมค่ะ",
+    "romanization": "pii-níi duean-than-waa-khom khâ",
+    "translation": "It's December this year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000018"
@@ -32612,7 +33707,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001114",
+    "text": "วันเกิดปีนี้วันไหนครับ",
+    "romanization": "wan-gə̀ət bpii-níi wan-nǎi khráp",
+    "translation": "What day is your birthday this year?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001115",
+    "text": "วันเกิดพรุ่งนี้ค่ะ",
+    "romanization": "wan-gə̀ət phrûng-níi khâ",
+    "translation": "The birthday is tomorrow.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001232",
+    "text": "วันเกิดครับ",
+    "romanization": "wan-gə̀ət khráp",
+    "translation": "It's a birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001233",
+    "text": "วันเกิดวันนี้ค่ะ",
+    "romanization": "wan-gə̀ət wan-níi khâ",
+    "translation": "The birthday is today.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001234",
+    "text": "วันเกิดพรุ่งนี้ครับ",
+    "romanization": "wan-gə̀ət phrûng-níi khráp",
+    "translation": "The birthday is tomorrow.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -56226,7 +57367,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001162",
+    "text": "พรุ่งนี้ครับ",
+    "romanization": "phrûng-níi khráp",
+    "translation": "Tomorrow.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001163",
+    "text": "พรุ่งนี้วันอะไรคะ",
+    "romanization": "phrûng-níi wan à-rai khá",
+    "translation": "What day is it tomorrow?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001164",
+    "text": "พรุ่งนี้วันหยุดครับ",
+    "romanization": "phrûng-níi wan-yùt khráp",
+    "translation": "Tomorrow is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001165",
+    "text": "พรุ่งนี้วันเกิดค่ะ",
+    "romanization": "phrûng-níi wan-gə̀ət khâ",
+    "translation": "Tomorrow is the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001166",
+    "text": "พรุ่งนี้วันอาทิตย์ครับ",
+    "romanization": "phrûng-níi wan-aa-thít khráp",
+    "translation": "Tomorrow is Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000036",
@@ -56259,7 +57446,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001167",
+    "text": "เมื่อวานครับ",
+    "romanization": "mʉ̂a-waan khráp",
+    "translation": "Yesterday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001168",
+    "text": "เมื่อวานวันอะไรคะ",
+    "romanization": "mʉ̂a-waan wan à-rai khá",
+    "translation": "What day was it yesterday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001169",
+    "text": "เมื่อวานวันหยุดครับ",
+    "romanization": "mʉ̂a-waan wan-yùt khráp",
+    "translation": "Yesterday was a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001170",
+    "text": "เมื่อวานวันเกิดค่ะ",
+    "romanization": "mʉ̂a-waan wan-gə̀ət khâ",
+    "translation": "Yesterday was the birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001171",
+    "text": "เมื่อวานวันจันทร์ครับ",
+    "romanization": "mʉ̂a-waan wan-jan khráp",
+    "translation": "Yesterday was Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000042",
@@ -56384,7 +57617,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001273",
+    "text": "ทุกวันครับ",
+    "romanization": "thúk-wan khráp",
+    "translation": "Every day.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001274",
+    "text": "ทุกวันวันหยุดครับ",
+    "romanization": "thúk-wan wan-yùt khráp",
+    "translation": "Every day is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001275",
+    "text": "ทุกวันวันเกิดค่ะ",
+    "romanization": "thúk-wan wan-gə̀ət khâ",
+    "translation": "Every day is a birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001276",
+    "text": "ทุกวันวันจันทร์ครับ",
+    "romanization": "thúk-wan wan-jan khráp",
+    "translation": "Every day is Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001277",
+    "text": "ทุกวันวันอาทิตย์ค่ะ",
+    "romanization": "thúk-wan wan-aa-thít khâ",
+    "translation": "Every day is Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000114"
@@ -78235,7 +79514,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001253",
+    "text": "เดือนหน้าวันเกิดครับ",
+    "romanization": "duean-nâa wan-gə̀ət khráp",
+    "translation": "The birthday is next month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001254",
+    "text": "เดือนหน้าวันหยุดค่ะ",
+    "romanization": "duean-nâa wan-yùt khâ",
+    "translation": "Next month is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001255",
+    "text": "เดือนหน้าวันจันทร์ครับ",
+    "romanization": "duean-nâa wan-jan khráp",
+    "translation": "Next month, Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001256",
+    "text": "เดือนหน้าวันอาทิตย์ค่ะ",
+    "romanization": "duean-nâa wan-aa-thít khâ",
+    "translation": "Next month, Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001257",
+    "text": "เดือนหน้าวันอะไรครับ",
+    "romanization": "duean-nâa wan-à-rai khráp",
+    "translation": "What day is it next month?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000043"
@@ -78267,7 +79592,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001291",
+    "text": "ปีหน้าวันเกิดครับ",
+    "romanization": "bpii-nâa wan-gə̀ət khráp",
+    "translation": "The birthday is next year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001292",
+    "text": "ปีหน้าวันหยุดค่ะ",
+    "romanization": "bpii-nâa wan-yùt khâ",
+    "translation": "Next year is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001293",
+    "text": "ปีหน้าวันจันทร์ครับ",
+    "romanization": "bpii-nâa wan-jan khráp",
+    "translation": "Next year, Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001294",
+    "text": "ปีหน้าวันอาทิตย์ค่ะ",
+    "romanization": "bpii-nâa wan-aa-thít khâ",
+    "translation": "Next year, Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001295",
+    "text": "ปีหน้าวันอะไรครับ",
+    "romanization": "bpii-nâa wan-à-rai khráp",
+    "translation": "What day is it next year?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433",
    "TH_L000043"
@@ -191050,7 +192421,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001116",
+    "text": "วันหยุดพรุ่งนี้ครับ",
+    "romanization": "wan-yùt phrûng-níi khráp",
+    "translation": "The day off is tomorrow.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001117",
+    "text": "วันหยุดวันนี้ค่ะ",
+    "romanization": "wan-yùt wan-níi khâ",
+    "translation": "Today is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001235",
+    "text": "วันหยุดวันจันทร์ค่ะ",
+    "romanization": "wan-yùt wan-jan khâ",
+    "translation": "Monday is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001236",
+    "text": "วันหยุดสุดสัปดาห์ครับ",
+    "romanization": "wan-yùt sùt-sàp-daa khráp",
+    "translation": "The weekend is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001340",
+    "text": "วันหยุดเดือนเมษายนครับ",
+    "romanization": "wan-yùt duean mee-sǎa-yon khráp",
+    "translation": "The holiday is in April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191081,7 +192498,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001237",
+    "text": "วันธรรมดาครับ",
+    "romanization": "wan-tham-má-daa khráp",
+    "translation": "A weekday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001238",
+    "text": "วันธรรมดาวันจันทร์ค่ะ",
+    "romanization": "wan-tham-má-daa wan-jan khâ",
+    "translation": "Monday is a weekday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001239",
+    "text": "วันธรรมดาวันศุกร์ครับ",
+    "romanization": "wan-tham-má-daa wan-sùk khráp",
+    "translation": "Friday is a weekday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001240",
+    "text": "วันธรรมดาวันนี้ค่ะ",
+    "romanization": "wan-tham-má-daa wan-níi khâ",
+    "translation": "Today is a weekday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001241",
+    "text": "วันธรรมดาวันไหนครับ",
+    "romanization": "wan-tham-má-daa wan-nǎi khráp",
+    "translation": "Which day is a weekday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191112,7 +192575,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001242",
+    "text": "สุดสัปดาห์ครับ",
+    "romanization": "sùt-sàp-daa khráp",
+    "translation": "The weekend.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001243",
+    "text": "สุดสัปดาห์นี้ค่ะ",
+    "romanization": "sùt-sàp-daa níi khâ",
+    "translation": "This weekend.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001244",
+    "text": "สุดสัปดาห์วันหยุดค่ะ",
+    "romanization": "sùt-sàp-daa wan-yùt khâ",
+    "translation": "The weekend is a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001245",
+    "text": "สุดสัปดาห์วันเกิดครับ",
+    "romanization": "sùt-sàp-daa wan-gə̀ət khráp",
+    "translation": "The birthday is on the weekend.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001341",
+    "text": "วันเกิดสุดสัปดาห์นี้ครับ",
+    "romanization": "wan-gə̀ət sùt-sàp-daa níi khráp",
+    "translation": "The birthday is this weekend.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191143,7 +192652,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001248",
+    "text": "เดือนนี้วันหยุดครับ",
+    "romanization": "duean-níi wan-yùt khráp",
+    "translation": "There's a holiday this month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001249",
+    "text": "เดือนนี้วันเกิดค่ะ",
+    "romanization": "duean-níi wan-gə̀ət khâ",
+    "translation": "The birthday is this month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001250",
+    "text": "เดือนนี้เดือนมกราคมครับ",
+    "romanization": "duean-níi duean má-gà-raa-khom khráp",
+    "translation": "This month is January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001251",
+    "text": "เดือนนี้เดือนธันวาคมค่ะ",
+    "romanization": "duean-níi duean than-waa-khom khâ",
+    "translation": "This month is December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001252",
+    "text": "เดือนนี้วันจันทร์ถึงวันศุกร์ครับ",
+    "romanization": "duean-níi wan-jan thʉ̌ng wan-sùk khráp",
+    "translation": "This month, Monday through Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191174,7 +192729,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001258",
+    "text": "เดือนที่แล้ววันเกิดครับ",
+    "romanization": "duean thîi-láew wan-gə̀ət khráp",
+    "translation": "The birthday was last month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001259",
+    "text": "เดือนที่แล้ววันหยุดค่ะ",
+    "romanization": "duean thîi-láew wan-yùt khâ",
+    "translation": "There was a holiday last month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001260",
+    "text": "เดือนที่แล้วเดือนมกราคมครับ",
+    "romanization": "duean thîi-láew duean má-gà-raa-khom khráp",
+    "translation": "Last month was January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001261",
+    "text": "เดือนที่แล้วเดือนธันวาคมค่ะ",
+    "romanization": "duean thîi-láew duean than-waa-khom khâ",
+    "translation": "Last month was December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001262",
+    "text": "เดือนที่แล้ววันอาทิตย์ครับ",
+    "romanization": "duean thîi-láew wan-aa-thít khráp",
+    "translation": "Last month, Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191205,7 +192806,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001263",
+    "text": "วันไหนวันหยุดครับ",
+    "romanization": "wan-nǎi wan-yùt khráp",
+    "translation": "Which day is the day off?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001264",
+    "text": "วันไหนวันเกิดคะ",
+    "romanization": "wan-nǎi wan-gə̀ət khá",
+    "translation": "Which day is the birthday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001265",
+    "text": "วันไหนวันจันทร์ครับ",
+    "romanization": "wan-nǎi wan-jan khráp",
+    "translation": "Which day is Monday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001325",
+    "text": "วันไหนวันหยุดคะ",
+    "romanization": "wan-nǎi wan-yùt khá",
+    "translation": "Which day is the day off?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001326",
+    "text": "วันไหนวันเกิดครับ",
+    "romanization": "wan-nǎi wan-gə̀ət khráp",
+    "translation": "Which day is the birthday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191236,7 +192883,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001266",
+    "text": "วันอะไรคะ",
+    "romanization": "wan-à-rai khá",
+    "translation": "What day?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001267",
+    "text": "วันอะไรวันหยุดครับ",
+    "romanization": "wan-à-rai wan-yùt khráp",
+    "translation": "What day is the holiday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001268",
+    "text": "วันอะไรวันเกิดคะ",
+    "romanization": "wan-à-rai wan-gə̀ət khá",
+    "translation": "What day is the birthday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001269",
+    "text": "วันอะไรวันอาทิตย์ครับ",
+    "romanization": "wan-à-rai wan-aa-thít khráp",
+    "translation": "What day is Sunday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001342",
+    "text": "เมื่อวานวันอะไรครับ",
+    "romanization": "mûea-waan wan-à-rai khráp",
+    "translation": "What day was yesterday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191267,7 +192960,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001343",
+    "text": "วันนี้วันอะไรครับ วันจันทร์ครับ",
+    "romanization": "wan-níi wan-à-rai khráp, wan-jan khráp",
+    "translation": "What day is it today? It's Monday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001344",
+    "text": "วันนี้วันอะไรคะ วันอาทิตย์ค่ะ",
+    "romanization": "wan-níi wan-à-rai khá, wan-aa-thít khâ",
+    "translation": "What day is it today? It's Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001345",
+    "text": "วันนี้วันอะไรครับ วันหยุดครับ",
+    "romanization": "wan-níi wan-à-rai khráp, wan-yùt khráp",
+    "translation": "What day is it today? It's a day off.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001346",
+    "text": "วันนี้วันอะไรคะ วันธรรมดาค่ะ",
+    "romanization": "wan-níi wan-à-rai khá, wan-tham-má-daa khâ",
+    "translation": "What day is it today? It's a weekday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001347",
+    "text": "วันนี้วันอะไรครับ วันเกิดครับ",
+    "romanization": "wan-níi wan-à-rai khráp, wan-gə̀ət khráp",
+    "translation": "What day is it today? It's a birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191298,7 +193037,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001270",
+    "text": "วันจันทร์ถึงวันศุกร์วันธรรมดาครับ",
+    "romanization": "wan-jan thʉ̌ng wan-sùk wan-tham-má-daa khráp",
+    "translation": "Monday to Friday are weekdays.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001271",
+    "text": "วันจันทร์ถึงวันศุกร์วันหยุดค่ะ",
+    "romanization": "wan-jan thʉ̌ng wan-sùk wan-yùt khâ",
+    "translation": "Monday to Friday are holidays.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001272",
+    "text": "วันจันทร์ถึงวันศุกร์วันเกิดครับ",
+    "romanization": "wan-jan thʉ̌ng wan-sùk wan-gə̀ət khráp",
+    "translation": "The birthday is Monday to Friday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001348",
+    "text": "วันจันทร์ถึงวันศุกร์เดือนเมษายนครับ",
+    "romanization": "wan-jan thʉ̌ng wan-sùk duean mee-sǎa-yon khráp",
+    "translation": "Monday through Friday in April.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001349",
+    "text": "วันจันทร์ถึงวันศุกร์นี้ครับ",
+    "romanization": "wan-jan thʉ̌ng wan-sùk níi khráp",
+    "translation": "Monday through Friday this week.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191329,7 +193114,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001278",
+    "text": "ทุกเดือนครับ",
+    "romanization": "thúk-duean khráp",
+    "translation": "Every month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001279",
+    "text": "ทุกเดือนวันเกิดค่ะ",
+    "romanization": "thúk-duean wan-gə̀ət khâ",
+    "translation": "Every month is a birthday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001280",
+    "text": "ทุกเดือนวันหยุดครับ",
+    "romanization": "thúk-duean wan-yùt khráp",
+    "translation": "Every month is a holiday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001281",
+    "text": "ทุกเดือนเดือนมกราคมค่ะ",
+    "romanization": "thúk-duean duean má-gà-raa-khom khâ",
+    "translation": "Every month is January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001282",
+    "text": "ทุกเดือนเดือนธันวาคมครับ",
+    "romanization": "thúk-duean duean than-waa-khom khráp",
+    "translation": "Every month is December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191360,7 +193191,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001296",
+    "text": "ปีที่แล้ววันเกิดครับ",
+    "romanization": "bpii thîi-láew wan-gə̀ət khráp",
+    "translation": "The birthday was last year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001297",
+    "text": "ปีที่แล้ววันหยุดค่ะ",
+    "romanization": "bpii thîi-láew wan-yùt khâ",
+    "translation": "There was a holiday last year.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001298",
+    "text": "ปีที่แล้วเดือนมกราคมครับ",
+    "romanization": "bpii thîi-láew duean má-gà-raa-khom khráp",
+    "translation": "Last year was January.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001299",
+    "text": "ปีที่แล้วเดือนธันวาคมค่ะ",
+    "romanization": "bpii thîi-láew duean than-waa-khom khâ",
+    "translation": "Last year was December.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001300",
+    "text": "ปีที่แล้ววันอาทิตย์ครับ",
+    "romanization": "bpii thîi-láew wan-aa-thít khráp",
+    "translation": "Last year, Sunday.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191391,7 +193268,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001301",
+    "text": "วันที่เท่าไหร่วันเกิดครับ",
+    "romanization": "wan-thîi thâo-rài wan-gə̀ət khráp",
+    "translation": "What date is the birthday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001302",
+    "text": "วันที่เท่าไหร่วันหยุดคะ",
+    "romanization": "wan-thîi thâo-rài wan-yùt khá",
+    "translation": "What date is the holiday?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001303",
+    "text": "วันที่เท่าไหร่เดือนมกราคมครับ",
+    "romanization": "wan-thîi thâo-rài duean má-gà-raa-khom khráp",
+    "translation": "What date in January?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001355",
+    "text": "วันนี้วันที่เท่าไหร่ครับ",
+    "romanization": "wan-níi wan-thîi thâo-rài khráp",
+    "translation": "What date is it today?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001356",
+    "text": "วันเกิดวันที่เท่าไหร่คะ",
+    "romanization": "wan-gə̀ət wan-thîi thâo-rài khá",
+    "translation": "What date is the birthday?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191422,7 +193345,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001304",
+    "text": "ต้นเดือนครับ",
+    "romanization": "dtôn-duean khráp",
+    "translation": "Beginning of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001305",
+    "text": "ต้นเดือนนี้ครับ",
+    "romanization": "dtôn-duean níi khráp",
+    "translation": "Beginning of this month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001306",
+    "text": "ต้นเดือนวันเกิดค่ะ",
+    "romanization": "dtôn-duean wan-gə̀ət khâ",
+    "translation": "The birthday is at the beginning of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001307",
+    "text": "ต้นเดือนวันหยุดครับ",
+    "romanization": "dtôn-duean wan-yùt khráp",
+    "translation": "There's a holiday at the beginning of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001316",
+    "text": "ต้นเดือนนี้ได้ครับ",
+    "romanization": "dtôn-duean níi dâai khráp",
+    "translation": "The beginning of this month works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191453,7 +193422,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001308",
+    "text": "กลางเดือนครับ",
+    "romanization": "glaang-duean khráp",
+    "translation": "Middle of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001309",
+    "text": "กลางเดือนนี้ค่ะ",
+    "romanization": "glaang-duean níi khâ",
+    "translation": "Middle of this month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001310",
+    "text": "กลางเดือนวันเกิดค่ะ",
+    "romanization": "glaang-duean wan-gə̀ət khâ",
+    "translation": "The birthday is in the middle of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001311",
+    "text": "กลางเดือนวันหยุดครับ",
+    "romanization": "glaang-duean wan-yùt khráp",
+    "translation": "There's a holiday in the middle of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001317",
+    "text": "กลางเดือนนี้ได้ครับ",
+    "romanization": "glaang-duean níi dâai khráp",
+    "translation": "The middle of this month works.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
@@ -191484,7 +193499,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001312",
+    "text": "ปลายเดือนครับ",
+    "romanization": "bplaai-duean khráp",
+    "translation": "End of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001313",
+    "text": "ปลายเดือนนี้ค่ะ",
+    "romanization": "bplaai-duean níi khâ",
+    "translation": "End of this month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001314",
+    "text": "ปลายเดือนวันเกิดค่ะ",
+    "romanization": "bplaai-duean wan-gə̀ət khâ",
+    "translation": "The birthday is at the end of the month.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001315",
+    "text": "ปลายเดือนวันหยุดครับ",
+    "romanization": "bplaai-duean wan-yùt khráp",
+    "translation": "There's a holiday at the end of the month.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001318",
+    "text": "ปลายเดือนนี้ได้ครับ",
+    "romanization": "bplaai-duean níi dâai khráp",
+    "translation": "The end of this month works.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000433"
   ],
