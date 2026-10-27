@@ -1423,6 +1423,16 @@ body.hide-tone .tw .tm{display:none}
 .gpop .gother a:hover b{text-decoration:underline}
 .gpop .rom{color:var(--accent2)}
 .gpop .mn{color:var(--muted)}
+.gtipbox .gme{display:flex;gap:6px;align-items:baseline}
+.gtipbox .gsay{font-weight:600}
+.gtipbox .gothers{display:flex;flex-direction:column;gap:2px;margin-top:5px}
+.gtipbox .gother{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.gtipbox .glead{color:var(--dim)}
+.gtipbox .gother b{font-size:1.05rem;color:var(--bright)}
+.gtipbox .gother a{text-decoration:none}
+.gtipbox .gother a:hover b{text-decoration:underline}
+.gtipbox .rom{color:var(--accent2)}
+.gtipbox .mn{color:var(--muted)}
 .gsw{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:999px;background:var(--s2);margin:0 0 6px;font-size:0.75rem}
 .gsw button{display:inline-flex;gap:5px;align-items:center;padding:3px 10px;border:1px solid transparent;border-radius:999px;background:transparent;color:var(--dim);font:inherit;cursor:pointer}
 .gsw button:hover{color:var(--bright)}
@@ -1439,3 +1449,33 @@ body.hide-tone .tw .tm{display:none}
 .lend-tip{font-size:0.7188rem;color:var(--dim)}
 #next.tonext{background:var(--accent);color:#fff;border-color:var(--accent)}
 .qnextlesson{display:inline-block;margin-left:8px;padding:8px 14px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
+/* The lesson's introduction: readable text for the reader and the search engine. */
+.aboutlesson{max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
+.aboutlesson h2{font-size:1rem;color:var(--text);margin:0 0 8px}
+.aboutlesson p{margin:0 0 10px}
+.aboutlesson .aboutlinks a{color:var(--accent2);text-decoration:none}
+.right:not(.info) .aboutlesson{display:none}
+
+/* a word a man and a woman say differently (ผม / ฉัน, ครับ / ค่ะ): underlined, the other version on hover */
+.gw{text-decoration:underline dotted;text-decoration-thickness:2px;text-underline-offset:.22em;cursor:help;outline:none;border-radius:3px}
+.gw.g-male{text-decoration-color:#6aa7ff}
+.gw.g-female{text-decoration-color:#f08cb8}
+.gw.g-neutral{text-decoration-color:#b79cf0}
+.gw:hover,.gw:focus-visible,.gw.on{background:rgba(127,127,127,.22)}
+body.light .gw.g-male{text-decoration-color:#1f62d0}
+body.light .gw.g-female{text-decoration-color:#c2407e}
+body.light .gw.g-neutral{text-decoration-color:#7a52d6}
+.gtipbox{position:fixed;z-index:60;min-width:220px;max-width:min(340px,86vw);padding:10px 12px;border:1px solid var(--edge);border-radius:10px;background:var(--s1,var(--s2));box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:0.8125rem;line-height:1.45;color:var(--text2);white-space:normal;text-align:left;font-family:inherit}
+.gtipbox[hidden]{display:none}
+.gtipbox .gme{display:flex;gap:6px;align-items:baseline}
+/* romanization, each syllable in its tone's colour */
+.rt.t-mid{color:var(--tone-mid,#8fa8bf)}
+.rt.t-low{color:var(--tone-low,#6aa7ff)}
+.rt.t-falling{color:var(--tone-falling,#ff7b72)}
+.rt.t-high{color:var(--tone-high,#f2c14e)}
+.rt.t-rising{color:var(--tone-rising,#58d68d)}
+body.light .rt.t-mid{color:#4f6475}
+body.light .rt.t-low{color:#1f62d0}
+body.light .rt.t-falling{color:#c83c32}
+body.light .rt.t-high{color:#a87600}
+body.light .rt.t-rising{color:#1c8f4c}

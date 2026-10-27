@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="3 Thai lessons, 41 words in all, including อะไร (à-rai) what?, ที่ไหน (thîi-nǎi) where, หรือ (rǔue) or."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=8ca9beb0"/>
+<link rel="stylesheet" href="../style.css?v=3f63921c"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -1153,6 +1153,54 @@
   all[i].classList.add('on');
   var c=box.querySelector('.scount');if(c)c.textContent=(i+1)+' / '+n;
  });
+
+ // Underlined male / female words: the other version in a pop-up. One box for
+ // the whole page, placed beside whichever word is hovered, focused or tapped;
+ // it stays open while the pointer is on it so its links can be followed.
+ (function(){
+  var box=null,tm=0,cur=null;
+  function mk(){
+   if(box)return box;
+   box=document.createElement('div');box.className='gtipbox';box.setAttribute('role','tooltip');box.hidden=true;
+   document.body.appendChild(box);
+   box.addEventListener('mouseenter',function(){clearTimeout(tm)});
+   box.addEventListener('mouseleave',function(){hide(150)});
+   return box;
+  }
+  var data=null;
+  function tipOf(w){
+   if(data===null){try{data=JSON.parse(document.getElementById('gtips').textContent)}catch(e){data={}}}
+   return data[w.getAttribute('data-gd')]||'';
+  }
+  function show(w){
+   clearTimeout(tm);var b=mk();
+   if(cur&&cur!==w)cur.classList.remove('on');
+   if(cur!==w){var h=tipOf(w);if(!h)return;b.innerHTML=h;cur=w;}
+   w.classList.add('on');b.hidden=false;
+   var r=w.getBoundingClientRect(),bw=b.offsetWidth,bh=b.offsetHeight;
+   var x=Math.max(8,Math.min(r.left+r.width/2-bw/2,window.innerWidth-bw-8));
+   // above the word when there is room, so the line being read stays in view
+   var y=r.top-bh-6;
+   if(y<8)y=r.bottom+6;
+   b.style.left=x+'px';b.style.top=y+'px';
+  }
+  function hide(ms){
+   clearTimeout(tm);
+   tm=setTimeout(function(){if(box)box.hidden=true;if(cur)cur.classList.remove('on');cur=null},ms||0);
+  }
+  function gw(e){return e.target&&e.target.closest?e.target.closest('.gw'):null}
+  document.addEventListener('mouseover',function(e){var w=gw(e);if(w)show(w);});
+  document.addEventListener('mouseout',function(e){if(gw(e))hide(150);});
+  document.addEventListener('focusin',function(e){var w=gw(e);if(w)show(w);});
+  document.addEventListener('focusout',function(e){if(gw(e))hide(150);});
+  document.addEventListener('click',function(e){
+   var w=gw(e);
+   if(w){show(w);return;}
+   if(box&&!box.hidden&&!(e.target.closest&&e.target.closest('.gtipbox')))hide(0);
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide(0);});
+  window.addEventListener('scroll',function(){hide(0)},true);
+ })();
 
  // ♂ male | ♀ female — the other version of a sentence, in place. Under a
  // word both versions are in the markup and one is hidden; on a sentence card
