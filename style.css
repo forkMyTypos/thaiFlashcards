@@ -447,7 +447,7 @@ body.no-lessons .menu .mcollapse{color:var(--text2);border:1px solid var(--edge)
 .left figcaption{font-size:0.6875rem;color:var(--faint);text-align:center}
 
 /* the word */
-.info .th{font-size:2.75rem;line-height:1.15;color:var(--bright);font-weight:600;
+.info .th{font-size:3.25rem;line-height:1.15;color:var(--bright);font-weight:600;
   word-break:break-word}
 .info .rom{font-size:1.0625rem;color:var(--accent2);margin-top:4px}
 .info .en{font-size:1.1875rem;color:var(--text);margin-top:14px}
@@ -966,7 +966,7 @@ body.mode-quiz .quiz{display:flex;align-items:safe center;
   .left{padding:16px}
   .left img{max-height:46vh}
   .right{border-left:0;border-top:1px solid var(--line);padding:20px}
-  .info .th{font-size:2.25rem}
+  .info .th{font-size:2.6rem}
   .menu{position:fixed;top:0;bottom:0;left:0;width:min(300px,86vw);z-index:30;
     border-right:1px solid var(--line);transform:translateX(-100%);
     transition:transform .18s ease;box-shadow:0 0 40px rgba(0,0,0,.6)}
@@ -1355,16 +1355,6 @@ body.lean{display:block;min-height:100vh;overflow:auto;background:var(--s0);colo
 .tw{display:inline-flex;flex-direction:column;align-items:center;vertical-align:bottom;line-height:1.25}
 .tw .tm{display:block;font-style:normal;height:.62em;line-height:0;margin-bottom:1px;opacity:.85}
 .tw .tm .tmark{height:100%;width:auto;display:block}
-.tw.t-mid{color:var(--tone-mid,#8fa8bf)}
-.tw.t-low{color:var(--tone-low,#6aa7ff)}
-.tw.t-falling{color:var(--tone-falling,#ff7b72)}
-.tw.t-high{color:var(--tone-high,#f2c14e)}
-.tw.t-rising{color:var(--tone-rising,#58d68d)}
-body.light .tw.t-mid{color:#4f6475}
-body.light .tw.t-low{color:#1f62d0}
-body.light .tw.t-falling{color:#c83c32}
-body.light .tw.t-high{color:#a87600}
-body.light .tw.t-rising{color:#1c8f4c}
 body.hide-tone .tw .tm{display:none}
 
 /* A sentence as a flashcard or a quiz question: the same faces as a word, at
@@ -1450,11 +1440,10 @@ body.hide-tone .tw .tm{display:none}
 #next.tonext{background:var(--accent);color:#fff;border-color:var(--accent)}
 .qnextlesson{display:inline-block;margin-left:8px;padding:8px 14px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
 /* The lesson's introduction: readable text for the reader and the search engine. */
-.aboutlesson{max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
+.aboutlesson{display:none;max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
 .aboutlesson h2{font-size:1rem;color:var(--text);margin:0 0 8px}
 .aboutlesson p{margin:0 0 10px}
 .aboutlesson .aboutlinks a{color:var(--accent2);text-decoration:none}
-.right:not(.info) .aboutlesson{display:none}
 
 /* a word a man and a woman say differently (ผม / ฉัน, ครับ / ค่ะ): underlined, the other version on hover */
 .gw{text-decoration:underline dotted;text-decoration-thickness:2px;text-underline-offset:.22em;cursor:help;outline:none;border-radius:3px}
@@ -1468,14 +1457,29 @@ body.light .gw.g-neutral{text-decoration-color:#7a52d6}
 .gtipbox{position:fixed;z-index:60;min-width:220px;max-width:min(340px,86vw);padding:10px 12px;border:1px solid var(--edge);border-radius:10px;background:var(--s1,var(--s2));box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:0.8125rem;line-height:1.45;color:var(--text2);white-space:normal;text-align:left;font-family:inherit}
 .gtipbox[hidden]{display:none}
 .gtipbox .gme{display:flex;gap:6px;align-items:baseline}
-/* romanization, each syllable in its tone's colour */
-.rt.t-mid{color:var(--tone-mid,#8fa8bf)}
-.rt.t-low{color:var(--tone-low,#6aa7ff)}
-.rt.t-falling{color:var(--tone-falling,#ff7b72)}
-.rt.t-high{color:var(--tone-high,#f2c14e)}
-.rt.t-rising{color:var(--tone-rising,#58d68d)}
-body.light .rt.t-mid{color:#4f6475}
-body.light .rt.t-low{color:#1f62d0}
-body.light .rt.t-falling{color:#c83c32}
-body.light .rt.t-high{color:#a87600}
-body.light .rt.t-rising{color:#1c8f4c}
+
+/* ------------------------------------------------------------ the tone colours
+   ONE palette. Every place a tone has a colour — the word, its romanization, the
+   contour marks, the tone's name, the Tones page — uses these five variables and
+   nothing else, so a rising tone is the same green wherever it is met. Change a
+   colour here and it changes everywhere. */
+:root{--tone-mid:#8fa8bf;--tone-low:#6aa7ff;--tone-falling:#ff7b72;--tone-high:#f2c14e;--tone-rising:#58d68d}
+html.light-pre body,body.light{--tone-mid:#4f6475;--tone-low:#1f62d0;--tone-falling:#c83c32;--tone-high:#a87600;--tone-rising:#1c8f4c}
+.tc.t-mid,.tw.t-mid,.rt.t-mid{color:var(--tone-mid)}
+.tc.t-low,.tw.t-low,.rt.t-low{color:var(--tone-low)}
+.tc.t-falling,.tw.t-falling,.rt.t-falling{color:var(--tone-falling)}
+.tc.t-high,.tw.t-high,.rt.t-high{color:var(--tone-high)}
+.tc.t-rising,.tw.t-rising,.rt.t-rising{color:var(--tone-rising)}
+/* the word beside its male / female badge */
+.throw{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px}
+.throw .gword{margin:0}
+/* "about" — a small link beside the lesson's title; the text opens in a pop-up */
+.slider .name{display:flex;align-items:baseline;gap:10px}
+.slider .name .nt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slider .name .aboutlink{flex:none;font-size:0.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent2);text-decoration:none;border:1px solid var(--edge);border-radius:999px;padding:1px 8px}
+.slider .name .aboutlink:hover{border-color:var(--accent);color:var(--bright)}
+.aboutpop{position:fixed;z-index:60;width:min(460px,92vw);max-height:70vh;overflow:auto;padding:14px 16px;border:1px solid var(--edge);border-radius:12px;background:var(--s1,var(--s2));box-shadow:0 10px 30px rgba(0,0,0,.4);color:var(--text2);font-size:0.875rem;line-height:1.6}
+.aboutpop[hidden]{display:none}
+.aboutpop h2{font-size:1rem;color:var(--text);margin:0 0 8px}
+.aboutpop p{margin:0 0 10px}
+.aboutpop a{color:var(--accent2)}

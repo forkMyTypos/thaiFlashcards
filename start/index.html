@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Free Thai vocabulary course: 461 lessons and 4,778 words with Thai script, romanization, English and audio. Flashcards and quiz, no sign-up."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=3f63921c"/>
+<link rel="stylesheet" href="../style.css?v=02b09793"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -1165,6 +1165,30 @@
   var c=box.querySelector('.scount');if(c)c.textContent=(i+1)+' / '+n;
  });
 
+ // "about" beside the lesson's title: what the lesson is for, in a pop-up. The
+ // text is in the page all the time (#about-lesson, not shown); this only
+ // reveals it. It also opens when the address ends in #about-lesson.
+ (function(){
+  var pop=null;
+  function close(){if(pop)pop.hidden=true;}
+  function open(a){
+   var src=document.getElementById('about-lesson');if(!src)return;
+   if(!pop){pop=document.createElement('div');pop.className='aboutpop';pop.setAttribute('role','dialog');
+    pop.setAttribute('aria-label','About this lesson');document.body.appendChild(pop);}
+   pop.innerHTML=src.innerHTML;pop.hidden=false;
+   var r=a.getBoundingClientRect();
+   pop.style.top=Math.min(r.bottom+8,window.innerHeight-pop.offsetHeight-8)+'px';
+   pop.style.left=Math.max(8,Math.min(r.left,window.innerWidth-pop.offsetWidth-8))+'px';
+  }
+  document.addEventListener('click',function(e){
+   var a=e.target.closest?e.target.closest('#aboutlink'):null;
+   if(a){e.preventDefault();if(pop&&!pop.hidden)close();else open(a);return;}
+   if(pop&&!pop.hidden&&!(e.target.closest&&e.target.closest('.aboutpop')))close();
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  if(location.hash==='#about-lesson'){var l=document.getElementById('aboutlink');if(l)setTimeout(function(){open(l)},50);}
+ })();
+
  // Underlined male / female words: the other version in a pop-up. One box for
  // the whole page, placed beside whichever word is hovered, focused or tapped;
  // it stays open while the pointer is on it so its links can be followed.
@@ -1527,7 +1551,9 @@
  // them — so changing them in place means an edit reaches all of it without
  // any of it knowing this feature exists.
  var Edits=(function(){
-  var FIELDSEL={word:'.th',rom:'.rom',pos:'.pos',mean:'.en',hook:'.aid',ex:'.ex'};
+  // `:scope > .rom` — the card's own line, not the opposite version's romanization
+  // that sits in the male / female pop-up beside the word
+  var FIELDSEL={word:'.th',rom:':scope > .rom',pos:'.pos',mean:'.en',hook:'.aid',ex:'.ex'};
   var cache={},on=false;
 
   function idOf(card){return (card&&card.dataset&&card.dataset.wid)||'';}
@@ -1643,7 +1669,7 @@
  // can never disagree about what a card is made of.
  var FIELDS=[
   {k:'word',  label:'The word',       sel:'.th',  cls:'f-word'},
-  {k:'rom',   label:'Romanization',   sel:'.rom', cls:'f-rom'},
+  {k:'rom',   label:'Romanization',   sel:':scope > .rom', cls:'f-rom'},
   // Dan: "Tone needs to be a separate thing, it will be part of the show
   // menu", and then: "We need tone in flashcard/quiz mode, wherever there is
   // Thai." It is its own element on the card now rather than a band drawn
@@ -1827,7 +1853,14 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    if(!txt)continue;
    var d=document.createElement('div');
    d.className=f.cls;
-   d.textContent=txt;
+   // the tone colours travel with the word and its romanization: copied as
+   // markup / class so a flashcard and a quiz show the same colours as the page
+   if(f.k==='rom'&&el.querySelector('.rt'))d.innerHTML=el.innerHTML;
+   else d.textContent=txt;
+   if(f.k==='word'){
+    var tm=(el.className||'').match(/\bt-(?:mid|low|falling|high|rising)\b/);
+    if(tm)d.className+=' tc '+tm[0];
+   }
    if(f.k==='word')d.setAttribute('lang',document.documentElement.lang||'');
    host.appendChild(d);n++;
   }
