@@ -1506,3 +1506,8 @@ html.light-pre body,body.light{--tone-mid:#4f6475;--tone-low:#1f62d0;--tone-fall
 .aboutpop h2{font-size:1rem;color:var(--text);margin:0 0 8px}
 .aboutpop p{margin:0 0 10px}
 .aboutpop a{color:var(--accent2)}
+
+/* a lesson card's link to the word's own page */
+.info .wpl{margin:2px 0 10px;font-size:0.75rem}
+.info .wpl a{color:var(--accent2);text-decoration:none;font-weight:600}
+.info .wpl a:hover{color:var(--accent3);text-decoration:underline}
