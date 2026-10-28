@@ -4,7 +4,7 @@
  "native_name": "ภาษาไทย",
  "flag": "🇹🇭",
  "count": 6181,
- "generated_at": "2026-10-27T11:01:23Z",
+ "generated_at": "2026-10-28T10:03:59Z",
  "media_base": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev",
  "card_layout": {
   "front": [
@@ -44,5 +44,5 @@
   "lessons"
  ],
  "generator": "WordBase v2",
- "lesson_count": 461
+ "lesson_count": 462
 }
