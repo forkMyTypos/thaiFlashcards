@@ -1,6 +1,6 @@
 # Learn Thai with Flashcards
 
-> A free Thai vocabulary course with 461 lessons, 4,778 words and 1,697 example sentences. Words are shown in Thai script with romanization and an English meaning, many have audio, and each lesson can be studied as flashcards or a quiz. No sign-up.
+> A free Thai vocabulary course with 462 lessons, 4,778 words and 1,697 example sentences. Words are shown in Thai script with romanization and an English meaning, many have audio, and each lesson can be studied as flashcards or a quiz. No sign-up.
 
 ## Start here
 
@@ -10,7 +10,7 @@
 
 ## Topics
 
-- [Support Words](https://thai.inaflash.cards/c-support-words/): 3 lessons · 41 words
+- [Support Words](https://thai.inaflash.cards/c-support-words/): 4 lessons · 55 words
 - [Beginner](https://thai.inaflash.cards/c-beginner/): Everyday vocabulary, one topic at a time.
 - [Video lessons](https://thai.inaflash.cards/c-video-lessons/): Words taken from real videos, timed to the second they are said.
 - [Top Words](https://thai.inaflash.cards/c-top-words/): 1 lesson · 30 words
