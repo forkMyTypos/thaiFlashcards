@@ -16274,5 +16274,36 @@
   ],
   "sentences": [],
   "word_count": 12
+ },
+ {
+  "id": "TH_L000462",
+  "seq": 462,
+  "position": 462,
+  "title": "Everyday sentence building",
+  "subtitle": null,
+  "description": "Build simple natural Thai sentences using essential verbs, locations, negation, and everyday questions",
+  "level": "beginner",
+  "status": "published",
+  "colour": null,
+  "icon": null,
+  "tags": [],
+  "words": [
+   "TH_000060",
+   "TH_000041",
+   "TH_000056",
+   "TH_000008",
+   "TH_000007",
+   "TH_000039",
+   "TH_001004",
+   "TH_000117",
+   "TH_001010",
+   "TH_000004",
+   "TH_000490",
+   "TH_000047",
+   "TH_000143",
+   "TH_000002"
+  ],
+  "sentences": [],
+  "word_count": 14
  }
 ]
