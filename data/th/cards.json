@@ -152,7 +152,8 @@
   "lessons": [
    "TH_L000004",
    "TH_L000018",
-   "TH_L000001"
+   "TH_L000001",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000002.jpg"
@@ -313,7 +314,8 @@
   "lessons": [
    "TH_L000005",
    "TH_L000018",
-   "TH_L000001"
+   "TH_L000001",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000004.jpg"
@@ -559,7 +561,8 @@
   "lessons": [
    "TH_L000004",
    "TH_L000018",
-   "TH_L000001"
+   "TH_L000001",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000007.jpg"
@@ -640,7 +643,8 @@
   "lessons": [
    "TH_L000003",
    "TH_L000018",
-   "TH_L000001"
+   "TH_L000001",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000008.jpg"
@@ -2580,7 +2584,8 @@
   "lessons": [
    "TH_L000002",
    "TH_L000018",
-   "TH_L000297"
+   "TH_L000297",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000039.jpg"
@@ -2691,7 +2696,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000462"
   ],
   "images": [],
   "audio": {
@@ -3115,7 +3121,8 @@
    "TH_L000005",
    "TH_L000458",
    "TH_L000024",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000462"
   ],
   "images": [],
   "audio": {
@@ -3634,7 +3641,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000462"
   ],
   "images": [],
   "audio": {
@@ -3854,7 +3862,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000462"
   ],
   "images": [],
   "audio": {
@@ -6324,7 +6333,8 @@
    "TH_L000003",
    "TH_L000018",
    "TH_L000055",
-   "TH_L000367"
+   "TH_L000367",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000117.jpg"
@@ -7500,7 +7510,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000462"
   ],
   "images": [],
   "audio": {
@@ -20588,7 +20599,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000462"
   ],
   "images": [],
   "audio": {
@@ -38305,7 +38317,8 @@
   "lessons": [
    "TH_L000002",
    "TH_L000018",
-   "TH_L000291"
+   "TH_L000291",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001178.jpg"
@@ -38637,7 +38650,8 @@
   ],
   "lessons": [
    "TH_L000002",
-   "TH_L000152"
+   "TH_L000152",
+   "TH_L000462"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001163.jpg"
