@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="17 Thai lessons, 255 words in all, including พูดง่ายๆ (phûut ngâai-ngâai) simply put, พูดตรงๆ (phûut trong-trong) speak frankly, เอาจริงๆ (ao jing-jing)…"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=69eb89ff"/>
+<link rel="stylesheet" href="../style.css?v=a673aac6"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -51,10 +51,18 @@
   </div>
   <div class="find"><input id="find" type="search" placeholder="Search lessons or words" aria-label="Search lessons and words" autocomplete="off"/></div>
   <nav id="nav">
-    <a class="item big" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="ic" aria-hidden="true">▤</span><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
-    <a class="item" href="https://thai.inaflash.cards/" data-title="home"><span class="ic" aria-hidden="true">⌂</span><span class="lb">Home</span></a>
-    <a class="item" id="m-fav" href="#" hidden data-title="favourites"><span class="ic" aria-hidden="true">♡</span><span class="lb">Favourites</span><span class="n"></span></a>
-    <a class="item" id="m-recent" href="#" hidden data-title="recently viewed"><span class="ic" aria-hidden="true">↺</span><span class="lb">Recently viewed</span><span class="n"></span></a>
+    <a class="mcont" id="m-cont" href="#" hidden><span class="ck">Continue where you left off</span><span class="ct"><span class="ctt"></span><span class="ctn"></span></span><span class="cs"></span><span class="cbar" aria-hidden="true"><i></i></span></a>
+    <div class="mtiles">
+    <a class="item big tile" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
+    <a class="item tile" id="m-recent" href="#" hidden data-title="recently viewed"><span class="lb">Recent</span><span class="n"></span></a>
+    <a class="item tile" id="m-fav" href="#" hidden data-title="favourites"><span class="lb">Favourites</span><span class="n"></span></a>
+    </div>
+    <div class="mcourses" id="m-courses">
+      <div class="mch"><span>My courses</span><small>saved in this browser</small></div>
+      <div class="mclist" id="m-clist"></div>
+      <button type="button" class="mbuild" id="m-build"><span aria-hidden="true">+</span> Build your own course</button>
+    </div>
+    <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
@@ -70,20 +78,10 @@
   <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner"><span class="lb">Beginner</span><span class="n" data-fill="cat:c-beginner"></span></a>
       </div>
       <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-video-lessons" data-name="Video lessons">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Video lessons">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span><span class="n" data-fill="cat:c-video-lessons"></span></a>
+      <div class="catalso" hidden><div class="ah">Also in Beginner</div>
+          <a class="kept" href="https://thai.inaflash.cards/thai-basics-100/"><span class="t">Thai Basics 100</span></a>
+          <a class="kept" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/"><span class="t">Thai Class 9 Complete Vocab List</span></a>
       </div>
-      <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-top-words" data-name="Top Words">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Top Words">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span><span class="n" data-fill="cat:c-top-words"></span></a>
-      </div>
-      <div class="catbox" hidden></div>
     </div>
     <div class="catwrap" data-cat="c-thai-food" data-name="Thai Food">
       <div class="catline">
@@ -148,6 +146,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -226,6 +225,8 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-beginner" data-name="Beginner">
       <div class="catline">
@@ -236,13 +237,14 @@
     </div>
       <div class="mnote">More appear as lessons reach 10 approved sentences.</div>
     </div>
-    <div class="grp" data-grp>Also</div>
+    <div class="grp" data-grp>Explore</div>
+    <a class="item also" href="https://thai.inaflash.cards/" data-title="home"><span class="lb">Home</span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">1697 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
     <div class="hits" id="hits" hidden></div>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
@@ -266,7 +268,7 @@
   <div class="wide">
     <h1 style="font-size:26px;color:#fff;line-height:1.25">Natural Thai vocabulary</h1>
     <p class="lead">17 Thai lessons, 255 words in all, including พูดง่ายๆ (phûut ngâai-ngâai) simply put, พูดตรงๆ (phûut trong-trong) speak frankly, เอาจริงๆ (ao jing-jing)…</p>
-    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/153-just-say-it-naturally/"><span class="num">156</span><span class="meta"><span class="lt">Just Say It Naturally</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/295-thai-conversation-glue/"><span class="num">157</span><span class="meta"><span class="lt">Thai Conversation Glue</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/155-thai-softening-words/"><span class="num">158</span><span class="meta"><span class="lt">Thai Softening Words</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/156-natural-reactions/"><span class="num">159</span><span class="meta"><span class="lt">Natural Reactions</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/157-saying-things-less-directly/"><span class="num">160</span><span class="meta"><span class="lt">Saying Things Less Directly</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/158-natural-agreement/"><span class="num">161</span><span class="meta"><span class="lt">Natural Agreement</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/159-natural-disagreement/"><span class="num">162</span><span class="meta"><span class="lt">Natural Disagreement</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/160-natural-questions/"><span class="num">163</span><span class="meta"><span class="lt">Natural Questions</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/161-natural-time-talk/"><span class="num">164</span><span class="meta"><span class="lt">Natural Time Talk</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/162-natural-uncertainty/"><span class="num">165</span><span class="meta"><span class="lt">Natural Uncertainty</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/163-natural-emphasis/"><span class="num">166</span><span class="meta"><span class="lt">Natural Emphasis</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/164-natural-shortcuts/"><span class="num">167</span><span class="meta"><span class="lt">Natural Shortcuts</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/165-natural-social-language/"><span class="num">168</span><span class="meta"><span class="lt">Natural Social Language</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/166-natural-problem-talk/"><span class="num">169</span><span class="meta"><span class="lt">Natural Problem Talk</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/167-natural-thai-about-people/"><span class="num">170</span><span class="meta"><span class="lt">Natural Thai About People</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/168-ending-naturally/"><span class="num">171</span><span class="meta"><span class="lt">Ending Naturally</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/169-natural-thai-the-little-things/"><span class="num">172</span><span class="meta"><span class="lt">Natural Thai: The Little Things</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
+    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/153-just-say-it-naturally/"><span class="num">01</span><span class="meta"><span class="lt">Just Say It Naturally</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/295-thai-conversation-glue/"><span class="num">02</span><span class="meta"><span class="lt">Thai Conversation Glue</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/155-thai-softening-words/"><span class="num">03</span><span class="meta"><span class="lt">Thai Softening Words</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/156-natural-reactions/"><span class="num">04</span><span class="meta"><span class="lt">Natural Reactions</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/157-saying-things-less-directly/"><span class="num">05</span><span class="meta"><span class="lt">Saying Things Less Directly</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/158-natural-agreement/"><span class="num">06</span><span class="meta"><span class="lt">Natural Agreement</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/159-natural-disagreement/"><span class="num">07</span><span class="meta"><span class="lt">Natural Disagreement</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/160-natural-questions/"><span class="num">08</span><span class="meta"><span class="lt">Natural Questions</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/161-natural-time-talk/"><span class="num">09</span><span class="meta"><span class="lt">Natural Time Talk</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/162-natural-uncertainty/"><span class="num">10</span><span class="meta"><span class="lt">Natural Uncertainty</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/163-natural-emphasis/"><span class="num">11</span><span class="meta"><span class="lt">Natural Emphasis</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/164-natural-shortcuts/"><span class="num">12</span><span class="meta"><span class="lt">Natural Shortcuts</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/165-natural-social-language/"><span class="num">13</span><span class="meta"><span class="lt">Natural Social Language</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/166-natural-problem-talk/"><span class="num">14</span><span class="meta"><span class="lt">Natural Problem Talk</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/167-natural-thai-about-people/"><span class="num">15</span><span class="meta"><span class="lt">Natural Thai About People</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/168-ending-naturally/"><span class="num">16</span><span class="meta"><span class="lt">Ending Naturally</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/169-natural-thai-the-little-things/"><span class="num">17</span><span class="meta"><span class="lt">Natural Thai: The Little Things</span><span class="ld">15 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
     <h2 class="sec-h">The words</h2>
     <h3 class="g-h"><a href="https://thai.inaflash.cards/153-just-say-it-naturally/">Just Say It Naturally</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04083-simply-put/">พูดง่ายๆ</a> <span class="rom"><span class="rt t-falling">phûut</span> <span class="rt t-falling">ngâai</span>-<span class="rt t-falling">ngâai</span></span></dt><dd>simply put</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03702-speak-frankly/">พูดตรงๆ</a> <span class="rom"><span class="rt t-falling">phûut</span> <span class="rt t-mid">trong</span>-<span class="rt t-mid">trong</span></span></dt><dd>speak frankly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04084-honestly/">เอาจริงๆ</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">jing</span>-<span class="rt t-mid">jing</span></span></dt><dd>honestly / seriously</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02395-actually/">จริงๆ แล้ว</a> <span class="rom"><span class="rt t-mid">jing</span>-<span class="rt t-mid">jing</span>-<span class="rt t-high">láew</span></span></dt><dd>actually, really</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01666-actually/">ที่จริง</a> <span class="rom"><span class="rt t-falling">thîi</span>-<span class="rt t-mid">jing</span></span></dt><dd>actually; in fact</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03544-like/">แบบว่า</a> <span class="rom"><span class="rt t-low">bàep</span>-<span class="rt t-falling">wâa</span></span></dt><dd>like / kind of / I mean</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03684-well/">คือว่า</a> <span class="rom"><span class="rt t-mid">khʉʉ</span>-<span class="rt t-falling">wâa</span></span></dt><dd>well / I mean</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03545-something-like-that/">ประมาณนั้น</a> <span class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-mid">maan</span> <span class="rt t-high">nán</span></span></dt><dd>something like that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03688-something-like-that/">อะไรประมาณนั้น</a> <span class="rom"><span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-low">bprà</span>-<span class="rt t-mid">maan</span> <span class="rt t-high">nán</span></span></dt><dd>something like that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04085-pretty-much/">ก็ประมาณนั้น</a> <span class="rom"><span class="rt t-falling">gôr</span> <span class="rt t-low">bprà</span>-<span class="rt t-mid">maan</span> <span class="rt t-high">nán</span></span></dt><dd>pretty much</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01452-up-to/">แล้วแต่</a> <span class="rom"><span class="rt t-high">láew</span>-<span class="rt t-low">dtàe</span></span></dt><dd>up to; whatever; depends on</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03507-as-you-like/">ตามสบาย</a> <span class="rom"><span class="rt t-mid">dtaam</span> <span class="rt t-low">sà</span>-<span class="rt t-mid">baai</span></span></dt><dd>as you like / make yourself comfortable</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04034-it-s-really-okay/">ไม่เป็นไรหรอก</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-mid">bpen</span>-<span class="rt t-mid">rai</span> <span class="rt t-low">rɔ̀ɔk</span></span></dt><dd>it&#x27;s really okay</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04086-forget-it/">ช่างมันเถอะ</a> <span class="rom"><span class="rt t-falling">châang</span> <span class="rt t-mid">man</span> <span class="rt t-low">thòe</span></span></dt><dd>forget it / never mind</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03804-we-ll-figure-it-out-later/">เดี๋ยวค่อยว่ากัน</a> <span class="rom"><span class="rt t-rising">dǐao</span> <span class="rt t-falling">khɔ̂i</span> <span class="rt t-falling">wâa</span> <span class="rt t-mid">gan</span></span></dt><dd>we&#x27;ll figure it out later</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/295-thai-conversation-glue/">Thai Conversation Glue</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00165-then/">ก็</a> <span class="rom"><span class="rt t-falling">gâw</span></span></dt><dd>then, so, consequently, also, too, [common discourse particle, often linking clauses or emphasizing]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02398-and-then/">แล้วก็</a> <span class="rom"><span class="rt t-high">láew</span>-<span class="rt t-falling">gɔ̂ɔ</span></span></dt><dd>and then, and also</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01559-but/">แต่ว่า</a> <span class="rom"><span class="rt t-low">dtɛ̀ɛ</span>-<span class="rt t-falling">wâa</span></span></dt><dd>but; however</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01623-because/">เพราะว่า</a> <span class="rom"><span class="rt t-high">phrɔ́</span>-<span class="rt t-falling">wâa</span></span></dt><dd>because</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03373-so/">ก็เลย</a> <span class="rom"><span class="rt t-falling">gɔ̂ɔ</span> <span class="rt t-mid">loei</span></span></dt><dd>so, therefore</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02397-then/">งั้น</a> <span class="rom"><span class="rt t-high">ngán</span></span></dt><dd>then, in that case</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04087-if-that-s-the-case/">ถ้างั้น</a> <span class="rom"><span class="rt t-falling">tâa</span> <span class="rt t-high">ngán</span></span></dt><dd>if that&#x27;s the case</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03640-then-let-s-do-it-this-way/">งั้นเอาแบบนี้</a> <span class="rom"><span class="rt t-high">ngán</span> <span class="rt t-mid">ao</span> <span class="rt t-low">bàep</span> <span class="rt t-high">níi</span></span></dt><dd>then let&#x27;s do it this way</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03597-let-s-just-say/">เอาเป็นว่า</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">bpen</span>-<span class="rt t-falling">wâa</span></span></dt><dd>let&#x27;s just say / in short</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01362-that-s-it/">นั่นแหละ</a> <span class="rom"><span class="rt t-falling">nân</span>-<span class="rt t-low">lɛ̀</span></span></dt><dd>that&#x27;s it; exactly that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01703-this-is-it/">นี่แหละ</a> <span class="rom"><span class="rt t-falling">nîi</span>-<span class="rt t-low">lɛ̀</span></span></dt><dd>this is it; this very one</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01262-indeed/">แหละ</a> <span class="rom"><span class="rt t-low">lɛ̀</span></span></dt><dd>indeed; precisely; emphatic particle</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02270-go-ahead/">สิ</a> <span class="rom"><span class="rt t-low">sì</span></span></dt><dd>go ahead, do it, emphasis</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02269-what-about/">ล่ะ</a> <span class="rom"><span class="rt t-falling">lâ</span></span></dt><dd>what about?, and...?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01118-particle-used-for-softening-or-empha/">นะ</a> <span class="rom"><span class="rt t-high">ná</span></span></dt><dd>particle used for softening or emphasizing</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/155-thai-softening-words/">Thai Softening Words</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01010-a-little/">หน่อย</a> <span class="rom"><span class="rt t-low">nòi</span></span></dt><dd>a little, please (particle to soften request), please</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04088-please/">หน่อยนะ</a> <span class="rom"><span class="rt t-low">nòi</span> <span class="rt t-high">ná</span></span></dt><dd>please / okay?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00244-completely/">เลย</a> <span class="rom"><span class="rt t-mid">loei</span></span></dt><dd>completely, totally, very, indeed, so, [sentence-final particle adding emphasis or indicating consequence]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04089-not-really/">หรอก</a> <span class="rom"><span class="rt t-low">ròk</span></span></dt><dd>not really / actually not</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04090-not-really/">หรอกนะ</a> <span class="rom"><span class="rt t-low">ròk</span> <span class="rt t-high">ná</span></span></dt><dd>not really / don&#x27;t worry</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03691-i-guess/">มั้ง</a> <span class="rom"><span class="rt t-high">máng</span></span></dt><dd>I guess / probably</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03692-probably/">ละมั้ง</a> <span class="rom"><span class="rt t-high">lá</span> <span class="rt t-high">máng</span></span></dt><dd>probably / I suppose</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04091-maybe/">มั้งนะ</a> <span class="rom"><span class="rt t-high">máng</span> <span class="rt t-high">ná</span></span></dt><dd>maybe</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01604-self/">เอง</a> <span class="rom"><span class="rt t-mid">eeng</span></span></dt><dd>self, oneself, by oneself</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04092-exactly/">เองแหละ</a> <span class="rom"><span class="rt t-mid">eeng</span> <span class="rt t-low">lɛ̀</span></span></dt><dd>exactly / that&#x27;s the one</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04093-that-s-fine/">ก็ได้</a> <span class="rom"><span class="rt t-falling">gôr</span> <span class="rt t-falling">dâi</span></span></dt><dd>that&#x27;s fine / okay</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04094-then-let-s-go-with-that/">ก็แล้วกัน</a> <span class="rom"><span class="rt t-falling">gôr</span> <span class="rt t-high">láew</span>-<span class="rt t-mid">gan</span></span></dt><dd>then let&#x27;s go with that</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/156-natural-reactions/">Natural Reactions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02272-oh/">อ๋อ</a> <span class="rom"><span class="rt t-rising">ɔ̌ɔ</span></span></dt><dd>oh, I see</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03629-oh-really/">อ๋อเหรอ</a> <span class="rom"><span class="rt t-rising">ɔ̌ɔ</span> <span class="rt t-rising">rʉ̌ʉ</span></span></dt><dd>oh really?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03549-oh/">อ๋อ เข้าใจแล้ว</a> <span class="rom"><span class="rt t-rising">ɔ̌ɔ</span> <span class="rt t-falling">khâo</span>-<span class="rt t-mid">jai</span> <span class="rt t-high">láew</span></span></dt><dd>oh, I understand now</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02266-really/">เหรอ</a> <span class="rom"><span class="rt t-rising">rǒr</span></span></dt><dd>really?, is that so?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02267-really/">จริงเหรอ</a> <span class="rom"><span class="rt t-mid">jing</span>-<span class="rt t-rising">rǒr</span></span></dt><dd>really?, seriously?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03905-really/">จริงดิ</a> <span class="rom"><span class="rt t-mid">jing</span> <span class="rt t-low">dì</span></span></dt><dd>really?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04095-yeah/">เออจริง</a> <span class="rom"><span class="rt t-mid">er</span> <span class="rt t-mid">jing</span></span></dt><dd>yeah, true</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03388-exactly/">ใช่เลย</a> <span class="rom"><span class="rt t-falling">châi</span> <span class="rt t-mid">loei</span></span></dt><dd>exactly, that&#x27;s right</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03628-yeah/">เออใช่</a> <span class="rom"><span class="rt t-mid">əə</span> <span class="rt t-falling">châi</span></span></dt><dd>yeah, that&#x27;s right</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03622-wow/">โอ้โห</a> <span class="rom"><span class="rt t-falling">ôo</span>-<span class="rt t-rising">hǒo</span></span></dt><dd>wow!</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04096-wow/">โห</a> <span class="rom"><span class="rt t-mid">hŏh</span></span></dt><dd>wow / damn</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04097-wow/">ว้าว</a> <span class="rom"><span class="rt t-high">wáao</span></span></dt><dd>wow</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02273-hmm/">อืม</a> <span class="rom"><span class="rt t-mid">ʉʉm</span></span></dt><dd>hmm, um</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03686-yeah/">เออ</a> <span class="rom"><span class="rt t-mid">əə</span></span></dt><dd>yeah / uh-huh</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04098-oh/">อ๋อๆ</a> <span class="rom"><span class="rt t-mid">ŏr</span>-<span class="rt t-mid">ŏr</span></span></dt><dd>oh, okay, okay</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/157-saying-things-less-directly/">Saying Things Less Directly</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01821-probably/">น่าจะ</a> <span class="rom"><span class="rt t-falling">nâa</span>-<span class="rt t-low">jà</span></span></dt><dd>probably, should likely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04099-probably/">คงจะ</a> <span class="rom"><span class="rt t-mid">khong</span> <span class="rt t-low">jà</span></span></dt><dd>probably</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01798-might/">อาจจะ</a> <span class="rom"><span class="rt t-low">àat</span>-<span class="rt t-low">jà</span></span></dt><dd>might, maybe</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04100-probably-not/">คงไม่</a> <span class="rom"><span class="rt t-mid">khong</span> <span class="rt t-falling">mâi</span></span></dt><dd>probably not</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04101-probably-not/">ไม่น่าจะ</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nâa</span> <span class="rt t-low">jà</span></span></dt><dd>probably not</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03492-should-work/">น่าจะได้</a> <span class="rom"><span class="rt t-falling">nâa</span>-<span class="rt t-low">jà</span> <span class="rt t-falling">dâi</span></span></dt><dd>should work / should be okay</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04102-should-be-okay/">น่าจะโอเค</a> <span class="rom"><span class="rt t-falling">nâa</span> <span class="rt t-low">jà</span> <span class="rt t-mid">oh</span>-<span class="rt t-mid">kay</span></span></dt><dd>should be okay</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03491-should-be-good/">น่าจะดี</a> <span class="rom"><span class="rt t-falling">nâa</span>-<span class="rt t-low">jà</span> <span class="rt t-mid">dii</span></span></dt><dd>should be good / probably good</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04103-probably-have-to/">คงต้อง</a> <span class="rom"><span class="rt t-mid">khong</span> <span class="rt t-falling">dtông</span></span></dt><dd>probably have to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04104-might-have-to/">อาจต้อง</a> <span class="rom"><span class="rt t-low">àat</span> <span class="rt t-falling">dtông</span></span></dt><dd>might have to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03390-not-sure/">ไม่แน่ใจ</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nâe</span>-<span class="rt t-mid">jai</span></span></dt><dd>not sure</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04105-not-really-sure/">ไม่ค่อยแน่ใจ</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">khôi</span> <span class="rt t-falling">nâe</span>-<span class="rt t-mid">jai</span></span></dt><dd>not really sure</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01114-a-little-bit/">นิดหน่อย</a> <span class="rom"><span class="rt t-high">nít</span>-<span class="rt t-low">nòi</span></span></dt><dd>a little bit</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03578-rather/">ค่อนข้าง</a> <span class="rom"><span class="rt t-falling">khɔ̂n</span>-<span class="rt t-falling">khâang</span></span></dt><dd>rather, fairly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03689-somewhat/">ออกจะ</a> <span class="rom"><span class="rt t-low">ɔ̀ɔk</span>-<span class="rt t-low">jà</span></span></dt><dd>somewhat / rather</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/158-natural-agreement/">Natural Agreement</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01190-yes/">ใช่</a> <span class="rom"><span class="rt t-falling">châi</span></span></dt><dd>yes, that&#x27;s right, correct</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04106-yeah/">ใช่ๆ</a> <span class="rom"><span class="rt t-falling">châi</span>-<span class="rt t-falling">châi</span></span></dt><dd>yeah, yeah</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01526-agree/">เห็นด้วย</a> <span class="rom"><span class="rt t-rising">hěn</span>-<span class="rt t-falling">dûai</span></span></dt><dd>agree; concur</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04107-i-agree/">เห็นด้วยนะ</a> <span class="rom"><span class="rt t-mid">hĕn</span> <span class="rt t-falling">dûai</span> <span class="rt t-high">ná</span></span></dt><dd>I agree</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04108-that-s-true/">ก็จริง</a> <span class="rom"><span class="rt t-falling">gôr</span> <span class="rt t-mid">jing</span></span></dt><dd>that&#x27;s true</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04109-that-s-true/">จริงด้วย</a> <span class="rom"><span class="rt t-mid">jing</span> <span class="rt t-falling">dûai</span></span></dt><dd>that&#x27;s true / you&#x27;re right</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04110-exactly/">นั่นสิ</a> <span class="rom"><span class="rt t-falling">nân</span> <span class="rt t-low">sì</span></span></dt><dd>exactly / that&#x27;s what I mean</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04111-correct/">ถูกต้อง</a> <span class="rom"><span class="rt t-low">thùuk</span> <span class="rt t-falling">dtông</span></span></dt><dd>correct</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04112-absolutely-fine/">โอเคเลย</a> <span class="rom"><span class="rt t-mid">oh</span>-<span class="rt t-mid">kay</span> <span class="rt t-mid">loei</span></span></dt><dd>absolutely fine</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02342-sure/">ได้เลย</a> <span class="rom"><span class="rt t-falling">dâai</span>-<span class="rt t-mid">loei</span></span></dt><dd>sure, absolutely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03268-sure/">ได้สิ</a> <span class="rom"><span class="rt t-falling">dâi</span> <span class="rt t-low">sì</span></span></dt><dd>sure, of course</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04061-go-with-that/">เอาตามนั้น</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">dtaam</span>-<span class="rt t-high">nán</span></span></dt><dd>go with that / do as agreed</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03638-agreed/">ตามนั้น</a> <span class="rom"><span class="rt t-mid">dtaam</span>-<span class="rt t-high">nán</span></span></dt><dd>agreed / let&#x27;s do that</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/159-natural-disagreement/">Natural Disagreement</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03389-no/">ไม่ใช่</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">châi</span></span></dt><dd>no, that&#x27;s not right</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03586-not-like-that/">ไม่ใช่แบบนั้น</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-falling">châi</span> <span class="rt t-low">bàep</span>-<span class="rt t-high">nán</span></span></dt><dd>not like that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02348-not-really/">ไม่ค่อย</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-falling">khɔ̂i</span></span></dt><dd>not really, not very</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04113-i-don-t-really-agree/">ไม่ค่อยเห็นด้วย</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">khôi</span> <span class="rt t-mid">hĕn</span> <span class="rt t-falling">dûai</span></span></dt><dd>I don&#x27;t really agree</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04114-i-don-t-think-so/">ผมว่าไม่ใช่</a> <span class="rom"><span class="rt t-mid">phŏm</span> <span class="rt t-falling">wâa</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">châi</span></span></dt><dd>I don&#x27;t think so</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04115-i-don-t-think-so/">ฉันว่าไม่ใช่</a> <span class="rom"><span class="rt t-mid">chăn</span> <span class="rt t-falling">wâa</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">châi</span></span></dt><dd>I don&#x27;t think so</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04116-i-don-t-think-that-s-likely/">ผมว่าไม่น่าใช่</a> <span class="rom"><span class="rt t-mid">phŏm</span> <span class="rt t-falling">wâa</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">nâa</span> <span class="rt t-falling">châi</span></span></dt><dd>I don&#x27;t think that&#x27;s likely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04117-i-don-t-think-that-s-likely/">ฉันว่าไม่น่าใช่</a> <span class="rom"><span class="rt t-mid">chăn</span> <span class="rt t-falling">wâa</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">nâa</span> <span class="rt t-falling">châi</span></span></dt><dd>I don&#x27;t think that&#x27;s likely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03547-not-sure-either/">ก็ไม่แน่</a> <span class="rom"><span class="rt t-falling">gɔ̂ɔ</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">nâe</span></span></dt><dd>not sure either</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04118-not-to-that-extent/">ไม่ถึงขนาดนั้น</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-mid">thĕung</span> <span class="rt t-low">khà</span>-<span class="rt t-low">nàat</span> <span class="rt t-high">nán</span></span></dt><dd>not to that extent</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04119-not-exactly/">ไม่เชิง</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-mid">choeng</span></span></dt><dd>not exactly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04120-not-entirely/">ไม่ใช่ซะทีเดียว</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">châi</span> <span class="rt t-high">sá</span>-<span class="rt t-mid">thii</span>-<span class="rt t-mid">diao</span></span></dt><dd>not entirely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04121-it-depends/">ก็แล้วแต่</a> <span class="rom"><span class="rt t-falling">gôr</span> <span class="rt t-high">láew</span>-<span class="rt t-low">dtàe</span></span></dt><dd>it depends / whatever</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04050-depends-on-the-person/">แล้วแต่คน</a> <span class="rom"><span class="rt t-high">láew</span>-<span class="rt t-low">dtɛ̀ɛ</span> <span class="rt t-mid">khon</span></span></dt><dd>depends on the person</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04049-it-depends-on-the-situation/">แล้วแต่สถานการณ์</a> <span class="rom"><span class="rt t-high">láew</span>-<span class="rt t-low">dtɛ̀ɛ</span> <span class="rt t-low">sà</span>-<span class="rt t-rising">thǎan</span>-<span class="rt t-mid">gaan</span></span></dt><dd>it depends on the situation</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/160-natural-questions/">Natural Questions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04122-how-is-it/">เป็นไง</a> <span class="rom"><span class="rt t-mid">bpen</span> <span class="rt t-mid">ngai</span></span></dt><dd>how is it? / how&#x27;s it going?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03166-how-are-you/">เป็นไงบ้าง</a> <span class="rom"><span class="rt t-mid">bpen</span> <span class="rt t-mid">ngai</span> <span class="rt t-falling">bâang</span></span></dt><dd>how are you?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03624-and-then/">แล้วไง</a> <span class="rom"><span class="rt t-high">láew</span> <span class="rt t-mid">ngai</span></span></dt><dd>and then? / so what?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03540-what-happened-next/">แล้วไงต่อ</a> <span class="rom"><span class="rt t-high">láew</span> <span class="rt t-mid">ngai</span> <span class="rt t-low">dtɔ̀ɔ</span></span></dt><dd>what happened next?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04123-what-about/">แล้วล่ะ</a> <span class="rom"><span class="rt t-high">láew</span> <span class="rt t-falling">lâ</span></span></dt><dd>what about...?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03536-and-you/">แล้วคุณล่ะ</a> <span class="rom"><span class="rt t-high">láew</span> <span class="rt t-mid">khun</span> <span class="rt t-falling">lâ</span></span></dt><dd>and you?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04124-why/">ทำไมล่ะ</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">mai</span> <span class="rt t-falling">lâ</span></span></dt><dd>why?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03542-why-did/">ทำไมถึง</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">mai</span> <span class="rt t-rising">thʉ̌ng</span></span></dt><dd>why did / why is it that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04125-how-then/">ยังไงล่ะ</a> <span class="rom"><span class="rt t-mid">yang</span>-<span class="rt t-mid">ngai</span> <span class="rt t-falling">lâ</span></span></dt><dd>how then?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04126-what-should-we-do/">ยังไงดี</a> <span class="rom"><span class="rt t-mid">yang</span>-<span class="rt t-mid">ngai</span> <span class="rt t-mid">dii</span></span></dt><dd>what should we do?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03473-what-should-we-do/">เอายังไงดี</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">yang</span>-<span class="rt t-mid">ngai</span> <span class="rt t-mid">dii</span></span></dt><dd>what should we do?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04127-what-s-up/">ว่าไง</a> <span class="rom"><span class="rt t-falling">wâa</span> <span class="rt t-mid">ngai</span></span></dt><dd>what&#x27;s up? / what do you think?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04128-how-s-it-going/">ว่าไงบ้าง</a> <span class="rom"><span class="rt t-falling">wâa</span> <span class="rt t-mid">ngai</span> <span class="rt t-falling">bâang</span></span></dt><dd>how&#x27;s it going?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03470-is-something-wrong/">มีอะไรหรือเปล่า</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-rising">rʉ̌ʉ</span>-<span class="rt t-low">bplàao</span></span></dt><dd>is something wrong?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04129-is-something-wrong/">เป็นอะไรหรือเปล่า</a> <span class="rom"><span class="rt t-mid">bpen</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-mid">rĕu</span> <span class="rt t-low">bplàao</span></span></dt><dd>is something wrong?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/161-natural-time-talk/">Natural Time Talk</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01639-a-moment/">เดี๋ยว</a> <span class="rom"><span class="rt t-mid">dĭao</span></span></dt><dd>a moment, wait, soon</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04130-wait-a-moment/">เดี๋ยวก่อน</a> <span class="rom"><span class="rt t-mid">dĭao</span> <span class="rt t-low">gòn</span></span></dt><dd>wait a moment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04042-wait-a-second/">เดี๋ยวนะ</a> <span class="rom"><span class="rt t-rising">dǐao</span> <span class="rt t-high">ná</span></span></dt><dd>wait a second</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04131-i-ll-do-it-later/">เดี๋ยวค่อยทำ</a> <span class="rom"><span class="rt t-mid">dĭao</span> <span class="rt t-falling">khôi</span> <span class="rt t-mid">tham</span></span></dt><dd>I&#x27;ll do it later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04031-we-ll-see-later/">เดี๋ยวค่อยดู</a> <span class="rom"><span class="rt t-rising">dǐao</span> <span class="rt t-falling">khɔ̂i</span> <span class="rt t-mid">duu</span></span></dt><dd>we&#x27;ll see later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04132-leave-it-for-now/">ไว้ก่อน</a> <span class="rom"><span class="rt t-high">wái</span> <span class="rt t-low">gòn</span></span></dt><dd>leave it for now</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03504-leave-it-for-now/">เอาไว้ก่อน</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-high">wái</span> <span class="rt t-low">gɔ̀ɔn</span></span></dt><dd>leave it for now</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04133-save-it-for-later/">ไว้ทีหลัง</a> <span class="rom"><span class="rt t-high">wái</span> <span class="rt t-mid">thii</span>-<span class="rt t-mid">lăng</span></span></dt><dd>save it for later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04134-again/">อีกที</a> <span class="rom"><span class="rt t-low">ìik</span> <span class="rt t-mid">thii</span></span></dt><dd>again / another time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04135-a-little-later/">อีกหน่อย</a> <span class="rom"><span class="rt t-low">ìik</span> <span class="rt t-low">nòi</span></span></dt><dd>a little later / more</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04136-for-a-while/">สักพัก</a> <span class="rom"><span class="rt t-low">sàk</span> <span class="rt t-high">phák</span></span></dt><dd>for a while / after a while</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04043-just-a-second/">แป๊บนึง</a> <span class="rom"><span class="rt t-high">bpɛ́ɛp</span> <span class="rt t-mid">nʉng</span></span></dt><dd>just a second</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04137-just-a-moment/">แป๊บเดียว</a> <span class="rom"><span class="rt t-high">bpɛ́p</span> <span class="rt t-mid">diao</span></span></dt><dd>just a moment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03328-just-now/">เมื่อกี้</a> <span class="rom"><span class="rt t-falling">mʉ̂a</span>-<span class="rt t-falling">gîi</span></span></dt><dd>just now</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/162-natural-uncertainty/">Natural Uncertainty</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03546-i-don-t-know-either/">ไม่รู้เหมือนกัน</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-high">rúu</span> <span class="rt t-rising">mʉ̌an</span>-<span class="rt t-mid">gan</span></span></dt><dd>I don&#x27;t know either</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03690-maybe/">ไม่แน่</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nâe</span></span></dt><dd>maybe / not sure</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04138-i-m-not-sure-either/">ไม่แน่เหมือนกัน</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nâe</span> <span class="rt t-mid">mĕuan</span> <span class="rt t-mid">gan</span></span></dt><dd>I&#x27;m not sure either</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04139-probably/">น่าจะมั้ง</a> <span class="rom"><span class="rt t-falling">nâa</span> <span class="rt t-low">jà</span> <span class="rt t-high">máng</span></span></dt><dd>probably, I guess</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04140-probably/">คงมั้ง</a> <span class="rom"><span class="rt t-mid">khong</span> <span class="rt t-high">máng</span></span></dt><dd>probably, I guess</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04141-as-far-as-i-know/">เท่าที่รู้</a> <span class="rom"><span class="rt t-falling">thâo</span> <span class="rt t-falling">thîi</span> <span class="rt t-high">rúu</span></span></dt><dd>as far as I know</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04142-as-far-as-i-can-see/">เท่าที่เห็น</a> <span class="rom"><span class="rt t-falling">thâo</span> <span class="rt t-falling">thîi</span> <span class="rt t-mid">hĕn</span></span></dt><dd>as far as I can see</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03861-from-what-i-can-hear/">เท่าที่ฟังดู</a> <span class="rom"><span class="rt t-falling">thâo</span>-<span class="rt t-falling">thîi</span> <span class="rt t-mid">fang</span> <span class="rt t-mid">duu</span></span></dt><dd>from what I can hear</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04143-it-seems-that/">ดูเหมือนว่า</a> <span class="rom"><span class="rt t-mid">duu</span> <span class="rt t-mid">mĕuan</span> <span class="rt t-falling">wâa</span></span></dt><dd>it seems that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03850-it-sounds-like/">ฟังดูเหมือนว่า</a> <span class="rom"><span class="rt t-mid">fang</span> <span class="rt t-mid">duu</span> <span class="rt t-rising">mʉ̌an</span> <span class="rt t-falling">wâa</span></span></dt><dd>it sounds like</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04144-i-m-not-sure-whether/">ไม่แน่ใจว่า</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nâe</span>-<span class="rt t-mid">jai</span> <span class="rt t-falling">wâa</span></span></dt><dd>I&#x27;m not sure whether</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04145-maybe/">อาจจะใช่</a> <span class="rom"><span class="rt t-low">àat</span> <span class="rt t-low">jà</span> <span class="rt t-falling">châi</span></span></dt><dd>maybe / might be</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04146-maybe-not/">อาจจะไม่</a> <span class="rom"><span class="rt t-low">àat</span> <span class="rt t-low">jà</span> <span class="rt t-falling">mâi</span></span></dt><dd>maybe not</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/163-natural-emphasis/">Natural Emphasis</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04147-very-much/">มากเลย</a> <span class="rom"><span class="rt t-falling">mâak</span> <span class="rt t-mid">loei</span></span></dt><dd>very much / really</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04148-very/">มากๆ</a> <span class="rom"><span class="rt t-falling">mâak</span>-<span class="rt t-falling">mâak</span></span></dt><dd>very / a lot</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04149-extremely/">สุดๆ</a> <span class="rom"><span class="rt t-low">sùt</span>-<span class="rt t-low">sùt</span></span></dt><dd>extremely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00915-really/">จริงๆ</a> <span class="rom"><span class="rt t-mid">jing</span>-<span class="rt t-mid">jing</span></span></dt><dd>really, truly, actually</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04150-really-true/">จริงมาก</a> <span class="rom"><span class="rt t-mid">jing</span> <span class="rt t-falling">mâak</span></span></dt><dd>really true</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04151-clearly/">ชัดๆ</a> <span class="rom"><span class="rt t-high">chát</span>-<span class="rt t-high">chát</span></span></dt><dd>clearly / definitely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01378-fully/">เต็มที่</a> <span class="rom"><span class="rt t-mid">dtem</span>-<span class="rt t-falling">thîi</span></span></dt><dd>fully; to the fullest; full capacity</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01870-last/">สุดท้าย</a> <span class="rom"><span class="rt t-low">sùt</span>-<span class="rt t-high">tháai</span></span></dt><dd>last, final</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01307-at-least/">อย่างน้อย</a> <span class="rom"><span class="rt t-low">yàang</span>-<span class="rt t-high">nɔ́ɔi</span></span></dt><dd>at least</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04152-one-thing/">อย่างนึง</a> <span class="rom"><span class="rt t-low">yàang</span> <span class="rt t-mid">neung</span></span></dt><dd>one thing / one point</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01885-importantly/">ที่สำคัญ</a> <span class="rom"><span class="rt t-falling">thîi</span>-<span class="rt t-rising">sǎm</span>-<span class="rt t-mid">khan</span></span></dt><dd>importantly, significant</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04153-the-important-thing-is/">ที่สำคัญคือ</a> <span class="rom"><span class="rt t-falling">thîi</span> <span class="rt t-mid">săm</span>-<span class="rt t-mid">kan</span> <span class="rt t-mid">kheuu</span></span></dt><dd>the important thing is</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03575-the-point-is/">ประเด็นคือ</a> <span class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-mid">den</span> <span class="rt t-mid">khʉʉ</span></span></dt><dd>the point is</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04154-for-sure/">ที่แน่ๆ</a> <span class="rom"><span class="rt t-falling">thîi</span> <span class="rt t-falling">nâe</span>-<span class="rt t-falling">nâe</span></span></dt><dd>for sure</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04155-of-course/">แน่นอนอยู่แล้ว</a> <span class="rom"><span class="rt t-falling">nâe</span>-<span class="rt t-mid">norn</span> <span class="rt t-low">yùu</span> <span class="rt t-high">láew</span></span></dt><dd>of course / naturally</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/164-natural-shortcuts/">Natural Shortcuts</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01852-do-not-need-to/">ไม่ต้อง</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">dtɔ̂ng</span></span></dt><dd>do not need to, don&#x27;t have to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04156-don-t-worry/">ไม่ต้องห่วง</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">dtông</span> <span class="rt t-low">hùang</span></span></dt><dd>don&#x27;t worry</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03506-no-need-to-hurry/">ไม่ต้องรีบ</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">dtɔ̂ng</span> <span class="rt t-falling">rîip</span></span></dt><dd>no need to hurry</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02271-no-problem/">ไม่เป็นไร</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-mid">bpen</span>-<span class="rt t-mid">rai</span></span></dt><dd>no problem, you&#x27;re welcome</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04157-go-for-it/">เอาเลย</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">loei</span></span></dt><dd>go for it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03400-sure/">เอาสิ</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-low">sì</span></span></dt><dd>sure, go ahead</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04158-it-s-doable/">ได้อยู่</a> <span class="rom"><span class="rt t-falling">dâi</span> <span class="rt t-low">yùu</span></span></dt><dd>it&#x27;s doable / okay</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04159-good-enough/">พอได้</a> <span class="rom"><span class="rt t-mid">phor</span> <span class="rt t-falling">dâi</span></span></dt><dd>good enough / acceptable</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04160-manageable/">พอไหว</a> <span class="rom"><span class="rt t-mid">phor</span> <span class="rt t-mid">wăi</span></span></dt><dd>manageable / I can handle it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04161-can-you-handle-it/">ไหวไหม</a> <span class="rom"><span class="rt t-mid">wăi</span> <span class="rt t-high">mái</span></span></dt><dd>can you handle it?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04162-can-t-handle-it/">ไม่ไหว</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-mid">wăi</span></span></dt><dd>can&#x27;t handle it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04163-go-for-it/">จัดไป</a> <span class="rom"><span class="rt t-low">jàt</span> <span class="rt t-mid">bpai</span></span></dt><dd>go for it / let&#x27;s do it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04164-exactly/">ตามนั้นเลย</a> <span class="rom"><span class="rt t-mid">dtaam</span> <span class="rt t-high">nán</span> <span class="rt t-mid">loei</span></span></dt><dd>exactly, let&#x27;s do that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04165-okay/">โอเคปะ</a> <span class="rom"><span class="rt t-mid">oh</span>-<span class="rt t-mid">kay</span> <span class="rt t-low">bpà</span></span></dt><dd>okay?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/165-natural-social-language/">Natural Social Language</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04166-easy/">สบายๆ</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-mid">baai</span>-<span class="rt t-low">sà</span>-<span class="rt t-mid">baai</span></span></dt><dd>easy / relaxed</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04167-make-yourself-comfortable/">ตามสบายเลย</a> <span class="rom"><span class="rt t-mid">dtaam</span> <span class="rt t-low">sà</span>-<span class="rt t-mid">baai</span> <span class="rt t-mid">loei</span></span></dt><dd>make yourself comfortable</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04168-don-t-feel-obliged/">ไม่ต้องเกรงใจ</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">dtông</span> <span class="rt t-mid">greng</span>-<span class="rt t-mid">jai</span></span></dt><dd>don&#x27;t feel obliged / don&#x27;t be shy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04169-i-feel-bad-imposing/">เกรงใจจัง</a> <span class="rom"><span class="rt t-mid">greng</span>-<span class="rt t-mid">jai</span> <span class="rt t-mid">jang</span></span></dt><dd>I feel bad imposing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04170-thanks/">ขอบคุณนะ</a> <span class="rom"><span class="rt t-low">khòp</span>-<span class="rt t-mid">khun</span> <span class="rt t-high">ná</span></span></dt><dd>thanks</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04171-thanks-a-lot/">ขอบคุณมากนะ</a> <span class="rom"><span class="rt t-low">khòp</span>-<span class="rt t-mid">khun</span> <span class="rt t-falling">mâak</span> <span class="rt t-high">ná</span></span></dt><dd>thanks a lot</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04172-sorry/">โทษที</a> <span class="rom"><span class="rt t-falling">thôt</span> <span class="rt t-mid">thii</span></span></dt><dd>sorry / excuse me</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03521-sorry-about-that/">ขอโทษที</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔ</span>-<span class="rt t-falling">thôot</span> <span class="rt t-mid">thii</span></span></dt><dd>sorry about that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03534-it-s-okay/">ไม่เป็นไรนะ</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-mid">bpen</span>-<span class="rt t-mid">rai</span> <span class="rt t-high">ná</span></span></dt><dd>it&#x27;s okay</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04173-okay/">โอเคนะ</a> <span class="rom"><span class="rt t-mid">oh</span>-<span class="rt t-mid">kay</span> <span class="rt t-high">ná</span></span></dt><dd>okay? / okay then</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04174-is-that-okay/">ได้ไหม</a> <span class="rom"><span class="rt t-falling">dâi</span> <span class="rt t-high">mái</span></span></dt><dd>is that okay?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04175-is-it-possible/">ได้หรือเปล่า</a> <span class="rom"><span class="rt t-falling">dâi</span> <span class="rt t-mid">rĕu</span> <span class="rt t-low">bplàao</span></span></dt><dd>is it possible?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04176-is-it-convenient/">สะดวกไหม</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-low">dùak</span> <span class="rt t-high">mái</span></span></dt><dd>is it convenient?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04177-up-to-you/">แล้วแต่คุณ</a> <span class="rom"><span class="rt t-high">láew</span>-<span class="rt t-low">dtàe</span> <span class="rt t-mid">khun</span></span></dt><dd>up to you</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04178-whatever-works-for-you/">เอาที่คุณสะดวก</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-falling">thîi</span> <span class="rt t-mid">khun</span> <span class="rt t-low">sà</span>-<span class="rt t-low">dùak</span></span></dt><dd>whatever works for you</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/166-natural-problem-talk/">Natural Problem Talk</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03339-there-was-a-problem/">มีปัญหา</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-mid">bpan</span>-<span class="rt t-rising">hǎa</span></span></dt><dd>there was a problem</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03471-what-s-wrong/">เป็นอะไร</a> <span class="rom"><span class="rt t-mid">bpen</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span></span></dt><dd>what&#x27;s wrong?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03331-what-happened/">เกิดอะไรขึ้น</a> <span class="rom"><span class="rt t-low">gə̀ət</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-falling">khʉ̂n</span></span></dt><dd>what happened?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04179-what-should-i-do/">ทำไงดี</a> <span class="rom"><span class="rt t-mid">tham</span> <span class="rt t-mid">ngai</span> <span class="rt t-mid">dii</span></span></dt><dd>what should I do?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04180-what-should-we-do/">เอาไงดี</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">ngai</span> <span class="rt t-mid">dii</span></span></dt><dd>what should we do?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03472-what-should-i-do/">ทำยังไงดี</a> <span class="rom"><span class="rt t-mid">tham</span> <span class="rt t-mid">yang</span>-<span class="rt t-mid">ngai</span> <span class="rt t-mid">dii</span></span></dt><dd>what should I do?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04181-how-do-we-fix-it/">แก้ยังไง</a> <span class="rom"><span class="rt t-falling">gâe</span> <span class="rt t-mid">yang</span>-<span class="rt t-mid">ngai</span></span></dt><dd>how do we fix it?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03476-try-it/">ลองดู</a> <span class="rom"><span class="rt t-mid">lɔɔng</span> <span class="rt t-mid">duu</span></span></dt><dd>try it / have a look</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04182-try-first/">ลองก่อน</a> <span class="rom"><span class="rt t-mid">long</span> <span class="rt t-low">gòn</span></span></dt><dd>try first</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03477-try-again/">ลองใหม่</a> <span class="rom"><span class="rt t-mid">lɔɔng</span> <span class="rt t-low">mài</span></span></dt><dd>try again</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04183-take-it-slowly/">ค่อยๆ ทำ</a> <span class="rom"><span class="rt t-falling">khôi</span>-<span class="rt t-falling">khôi</span> <span class="rt t-mid">tham</span></span></dt><dd>take it slowly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04053-don-t-overthink-it/">ไม่ต้องคิดมาก</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">dtɔ̂ng</span> <span class="rt t-high">khít</span> <span class="rt t-falling">mâak</span></span></dt><dd>don&#x27;t overthink it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04032-forget-it/">ช่างมัน</a> <span class="rom"><span class="rt t-falling">châang</span> <span class="rt t-mid">man</span></span></dt><dd>forget it / never mind</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04184-let-it-go/">ปล่อยไป</a> <span class="rom"><span class="rt t-low">bplòi</span> <span class="rt t-mid">bpai</span></span></dt><dd>let it go</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04185-i-ll-handle-it-myself/">เดี๋ยวจัดการเอง</a> <span class="rom"><span class="rt t-mid">dĭao</span> <span class="rt t-low">jàt</span>-<span class="rt t-mid">gaan</span> <span class="rt t-mid">eeng</span></span></dt><dd>I&#x27;ll handle it myself</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/167-natural-thai-about-people/">Natural Thai About People</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03184-this-person/">คนนี้</a> <span class="rom"><span class="rt t-mid">khon</span>-<span class="rt t-high">níi</span></span></dt><dd>this person</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03185-that-person/">คนนั้น</a> <span class="rom"><span class="rt t-mid">khon</span>-<span class="rt t-high">nán</span></span></dt><dd>that person</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04186-him/">เขาเอง</a> <span class="rom"><span class="rt t-mid">khăo</span> <span class="rt t-mid">eeng</span></span></dt><dd>him/her personally</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04187-he/">เขาเป็นคน...</a> <span class="rom"><span class="rt t-mid">khăo</span> <span class="rt t-mid">bpen</span> <span class="rt t-mid">khon</span>...</span></dt><dd>he/she is the kind of person who...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04188-be-a-good-person/">เป็นคนดี</a> <span class="rom"><span class="rt t-mid">bpen</span> <span class="rt t-mid">khon</span> <span class="rt t-mid">dii</span></span></dt><dd>be a good person</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04189-be-friendly/">เป็นกันเอง</a> <span class="rom"><span class="rt t-mid">bpen</span> <span class="rt t-mid">gan</span>-<span class="rt t-mid">eeng</span></span></dt><dd>be friendly / informal</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04190-easy-to-talk-to/">คุยง่าย</a> <span class="rom"><span class="rt t-mid">khui</span> <span class="rt t-falling">ngâai</span></span></dt><dd>easy to talk to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04191-fun-to-talk-to/">คุยสนุก</a> <span class="rom"><span class="rt t-mid">khui</span> <span class="rt t-low">sà</span>-<span class="rt t-low">nùk</span></span></dt><dd>fun to talk to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02360-kind/">ใจดี</a> <span class="rom"><span class="rt t-mid">jai</span>-<span class="rt t-mid">dii</span></span></dt><dd>kind, nice</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03449-calm/">ใจเย็น</a> <span class="rom"><span class="rt t-mid">jai</span>-<span class="rt t-mid">yen</span></span></dt><dd>calm</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03448-hot-tempered/">ใจร้อน</a> <span class="rom"><span class="rt t-mid">jai</span>-<span class="rt t-high">rɔ́ɔn</span></span></dt><dd>hot-tempered</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02364-speak-well/">พูดเก่ง</a> <span class="rom"><span class="rt t-falling">phûut</span>-<span class="rt t-low">gèng</span></span></dt><dd>speak well, good at talking</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04192-quiet/">พูดน้อย</a> <span class="rom"><span class="rt t-falling">phûut</span> <span class="rt t-high">nói</span></span></dt><dd>quiet / not talkative</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03772-get-along/">เข้ากันได้</a> <span class="rom"><span class="rt t-falling">khâo</span>-<span class="rt t-mid">gan</span> <span class="rt t-falling">dâi</span></span></dt><dd>get along</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04193-don-t-really-get-along/">ไม่ค่อยถูกกัน</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">khôi</span> <span class="rt t-low">thùuk</span> <span class="rt t-mid">gan</span></span></dt><dd>don&#x27;t really get along</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/168-ending-naturally/">Ending Naturally</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03805-okay/">โอเค งั้นตามนี้</a> <span class="rom"><span class="rt t-mid">oo</span>-<span class="rt t-mid">khee</span> <span class="rt t-high">ngán</span> <span class="rt t-mid">dtaam</span>-<span class="rt t-high">níi</span></span></dt><dd>okay, then let&#x27;s go with this</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04194-then-let-s-go-with-this/">งั้นเอาตามนี้</a> <span class="rom"><span class="rt t-high">ngán</span> <span class="rt t-mid">ao</span> <span class="rt t-mid">dtaam</span> <span class="rt t-high">níi</span></span></dt><dd>then let&#x27;s go with this</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04195-let-s-do-it-this-way/">เอาเป็นแบบนี้</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">bpen</span> <span class="rt t-low">bàep</span> <span class="rt t-high">níi</span></span></dt><dd>let&#x27;s do it this way</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04196-let-s-say/">เอาเป็นว่า...</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">bpen</span> <span class="rt t-falling">wâa</span>...</span></dt><dd>let&#x27;s say / let&#x27;s settle on...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03803-let-s-talk-about-it-later/">ไว้ค่อยคุยกัน</a> <span class="rom"><span class="rt t-high">wái</span> <span class="rt t-falling">khɔ̂i</span> <span class="rt t-mid">khui</span> <span class="rt t-mid">gan</span></span></dt><dd>let&#x27;s talk about it later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03270-see-you-later/">ไว้เจอกัน</a> <span class="rom"><span class="rt t-high">wái</span> <span class="rt t-mid">jəə</span>-<span class="rt t-mid">gan</span></span></dt><dd>see you later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04197-we-ll-talk-later/">เดี๋ยวคุยกัน</a> <span class="rom"><span class="rt t-mid">dĭao</span> <span class="rt t-mid">khui</span> <span class="rt t-mid">gan</span></span></dt><dd>we&#x27;ll talk later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04198-we-ll-discuss-it-later/">เดี๋ยวว่ากัน</a> <span class="rom"><span class="rt t-mid">dĭao</span> <span class="rt t-falling">wâa</span> <span class="rt t-mid">gan</span></span></dt><dd>we&#x27;ll discuss it later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04199-we-ll-deal-with-it-later/">ค่อยว่ากัน</a> <span class="rom"><span class="rt t-falling">khôi</span> <span class="rt t-falling">wâa</span> <span class="rt t-mid">gan</span></span></dt><dd>we&#x27;ll deal with it later</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04200-let-s-stop-here-for-now/">พอแค่นี้ก่อน</a> <span class="rom"><span class="rt t-mid">phor</span> <span class="rt t-falling">khâe</span> <span class="rt t-high">níi</span> <span class="rt t-low">gòn</span></span></dt><dd>let&#x27;s stop here for now</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04201-let-s-just-do-this-much-for-now/">เอาแค่นี้ก่อน</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-falling">khâe</span> <span class="rt t-high">níi</span> <span class="rt t-low">gòn</span></span></dt><dd>let&#x27;s just do this much for now</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04202-that-s-it/">จบเลย</a> <span class="rom"><span class="rt t-low">jòp</span> <span class="rt t-mid">loei</span></span></dt><dd>that&#x27;s it / done</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01859-orderly/">เรียบร้อย</a> <span class="rom"><span class="rt t-falling">rîap</span>-<span class="rt t-high">rɔ́ɔi</span></span></dt><dd>orderly, neat, completed</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04203-okay/">ตามนี้นะ</a> <span class="rom"><span class="rt t-mid">dtaam</span> <span class="rt t-high">níi</span> <span class="rt t-high">ná</span></span></dt><dd>okay, we&#x27;ll go with this</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/169-natural-thai-the-little-things/">Natural Thai: The Little Things</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04204-that-s-what-i-thought/">ก็ว่าอยู่</a> <span class="rom"><span class="rt t-falling">gôr</span> <span class="rt t-falling">wâa</span> <span class="rt t-low">yùu</span></span></dt><dd>that&#x27;s what I thought / I was wondering</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04205-i-knew-it/">ว่าแล้ว</a> <span class="rom"><span class="rt t-falling">wâa</span> <span class="rt t-high">láew</span></span></dt><dd>I knew it / called it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04206-i-thought-that/">นึกว่า...</a> <span class="rom"><span class="rt t-high">néuk</span> <span class="rt t-falling">wâa</span>...</span></dt><dd>I thought that...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04207-i-thought-it-was/">นึกว่าเป็น...</a> <span class="rom"><span class="rt t-high">néuk</span> <span class="rt t-falling">wâa</span> <span class="rt t-mid">bpen</span>...</span></dt><dd>I thought it was...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03557-it-turned-out-that/">กลายเป็นว่า</a> <span class="rom"><span class="rt t-mid">glaai</span>-<span class="rt t-mid">bpen</span>-<span class="rt t-falling">wâa</span></span></dt><dd>it turned out that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03925-as-it-turned-out/">ที่ไหนได้</a> <span class="rom"><span class="rt t-falling">thîi</span>-<span class="rt t-rising">nǎi</span> <span class="rt t-falling">dâi</span></span></dt><dd>as it turned out / unexpectedly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03556-it-turned-out-that/">ปรากฏว่า</a> <span class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-low">gòt</span>-<span class="rt t-falling">wâa</span></span></dt><dd>it turned out that</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01266-just-right/">พอดี</a> <span class="rom"><span class="rt t-mid">phɔɔ</span>-<span class="rt t-mid">dii</span></span></dt><dd>just right; exactly; by chance</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03563-by-chance/">บังเอิญ</a> <span class="rom"><span class="rt t-mid">bang</span>-<span class="rt t-mid">əən</span></span></dt><dd>by chance, accidentally</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04208-that-s-perfect/">พอดีเลย</a> <span class="rom"><span class="rt t-mid">phor</span>-<span class="rt t-mid">dii</span> <span class="rt t-mid">loei</span></span></dt><dd>that&#x27;s perfect / just right</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04209-oh-yeah/">เออจริงด้วย</a> <span class="rom"><span class="rt t-mid">er</span> <span class="rt t-mid">jing</span> <span class="rt t-falling">dûai</span></span></dt><dd>oh yeah, that&#x27;s true</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04210-oh-yeah/">เออใช่แฮะ</a> <span class="rom"><span class="rt t-mid">er</span> <span class="rt t-falling">châi</span> <span class="rt t-high">hɛ́</span></span></dt><dd>oh yeah, you&#x27;re right</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04211-i-remember-now/">นึกออกแล้ว</a> <span class="rom"><span class="rt t-high">néuk</span> <span class="rt t-low">òrk</span> <span class="rt t-high">láew</span></span></dt><dd>I remember now / I&#x27;ve got it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04212-i-completely-forgot/">ลืมไปเลย</a> <span class="rom"><span class="rt t-mid">leum</span> <span class="rt t-mid">bpai</span> <span class="rt t-mid">loei</span></span></dt><dd>I completely forgot</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04213-never-mind/">ช่างเถอะ</a> <span class="rom"><span class="rt t-falling">châang</span> <span class="rt t-low">thòe</span></span></dt><dd>never mind / forget it</dd></div></dl>
   </div>
@@ -276,6 +278,7 @@
  var nav=document.getElementById('nav'),find=document.getElementById('find'),
      none=document.getElementById('nohits'),hits=document.getElementById('hits'),
      idx=null,idxTried=false;
+ var NAVJ=null,KNOWN={};
  function items(){return nav?nav.querySelectorAll('a.item'):[];}
  function base(){return document.body.dataset.root||'';}
  function read(k,d){try{var v=localStorage.getItem(k);
@@ -441,13 +444,15 @@
   }
   page=Math.max(0,Math.min(pages-1,page||0));
   wrap.dataset.page=String(page);
-  var pg=el('div','catpage'),i;
+  // A category that fits on one page is as tall as its rows: the fixed
+  // height is for page turns, and three lessons in a box for six left a gap.
+  var pg=el('div','catpage'+(pages===1?' fit':'')),i;
   for(i=page*PAGE;i<Math.min(rows.length,(page+1)*PAGE);i++){
    var l=rows[i],a=document.createElement('a');
    a.className='item seq'+(isHere(l.folder)?' on':'');
    a.href=base()+'/'+l.folder+'/';
    a.title=l.title;
-   a.appendChild(el('span','n',String(l.n)));
+   a.appendChild(ring(KNOWN[l.folder]||0,l.w||0));
    a.appendChild(el('span','t',l.title));
    a.appendChild(el('span','w',String(l.w||'')));
    pg.appendChild(a);
@@ -478,6 +483,15 @@
   return location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')
    .slice(-(folder.length+1))==='/'+folder;
  }
+ // How far the reader has got in a lesson: an empty ring, a part one, a
+ // filled one. Read from their own progress (KNOWN, words known per lesson).
+ function ring(k,w){
+  var r=document.createElement('span');
+  r.className='rg'+(w&&k>=w?' done':k?' part':'');
+  r.setAttribute('aria-hidden','true');
+  if(k)r.title=k+' of '+(w||'?')+' words known';
+  return r;
+ }
  function el(tag,cls,text){
   var e=document.createElement(tag);e.className=cls;
   if(text!==undefined)e.textContent=text;return e;
@@ -494,6 +508,7 @@
   function openOne(wrap,on){
    var box=wrap.querySelector('.catbox'),x=wrap.querySelector('.catx');
    box.hidden=!on;
+   var al=wrap.querySelector('.catalso');if(al)al.hidden=!on;
    x.textContent=on?'−':'+';
    x.setAttribute('aria-expanded',on?'true':'false');
    if(!on)return;
@@ -534,6 +549,41 @@
   });
  })();
 
+ // --------------------------------------------- show all the categories
+ // Dan: "cut the categories menu in half, and add a more/show all button".
+ // The rest are in the markup, behind the button; a search, or the page of a
+ // category that is among them, shows them without asking.
+ var catMore=document.getElementById('catmore'),
+     catMoreBtn=document.getElementById('cat-more'),catMoreOpen=false;
+ try{catMoreOpen=localStorage.getItem('wb.catmore')==='1';}catch(e){}
+ function paintMore(){
+  if(!catMore)return;
+  var q=!!(find&&find.value.trim());
+  catMore.classList.toggle('open',catMoreOpen||q);
+  if(catMoreBtn){
+   catMoreBtn.setAttribute('aria-expanded',catMoreOpen?'true':'false');
+   catMoreBtn.textContent=catMoreOpen?'Show fewer categories'
+    :'Show all '+catMoreBtn.dataset.all+' categories ('+catMoreBtn.dataset.more+' more)';
+  }
+ }
+ if(catMore){
+  // where you are is never hidden behind the button
+  var mine=catMore.querySelector('a.item.on');
+  if(!mine){
+   var cn0=document.querySelector('.menu .wsub[data-cname]');
+   cn0=cn0?cn0.getAttribute('data-cname'):'';
+   if(cn0){var ws=catMore.querySelectorAll('.catwrap');
+    for(var q0=0;q0<ws.length;q0++)if(ws[q0].dataset.name===cn0)mine=ws[q0];}
+  }
+  if(mine)catMoreOpen=true;
+  if(catMoreBtn)catMoreBtn.addEventListener('click',function(){
+   catMoreOpen=!catMoreOpen;
+   try{localStorage.setItem('wb.catmore',catMoreOpen?'1':'0');}catch(e){}
+   paintMore();
+  });
+  paintMore();
+ }
+
  // -------------------------------------------- favourites, recently viewed
  //
  // Both are the reader's own history, kept in their browser and never sent
@@ -565,6 +615,7 @@
   var marks=document.querySelectorAll('[data-fill]');
   if(!marks.length)return;
   fetch(base()+'/nav.json').then(function(r){return r.json();}).then(function(j){
+   NAVJ=j;window.dispatchEvent(new Event('wb:nav'));
    // On a sentence lesson the course is the sentence half: its numbers, its
    // "Sentence lesson 2 of 9 in Beginner".
    var sent=document.body.dataset.kind==='sentences',
@@ -589,9 +640,10 @@
     else if(k==='all-n')m.textContent=L.length+' lessons in all';
     else if(k==='sub'){
      var cn=m.getAttribute('data-cname');
-     var word=sent?'Sentence lesson ':'Lesson ';
+     // "8 of 55 · Thai Conversation": one number, the one a reader can use
+     var word=sent?'Sentence lesson ':'';
      m.textContent=pos<0?'':(cn&&cur
-      ?word+at+' of '+counts[cur]+' in '+cn
+      ?word+at+' of '+counts[cur]+' \u00b7 '+cn
       :word+(pos+1)+' of '+L.length);
     }
    }
@@ -649,6 +701,8 @@
   for(i=0;i<g.length;i++)g[i].hidden=!!q;
   live+=lessonHits(q);
   if(none)none.hidden=!q||live>0;
+  if(typeof paintMore==='function')paintMore();
+  if(nav)nav.classList.toggle('q',!!q);
  }
  // Up to eight lessons, and a way to the rest. A column that answers a search
  // with four hundred rows is the thing this redesign removed.
@@ -3288,6 +3342,313 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
  drag(gripa,0);            // between the video and the picture
  drag(gripb,1);            // between the picture and the word
+ // ================================================ the menu's own record
+ //
+ // Dan's new menu: "Continue where you left off", how far the reader has got
+ // in each lesson, and courses of their own — "I want users to be able to
+ // build their own course using our data, we can save what they create using
+ // dexiejs". All of it is the reader's, kept in their browser and never sent
+ // anywhere; there is nothing to send it to.
+ (function(){
+  if(!nav)return;
+  // ---- how far: words known per lesson, from the reader's progress. Only
+  // read when they have ever recorded any (Days is written with every
+  // answer), so a first visit opens no database at all.
+  function known(){
+   var any=false;try{any=!!localStorage.getItem('wb.days');}catch(e){}
+   if(!any||typeof Progress==='undefined')return Promise.resolve();
+   return Promise.resolve(Progress.all()).then(function(rows){
+    var k={},i;
+    for(i=0;i<(rows||[]).length;i++)
+     if(rows[i].state==='known'&&rows[i].lesson)k[rows[i].lesson]=(k[rows[i].lesson]||0)+1;
+    KNOWN=k;
+    window.dispatchEvent(new Event('wb:index'));   // redraw open categories
+   }).catch(function(){});
+  }
+  function lessonOf(folder){
+   var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],i;
+   for(i=0;i<L.length;i++)if(L[i].folder===folder)return L[i];
+   return null;
+  }
+  function catName(folder){
+   var w=nav.querySelector('.catwrap[data-cat="'+folder+'"]');
+   if(w)return w.dataset.name;
+   var a=nav.querySelector('a.item[href$="/'+folder+'/"] .lb');
+   return a?a.textContent:folder.replace(/^c-/,'').replace(/-/g,' ');
+  }
+  function withMenu(cb){
+   if(mnu||idx){cb();return;}
+   var once=function(){window.removeEventListener('wb:index',once);cb();};
+   window.addEventListener('wb:index',once);
+   loadMenu();
+  }
+
+  // ---- Continue where you left off. Not on a lesson page — there, where
+  // you are is the lesson in front of you and the block at the foot.
+  var cont=document.getElementById('m-cont');
+  function paintCont(){
+   if(!cont)return;
+   if(document.body.dataset.lesson){cont.hidden=true;return;}
+   var r=recents()[0];
+   if(!r||!r.folder){cont.hidden=true;return;}
+   cont.hidden=false;
+   cont.href=base()+'/'+r.folder+'/';
+   cont.querySelector('.ctt').textContent=r.title||r.folder;
+   var ctn=cont.querySelector('.ctn'),cs=cont.querySelector('.cs'),
+       bar=cont.querySelector('.cbar'),L=(NAVJ&&NAVJ.l)||[],cat='',i,at=0,tot=0;
+   for(i=0;i<L.length;i++)if(L[i][0]===r.folder)cat=L[i][1];
+   if(cat)for(i=0;i<L.length;i++)if(L[i][1]===cat){tot++;if(L[i][0]===r.folder)at=tot;}
+   ctn.textContent=tot?at+' of '+tot:'';
+   cs.textContent=cat?catName(cat):'';
+   var l=lessonOf(r.folder),w=l?l.w:0,k=KNOWN[r.folder]||0;
+   bar.hidden=!w;
+   if(w)bar.firstElementChild.style.width=Math.min(100,Math.round(100*k/w))+'%';
+  }
+
+  // ---- my courses
+  //
+  // Dexie when the page managed to fetch it, plain IndexedDB when it did not,
+  // one database either way — the same arrangement the progress table has,
+  // and for the same reason: a course that disappears because a script did
+  // not load is worse than one kept plainly.
+  var Courses=(function(){
+   var NAME='wordbase-courses',STORE='courses',impl=null;
+   try{
+    if(typeof Dexie!=='undefined'){
+     var db=new Dexie(NAME);
+     db.version(1).stores({courses:'id,at'});
+     impl={all:function(){return db.courses.toArray();},
+           put:function(c){return db.courses.put(c);},
+           del:function(id){return db.courses.delete(id);}};
+    }
+   }catch(e){impl=null;}
+   if(impl)return impl;
+   var ready=null,mem={};
+   function open(){
+    if(ready)return ready;
+    ready=new Promise(function(res){
+     var req;
+     try{req=indexedDB.open(NAME);}catch(e){return res(null);}
+     req.onsuccess=function(e){
+      var d=e.target.result;
+      if(d.objectStoreNames.contains(STORE))return res(d);
+      var v=d.version+1;d.close();
+      var up;try{up=indexedDB.open(NAME,v);}catch(e2){return res(null);}
+      up.onupgradeneeded=function(e2){var d2=e2.target.result;
+       if(!d2.objectStoreNames.contains(STORE))d2.createObjectStore(STORE,{keyPath:'id'});};
+      up.onsuccess=function(e2){res(e2.target.result);};
+      up.onerror=function(){res(null);};
+     };
+     req.onerror=function(){res(null);};
+     req.onblocked=function(){res(null);};
+    });
+    return ready;
+   }
+   function st(mode){return open().then(function(d){
+    if(!d)return null;try{return d.transaction(STORE,mode).objectStore(STORE);}catch(e){return null;}});}
+   return {
+    all:function(){return st('readonly').then(function(s){
+     if(!s)return Object.keys(mem).map(function(k){return mem[k];});
+     return new Promise(function(res){var r=s.getAll();
+      r.onsuccess=function(){res(r.result||[]);};r.onerror=function(){res([]);};});});},
+    put:function(c){mem[c.id]=c;return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res(c);var r=s.put(c);
+      r.onsuccess=function(){res(c);};r.onerror=function(){res(c);};});});},
+    del:function(id){delete mem[id];return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res();var r=s.delete(id);
+      r.onsuccess=function(){res();};r.onerror=function(){res();};});});}
+   };
+  })();
+  function chosen(){var v=false;try{v=!!localStorage.getItem('wb.courses');}catch(e){}return v;}
+  function touched(){try{localStorage.setItem('wb.courses','1');}catch(e){}}
+  var LIST=[];
+  function sizeOf(c){
+   var w=0,k=0,i,l;
+   for(i=0;i<c.lessons.length;i++){l=lessonOf(c.lessons[i]);
+    if(l){w+=l.w||0;k+=Math.min(KNOWN[c.lessons[i]]||0,l.w||0);}}
+   return {w:w,k:k};
+  }
+  var clist=document.getElementById('m-clist');
+  function paintCourses(){
+   if(!clist)return;
+   clist.innerHTML='';
+   LIST.sort(function(a,b){return (b.at||0)-(a.at||0);});
+   LIST.forEach(function(c){
+    var z=sizeOf(c),b=document.createElement('button');
+    b.type='button';b.className='crs';
+    b.innerHTML='<span class="cn"></span><span class="cm"></span>';
+    b.querySelector('.cn').textContent=c.name;
+    b.querySelector('.cm').textContent=c.lessons.length+' lesson'+(c.lessons.length===1?'':'s')
+     +(z.w?' · '+z.w+' words':'')+(z.k&&z.w?' · '+Math.round(100*z.k/z.w)+'% known':'');
+    b.addEventListener('click',function(){withMenu(function(){coursePanel(c);});});
+    clist.appendChild(b);
+   });
+  }
+  function loadCourses(){
+   return Promise.resolve(Courses.all()).then(function(rows){LIST=rows||[];paintCourses();})
+    .catch(function(){});
+  }
+  function save(c){
+   c.at=Date.now();touched();
+   return Promise.resolve(Courses.put(c)).then(loadCourses);
+  }
+
+  // A course, as a page of its own in a sheet: its lessons in order, how far
+  // you are in each, and the one to do next.
+  function coursePanel(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   panel(c.name,function(body){
+    var z=sizeOf(c),next=null,i,l;
+    for(i=0;i<c.lessons.length&&!next;i++){l=lessonOf(c.lessons[i]);
+     if(l&&(KNOWN[l.folder]||0)<(l.w||0))next=l;}
+    if(!next)next=lessonOf(c.lessons[0]);
+    body.innerHTML='<p class="sheet-p cdesc"></p><ol class="clessons"></ol>'
+     +'<div class="sheet-row cbtns"></div>';
+    body.querySelector('.cdesc').textContent=c.lessons.length+' lessons · '
+     +z.w+' words'+(z.w?' · '+z.k+' known':'')+'. Saved in this browser.';
+    var ol=body.querySelector('.clessons');
+    c.lessons.forEach(function(f){
+     var L=lessonOf(f),li=document.createElement('li'),a=document.createElement('a');
+     a.href=base()+'/'+f+'/';
+     a.appendChild(ring(KNOWN[f]||0,L?L.w:0));
+     var t=document.createElement('span');t.className='t';
+     t.textContent=L?L.title:f+' (no longer on the site)';
+     var m=document.createElement('span');m.className='m';
+     m.textContent=L?catName(L.cat)+' · '+L.w+' words':'';
+     a.appendChild(t);a.appendChild(m);li.appendChild(a);ol.appendChild(li);
+    });
+    var bt=body.querySelector('.cbtns');
+    if(next){var go=document.createElement('a');go.className='cgo';
+     go.href=base()+'/'+next.folder+'/';
+     go.textContent=(z.k?'Continue: ':'Start: ')+next.title+' →';bt.appendChild(go);}
+    btn(bt,'Edit',function(){builder(c);});
+    btn(bt,'Export file',function(){exportCourse(c);});
+    btn(bt,'Delete',function(){
+     if(this.dataset.sure){Promise.resolve(Courses.del(c.id)).then(loadCourses);
+      var s=document.querySelector('.sheet');if(s)s.remove();return;}
+     this.dataset.sure='1';this.textContent='Delete — press again to be sure';
+    });
+   });
+  }
+  function btn(box,label,fn){
+   var b=document.createElement('button');b.type='button';b.className='cbtn';
+   b.textContent=label;b.addEventListener('click',fn);box.appendChild(b);return b;
+  }
+  function exportCourse(c){
+   try{
+    var blob=new Blob([JSON.stringify({kind:'wordbase-course',v:1,
+     site:location.host,course:{name:c.name,lessons:c.lessons}},null,1)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=(c.name||'course').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')+'.course.json';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1000);
+   }catch(e){}
+  }
+
+  // ---- the builder: name it, find lessons, order them, save
+  function builder(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   var draft={id:c&&c.id||('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)),
+              name:c&&c.name||'',lessons:(c&&c.lessons||[]).slice(),made:c&&c.made||Date.now()};
+   panel(c?'Edit course':'Build your own course',function(body){
+    body.classList.add('builder');
+    body.innerHTML='<p class="sheet-p">Pick lessons from anywhere on the site and put them in '
+     +'your own order. It is saved in this browser — no account, nothing sent anywhere.</p>'
+     +'<label class="bl"><span>Course name</span><input type="text" class="bname" maxlength="80" '
+     +'placeholder="My Bangkok trip"></label>'
+     +'<div class="bcols"><div class="bpick"><label class="bl"><span>Find lessons</span>'
+     +'<input type="search" class="bq" placeholder="Search by title or category"></label>'
+     +'<div class="bres"></div></div>'
+     +'<div class="bmine"><div class="bh"><b>Your course</b><span class="btot"></span></div>'
+     +'<ol class="bsel"></ol><p class="bempty">Nothing yet — tick lessons on the left.</p></div></div>'
+     +'<div class="sheet-row bbtns"></div>';
+    var nm=body.querySelector('.bname'),q=body.querySelector('.bq'),
+        res=body.querySelector('.bres'),sel=body.querySelector('.bsel'),
+        tot=body.querySelector('.btot'),empty=body.querySelector('.bempty');
+    nm.value=draft.name;
+    nm.addEventListener('input',function(){draft.name=nm.value;});
+    var ALL=((mnu&&mnu.lessons)||(idx&&idx.lessons)||[]);
+    function has(f){return draft.lessons.indexOf(f)>=0;}
+    function drawRes(){
+     var t=(q.value||'').trim().toLowerCase(),out=[],i,l;
+     for(i=0;i<ALL.length&&out.length<60;i++){l=ALL[i];
+      if(!t||(l.title||'').toLowerCase().indexOf(t)>=0||catName(l.cat).toLowerCase().indexOf(t)>=0)out.push(l);}
+     res.innerHTML='';
+     out.forEach(function(l){
+      var lab=document.createElement('label');lab.className='bopt'+(has(l.folder)?' on':'');
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=has(l.folder);
+      cb.addEventListener('change',function(){
+       if(cb.checked){if(!has(l.folder))draft.lessons.push(l.folder);}
+       else draft.lessons=draft.lessons.filter(function(f){return f!==l.folder;});
+       lab.classList.toggle('on',cb.checked);drawSel();
+      });
+      var t2=document.createElement('span');t2.className='t';t2.textContent=l.title;
+      var m=document.createElement('span');m.className='m';m.textContent=catName(l.cat)+' · '+l.w+' words';
+      var tx=document.createElement('span');tx.className='tx';tx.appendChild(t2);tx.appendChild(m);
+      lab.appendChild(cb);lab.appendChild(tx);res.appendChild(lab);
+     });
+     if(!out.length)res.innerHTML='<p class="bempty">No lesson matches.</p>';
+    }
+    function move(i,d){var j=i+d;if(j<0||j>=draft.lessons.length)return;
+     var x=draft.lessons[i];draft.lessons[i]=draft.lessons[j];draft.lessons[j]=x;drawSel();}
+    function drawSel(){
+     sel.innerHTML='';var w=0;
+     draft.lessons.forEach(function(f,i){
+      var L=lessonOf(f);w+=L?L.w:0;
+      var li=document.createElement('li');
+      li.innerHTML='<span class="t"></span><span class="m"></span>';
+      li.querySelector('.t').textContent=L?L.title:f;
+      li.querySelector('.m').textContent=L?String(L.w):'';
+      var up=btn(li,'↑',function(){move(i,-1);});up.setAttribute('aria-label','Move up');up.disabled=i===0;
+      var dn=btn(li,'↓',function(){move(i,1);});dn.setAttribute('aria-label','Move down');dn.disabled=i===draft.lessons.length-1;
+      var rm=btn(li,'✕',function(){draft.lessons.splice(i,1);drawSel();drawRes();});rm.setAttribute('aria-label','Take it out');
+      sel.appendChild(li);
+     });
+     empty.hidden=draft.lessons.length>0;
+     tot.textContent=draft.lessons.length?draft.lessons.length+' lessons · '+w+' words':'';
+     sv.disabled=!draft.lessons.length;
+    }
+    q.addEventListener('input',drawRes);
+    var bb=body.querySelector('.bbtns');
+    var sv=btn(bb,'Save course',function(){
+     if(!draft.lessons.length)return;
+     draft.name=(nm.value||'').trim()||'My course';
+     save(draft).then(function(){coursePanel(draft);});
+    });
+    sv.classList.add('primary');
+    // A file from Export, on this browser or another
+    var imp=btn(bb,'Import a file',function(){fi.click();});
+    var fi=document.createElement('input');fi.type='file';fi.accept='.json,application/json';fi.hidden=true;
+    fi.addEventListener('change',function(){
+     var f=fi.files&&fi.files[0];if(!f)return;
+     var rd=new FileReader();
+     rd.onload=function(){
+      try{var j=JSON.parse(rd.result),cc=j&&j.course;
+       if(!cc||!Array.isArray(cc.lessons))throw 0;
+       draft.name=String(cc.name||'Imported course').slice(0,80);nm.value=draft.name;
+       draft.lessons=cc.lessons.filter(function(x){return typeof x==='string'&&lessonOf(x);});
+       drawSel();drawRes();
+      }catch(e){imp.textContent='That file is not a course';}
+     };
+     rd.readAsText(f);
+    });
+    bb.appendChild(fi);
+    drawRes();drawSel();
+    setTimeout(function(){try{nm.focus();}catch(e){}},50);
+   });
+  }
+  var mb=document.getElementById('m-build');
+  if(mb)mb.addEventListener('click',function(){withMenu(function(){builder(null);});});
+
+  // ---- start up, after the page has drawn
+  window.addEventListener('wb:nav',paintCont);
+  window.addEventListener('wb:index',function(){paintCont();paintCourses();});
+  setTimeout(function(){
+   known().then(paintCont);
+   if(chosen())withMenu(loadCourses);
+   else paintCourses();
+  },250);
+ })();
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Natural Thai vocabulary","description":"17 Thai lessons, 255 words in all, including พูดง่ายๆ (phûut ngâai-ngâai) simply put, พูดตรงๆ (phûut trong-trong) speak frankly, เอาจริงๆ (ao jing-jing)…","url":"https://thai.inaflash.cards/c-natural-thai/","isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Just Say It Naturally","url":"https://thai.inaflash.cards/153-just-say-it-naturally/"},{"@type":"ListItem","position":2,"name":"Thai Conversation Glue","url":"https://thai.inaflash.cards/295-thai-conversation-glue/"},{"@type":"ListItem","position":3,"name":"Thai Softening Words","url":"https://thai.inaflash.cards/155-thai-softening-words/"},{"@type":"ListItem","position":4,"name":"Natural Reactions","url":"https://thai.inaflash.cards/156-natural-reactions/"},{"@type":"ListItem","position":5,"name":"Saying Things Less Directly","url":"https://thai.inaflash.cards/157-saying-things-less-directly/"},{"@type":"ListItem","position":6,"name":"Natural Agreement","url":"https://thai.inaflash.cards/158-natural-agreement/"},{"@type":"ListItem","position":7,"name":"Natural Disagreement","url":"https://thai.inaflash.cards/159-natural-disagreement/"},{"@type":"ListItem","position":8,"name":"Natural Questions","url":"https://thai.inaflash.cards/160-natural-questions/"},{"@type":"ListItem","position":9,"name":"Natural Time Talk","url":"https://thai.inaflash.cards/161-natural-time-talk/"},{"@type":"ListItem","position":10,"name":"Natural Uncertainty","url":"https://thai.inaflash.cards/162-natural-uncertainty/"},{"@type":"ListItem","position":11,"name":"Natural Emphasis","url":"https://thai.inaflash.cards/163-natural-emphasis/"},{"@type":"ListItem","position":12,"name":"Natural Shortcuts","url":"https://thai.inaflash.cards/164-natural-shortcuts/"},{"@type":"ListItem","position":13,"name":"Natural Social Language","url":"https://thai.inaflash.cards/165-natural-social-language/"},{"@type":"ListItem","position":14,"name":"Natural Problem Talk","url":"https://thai.inaflash.cards/166-natural-problem-talk/"},{"@type":"ListItem","position":15,"name":"Natural Thai About People","url":"https://thai.inaflash.cards/167-natural-thai-about-people/"},{"@type":"ListItem","position":16,"name":"Ending Naturally","url":"https://thai.inaflash.cards/168-ending-naturally/"},{"@type":"ListItem","position":17,"name":"Natural Thai: The Little Things","url":"https://thai.inaflash.cards/169-natural-thai-the-little-things/"}]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Natural Thai","item":"https://thai.inaflash.cards/c-natural-thai/"}]}</script></body></html>

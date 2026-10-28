@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="17 Thai lessons, 204 words in all, including ร้าน (ráan) shop, ร้านสะดวกซื้อ (ráan sà-dùak-sʉ́ʉ) convenience store, ซื้อ (súue) to buy."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=69eb89ff"/>
+<link rel="stylesheet" href="../style.css?v=a673aac6"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -51,10 +51,18 @@
   </div>
   <div class="find"><input id="find" type="search" placeholder="Search lessons or words" aria-label="Search lessons and words" autocomplete="off"/></div>
   <nav id="nav">
-    <a class="item big" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="ic" aria-hidden="true">▤</span><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
-    <a class="item" href="https://thai.inaflash.cards/" data-title="home"><span class="ic" aria-hidden="true">⌂</span><span class="lb">Home</span></a>
-    <a class="item" id="m-fav" href="#" hidden data-title="favourites"><span class="ic" aria-hidden="true">♡</span><span class="lb">Favourites</span><span class="n"></span></a>
-    <a class="item" id="m-recent" href="#" hidden data-title="recently viewed"><span class="ic" aria-hidden="true">↺</span><span class="lb">Recently viewed</span><span class="n"></span></a>
+    <a class="mcont" id="m-cont" href="#" hidden><span class="ck">Continue where you left off</span><span class="ct"><span class="ctt"></span><span class="ctn"></span></span><span class="cs"></span><span class="cbar" aria-hidden="true"><i></i></span></a>
+    <div class="mtiles">
+    <a class="item big tile" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
+    <a class="item tile" id="m-recent" href="#" hidden data-title="recently viewed"><span class="lb">Recent</span><span class="n"></span></a>
+    <a class="item tile" id="m-fav" href="#" hidden data-title="favourites"><span class="lb">Favourites</span><span class="n"></span></a>
+    </div>
+    <div class="mcourses" id="m-courses">
+      <div class="mch"><span>My courses</span><small>saved in this browser</small></div>
+      <div class="mclist" id="m-clist"></div>
+      <button type="button" class="mbuild" id="m-build"><span aria-hidden="true">+</span> Build your own course</button>
+    </div>
+    <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
@@ -70,20 +78,10 @@
   <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner"><span class="lb">Beginner</span><span class="n" data-fill="cat:c-beginner"></span></a>
       </div>
       <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-video-lessons" data-name="Video lessons">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Video lessons">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span><span class="n" data-fill="cat:c-video-lessons"></span></a>
+      <div class="catalso" hidden><div class="ah">Also in Beginner</div>
+          <a class="kept" href="https://thai.inaflash.cards/thai-basics-100/"><span class="t">Thai Basics 100</span></a>
+          <a class="kept" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/"><span class="t">Thai Class 9 Complete Vocab List</span></a>
       </div>
-      <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-top-words" data-name="Top Words">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Top Words">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span><span class="n" data-fill="cat:c-top-words"></span></a>
-      </div>
-      <div class="catbox" hidden></div>
     </div>
     <div class="catwrap" data-cat="c-thai-food" data-name="Thai Food">
       <div class="catline">
@@ -148,6 +146,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -226,6 +225,8 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-beginner" data-name="Beginner">
       <div class="catline">
@@ -236,13 +237,14 @@
     </div>
       <div class="mnote">More appear as lessons reach 10 approved sentences.</div>
     </div>
-    <div class="grp" data-grp>Also</div>
+    <div class="grp" data-grp>Explore</div>
+    <a class="item also" href="https://thai.inaflash.cards/" data-title="home"><span class="lb">Home</span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">1697 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
     <div class="hits" id="hits" hidden></div>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
@@ -266,7 +268,7 @@
   <div class="wide">
     <h1 style="font-size:26px;color:#fff;line-height:1.25">Real-World Situational Thai vocabulary</h1>
     <p class="lead">17 Thai lessons, 204 words in all, including ร้าน (ráan) shop, ร้านสะดวกซื้อ (ráan sà-dùak-sʉ́ʉ) convenience store, ซื้อ (súue) to buy.</p>
-    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/401-shops-convenience-stores/"><span class="num">404</span><span class="meta"><span class="lt">Shops &amp; Convenience Stores</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/402-markets-street-vendors/"><span class="num">405</span><span class="meta"><span class="lt">Markets &amp; Street Vendors</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/403-restaurants-cafes/"><span class="num">406</span><span class="meta"><span class="lt">Restaurants &amp; Cafés</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/404-food-orders-takeaway/"><span class="num">407</span><span class="meta"><span class="lt">Food Orders &amp; Takeaway</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/405-taxis-ride-apps-getting-picked-up/"><span class="num">408</span><span class="meta"><span class="lt">Taxis, Ride Apps &amp; Getting Picked Up</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/406-hotels-accommodation/"><span class="num">409</span><span class="meta"><span class="lt">Hotels &amp; Accommodation</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/407-delivery-online-orders/"><span class="num">410</span><span class="meta"><span class="lt">Delivery &amp; Online Orders</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/408-banks-atms-money/"><span class="num">411</span><span class="meta"><span class="lt">Banks, ATMs &amp; Money</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/409-government-offices-everyday-bureaucracy/"><span class="num">412</span><span class="meta"><span class="lt">Government Offices &amp; Everyday Bureaucracy</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/410-doctors-pharmacies-everyday-health/"><span class="num">413</span><span class="meta"><span class="lt">Doctors, Pharmacies &amp; Everyday Health</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/411-police-lost-property-problems/"><span class="num">414</span><span class="meta"><span class="lt">Police, Lost Property &amp; Problems</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/412-repairs-household-services/"><span class="num">415</span><span class="meta"><span class="lt">Repairs &amp; Household Services</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/413-everyday-problems/"><span class="num">416</span><span class="meta"><span class="lt">Everyday Problems</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/414-asking-for-directions-in-real-life/"><span class="num">417</span><span class="meta"><span class="lt">Asking for Directions in Real Life</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/415-booking-appointments-reservations/"><span class="num">418</span><span class="meta"><span class="lt">Booking, Appointments &amp; Reservations</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/416-asking-for-help/"><span class="num">419</span><span class="meta"><span class="lt">Asking for Help</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/417-real-thai-service-interactions/"><span class="num">420</span><span class="meta"><span class="lt">Real Thai Service Interactions</span><span class="ld">12 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
+    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/401-shops-convenience-stores/"><span class="num">01</span><span class="meta"><span class="lt">Shops &amp; Convenience Stores</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/402-markets-street-vendors/"><span class="num">02</span><span class="meta"><span class="lt">Markets &amp; Street Vendors</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/403-restaurants-cafes/"><span class="num">03</span><span class="meta"><span class="lt">Restaurants &amp; Cafés</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/404-food-orders-takeaway/"><span class="num">04</span><span class="meta"><span class="lt">Food Orders &amp; Takeaway</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/405-taxis-ride-apps-getting-picked-up/"><span class="num">05</span><span class="meta"><span class="lt">Taxis, Ride Apps &amp; Getting Picked Up</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/406-hotels-accommodation/"><span class="num">06</span><span class="meta"><span class="lt">Hotels &amp; Accommodation</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/407-delivery-online-orders/"><span class="num">07</span><span class="meta"><span class="lt">Delivery &amp; Online Orders</span><span class="ld">12 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/408-banks-atms-money/"><span class="num">08</span><span class="meta"><span class="lt">Banks, ATMs &amp; Money</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/409-government-offices-everyday-bureaucracy/"><span class="num">09</span><span class="meta"><span class="lt">Government Offices &amp; Everyday Bureaucracy</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/410-doctors-pharmacies-everyday-health/"><span class="num">10</span><span class="meta"><span class="lt">Doctors, Pharmacies &amp; Everyday Health</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/411-police-lost-property-problems/"><span class="num">11</span><span class="meta"><span class="lt">Police, Lost Property &amp; Problems</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/412-repairs-household-services/"><span class="num">12</span><span class="meta"><span class="lt">Repairs &amp; Household Services</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/413-everyday-problems/"><span class="num">13</span><span class="meta"><span class="lt">Everyday Problems</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/414-asking-for-directions-in-real-life/"><span class="num">14</span><span class="meta"><span class="lt">Asking for Directions in Real Life</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/415-booking-appointments-reservations/"><span class="num">15</span><span class="meta"><span class="lt">Booking, Appointments &amp; Reservations</span><span class="ld">12 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/416-asking-for-help/"><span class="num">16</span><span class="meta"><span class="lt">Asking for Help</span><span class="ld">12 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/417-real-thai-service-interactions/"><span class="num">17</span><span class="meta"><span class="lt">Real Thai Service Interactions</span><span class="ld">12 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
     <h2 class="sec-h">The words</h2>
     <h3 class="g-h"><a href="https://thai.inaflash.cards/401-shops-convenience-stores/">Shops &amp; Convenience Stores</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00750-shop/">ร้าน</a> <span class="rom"><span class="rt t-high">ráan</span></span></dt><dd>shop, store, [classifier for shops]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05820-convenience-store/">ร้านสะดวกซื้อ</a> <span class="rom"><span class="rt t-high">ráan</span> <span class="rt t-low">sà</span>-<span class="rt t-low">dùak</span>-<span class="rt t-high">sʉ́ʉ</span></span></dt><dd>convenience store</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00282-to-buy/">ซื้อ</a> <span class="rom"><span class="rt t-high">súue</span></span></dt><dd>to buy, purchase</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00450-to-sell/">ขาย</a> <span class="rom"><span class="rt t-rising">khǎai</span></span></dt><dd>to sell</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03009-do-you-have-it/">มีไหม</a> <span class="rom"><span class="rt t-mid">mii</span>-<span class="rt t-rising">mǎi</span></span></dt><dd>do you have it?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05821-do-you-have-it-male-speaker/">มีไหมครับ</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-high">mái</span> <span class="rt t-high">khráp</span></span></dt><dd>do you have it? (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03271-how-much-is-this/">อันนี้เท่าไหร่</a> <span class="rom"><span class="rt t-mid">an</span>-<span class="rt t-high">níi</span> <span class="rt t-falling">thâo</span>-<span class="rt t-low">rài</span></span></dt><dd>how much is this?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02532-i-ll-take-this-one/">เอาอันนี้</a> <span class="rom"><span class="rt t-mid">ao</span>-<span class="rt t-mid">an</span>-<span class="rt t-high">níi</span></span></dt><dd>I&#x27;ll take this one</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02314-don-t-want/">ไม่เอา</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-mid">ao</span></span></dt><dd>don&#x27;t want, no thanks</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05822-it-s-sold-out/">หมดแล้ว</a> <span class="rom"><span class="rt t-low">mòt</span> <span class="rt t-high">lɛ́ɛo</span></span></dt><dd>it&#x27;s sold out</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05823-do-you-have-more/">มีอีกไหม</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-low">ìik</span> <span class="rt t-high">mái</span></span></dt><dd>do you have more?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05772-where-are-you/">อยู่ตรงไหน</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-mid">dtrong</span>-<span class="rt t-rising">nǎi</span></span></dt><dd>where are you?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/402-markets-street-vendors/">Markets &amp; Street Vendors</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00565-market/">ตลาด</a> <span class="rom"><span class="rt t-low">dtà</span>-<span class="rt t-low">làat</span></span></dt><dd>market</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05824-female-vendor/">แม่ค้า</a> <span class="rom"><span class="rt t-falling">mɛ̂ɛ</span>-<span class="rt t-high">kháa</span></span></dt><dd>female vendor</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05825-male-vendor/">พ่อค้า</a> <span class="rom"><span class="rt t-falling">phɔ̂ɔ</span>-<span class="rt t-high">kháa</span></span></dt><dd>male vendor</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05826-what-do-you-sell/">ขายอะไร</a> <span class="rom"><span class="rt t-rising">khǎai</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span></span></dt><dd>what do you sell?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03279-i-ll-take-this-one-male-speaker/">เอาอันนี้ครับ</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">an</span>-<span class="rt t-high">níi</span> <span class="rt t-high">khráp</span></span></dt><dd>I&#x27;ll take this one (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03280-i-ll-take-this-one-female-speaker/">เอาอันนี้ค่ะ</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">an</span>-<span class="rt t-high">níi</span> <span class="rt t-falling">khâ</span></span></dt><dd>I&#x27;ll take this one (female speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05827-how-many-baht/">กี่บาท</a> <span class="rom"><span class="rt t-low">gìi</span> <span class="rt t-low">bàat</span></span></dt><dd>how many baht?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03010-can-you-reduce-the-price/">ลดได้ไหม</a> <span class="rom"><span class="rt t-high">lót</span>-<span class="rt t-falling">dâi</span>-<span class="rt t-rising">mǎi</span></span></dt><dd>can you reduce the price?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03281-can-you-reduce-it-a-little/">ลดหน่อยได้ไหม</a> <span class="rom"><span class="rt t-high">lót</span> <span class="rt t-low">nòi</span> <span class="rt t-falling">dâi</span> <span class="rt t-high">mái</span></span></dt><dd>can you reduce it a little?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03282-too-expensive/">แพงไป</a> <span class="rom"><span class="rt t-mid">phɛɛng</span> <span class="rt t-mid">bpai</span></span></dt><dd>too expensive</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05828-good-price/">ถูกดี</a> <span class="rom"><span class="rt t-low">thùuk</span>-<span class="rt t-mid">dii</span></span></dt><dd>good price / cheap</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05829-put-it-in-a-bag/">ใส่ถุงด้วยครับ</a> <span class="rom"><span class="rt t-low">sài</span> <span class="rt t-rising">thǔng</span> <span class="rt t-falling">dûai</span> <span class="rt t-high">khráp</span></span></dt><dd>put it in a bag, please (male speaker)</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/403-restaurants-cafes/">Restaurants &amp; Cafés</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02489-restaurant/">ร้านอาหาร</a> <span class="rom"><span class="rt t-high">ráan</span>-<span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span></span></dt><dd>restaurant, food shop</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03120-coffee-shop/">ร้านกาแฟ</a> <span class="rom"><span class="rt t-high">ráan</span> <span class="rt t-mid">gaa</span>-<span class="rt t-mid">fɛɛ</span></span></dt><dd>coffee shop</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02287-table/">โต๊ะ</a> <span class="rom"><span class="rt t-high">dtó</span></span></dt><dd>table, desk</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01161-menu/">เมนู</a> <span class="rom"><span class="rt t-mid">mee</span>-<span class="rt t-mid">nuu</span></span></dt><dd>menu</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00585-to-order/">สั่ง</a> <span class="rom"><span class="rt t-low">sàng</span></span></dt><dd>to order, command, สั่งอาหาร order food, สั่งน้ำมูก blow nose</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05830-i-ll-have/">เอา...</a> <span class="rom"><span class="rt t-mid">ao</span>...</span></dt><dd>I&#x27;ll have...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05831-i-don-t-want/">ไม่เอา...</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-mid">ao</span>...</span></dt><dd>I don&#x27;t want...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05832-is-it-spicy/">เผ็ดไหม</a> <span class="rom"><span class="rt t-low">phèt</span> <span class="rt t-high">mái</span></span></dt><dd>is it spicy?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02471-not-spicy/">ไม่เผ็ด</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-low">phèt</span></span></dt><dd>not spicy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02473-less-sweet/">หวานน้อย</a> <span class="rom"><span class="rt t-rising">wǎan</span>-<span class="rt t-high">nɔ́ɔi</span></span></dt><dd>less sweet</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05833-don-t-add/">ไม่ใส่...</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-low">sài</span>...</span></dt><dd>don&#x27;t add...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05632-bill/">คิดเงินด้วยครับ</a> <span class="rom"><span class="rt t-high">khít</span>-<span class="rt t-mid">ngoen</span> <span class="rt t-falling">dûai</span> <span class="rt t-high">khráp</span></span></dt><dd>bill, please (male speaker)</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/404-food-orders-takeaway/">Food Orders &amp; Takeaway</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01014-to-put-in/">ใส่</a> <span class="rom"><span class="rt t-low">sài</span></span></dt><dd>to put in, to add, to include, put in</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02534-don-t-put-in/">ไม่ใส่</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-low">sài</span></span></dt><dd>don&#x27;t put in</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00235-to-add/">เพิ่ม</a> <span class="rom"><span class="rt t-falling">phôem</span></span></dt><dd>to add, increase</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00164-to-reduce/">ลด</a> <span class="rom"><span class="rt t-high">lót</span></span></dt><dd>to reduce, decrease, lower, discount</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00487-to-separate/">แยก</a> <span class="rom"><span class="rt t-falling">yâaek</span></span></dt><dd>to separate, divide, distinguish, turn off [road]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05834-separate-the-sauce/">แยกน้ำ</a> <span class="rom"><span class="rt t-falling">yɛ̂ɛk</span> <span class="rt t-high">nám</span></span></dt><dd>separate the sauce/liquid</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03050-put-it-in-a-bag/">ใส่ถุง</a> <span class="rom"><span class="rt t-low">sài</span> <span class="rt t-rising">thǔng</span></span></dt><dd>put it in a bag</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01432-return-home/">กลับบ้าน</a> <span class="rom"><span class="rt t-low">glàp</span>-<span class="rt t-falling">bâan</span></span></dt><dd>return home; go back home</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05835-can-i-take-it-home/">กลับบ้านได้ไหม</a> <span class="rom"><span class="rt t-low">glàp</span>-<span class="rt t-falling">bâan</span> <span class="rt t-falling">dâi</span> <span class="rt t-high">mái</span></span></dt><dd>can I take it home?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05836-eat-at-the-restaurant/">กินที่ร้าน</a> <span class="rom"><span class="rt t-mid">gin</span> <span class="rt t-falling">thîi</span> <span class="rt t-high">ráan</span></span></dt><dd>eat at the restaurant</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05634-take-away/">เอากลับบ้าน</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-low">glàp</span>-<span class="rt t-falling">bâan</span></span></dt><dd>take away / to go</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03358-please-wait-a-moment/">รอสักครู่</a> <span class="rom"><span class="rt t-mid">rɔɔ</span> <span class="rt t-low">sàk</span>-<span class="rt t-falling">khrûu</span></span></dt><dd>please wait a moment</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/405-taxis-ride-apps-getting-picked-up/">Taxis, Ride Apps &amp; Getting Picked Up</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05607-call-a-car/">เรียกรถ</a> <span class="rom"><span class="rt t-falling">rîiak</span> <span class="rt t-high">rót</span></span></dt><dd>call a car / taxi</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03302-call-a-taxi/">เรียกแท็กซี่</a> <span class="rom"><span class="rt t-falling">rîak</span> <span class="rt t-high">thɛ́k</span>-<span class="rt t-falling">sîi</span></span></dt><dd>call a taxi</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05767-driver/">คนขับ</a> <span class="rom"><span class="rt t-mid">khon</span>-<span class="rt t-low">khàp</span></span></dt><dd>driver</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05769-come-pick-up/">มารับ</a> <span class="rom"><span class="rt t-mid">maa</span> <span class="rt t-high">ráp</span></span></dt><dd>come pick up</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05770-pickup-point/">จุดรับ</a> <span class="rom"><span class="rt t-low">jùt</span> <span class="rt t-high">ráp</span></span></dt><dd>pickup point</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05837-be-in-front-of/">อยู่หน้า...</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-falling">nâa</span>...</span></dt><dd>be in front of...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03296-it-s-ahead/">อยู่ข้างหน้า</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-falling">khâang</span>-<span class="rt t-falling">nâa</span></span></dt><dd>it&#x27;s ahead</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05838-be-inside/">อยู่ข้างใน</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-falling">khâang</span>-<span class="rt t-mid">nai</span></span></dt><dd>be inside</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05839-where-should-i-park/">จอดตรงไหน</a> <span class="rom"><span class="rt t-low">jɔ̀ɔt</span> <span class="rt t-mid">dtrong</span>-<span class="rt t-rising">nǎi</span></span></dt><dd>where should I park / stop?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03305-arrived/">ถึงแล้ว</a> <span class="rom"><span class="rt t-rising">thʉ̌ng</span> <span class="rt t-high">láew</span></span></dt><dd>arrived</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03223-i-m-waiting/">รออยู่</a> <span class="rom"><span class="rt t-mid">rɔɔ</span> <span class="rt t-low">yùu</span></span></dt><dd>I&#x27;m waiting</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02374-cannot-find/">หาไม่เจอ</a> <span class="rom"><span class="rt t-rising">hǎa</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-mid">jəə</span></span></dt><dd>cannot find</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/406-hotels-accommodation/">Hotels &amp; Accommodation</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05541-check-in/">เช็กอิน</a> <span class="rom"><span class="rt t-high">chék</span>-<span class="rt t-mid">in</span></span></dt><dd>check in</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05542-check-out/">เช็กเอาต์</a> <span class="rom"><span class="rt t-high">chék</span>-<span class="rt t-mid">ao</span></span></dt><dd>check out</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00988-room-for-lodging/">ห้องพัก</a> <span class="rom"><span class="rt t-falling">hâwng</span>-<span class="rt t-high">phák</span></span></dt><dd>room [for lodging], accommodation</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05556-key-card/">คีย์การ์ด</a> <span class="rom"><span class="rt t-mid">khii</span>-<span class="rt t-low">gàat</span></span></dt><dd>key card</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05557-key/">กุญแจ</a> <span class="rom"><span class="rt t-mid">gun</span>-<span class="rt t-mid">jɛɛ</span></span></dt><dd>key</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02060-bathroom/">ห้องน้ำ</a> <span class="rom"><span class="rt t-falling">hɔ̂ng</span>-<span class="rt t-high">náam</span></span></dt><dd>bathroom; restroom</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05561-towel/">ผ้าเช็ดตัว</a> <span class="rom"><span class="rt t-falling">phâa</span>-<span class="rt t-high">chét</span>-<span class="rt t-mid">dtua</span></span></dt><dd>towel</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05840-available-room/">ห้องว่าง</a> <span class="rom"><span class="rt t-falling">hâwng</span>-<span class="rt t-falling">wâang</span></span></dt><dd>available room</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05841-rooms-are-full/">ห้องเต็ม</a> <span class="rom"><span class="rt t-falling">hâwng</span>-<span class="rt t-mid">dtem</span></span></dt><dd>rooms are full</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03339-there-was-a-problem/">มีปัญหา</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-mid">bpan</span>-<span class="rt t-rising">hǎa</span></span></dt><dd>there was a problem</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05576-the-air-conditioner-isn-t-cold/">แอร์ไม่เย็น</a> <span class="rom"><span class="rt t-mid">ɛɛ</span> <span class="rt t-falling">mâi</span> <span class="rt t-mid">yen</span></span></dt><dd>the air conditioner isn&#x27;t cold</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05572-can-i-change-rooms/">ขอเปลี่ยนห้องได้ไหม</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-low">bplìian</span> <span class="rt t-falling">hâwng</span> <span class="rt t-falling">dâi</span> <span class="rt t-high">mái</span></span></dt><dd>can I change rooms?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/407-delivery-online-orders/">Delivery &amp; Online Orders</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05842-order-online/">สั่งออนไลน์</a> <span class="rom"><span class="rt t-low">sàng</span> <span class="rt t-mid">on</span>-<span class="rt t-mid">lai</span></span></dt><dd>order online</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05843-order-something/">สั่งของ</a> <span class="rom"><span class="rt t-low">sàng</span> <span class="rt t-rising">khɔ̌ɔng</span></span></dt><dd>order something</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05844-deliver-goods/">ส่งของ</a> <span class="rom"><span class="rt t-low">sòng</span> <span class="rt t-rising">khɔ̌ɔng</span></span></dt><dd>deliver goods</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05755-parcel/">พัสดุ</a> <span class="rom"><span class="rt t-high">phát</span>-<span class="rt t-low">sà</span>-<span class="rt t-low">dù</span></span></dt><dd>parcel / package</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05756-delivery-person/">คนส่งของ</a> <span class="rom"><span class="rt t-mid">khon</span>-<span class="rt t-low">sòng</span>-<span class="rt t-rising">khɔ̌ɔng</span></span></dt><dd>delivery person</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05757-rider/">ไรเดอร์</a> <span class="rom"><span class="rt t-mid">rai</span>-<span class="rt t-falling">də̂ə</span></span></dt><dd>rider / delivery driver</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00822-address/">ที่อยู่</a> <span class="rom"><span class="rt t-falling">thîi</span>-<span class="rt t-low">yùu</span></span></dt><dd>address, residence</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05845-house-number/">เลขที่บ้าน</a> <span class="rom"><span class="rt t-falling">lêek</span>-<span class="rt t-falling">thîi</span> <span class="rt t-falling">bâan</span></span></dt><dd>house number</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00615-alley/">ซอย</a> <span class="rom"><span class="rt t-mid">sɔɔi</span></span></dt><dd>alley, side-street, to slice thinly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05846-deliver-it-here/">ส่งมาที่นี่</a> <span class="rom"><span class="rt t-low">sòng</span> <span class="rt t-mid">maa</span> <span class="rt t-falling">thîi</span>-<span class="rt t-falling">nîi</span></span></dt><dd>deliver it here</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05847-arrived-already/">มาถึงแล้ว</a> <span class="rom"><span class="rt t-mid">maa</span>-<span class="rt t-rising">thʉ̌ng</span> <span class="rt t-high">lɛ́ɛo</span></span></dt><dd>arrived already</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05848-the-order-hasn-t-arrived-yet/">ของยังไม่มา</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔng</span> <span class="rt t-mid">yang</span> <span class="rt t-falling">mâi</span> <span class="rt t-mid">maa</span></span></dt><dd>the order hasn&#x27;t arrived yet</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/408-banks-atms-money/">Banks, ATMs &amp; Money</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05849-bank/">ธนาคาร</a> <span class="rom"><span class="rt t-mid">tha</span>-<span class="rt t-mid">naa</span>-<span class="rt t-mid">khaan</span></span></dt><dd>bank</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05850-atm/">ตู้เอทีเอ็ม</a> <span class="rom"><span class="rt t-falling">dtûu</span>-<span class="rt t-mid">ee</span>-<span class="rt t-mid">thii</span>-<span class="rt t-mid">em</span></span></dt><dd>ATM</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05851-withdraw-money/">กดเงิน</a> <span class="rom"><span class="rt t-low">gòt</span> <span class="rt t-mid">ngoen</span></span></dt><dd>withdraw money</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05852-withdraw-money/">ถอนเงิน</a> <span class="rom"><span class="rt t-rising">thɔ̌ɔn</span> <span class="rt t-mid">ngoen</span></span></dt><dd>withdraw money</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05853-deposit-money/">ฝากเงิน</a> <span class="rom"><span class="rt t-low">fàak</span> <span class="rt t-mid">ngoen</span></span></dt><dd>deposit money</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05598-cash/">เงินสด</a> <span class="rom"><span class="rt t-mid">ngoen</span>-<span class="rt t-low">sòt</span></span></dt><dd>cash</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01514-card/">บัตร</a> <span class="rom"><span class="rt t-low">bàt</span></span></dt><dd>card; ticket; pass</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05599-credit-card/">บัตรเครดิต</a> <span class="rom"><span class="rt t-low">bàt</span>-<span class="rt t-high">khré</span>-<span class="rt t-mid">dit</span></span></dt><dd>credit card</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05854-debit-card/">บัตรเดบิต</a> <span class="rom"><span class="rt t-low">bàt</span>-<span class="rt t-mid">dee</span>-<span class="rt t-low">bìt</span></span></dt><dd>debit card</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00840-code/">รหัส</a> <span class="rom"><span class="rt t-high">rá</span>-<span class="rt t-low">hàt</span></span></dt><dd>code, password</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05855-can-t-press/">กดไม่ได้</a> <span class="rom"><span class="rt t-low">gòt</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">dâi</span></span></dt><dd>can&#x27;t press / use it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05856-the-card-doesn-t-work/">บัตรใช้ไม่ได้</a> <span class="rom"><span class="rt t-low">bàt</span> <span class="rt t-high">chái</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">dâi</span></span></dt><dd>the card doesn&#x27;t work</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/409-government-offices-everyday-bureaucracy/">Government Offices &amp; Everyday Bureaucracy</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00053-office/">สำนักงาน</a> <span class="rom"><span class="rt t-rising">sǎm</span>-<span class="rt t-high">nák</span>-<span class="rt t-mid">ngaan</span></span></dt><dd>office, bureau</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00255-organization/">หน่วยงาน</a> <span class="rom"><span class="rt t-low">nùay</span>-<span class="rt t-mid">ngaan</span></span></dt><dd>organization, agency, department, unit</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00277-document/">เอกสาร</a> <span class="rom"><span class="rt t-low">èek</span>-<span class="rt t-low">gà</span>-<span class="rt t-rising">sǎan</span></span></dt><dd>document, paper, [classifier for documents]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05857-form/">แบบฟอร์ม</a> <span class="rom"><span class="rt t-low">bɛ̀ɛp</span>-<span class="rt t-mid">fɔɔm</span></span></dt><dd>form</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05858-fill-in/">กรอก</a> <span class="rom"><span class="rt t-low">grɔ̀ɔk</span></span></dt><dd>fill in</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00568-to-submit/">ยื่น</a> <span class="rom"><span class="rt t-falling">yûuen</span></span></dt><dd>to submit, hand in, present, extend, reach out</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05859-copy/">สำเนา</a> <span class="rom"><span class="rt t-rising">sǎm</span>-<span class="rt t-mid">nao</span></span></dt><dd>copy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05860-signature/">ลายเซ็น</a> <span class="rom"><span class="rt t-mid">laai</span>-<span class="rt t-rising">sěn</span></span></dt><dd>signature</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05861-queue/">คิว</a> <span class="rom"><span class="rt t-mid">khiu</span></span></dt><dd>queue / number</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05862-wait-in-line/">รอคิว</a> <span class="rom"><span class="rt t-mid">rɔɔ</span> <span class="rt t-mid">khiu</span></span></dt><dd>wait in line</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05714-appointment/">นัดหมาย</a> <span class="rom"><span class="rt t-high">nát</span>-<span class="rt t-rising">mǎai</span></span></dt><dd>appointment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05863-what-do-i-need/">ต้องใช้อะไรบ้าง</a> <span class="rom"><span class="rt t-falling">dtɔ̂ng</span> <span class="rt t-high">chái</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-falling">bâang</span></span></dt><dd>what do I need?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/410-doctors-pharmacies-everyday-health/">Doctors, Pharmacies &amp; Everyday Health</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05864-clinic/">คลินิก</a> <span class="rom"><span class="rt t-high">khlí</span>-<span class="rt t-low">nìk</span></span></dt><dd>clinic</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05865-pharmacy/">ร้านขายยา</a> <span class="rom"><span class="rt t-high">ráan</span>-<span class="rt t-rising">khǎai</span>-<span class="rt t-mid">yaa</span></span></dt><dd>pharmacy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00605-medicine/">ยา</a> <span class="rom"><span class="rt t-mid">yaa</span></span></dt><dd>medicine, drug, tobacco, ยาบ้า amphetamine, [classifier for doses]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02265-doctor/">หมอ</a> <span class="rom"><span class="rt t-rising">mɔ̌ɔ</span></span></dt><dd>doctor</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00931-nurse/">พยาบาล</a> <span class="rom"><span class="rt t-high">phá</span>-<span class="rt t-mid">yaa</span>-<span class="rt t-mid">baan</span></span></dt><dd>nurse, to nurse, care for</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05866-doctor-s-appointment/">นัดหมอ</a> <span class="rom"><span class="rt t-high">nát</span> <span class="rt t-rising">mɔ̌ɔ</span></span></dt><dd>doctor&#x27;s appointment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01500-hurt/">ปวด</a> <span class="rom"><span class="rt t-low">bpùat</span></span></dt><dd>hurt; ache; be in pain</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02262-hurt/">เจ็บ</a> <span class="rom"><span class="rt t-low">jèp</span></span></dt><dd>hurt, painful</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05867-have-a-fever/">มีไข้</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-falling">khâi</span></span></dt><dd>have a fever</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05868-allergic-to-medicine/">แพ้ยา</a> <span class="rom"><span class="rt t-high">phɛ́ɛ</span> <span class="rt t-mid">yaa</span></span></dt><dd>allergic to medicine</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05869-take-medicine/">กินยา</a> <span class="rom"><span class="rt t-mid">gin</span> <span class="rt t-mid">yaa</span></span></dt><dd>take medicine</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05870-do-i-need-to-go-to-the-hospital/">ต้องไปโรงพยาบาลไหม</a> <span class="rom"><span class="rt t-falling">dtɔ̂ng</span> <span class="rt t-mid">bpai</span> <span class="rt t-mid">rohng</span>-<span class="rt t-mid">pha</span>-<span class="rt t-mid">yaa</span>-<span class="rt t-mid">baan</span> <span class="rt t-high">mái</span></span></dt><dd>do I need to go to the hospital?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/411-police-lost-property-problems/">Police, Lost Property &amp; Problems</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00201-police/">ตำรวจ</a> <span class="rom"><span class="rt t-mid">dtam</span>-<span class="rt t-low">rùat</span></span></dt><dd>police, police officer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05871-police-station/">สถานีตำรวจ</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-rising">thǎan</span>-<span class="rt t-mid">nii</span> <span class="rt t-mid">dtam</span>-<span class="rt t-low">rùat</span></span></dt><dd>police station</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05872-report-something-to-the-police/">แจ้งความ</a> <span class="rom"><span class="rt t-falling">jâeng</span>-<span class="rt t-mid">khwaam</span></span></dt><dd>report something to the police</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05635-lost-item/">ของหาย</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔng</span> <span class="rt t-rising">hǎai</span></span></dt><dd>lost item / belongings missing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05636-bag-is-missing/">กระเป๋าหาย</a> <span class="rom"><span class="rt t-low">grà</span>-<span class="rt t-rising">bpǎo</span> <span class="rt t-rising">hǎai</span></span></dt><dd>bag is missing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03348-phone-was-lost/">โทรศัพท์หาย</a> <span class="rom"><span class="rt t-mid">thoo</span>-<span class="rt t-high">rá</span>-<span class="rt t-low">sàp</span> <span class="rt t-rising">hǎai</span></span></dt><dd>phone was lost</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05873-was-stolen/">ถูกขโมย</a> <span class="rom"><span class="rt t-low">thùuk</span> <span class="rt t-mid">kha</span>-<span class="rt t-rising">mǒoi</span></span></dt><dd>was stolen</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05874-did-you-see-it/">เห็นไหม</a> <span class="rom"><span class="rt t-rising">hěn</span> <span class="rt t-high">mái</span></span></dt><dd>did you see it?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03354-please-help/">ช่วยหน่อย</a> <span class="rom"><span class="rt t-falling">chûai</span> <span class="rt t-low">nòi</span></span></dt><dd>please help</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03331-what-happened/">เกิดอะไรขึ้น</a> <span class="rom"><span class="rt t-low">gə̀ət</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-falling">khʉ̂n</span></span></dt><dd>what happened?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03188-where-do-you-live/">อยู่ที่ไหน</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-falling">thîi</span> <span class="rt t-rising">nǎi</span></span></dt><dd>where do you live/stay?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/412-repairs-household-services/">Repairs &amp; Household Services</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05793-repair/">ซ่อม</a> <span class="rom"><span class="rt t-falling">sɔ̂m</span></span></dt><dd>repair</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05791-technician/">ช่าง</a> <span class="rom"><span class="rt t-falling">châang</span></span></dt><dd>technician / repair person</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05875-electrician/">ช่างไฟ</a> <span class="rom"><span class="rt t-falling">châang</span>-<span class="rt t-mid">fai</span></span></dt><dd>electrician</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05876-air-conditioner-technician/">ช่างแอร์</a> <span class="rom"><span class="rt t-falling">châang</span>-<span class="rt t-mid">ɛɛ</span></span></dt><dd>air-conditioner technician</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05585-housekeeper/">แม่บ้าน</a> <span class="rom"><span class="rt t-falling">mɛ̂ɛ</span>-<span class="rt t-falling">bâan</span></span></dt><dd>housekeeper</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02241-clean/">ทำความสะอาด</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">khwaam</span>-<span class="rt t-low">sà</span>-<span class="rt t-low">àat</span></span></dt><dd>clean, tidy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05877-water-leak/">น้ำรั่ว</a> <span class="rom"><span class="rt t-high">nám</span>-<span class="rt t-falling">rûa</span></span></dt><dd>water leak</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03346-the-power-went-out/">ไฟดับ</a> <span class="rom"><span class="rt t-mid">fai</span> <span class="rt t-low">dàp</span></span></dt><dd>the power went out</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03347-the-water-isn-t-running/">น้ำไม่ไหล</a> <span class="rom"><span class="rt t-high">náam</span> <span class="rt t-falling">mâi</span> <span class="rt t-rising">lǎi</span></span></dt><dd>the water isn&#x27;t running</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05583-the-air-conditioner-is-broken/">แอร์เสีย</a> <span class="rom"><span class="rt t-mid">ɛɛ</span> <span class="rt t-rising">sǐia</span></span></dt><dd>the air conditioner is broken</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05878-please-come-take-a-look/">มาดูให้หน่อย</a> <span class="rom"><span class="rt t-mid">maa</span> <span class="rt t-mid">duu</span> <span class="rt t-falling">hâi</span> <span class="rt t-low">nòi</span></span></dt><dd>please come take a look</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05798-approximately-how-much/">ประมาณเท่าไหร่</a> <span class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-mid">maan</span> <span class="rt t-falling">thâo</span>-<span class="rt t-low">rài</span></span></dt><dd>approximately how much?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/413-everyday-problems/">Everyday Problems</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01637-slow/">ช้า</a> <span class="rom"><span class="rt t-high">cháa</span></span></dt><dd>slow, slowly, late</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00429-line/">สาย</a> <span class="rom"><span class="rt t-rising">sǎai</span></span></dt><dd>line, cord, สายไฟ wire, สายตา eyesight, route, สายการบิน airline, สายลับ spy, late [morning], สายแล้ว It&#x27;s late; [classifier for roads, rivers, lines]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00731-to-wait/">รอ</a> <span class="rom"><span class="rt t-mid">rɔɔ</span></span></dt><dd>to wait</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03053-long-wait/">รอนาน</a> <span class="rom"><span class="rt t-mid">rɔɔ</span> <span class="rt t-mid">naan</span></span></dt><dd>long wait</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00800-wrong/">ผิด</a> <span class="rom"><span class="rt t-low">phìt</span></span></dt><dd>wrong, incorrect, mistaken, ผิดหวัง disappointed, to err, make a mistake, ผิดกฎหมาย illegal</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05879-wrong-place/">ผิดที่</a> <span class="rom"><span class="rt t-low">phìt</span> <span class="rt t-falling">thîi</span></span></dt><dd>wrong place</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05638-wrong-time/">ผิดเวลา</a> <span class="rom"><span class="rt t-low">phìt</span> <span class="rt t-mid">wee</span>-<span class="rt t-mid">laa</span></span></dt><dd>wrong time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01862-forget/">ลืม</a> <span class="rom"><span class="rt t-mid">lʉʉm</span></span></dt><dd>forget</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03349-lose-something/">ทำหาย</a> <span class="rom"><span class="rt t-mid">tham</span> <span class="rt t-rising">hǎai</span></span></dt><dd>lose something</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05880-can-t-find/">ไม่เจอ</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-mid">jəə</span></span></dt><dd>can&#x27;t find / not found</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03052-hasn-t-arrived-yet/">ยังไม่มา</a> <span class="rom"><span class="rt t-mid">yang</span> <span class="rt t-falling">mâi</span> <span class="rt t-mid">maa</span></span></dt><dd>hasn&#x27;t arrived yet</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04031-we-ll-see-later/">เดี๋ยวค่อยดู</a> <span class="rom"><span class="rt t-rising">dǐao</span> <span class="rt t-falling">khɔ̂i</span> <span class="rt t-mid">duu</span></span></dt><dd>we&#x27;ll see later</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/414-asking-for-directions-in-real-life/">Asking for Directions in Real Life</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05881-excuse-me/">ขอโทษครับ</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔ</span>-<span class="rt t-falling">thôot</span> <span class="rt t-high">khráp</span></span></dt><dd>excuse me / sorry (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05882-how-do-i-get-to/">ไป...ยังไง</a> <span class="rom"><span class="rt t-mid">bpai...yang</span>-<span class="rt t-mid">ngai</span></span></dt><dd>how do I get to...?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05883-where-around-here-is-it/">อยู่แถวไหน</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-rising">thɛ̌ɛo</span>-<span class="rt t-rising">nǎi</span></span></dt><dd>where around here is it?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05884-nearby/">ใกล้ๆ นี้</a> <span class="rom"><span class="rt t-falling">glâi</span>-<span class="rt t-falling">glâi</span> <span class="rt t-high">níi</span></span></dt><dd>nearby / around here</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01539-right-here/">ตรงนี้</a> <span class="rom"><span class="rt t-mid">dtrong</span>-<span class="rt t-high">níi</span></span></dt><dd>right here; here</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05885-over-there/">ตรงนั้น</a> <span class="rom"><span class="rt t-mid">dtrong</span>-<span class="rt t-high">nán</span></span></dt><dd>over there</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01488-in-front/">ข้างหน้า</a> <span class="rom"><span class="rt t-falling">khâang</span>-<span class="rt t-falling">nâa</span></span></dt><dd>in front; ahead; forward</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05886-behind/">ข้างหลัง</a> <span class="rom"><span class="rt t-falling">khâang</span>-<span class="rt t-rising">lǎng</span></span></dt><dd>behind</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01772-inside/">ข้างใน</a> <span class="rom"><span class="rt t-falling">khâang</span>-<span class="rt t-mid">nai</span></span></dt><dd>inside; inside area</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01773-outside/">ข้างนอก</a> <span class="rom"><span class="rt t-falling">khâang</span>-<span class="rt t-falling">nɔ̂ɔk</span></span></dt><dd>outside; outdoors</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01408-left/">ซ้าย</a> <span class="rom"><span class="rt t-high">sáai</span></span></dt><dd>left; left-hand side</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02032-right/">ขวา</a> <span class="rom"><span class="rt t-rising">khwǎa</span></span></dt><dd>right; right side</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/415-booking-appointments-reservations/">Booking, Appointments &amp; Reservations</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02279-book/">จอง</a> <span class="rom"><span class="rt t-mid">jɔɔng</span></span></dt><dd>book, reserve</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05537-reservation/">การจอง</a> <span class="rom"><span class="rt t-mid">gaan</span>-<span class="rt t-mid">jɔɔng</span></span></dt><dd>reservation</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01349-appointment/">นัด</a> <span class="rom"><span class="rt t-high">nát</span></span></dt><dd>appointment; date; arrange to meet</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01335-empty/">ว่าง</a> <span class="rom"><span class="rt t-falling">wâang</span></span></dt><dd>empty; free; vacant</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00978-full/">เต็ม</a> <span class="rom"><span class="rt t-mid">dtem</span></span></dt><dd>full, complete, fully, to fill</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00661-to-confirm/">ยืนยัน</a> <span class="rom"><span class="rt t-mid">yuen</span>-<span class="rt t-mid">yan</span></span></dt><dd>to confirm, affirm, insist</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01435-slide/">เลื่อน</a> <span class="rom"><span class="rt t-falling">lʉ̂an</span></span></dt><dd>slide; move; postpone; promote</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01855-cancel/">ยกเลิก</a> <span class="rom"><span class="rt t-high">yók</span>-<span class="rt t-falling">lə̂ək</span></span></dt><dd>cancel, abolish</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03508-change-the-time/">เปลี่ยนเวลา</a> <span class="rom"><span class="rt t-low">bplìan</span> <span class="rt t-mid">wee</span>-<span class="rt t-mid">laa</span></span></dt><dd>change the time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03509-change-the-day/">เปลี่ยนวัน</a> <span class="rom"><span class="rt t-low">bplìan</span> <span class="rt t-mid">wan</span></span></dt><dd>change the day</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05887-already-booked/">จองไว้แล้ว</a> <span class="rom"><span class="rt t-mid">jɔɔng</span> <span class="rt t-high">wái</span> <span class="rt t-high">lɛ́ɛo</span></span></dt><dd>already booked</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05888-is-it-still-available/">ยังว่างอยู่ไหม</a> <span class="rom"><span class="rt t-mid">yang</span> <span class="rt t-falling">wâang</span> <span class="rt t-low">yùu</span> <span class="rt t-high">mái</span></span></dt><dd>is it still available?</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/416-asking-for-help/">Asking for Help</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05644-help/">ช่วยด้วย</a> <span class="rom"><span class="rt t-falling">chûai</span> <span class="rt t-falling">dûai</span></span></dt><dd>help!</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03356-please-tell-me/">ช่วยบอกหน่อย</a> <span class="rom"><span class="rt t-falling">chûai</span> <span class="rt t-low">bɔ̀ɔk</span> <span class="rt t-low">nòi</span></span></dt><dd>please tell me</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03355-please-take-a-look/">ช่วยดูหน่อย</a> <span class="rom"><span class="rt t-falling">chûai</span> <span class="rt t-mid">duu</span> <span class="rt t-low">nòi</span></span></dt><dd>please take a look</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05889-please-recommend-something/">ช่วยแนะนำหน่อย</a> <span class="rom"><span class="rt t-falling">chûai</span> <span class="rt t-high">nɛ́</span>-<span class="rt t-mid">nam</span> <span class="rt t-low">nòi</span></span></dt><dd>please recommend something</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03368-can-i-ask-something/">ขอถามหน่อย</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-rising">thǎam</span> <span class="rt t-low">nòi</span></span></dt><dd>can I ask something?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05890-may-i-ask/">ไม่ทราบว่า...</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">sâap</span> <span class="rt t-falling">wâa</span>...</span></dt><dd>may I ask / I wonder...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03627-you-know/">รู้ไหม</a> <span class="rom"><span class="rt t-high">rúu</span> <span class="rt t-high">mái</span></span></dt><dd>you know?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05087-don-t-know/">ไม่รู้</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-high">rúu</span></span></dt><dd>don&#x27;t know</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02271-no-problem/">ไม่เป็นไร</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-mid">bpen</span>-<span class="rt t-mid">rai</span></span></dt><dd>no problem, you&#x27;re welcome</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05891-thank-you-very-much/">ขอบคุณมาก</a> <span class="rom"><span class="rt t-low">khɔ̀ɔp</span>-<span class="rt t-mid">khun</span> <span class="rt t-falling">mâak</span></span></dt><dd>thank you very much</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05892-you-re-welcome-male-speaker/">ยินดีครับ</a> <span class="rom"><span class="rt t-mid">yin</span>-<span class="rt t-mid">dii</span> <span class="rt t-high">khráp</span></span></dt><dd>you&#x27;re welcome (male speaker)</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/417-real-thai-service-interactions/">Real Thai Service Interactions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05893-may-i-ask-you-something-male-speaker/">ขอถามอะไรหน่อยครับ</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-rising">thǎam</span> <span class="rt t-low">à</span>-<span class="rt t-mid">rai</span> <span class="rt t-low">nòi</span> <span class="rt t-high">khráp</span></span></dt><dd>may I ask you something? (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05894-actually/">พอดีว่า...</a> <span class="rom"><span class="rt t-mid">phɔɔ</span>-<span class="rt t-mid">dii</span> <span class="rt t-falling">wâa</span>...</span></dt><dd>actually / the thing is...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05895-actually/">พอดีมีปัญหานิดหน่อย</a> <span class="rom"><span class="rt t-mid">phɔɔ</span>-<span class="rt t-mid">dii</span> <span class="rt t-mid">mii</span> <span class="rt t-mid">bpan</span>-<span class="rt t-rising">hǎa</span> <span class="rt t-high">nít</span>-<span class="rt t-low">nɔ̀i</span></span></dt><dd>actually, there&#x27;s a small problem</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05896-i-m-not-sure-whether/">ไม่แน่ใจว่า...</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nɛ̂ɛ</span>-<span class="rt t-mid">jai</span> <span class="rt t-falling">wâa</span>...</span></dt><dd>I&#x27;m not sure whether...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05897-in-that-case/">ถ้าอย่างนั้น...</a> <span class="rom"><span class="rt t-falling">thâa</span> <span class="rt t-low">yàang</span>-<span class="rt t-high">nán</span>...</span></dt><dd>in that case...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05898-then-let-s-say/">งั้นเอาเป็นว่า...</a> <span class="rom"><span class="rt t-high">ngán</span> <span class="rt t-mid">ao</span> <span class="rt t-mid">bpen</span> <span class="rt t-falling">wâa</span>...</span></dt><dd>then let&#x27;s say / let&#x27;s go with...</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05899-i-ll-handle-it-myself-male-speaker/">เดี๋ยวผมจัดการเอง</a> <span class="rom"><span class="rt t-rising">dǐao</span> <span class="rt t-rising">phǒm</span> <span class="rt t-low">jàt</span>-<span class="rt t-mid">gaan</span> <span class="rt t-mid">eeng</span></span></dt><dd>I&#x27;ll handle it myself (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05900-could-you-check-it-for-me-male-speak/">ช่วยเช็กให้หน่อยได้ไหมครับ</a> <span class="rom"><span class="rt t-falling">chûai</span> <span class="rt t-high">chék</span> <span class="rt t-falling">hâi</span> <span class="rt t-low">nòi</span> <span class="rt t-falling">dâi</span> <span class="rt t-high">mái</span> <span class="rt t-high">khráp</span></span></dt><dd>could you check it for me? (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05901-if-you-can-t/">ถ้าไม่ได้ไม่เป็นไรครับ</a> <span class="rom"><span class="rt t-falling">thâa</span> <span class="rt t-falling">mâi</span> <span class="rt t-falling">dâi</span> <span class="rt t-falling">mâi</span> <span class="rt t-mid">bpen</span>-<span class="rt t-mid">rai</span> <span class="rt t-high">khráp</span></span></dt><dd>if you can&#x27;t, that&#x27;s okay (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05902-one-more-time/">ขออีกครั้งนะครับ</a> <span class="rom"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-low">ìik</span>-<span class="rt t-high">khráng</span> <span class="rt t-high">ná</span> <span class="rt t-high">khráp</span></span></dt><dd>one more time, please (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05903-i-understand-now-male-speaker/">เข้าใจแล้วครับ</a> <span class="rom"><span class="rt t-falling">khâo</span>-<span class="rt t-mid">jai</span> <span class="rt t-high">lɛ́ɛo</span> <span class="rt t-high">khráp</span></span></dt><dd>I understand now (male speaker)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05904-okay/">โอเคครับ ขอบคุณมาก</a> <span class="rom"><span class="rt t-mid">oo</span>-<span class="rt t-mid">khee</span> <span class="rt t-high">khráp</span> <span class="rt t-low">khɔ̀ɔp</span>-<span class="rt t-mid">khun</span> <span class="rt t-falling">mâak</span></span></dt><dd>okay, thank you very much (male speaker)</dd></div></dl>
   </div>
@@ -276,6 +278,7 @@
  var nav=document.getElementById('nav'),find=document.getElementById('find'),
      none=document.getElementById('nohits'),hits=document.getElementById('hits'),
      idx=null,idxTried=false;
+ var NAVJ=null,KNOWN={};
  function items(){return nav?nav.querySelectorAll('a.item'):[];}
  function base(){return document.body.dataset.root||'';}
  function read(k,d){try{var v=localStorage.getItem(k);
@@ -441,13 +444,15 @@
   }
   page=Math.max(0,Math.min(pages-1,page||0));
   wrap.dataset.page=String(page);
-  var pg=el('div','catpage'),i;
+  // A category that fits on one page is as tall as its rows: the fixed
+  // height is for page turns, and three lessons in a box for six left a gap.
+  var pg=el('div','catpage'+(pages===1?' fit':'')),i;
   for(i=page*PAGE;i<Math.min(rows.length,(page+1)*PAGE);i++){
    var l=rows[i],a=document.createElement('a');
    a.className='item seq'+(isHere(l.folder)?' on':'');
    a.href=base()+'/'+l.folder+'/';
    a.title=l.title;
-   a.appendChild(el('span','n',String(l.n)));
+   a.appendChild(ring(KNOWN[l.folder]||0,l.w||0));
    a.appendChild(el('span','t',l.title));
    a.appendChild(el('span','w',String(l.w||'')));
    pg.appendChild(a);
@@ -478,6 +483,15 @@
   return location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')
    .slice(-(folder.length+1))==='/'+folder;
  }
+ // How far the reader has got in a lesson: an empty ring, a part one, a
+ // filled one. Read from their own progress (KNOWN, words known per lesson).
+ function ring(k,w){
+  var r=document.createElement('span');
+  r.className='rg'+(w&&k>=w?' done':k?' part':'');
+  r.setAttribute('aria-hidden','true');
+  if(k)r.title=k+' of '+(w||'?')+' words known';
+  return r;
+ }
  function el(tag,cls,text){
   var e=document.createElement(tag);e.className=cls;
   if(text!==undefined)e.textContent=text;return e;
@@ -494,6 +508,7 @@
   function openOne(wrap,on){
    var box=wrap.querySelector('.catbox'),x=wrap.querySelector('.catx');
    box.hidden=!on;
+   var al=wrap.querySelector('.catalso');if(al)al.hidden=!on;
    x.textContent=on?'−':'+';
    x.setAttribute('aria-expanded',on?'true':'false');
    if(!on)return;
@@ -534,6 +549,41 @@
   });
  })();
 
+ // --------------------------------------------- show all the categories
+ // Dan: "cut the categories menu in half, and add a more/show all button".
+ // The rest are in the markup, behind the button; a search, or the page of a
+ // category that is among them, shows them without asking.
+ var catMore=document.getElementById('catmore'),
+     catMoreBtn=document.getElementById('cat-more'),catMoreOpen=false;
+ try{catMoreOpen=localStorage.getItem('wb.catmore')==='1';}catch(e){}
+ function paintMore(){
+  if(!catMore)return;
+  var q=!!(find&&find.value.trim());
+  catMore.classList.toggle('open',catMoreOpen||q);
+  if(catMoreBtn){
+   catMoreBtn.setAttribute('aria-expanded',catMoreOpen?'true':'false');
+   catMoreBtn.textContent=catMoreOpen?'Show fewer categories'
+    :'Show all '+catMoreBtn.dataset.all+' categories ('+catMoreBtn.dataset.more+' more)';
+  }
+ }
+ if(catMore){
+  // where you are is never hidden behind the button
+  var mine=catMore.querySelector('a.item.on');
+  if(!mine){
+   var cn0=document.querySelector('.menu .wsub[data-cname]');
+   cn0=cn0?cn0.getAttribute('data-cname'):'';
+   if(cn0){var ws=catMore.querySelectorAll('.catwrap');
+    for(var q0=0;q0<ws.length;q0++)if(ws[q0].dataset.name===cn0)mine=ws[q0];}
+  }
+  if(mine)catMoreOpen=true;
+  if(catMoreBtn)catMoreBtn.addEventListener('click',function(){
+   catMoreOpen=!catMoreOpen;
+   try{localStorage.setItem('wb.catmore',catMoreOpen?'1':'0');}catch(e){}
+   paintMore();
+  });
+  paintMore();
+ }
+
  // -------------------------------------------- favourites, recently viewed
  //
  // Both are the reader's own history, kept in their browser and never sent
@@ -565,6 +615,7 @@
   var marks=document.querySelectorAll('[data-fill]');
   if(!marks.length)return;
   fetch(base()+'/nav.json').then(function(r){return r.json();}).then(function(j){
+   NAVJ=j;window.dispatchEvent(new Event('wb:nav'));
    // On a sentence lesson the course is the sentence half: its numbers, its
    // "Sentence lesson 2 of 9 in Beginner".
    var sent=document.body.dataset.kind==='sentences',
@@ -589,9 +640,10 @@
     else if(k==='all-n')m.textContent=L.length+' lessons in all';
     else if(k==='sub'){
      var cn=m.getAttribute('data-cname');
-     var word=sent?'Sentence lesson ':'Lesson ';
+     // "8 of 55 · Thai Conversation": one number, the one a reader can use
+     var word=sent?'Sentence lesson ':'';
      m.textContent=pos<0?'':(cn&&cur
-      ?word+at+' of '+counts[cur]+' in '+cn
+      ?word+at+' of '+counts[cur]+' \u00b7 '+cn
       :word+(pos+1)+' of '+L.length);
     }
    }
@@ -649,6 +701,8 @@
   for(i=0;i<g.length;i++)g[i].hidden=!!q;
   live+=lessonHits(q);
   if(none)none.hidden=!q||live>0;
+  if(typeof paintMore==='function')paintMore();
+  if(nav)nav.classList.toggle('q',!!q);
  }
  // Up to eight lessons, and a way to the rest. A column that answers a search
  // with four hundred rows is the thing this redesign removed.
@@ -3288,6 +3342,313 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
  drag(gripa,0);            // between the video and the picture
  drag(gripb,1);            // between the picture and the word
+ // ================================================ the menu's own record
+ //
+ // Dan's new menu: "Continue where you left off", how far the reader has got
+ // in each lesson, and courses of their own — "I want users to be able to
+ // build their own course using our data, we can save what they create using
+ // dexiejs". All of it is the reader's, kept in their browser and never sent
+ // anywhere; there is nothing to send it to.
+ (function(){
+  if(!nav)return;
+  // ---- how far: words known per lesson, from the reader's progress. Only
+  // read when they have ever recorded any (Days is written with every
+  // answer), so a first visit opens no database at all.
+  function known(){
+   var any=false;try{any=!!localStorage.getItem('wb.days');}catch(e){}
+   if(!any||typeof Progress==='undefined')return Promise.resolve();
+   return Promise.resolve(Progress.all()).then(function(rows){
+    var k={},i;
+    for(i=0;i<(rows||[]).length;i++)
+     if(rows[i].state==='known'&&rows[i].lesson)k[rows[i].lesson]=(k[rows[i].lesson]||0)+1;
+    KNOWN=k;
+    window.dispatchEvent(new Event('wb:index'));   // redraw open categories
+   }).catch(function(){});
+  }
+  function lessonOf(folder){
+   var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],i;
+   for(i=0;i<L.length;i++)if(L[i].folder===folder)return L[i];
+   return null;
+  }
+  function catName(folder){
+   var w=nav.querySelector('.catwrap[data-cat="'+folder+'"]');
+   if(w)return w.dataset.name;
+   var a=nav.querySelector('a.item[href$="/'+folder+'/"] .lb');
+   return a?a.textContent:folder.replace(/^c-/,'').replace(/-/g,' ');
+  }
+  function withMenu(cb){
+   if(mnu||idx){cb();return;}
+   var once=function(){window.removeEventListener('wb:index',once);cb();};
+   window.addEventListener('wb:index',once);
+   loadMenu();
+  }
+
+  // ---- Continue where you left off. Not on a lesson page — there, where
+  // you are is the lesson in front of you and the block at the foot.
+  var cont=document.getElementById('m-cont');
+  function paintCont(){
+   if(!cont)return;
+   if(document.body.dataset.lesson){cont.hidden=true;return;}
+   var r=recents()[0];
+   if(!r||!r.folder){cont.hidden=true;return;}
+   cont.hidden=false;
+   cont.href=base()+'/'+r.folder+'/';
+   cont.querySelector('.ctt').textContent=r.title||r.folder;
+   var ctn=cont.querySelector('.ctn'),cs=cont.querySelector('.cs'),
+       bar=cont.querySelector('.cbar'),L=(NAVJ&&NAVJ.l)||[],cat='',i,at=0,tot=0;
+   for(i=0;i<L.length;i++)if(L[i][0]===r.folder)cat=L[i][1];
+   if(cat)for(i=0;i<L.length;i++)if(L[i][1]===cat){tot++;if(L[i][0]===r.folder)at=tot;}
+   ctn.textContent=tot?at+' of '+tot:'';
+   cs.textContent=cat?catName(cat):'';
+   var l=lessonOf(r.folder),w=l?l.w:0,k=KNOWN[r.folder]||0;
+   bar.hidden=!w;
+   if(w)bar.firstElementChild.style.width=Math.min(100,Math.round(100*k/w))+'%';
+  }
+
+  // ---- my courses
+  //
+  // Dexie when the page managed to fetch it, plain IndexedDB when it did not,
+  // one database either way — the same arrangement the progress table has,
+  // and for the same reason: a course that disappears because a script did
+  // not load is worse than one kept plainly.
+  var Courses=(function(){
+   var NAME='wordbase-courses',STORE='courses',impl=null;
+   try{
+    if(typeof Dexie!=='undefined'){
+     var db=new Dexie(NAME);
+     db.version(1).stores({courses:'id,at'});
+     impl={all:function(){return db.courses.toArray();},
+           put:function(c){return db.courses.put(c);},
+           del:function(id){return db.courses.delete(id);}};
+    }
+   }catch(e){impl=null;}
+   if(impl)return impl;
+   var ready=null,mem={};
+   function open(){
+    if(ready)return ready;
+    ready=new Promise(function(res){
+     var req;
+     try{req=indexedDB.open(NAME);}catch(e){return res(null);}
+     req.onsuccess=function(e){
+      var d=e.target.result;
+      if(d.objectStoreNames.contains(STORE))return res(d);
+      var v=d.version+1;d.close();
+      var up;try{up=indexedDB.open(NAME,v);}catch(e2){return res(null);}
+      up.onupgradeneeded=function(e2){var d2=e2.target.result;
+       if(!d2.objectStoreNames.contains(STORE))d2.createObjectStore(STORE,{keyPath:'id'});};
+      up.onsuccess=function(e2){res(e2.target.result);};
+      up.onerror=function(){res(null);};
+     };
+     req.onerror=function(){res(null);};
+     req.onblocked=function(){res(null);};
+    });
+    return ready;
+   }
+   function st(mode){return open().then(function(d){
+    if(!d)return null;try{return d.transaction(STORE,mode).objectStore(STORE);}catch(e){return null;}});}
+   return {
+    all:function(){return st('readonly').then(function(s){
+     if(!s)return Object.keys(mem).map(function(k){return mem[k];});
+     return new Promise(function(res){var r=s.getAll();
+      r.onsuccess=function(){res(r.result||[]);};r.onerror=function(){res([]);};});});},
+    put:function(c){mem[c.id]=c;return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res(c);var r=s.put(c);
+      r.onsuccess=function(){res(c);};r.onerror=function(){res(c);};});});},
+    del:function(id){delete mem[id];return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res();var r=s.delete(id);
+      r.onsuccess=function(){res();};r.onerror=function(){res();};});});}
+   };
+  })();
+  function chosen(){var v=false;try{v=!!localStorage.getItem('wb.courses');}catch(e){}return v;}
+  function touched(){try{localStorage.setItem('wb.courses','1');}catch(e){}}
+  var LIST=[];
+  function sizeOf(c){
+   var w=0,k=0,i,l;
+   for(i=0;i<c.lessons.length;i++){l=lessonOf(c.lessons[i]);
+    if(l){w+=l.w||0;k+=Math.min(KNOWN[c.lessons[i]]||0,l.w||0);}}
+   return {w:w,k:k};
+  }
+  var clist=document.getElementById('m-clist');
+  function paintCourses(){
+   if(!clist)return;
+   clist.innerHTML='';
+   LIST.sort(function(a,b){return (b.at||0)-(a.at||0);});
+   LIST.forEach(function(c){
+    var z=sizeOf(c),b=document.createElement('button');
+    b.type='button';b.className='crs';
+    b.innerHTML='<span class="cn"></span><span class="cm"></span>';
+    b.querySelector('.cn').textContent=c.name;
+    b.querySelector('.cm').textContent=c.lessons.length+' lesson'+(c.lessons.length===1?'':'s')
+     +(z.w?' · '+z.w+' words':'')+(z.k&&z.w?' · '+Math.round(100*z.k/z.w)+'% known':'');
+    b.addEventListener('click',function(){withMenu(function(){coursePanel(c);});});
+    clist.appendChild(b);
+   });
+  }
+  function loadCourses(){
+   return Promise.resolve(Courses.all()).then(function(rows){LIST=rows||[];paintCourses();})
+    .catch(function(){});
+  }
+  function save(c){
+   c.at=Date.now();touched();
+   return Promise.resolve(Courses.put(c)).then(loadCourses);
+  }
+
+  // A course, as a page of its own in a sheet: its lessons in order, how far
+  // you are in each, and the one to do next.
+  function coursePanel(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   panel(c.name,function(body){
+    var z=sizeOf(c),next=null,i,l;
+    for(i=0;i<c.lessons.length&&!next;i++){l=lessonOf(c.lessons[i]);
+     if(l&&(KNOWN[l.folder]||0)<(l.w||0))next=l;}
+    if(!next)next=lessonOf(c.lessons[0]);
+    body.innerHTML='<p class="sheet-p cdesc"></p><ol class="clessons"></ol>'
+     +'<div class="sheet-row cbtns"></div>';
+    body.querySelector('.cdesc').textContent=c.lessons.length+' lessons · '
+     +z.w+' words'+(z.w?' · '+z.k+' known':'')+'. Saved in this browser.';
+    var ol=body.querySelector('.clessons');
+    c.lessons.forEach(function(f){
+     var L=lessonOf(f),li=document.createElement('li'),a=document.createElement('a');
+     a.href=base()+'/'+f+'/';
+     a.appendChild(ring(KNOWN[f]||0,L?L.w:0));
+     var t=document.createElement('span');t.className='t';
+     t.textContent=L?L.title:f+' (no longer on the site)';
+     var m=document.createElement('span');m.className='m';
+     m.textContent=L?catName(L.cat)+' · '+L.w+' words':'';
+     a.appendChild(t);a.appendChild(m);li.appendChild(a);ol.appendChild(li);
+    });
+    var bt=body.querySelector('.cbtns');
+    if(next){var go=document.createElement('a');go.className='cgo';
+     go.href=base()+'/'+next.folder+'/';
+     go.textContent=(z.k?'Continue: ':'Start: ')+next.title+' →';bt.appendChild(go);}
+    btn(bt,'Edit',function(){builder(c);});
+    btn(bt,'Export file',function(){exportCourse(c);});
+    btn(bt,'Delete',function(){
+     if(this.dataset.sure){Promise.resolve(Courses.del(c.id)).then(loadCourses);
+      var s=document.querySelector('.sheet');if(s)s.remove();return;}
+     this.dataset.sure='1';this.textContent='Delete — press again to be sure';
+    });
+   });
+  }
+  function btn(box,label,fn){
+   var b=document.createElement('button');b.type='button';b.className='cbtn';
+   b.textContent=label;b.addEventListener('click',fn);box.appendChild(b);return b;
+  }
+  function exportCourse(c){
+   try{
+    var blob=new Blob([JSON.stringify({kind:'wordbase-course',v:1,
+     site:location.host,course:{name:c.name,lessons:c.lessons}},null,1)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=(c.name||'course').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')+'.course.json';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1000);
+   }catch(e){}
+  }
+
+  // ---- the builder: name it, find lessons, order them, save
+  function builder(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   var draft={id:c&&c.id||('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)),
+              name:c&&c.name||'',lessons:(c&&c.lessons||[]).slice(),made:c&&c.made||Date.now()};
+   panel(c?'Edit course':'Build your own course',function(body){
+    body.classList.add('builder');
+    body.innerHTML='<p class="sheet-p">Pick lessons from anywhere on the site and put them in '
+     +'your own order. It is saved in this browser — no account, nothing sent anywhere.</p>'
+     +'<label class="bl"><span>Course name</span><input type="text" class="bname" maxlength="80" '
+     +'placeholder="My Bangkok trip"></label>'
+     +'<div class="bcols"><div class="bpick"><label class="bl"><span>Find lessons</span>'
+     +'<input type="search" class="bq" placeholder="Search by title or category"></label>'
+     +'<div class="bres"></div></div>'
+     +'<div class="bmine"><div class="bh"><b>Your course</b><span class="btot"></span></div>'
+     +'<ol class="bsel"></ol><p class="bempty">Nothing yet — tick lessons on the left.</p></div></div>'
+     +'<div class="sheet-row bbtns"></div>';
+    var nm=body.querySelector('.bname'),q=body.querySelector('.bq'),
+        res=body.querySelector('.bres'),sel=body.querySelector('.bsel'),
+        tot=body.querySelector('.btot'),empty=body.querySelector('.bempty');
+    nm.value=draft.name;
+    nm.addEventListener('input',function(){draft.name=nm.value;});
+    var ALL=((mnu&&mnu.lessons)||(idx&&idx.lessons)||[]);
+    function has(f){return draft.lessons.indexOf(f)>=0;}
+    function drawRes(){
+     var t=(q.value||'').trim().toLowerCase(),out=[],i,l;
+     for(i=0;i<ALL.length&&out.length<60;i++){l=ALL[i];
+      if(!t||(l.title||'').toLowerCase().indexOf(t)>=0||catName(l.cat).toLowerCase().indexOf(t)>=0)out.push(l);}
+     res.innerHTML='';
+     out.forEach(function(l){
+      var lab=document.createElement('label');lab.className='bopt'+(has(l.folder)?' on':'');
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=has(l.folder);
+      cb.addEventListener('change',function(){
+       if(cb.checked){if(!has(l.folder))draft.lessons.push(l.folder);}
+       else draft.lessons=draft.lessons.filter(function(f){return f!==l.folder;});
+       lab.classList.toggle('on',cb.checked);drawSel();
+      });
+      var t2=document.createElement('span');t2.className='t';t2.textContent=l.title;
+      var m=document.createElement('span');m.className='m';m.textContent=catName(l.cat)+' · '+l.w+' words';
+      var tx=document.createElement('span');tx.className='tx';tx.appendChild(t2);tx.appendChild(m);
+      lab.appendChild(cb);lab.appendChild(tx);res.appendChild(lab);
+     });
+     if(!out.length)res.innerHTML='<p class="bempty">No lesson matches.</p>';
+    }
+    function move(i,d){var j=i+d;if(j<0||j>=draft.lessons.length)return;
+     var x=draft.lessons[i];draft.lessons[i]=draft.lessons[j];draft.lessons[j]=x;drawSel();}
+    function drawSel(){
+     sel.innerHTML='';var w=0;
+     draft.lessons.forEach(function(f,i){
+      var L=lessonOf(f);w+=L?L.w:0;
+      var li=document.createElement('li');
+      li.innerHTML='<span class="t"></span><span class="m"></span>';
+      li.querySelector('.t').textContent=L?L.title:f;
+      li.querySelector('.m').textContent=L?String(L.w):'';
+      var up=btn(li,'↑',function(){move(i,-1);});up.setAttribute('aria-label','Move up');up.disabled=i===0;
+      var dn=btn(li,'↓',function(){move(i,1);});dn.setAttribute('aria-label','Move down');dn.disabled=i===draft.lessons.length-1;
+      var rm=btn(li,'✕',function(){draft.lessons.splice(i,1);drawSel();drawRes();});rm.setAttribute('aria-label','Take it out');
+      sel.appendChild(li);
+     });
+     empty.hidden=draft.lessons.length>0;
+     tot.textContent=draft.lessons.length?draft.lessons.length+' lessons · '+w+' words':'';
+     sv.disabled=!draft.lessons.length;
+    }
+    q.addEventListener('input',drawRes);
+    var bb=body.querySelector('.bbtns');
+    var sv=btn(bb,'Save course',function(){
+     if(!draft.lessons.length)return;
+     draft.name=(nm.value||'').trim()||'My course';
+     save(draft).then(function(){coursePanel(draft);});
+    });
+    sv.classList.add('primary');
+    // A file from Export, on this browser or another
+    var imp=btn(bb,'Import a file',function(){fi.click();});
+    var fi=document.createElement('input');fi.type='file';fi.accept='.json,application/json';fi.hidden=true;
+    fi.addEventListener('change',function(){
+     var f=fi.files&&fi.files[0];if(!f)return;
+     var rd=new FileReader();
+     rd.onload=function(){
+      try{var j=JSON.parse(rd.result),cc=j&&j.course;
+       if(!cc||!Array.isArray(cc.lessons))throw 0;
+       draft.name=String(cc.name||'Imported course').slice(0,80);nm.value=draft.name;
+       draft.lessons=cc.lessons.filter(function(x){return typeof x==='string'&&lessonOf(x);});
+       drawSel();drawRes();
+      }catch(e){imp.textContent='That file is not a course';}
+     };
+     rd.readAsText(f);
+    });
+    bb.appendChild(fi);
+    drawRes();drawSel();
+    setTimeout(function(){try{nm.focus();}catch(e){}},50);
+   });
+  }
+  var mb=document.getElementById('m-build');
+  if(mb)mb.addEventListener('click',function(){withMenu(function(){builder(null);});});
+
+  // ---- start up, after the page has drawn
+  window.addEventListener('wb:nav',paintCont);
+  window.addEventListener('wb:index',function(){paintCont();paintCourses();});
+  setTimeout(function(){
+   known().then(paintCont);
+   if(chosen())withMenu(loadCourses);
+   else paintCourses();
+  },250);
+ })();
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Real-World Situational Thai vocabulary","description":"17 Thai lessons, 204 words in all, including ร้าน (ráan) shop, ร้านสะดวกซื้อ (ráan sà-dùak-sʉ́ʉ) convenience store, ซื้อ (súue) to buy.","url":"https://thai.inaflash.cards/c-real-world-situational-thai/","isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Shops \u0026 Convenience Stores","url":"https://thai.inaflash.cards/401-shops-convenience-stores/"},{"@type":"ListItem","position":2,"name":"Markets \u0026 Street Vendors","url":"https://thai.inaflash.cards/402-markets-street-vendors/"},{"@type":"ListItem","position":3,"name":"Restaurants \u0026 Cafés","url":"https://thai.inaflash.cards/403-restaurants-cafes/"},{"@type":"ListItem","position":4,"name":"Food Orders \u0026 Takeaway","url":"https://thai.inaflash.cards/404-food-orders-takeaway/"},{"@type":"ListItem","position":5,"name":"Taxis, Ride Apps \u0026 Getting Picked Up","url":"https://thai.inaflash.cards/405-taxis-ride-apps-getting-picked-up/"},{"@type":"ListItem","position":6,"name":"Hotels \u0026 Accommodation","url":"https://thai.inaflash.cards/406-hotels-accommodation/"},{"@type":"ListItem","position":7,"name":"Delivery \u0026 Online Orders","url":"https://thai.inaflash.cards/407-delivery-online-orders/"},{"@type":"ListItem","position":8,"name":"Banks, ATMs \u0026 Money","url":"https://thai.inaflash.cards/408-banks-atms-money/"},{"@type":"ListItem","position":9,"name":"Government Offices \u0026 Everyday Bureaucracy","url":"https://thai.inaflash.cards/409-government-offices-everyday-bureaucracy/"},{"@type":"ListItem","position":10,"name":"Doctors, Pharmacies \u0026 Everyday Health","url":"https://thai.inaflash.cards/410-doctors-pharmacies-everyday-health/"},{"@type":"ListItem","position":11,"name":"Police, Lost Property \u0026 Problems","url":"https://thai.inaflash.cards/411-police-lost-property-problems/"},{"@type":"ListItem","position":12,"name":"Repairs \u0026 Household Services","url":"https://thai.inaflash.cards/412-repairs-household-services/"},{"@type":"ListItem","position":13,"name":"Everyday Problems","url":"https://thai.inaflash.cards/413-everyday-problems/"},{"@type":"ListItem","position":14,"name":"Asking for Directions in Real Life","url":"https://thai.inaflash.cards/414-asking-for-directions-in-real-life/"},{"@type":"ListItem","position":15,"name":"Booking, Appointments \u0026 Reservations","url":"https://thai.inaflash.cards/415-booking-appointments-reservations/"},{"@type":"ListItem","position":16,"name":"Asking for Help","url":"https://thai.inaflash.cards/416-asking-for-help/"},{"@type":"ListItem","position":17,"name":"Real Thai Service Interactions","url":"https://thai.inaflash.cards/417-real-thai-service-interactions/"}]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Real-World Situational Thai","item":"https://thai.inaflash.cards/c-real-world-situational-thai/"}]}</script></body></html>

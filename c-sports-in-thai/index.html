@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="18 Thai lessons, 180 words in all, including กีฬา (gii-laa) sport, เล่นกีฬา (lên-gee-laa) play sports, ดูกีฬา (duu-gii-laa) watch sports."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=69eb89ff"/>
+<link rel="stylesheet" href="../style.css?v=a673aac6"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -51,10 +51,18 @@
   </div>
   <div class="find"><input id="find" type="search" placeholder="Search lessons or words" aria-label="Search lessons and words" autocomplete="off"/></div>
   <nav id="nav">
-    <a class="item big" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="ic" aria-hidden="true">▤</span><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
-    <a class="item" href="https://thai.inaflash.cards/" data-title="home"><span class="ic" aria-hidden="true">⌂</span><span class="lb">Home</span></a>
-    <a class="item" id="m-fav" href="#" hidden data-title="favourites"><span class="ic" aria-hidden="true">♡</span><span class="lb">Favourites</span><span class="n"></span></a>
-    <a class="item" id="m-recent" href="#" hidden data-title="recently viewed"><span class="ic" aria-hidden="true">↺</span><span class="lb">Recently viewed</span><span class="n"></span></a>
+    <a class="mcont" id="m-cont" href="#" hidden><span class="ck">Continue where you left off</span><span class="ct"><span class="ctt"></span><span class="ctn"></span></span><span class="cs"></span><span class="cbar" aria-hidden="true"><i></i></span></a>
+    <div class="mtiles">
+    <a class="item big tile" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
+    <a class="item tile" id="m-recent" href="#" hidden data-title="recently viewed"><span class="lb">Recent</span><span class="n"></span></a>
+    <a class="item tile" id="m-fav" href="#" hidden data-title="favourites"><span class="lb">Favourites</span><span class="n"></span></a>
+    </div>
+    <div class="mcourses" id="m-courses">
+      <div class="mch"><span>My courses</span><small>saved in this browser</small></div>
+      <div class="mclist" id="m-clist"></div>
+      <button type="button" class="mbuild" id="m-build"><span aria-hidden="true">+</span> Build your own course</button>
+    </div>
+    <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
@@ -70,20 +78,10 @@
   <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner"><span class="lb">Beginner</span><span class="n" data-fill="cat:c-beginner"></span></a>
       </div>
       <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-video-lessons" data-name="Video lessons">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Video lessons">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span><span class="n" data-fill="cat:c-video-lessons"></span></a>
+      <div class="catalso" hidden><div class="ah">Also in Beginner</div>
+          <a class="kept" href="https://thai.inaflash.cards/thai-basics-100/"><span class="t">Thai Basics 100</span></a>
+          <a class="kept" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/"><span class="t">Thai Class 9 Complete Vocab List</span></a>
       </div>
-      <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-top-words" data-name="Top Words">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Top Words">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span><span class="n" data-fill="cat:c-top-words"></span></a>
-      </div>
-      <div class="catbox" hidden></div>
     </div>
     <div class="catwrap" data-cat="c-thai-food" data-name="Thai Food">
       <div class="catline">
@@ -148,6 +146,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -226,6 +225,8 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-beginner" data-name="Beginner">
       <div class="catline">
@@ -236,13 +237,14 @@
     </div>
       <div class="mnote">More appear as lessons reach 10 approved sentences.</div>
     </div>
-    <div class="grp" data-grp>Also</div>
+    <div class="grp" data-grp>Explore</div>
+    <a class="item also" href="https://thai.inaflash.cards/" data-title="home"><span class="lb">Home</span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">1697 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
     <div class="hits" id="hits" hidden></div>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
@@ -266,7 +268,7 @@
   <div class="wide">
     <h1 style="font-size:26px;color:#fff;line-height:1.25">Sports In Thai vocabulary</h1>
     <p class="lead">18 Thai lessons, 180 words in all, including กีฬา (gii-laa) sport, เล่นกีฬา (lên-gee-laa) play sports, ดูกีฬา (duu-gii-laa) watch sports.</p>
-    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/348-thai-sports-basics/"><span class="num">351</span><span class="meta"><span class="lt">Thai Sports Basics</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/349-sports-exercise/"><span class="num">352</span><span class="meta"><span class="lt">Sports &amp; Exercise</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/350-football-thai/"><span class="num">353</span><span class="meta"><span class="lt">Football Thai</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/351-football-match-talk/"><span class="num">354</span><span class="meta"><span class="lt">Football Match Talk</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/352-thai-sports-reactions/"><span class="num">355</span><span class="meta"><span class="lt">Thai Sports Reactions</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/353-muay-thai-basics/"><span class="num">356</span><span class="meta"><span class="lt">Muay Thai Basics</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/354-badminton-tennis-racquet-sports/"><span class="num">357</span><span class="meta"><span class="lt">Badminton, Tennis &amp; Racquet Sports</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/355-basketball-volleyball-thai/"><span class="num">358</span><span class="meta"><span class="lt">Basketball &amp; Volleyball Thai</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/356-running-fitness-thai/"><span class="num">359</span><span class="meta"><span class="lt">Running &amp; Fitness Thai</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/357-competitions-tournaments/"><span class="num">360</span><span class="meta"><span class="lt">Competitions &amp; Tournaments</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/358-sports-news/"><span class="num">361</span><span class="meta"><span class="lt">Sports News</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/359-fans-supporters/"><span class="num">362</span><span class="meta"><span class="lt">Fans &amp; Supporters</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/360-sports-injuries/"><span class="num">363</span><span class="meta"><span class="lt">Sports Injuries</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/361-sports-strategy/"><span class="num">364</span><span class="meta"><span class="lt">Sports Strategy</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/362-referees-rules-decisions/"><span class="num">365</span><span class="meta"><span class="lt">Referees, Rules &amp; Decisions</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/363-sports-commentary-thai/"><span class="num">366</span><span class="meta"><span class="lt">Sports Commentary Thai</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/364-talking-like-a-sports-fan/"><span class="num">367</span><span class="meta"><span class="lt">Talking Like a Sports Fan</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/365-thai-sports-talk/"><span class="num">368</span><span class="meta"><span class="lt">Thai Sports Talk</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
+    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/348-thai-sports-basics/"><span class="num">01</span><span class="meta"><span class="lt">Thai Sports Basics</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/349-sports-exercise/"><span class="num">02</span><span class="meta"><span class="lt">Sports &amp; Exercise</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/350-football-thai/"><span class="num">03</span><span class="meta"><span class="lt">Football Thai</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/351-football-match-talk/"><span class="num">04</span><span class="meta"><span class="lt">Football Match Talk</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/352-thai-sports-reactions/"><span class="num">05</span><span class="meta"><span class="lt">Thai Sports Reactions</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/353-muay-thai-basics/"><span class="num">06</span><span class="meta"><span class="lt">Muay Thai Basics</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/354-badminton-tennis-racquet-sports/"><span class="num">07</span><span class="meta"><span class="lt">Badminton, Tennis &amp; Racquet Sports</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/355-basketball-volleyball-thai/"><span class="num">08</span><span class="meta"><span class="lt">Basketball &amp; Volleyball Thai</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/356-running-fitness-thai/"><span class="num">09</span><span class="meta"><span class="lt">Running &amp; Fitness Thai</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/357-competitions-tournaments/"><span class="num">10</span><span class="meta"><span class="lt">Competitions &amp; Tournaments</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/358-sports-news/"><span class="num">11</span><span class="meta"><span class="lt">Sports News</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/359-fans-supporters/"><span class="num">12</span><span class="meta"><span class="lt">Fans &amp; Supporters</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/360-sports-injuries/"><span class="num">13</span><span class="meta"><span class="lt">Sports Injuries</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/361-sports-strategy/"><span class="num">14</span><span class="meta"><span class="lt">Sports Strategy</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/362-referees-rules-decisions/"><span class="num">15</span><span class="meta"><span class="lt">Referees, Rules &amp; Decisions</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/363-sports-commentary-thai/"><span class="num">16</span><span class="meta"><span class="lt">Sports Commentary Thai</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/364-talking-like-a-sports-fan/"><span class="num">17</span><span class="meta"><span class="lt">Talking Like a Sports Fan</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/365-thai-sports-talk/"><span class="num">18</span><span class="meta"><span class="lt">Thai Sports Talk</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
     <h2 class="sec-h">The words</h2>
     <h3 class="g-h"><a href="https://thai.inaflash.cards/348-thai-sports-basics/">Thai Sports Basics</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00287-sport/">กีฬา</a> <span class="rom"><span class="rt t-mid">gii</span>-<span class="rt t-mid">laa</span></span></dt><dd>sport, athletics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02323-play-sports/">เล่นกีฬา</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-mid">gee</span>-<span class="rt t-mid">laa</span></span></dt><dd>play sports</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05403-watch-sports/">ดูกีฬา</a> <span class="rom"><span class="rt t-mid">duu</span>-<span class="rt t-mid">gii</span>-<span class="rt t-mid">laa</span></span></dt><dd>watch sports</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05404-athlete/">นักกีฬา</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-mid">gii</span>-<span class="rt t-mid">laa</span></span></dt><dd>athlete</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00353-team/">ทีม</a> <span class="rom"><span class="rt t-mid">thiim</span></span></dt><dd>team</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05405-player/">ผู้เล่น</a> <span class="rom"><span class="rt t-falling">phûu</span>-<span class="rt t-falling">lên</span></span></dt><dd>player</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05406-coach/">โค้ช</a> <span class="rom"><span class="rt t-high">khóot</span></span></dt><dd>coach</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00364-competition/">การแข่งขัน</a> <span class="rom"><span class="rt t-mid">gaan</span>-<span class="rt t-low">khàeng</span>-<span class="rt t-rising">khǎn</span></span></dt><dd>competition, contest, match [noun form of แข่งขัน]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01704-to-compete/">แข่ง</a> <span class="rom"><span class="rt t-low">khɛ̀ng</span></span></dt><dd>to compete; to race</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00984-to-win/">ชนะ</a> <span class="rom"><span class="rt t-high">chá</span>-<span class="rt t-high">ná</span></span></dt><dd>to win, conquer, overcome, victory</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/349-sports-exercise/">Sports &amp; Exercise</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05407-exercise/">ออกกำลังกาย</a> <span class="rom"><span class="rt t-low">ɔ̀ɔk</span>-<span class="rt t-mid">gam</span>-<span class="rt t-mid">lang</span>-<span class="rt t-mid">gaai</span></span></dt><dd>exercise</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05408-run/">วิ่ง</a> <span class="rom"><span class="rt t-falling">wîng</span></span></dt><dd>run</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01605-walk/">เดิน</a> <span class="rom"><span class="rt t-mid">dəən</span></span></dt><dd>walk, travel</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05409-swim/">ว่ายน้ำ</a> <span class="rom"><span class="rt t-falling">wâai</span>-<span class="rt t-high">nám</span></span></dt><dd>swim</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05410-cycle/">ปั่นจักรยาน</a> <span class="rom"><span class="rt t-low">bpàn</span>-<span class="rt t-low">jàk</span>-<span class="rt t-low">grà</span>-<span class="rt t-mid">yaan</span></span></dt><dd>cycle</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05411-play-ball/">เล่นบอล</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>play ball / football</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05412-go-to-the-gym/">เข้ายิม</a> <span class="rom"><span class="rt t-falling">khâo</span>-<span class="rt t-mid">yim</span></span></dt><dd>go to the gym</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05413-fit/">ฟิต</a> <span class="rom"><span class="rt t-high">fít</span></span></dt><dd>fit</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01237-tired/">เหนื่อย</a> <span class="rom"><span class="rt t-low">nʉ̀ai</span></span></dt><dd>tired</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01499-strong/">แข็งแรง</a> <span class="rom"><span class="rt t-rising">khǎeng</span>-<span class="rt t-mid">rɛɛng</span></span></dt><dd>strong; healthy; sturdy</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/350-football-thai/">Football Thai</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00632-football/">ฟุตบอล</a> <span class="rom"><span class="rt t-high">fút</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>football, soccer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05414-ball/">บอล</a> <span class="rom"><span class="rt t-mid">bɔɔn</span></span></dt><dd>ball / football</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05415-play-football/">เตะบอล</a> <span class="rom"><span class="rt t-low">dtè</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>play football / kick a ball</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05416-national-team/">ทีมชาติ</a> <span class="rom"><span class="rt t-mid">thiim</span>-<span class="rt t-falling">châat</span></span></dt><dd>national team</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00908-door/">ประตู</a> <span class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-mid">dtuu</span></span></dt><dd>door, gate, entrance, goal [sports], [classifier for doors/goals]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05417-score/">ยิงประตู</a> <span class="rom"><span class="rt t-mid">ying</span>-<span class="rt t-low">bprà</span>-<span class="rt t-mid">dtuu</span></span></dt><dd>score / shoot a goal</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05418-goalkeeper/">ผู้รักษาประตู</a> <span class="rom"><span class="rt t-falling">phûu</span>-<span class="rt t-high">rák</span>-<span class="rt t-rising">sǎa</span>-<span class="rt t-low">bprà</span>-<span class="rt t-mid">dtuu</span></span></dt><dd>goalkeeper</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05419-forward/">กองหน้า</a> <span class="rom"><span class="rt t-mid">gɔɔng</span>-<span class="rt t-falling">nâa</span></span></dt><dd>forward</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05420-defender/">กองหลัง</a> <span class="rom"><span class="rt t-mid">gɔɔng</span>-<span class="rt t-rising">lǎng</span></span></dt><dd>defender</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00346-committee-member/">กรรมการ</a> <span class="rom"><span class="rt t-mid">gam</span>-<span class="rt t-high">má</span>-<span class="rt t-mid">gaan</span></span></dt><dd>committee member, board member, referee, judge</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/351-football-match-talk/">Football Match Talk</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00520-score/">คะแนน</a> <span class="rom"><span class="rt t-high">khá</span>-<span class="rt t-mid">naen</span></span></dt><dd>score, mark, point, vote</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01634-always/">เสมอ</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-rising">mə̌ə</span></span></dt><dd>always, regularly, equally</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01168-to-be-allergic-to-also-to-lose/">แพ้</a> <span class="rom"><span class="rt t-high">pɛ́ɛ</span></span></dt><dd>to be allergic to (also: to lose)</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00128-to-lead/">นำ</a> <span class="rom"><span class="rt t-mid">nam</span></span></dt><dd>to lead, guide, bring, conduct</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00066-according-to/">ตาม</a> <span class="rom"><span class="rt t-mid">dtaam</span></span></dt><dd>according to, along, following, to follow</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05421-first-half/">ครึ่งแรก</a> <span class="rom"><span class="rt t-falling">khrʉ̂ng</span>-<span class="rt t-falling">rɛ̂ɛk</span></span></dt><dd>first half</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05422-second-half/">ครึ่งหลัง</a> <span class="rom"><span class="rt t-falling">khrʉ̂ng</span>-<span class="rt t-rising">lǎng</span></span></dt><dd>second half</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05423-full-time/">หมดเวลา</a> <span class="rom"><span class="rt t-low">mòt</span>-<span class="rt t-mid">wee</span>-<span class="rt t-mid">laa</span></span></dt><dd>full time / time is up</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05424-stoppage-time/">ทดเวลา</a> <span class="rom"><span class="rt t-high">thót</span>-<span class="rt t-mid">wee</span>-<span class="rt t-mid">laa</span></span></dt><dd>stoppage time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05425-score/">ยิงเข้า</a> <span class="rom"><span class="rt t-mid">ying</span>-<span class="rt t-falling">khâo</span></span></dt><dd>score / shoot in</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/352-thai-sports-reactions/">Thai Sports Reactions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05426-awesome/">สุดยอด</a> <span class="rom"><span class="rt t-low">sùt</span>-<span class="rt t-falling">yɔ̂ɔt</span></span></dt><dd>awesome / excellent</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05427-very-skilled/">เก่งมาก</a> <span class="rom"><span class="rt t-low">gèng</span>-<span class="rt t-falling">mâak</span></span></dt><dd>very skilled</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05428-almost/">เกือบแล้ว</a> <span class="rom"><span class="rt t-low">gʉ̀ap</span>-<span class="rt t-high">lɛ́ɛo</span></span></dt><dd>almost</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05429-make-a-mistake/">พลาด</a> <span class="rom"><span class="rt t-falling">phlâat</span></span></dt><dd>make a mistake / miss</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03623-unbelievable/">ไม่น่าเชื่อ</a> <span class="rom"><span class="rt t-falling">mâi</span> <span class="rt t-falling">nâa</span>-<span class="rt t-falling">chʉ̂a</span></span></dt><dd>unbelievable</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00610-to-hope-for-anxiously/">ลุ้น</a> <span class="rom"><span class="rt t-high">lún</span></span></dt><dd>to hope for anxiously, be in suspense, root for</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05164-very-suspenseful/">ลุ้นมาก</a> <span class="rom"><span class="rt t-high">lún</span>-<span class="rt t-falling">mâak</span></span></dt><dd>very suspenseful / exciting</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02343-what-a-pity/">เสียดาย</a> <span class="rom"><span class="rt t-rising">sǐa</span>-<span class="rt t-mid">daai</span></span></dt><dd>what a pity, unfortunately</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04157-go-for-it/">เอาเลย</a> <span class="rom"><span class="rt t-mid">ao</span> <span class="rt t-mid">loei</span></span></dt><dd>go for it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05430-keep-fighting/">สู้ๆ</a> <span class="rom"><span class="rt t-falling">sûu</span>-<span class="rt t-falling">sûu</span></span></dt><dd>keep fighting / you can do it</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/353-muay-thai-basics/">Muay Thai Basics</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05431-boxing/">มวย</a> <span class="rom"><span class="rt t-mid">muai</span></span></dt><dd>boxing / Muay Thai</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05432-muay-thai/">มวยไทย</a> <span class="rom"><span class="rt t-mid">muai</span>-<span class="rt t-mid">thai</span></span></dt><dd>Muay Thai</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05433-boxer/">นักมวย</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-mid">muai</span></span></dt><dd>boxer / fighter</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05434-fighter/">นักชก</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-high">chók</span></span></dt><dd>fighter / boxer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05435-punch/">ชก</a> <span class="rom"><span class="rt t-high">chók</span></span></dt><dd>punch / box</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02087-punch/">ต่อย</a> <span class="rom"><span class="rt t-low">dtɔ̀i</span></span></dt><dd>punch; hit with the fist</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02086-kick/">เตะ</a> <span class="rom"><span class="rt t-low">dtè</span></span></dt><dd>kick</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05436-elbow/">ศอก</a> <span class="rom"><span class="rt t-low">sɔ̀ɔk</span></span></dt><dd>elbow</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05437-knee/">เข่า</a> <span class="rom"><span class="rt t-low">khào</span></span></dt><dd>knee</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05438-boxing-ring/">เวทีมวย</a> <span class="rom"><span class="rt t-mid">wee</span>-<span class="rt t-mid">thii</span>-<span class="rt t-mid">muai</span></span></dt><dd>boxing ring</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/354-badminton-tennis-racquet-sports/">Badminton, Tennis &amp; Racquet Sports</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05439-badminton/">แบดมินตัน</a> <span class="rom"><span class="rt t-low">bɛ̀ɛt</span>-<span class="rt t-mid">min</span>-<span class="rt t-mid">dtan</span></span></dt><dd>badminton</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05440-tennis/">เทนนิส</a> <span class="rom"><span class="rt t-mid">then</span>-<span class="rt t-high">nít</span></span></dt><dd>tennis</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01182-fragment-of-fruit/">ไม้</a> <span class="rom"><span class="rt t-high">máai</span></span></dt><dd>fragment of ผลไม้ (fruit) / wood</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01042-classifier-for-fruits/">ลูก</a> <span class="rom"><span class="rt t-falling">lûuk</span></span></dt><dd>classifier for fruits, classifier for round objects, fruits</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05441-hit/">ตี</a> <span class="rom"><span class="rt t-mid">dtii</span></span></dt><dd>hit / strike</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05442-serve/">เสิร์ฟ</a> <span class="rom"><span class="rt t-low">sə̀əf</span></span></dt><dd>serve</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00635-field/">สนาม</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-rising">nǎam</span></span></dt><dd>field, ground, yard, stadium, สนามบิน airport</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05443-opponent/">คู่แข่ง</a> <span class="rom"><span class="rt t-falling">khûu</span>-<span class="rt t-low">khɛ̀ng</span></span></dt><dd>opponent</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05444-compete-against-each-other/">แข่งกัน</a> <span class="rom"><span class="rt t-low">khɛ̀ng</span>-<span class="rt t-mid">gan</span></span></dt><dd>compete against each other</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00705-to-snatch/">ชิง</a> <span class="rom"><span class="rt t-mid">ching</span></span></dt><dd>to snatch, seize, compete for [ชิงรางวัล]</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/355-basketball-volleyball-thai/">Basketball &amp; Volleyball Thai</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05445-basketball/">บาสเกตบอล</a> <span class="rom"><span class="rt t-low">bàat</span>-<span class="rt t-low">gèet</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>basketball</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05446-volleyball/">วอลเลย์บอล</a> <span class="rom"><span class="rt t-mid">wɔɔn</span>-<span class="rt t-falling">lêe</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>volleyball</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02084-throw/">โยน</a> <span class="rom"><span class="rt t-mid">yoon</span></span></dt><dd>throw; toss</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05447-pass-the-ball/">ส่งบอล</a> <span class="rom"><span class="rt t-low">sòng</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>pass the ball</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05448-receive-the-ball/">รับบอล</a> <span class="rom"><span class="rt t-high">ráp</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>receive the ball</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05449-shoot/">ชู้ต</a> <span class="rom"><span class="rt t-high">chúut</span></span></dt><dd>shoot</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05450-block/">บล็อก</a> <span class="rom"><span class="rt t-high">blɔ́k</span></span></dt><dd>block</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05451-spike/">ตบ</a> <span class="rom"><span class="rt t-low">dtòp</span></span></dt><dd>spike / hit</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05452-point/">แต้ม</a> <span class="rom"><span class="rt t-falling">dtâem</span></span></dt><dd>point</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05453-score-points/">ทำแต้ม</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-falling">dtâem</span></span></dt><dd>score points</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/356-running-fitness-thai/">Running &amp; Fitness Thai</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05454-train/">ซ้อม</a> <span class="rom"><span class="rt t-high">sɔ́ɔm</span></span></dt><dd>train / practise</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05455-practise/">ฝึก</a> <span class="rom"><span class="rt t-low">fʉ̀k</span></span></dt><dd>practise / train</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05456-training/">การฝึก</a> <span class="rom"><span class="rt t-mid">gaan</span>-<span class="rt t-low">fʉ̀k</span></span></dt><dd>training</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00541-distance/">ระยะทาง</a> <span class="rom"><span class="rt t-high">rá</span>-<span class="rt t-high">yá</span>-<span class="rt t-mid">thaang</span></span></dt><dd>distance</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00504-speed/">ความเร็ว</a> <span class="rom"><span class="rt t-mid">khwaam</span>-<span class="rt t-mid">reo</span></span></dt><dd>speed, velocity [noun form of เร็ว - fast]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00009-time/">เวลา</a> <span class="rom"><span class="rt t-mid">wee</span>-<span class="rt t-mid">laa</span></span></dt><dd>time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00384-statistics/">สถิติ</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-low">thì</span>-<span class="rt t-low">dtì</span></span></dt><dd>statistics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05457-achieve-a-time/">ทำเวลา</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">wee</span>-<span class="rt t-mid">laa</span></span></dt><dd>achieve a time / set a time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05458-break-a-record/">ทำลายสถิติ</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">laai</span>-<span class="rt t-low">sà</span>-<span class="rt t-low">thì</span>-<span class="rt t-low">dtì</span></span></dt><dd>break a record</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05459-cross-the-finish-line/">เข้าเส้นชัย</a> <span class="rom"><span class="rt t-falling">khâo</span>-<span class="rt t-falling">sên</span>-<span class="rt t-falling">châi</span></span></dt><dd>cross the finish line</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/357-competitions-tournaments/">Competitions &amp; Tournaments</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05460-tournament/">ทัวร์นาเมนต์</a> <span class="rom"><span class="rt t-mid">thuaa</span>-<span class="rt t-mid">naa</span>-<span class="rt t-mid">men</span></span></dt><dd>tournament</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00118-cycle/">รอบ</a> <span class="rom"><span class="rt t-falling">rɔ̂ɔp</span></span></dt><dd>cycle, round, circumference, around, surrounding</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05461-first-round/">รอบแรก</a> <span class="rom"><span class="rt t-falling">rɔ̂ɔp</span>-<span class="rt t-falling">rɛ̂ɛk</span></span></dt><dd>first round</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05462-final-round/">รอบชิงชนะเลิศ</a> <span class="rom"><span class="rt t-falling">rɔ̂ɔp</span>-<span class="rt t-mid">ching</span>-<span class="rt t-high">chá</span>-<span class="rt t-high">ná</span>-<span class="rt t-falling">lə̂ət</span></span></dt><dd>final round</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05463-semi-final/">รอบรองชนะเลิศ</a> <span class="rom"><span class="rt t-falling">rɔ̂ɔp</span>-<span class="rt t-mid">rɔɔng</span>-<span class="rt t-high">chá</span>-<span class="rt t-high">ná</span>-<span class="rt t-falling">lə̂ət</span></span></dt><dd>semi-final</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00412-champion/">แชมป์</a> <span class="rom"><span class="rt t-high">cháem</span></span></dt><dd>champion</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05464-runner-up/">รองแชมป์</a> <span class="rom"><span class="rt t-mid">rɔɔng</span>-<span class="rt t-high">chɛ́ɛm</span></span></dt><dd>runner-up</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05465-compete-for-the-championship/">ชิงแชมป์</a> <span class="rom"><span class="rt t-mid">ching</span>-<span class="rt t-high">chɛ́ɛm</span></span></dt><dd>compete for the championship</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05466-win-the-championship/">คว้าแชมป์</a> <span class="rom"><span class="rt t-falling">khwâa</span>-<span class="rt t-high">chɛ́ɛm</span></span></dt><dd>win the championship</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/358-sports-news/">Sports News</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05467-sports-news/">ข่าวกีฬา</a> <span class="rom"><span class="rt t-low">khàao</span>-<span class="rt t-mid">gii</span>-<span class="rt t-mid">laa</span></span></dt><dd>sports news</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05468-report-the-result/">รายงานผล</a> <span class="rom"><span class="rt t-mid">raai</span>-<span class="rt t-mid">ngaan</span>-<span class="rt t-mid">phŏn</span></span></dt><dd>report the result</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05469-competition-result/">ผลการแข่งขัน</a> <span class="rom"><span class="rt t-mid">phŏn</span>-<span class="rt t-mid">gaan</span>-<span class="rt t-low">khɛ̀ng</span>-<span class="rt t-rising">khǎn</span></span></dt><dd>competition result</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05470-score-a-goal/">ทำประตู</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-low">bprà</span>-<span class="rt t-mid">dtuu</span></span></dt><dd>score a goal</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05471-secure-a-victory/">คว้าชัย</a> <span class="rom"><span class="rt t-falling">khwâa</span>-<span class="rt t-mid">chai</span></span></dt><dd>secure a victory</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05472-suffer-defeat/">พ่ายแพ้</a> <span class="rom"><span class="rt t-falling">phâai</span>-<span class="rt t-high">phɛ́ɛ</span></span></dt><dd>suffer defeat</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05473-defeat/">เอาชนะ</a> <span class="rom"><span class="rt t-mid">ao</span>-<span class="rt t-high">chá</span>-<span class="rt t-high">ná</span></span></dt><dd>defeat / beat</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05474-draw/">เสมอกัน</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-rising">mə̌ə</span>-<span class="rt t-mid">gan</span></span></dt><dd>draw / tie</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05475-in-good-form/">ฟอร์มดี</a> <span class="rom"><span class="rt t-mid">fɔɔm</span>-<span class="rt t-mid">dii</span></span></dt><dd>in good form</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05476-out-of-form/">ฟอร์มตก</a> <span class="rom"><span class="rt t-mid">fɔɔm</span>-<span class="rt t-low">dtòk</span></span></dt><dd>out of form</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/359-fans-supporters/">Fans &amp; Supporters</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05477-football-fan/">แฟนบอล</a> <span class="rom"><span class="rt t-mid">fɛɛn</span>-<span class="rt t-mid">bɔɔn</span></span></dt><dd>football fan</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05478-supporters/">กองเชียร์</a> <span class="rom"><span class="rt t-mid">gɔɔng</span>-<span class="rt t-falling">chîa</span></span></dt><dd>supporters / cheering section</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05479-cheer/">เชียร์</a> <span class="rom"><span class="rt t-falling">chîa</span></span></dt><dd>cheer / support</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05480-support-a-team/">เชียร์ทีม</a> <span class="rom"><span class="rt t-falling">chîa</span>-<span class="rt t-mid">thiim</span></span></dt><dd>support a team</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05481-favourite-team/">ทีมโปรด</a> <span class="rom"><span class="rt t-mid">thiim</span>-<span class="rt t-low">bpròot</span></span></dt><dd>favourite team</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05482-can-t-afford-to-lose/">แพ้ไม่ได้</a> <span class="rom"><span class="rt t-high">phɛ́ɛ</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-falling">dâai</span></span></dt><dd>can&#x27;t afford to lose</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05483-root-for/">เอาใจช่วย</a> <span class="rom"><span class="rt t-mid">ao</span>-<span class="rt t-mid">jai</span>-<span class="rt t-falling">chûai</span></span></dt><dd>root for / wish someone well</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05484-cheer-with-all-your-heart/">เชียร์สุดใจ</a> <span class="rom"><span class="rt t-falling">chîa</span>-<span class="rt t-low">sùt</span>-<span class="rt t-mid">jai</span></span></dt><dd>cheer with all your heart</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00843-atmosphere/">บรรยากาศ</a> <span class="rom"><span class="rt t-mid">ban</span>-<span class="rt t-mid">yaa</span>-<span class="rt t-low">gàat</span></span></dt><dd>atmosphere, ambiance, environment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05485-cheering/">เสียงเชียร์</a> <span class="rom"><span class="rt t-rising">sǐang</span>-<span class="rt t-falling">chîa</span></span></dt><dd>cheering / crowd noise</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/360-sports-injuries/">Sports Injuries</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01695-to-be-injured/">บาดเจ็บ</a> <span class="rom"><span class="rt t-low">bàat</span>-<span class="rt t-low">jèp</span></span></dt><dd>to be injured; injured</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02262-hurt/">เจ็บ</a> <span class="rom"><span class="rt t-low">jèp</span></span></dt><dd>hurt, painful</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05486-ankle/">ข้อเท้า</a> <span class="rom"><span class="rt t-falling">khɔ̂ɔ</span>-<span class="rt t-high">tháao</span></span></dt><dd>ankle</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01763-muscle/">กล้ามเนื้อ</a> <span class="rom"><span class="rt t-falling">glâam</span>-<span class="rt t-high">nʉ́a</span></span></dt><dd>muscle</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05487-get-a-cramp/">เป็นตะคริว</a> <span class="rom"><span class="rt t-mid">bpen</span>-<span class="rt t-low">dtà</span>-<span class="rt t-mid">khriw</span></span></dt><dd>get a cramp</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00743-to-rest/">พัก</a> <span class="rom"><span class="rt t-high">phák</span></span></dt><dd>to rest, take a break, stay temporarily, พักผ่อน relax, พรรค party</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05488-recover/">พักฟื้น</a> <span class="rom"><span class="rt t-high">phák</span>-<span class="rt t-high">fʉ́ʉn</span></span></dt><dd>recover / rehabilitate</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05489-recover-from-an-injury/">หายเจ็บ</a> <span class="rom"><span class="rt t-rising">hǎai</span>-<span class="rt t-low">jèp</span></span></dt><dd>recover from an injury</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05490-return-to-play/">กลับมาเล่น</a> <span class="rom"><span class="rt t-low">glàp</span>-<span class="rt t-mid">maa</span>-<span class="rt t-falling">lên</span></span></dt><dd>return to play</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/361-sports-strategy/">Sports Strategy</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05491-game-plan/">แผนการเล่น</a> <span class="rom"><span class="rt t-rising">phɛ̌ɛn</span>-<span class="rt t-mid">gaan</span>-<span class="rt t-falling">lên</span></span></dt><dd>game plan / tactics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05492-tactics/">แท็กติก</a> <span class="rom"><span class="rt t-high">thɛ́k</span>-<span class="rt t-low">dtìk</span></span></dt><dd>tactics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05493-attacking-play/">เกมรุก</a> <span class="rom"><span class="rt t-mid">geem</span>-<span class="rt t-high">rúk</span></span></dt><dd>attacking play</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05494-defensive-play/">เกมรับ</a> <span class="rom"><span class="rt t-mid">geem</span>-<span class="rt t-high">ráp</span></span></dt><dd>defensive play</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05495-defend/">ตั้งรับ</a> <span class="rom"><span class="rt t-falling">dtâng</span>-<span class="rt t-high">ráp</span></span></dt><dd>defend / sit back</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05496-attack/">บุก</a> <span class="rom"><span class="rt t-low">bùk</span></span></dt><dd>attack</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05497-open-the-game/">เปิดเกม</a> <span class="rom"><span class="rt t-low">bpə̀ət</span>-<span class="rt t-mid">geem</span></span></dt><dd>open the game / start attacking</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05498-control-the-game/">คุมเกม</a> <span class="rom"><span class="rt t-mid">khum</span>-<span class="rt t-mid">geem</span></span></dt><dd>control the game</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05499-substitute-a-player/">เปลี่ยนตัว</a> <span class="rom"><span class="rt t-low">bplìan</span>-<span class="rt t-mid">dtua</span></span></dt><dd>substitute a player</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05500-have-an-advantage/">ได้เปรียบ</a> <span class="rom"><span class="rt t-falling">dâai</span>-<span class="rt t-low">bprìap</span></span></dt><dd>have an advantage</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/362-referees-rules-decisions/">Referees, Rules &amp; Decisions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05501-rules/">กติกา</a> <span class="rom"><span class="rt t-low">gà</span>-<span class="rt t-low">dtì</span>-<span class="rt t-mid">gaa</span></span></dt><dd>rules</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05502-foul/">ฟาวล์</a> <span class="rom"><span class="rt t-mid">faao</span></span></dt><dd>foul</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05503-yellow-card/">ใบเหลือง</a> <span class="rom"><span class="rt t-mid">bai</span>-<span class="rt t-rising">lʉ̌ang</span></span></dt><dd>yellow card</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05504-red-card/">ใบแดง</a> <span class="rom"><span class="rt t-mid">bai</span>-<span class="rt t-mid">dɛɛng</span></span></dt><dd>red card</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05505-get-sent-off/">โดนไล่ออก</a> <span class="rom"><span class="rt t-mid">doon</span>-<span class="rt t-falling">lâi</span>-<span class="rt t-low">ɔ̀ɔk</span></span></dt><dd>get sent off</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05506-make-a-decision/">ตัดสิน</a> <span class="rom"><span class="rt t-low">dtàt</span>-<span class="rt t-rising">sǐn</span></span></dt><dd>make a decision / referee</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05507-decision/">คำตัดสิน</a> <span class="rom"><span class="rt t-mid">kham</span>-<span class="rt t-low">dtàt</span>-<span class="rt t-rising">sǐn</span></span></dt><dd>decision / ruling</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05508-unfair/">ไม่แฟร์</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-mid">fɛɛ</span></span></dt><dd>unfair</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05509-object-to-a-decision/">ค้านคำตัดสิน</a> <span class="rom"><span class="rt t-high">kháan</span>-<span class="rt t-mid">kham</span>-<span class="rt t-low">dtàt</span>-<span class="rt t-rising">sǐn</span></span></dt><dd>object to a decision</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05510-controversy/">ดราม่า</a> <span class="rom"><span class="rt t-mid">draa</span>-<span class="rt t-falling">mâa</span></span></dt><dd>controversy / drama</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/363-sports-commentary-thai/">Sports Commentary Thai</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01271-rhythm/">จังหวะ</a> <span class="rom"><span class="rt t-mid">jang</span>-<span class="rt t-low">wà</span></span></dt><dd>rhythm; beat; timing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00239-opportunity/">โอกาส</a> <span class="rom"><span class="rt t-mid">oo</span>-<span class="rt t-low">gàat</span></span></dt><dd>opportunity, chance</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05511-golden-opportunity/">โอกาสทอง</a> <span class="rom"><span class="rt t-mid">oo</span>-<span class="rt t-low">gàat</span>-<span class="rt t-mid">thɔɔng</span></span></dt><dd>golden opportunity</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02157-rush-shoot-forward-surge/">พุ่ง</a> <span class="rom"><span class="rt t-falling">phûng</span></span></dt><dd>rush | shoot forward | surge</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05512-counterattack/">สวนกลับ</a> <span class="rom"><span class="rt t-rising">sǔan</span>-<span class="rt t-low">glàp</span></span></dt><dd>counterattack</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02028-come-loose/">หลุด</a> <span class="rom"><span class="rt t-low">lùt</span></span></dt><dd>come loose; escape; slip off</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05513-long-range-shot/">ยิงไกล</a> <span class="rom"><span class="rt t-mid">ying</span>-<span class="rt t-mid">glai</span></span></dt><dd>long-range shot</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05514-save-a-shot/">เซฟ</a> <span class="rom"><span class="rt t-high">séep</span></span></dt><dd>save a shot</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05515-narrowly/">หวุดหวิด</a> <span class="rom"><span class="rt t-low">wùt</span>-<span class="rt t-low">wìt</span></span></dt><dd>narrowly / by a hair</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05516-turn-the-game-around/">พลิกเกม</a> <span class="rom"><span class="rt t-high">phlík</span>-<span class="rt t-mid">geem</span></span></dt><dd>turn the game around</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/364-talking-like-a-sports-fan/">Talking Like a Sports Fan</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05517-played-very-well/">เล่นดีมาก</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-mid">dii</span>-<span class="rt t-falling">mâak</span></span></dt><dd>played very well</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05518-played-badly-today/">วันนี้เล่นไม่ดี</a> <span class="rom"><span class="rt t-mid">wan</span>-<span class="rt t-high">níi</span>-<span class="rt t-falling">lên</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-mid">dii</span></span></dt><dd>played badly today</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05519-this-team-is-in-good-form/">ทีมนี้ฟอร์มดี</a> <span class="rom"><span class="rt t-mid">thiim</span>-<span class="rt t-high">níi</span>-<span class="rt t-mid">fɔɔm</span>-<span class="rt t-mid">dii</span></span></dt><dd>this team is in good form</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05520-shouldn-t-have-lost/">ไม่น่าแพ้</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-falling">nâa</span>-<span class="rt t-high">phɛ́ɛ</span></span></dt><dd>shouldn&#x27;t have lost</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05521-deserved-to-win/">สมควรชนะ</a> <span class="rom"><span class="rt t-mid">sŏm</span>-<span class="rt t-mid">khuan</span>-<span class="rt t-high">chá</span>-<span class="rt t-high">ná</span></span></dt><dd>deserved to win</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05522-this-game-is-evenly-matched/">เกมนี้สูสี</a> <span class="rom"><span class="rt t-mid">geem</span>-<span class="rt t-high">níi</span>-<span class="rt t-rising">sǔu</span>-<span class="rt t-rising">sǐi</span></span></dt><dd>this game is evenly matched</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05523-almost-turned-it-around/">เกือบพลิก</a> <span class="rom"><span class="rt t-low">gʉ̀ap</span>-<span class="rt t-high">phlík</span></span></dt><dd>almost turned it around</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05524-they-played-an-exciting-game/">เล่นกันมันมาก</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-mid">gan</span>-<span class="rt t-mid">man</span>-<span class="rt t-falling">mâak</span></span></dt><dd>they played an exciting game</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05525-watching-made-me-tired-for-them/">ดูแล้วเหนื่อยแทน</a> <span class="rom"><span class="rt t-mid">duu</span>-<span class="rt t-high">lɛ́ɛo</span>-<span class="rt t-low">nʉ̀ai</span>-<span class="rt t-mid">thɛɛn</span></span></dt><dd>watching made me tired for them</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05526-don-t-miss-this-match/">นัดนี้ห้ามพลาด</a> <span class="rom"><span class="rt t-high">nát</span>-<span class="rt t-high">níi</span>-<span class="rt t-falling">hâam</span>-<span class="rt t-falling">phlâat</span></span></dt><dd>don&#x27;t miss this match</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/365-thai-sports-talk/">Thai Sports Talk</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05527-which-team-do-you-support/">เชียร์ทีมไหน</a> <span class="rom"><span class="rt t-falling">chîa</span>-<span class="rt t-mid">thiim</span>-<span class="rt t-rising">nǎi</span></span></dt><dd>which team do you support?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05528-do-you-watch-football-often/">ดูบอลบ่อยไหม</a> <span class="rom"><span class="rt t-mid">duu</span>-<span class="rt t-mid">bɔɔn</span>-<span class="rt t-low">bɔ̀i</span>-<span class="rt t-rising">mǎi</span></span></dt><dd>do you watch football often?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05529-how-was-it-last-night/">เมื่อคืนเป็นไง</a> <span class="rom"><span class="rt t-falling">mʉ̂a</span>-<span class="rt t-mid">khʉʉn</span>-<span class="rt t-mid">bpen</span>-<span class="rt t-mid">ngai</span></span></dt><dd>how was it last night?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05530-last-night-s-game-was-intense/">เกมเมื่อคืนเดือดมาก</a> <span class="rom"><span class="rt t-mid">geem</span>-<span class="rt t-falling">mʉ̂a</span>-<span class="rt t-mid">khʉʉn</span>-<span class="rt t-low">dʉ̀at</span>-<span class="rt t-falling">mâak</span></span></dt><dd>last night&#x27;s game was intense</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05531-what-a-shame/">เสียดายมาก</a> <span class="rom"><span class="rt t-rising">sǐa</span>-<span class="rt t-mid">daai</span>-<span class="rt t-falling">mâak</span></span></dt><dd>what a shame</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05532-should-probably-have-won/">น่าจะชนะ</a> <span class="rom"><span class="rt t-falling">nâa</span>-<span class="rt t-low">jà</span>-<span class="rt t-high">chá</span>-<span class="rt t-high">ná</span></span></dt><dd>should probably have won</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05533-the-referee-made-a-mistake/">กรรมการพลาด</a> <span class="rom"><span class="rt t-mid">gam</span>-<span class="rt t-high">má</span>-<span class="rt t-mid">gaan</span>-<span class="rt t-falling">phlâat</span></span></dt><dd>the referee made a mistake</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05534-but-it-was-still-fun/">แต่ก็สนุกดี</a> <span class="rom"><span class="rt t-low">dtɛ̀ɛ</span>-<span class="rt t-falling">gɔ̂ɔ</span>-<span class="rt t-low">sà</span>-<span class="rt t-low">nùk</span>-<span class="rt t-mid">dii</span></span></dt><dd>but it was still fun</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05535-wait-for-the-next-match/">รอดูนัดหน้า</a> <span class="rom"><span class="rt t-mid">rɔɔ</span>-<span class="rt t-mid">duu</span>-<span class="rt t-high">nát</span>-<span class="rt t-falling">nâa</span></span></dt><dd>wait for the next match</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05536-do-you-think-they-can-challenge-for/">ปีนี้ลุ้นแชมป์ไหม</a> <span class="rom"><span class="rt t-mid">bpii</span>-<span class="rt t-high">níi</span>-<span class="rt t-high">lún</span>-<span class="rt t-high">chɛ́ɛm</span>-<span class="rt t-rising">mǎi</span></span></dt><dd>do you think they can challenge for the title this year?</dd></div></dl>
   </div>
@@ -276,6 +278,7 @@
  var nav=document.getElementById('nav'),find=document.getElementById('find'),
      none=document.getElementById('nohits'),hits=document.getElementById('hits'),
      idx=null,idxTried=false;
+ var NAVJ=null,KNOWN={};
  function items(){return nav?nav.querySelectorAll('a.item'):[];}
  function base(){return document.body.dataset.root||'';}
  function read(k,d){try{var v=localStorage.getItem(k);
@@ -441,13 +444,15 @@
   }
   page=Math.max(0,Math.min(pages-1,page||0));
   wrap.dataset.page=String(page);
-  var pg=el('div','catpage'),i;
+  // A category that fits on one page is as tall as its rows: the fixed
+  // height is for page turns, and three lessons in a box for six left a gap.
+  var pg=el('div','catpage'+(pages===1?' fit':'')),i;
   for(i=page*PAGE;i<Math.min(rows.length,(page+1)*PAGE);i++){
    var l=rows[i],a=document.createElement('a');
    a.className='item seq'+(isHere(l.folder)?' on':'');
    a.href=base()+'/'+l.folder+'/';
    a.title=l.title;
-   a.appendChild(el('span','n',String(l.n)));
+   a.appendChild(ring(KNOWN[l.folder]||0,l.w||0));
    a.appendChild(el('span','t',l.title));
    a.appendChild(el('span','w',String(l.w||'')));
    pg.appendChild(a);
@@ -478,6 +483,15 @@
   return location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')
    .slice(-(folder.length+1))==='/'+folder;
  }
+ // How far the reader has got in a lesson: an empty ring, a part one, a
+ // filled one. Read from their own progress (KNOWN, words known per lesson).
+ function ring(k,w){
+  var r=document.createElement('span');
+  r.className='rg'+(w&&k>=w?' done':k?' part':'');
+  r.setAttribute('aria-hidden','true');
+  if(k)r.title=k+' of '+(w||'?')+' words known';
+  return r;
+ }
  function el(tag,cls,text){
   var e=document.createElement(tag);e.className=cls;
   if(text!==undefined)e.textContent=text;return e;
@@ -494,6 +508,7 @@
   function openOne(wrap,on){
    var box=wrap.querySelector('.catbox'),x=wrap.querySelector('.catx');
    box.hidden=!on;
+   var al=wrap.querySelector('.catalso');if(al)al.hidden=!on;
    x.textContent=on?'−':'+';
    x.setAttribute('aria-expanded',on?'true':'false');
    if(!on)return;
@@ -534,6 +549,41 @@
   });
  })();
 
+ // --------------------------------------------- show all the categories
+ // Dan: "cut the categories menu in half, and add a more/show all button".
+ // The rest are in the markup, behind the button; a search, or the page of a
+ // category that is among them, shows them without asking.
+ var catMore=document.getElementById('catmore'),
+     catMoreBtn=document.getElementById('cat-more'),catMoreOpen=false;
+ try{catMoreOpen=localStorage.getItem('wb.catmore')==='1';}catch(e){}
+ function paintMore(){
+  if(!catMore)return;
+  var q=!!(find&&find.value.trim());
+  catMore.classList.toggle('open',catMoreOpen||q);
+  if(catMoreBtn){
+   catMoreBtn.setAttribute('aria-expanded',catMoreOpen?'true':'false');
+   catMoreBtn.textContent=catMoreOpen?'Show fewer categories'
+    :'Show all '+catMoreBtn.dataset.all+' categories ('+catMoreBtn.dataset.more+' more)';
+  }
+ }
+ if(catMore){
+  // where you are is never hidden behind the button
+  var mine=catMore.querySelector('a.item.on');
+  if(!mine){
+   var cn0=document.querySelector('.menu .wsub[data-cname]');
+   cn0=cn0?cn0.getAttribute('data-cname'):'';
+   if(cn0){var ws=catMore.querySelectorAll('.catwrap');
+    for(var q0=0;q0<ws.length;q0++)if(ws[q0].dataset.name===cn0)mine=ws[q0];}
+  }
+  if(mine)catMoreOpen=true;
+  if(catMoreBtn)catMoreBtn.addEventListener('click',function(){
+   catMoreOpen=!catMoreOpen;
+   try{localStorage.setItem('wb.catmore',catMoreOpen?'1':'0');}catch(e){}
+   paintMore();
+  });
+  paintMore();
+ }
+
  // -------------------------------------------- favourites, recently viewed
  //
  // Both are the reader's own history, kept in their browser and never sent
@@ -565,6 +615,7 @@
   var marks=document.querySelectorAll('[data-fill]');
   if(!marks.length)return;
   fetch(base()+'/nav.json').then(function(r){return r.json();}).then(function(j){
+   NAVJ=j;window.dispatchEvent(new Event('wb:nav'));
    // On a sentence lesson the course is the sentence half: its numbers, its
    // "Sentence lesson 2 of 9 in Beginner".
    var sent=document.body.dataset.kind==='sentences',
@@ -589,9 +640,10 @@
     else if(k==='all-n')m.textContent=L.length+' lessons in all';
     else if(k==='sub'){
      var cn=m.getAttribute('data-cname');
-     var word=sent?'Sentence lesson ':'Lesson ';
+     // "8 of 55 · Thai Conversation": one number, the one a reader can use
+     var word=sent?'Sentence lesson ':'';
      m.textContent=pos<0?'':(cn&&cur
-      ?word+at+' of '+counts[cur]+' in '+cn
+      ?word+at+' of '+counts[cur]+' \u00b7 '+cn
       :word+(pos+1)+' of '+L.length);
     }
    }
@@ -649,6 +701,8 @@
   for(i=0;i<g.length;i++)g[i].hidden=!!q;
   live+=lessonHits(q);
   if(none)none.hidden=!q||live>0;
+  if(typeof paintMore==='function')paintMore();
+  if(nav)nav.classList.toggle('q',!!q);
  }
  // Up to eight lessons, and a way to the rest. A column that answers a search
  // with four hundred rows is the thing this redesign removed.
@@ -3288,6 +3342,313 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
  drag(gripa,0);            // between the video and the picture
  drag(gripb,1);            // between the picture and the word
+ // ================================================ the menu's own record
+ //
+ // Dan's new menu: "Continue where you left off", how far the reader has got
+ // in each lesson, and courses of their own — "I want users to be able to
+ // build their own course using our data, we can save what they create using
+ // dexiejs". All of it is the reader's, kept in their browser and never sent
+ // anywhere; there is nothing to send it to.
+ (function(){
+  if(!nav)return;
+  // ---- how far: words known per lesson, from the reader's progress. Only
+  // read when they have ever recorded any (Days is written with every
+  // answer), so a first visit opens no database at all.
+  function known(){
+   var any=false;try{any=!!localStorage.getItem('wb.days');}catch(e){}
+   if(!any||typeof Progress==='undefined')return Promise.resolve();
+   return Promise.resolve(Progress.all()).then(function(rows){
+    var k={},i;
+    for(i=0;i<(rows||[]).length;i++)
+     if(rows[i].state==='known'&&rows[i].lesson)k[rows[i].lesson]=(k[rows[i].lesson]||0)+1;
+    KNOWN=k;
+    window.dispatchEvent(new Event('wb:index'));   // redraw open categories
+   }).catch(function(){});
+  }
+  function lessonOf(folder){
+   var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],i;
+   for(i=0;i<L.length;i++)if(L[i].folder===folder)return L[i];
+   return null;
+  }
+  function catName(folder){
+   var w=nav.querySelector('.catwrap[data-cat="'+folder+'"]');
+   if(w)return w.dataset.name;
+   var a=nav.querySelector('a.item[href$="/'+folder+'/"] .lb');
+   return a?a.textContent:folder.replace(/^c-/,'').replace(/-/g,' ');
+  }
+  function withMenu(cb){
+   if(mnu||idx){cb();return;}
+   var once=function(){window.removeEventListener('wb:index',once);cb();};
+   window.addEventListener('wb:index',once);
+   loadMenu();
+  }
+
+  // ---- Continue where you left off. Not on a lesson page — there, where
+  // you are is the lesson in front of you and the block at the foot.
+  var cont=document.getElementById('m-cont');
+  function paintCont(){
+   if(!cont)return;
+   if(document.body.dataset.lesson){cont.hidden=true;return;}
+   var r=recents()[0];
+   if(!r||!r.folder){cont.hidden=true;return;}
+   cont.hidden=false;
+   cont.href=base()+'/'+r.folder+'/';
+   cont.querySelector('.ctt').textContent=r.title||r.folder;
+   var ctn=cont.querySelector('.ctn'),cs=cont.querySelector('.cs'),
+       bar=cont.querySelector('.cbar'),L=(NAVJ&&NAVJ.l)||[],cat='',i,at=0,tot=0;
+   for(i=0;i<L.length;i++)if(L[i][0]===r.folder)cat=L[i][1];
+   if(cat)for(i=0;i<L.length;i++)if(L[i][1]===cat){tot++;if(L[i][0]===r.folder)at=tot;}
+   ctn.textContent=tot?at+' of '+tot:'';
+   cs.textContent=cat?catName(cat):'';
+   var l=lessonOf(r.folder),w=l?l.w:0,k=KNOWN[r.folder]||0;
+   bar.hidden=!w;
+   if(w)bar.firstElementChild.style.width=Math.min(100,Math.round(100*k/w))+'%';
+  }
+
+  // ---- my courses
+  //
+  // Dexie when the page managed to fetch it, plain IndexedDB when it did not,
+  // one database either way — the same arrangement the progress table has,
+  // and for the same reason: a course that disappears because a script did
+  // not load is worse than one kept plainly.
+  var Courses=(function(){
+   var NAME='wordbase-courses',STORE='courses',impl=null;
+   try{
+    if(typeof Dexie!=='undefined'){
+     var db=new Dexie(NAME);
+     db.version(1).stores({courses:'id,at'});
+     impl={all:function(){return db.courses.toArray();},
+           put:function(c){return db.courses.put(c);},
+           del:function(id){return db.courses.delete(id);}};
+    }
+   }catch(e){impl=null;}
+   if(impl)return impl;
+   var ready=null,mem={};
+   function open(){
+    if(ready)return ready;
+    ready=new Promise(function(res){
+     var req;
+     try{req=indexedDB.open(NAME);}catch(e){return res(null);}
+     req.onsuccess=function(e){
+      var d=e.target.result;
+      if(d.objectStoreNames.contains(STORE))return res(d);
+      var v=d.version+1;d.close();
+      var up;try{up=indexedDB.open(NAME,v);}catch(e2){return res(null);}
+      up.onupgradeneeded=function(e2){var d2=e2.target.result;
+       if(!d2.objectStoreNames.contains(STORE))d2.createObjectStore(STORE,{keyPath:'id'});};
+      up.onsuccess=function(e2){res(e2.target.result);};
+      up.onerror=function(){res(null);};
+     };
+     req.onerror=function(){res(null);};
+     req.onblocked=function(){res(null);};
+    });
+    return ready;
+   }
+   function st(mode){return open().then(function(d){
+    if(!d)return null;try{return d.transaction(STORE,mode).objectStore(STORE);}catch(e){return null;}});}
+   return {
+    all:function(){return st('readonly').then(function(s){
+     if(!s)return Object.keys(mem).map(function(k){return mem[k];});
+     return new Promise(function(res){var r=s.getAll();
+      r.onsuccess=function(){res(r.result||[]);};r.onerror=function(){res([]);};});});},
+    put:function(c){mem[c.id]=c;return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res(c);var r=s.put(c);
+      r.onsuccess=function(){res(c);};r.onerror=function(){res(c);};});});},
+    del:function(id){delete mem[id];return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res();var r=s.delete(id);
+      r.onsuccess=function(){res();};r.onerror=function(){res();};});});}
+   };
+  })();
+  function chosen(){var v=false;try{v=!!localStorage.getItem('wb.courses');}catch(e){}return v;}
+  function touched(){try{localStorage.setItem('wb.courses','1');}catch(e){}}
+  var LIST=[];
+  function sizeOf(c){
+   var w=0,k=0,i,l;
+   for(i=0;i<c.lessons.length;i++){l=lessonOf(c.lessons[i]);
+    if(l){w+=l.w||0;k+=Math.min(KNOWN[c.lessons[i]]||0,l.w||0);}}
+   return {w:w,k:k};
+  }
+  var clist=document.getElementById('m-clist');
+  function paintCourses(){
+   if(!clist)return;
+   clist.innerHTML='';
+   LIST.sort(function(a,b){return (b.at||0)-(a.at||0);});
+   LIST.forEach(function(c){
+    var z=sizeOf(c),b=document.createElement('button');
+    b.type='button';b.className='crs';
+    b.innerHTML='<span class="cn"></span><span class="cm"></span>';
+    b.querySelector('.cn').textContent=c.name;
+    b.querySelector('.cm').textContent=c.lessons.length+' lesson'+(c.lessons.length===1?'':'s')
+     +(z.w?' · '+z.w+' words':'')+(z.k&&z.w?' · '+Math.round(100*z.k/z.w)+'% known':'');
+    b.addEventListener('click',function(){withMenu(function(){coursePanel(c);});});
+    clist.appendChild(b);
+   });
+  }
+  function loadCourses(){
+   return Promise.resolve(Courses.all()).then(function(rows){LIST=rows||[];paintCourses();})
+    .catch(function(){});
+  }
+  function save(c){
+   c.at=Date.now();touched();
+   return Promise.resolve(Courses.put(c)).then(loadCourses);
+  }
+
+  // A course, as a page of its own in a sheet: its lessons in order, how far
+  // you are in each, and the one to do next.
+  function coursePanel(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   panel(c.name,function(body){
+    var z=sizeOf(c),next=null,i,l;
+    for(i=0;i<c.lessons.length&&!next;i++){l=lessonOf(c.lessons[i]);
+     if(l&&(KNOWN[l.folder]||0)<(l.w||0))next=l;}
+    if(!next)next=lessonOf(c.lessons[0]);
+    body.innerHTML='<p class="sheet-p cdesc"></p><ol class="clessons"></ol>'
+     +'<div class="sheet-row cbtns"></div>';
+    body.querySelector('.cdesc').textContent=c.lessons.length+' lessons · '
+     +z.w+' words'+(z.w?' · '+z.k+' known':'')+'. Saved in this browser.';
+    var ol=body.querySelector('.clessons');
+    c.lessons.forEach(function(f){
+     var L=lessonOf(f),li=document.createElement('li'),a=document.createElement('a');
+     a.href=base()+'/'+f+'/';
+     a.appendChild(ring(KNOWN[f]||0,L?L.w:0));
+     var t=document.createElement('span');t.className='t';
+     t.textContent=L?L.title:f+' (no longer on the site)';
+     var m=document.createElement('span');m.className='m';
+     m.textContent=L?catName(L.cat)+' · '+L.w+' words':'';
+     a.appendChild(t);a.appendChild(m);li.appendChild(a);ol.appendChild(li);
+    });
+    var bt=body.querySelector('.cbtns');
+    if(next){var go=document.createElement('a');go.className='cgo';
+     go.href=base()+'/'+next.folder+'/';
+     go.textContent=(z.k?'Continue: ':'Start: ')+next.title+' →';bt.appendChild(go);}
+    btn(bt,'Edit',function(){builder(c);});
+    btn(bt,'Export file',function(){exportCourse(c);});
+    btn(bt,'Delete',function(){
+     if(this.dataset.sure){Promise.resolve(Courses.del(c.id)).then(loadCourses);
+      var s=document.querySelector('.sheet');if(s)s.remove();return;}
+     this.dataset.sure='1';this.textContent='Delete — press again to be sure';
+    });
+   });
+  }
+  function btn(box,label,fn){
+   var b=document.createElement('button');b.type='button';b.className='cbtn';
+   b.textContent=label;b.addEventListener('click',fn);box.appendChild(b);return b;
+  }
+  function exportCourse(c){
+   try{
+    var blob=new Blob([JSON.stringify({kind:'wordbase-course',v:1,
+     site:location.host,course:{name:c.name,lessons:c.lessons}},null,1)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=(c.name||'course').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')+'.course.json';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1000);
+   }catch(e){}
+  }
+
+  // ---- the builder: name it, find lessons, order them, save
+  function builder(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   var draft={id:c&&c.id||('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)),
+              name:c&&c.name||'',lessons:(c&&c.lessons||[]).slice(),made:c&&c.made||Date.now()};
+   panel(c?'Edit course':'Build your own course',function(body){
+    body.classList.add('builder');
+    body.innerHTML='<p class="sheet-p">Pick lessons from anywhere on the site and put them in '
+     +'your own order. It is saved in this browser — no account, nothing sent anywhere.</p>'
+     +'<label class="bl"><span>Course name</span><input type="text" class="bname" maxlength="80" '
+     +'placeholder="My Bangkok trip"></label>'
+     +'<div class="bcols"><div class="bpick"><label class="bl"><span>Find lessons</span>'
+     +'<input type="search" class="bq" placeholder="Search by title or category"></label>'
+     +'<div class="bres"></div></div>'
+     +'<div class="bmine"><div class="bh"><b>Your course</b><span class="btot"></span></div>'
+     +'<ol class="bsel"></ol><p class="bempty">Nothing yet — tick lessons on the left.</p></div></div>'
+     +'<div class="sheet-row bbtns"></div>';
+    var nm=body.querySelector('.bname'),q=body.querySelector('.bq'),
+        res=body.querySelector('.bres'),sel=body.querySelector('.bsel'),
+        tot=body.querySelector('.btot'),empty=body.querySelector('.bempty');
+    nm.value=draft.name;
+    nm.addEventListener('input',function(){draft.name=nm.value;});
+    var ALL=((mnu&&mnu.lessons)||(idx&&idx.lessons)||[]);
+    function has(f){return draft.lessons.indexOf(f)>=0;}
+    function drawRes(){
+     var t=(q.value||'').trim().toLowerCase(),out=[],i,l;
+     for(i=0;i<ALL.length&&out.length<60;i++){l=ALL[i];
+      if(!t||(l.title||'').toLowerCase().indexOf(t)>=0||catName(l.cat).toLowerCase().indexOf(t)>=0)out.push(l);}
+     res.innerHTML='';
+     out.forEach(function(l){
+      var lab=document.createElement('label');lab.className='bopt'+(has(l.folder)?' on':'');
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=has(l.folder);
+      cb.addEventListener('change',function(){
+       if(cb.checked){if(!has(l.folder))draft.lessons.push(l.folder);}
+       else draft.lessons=draft.lessons.filter(function(f){return f!==l.folder;});
+       lab.classList.toggle('on',cb.checked);drawSel();
+      });
+      var t2=document.createElement('span');t2.className='t';t2.textContent=l.title;
+      var m=document.createElement('span');m.className='m';m.textContent=catName(l.cat)+' · '+l.w+' words';
+      var tx=document.createElement('span');tx.className='tx';tx.appendChild(t2);tx.appendChild(m);
+      lab.appendChild(cb);lab.appendChild(tx);res.appendChild(lab);
+     });
+     if(!out.length)res.innerHTML='<p class="bempty">No lesson matches.</p>';
+    }
+    function move(i,d){var j=i+d;if(j<0||j>=draft.lessons.length)return;
+     var x=draft.lessons[i];draft.lessons[i]=draft.lessons[j];draft.lessons[j]=x;drawSel();}
+    function drawSel(){
+     sel.innerHTML='';var w=0;
+     draft.lessons.forEach(function(f,i){
+      var L=lessonOf(f);w+=L?L.w:0;
+      var li=document.createElement('li');
+      li.innerHTML='<span class="t"></span><span class="m"></span>';
+      li.querySelector('.t').textContent=L?L.title:f;
+      li.querySelector('.m').textContent=L?String(L.w):'';
+      var up=btn(li,'↑',function(){move(i,-1);});up.setAttribute('aria-label','Move up');up.disabled=i===0;
+      var dn=btn(li,'↓',function(){move(i,1);});dn.setAttribute('aria-label','Move down');dn.disabled=i===draft.lessons.length-1;
+      var rm=btn(li,'✕',function(){draft.lessons.splice(i,1);drawSel();drawRes();});rm.setAttribute('aria-label','Take it out');
+      sel.appendChild(li);
+     });
+     empty.hidden=draft.lessons.length>0;
+     tot.textContent=draft.lessons.length?draft.lessons.length+' lessons · '+w+' words':'';
+     sv.disabled=!draft.lessons.length;
+    }
+    q.addEventListener('input',drawRes);
+    var bb=body.querySelector('.bbtns');
+    var sv=btn(bb,'Save course',function(){
+     if(!draft.lessons.length)return;
+     draft.name=(nm.value||'').trim()||'My course';
+     save(draft).then(function(){coursePanel(draft);});
+    });
+    sv.classList.add('primary');
+    // A file from Export, on this browser or another
+    var imp=btn(bb,'Import a file',function(){fi.click();});
+    var fi=document.createElement('input');fi.type='file';fi.accept='.json,application/json';fi.hidden=true;
+    fi.addEventListener('change',function(){
+     var f=fi.files&&fi.files[0];if(!f)return;
+     var rd=new FileReader();
+     rd.onload=function(){
+      try{var j=JSON.parse(rd.result),cc=j&&j.course;
+       if(!cc||!Array.isArray(cc.lessons))throw 0;
+       draft.name=String(cc.name||'Imported course').slice(0,80);nm.value=draft.name;
+       draft.lessons=cc.lessons.filter(function(x){return typeof x==='string'&&lessonOf(x);});
+       drawSel();drawRes();
+      }catch(e){imp.textContent='That file is not a course';}
+     };
+     rd.readAsText(f);
+    });
+    bb.appendChild(fi);
+    drawRes();drawSel();
+    setTimeout(function(){try{nm.focus();}catch(e){}},50);
+   });
+  }
+  var mb=document.getElementById('m-build');
+  if(mb)mb.addEventListener('click',function(){withMenu(function(){builder(null);});});
+
+  // ---- start up, after the page has drawn
+  window.addEventListener('wb:nav',paintCont);
+  window.addEventListener('wb:index',function(){paintCont();paintCourses();});
+  setTimeout(function(){
+   known().then(paintCont);
+   if(chosen())withMenu(loadCourses);
+   else paintCourses();
+  },250);
+ })();
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Sports In Thai vocabulary","description":"18 Thai lessons, 180 words in all, including กีฬา (gii-laa) sport, เล่นกีฬา (lên-gee-laa) play sports, ดูกีฬา (duu-gii-laa) watch sports.","url":"https://thai.inaflash.cards/c-sports-in-thai/","isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Thai Sports Basics","url":"https://thai.inaflash.cards/348-thai-sports-basics/"},{"@type":"ListItem","position":2,"name":"Sports \u0026 Exercise","url":"https://thai.inaflash.cards/349-sports-exercise/"},{"@type":"ListItem","position":3,"name":"Football Thai","url":"https://thai.inaflash.cards/350-football-thai/"},{"@type":"ListItem","position":4,"name":"Football Match Talk","url":"https://thai.inaflash.cards/351-football-match-talk/"},{"@type":"ListItem","position":5,"name":"Thai Sports Reactions","url":"https://thai.inaflash.cards/352-thai-sports-reactions/"},{"@type":"ListItem","position":6,"name":"Muay Thai Basics","url":"https://thai.inaflash.cards/353-muay-thai-basics/"},{"@type":"ListItem","position":7,"name":"Badminton, Tennis \u0026 Racquet Sports","url":"https://thai.inaflash.cards/354-badminton-tennis-racquet-sports/"},{"@type":"ListItem","position":8,"name":"Basketball \u0026 Volleyball Thai","url":"https://thai.inaflash.cards/355-basketball-volleyball-thai/"},{"@type":"ListItem","position":9,"name":"Running \u0026 Fitness Thai","url":"https://thai.inaflash.cards/356-running-fitness-thai/"},{"@type":"ListItem","position":10,"name":"Competitions \u0026 Tournaments","url":"https://thai.inaflash.cards/357-competitions-tournaments/"},{"@type":"ListItem","position":11,"name":"Sports News","url":"https://thai.inaflash.cards/358-sports-news/"},{"@type":"ListItem","position":12,"name":"Fans \u0026 Supporters","url":"https://thai.inaflash.cards/359-fans-supporters/"},{"@type":"ListItem","position":13,"name":"Sports Injuries","url":"https://thai.inaflash.cards/360-sports-injuries/"},{"@type":"ListItem","position":14,"name":"Sports Strategy","url":"https://thai.inaflash.cards/361-sports-strategy/"},{"@type":"ListItem","position":15,"name":"Referees, Rules \u0026 Decisions","url":"https://thai.inaflash.cards/362-referees-rules-decisions/"},{"@type":"ListItem","position":16,"name":"Sports Commentary Thai","url":"https://thai.inaflash.cards/363-sports-commentary-thai/"},{"@type":"ListItem","position":17,"name":"Talking Like a Sports Fan","url":"https://thai.inaflash.cards/364-talking-like-a-sports-fan/"},{"@type":"ListItem","position":18,"name":"Thai Sports Talk","url":"https://thai.inaflash.cards/365-thai-sports-talk/"}]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Sports In Thai","item":"https://thai.inaflash.cards/c-sports-in-thai/"}]}</script></body></html>

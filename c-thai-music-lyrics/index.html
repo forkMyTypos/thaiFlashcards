@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="19 Thai lessons, 190 words in all, including เพลง (phleeng) song, ดนตรี (don-dtrii) music, ฟังเพลง (fang-phleeng) listen to music."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=69eb89ff"/>
+<link rel="stylesheet" href="../style.css?v=a673aac6"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -51,10 +51,18 @@
   </div>
   <div class="find"><input id="find" type="search" placeholder="Search lessons or words" aria-label="Search lessons and words" autocomplete="off"/></div>
   <nav id="nav">
-    <a class="item big" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="ic" aria-hidden="true">▤</span><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
-    <a class="item" href="https://thai.inaflash.cards/" data-title="home"><span class="ic" aria-hidden="true">⌂</span><span class="lb">Home</span></a>
-    <a class="item" id="m-fav" href="#" hidden data-title="favourites"><span class="ic" aria-hidden="true">♡</span><span class="lb">Favourites</span><span class="n"></span></a>
-    <a class="item" id="m-recent" href="#" hidden data-title="recently viewed"><span class="ic" aria-hidden="true">↺</span><span class="lb">Recently viewed</span><span class="n"></span></a>
+    <a class="mcont" id="m-cont" href="#" hidden><span class="ck">Continue where you left off</span><span class="ct"><span class="ctt"></span><span class="ctn"></span></span><span class="cs"></span><span class="cbar" aria-hidden="true"><i></i></span></a>
+    <div class="mtiles">
+    <a class="item big tile" id="m-all" href="https://thai.inaflash.cards/lessons/" data-title="all lessons"><span class="lb">All lessons</span><span class="n" data-fill="all"></span></a>
+    <a class="item tile" id="m-recent" href="#" hidden data-title="recently viewed"><span class="lb">Recent</span><span class="n"></span></a>
+    <a class="item tile" id="m-fav" href="#" hidden data-title="favourites"><span class="lb">Favourites</span><span class="n"></span></a>
+    </div>
+    <div class="mcourses" id="m-courses">
+      <div class="mch"><span>My courses</span><small>saved in this browser</small></div>
+      <div class="mclist" id="m-clist"></div>
+      <button type="button" class="mbuild" id="m-build"><span aria-hidden="true">+</span> Build your own course</button>
+    </div>
+    <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
@@ -70,20 +78,10 @@
   <a class="item cat" href="https://thai.inaflash.cards/c-beginner/" data-title="beginner"><span class="lb">Beginner</span><span class="n" data-fill="cat:c-beginner"></span></a>
       </div>
       <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-video-lessons" data-name="Video lessons">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Video lessons">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span><span class="n" data-fill="cat:c-video-lessons"></span></a>
+      <div class="catalso" hidden><div class="ah">Also in Beginner</div>
+          <a class="kept" href="https://thai.inaflash.cards/thai-basics-100/"><span class="t">Thai Basics 100</span></a>
+          <a class="kept" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/"><span class="t">Thai Class 9 Complete Vocab List</span></a>
       </div>
-      <div class="catbox" hidden></div>
-    </div>
-    <div class="catwrap" data-cat="c-top-words" data-name="Top Words">
-      <div class="catline">
-        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Top Words">+</button>
-  <a class="item cat" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span><span class="n" data-fill="cat:c-top-words"></span></a>
-      </div>
-      <div class="catbox" hidden></div>
     </div>
     <div class="catwrap" data-cat="c-thai-food" data-name="Thai Food">
       <div class="catline">
@@ -148,6 +146,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -226,6 +225,8 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-beginner" data-name="Beginner">
       <div class="catline">
@@ -236,13 +237,14 @@
     </div>
       <div class="mnote">More appear as lessons reach 10 approved sentences.</div>
     </div>
-    <div class="grp" data-grp>Also</div>
+    <div class="grp" data-grp>Explore</div>
+    <a class="item also" href="https://thai.inaflash.cards/" data-title="home"><span class="lb">Home</span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">1697 to read through</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">52 pairs that differ only by tone</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-basics-100/" data-title="thai basics 100"><span class="lb">Thai Basics 100</span></a>
-    <a class="item also" href="https://thai.inaflash.cards/thai-class-9-complete-vocab-list/" data-title="thai class 9 complete vocab list"><span class="lb">Thai Class 9 Complete Vocab List</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
+    <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
     <div class="hits" id="hits" hidden></div>
     <div class="none" id="nohits" hidden>Nothing matches.</div>
   </nav>
@@ -266,7 +268,7 @@
   <div class="wide">
     <h1 style="font-size:26px;color:#fff;line-height:1.25">Thai Music &amp; Lyrics vocabulary</h1>
     <p class="lead">19 Thai lessons, 190 words in all, including เพลง (phleeng) song, ดนตรี (don-dtrii) music, ฟังเพลง (fang-phleeng) listen to music.</p>
-    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/329-thai-music-basics/"><span class="num">332</span><span class="meta"><span class="lt">Thai Music Basics</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/330-talking-about-music-taste/"><span class="num">333</span><span class="meta"><span class="lt">Talking About Music Taste</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/331-music-genres/"><span class="num">334</span><span class="meta"><span class="lt">Music Genres</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/332-instruments/"><span class="num">335</span><span class="meta"><span class="lt">Instruments</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/333-singing-performing/"><span class="num">336</span><span class="meta"><span class="lt">Singing &amp; Performing</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/334-song-lyrics/"><span class="num">337</span><span class="meta"><span class="lt">Song Lyrics</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/335-music-you-can-sing-along-to/"><span class="num">338</span><span class="meta"><span class="lt">Music You Can Sing Along To</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/336-music-emotions/"><span class="num">339</span><span class="meta"><span class="lt">Music Emotions</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/337-talking-about-lyrics/"><span class="num">340</span><span class="meta"><span class="lt">Talking About Lyrics</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/338-thai-love-songs/"><span class="num">341</span><span class="meta"><span class="lt">Thai Love Songs</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/339-thai-music-slang/"><span class="num">342</span><span class="meta"><span class="lt">Thai Music Slang</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/340-discovering-thai-artists/"><span class="num">343</span><span class="meta"><span class="lt">Discovering Thai Artists</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/341-concert-thai/"><span class="num">344</span><span class="meta"><span class="lt">Concert Thai</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/342-music-online/"><span class="num">345</span><span class="meta"><span class="lt">Music Online</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/343-music-reviews-opinions/"><span class="num">346</span><span class="meta"><span class="lt">Music Reviews &amp; Opinions</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/344-thai-music-interviews/"><span class="num">347</span><span class="meta"><span class="lt">Thai Music Interviews</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/345-understanding-thai-lyrics/"><span class="num">348</span><span class="meta"><span class="lt">Understanding Thai Lyrics</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/346-thai-music-culture/"><span class="num">349</span><span class="meta"><span class="lt">Thai Music Culture</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/347-real-thai-music-talk/"><span class="num">350</span><span class="meta"><span class="lt">Real Thai Music Talk</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
+    <ul class="lesson-list"><li><a class="lesson-link" href="https://thai.inaflash.cards/329-thai-music-basics/"><span class="num">01</span><span class="meta"><span class="lt">Thai Music Basics</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/330-talking-about-music-taste/"><span class="num">02</span><span class="meta"><span class="lt">Talking About Music Taste</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/331-music-genres/"><span class="num">03</span><span class="meta"><span class="lt">Music Genres</span><span class="ld">10 words &middot; beginner</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/332-instruments/"><span class="num">04</span><span class="meta"><span class="lt">Instruments</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/333-singing-performing/"><span class="num">05</span><span class="meta"><span class="lt">Singing &amp; Performing</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/334-song-lyrics/"><span class="num">06</span><span class="meta"><span class="lt">Song Lyrics</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/335-music-you-can-sing-along-to/"><span class="num">07</span><span class="meta"><span class="lt">Music You Can Sing Along To</span><span class="ld">10 words &middot; elementary</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/336-music-emotions/"><span class="num">08</span><span class="meta"><span class="lt">Music Emotions</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/337-talking-about-lyrics/"><span class="num">09</span><span class="meta"><span class="lt">Talking About Lyrics</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/338-thai-love-songs/"><span class="num">10</span><span class="meta"><span class="lt">Thai Love Songs</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/339-thai-music-slang/"><span class="num">11</span><span class="meta"><span class="lt">Thai Music Slang</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/340-discovering-thai-artists/"><span class="num">12</span><span class="meta"><span class="lt">Discovering Thai Artists</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/341-concert-thai/"><span class="num">13</span><span class="meta"><span class="lt">Concert Thai</span><span class="ld">10 words &middot; intermediate</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/342-music-online/"><span class="num">14</span><span class="meta"><span class="lt">Music Online</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/343-music-reviews-opinions/"><span class="num">15</span><span class="meta"><span class="lt">Music Reviews &amp; Opinions</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/344-thai-music-interviews/"><span class="num">16</span><span class="meta"><span class="lt">Thai Music Interviews</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/345-understanding-thai-lyrics/"><span class="num">17</span><span class="meta"><span class="lt">Understanding Thai Lyrics</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/346-thai-music-culture/"><span class="num">18</span><span class="meta"><span class="lt">Thai Music Culture</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li><li><a class="lesson-link" href="https://thai.inaflash.cards/347-real-thai-music-talk/"><span class="num">19</span><span class="meta"><span class="lt">Real Thai Music Talk</span><span class="ld">10 words &middot; advanced</span></span><span class="go">&rarr;</span></a></li></ul>
     <h2 class="sec-h">The words</h2>
     <h3 class="g-h"><a href="https://thai.inaflash.cards/329-thai-music-basics/">Thai Music Basics</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00213-song/">เพลง</a> <span class="rom"><span class="rt t-mid">phleeng</span></span></dt><dd>song, [classifier for songs]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00764-music/">ดนตรี</a> <span class="rom"><span class="rt t-mid">don</span>-<span class="rt t-mid">dtrii</span></span></dt><dd>music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02325-listen-to-music/">ฟังเพลง</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>listen to music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05255-sing/">ร้องเพลง</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>sing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00682-singer/">นักร้อง</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-high">rɔ́ɔng</span></span></dt><dd>singer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05256-band/">วงดนตรี</a> <span class="rom"><span class="rt t-mid">wong</span>-<span class="rt t-mid">don</span>-<span class="rt t-mid">dtrii</span></span></dt><dd>band</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01968-artist/">ศิลปิน</a> <span class="rom"><span class="rt t-rising">sǐn</span>-<span class="rt t-mid">la</span>-<span class="rt t-mid">bpin</span></span></dt><dd>artist; performer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05257-new-song/">เพลงใหม่</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">mài</span></span></dt><dd>new song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05258-old-song/">เพลงเก่า</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">gào</span></span></dt><dd>old song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05259-like-this-song/">ชอบเพลงนี้</a> <span class="rom"><span class="rt t-falling">chɔ̂ɔp</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span></span></dt><dd>like this song</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/330-talking-about-music-taste/">Talking About Music Taste</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05260-what-kind-of-music-do-you-like/">ชอบเพลงแบบไหน</a> <span class="rom"><span class="rt t-falling">chɔ̂ɔp</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-low">bɛ̀ɛp</span>-<span class="rt t-rising">nǎi</span></span></dt><dd>what kind of music do you like?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05261-favourite-song/">เพลงโปรด</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">bpròot</span></span></dt><dd>favourite song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05262-favourite-singer/">นักร้องคนโปรด</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-mid">khon</span>-<span class="rt t-low">bpròot</span></span></dt><dd>favourite singer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05263-favourite-band/">วงโปรด</a> <span class="rom"><span class="rt t-mid">wong</span>-<span class="rt t-low">bpròot</span></span></dt><dd>favourite band</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02346-like-very-much/">ชอบมาก</a> <span class="rom"><span class="rt t-falling">chɔ̂ɔp</span>-<span class="rt t-falling">mâak</span></span></dt><dd>like very much</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05264-don-t-really-like/">ไม่ค่อยชอบ</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-falling">khɔ̂i</span>-<span class="rt t-falling">chɔ̂ɔp</span></span></dt><dd>don&#x27;t really like</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05265-don-t-like-at-all/">ไม่ชอบเลย</a> <span class="rom"><span class="rt t-falling">mâi</span>-<span class="rt t-falling">chɔ̂ɔp</span>-<span class="rt t-mid">loei</span></span></dt><dd>don&#x27;t like at all</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05266-listen-often/">ฟังบ่อย</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-low">bɔ̀i</span></span></dt><dd>listen often</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05267-listen-every-day/">ฟังทุกวัน</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-high">thúk</span>-<span class="rt t-mid">wan</span></span></dt><dd>listen every day</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05268-like-listening-at-night/">ชอบฟังตอนกลางคืน</a> <span class="rom"><span class="rt t-falling">chɔ̂ɔp</span>-<span class="rt t-mid">fang</span>-<span class="rt t-mid">dtaawn</span>-<span class="rt t-mid">glaang</span>-<span class="rt t-mid">khʉʉn</span></span></dt><dd>like listening at night</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/331-music-genres/">Music Genres</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05269-pop-music/">เพลงป๊อป</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">bpɔ́ɔp</span></span></dt><dd>pop music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05270-rock-music/">เพลงร็อก</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">rɔ́ɔk</span></span></dt><dd>rock music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05271-jazz-music/">เพลงแจ๊ส</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">jɛ́t</span></span></dt><dd>jazz music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05272-hip-hop/">เพลงฮิปฮอป</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">híp</span>-<span class="rt t-falling">hɔ̂ɔp</span></span></dt><dd>hip-hop</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05273-rap/">เพลงแร็ป</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">rɛ́p</span></span></dt><dd>rap</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05274-luk-thung-music/">เพลงลูกทุ่ง</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-falling">lûuk</span>-<span class="rt t-falling">thûng</span></span></dt><dd>luk thung music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05275-phuea-chiwit-music/">เพลงเพื่อชีวิต</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-falling">phʉ̂a</span>-<span class="rt t-mid">chii</span>-<span class="rt t-high">wít</span></span></dt><dd>phuea chiwit music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05276-thai-music/">เพลงไทย</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-mid">thai</span></span></dt><dd>Thai music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05277-international/">เพลงสากล</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-rising">sǎa</span>-<span class="rt t-mid">gon</span></span></dt><dd>international / Western music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05278-classical-music/">เพลงคลาสสิก</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-falling">khlâat</span>-<span class="rt t-low">sìk</span></span></dt><dd>classical music</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/332-instruments/">Instruments</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05279-guitar/">กีตาร์</a> <span class="rom"><span class="rt t-mid">gii</span>-<span class="rt t-falling">dtâa</span></span></dt><dd>guitar</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05280-drum/">กลอง</a> <span class="rom"><span class="rt t-mid">glɔɔng</span></span></dt><dd>drum</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05281-piano/">เปียโน</a> <span class="rom"><span class="rt t-mid">bpiia</span>-<span class="rt t-mid">noo</span></span></dt><dd>piano</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05282-violin/">ไวโอลิน</a> <span class="rom"><span class="rt t-mid">wai</span>-<span class="rt t-mid">oo</span>-<span class="rt t-mid">lin</span></span></dt><dd>violin</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05283-bass/">เบส</a> <span class="rom"><span class="rt t-falling">bêet</span></span></dt><dd>bass</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05284-saxophone/">แซกโซโฟน</a> <span class="rom"><span class="rt t-falling">sɛ̂ɛk</span>-<span class="rt t-mid">soo</span>-<span class="rt t-mid">foon</span></span></dt><dd>saxophone</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05285-flute/">ขลุ่ย</a> <span class="rom"><span class="rt t-low">khlùy</span></span></dt><dd>flute</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05286-play-guitar/">เล่นกีตาร์</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-mid">gii</span>-<span class="rt t-falling">dtâa</span></span></dt><dd>play guitar</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05287-play-drums/">ตีกลอง</a> <span class="rom"><span class="rt t-mid">dtii</span>-<span class="rt t-mid">glɔɔng</span></span></dt><dd>play drums</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05288-play-music/">เล่นดนตรี</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-mid">don</span>-<span class="rt t-mid">dtrii</span></span></dt><dd>play music / an instrument</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/333-singing-performing/">Singing &amp; Performing</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05289-sing/">ร้อง</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span></span></dt><dd>sing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05290-sing-beautifully/">ร้องเพราะ</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-high">phɔ́</span></span></dt><dd>sing beautifully</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05291-don-t-sing-well/">ร้องไม่เพราะ</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-high">phɔ́</span></span></dt><dd>don&#x27;t sing well</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05292-good-voice/">เสียงดี</a> <span class="rom"><span class="rt t-rising">sǐang</span>-<span class="rt t-mid">dii</span></span></dt><dd>good voice</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05293-beautiful-voice/">เสียงเพราะ</a> <span class="rom"><span class="rt t-rising">sǐang</span>-<span class="rt t-high">phɔ́</span></span></dt><dd>beautiful voice</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02366-loud/">เสียงดัง</a> <span class="rom"><span class="rt t-rising">sǐang</span>-<span class="rt t-mid">dang</span></span></dt><dd>loud, noisy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05294-soft/">เสียงเบา</a> <span class="rom"><span class="rt t-rising">sǐang</span>-<span class="rt t-mid">bao</span></span></dt><dd>soft / quiet voice</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05230-go-on-stage/">ขึ้นเวที</a> <span class="rom"><span class="rt t-falling">khʉ̂n</span>-<span class="rt t-mid">wee</span>-<span class="rt t-mid">thii</span></span></dt><dd>go on stage</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05231-perform-live/">แสดงสด</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-mid">dɛɛng</span>-<span class="rt t-low">sòt</span></span></dt><dd>perform live</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05295-play-live/">เล่นสด</a> <span class="rom"><span class="rt t-falling">lên</span>-<span class="rt t-low">sòt</span></span></dt><dd>play live</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/334-song-lyrics/">Song Lyrics</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05296-song-lyrics/">เนื้อเพลง</a> <span class="rom"><span class="rt t-high">nʉ́a</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>song lyrics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05297-section/">ท่อน</a> <span class="rom"><span class="rt t-falling">thɔ̂ɔn</span></span></dt><dd>section / part of a song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05298-first-part/">ท่อนแรก</a> <span class="rom"><span class="rt t-falling">thɔ̂ɔn</span>-<span class="rt t-falling">rɛ̂ɛk</span></span></dt><dd>first part / verse</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05299-chorus/">ท่อนฮุก</a> <span class="rom"><span class="rt t-falling">thɔ̂ɔn</span>-<span class="rt t-high">húk</span></span></dt><dd>chorus / hook</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05300-hook/">ฮุก</a> <span class="rom"><span class="rt t-high">húk</span></span></dt><dd>hook / chorus</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05301-sing-along/">ร้องตาม</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-mid">dtaam</span></span></dt><dd>sing along</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05302-remember-the-lyrics/">จำเนื้อเพลงได้</a> <span class="rom"><span class="rt t-mid">jam</span>-<span class="rt t-high">nʉ́a</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-falling">dâai</span></span></dt><dd>remember the lyrics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05303-can-t-remember/">จำไม่ได้</a> <span class="rom"><span class="rt t-mid">jam</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-falling">dâai</span></span></dt><dd>can&#x27;t remember</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05304-beautiful-lyrics/">เนื้อเพลงเพราะ</a> <span class="rom"><span class="rt t-high">nʉ́a</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-high">phɔ́</span></span></dt><dd>beautiful lyrics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04942-application/">คำร้อง</a> <span class="rom"><span class="rt t-mid">kham</span>-<span class="rt t-high">rɔ́ɔng</span></span></dt><dd>application / petition</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/335-music-you-can-sing-along-to/">Music You Can Sing Along To</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05305-easy-to-sing-along-to/">ร้องตามง่าย</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-mid">dtaam</span>-<span class="rt t-falling">ngâai</span></span></dt><dd>easy to sing along to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05306-difficult-to-sing-along-to/">ร้องตามยาก</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-mid">dtaam</span>-<span class="rt t-falling">yâak</span></span></dt><dd>difficult to sing along to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05307-remember-the-melody/">จำทำนองได้</a> <span class="rom"><span class="rt t-mid">jam</span>-<span class="rt t-mid">tham</span>-<span class="rt t-mid">nɔɔng</span>-<span class="rt t-falling">dâai</span></span></dt><dd>remember the melody</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05308-can-t-remember-the-melody/">จำทำนองไม่ได้</a> <span class="rom"><span class="rt t-mid">jam</span>-<span class="rt t-mid">tham</span>-<span class="rt t-mid">nɔɔng</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-falling">dâai</span></span></dt><dd>can&#x27;t remember the melody</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05309-catchy/">ติดหู</a> <span class="rom"><span class="rt t-low">dtìt</span>-<span class="rt t-rising">hǔu</span></span></dt><dd>catchy / stuck in your head</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05310-catchy-song/">เพลงติดหู</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">dtìt</span>-<span class="rt t-rising">hǔu</span></span></dt><dd>catchy song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05311-can-sing-it/">ร้องได้</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-falling">dâai</span></span></dt><dd>can sing it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05312-can-t-sing-it/">ร้องไม่ได้</a> <span class="rom"><span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-falling">dâai</span></span></dt><dd>can&#x27;t sing it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05313-too-high-in-pitch/">สูงเกินไป</a> <span class="rom"><span class="rt t-rising">sǔung</span>-<span class="rt t-mid">gəən</span>-<span class="rt t-mid">bpai</span></span></dt><dd>too high in pitch</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05314-too-low-in-pitch/">ต่ำเกินไป</a> <span class="rom"><span class="rt t-low">dtàm</span>-<span class="rt t-mid">gəən</span>-<span class="rt t-mid">bpai</span></span></dt><dd>too low in pitch</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/336-music-emotions/">Music Emotions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01231-sad/">เศร้า</a> <span class="rom"><span class="rt t-falling">sâo</span></span></dt><dd>sad</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01227-be-happy/">มีความสุข</a> <span class="rom"><span class="rt t-mid">mii</span> <span class="rt t-mid">khwaam</span>-<span class="rt t-low">sùk</span></span></dt><dd>be happy, be happy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01239-lonely/">เหงา</a> <span class="rom"><span class="rt t-rising">ngǎo</span></span></dt><dd>lonely</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01765-warm/">อบอุ่น</a> <span class="rom"><span class="rt t-low">òp</span>-<span class="rt t-low">ùn</span></span></dt><dd>warm; cozy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/04710-romantic/">โรแมนติก</a> <span class="rom"><span class="rt t-mid">roo</span>-<span class="rt t-mid">man</span>-<span class="rt t-low">dtìk</span></span></dt><dd>romantic</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01240-fun/">สนุก</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-low">nùk</span></span></dt><dd>fun, enjoy oneself</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00586-oil/">มัน</a> <span class="rom"><span class="rt t-mid">man</span></span></dt><dd>oil, grease, fat, potato, yam, fun, it [pronoun, can be informal/impolite]</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05315-relaxing/">ผ่อนคลาย</a> <span class="rom"><span class="rt t-low">phɔ̀ɔn</span>-<span class="rt t-mid">khlaai</span></span></dt><dd>relaxing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05316-encouraging/">ให้กำลังใจ</a> <span class="rom"><span class="rt t-falling">hâi</span>-<span class="rt t-mid">gam</span>-<span class="rt t-mid">lang</span>-<span class="rt t-mid">jai</span></span></dt><dd>encouraging</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05317-emotionally-moving/">กินใจ</a> <span class="rom"><span class="rt t-mid">gin</span>-<span class="rt t-mid">jai</span></span></dt><dd>emotionally moving</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/337-talking-about-lyrics/">Talking About Lyrics</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05099-meaning/">ความหมาย</a> <span class="rom"><span class="rt t-mid">khwaam</span>-<span class="rt t-rising">mǎai</span></span></dt><dd>meaning</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05318-means/">แปลว่า</a> <span class="rom"><span class="rt t-mid">bplɛɛ</span>-<span class="rt t-falling">wâa</span></span></dt><dd>means / translates as</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01829-mean/">หมายถึง</a> <span class="rom"><span class="rt t-rising">mǎai</span>-<span class="rt t-rising">thʉ̌ng</span></span></dt><dd>mean, refer to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05319-content-of-the-song/">เนื้อหาของเพลง</a> <span class="rom"><span class="rt t-high">nʉ́a</span>-<span class="rt t-rising">hǎa</span>-<span class="rt t-rising">khɔ̌ɔng</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>content of the song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01342-talk-about/">พูดถึง</a> <span class="rom"><span class="rt t-falling">phûut</span>-<span class="rt t-rising">thʉ̌ng</span></span></dt><dd>talk about; mention</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05320-love/">เรื่องความรัก</a> <span class="rom"><span class="rt t-falling">rʉ̂ang</span>-<span class="rt t-mid">khwaam</span>-<span class="rt t-high">rák</span></span></dt><dd>love / relationships</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05321-heartbroken/">อกหัก</a> <span class="rom"><span class="rt t-low">òk</span>-<span class="rt t-low">hàk</span></span></dt><dd>heartbroken</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01369-miss/">คิดถึง</a> <span class="rom"><span class="rt t-high">khít</span>-<span class="rt t-rising">thʉ̌ng</span></span></dt><dd>miss; think of</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05322-memory/">ความทรงจำ</a> <span class="rom"><span class="rt t-mid">khwaam</span>-<span class="rt t-mid">song</span>-<span class="rt t-mid">jam</span></span></dt><dd>memory</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05323-dream/">ความฝัน</a> <span class="rom"><span class="rt t-mid">khwaam</span>-<span class="rt t-rising">fǎn</span></span></dt><dd>dream</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/338-thai-love-songs/">Thai Love Songs</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01225-love/">รัก</a> <span class="rom"><span class="rt t-high">rák</span></span></dt><dd>love</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05324-love-you/">รักเธอ</a> <span class="rom"><span class="rt t-high">rák</span>-<span class="rt t-mid">thəə</span></span></dt><dd>love you</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05325-miss-you/">คิดถึงเธอ</a> <span class="rom"><span class="rt t-high">khít</span>-<span class="rt t-rising">thʉ̌ng</span>-<span class="rt t-mid">thəə</span></span></dt><dd>miss you</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03298-it-s-beside-it/">อยู่ข้างๆ</a> <span class="rom"><span class="rt t-low">yùu</span> <span class="rt t-falling">khâang</span>-<span class="rt t-falling">khâang</span></span></dt><dd>it&#x27;s beside it</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05326-farewell/">จากลา</a> <span class="rom"><span class="rt t-low">jàak</span>-<span class="rt t-mid">laa</span></span></dt><dd>farewell / parting</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05327-break-up/">เลิกรา</a> <span class="rom"><span class="rt t-falling">lə̂ək</span>-<span class="rt t-mid">raa</span></span></dt><dd>break up / separation</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05328-heart/">หัวใจ</a> <span class="rom"><span class="rt t-rising">hǔa</span>-<span class="rt t-mid">jai</span></span></dt><dd>heart</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01549-tear/">น้ำตา</a> <span class="rom"><span class="rt t-high">náam</span>-<span class="rt t-mid">dtaa</span></span></dt><dd>tear; tears</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05329-lonely/">เดียวดาย</a> <span class="rom"><span class="rt t-mid">diao</span>-<span class="rt t-mid">daai</span></span></dt><dd>lonely / alone</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05330-forever/">ตลอดไป</a> <span class="rom"><span class="rt t-low">dtà</span>-<span class="rt t-low">lɔ̀ɔt</span>-<span class="rt t-mid">bpai</span></span></dt><dd>forever</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/339-thai-music-slang/">Thai Music Slang</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05331-very-beautiful/">เพราะมาก</a> <span class="rom"><span class="rt t-high">phɔ́</span>-<span class="rt t-falling">mâak</span></span></dt><dd>very beautiful / sounds great</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05332-fucking-beautiful/">โคตรเพราะ</a> <span class="rom"><span class="rt t-falling">khôot</span>-<span class="rt t-high">phɔ́</span></span></dt><dd>fucking beautiful / extremely good — vulgar</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05333-this-song-is-fucking-good-vulgar/">เพลงนี้โคตรดี</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-falling">khôot</span>-<span class="rt t-mid">dii</span></span></dt><dd>this song is fucking good — vulgar</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05334-fucking-good-vulgar/">แม่งดี</a> <span class="rom"><span class="rt t-falling">mɛ̂ng</span>-<span class="rt t-mid">dii</span></span></dt><dd>fucking good — vulgar</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05335-really-like-it-casual/">อย่างชอบ</a> <span class="rom"><span class="rt t-low">yàang</span>-<span class="rt t-falling">chɔ̂ɔp</span></span></dt><dd>really like it — casual</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05336-pleasant/">ฟังเพลิน</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-mid">phləən</span></span></dt><dd>pleasant / easy to listen to</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05337-listen-repeatedly/">ฟังวน</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-mid">won</span></span></dt><dd>listen repeatedly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05338-play-repeatedly/">เปิดวน</a> <span class="rom"><span class="rt t-low">bpə̀ət</span>-<span class="rt t-mid">won</span></span></dt><dd>play repeatedly</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05339-this-song-really-hits/">เพลงนี้โดน</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-mid">doon</span></span></dt><dd>this song really hits / connects</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05340-hits-the-spot/">โดนใจ</a> <span class="rom"><span class="rt t-mid">doon</span>-<span class="rt t-mid">jai</span></span></dt><dd>hits the spot / resonates</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/340-discovering-thai-artists/">Discovering Thai Artists</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02077-discover/">ค้นพบ</a> <span class="rom"><span class="rt t-high">khón</span>-<span class="rt t-high">phóp</span></span></dt><dd>discover; find</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05341-find-a-new-song/">เจอเพลงใหม่</a> <span class="rom"><span class="rt t-mid">jəə</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-low">mài</span></span></dt><dd>find a new song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05342-new-artist/">ศิลปินใหม่</a> <span class="rom"><span class="rt t-rising">sǐn</span>-<span class="rt t-high">lá</span>-<span class="rt t-mid">bpin</span>-<span class="rt t-low">mài</span></span></dt><dd>new artist</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05343-new-band/">วงใหม่</a> <span class="rom"><span class="rt t-mid">wong</span>-<span class="rt t-low">mài</span></span></dt><dd>new band</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05344-recommend-a-song/">แนะนำเพลง</a> <span class="rom"><span class="rt t-high">nɛ́</span>-<span class="rt t-mid">nam</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>recommend a song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05345-recommend-an-artist/">แนะนำศิลปิน</a> <span class="rom"><span class="rt t-high">nɛ́</span>-<span class="rt t-mid">nam</span>-<span class="rt t-rising">sǐn</span>-<span class="rt t-high">lá</span>-<span class="rt t-mid">bpin</span></span></dt><dd>recommend an artist</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05346-song-i-ve-never-heard/">เพลงที่ไม่เคยฟัง</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-falling">thîi</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-mid">khəəi</span>-<span class="rt t-mid">fang</span></span></dt><dd>song I&#x27;ve never heard</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05347-i-just-found-this-song/">เพลงนี้เพิ่งเจอ</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-falling">phə̂ng</span>-<span class="rt t-mid">jəə</span></span></dt><dd>I just found this song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05348-liked-it-from-the-first-time/">ชอบตั้งแต่ครั้งแรก</a> <span class="rom"><span class="rt t-falling">chɔ̂ɔp</span>-<span class="rt t-falling">dtâng</span>-<span class="rt t-low">dtɛ̀ɛ</span>-<span class="rt t-high">khráng</span>-<span class="rt t-falling">rɛ̂ɛk</span></span></dt><dd>liked it from the first time</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05349-have-to-listen-to-it/">ต้องไปฟัง</a> <span class="rom"><span class="rt t-falling">dtɔ̂ng</span>-<span class="rt t-mid">bpai</span>-<span class="rt t-mid">fang</span></span></dt><dd>have to listen to it</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/341-concert-thai/">Concert Thai</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05229-concert/">คอนเสิร์ต</a> <span class="rom"><span class="rt t-mid">khɔɔn</span>-<span class="rt t-low">sə̀ət</span></span></dt><dd>concert</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05350-concert-ticket/">บัตรคอนเสิร์ต</a> <span class="rom"><span class="rt t-low">bàt</span>-<span class="rt t-mid">khɔɔn</span>-<span class="rt t-low">sə̀ət</span></span></dt><dd>concert ticket</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00642-stage/">เวที</a> <span class="rom"><span class="rt t-mid">wee</span>-<span class="rt t-mid">thii</span></span></dt><dd>stage, platform, forum</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05232-audience/">คนดู</a> <span class="rom"><span class="rt t-mid">khon</span>-<span class="rt t-mid">duu</span></span></dt><dd>audience / viewers</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/02367-crowded/">คนเยอะ</a> <span class="rom"><span class="rt t-mid">khon</span>-<span class="rt t-high">yə́</span></span></dt><dd>crowded, many people</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05351-clap/">ปรบมือ</a> <span class="rom"><span class="rt t-low">bpròp</span>-<span class="rt t-mid">mʉʉ</span></span></dt><dd>clap</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01512-dance/">เต้น</a> <span class="rom"><span class="rt t-falling">dtên</span></span></dt><dd>dance; jump; beat</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03336-very-fun/">สนุกมาก</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-low">nùk</span> <span class="rt t-falling">mâak</span></span></dt><dd>very fun</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/342-music-online/">Music Online</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05352-stream/">สตรีม</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-mid">dtriiem</span></span></dt><dd>stream</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05353-stream-music/">สตรีมเพลง</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-mid">dtriiem</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>stream music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05354-playlist/">เพลย์ลิสต์</a> <span class="rom"><span class="rt t-mid">phlee</span>-<span class="rt t-high">lít</span></span></dt><dd>playlist</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05355-music-video/">มิวสิกวิดีโอ</a> <span class="rom"><span class="rt t-mid">miu</span>-<span class="rt t-low">sìk</span>-<span class="rt t-high">wí</span>-<span class="rt t-mid">dii</span>-<span class="rt t-mid">oo</span></span></dt><dd>music video</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05356-music-video-abbreviation/">เอ็มวี</a> <span class="rom"><span class="rt t-mid">em</span>-<span class="rt t-mid">wii</span></span></dt><dd>music video — abbreviation</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05357-number-of-listens/">ยอดฟัง</a> <span class="rom"><span class="rt t-falling">yɔ̂ɔt</span>-<span class="rt t-mid">fang</span></span></dt><dd>number of listens / streams</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05191-view-count/">ยอดวิว</a> <span class="rom"><span class="rt t-falling">yɔ̂ɔt</span>-<span class="rt t-mid">wiw</span></span></dt><dd>view count</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05358-release-a-song/">ปล่อยเพลง</a> <span class="rom"><span class="rt t-low">bplɔ̀i</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>release a song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05359-release-a-single/">ปล่อยซิงเกิล</a> <span class="rom"><span class="rt t-low">bplɔ̀i</span>-<span class="rt t-mid">sing</span>-<span class="rt t-falling">gə̂n</span></span></dt><dd>release a single</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05360-enter-the-charts/">ขึ้นชาร์ต</a> <span class="rom"><span class="rt t-falling">khʉ̂n</span>-<span class="rt t-falling">châat</span></span></dt><dd>enter the charts</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/343-music-reviews-opinions/">Music Reviews &amp; Opinions</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05361-melody/">ทำนอง</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">nɔɔng</span></span></dt><dd>melody</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01271-rhythm/">จังหวะ</a> <span class="rom"><span class="rt t-mid">jang</span>-<span class="rt t-low">wà</span></span></dt><dd>rhythm; beat; timing</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05362-vocals/">เสียงร้อง</a> <span class="rom"><span class="rt t-rising">sǐang</span>-<span class="rt t-high">rɔ́ɔng</span></span></dt><dd>vocals</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05363-musical-accompaniment/">ดนตรีประกอบ</a> <span class="rom"><span class="rt t-mid">don</span>-<span class="rt t-mid">dtrii</span>-<span class="rt t-low">bprà</span>-<span class="rt t-low">gɔ̀ɔp</span></span></dt><dd>musical accompaniment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05364-arrangement/">การเรียบเรียง</a> <span class="rom"><span class="rt t-mid">gaan</span>-<span class="rt t-falling">rîap</span>-<span class="rt t-mid">riang</span></span></dt><dd>arrangement</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05365-production/">โปรดักชัน</a> <span class="rom"><span class="rt t-low">bpròot</span>-<span class="rt t-low">dàk</span>-<span class="rt t-falling">chân</span></span></dt><dd>production</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05366-sound-quality/">คุณภาพเสียง</a> <span class="rom"><span class="rt t-mid">khun</span>-<span class="rt t-high">ná</span>-<span class="rt t-falling">phâap</span>-<span class="rt t-rising">sǐang</span></span></dt><dd>sound quality</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05367-good-lyrics/">เนื้อเพลงดี</a> <span class="rom"><span class="rt t-high">nʉ́a</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-mid">dii</span></span></dt><dd>good lyrics</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05368-catchy-melody/">ทำนองติดหู</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">nɔɔng</span>-<span class="rt t-low">dtìt</span>-<span class="rt t-rising">hǔu</span></span></dt><dd>catchy melody</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05369-doesn-t-get-boring-after-listening/">ฟังแล้วไม่เบื่อ</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-high">lɛ́ɛo</span>-<span class="rt t-falling">mâi</span>-<span class="rt t-low">bʉ̀a</span></span></dt><dd>doesn&#x27;t get boring after listening</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/344-thai-music-interviews/">Thai Music Interviews</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05370-write/">แต่งเพลง</a> <span class="rom"><span class="rt t-low">dtɛ̀ng</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>write / compose a song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05371-songwriter/">นักแต่งเพลง</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-low">dtɛ̀ng</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>songwriter / composer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05372-producer/">โปรดิวเซอร์</a> <span class="rom"><span class="rt t-low">bpròot</span>-<span class="rt t-mid">diiu</span>-<span class="rt t-falling">sə̂ə</span></span></dt><dd>producer</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05373-inspiration/">แรงบันดาลใจ</a> <span class="rom"><span class="rt t-mid">rɛɛng</span>-<span class="rt t-mid">ban</span>-<span class="rt t-mid">daan</span>-<span class="rt t-mid">jai</span></span></dt><dd>inspiration</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05374-inspired-by/">ได้แรงบันดาลใจจาก</a> <span class="rom"><span class="rt t-falling">dâai</span>-<span class="rt t-mid">rɛɛng</span>-<span class="rt t-mid">ban</span>-<span class="rt t-mid">daan</span>-<span class="rt t-mid">jai</span>-<span class="rt t-low">jàak</span></span></dt><dd>inspired by</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05375-write-a-song/">เขียนเพลง</a> <span class="rom"><span class="rt t-rising">khǐan</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>write a song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05376-make/">ทำเพลง</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">phleeng</span></span></dt><dd>make / produce music</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05377-record-sound/">บันทึกเสียง</a> <span class="rom"><span class="rt t-mid">ban</span>-<span class="rt t-high">thʉ́k</span>-<span class="rt t-rising">sǐang</span></span></dt><dd>record sound / vocals</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05378-recording-studio/">ห้องอัด</a> <span class="rom"><span class="rt t-falling">hɔ̂ng</span>-<span class="rt t-low">àt</span></span></dt><dd>recording studio</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01797-experience/">ประสบการณ์</a> <span class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-low">sòp</span>-<span class="rt t-mid">gaan</span></span></dt><dd>experience</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/345-understanding-thai-lyrics/">Understanding Thai Lyrics</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01843-compare/">เปรียบเทียบ</a> <span class="rom"><span class="rt t-low">bprìap</span>-<span class="rt t-falling">thîap</span></span></dt><dd>compare</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05379-use-metaphor/">เปรียบเปรย</a> <span class="rom"><span class="rt t-low">bprìap</span>-<span class="rt t-mid">bprəəi</span></span></dt><dd>use metaphor / figurative comparison</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05380-literal-meaning/">ความหมายตรงๆ</a> <span class="rom"><span class="rt t-mid">khwaam</span>-<span class="rt t-rising">mǎai</span>-<span class="rt t-mid">dtrong</span>-<span class="rt t-mid">dtrong</span></span></dt><dd>literal meaning</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/03856-hidden-meaning/">ความหมายแฝง</a> <span class="rom"><span class="rt t-mid">khwaam</span>-<span class="rt t-rising">mǎai</span>-<span class="rt t-rising">fɛ̌ɛng</span></span></dt><dd>hidden meaning</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05381-comparison/">คำเปรียบเทียบ</a> <span class="rom"><span class="rt t-mid">kham</span>-<span class="rt t-low">bprìap</span>-<span class="rt t-falling">thîap</span></span></dt><dd>comparison / figurative expression</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05382-convey/">สื่อถึง</a> <span class="rom"><span class="rt t-low">sʉ̀ʉ</span>-<span class="rt t-rising">thʉ̌ng</span></span></dt><dd>convey / evoke</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01423-reflect/">สะท้อน</a> <span class="rom"><span class="rt t-low">sà</span>-<span class="rt t-high">thɔ́ɔn</span></span></dt><dd>reflect; echo; mirror</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05383-emotion/">อารมณ์</a> <span class="rom"><span class="rt t-mid">aa</span>-<span class="rt t-mid">rom</span></span></dt><dd>emotion / mood</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/00843-atmosphere/">บรรยากาศ</a> <span class="rom"><span class="rt t-mid">ban</span>-<span class="rt t-mid">yaa</span>-<span class="rt t-low">gàat</span></span></dt><dd>atmosphere, ambiance, environment</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01981-interpret/">ตีความ</a> <span class="rom"><span class="rt t-mid">dtii</span>-<span class="rt t-mid">khwaam</span></span></dt><dd>interpret; construe</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/346-thai-music-culture/">Thai Music Culture</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05384-hit-song/">เพลงฮิต</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">hít</span></span></dt><dd>hit song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05385-popular-song/">เพลงดัง</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-mid">dang</span></span></dt><dd>popular song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05386-timeless-song/">เพลงอมตะ</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">à</span>-<span class="rt t-high">má</span>-<span class="rt t-low">dtà</span></span></dt><dd>timeless song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05387-old-but-still-popular-song/">เพลงเก่าแต่ยังดัง</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">gào</span>-<span class="rt t-low">dtɛ̀ɛ</span>-<span class="rt t-mid">yang</span>-<span class="rt t-mid">dang</span></span></dt><dd>old but still popular song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05388-popular-song-of-this-era/">เพลงดังในยุคนี้</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-mid">dang</span>-<span class="rt t-mid">nai</span>-<span class="rt t-high">yúk</span>-<span class="rt t-high">níi</span></span></dt><dd>popular song of this era</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05389-trending-song/">เพลงติดกระแส</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-low">dtìt</span>-<span class="rt t-low">grà</span>-<span class="rt t-rising">sɛ̌ɛ</span></span></dt><dd>trending song</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/01353-current/">กระแส</a> <span class="rom"><span class="rt t-low">grà</span>-<span class="rt t-rising">sǎe</span></span></dt><dd>current; flow; trend</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05390-famous/">ขึ้นชื่อ</a> <span class="rom"><span class="rt t-falling">khʉ̂n</span>-<span class="rt t-falling">chʉ̂ʉ</span></span></dt><dd>famous / renowned</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05391-become-popular/">ได้รับความนิยม</a> <span class="rom"><span class="rt t-falling">dâai</span>-<span class="rt t-high">ráp</span>-<span class="rt t-mid">khwaam</span>-<span class="rt t-high">ní</span>-<span class="rt t-mid">yom</span></span></dt><dd>become popular</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05392-be-well-known/">เป็นที่รู้จัก</a> <span class="rom"><span class="rt t-mid">bpen</span>-<span class="rt t-falling">thîi</span>-<span class="rt t-high">rúu</span>-<span class="rt t-low">jàk</span></span></dt><dd>be well known</dd></div></dl><h3 class="g-h"><a href="https://thai.inaflash.cards/347-real-thai-music-talk/">Real Thai Music Talk</a></h3><dl class="wordlist"><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05393-what-music-have-you-been-listening-t/">ช่วงนี้ฟังเพลงอะไร</a> <span class="rom"><span class="rt t-falling">chûang</span>-<span class="rt t-high">níi</span>-<span class="rt t-mid">fang</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-low">à</span>-<span class="rt t-mid">rai</span></span></dt><dd>what music have you been listening to lately?</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05394-this-song-is-pretty-good/">เพลงนี้เพราะดี</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-high">phɔ́</span>-<span class="rt t-mid">dii</span></span></dt><dd>this song is pretty good</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05395-this-song-is-really-catchy/">เพลงนี้ติดหูมาก</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-low">dtìt</span>-<span class="rt t-rising">hǔu</span>-<span class="rt t-falling">mâak</span></span></dt><dd>this song is really catchy</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05396-really-get-into-it-when-listening/">ฟังแล้วอินมาก</a> <span class="rom"><span class="rt t-mid">fang</span>-<span class="rt t-high">lɛ́ɛo</span>-<span class="rt t-mid">in</span>-<span class="rt t-falling">mâak</span></span></dt><dd>really get into it when listening</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05397-the-lyrics-are-really-good/">เนื้อเพลงดีมาก</a> <span class="rom"><span class="rt t-high">nʉ́a</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-mid">dii</span>-<span class="rt t-falling">mâak</span></span></dt><dd>the lyrics are really good</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05398-the-melody-is-beautiful-too/">ทำนองก็เพราะ</a> <span class="rom"><span class="rt t-mid">tham</span>-<span class="rt t-mid">nɔɔng</span>-<span class="rt t-falling">gɔ̂ɔ</span>-<span class="rt t-high">phɔ́</span></span></dt><dd>the melody is beautiful too</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05399-the-singer-has-a-great-voice/">นักร้องเสียงดีมาก</a> <span class="rom"><span class="rt t-high">nák</span>-<span class="rt t-high">rɔ́ɔng</span>-<span class="rt t-rising">sǐang</span>-<span class="rt t-mid">dii</span>-<span class="rt t-falling">mâak</span></span></dt><dd>the singer has a great voice</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05400-i-could-listen-to-this-all-day/">เพลงนี้ฟังวนได้ทั้งวัน</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-mid">fang</span>-<span class="rt t-mid">won</span>-<span class="rt t-falling">dâai</span>-<span class="rt t-high">tháng</span>-<span class="rt t-mid">wan</span></span></dt><dd>I could listen to this all day</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05401-this-song-really-hits-me/">เพลงนี้โดนใจมาก</a> <span class="rom"><span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-mid">doon</span>-<span class="rt t-mid">jai</span>-<span class="rt t-falling">mâak</span></span></dt><dd>this song really hits me</dd></div><div><dt lang="th"><a href="https://thai.inaflash.cards/word/05402-send-me-this-song/">ส่งเพลงนี้มาให้หน่อย</a> <span class="rom"><span class="rt t-low">sòng</span>-<span class="rt t-mid">phleeng</span>-<span class="rt t-high">níi</span>-<span class="rt t-mid">maa</span>-<span class="rt t-falling">hâi</span>-<span class="rt t-low">nɔ̀i</span></span></dt><dd>send me this song</dd></div></dl>
   </div>
@@ -276,6 +278,7 @@
  var nav=document.getElementById('nav'),find=document.getElementById('find'),
      none=document.getElementById('nohits'),hits=document.getElementById('hits'),
      idx=null,idxTried=false;
+ var NAVJ=null,KNOWN={};
  function items(){return nav?nav.querySelectorAll('a.item'):[];}
  function base(){return document.body.dataset.root||'';}
  function read(k,d){try{var v=localStorage.getItem(k);
@@ -441,13 +444,15 @@
   }
   page=Math.max(0,Math.min(pages-1,page||0));
   wrap.dataset.page=String(page);
-  var pg=el('div','catpage'),i;
+  // A category that fits on one page is as tall as its rows: the fixed
+  // height is for page turns, and three lessons in a box for six left a gap.
+  var pg=el('div','catpage'+(pages===1?' fit':'')),i;
   for(i=page*PAGE;i<Math.min(rows.length,(page+1)*PAGE);i++){
    var l=rows[i],a=document.createElement('a');
    a.className='item seq'+(isHere(l.folder)?' on':'');
    a.href=base()+'/'+l.folder+'/';
    a.title=l.title;
-   a.appendChild(el('span','n',String(l.n)));
+   a.appendChild(ring(KNOWN[l.folder]||0,l.w||0));
    a.appendChild(el('span','t',l.title));
    a.appendChild(el('span','w',String(l.w||'')));
    pg.appendChild(a);
@@ -478,6 +483,15 @@
   return location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')
    .slice(-(folder.length+1))==='/'+folder;
  }
+ // How far the reader has got in a lesson: an empty ring, a part one, a
+ // filled one. Read from their own progress (KNOWN, words known per lesson).
+ function ring(k,w){
+  var r=document.createElement('span');
+  r.className='rg'+(w&&k>=w?' done':k?' part':'');
+  r.setAttribute('aria-hidden','true');
+  if(k)r.title=k+' of '+(w||'?')+' words known';
+  return r;
+ }
  function el(tag,cls,text){
   var e=document.createElement(tag);e.className=cls;
   if(text!==undefined)e.textContent=text;return e;
@@ -494,6 +508,7 @@
   function openOne(wrap,on){
    var box=wrap.querySelector('.catbox'),x=wrap.querySelector('.catx');
    box.hidden=!on;
+   var al=wrap.querySelector('.catalso');if(al)al.hidden=!on;
    x.textContent=on?'−':'+';
    x.setAttribute('aria-expanded',on?'true':'false');
    if(!on)return;
@@ -534,6 +549,41 @@
   });
  })();
 
+ // --------------------------------------------- show all the categories
+ // Dan: "cut the categories menu in half, and add a more/show all button".
+ // The rest are in the markup, behind the button; a search, or the page of a
+ // category that is among them, shows them without asking.
+ var catMore=document.getElementById('catmore'),
+     catMoreBtn=document.getElementById('cat-more'),catMoreOpen=false;
+ try{catMoreOpen=localStorage.getItem('wb.catmore')==='1';}catch(e){}
+ function paintMore(){
+  if(!catMore)return;
+  var q=!!(find&&find.value.trim());
+  catMore.classList.toggle('open',catMoreOpen||q);
+  if(catMoreBtn){
+   catMoreBtn.setAttribute('aria-expanded',catMoreOpen?'true':'false');
+   catMoreBtn.textContent=catMoreOpen?'Show fewer categories'
+    :'Show all '+catMoreBtn.dataset.all+' categories ('+catMoreBtn.dataset.more+' more)';
+  }
+ }
+ if(catMore){
+  // where you are is never hidden behind the button
+  var mine=catMore.querySelector('a.item.on');
+  if(!mine){
+   var cn0=document.querySelector('.menu .wsub[data-cname]');
+   cn0=cn0?cn0.getAttribute('data-cname'):'';
+   if(cn0){var ws=catMore.querySelectorAll('.catwrap');
+    for(var q0=0;q0<ws.length;q0++)if(ws[q0].dataset.name===cn0)mine=ws[q0];}
+  }
+  if(mine)catMoreOpen=true;
+  if(catMoreBtn)catMoreBtn.addEventListener('click',function(){
+   catMoreOpen=!catMoreOpen;
+   try{localStorage.setItem('wb.catmore',catMoreOpen?'1':'0');}catch(e){}
+   paintMore();
+  });
+  paintMore();
+ }
+
  // -------------------------------------------- favourites, recently viewed
  //
  // Both are the reader's own history, kept in their browser and never sent
@@ -565,6 +615,7 @@
   var marks=document.querySelectorAll('[data-fill]');
   if(!marks.length)return;
   fetch(base()+'/nav.json').then(function(r){return r.json();}).then(function(j){
+   NAVJ=j;window.dispatchEvent(new Event('wb:nav'));
    // On a sentence lesson the course is the sentence half: its numbers, its
    // "Sentence lesson 2 of 9 in Beginner".
    var sent=document.body.dataset.kind==='sentences',
@@ -589,9 +640,10 @@
     else if(k==='all-n')m.textContent=L.length+' lessons in all';
     else if(k==='sub'){
      var cn=m.getAttribute('data-cname');
-     var word=sent?'Sentence lesson ':'Lesson ';
+     // "8 of 55 · Thai Conversation": one number, the one a reader can use
+     var word=sent?'Sentence lesson ':'';
      m.textContent=pos<0?'':(cn&&cur
-      ?word+at+' of '+counts[cur]+' in '+cn
+      ?word+at+' of '+counts[cur]+' \u00b7 '+cn
       :word+(pos+1)+' of '+L.length);
     }
    }
@@ -649,6 +701,8 @@
   for(i=0;i<g.length;i++)g[i].hidden=!!q;
   live+=lessonHits(q);
   if(none)none.hidden=!q||live>0;
+  if(typeof paintMore==='function')paintMore();
+  if(nav)nav.classList.toggle('q',!!q);
  }
  // Up to eight lessons, and a way to the rest. A column that answers a search
  // with four hundred rows is the thing this redesign removed.
@@ -3288,6 +3342,313 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
  drag(gripa,0);            // between the video and the picture
  drag(gripb,1);            // between the picture and the word
+ // ================================================ the menu's own record
+ //
+ // Dan's new menu: "Continue where you left off", how far the reader has got
+ // in each lesson, and courses of their own — "I want users to be able to
+ // build their own course using our data, we can save what they create using
+ // dexiejs". All of it is the reader's, kept in their browser and never sent
+ // anywhere; there is nothing to send it to.
+ (function(){
+  if(!nav)return;
+  // ---- how far: words known per lesson, from the reader's progress. Only
+  // read when they have ever recorded any (Days is written with every
+  // answer), so a first visit opens no database at all.
+  function known(){
+   var any=false;try{any=!!localStorage.getItem('wb.days');}catch(e){}
+   if(!any||typeof Progress==='undefined')return Promise.resolve();
+   return Promise.resolve(Progress.all()).then(function(rows){
+    var k={},i;
+    for(i=0;i<(rows||[]).length;i++)
+     if(rows[i].state==='known'&&rows[i].lesson)k[rows[i].lesson]=(k[rows[i].lesson]||0)+1;
+    KNOWN=k;
+    window.dispatchEvent(new Event('wb:index'));   // redraw open categories
+   }).catch(function(){});
+  }
+  function lessonOf(folder){
+   var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],i;
+   for(i=0;i<L.length;i++)if(L[i].folder===folder)return L[i];
+   return null;
+  }
+  function catName(folder){
+   var w=nav.querySelector('.catwrap[data-cat="'+folder+'"]');
+   if(w)return w.dataset.name;
+   var a=nav.querySelector('a.item[href$="/'+folder+'/"] .lb');
+   return a?a.textContent:folder.replace(/^c-/,'').replace(/-/g,' ');
+  }
+  function withMenu(cb){
+   if(mnu||idx){cb();return;}
+   var once=function(){window.removeEventListener('wb:index',once);cb();};
+   window.addEventListener('wb:index',once);
+   loadMenu();
+  }
+
+  // ---- Continue where you left off. Not on a lesson page — there, where
+  // you are is the lesson in front of you and the block at the foot.
+  var cont=document.getElementById('m-cont');
+  function paintCont(){
+   if(!cont)return;
+   if(document.body.dataset.lesson){cont.hidden=true;return;}
+   var r=recents()[0];
+   if(!r||!r.folder){cont.hidden=true;return;}
+   cont.hidden=false;
+   cont.href=base()+'/'+r.folder+'/';
+   cont.querySelector('.ctt').textContent=r.title||r.folder;
+   var ctn=cont.querySelector('.ctn'),cs=cont.querySelector('.cs'),
+       bar=cont.querySelector('.cbar'),L=(NAVJ&&NAVJ.l)||[],cat='',i,at=0,tot=0;
+   for(i=0;i<L.length;i++)if(L[i][0]===r.folder)cat=L[i][1];
+   if(cat)for(i=0;i<L.length;i++)if(L[i][1]===cat){tot++;if(L[i][0]===r.folder)at=tot;}
+   ctn.textContent=tot?at+' of '+tot:'';
+   cs.textContent=cat?catName(cat):'';
+   var l=lessonOf(r.folder),w=l?l.w:0,k=KNOWN[r.folder]||0;
+   bar.hidden=!w;
+   if(w)bar.firstElementChild.style.width=Math.min(100,Math.round(100*k/w))+'%';
+  }
+
+  // ---- my courses
+  //
+  // Dexie when the page managed to fetch it, plain IndexedDB when it did not,
+  // one database either way — the same arrangement the progress table has,
+  // and for the same reason: a course that disappears because a script did
+  // not load is worse than one kept plainly.
+  var Courses=(function(){
+   var NAME='wordbase-courses',STORE='courses',impl=null;
+   try{
+    if(typeof Dexie!=='undefined'){
+     var db=new Dexie(NAME);
+     db.version(1).stores({courses:'id,at'});
+     impl={all:function(){return db.courses.toArray();},
+           put:function(c){return db.courses.put(c);},
+           del:function(id){return db.courses.delete(id);}};
+    }
+   }catch(e){impl=null;}
+   if(impl)return impl;
+   var ready=null,mem={};
+   function open(){
+    if(ready)return ready;
+    ready=new Promise(function(res){
+     var req;
+     try{req=indexedDB.open(NAME);}catch(e){return res(null);}
+     req.onsuccess=function(e){
+      var d=e.target.result;
+      if(d.objectStoreNames.contains(STORE))return res(d);
+      var v=d.version+1;d.close();
+      var up;try{up=indexedDB.open(NAME,v);}catch(e2){return res(null);}
+      up.onupgradeneeded=function(e2){var d2=e2.target.result;
+       if(!d2.objectStoreNames.contains(STORE))d2.createObjectStore(STORE,{keyPath:'id'});};
+      up.onsuccess=function(e2){res(e2.target.result);};
+      up.onerror=function(){res(null);};
+     };
+     req.onerror=function(){res(null);};
+     req.onblocked=function(){res(null);};
+    });
+    return ready;
+   }
+   function st(mode){return open().then(function(d){
+    if(!d)return null;try{return d.transaction(STORE,mode).objectStore(STORE);}catch(e){return null;}});}
+   return {
+    all:function(){return st('readonly').then(function(s){
+     if(!s)return Object.keys(mem).map(function(k){return mem[k];});
+     return new Promise(function(res){var r=s.getAll();
+      r.onsuccess=function(){res(r.result||[]);};r.onerror=function(){res([]);};});});},
+    put:function(c){mem[c.id]=c;return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res(c);var r=s.put(c);
+      r.onsuccess=function(){res(c);};r.onerror=function(){res(c);};});});},
+    del:function(id){delete mem[id];return st('readwrite').then(function(s){
+     return new Promise(function(res){if(!s)return res();var r=s.delete(id);
+      r.onsuccess=function(){res();};r.onerror=function(){res();};});});}
+   };
+  })();
+  function chosen(){var v=false;try{v=!!localStorage.getItem('wb.courses');}catch(e){}return v;}
+  function touched(){try{localStorage.setItem('wb.courses','1');}catch(e){}}
+  var LIST=[];
+  function sizeOf(c){
+   var w=0,k=0,i,l;
+   for(i=0;i<c.lessons.length;i++){l=lessonOf(c.lessons[i]);
+    if(l){w+=l.w||0;k+=Math.min(KNOWN[c.lessons[i]]||0,l.w||0);}}
+   return {w:w,k:k};
+  }
+  var clist=document.getElementById('m-clist');
+  function paintCourses(){
+   if(!clist)return;
+   clist.innerHTML='';
+   LIST.sort(function(a,b){return (b.at||0)-(a.at||0);});
+   LIST.forEach(function(c){
+    var z=sizeOf(c),b=document.createElement('button');
+    b.type='button';b.className='crs';
+    b.innerHTML='<span class="cn"></span><span class="cm"></span>';
+    b.querySelector('.cn').textContent=c.name;
+    b.querySelector('.cm').textContent=c.lessons.length+' lesson'+(c.lessons.length===1?'':'s')
+     +(z.w?' · '+z.w+' words':'')+(z.k&&z.w?' · '+Math.round(100*z.k/z.w)+'% known':'');
+    b.addEventListener('click',function(){withMenu(function(){coursePanel(c);});});
+    clist.appendChild(b);
+   });
+  }
+  function loadCourses(){
+   return Promise.resolve(Courses.all()).then(function(rows){LIST=rows||[];paintCourses();})
+    .catch(function(){});
+  }
+  function save(c){
+   c.at=Date.now();touched();
+   return Promise.resolve(Courses.put(c)).then(loadCourses);
+  }
+
+  // A course, as a page of its own in a sheet: its lessons in order, how far
+  // you are in each, and the one to do next.
+  function coursePanel(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   panel(c.name,function(body){
+    var z=sizeOf(c),next=null,i,l;
+    for(i=0;i<c.lessons.length&&!next;i++){l=lessonOf(c.lessons[i]);
+     if(l&&(KNOWN[l.folder]||0)<(l.w||0))next=l;}
+    if(!next)next=lessonOf(c.lessons[0]);
+    body.innerHTML='<p class="sheet-p cdesc"></p><ol class="clessons"></ol>'
+     +'<div class="sheet-row cbtns"></div>';
+    body.querySelector('.cdesc').textContent=c.lessons.length+' lessons · '
+     +z.w+' words'+(z.w?' · '+z.k+' known':'')+'. Saved in this browser.';
+    var ol=body.querySelector('.clessons');
+    c.lessons.forEach(function(f){
+     var L=lessonOf(f),li=document.createElement('li'),a=document.createElement('a');
+     a.href=base()+'/'+f+'/';
+     a.appendChild(ring(KNOWN[f]||0,L?L.w:0));
+     var t=document.createElement('span');t.className='t';
+     t.textContent=L?L.title:f+' (no longer on the site)';
+     var m=document.createElement('span');m.className='m';
+     m.textContent=L?catName(L.cat)+' · '+L.w+' words':'';
+     a.appendChild(t);a.appendChild(m);li.appendChild(a);ol.appendChild(li);
+    });
+    var bt=body.querySelector('.cbtns');
+    if(next){var go=document.createElement('a');go.className='cgo';
+     go.href=base()+'/'+next.folder+'/';
+     go.textContent=(z.k?'Continue: ':'Start: ')+next.title+' →';bt.appendChild(go);}
+    btn(bt,'Edit',function(){builder(c);});
+    btn(bt,'Export file',function(){exportCourse(c);});
+    btn(bt,'Delete',function(){
+     if(this.dataset.sure){Promise.resolve(Courses.del(c.id)).then(loadCourses);
+      var s=document.querySelector('.sheet');if(s)s.remove();return;}
+     this.dataset.sure='1';this.textContent='Delete — press again to be sure';
+    });
+   });
+  }
+  function btn(box,label,fn){
+   var b=document.createElement('button');b.type='button';b.className='cbtn';
+   b.textContent=label;b.addEventListener('click',fn);box.appendChild(b);return b;
+  }
+  function exportCourse(c){
+   try{
+    var blob=new Blob([JSON.stringify({kind:'wordbase-course',v:1,
+     site:location.host,course:{name:c.name,lessons:c.lessons}},null,1)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=(c.name||'course').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')+'.course.json';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1000);
+   }catch(e){}
+  }
+
+  // ---- the builder: name it, find lessons, order them, save
+  function builder(c){
+   if(typeof mmOpen==='function')mmOpen(false);
+   var draft={id:c&&c.id||('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)),
+              name:c&&c.name||'',lessons:(c&&c.lessons||[]).slice(),made:c&&c.made||Date.now()};
+   panel(c?'Edit course':'Build your own course',function(body){
+    body.classList.add('builder');
+    body.innerHTML='<p class="sheet-p">Pick lessons from anywhere on the site and put them in '
+     +'your own order. It is saved in this browser — no account, nothing sent anywhere.</p>'
+     +'<label class="bl"><span>Course name</span><input type="text" class="bname" maxlength="80" '
+     +'placeholder="My Bangkok trip"></label>'
+     +'<div class="bcols"><div class="bpick"><label class="bl"><span>Find lessons</span>'
+     +'<input type="search" class="bq" placeholder="Search by title or category"></label>'
+     +'<div class="bres"></div></div>'
+     +'<div class="bmine"><div class="bh"><b>Your course</b><span class="btot"></span></div>'
+     +'<ol class="bsel"></ol><p class="bempty">Nothing yet — tick lessons on the left.</p></div></div>'
+     +'<div class="sheet-row bbtns"></div>';
+    var nm=body.querySelector('.bname'),q=body.querySelector('.bq'),
+        res=body.querySelector('.bres'),sel=body.querySelector('.bsel'),
+        tot=body.querySelector('.btot'),empty=body.querySelector('.bempty');
+    nm.value=draft.name;
+    nm.addEventListener('input',function(){draft.name=nm.value;});
+    var ALL=((mnu&&mnu.lessons)||(idx&&idx.lessons)||[]);
+    function has(f){return draft.lessons.indexOf(f)>=0;}
+    function drawRes(){
+     var t=(q.value||'').trim().toLowerCase(),out=[],i,l;
+     for(i=0;i<ALL.length&&out.length<60;i++){l=ALL[i];
+      if(!t||(l.title||'').toLowerCase().indexOf(t)>=0||catName(l.cat).toLowerCase().indexOf(t)>=0)out.push(l);}
+     res.innerHTML='';
+     out.forEach(function(l){
+      var lab=document.createElement('label');lab.className='bopt'+(has(l.folder)?' on':'');
+      var cb=document.createElement('input');cb.type='checkbox';cb.checked=has(l.folder);
+      cb.addEventListener('change',function(){
+       if(cb.checked){if(!has(l.folder))draft.lessons.push(l.folder);}
+       else draft.lessons=draft.lessons.filter(function(f){return f!==l.folder;});
+       lab.classList.toggle('on',cb.checked);drawSel();
+      });
+      var t2=document.createElement('span');t2.className='t';t2.textContent=l.title;
+      var m=document.createElement('span');m.className='m';m.textContent=catName(l.cat)+' · '+l.w+' words';
+      var tx=document.createElement('span');tx.className='tx';tx.appendChild(t2);tx.appendChild(m);
+      lab.appendChild(cb);lab.appendChild(tx);res.appendChild(lab);
+     });
+     if(!out.length)res.innerHTML='<p class="bempty">No lesson matches.</p>';
+    }
+    function move(i,d){var j=i+d;if(j<0||j>=draft.lessons.length)return;
+     var x=draft.lessons[i];draft.lessons[i]=draft.lessons[j];draft.lessons[j]=x;drawSel();}
+    function drawSel(){
+     sel.innerHTML='';var w=0;
+     draft.lessons.forEach(function(f,i){
+      var L=lessonOf(f);w+=L?L.w:0;
+      var li=document.createElement('li');
+      li.innerHTML='<span class="t"></span><span class="m"></span>';
+      li.querySelector('.t').textContent=L?L.title:f;
+      li.querySelector('.m').textContent=L?String(L.w):'';
+      var up=btn(li,'↑',function(){move(i,-1);});up.setAttribute('aria-label','Move up');up.disabled=i===0;
+      var dn=btn(li,'↓',function(){move(i,1);});dn.setAttribute('aria-label','Move down');dn.disabled=i===draft.lessons.length-1;
+      var rm=btn(li,'✕',function(){draft.lessons.splice(i,1);drawSel();drawRes();});rm.setAttribute('aria-label','Take it out');
+      sel.appendChild(li);
+     });
+     empty.hidden=draft.lessons.length>0;
+     tot.textContent=draft.lessons.length?draft.lessons.length+' lessons · '+w+' words':'';
+     sv.disabled=!draft.lessons.length;
+    }
+    q.addEventListener('input',drawRes);
+    var bb=body.querySelector('.bbtns');
+    var sv=btn(bb,'Save course',function(){
+     if(!draft.lessons.length)return;
+     draft.name=(nm.value||'').trim()||'My course';
+     save(draft).then(function(){coursePanel(draft);});
+    });
+    sv.classList.add('primary');
+    // A file from Export, on this browser or another
+    var imp=btn(bb,'Import a file',function(){fi.click();});
+    var fi=document.createElement('input');fi.type='file';fi.accept='.json,application/json';fi.hidden=true;
+    fi.addEventListener('change',function(){
+     var f=fi.files&&fi.files[0];if(!f)return;
+     var rd=new FileReader();
+     rd.onload=function(){
+      try{var j=JSON.parse(rd.result),cc=j&&j.course;
+       if(!cc||!Array.isArray(cc.lessons))throw 0;
+       draft.name=String(cc.name||'Imported course').slice(0,80);nm.value=draft.name;
+       draft.lessons=cc.lessons.filter(function(x){return typeof x==='string'&&lessonOf(x);});
+       drawSel();drawRes();
+      }catch(e){imp.textContent='That file is not a course';}
+     };
+     rd.readAsText(f);
+    });
+    bb.appendChild(fi);
+    drawRes();drawSel();
+    setTimeout(function(){try{nm.focus();}catch(e){}},50);
+   });
+  }
+  var mb=document.getElementById('m-build');
+  if(mb)mb.addEventListener('click',function(){withMenu(function(){builder(null);});});
+
+  // ---- start up, after the page has drawn
+  window.addEventListener('wb:nav',paintCont);
+  window.addEventListener('wb:index',function(){paintCont();paintCourses();});
+  setTimeout(function(){
+   known().then(paintCont);
+   if(chosen())withMenu(loadCourses);
+   else paintCourses();
+  },250);
+ })();
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Thai Music \u0026 Lyrics vocabulary","description":"19 Thai lessons, 190 words in all, including เพลง (phleeng) song, ดนตรี (don-dtrii) music, ฟังเพลง (fang-phleeng) listen to music.","url":"https://thai.inaflash.cards/c-thai-music-lyrics/","isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Thai Music Basics","url":"https://thai.inaflash.cards/329-thai-music-basics/"},{"@type":"ListItem","position":2,"name":"Talking About Music Taste","url":"https://thai.inaflash.cards/330-talking-about-music-taste/"},{"@type":"ListItem","position":3,"name":"Music Genres","url":"https://thai.inaflash.cards/331-music-genres/"},{"@type":"ListItem","position":4,"name":"Instruments","url":"https://thai.inaflash.cards/332-instruments/"},{"@type":"ListItem","position":5,"name":"Singing \u0026 Performing","url":"https://thai.inaflash.cards/333-singing-performing/"},{"@type":"ListItem","position":6,"name":"Song Lyrics","url":"https://thai.inaflash.cards/334-song-lyrics/"},{"@type":"ListItem","position":7,"name":"Music You Can Sing Along To","url":"https://thai.inaflash.cards/335-music-you-can-sing-along-to/"},{"@type":"ListItem","position":8,"name":"Music Emotions","url":"https://thai.inaflash.cards/336-music-emotions/"},{"@type":"ListItem","position":9,"name":"Talking About Lyrics","url":"https://thai.inaflash.cards/337-talking-about-lyrics/"},{"@type":"ListItem","position":10,"name":"Thai Love Songs","url":"https://thai.inaflash.cards/338-thai-love-songs/"},{"@type":"ListItem","position":11,"name":"Thai Music Slang","url":"https://thai.inaflash.cards/339-thai-music-slang/"},{"@type":"ListItem","position":12,"name":"Discovering Thai Artists","url":"https://thai.inaflash.cards/340-discovering-thai-artists/"},{"@type":"ListItem","position":13,"name":"Concert Thai","url":"https://thai.inaflash.cards/341-concert-thai/"},{"@type":"ListItem","position":14,"name":"Music Online","url":"https://thai.inaflash.cards/342-music-online/"},{"@type":"ListItem","position":15,"name":"Music Reviews \u0026 Opinions","url":"https://thai.inaflash.cards/343-music-reviews-opinions/"},{"@type":"ListItem","position":16,"name":"Thai Music Interviews","url":"https://thai.inaflash.cards/344-thai-music-interviews/"},{"@type":"ListItem","position":17,"name":"Understanding Thai Lyrics","url":"https://thai.inaflash.cards/345-understanding-thai-lyrics/"},{"@type":"ListItem","position":18,"name":"Thai Music Culture","url":"https://thai.inaflash.cards/346-thai-music-culture/"},{"@type":"ListItem","position":19,"name":"Real Thai Music Talk","url":"https://thai.inaflash.cards/347-real-thai-music-talk/"}]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Thai Music \u0026 Lyrics","item":"https://thai.inaflash.cards/c-thai-music-lyrics/"}]}</script></body></html>

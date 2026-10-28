@@ -1511,3 +1511,116 @@ html.light-pre body,body.light{--tone-mid:#4f6475;--tone-low:#1f62d0;--tone-fall
 .info .wpl{margin:2px 0 10px;font-size:0.75rem}
 .info .wpl a{color:var(--accent2);text-decoration:none;font-weight:600}
 .info .wpl a:hover{color:var(--accent3);text-decoration:underline}
+
+/* ===================================================== the new menu
+   Dan's approved mockup: Continue, three tiles, My courses, half the
+   categories with Show all, Explore. Colours are the site's own tokens, so
+   light mode follows without a rule of its own. */
+.menu .mcont{display:flex;flex-direction:column;gap:5px;margin:2px 0 8px;padding:10px 12px;
+  border-radius:11px;background:var(--accentbg);border:1px solid var(--accent);
+  text-decoration:none;color:var(--text)}
+.menu .mcont[hidden]{display:none}
+.menu .mcont:hover{border-color:var(--accent2)}
+.menu .mcont .ck{font-size:0.625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent3)}
+.menu .mcont .ct{display:flex;align-items:baseline;gap:8px}
+.menu .mcont .ctt{flex:1;min-width:0;font-size:0.875rem;font-weight:700;color:var(--bright);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .mcont .ctn{flex:none;font-size:0.6875rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.menu .mcont .cs{font-size:0.6875rem;color:var(--dim)}
+.menu .mcont .cs:empty{display:none}
+.menu .mcont .cbar{display:block;height:4px;border-radius:99px;background:var(--s3);overflow:hidden}
+.menu .mcont .cbar[hidden]{display:none}
+.menu .mcont .cbar i{display:block;height:100%;width:0;background:var(--accent)}
+.menu .mtiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:5px;margin:0 0 4px}
+.menu .mtiles a.item.tile{flex-direction:column-reverse;align-items:flex-start;gap:1px;
+  padding:7px 9px;margin:0;border-radius:9px;background:var(--s2);border:1px solid var(--edge)}
+.menu .mtiles a.item.tile .n{font-size:0.9375rem;font-weight:700;color:var(--bright)}
+.menu .mtiles a.item.tile .lb{font-size:0.6875rem;color:var(--dim);font-weight:500}
+.menu .mtiles a.item.tile:hover{border-color:var(--accent)}
+.menu .mtiles a.item.tile[hidden]{display:none}
+.menu .mcourses{margin:10px 0 2px}
+.menu .mch{display:flex;align-items:baseline;gap:8px;padding:4px 9px 5px}
+.menu .mch span{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);font-weight:700}
+.menu .mch small{margin-left:auto;font-size:0.625rem;color:var(--faint)}
+.menu .crs{display:flex;flex-direction:column;gap:1px;width:100%;text-align:left;margin:0 0 4px;
+  padding:7px 10px;border-radius:9px;background:var(--s2);border:1px solid var(--edge);
+  color:var(--text);font:inherit;cursor:pointer}
+.menu .crs:hover{border-color:var(--accent)}
+.menu .crs .cn{font-size:0.8125rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .crs .cm{font-size:0.6875rem;color:var(--dim)}
+.menu .mbuild{display:flex;align-items:center;gap:7px;width:100%;padding:8px 10px;border-radius:9px;
+  border:1px dashed var(--edge);background:none;color:var(--accent2);font:inherit;font-size:0.8125rem;
+  font-weight:600;cursor:pointer;text-align:left}
+.menu .mbuild:hover{border-color:var(--accent);color:var(--accent3)}
+.menu .mbuild span{font-size:1rem;line-height:1}
+.menu nav.q .mcont,.menu nav.q .mcourses{display:none}
+.menu .catmore{display:none}
+.menu .catmore.open{display:block}
+.menu .catallbtn{display:block;width:calc(100% - 8px);margin:6px 4px 2px;padding:8px 10px;border-radius:9px;
+  border:1px solid var(--edge);background:var(--s2);color:var(--text2);font:inherit;font-size:0.75rem;
+  font-weight:600;cursor:pointer}
+.menu .catallbtn:hover{border-color:var(--accent);color:var(--bright)}
+.menu .catallbtn[hidden]{display:none}
+.menu .catalso{margin:0 0 8px 10px;padding:6px 0 2px 8px;border-left:1px solid var(--edge)}
+.menu .catalso[hidden]{display:none}
+.menu .catalso .ah{font-size:0.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);padding:2px 7px 3px}
+.menu .catalso a.kept{display:flex;gap:7px;align-items:center;min-height:1.7rem;padding:0 7px;
+  border-radius:7px;font-size:0.75rem;color:var(--text2);text-decoration:none}
+.menu .catalso a.kept:hover{background:var(--s3);color:var(--bright)}
+.menu .catalso a.kept .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .catalso a.kept .w{font-size:0.6562rem;color:var(--faint)}
+.menu .catpage.fit{height:auto}
+/* how far you are in a lesson: empty, part, done */
+.rg{flex:none;width:11px;height:11px;border-radius:50%;box-sizing:border-box;
+  border:1.5px solid var(--edge);display:inline-block}
+.rg.part{border-color:var(--edge);border-top-color:var(--warn,#f0a050);border-right-color:var(--warn,#f0a050)}
+.rg.done{background:var(--accent);border-color:var(--accent)}
+.lesson-link.kept .num{color:var(--faint)}
+
+/* the course sheets */
+.sheet-body.builder .bl{display:flex;flex-direction:column;gap:5px;margin:0 0 12px}
+.sheet-body.builder .bl span{font-size:0.75rem;font-weight:600;color:var(--text2)}
+.sheet-body.builder input[type=text],.sheet-body.builder input[type=search]{width:100%;box-sizing:border-box;
+  padding:9px 11px;border-radius:9px;border:1px solid var(--edge);background:var(--s1);color:var(--text);
+  font:inherit;font-size:0.875rem}
+.sheet-body.builder input:focus{outline:none;border-color:var(--accent)}
+.sheet-body .bcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.sheet-body .bcols{grid-template-columns:minmax(0,1fr)}}
+.sheet-body .bres{display:flex;flex-direction:column;gap:5px;max-height:46vh;overflow-y:auto;padding-right:2px}
+.sheet-body .bopt{display:flex;gap:9px;align-items:center;padding:8px 10px;border-radius:9px;
+  background:var(--s3);border:1px solid var(--edge);cursor:pointer}
+.sheet-body .bopt.on{border-color:var(--accent)}
+.sheet-body .bopt input{width:17px;height:17px;accent-color:var(--accent);flex:none}
+.sheet-body .tx{display:flex;flex-direction:column;min-width:0}
+.sheet-body .tx .t,.sheet-body .bsel .t{font-size:0.8125rem;font-weight:600;color:var(--text);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-body .tx .m{font-size:0.6875rem;color:var(--dim)}
+.sheet-body .bmine{padding:12px;border-radius:12px;background:var(--s1);border:1px solid var(--edge)}
+.sheet-body .bh{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.sheet-body .bh b{font-size:0.8125rem;color:var(--bright)}
+.sheet-body .btot{margin-left:auto;font-size:0.6875rem;color:var(--dim)}
+.sheet-body .bsel{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;counter-reset:b}
+.sheet-body .bsel li{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 10px;border-radius:8px;
+  background:var(--s3);border:1px solid var(--edge);counter-increment:b}
+.sheet-body .bsel li::before{content:counter(b);font-size:0.6875rem;color:var(--faint);width:14px}
+.sheet-body .bsel .t{flex:1;min-width:0}
+.sheet-body .bsel .m{font-size:0.6875rem;color:var(--faint)}
+.sheet-body .bsel .cbtn{padding:3px 7px;min-width:28px}
+.sheet-body .bempty{font-size:0.75rem;color:var(--dim);margin:6px 0}
+.sheet-body .bempty[hidden]{display:none}
+.sheet-body .cbtn{padding:8px 12px;border-radius:9px;border:1px solid var(--edge);background:var(--s3);
+  color:var(--text2);font:inherit;font-size:0.8125rem;font-weight:600;cursor:pointer}
+.sheet-body .cbtn:hover:not(:disabled){border-color:var(--accent);color:var(--bright)}
+.sheet-body .cbtn:disabled{opacity:.45;cursor:default}
+.sheet-body .cbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.sheet-body .bbtns,.sheet-body .cbtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sheet-body .clessons{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-direction:column;gap:4px}
+.sheet-body .clessons a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;
+  background:var(--s3);border:1px solid var(--edge);text-decoration:none;color:var(--text)}
+.sheet-body .clessons a:hover{border-color:var(--accent)}
+.sheet-body .clessons .t{flex:1;min-width:0;font-size:0.8125rem;font-weight:600;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.sheet-body .clessons .m{font-size:0.6875rem;color:var(--dim)}
+.sheet-body .cgo{padding:9px 14px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none;
+  font-size:0.8125rem;font-weight:700}
