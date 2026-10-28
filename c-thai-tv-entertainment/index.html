@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="18 Thai lessons, 180 words in all, including ทีวี (thii-wii) TV, รายการ (raai-gaan) list, ละคร (lá-kɔɔn) drama."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=b0c92274"/>
+<link rel="stylesheet" href="../style.css?v=69eb89ff"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -395,19 +395,29 @@
  // page carries four hundred lesson links and a category nobody opens costs
  // nothing at all.
  var PAGE=6;
+ // The rows come from menu.json (titles and places, small) and, until that
+ // arrives or if it cannot, from search.json.
+ var mnu=null,mnuTried=false;
+ function loadMenu(){
+  if(mnuTried)return;mnuTried=true;
+  fetch(base()+'/menu.json').then(function(r){if(!r.ok)throw 0;return r.json();})
+   .then(function(j){mnu=j;window.dispatchEvent(new Event('wb:index'));})
+   .catch(function(){loadIndex();});
+ }
  function catRows(folder){
-  if(!idx||!idx.lessons)return null;
+  var src=mnu||idx;
+  if(!src||!src.lessons)return null;
   // the Sentences row lists the lessons that have sentence pages, and a
   // category on the Sentence lessons side lists its own
-  if(folder==='sentences')return idx.sentences||[];
+  if(folder==='sentences')return src.sentences||[];
   if(folder.indexOf('s:')===0){
-   var c=folder.slice(2),S=idx.sentences||[],o=[],k;
+   var c=folder.slice(2),S=src.sentences||[],o=[],k;
    for(k=0;k<S.length;k++)if(S[k].cat===c)o.push(S[k]);
    return o;
   }
   var out=[],i;
-  for(i=0;i<idx.lessons.length;i++)
-   if(idx.lessons[i].cat===folder)out.push(idx.lessons[i]);
+  for(i=0;i<src.lessons.length;i++)
+   if(src.lessons[i].cat===folder)out.push(src.lessons[i]);
   return out;
  }
  function drawCat(wrap,page){
@@ -490,7 +500,7 @@
    // undefined, not 0: "no page chosen yet" is what makes it open where the
    // reader is. A page they turned to themselves is kept on the element.
    var at=wrap.dataset.page===undefined?undefined:+wrap.dataset.page;
-   if(!idx)loadIndex();
+   if(!mnu)loadMenu();
    drawCat(wrap,at);
   }
   for(var i=0;i<wraps.length;i++)(function(wrap){
@@ -512,7 +522,9 @@
   var want=read('wb.catopen',[])||[];
   for(var j=0;j<wraps.length;j++)
    if(want.indexOf(wraps[j].dataset.cat)>=0)openOne(wraps[j],true);
-  if(want.length)loadIndex();
+  if(want.length)loadMenu();
+  // a reader who opens a category a moment later should not wait for it
+  setTimeout(loadMenu,400);
   // And once the index lands, whatever is open gets its real rows.
   window.addEventListener('wb:index',function(){
    for(var k=0;k<wraps.length;k++)
