@@ -565,7 +565,26 @@ body.mm-open .mainmenu{transform:none;opacity:1;pointer-events:auto;
   padding:8px 9px;font-size:0.8125rem;cursor:pointer;font-family:inherit}
 .mm:hover{background:var(--s3);color:var(--bright)}
 .mm .i{width:17px;text-align:center;color:var(--faint);flex:none}
+/* a setting that is simply on or off: a checkbox, then its name */
+.mm-check{cursor:pointer;padding-top:7px;padding-bottom:7px}
+.mm-check input{appearance:none;-webkit-appearance:none;flex:none;width:17px;height:17px;margin:0;
+  border:1.5px solid var(--edge);border-radius:4px;background:var(--s2);display:inline-grid;place-content:center;cursor:pointer}
+.mm-check input::after{content:"";width:9px;height:5px;border:solid #fff;border-width:0 0 2px 2px;
+  transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.mm-check input:checked{background:var(--accent);border-color:var(--accent)}
+.mm-check input:checked::after{opacity:1}
+.mm-check input:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.mm-check .t{flex:1}
 .mm[aria-pressed="true"] .i{color:var(--accent2)}
+/* the progress and the two buttons under "Keep sounds on this device" */
+.mm-keep{margin:0 9px 6px 35px;font-size:0.75rem;color:var(--text2);line-height:1.35}
+.mm-keep[hidden],.mm-keepbar[hidden],.mm-mini[hidden]{display:none}
+.mm-keepbar{height:5px;border-radius:99px;background:var(--s3);margin:6px 0 2px;overflow:hidden}
+.mm-keepbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.mm-keepbtns{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.mm-mini{background:var(--s3);border:1px solid var(--edge);color:var(--text2);border-radius:999px;
+  padding:3px 10px;font-size:0.6875rem;cursor:pointer;font-family:inherit}
+.mm-mini:hover{border-color:var(--accent);color:var(--bright)}
 .mm-sep{height:1px;background:var(--line);margin:7px 4px}
 /* A row rather than a button: the thing being set has more than two states,
    and the reader wants to see the effect of each press before deciding. */
@@ -1019,12 +1038,16 @@ body.hide-image .left figure{ display: none }
    `sticky` rather than `absolute` because this pane scrolls — a control that
    scrolls away is a control you have to go back for. Only in read mode:
    flashcards and the quiz each have their own, about their own sides. */
-.showbar { position: sticky; top: 0; z-index: 5; height: 0;
+.showbar { position: sticky; top: 4px; z-index: 5; height: 0;
   display: flex; justify-content: flex-end; pointer-events: none }
 body:not(.mode-info) .showbar { display: none }
-.showbtn { pointer-events: auto; transform: translateY(-10px);
+/* It was drawn ten pixels too high, so the pill's top edge was cut off by the
+   pane and its label hung out of the bottom. Now it sits wholly inside the
+   corner, one fixed height, label centred on the line. */
+.showbtn { pointer-events: auto; display: inline-flex; align-items: center;
+  gap: 5px; height: 26px; box-sizing: border-box; line-height: 1;
   background: var(--s2); border: 1px solid var(--edge); color: var(--muted);
-  border-radius: 8px; padding: 5px 10px; font-size: 0.75rem;
+  border-radius: 999px; padding: 0 11px; font-size: 0.75rem;
   font-family: inherit; cursor: pointer; white-space: nowrap }
 .showbtn:hover { border-color: var(--accent); color: var(--bright) }
 /* ---------------------------------------------------------------- the tone */
