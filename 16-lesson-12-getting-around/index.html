@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Learn 14 Thai words for getting around, including รถ (car), คัน (stick), สนามบิน (airport). With audio, romanization, free flashcards and a quiz."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=a673aac6"/>
+<link rel="stylesheet" href="../style.css?v=e64ec886"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -30,6 +30,7 @@
       <div class="mm-head">Menu</div>
       <button class="mm" id="mm-theme" aria-pressed="false"><span class="i">&#9680;</span><span class="t">Light mode</span></button>
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
+      <button class="mm" id="mm-backup"><span class="i">&#10515;</span><span class="t">Back up &amp; restore</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
       <button class="mm" id="mm-pics" aria-pressed="true"><span class="i">&#127748;</span><span class="t">Pictures on</span></button>
       <label class="mm mm-check" title="Load this page's sounds in the background so they play at once"><input type="checkbox" id="mm-preload"><span class="t">Preload sounds</span></label>
@@ -241,6 +242,7 @@
     </div>
     <div class="grp" data-grp>Explore</div>
     <a class="item also" href="https://thai.inaflash.cards/" data-title="home"><span class="lb">Home</span></a>
+    <a class="item also" id="m-prob" href="https://thai.inaflash.cards/problems/" data-title="problem words"><span class="lb">Problem words<span class="sub">the ones you are working on</span></span><span class="n" data-fill="prob"></span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">1697 to read through</span></span></a>
@@ -270,7 +272,8 @@
     <div class="modes" id="modes" role="group" aria-label="How to study this lesson">
       <button class="md" data-mode="info" aria-pressed="true" title="Read it — the word, what it means, and a sentence">&#8505;</button>
       <button class="md" data-mode="card" aria-pressed="false" title="Flashcards — the answer stays hidden until you ask for it">&#127183;</button>
-      <button class="md" data-mode="quiz" aria-pressed="false" title="Quiz — pick the right word">&#10067;</button>
+      <button class="md" data-mode="quiz" aria-pressed="false" title="Quiz — every kind of question">&#10067;</button>
+      <button class="md" data-mode="listen" aria-pressed="false" title="Listening — hear it first, then answer">&#127911;</button>
     </div>
     <span class="hint" aria-hidden="true">← → keys</span>
     <input class="scrub" id="scrub" type="range" min="1" max="14" value="1" step="1" aria-label="Move through the words"/>
@@ -288,7 +291,7 @@
   <div class="rom"><span class="rt t-high">rót</span></div><div class="tone" title="tone: high"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: high" preserveAspectRatio="xMinYMid meet"><g class="tc t-high" transform="translate(0,0)"><title>high tone</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-high">high</span></span></div><div class="pos">Classifier; Noun</div>
   <div class="en">car, vehicle, [classifier for vehicles]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000354.mp3" aria-label="Play รถ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000354_slow.mp3" aria-label="Play รถ slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00354-car/">Word page for รถ →</a></div>
-
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
 </article>
 <article class="card" data-img="" data-alt="stick, handle, lever, [classifier for vehicles, spoons, forks, umbrellas], itchy, to itch — คัน" data-wid="TH_000391" data-ch="🪵" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for คัน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🪵</text></svg></div>
@@ -296,7 +299,7 @@
   <div class="rom"><span class="rt t-mid">khan</span></div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-mid" transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-mid">mid</span></span></div><div class="pos">Adjective; Classifier; Noun</div>
   <div class="en">stick, handle, lever, [classifier for vehicles, spoons, forks, umbrellas], itchy, to itch</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000391.mp3" aria-label="Play คัน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000391_slow.mp3" aria-label="Play คัน slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00391-stick/">Word page for คัน →</a></div>
-<div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอช้อนหนึ่งคันครับ</div><div class="sr"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-high">chɔ́ɔn</span> <span class="rt t-low">nʉ̀ng</span> <span class="rt t-mid">khan</span> <span class="rt t-high">khráp</span></div><div class="st">I&#x27;d like one spoon, please.</div></li><li><div class="sx" lang="th">ขอส้อมหนึ่งคันค่ะ</div><div class="sr"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-falling">sɔ̂ɔm</span> <span class="rt t-low">nʉ̀ng</span> <span class="rt t-mid">khan</span> <span class="rt t-falling">khâ</span></div><div class="st">I&#x27;d like one fork, please.</div></li></ul></div>
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ขอช้อนหนึ่งคันครับ</div><div class="sr"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-high">chɔ́ɔn</span> <span class="rt t-low">nʉ̀ng</span> <span class="rt t-mid">khan</span> <span class="rt t-high">khráp</span></div><div class="st">I&#x27;d like one spoon, please.</div></li><li><div class="sx" lang="th">ขอส้อมหนึ่งคันค่ะ</div><div class="sr"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-falling">sɔ̂ɔm</span> <span class="rt t-low">nʉ̀ng</span> <span class="rt t-mid">khan</span> <span class="rt t-falling">khâ</span></div><div class="st">I&#x27;d like one fork, please.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="airport — สนามบิน" data-wid="TH_000538" data-ch="✈️" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for สนามบิน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>✈️</text></svg></div>
@@ -304,7 +307,7 @@
   <div class="rom"><span class="rt t-low">sà</span>-<span class="rt t-rising">nǎam</span>-<span class="rt t-mid">bin</span></div><div class="tone" title="tone: low-rising-mid"><svg class="tmark" viewBox="0 0 352 60" role="img" aria-label="tone: low-rising-mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-low" transform="translate(0,0)"><title>low tone — syllable 1 of 3</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g><g class="tc t-rising" transform="translate(126,0)"><title>rising tone — syllable 2 of 3</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g><g class="tc t-mid" transform="translate(252,0)"><title>mid tone — syllable 3 of 3</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-low">low</span>-<span class="tc t-rising">rising</span>-<span class="tc t-mid">mid</span></span></div><div class="pos">Noun</div>
   <div class="en">airport</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000538.mp3" aria-label="Play สนามบิน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000538_slow.mp3" aria-label="Play สนามบิน slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00538-airport/">Word page for สนามบิน →</a></div>
-
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
 </article>
 <article class="card" data-img="" data-alt="hotel — โรงแรม" data-wid="TH_000453" data-ch="🏨" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for โรงแรม"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🏨</text></svg></div>
@@ -312,7 +315,7 @@
   <div class="rom"><span class="rt t-mid">roong</span>-<span class="rt t-mid">raem</span></div><div class="tone" title="tone: mid-mid"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: mid-mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-mid" transform="translate(0,0)"><title>mid tone — syllable 1 of 2</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g><g class="tc t-mid" transform="translate(126,0)"><title>mid tone — syllable 2 of 2</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-mid">mid</span>-<span class="tc t-mid">mid</span></span></div><div class="pos">Noun</div>
   <div class="en">hotel</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000453.mp3" aria-label="Play โรงแรม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000453_slow.mp3" aria-label="Play โรงแรม slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00453-hotel/">Word page for โรงแรม →</a></div>
-
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
 </article>
 <article class="card" data-img="" data-alt="office, bureau — สำนักงาน" data-wid="TH_000053" data-ch="🏢" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for สำนักงาน"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🏢</text></svg></div>
@@ -320,7 +323,7 @@
   <div class="rom"><span class="rt t-rising">sǎm</span>-<span class="rt t-high">nák</span>-<span class="rt t-mid">ngaan</span></div><div class="tone" title="tone: rising-high-mid"><svg class="tmark" viewBox="0 0 352 60" role="img" aria-label="tone: rising-high-mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-rising" transform="translate(0,0)"><title>rising tone — syllable 1 of 3</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g><g class="tc t-high" transform="translate(126,0)"><title>high tone — syllable 2 of 3</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g><g class="tc t-mid" transform="translate(252,0)"><title>mid tone — syllable 3 of 3</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-rising">rising</span>-<span class="tc t-high">high</span>-<span class="tc t-mid">mid</span></span></div><div class="pos">Noun</div>
   <div class="en">office, bureau</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000053.mp3" aria-label="Play สำนักงาน">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000053_slow.mp3" aria-label="Play สำนักงาน slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00053-office/">Word page for สำนักงาน →</a></div>
-<div class="aid"><div class="k">Remember it by</div><div class="hook">sum + knock + barn</div></div>
+<div class="aid"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Edit</span></button></div><div class="aidtx"><div class="hook">sum + knock + barn</div></div></div>
 </article>
 <article class="card" data-img="" data-alt="sea (used in อาหารทะเล for seafood) — ทะเล" data-wid="TH_001091" data-ch="🌊" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ทะเล"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🌊</text></svg></div>
@@ -328,7 +331,7 @@
   <div class="rom"><span class="rt t-high">tá</span>-<span class="rt t-mid">lee</span></div><div class="tone" title="tone: high-mid"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: high-mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-high" transform="translate(0,0)"><title>high tone — syllable 1 of 2</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g><g class="tc t-mid" transform="translate(126,0)"><title>mid tone — syllable 2 of 2</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-high">high</span>-<span class="tc t-mid">mid</span></span></div><div class="pos">noun</div>
   <div class="en">sea (used in อาหารทะเล for seafood)</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001091.mp3" aria-label="Play ทะเล">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001091_slow.mp3" aria-label="Play ทะเล slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/01091-sea-used-in-for-seafood/">Word page for ทะเล →</a></div>
-<div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันแพ้อาหารทะเล</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-high">phɛ́ɛ</span> <span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-high">thá</span>-<span class="rt t-mid">lee</span></div><div class="st">I&#x27;m allergic to seafood.</div></li></ul></div>
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันแพ้อาหารทะเล</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-high">phɛ́ɛ</span> <span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-high">thá</span>-<span class="rt t-mid">lee</span></div><div class="st">I&#x27;m allergic to seafood.</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="temple, monastery, to measure, [classifier for temples] — วัด" data-wid="TH_000608" data-ch="🛕" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for วัด"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🛕</text></svg></div>
@@ -336,7 +339,7 @@
   <div class="rom"><span class="rt t-high">wát</span></div><div class="tone" title="tone: high"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: high" preserveAspectRatio="xMinYMid meet"><g class="tc t-high" transform="translate(0,0)"><title>high tone</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-high">high</span></span></div><div class="pos">Classifier; Noun; Verb</div>
   <div class="en">temple, monastery, to measure, [classifier for temples]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000608.mp3" aria-label="Play วัด">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000608_slow.mp3" aria-label="Play วัด slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00608-temple/">Word page for วัด →</a></div>
-
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
 </article>
 <article class="card" data-img="" data-alt="country — ประเทศ" data-wid="TH_000126" data-ch="🏳️" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ประเทศ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🌍</text></svg></div>
@@ -344,7 +347,7 @@
   <div class="rom"><span class="rt t-low">bprà</span>-<span class="rt t-falling">thêet</span></div><div class="tone" title="tone: low-falling"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: low-falling" preserveAspectRatio="xMinYMid meet"><g class="tc t-low" transform="translate(0,0)"><title>low tone — syllable 1 of 2</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g><g class="tc t-falling" transform="translate(126,0)"><title>falling tone — syllable 2 of 2</title><path d="M4,13 L34,9 L96,54" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="13.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-low">low</span>-<span class="tc t-falling">falling</span></span></div><div class="pos">Noun</div>
   <div class="en">country</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000126.mp3" aria-label="Play ประเทศ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000126_slow.mp3" aria-label="Play ประเทศ slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00126-country/">Word page for ประเทศ →</a></div>
-
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
 </article>
 <article class="card" data-img="" data-alt="Thai person, Thailand, Thai [language, culture] — ไทย" data-wid="TH_000083" data-ch="🇹🇭" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ไทย"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="500.0" y="425.0" font-size="585.5" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🇹🇭</text></svg></div>
@@ -352,7 +355,7 @@
   <div class="rom"><span class="rt t-mid">thai</span></div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-mid" transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-mid">mid</span></span></div><div class="pos">Adjective; Noun</div>
   <div class="en">Thai person, Thailand, Thai [language, culture]</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000083.mp3" aria-label="Play ไทย">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000083_slow.mp3" aria-label="Play ไทย slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00083-thai-person/">Word page for ไทย →</a></div>
-<div class="aid"><div class="k">Remember it by</div><div class="hook">tie</div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผัดไทยจานนี้อร่อยมาก</div><div class="sr"><span class="rt t-low">phàt</span>-<span class="rt t-mid">thai</span> <span class="rt t-mid">jaan</span> <span class="rt t-high">níi</span> <span class="rt t-low">à</span>-<span class="rt t-low">rɔ̀i</span> <span class="rt t-falling">mâak</span></div><div class="st">This plate of pad Thai is very delicious.</div></li><li><div class="sx" lang="th">ฉันอยากกินอาหารไทย</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-low">yàak</span> <span class="rt t-mid">gin</span> <span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-mid">thai</span></div><div class="st">I want to eat Thai food.</div></li><li><div class="sx" lang="th">อาหารไทยมีหลายรสชาติ</div><div class="sr"><span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-mid">thai</span> <span class="rt t-mid">mii</span> <span class="rt t-rising">lǎai</span> <span class="rt t-high">rót</span>-<span class="rt t-falling">châat</span></div><div class="st">Thai food has many different flavors.</div></li></ul></div>
+<div class="aid"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Edit</span></button></div><div class="aidtx"><div class="hook">tie</div></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ผัดไทยจานนี้อร่อยมาก</div><div class="sr"><span class="rt t-low">phàt</span>-<span class="rt t-mid">thai</span> <span class="rt t-mid">jaan</span> <span class="rt t-high">níi</span> <span class="rt t-low">à</span>-<span class="rt t-low">rɔ̀i</span> <span class="rt t-falling">mâak</span></div><div class="st">This plate of pad Thai is very delicious.</div></li><li><div class="sx" lang="th">ฉันอยากกินอาหารไทย</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-low">yàak</span> <span class="rt t-mid">gin</span> <span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-mid">thai</span></div><div class="st">I want to eat Thai food.</div></li><li><div class="sx" lang="th">อาหารไทยมีหลายรสชาติ</div><div class="sr"><span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-mid">thai</span> <span class="rt t-mid">mii</span> <span class="rt t-rising">lǎai</span> <span class="rt t-high">rót</span>-<span class="rt t-falling">châat</span></div><div class="st">Thai food has many different flavors.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000015.jpg" data-alt="from, since — จาก" data-wid="TH_000015" data-ch="🛫" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for จาก"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><g><line x1="792.7" y1="425.0" x2="406.3" y2="425.0" stroke="var(--vis-accent,#d2691e)" stroke-width="76.1" stroke-linecap="round"/><polygon points="207.3,425.0 406.3,307.9 406.3,542.1" fill="var(--vis-accent,#d2691e)"/></g></svg></div>
@@ -360,7 +363,7 @@
   <div class="rom"><span class="rt t-low">jàak</span></div><div class="tone" title="tone: low"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: low" preserveAspectRatio="xMinYMid meet"><g class="tc t-low" transform="translate(0,0)"><title>low tone</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-low">low</span></span></div><div class="pos">Preposition</div>
   <div class="en">from, since</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000015.mp3" aria-label="Play จาก">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000015_slow.mp3" aria-label="Play จาก slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00015-from/">Word page for จาก →</a></div>
-<div class="aid"><div class="k">Remember it by</div><div class="hook">jack</div><p>jack</p></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันซื้อส้มมาจากตลาด</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-high">sʉ́ʉ</span> <span class="rt t-falling">sôm</span> <span class="rt t-mid">maa</span> <span class="rt t-low">jàak</span> <span class="rt t-low">dtà</span>-<span class="rt t-low">làat</span></div><div class="st">I bought oranges from the market.</div></li><li><div class="sx" lang="th">ฉันซื้ออาหารจากร้านข้างถนน</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-high">sʉ́ʉ</span> <span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-low">jàak</span> <span class="rt t-high">ráan</span> <span class="rt t-falling">khâang</span> <span class="rt t-low">thà</span>-<span class="rt t-rising">nǒn</span></div><div class="st">I bought food from a street stall.</div></li><li><div class="sx" lang="th">ขอข้าวจากตลาดค่ะ</div><div class="sr"><span class="rt t-rising">khǎaw</span> <span class="rt t-falling">khâao</span> <span class="rt t-low">jàak</span> <span class="rt t-low">dtà</span>-<span class="rt t-low">làat</span> <span class="rt t-falling">khâ</span></div><div class="st">Rice from the market, please.</div></li></ul></div>
+<div class="aid"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Edit</span></button></div><div class="aidtx"><div class="hook">jack</div><p>jack</p></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ฉันซื้อส้มมาจากตลาด</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-high">sʉ́ʉ</span> <span class="rt t-falling">sôm</span> <span class="rt t-mid">maa</span> <span class="rt t-low">jàak</span> <span class="rt t-low">dtà</span>-<span class="rt t-low">làat</span></div><div class="st">I bought oranges from the market.</div></li><li><div class="sx" lang="th">ฉันซื้ออาหารจากร้านข้างถนน</div><div class="sr"><span class="rt t-rising">chǎn</span> <span class="rt t-high">sʉ́ʉ</span> <span class="rt t-mid">aa</span>-<span class="rt t-rising">hǎan</span> <span class="rt t-low">jàak</span> <span class="rt t-high">ráan</span> <span class="rt t-falling">khâang</span> <span class="rt t-low">thà</span>-<span class="rt t-rising">nǒn</span></div><div class="st">I bought food from a street stall.</div></li><li><div class="sx" lang="th">ขอข้าวจากตลาดค่ะ</div><div class="sr"><span class="rt t-rising">khǎaw</span> <span class="rt t-falling">khâao</span> <span class="rt t-low">jàak</span> <span class="rt t-low">dtà</span>-<span class="rt t-low">làat</span> <span class="rt t-falling">khâ</span></div><div class="st">Rice from the market, please.</div></li></ul></div>
 </article>
 <article class="card" data-img="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000010.jpg" data-alt="by, via, through, by means of — โดย" data-wid="TH_000010" data-ch="→" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for โดย"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><g><line x1="207.3" y1="425.0" x2="593.7" y2="425.0" stroke="var(--vis-accent,#d2691e)" stroke-width="76.1" stroke-linecap="round"/><polygon points="792.7,425.0 593.7,542.1 593.7,307.9" fill="var(--vis-accent,#d2691e)"/></g></svg></div>
@@ -368,7 +371,7 @@
   <div class="rom"><span class="rt t-mid">dooi</span></div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-mid" transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-mid">mid</span></span></div><div class="pos">Adverb; Preposition</div>
   <div class="en">by, via, through, by means of</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000010.mp3" aria-label="Play โดย">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000010_slow.mp3" aria-label="Play โดย slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00010-by/">Word page for โดย →</a></div>
-<div class="aid"><div class="k">Remember it by</div><div class="hook">toy</div><p>toy</p></div>
+<div class="aid"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Edit</span></button></div><div class="aidtx"><div class="hook">toy</div><p>toy</p></div></div>
 </article>
 <article class="card" data-img="" data-alt="according to, along, following, to follow — ตาม" data-wid="TH_000066" data-ch="👣" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ตาม"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="166.7" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text><g><line x1="385.2" y1="425.0" x2="536.7" y2="425.0" stroke="var(--vis-accent,#d2691e)" stroke-width="29.8" stroke-linecap="round"/><polygon points="614.8,425.0 536.7,470.9 536.7,379.1" fill="var(--vis-accent,#d2691e)"/></g><text x="833.3" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👣</text></svg></div>
@@ -376,7 +379,7 @@
   <div class="rom"><span class="rt t-mid">dtaam</span></div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><g class="tc t-mid" transform="translate(0,0)"><title>mid tone</title><path d="M4,30 L96,31" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="30.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-mid">mid</span></span></div><div class="pos">Adverb; Preposition; Verb</div>
   <div class="en">according to, along, following, to follow</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000066.mp3" aria-label="Play ตาม">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000066_slow.mp3" aria-label="Play ตาม slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00066-according-to/">Word page for ตาม →</a></div>
-<div class="aid"><div class="k">Remember it by</div><div class="hook">Tom</div></div>
+<div class="aid"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Edit</span></button></div><div class="aidtx"><div class="hook">Tom</div></div></div>
 </article>
 <article class="card" data-img="" data-alt="for — สำหรับ" data-wid="TH_000082" data-ch="🎁" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for สำหรับ"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="166.7" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>🎁</text><g><line x1="385.2" y1="425.0" x2="536.7" y2="425.0" stroke="var(--vis-accent,#d2691e)" stroke-width="29.8" stroke-linecap="round"/><polygon points="614.8,425.0 536.7,470.9 536.7,379.1" fill="var(--vis-accent,#d2691e)"/></g><text x="833.3" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>👤</text></svg></div>
@@ -384,7 +387,7 @@
   <div class="rom"><span class="rt t-rising">sǎm</span>-<span class="rt t-low">ràp</span></div><div class="tone" title="tone: rising-low"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: rising-low" preserveAspectRatio="xMinYMid meet"><g class="tc t-rising" transform="translate(0,0)"><title>rising tone — syllable 1 of 2</title><path d="M4,36 L36,49 L96,10" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="36.0" r="7" fill="currentColor"/></g><g class="tc t-low" transform="translate(126,0)"><title>low tone — syllable 2 of 2</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-rising">rising</span>-<span class="tc t-low">low</span></span></div><div class="pos">Preposition</div>
   <div class="en">for</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000082.mp3" aria-label="Play สำหรับ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000082_slow.mp3" aria-label="Play สำหรับ slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00082-for/">Word page for สำหรับ →</a></div>
-<div class="aid"><div class="k">Remember it by</div><div class="hook">sum up</div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">สำคัญสำหรับโต๊ะครับ</div><div class="sr"><span class="rt t-rising">sǎm</span>-<span class="rt t-mid">khan</span> <span class="rt t-rising">sǎm</span>-<span class="rt t-low">ràp</span> <span class="rt t-high">dtó</span> <span class="rt t-high">khráp</span></div><div class="st">It is important for the table.\</div></li></ul></div>
+<div class="aid"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Edit</span></button></div><div class="aidtx"><div class="hook">sum up</div></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">สำคัญสำหรับโต๊ะครับ</div><div class="sr"><span class="rt t-rising">sǎm</span>-<span class="rt t-mid">khan</span> <span class="rt t-rising">sǎm</span>-<span class="rt t-low">ràp</span> <span class="rt t-high">dtó</span> <span class="rt t-high">khráp</span></div><div class="st">It is important for the table.\</div></li></ul></div>
 </article>
 <article class="card" data-img="" data-alt="between, among, during, interval, space between — ระหว่าง" data-wid="TH_000135" data-ch="↔️" data-vis="1">
   <div class="vis" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="altvis" role="img" aria-label="visual cue for ระหว่าง"><rect width="1000" height="1000" rx="35" fill="var(--vis-bg,#fbfcfd)"/><text x="166.7" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text><text x="500.0" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>↔</text><text x="833.3" y="425.0" font-size="229.6" text-anchor="middle" dominant-baseline="central" font-family='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif'>●</text></svg></div>
@@ -392,7 +395,7 @@
   <div class="rom"><span class="rt t-high">rá</span>-<span class="rt t-low">wàang</span></div><div class="tone" title="tone: high-low"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: high-low" preserveAspectRatio="xMinYMid meet"><g class="tc t-high" transform="translate(0,0)"><title>high tone — syllable 1 of 2</title><path d="M4,24 L96,7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="24.0" r="7" fill="currentColor"/></g><g class="tc t-low" transform="translate(126,0)"><title>low tone — syllable 2 of 2</title><path d="M4,40 L96,53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4.0" cy="40.0" r="7" fill="currentColor"/></g></svg><span class="tname"><span class="tc t-high">high</span>-<span class="tc t-low">low</span></span></div><div class="pos">Noun; Preposition</div>
   <div class="en">between, among, during, interval, space between</div>
   <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000135.mp3" aria-label="Play ระหว่าง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000135_slow.mp3" aria-label="Play ระหว่าง slowly">🐢 Slowly</button></div>  <div class="wpl"><a href="https://thai.inaflash.cards/word/00135-between/">Word page for ระหว่าง →</a></div>
-
+<div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
 </article>
     <section class="aboutlesson" id="about-lesson"><h2>Getting around in Thai: 14 words with audio</h2><p>This lesson teaches 14 Thai words for getting around in the Beginner part of the course, starting with รถ (car), คัน (stick), สนามบิน (airport), โรงแรม (hotel). Each word is shown in Thai script with tone colours, romanization and its English meaning, and you can hear it spoken at normal and slow speed.</p><p>Go through the cards at your own pace, then take the quiz to check what stuck.</p></section>
     <dl class="vocab seo"><h2>Vocabulary (14 words)</h2><div><dt lang="th">รถ <span class="rom">rót</span></dt><dd>car, vehicle, [classifier for vehicles]</dd></div><div><dt lang="th">คัน <span class="rom">khan</span></dt><dd>stick, handle, lever, [classifier for vehicles, spoons, forks, umbrellas], itchy, to itch</dd></div><div><dt lang="th">สนามบิน <span class="rom">sà-nǎam-bin</span></dt><dd>airport</dd></div><div><dt lang="th">โรงแรม <span class="rom">roong-raem</span></dt><dd>hotel</dd></div><div><dt lang="th">สำนักงาน <span class="rom">sǎm-nák-ngaan</span></dt><dd>office, bureau</dd></div><div><dt lang="th">ทะเล <span class="rom">tá-lee</span></dt><dd>sea (used in อาหารทะเล for seafood)</dd></div><div><dt lang="th">วัด <span class="rom">wát</span></dt><dd>temple, monastery, to measure, [classifier for temples]</dd></div><div><dt lang="th">ประเทศ <span class="rom">bprà-thêet</span></dt><dd>country</dd></div><div><dt lang="th">ไทย <span class="rom">thai</span></dt><dd>Thai person, Thailand, Thai [language, culture]</dd></div><div><dt lang="th">จาก <span class="rom">jàak</span></dt><dd>from, since</dd></div><div><dt lang="th">โดย <span class="rom">dooi</span></dt><dd>by, via, through, by means of</dd></div><div><dt lang="th">ตาม <span class="rom">dtaam</span></dt><dd>according to, along, following, to follow</dd></div><div><dt lang="th">สำหรับ <span class="rom">sǎm-ràp</span></dt><dd>for</dd></div><div><dt lang="th">ระหว่าง <span class="rom">rá-wàang</span></dt><dd>between, among, during, interval, space between</dd></div></dl>
@@ -403,7 +406,7 @@
  var nav=document.getElementById('nav'),find=document.getElementById('find'),
      none=document.getElementById('nohits'),hits=document.getElementById('hits'),
      idx=null,idxTried=false;
- var NAVJ=null,KNOWN={};
+ var NAVJ=null,KNOWN={},CoursesStore=null;
  function items(){return nav?nav.querySelectorAll('a.item'):[];}
  function base(){return document.body.dataset.root||'';}
  function read(k,d){try{var v=localStorage.getItem(k);
@@ -776,6 +779,7 @@
  })();
 
  var fb=document.getElementById('fav-btn');
+ if(fb&&document.body.dataset.kind==='problems'){fb.hidden=true;fb=null;}
  if(fb){
   var me=fb.dataset.folder,ttl=fb.dataset.title||me;
   var paint=function(){
@@ -1000,6 +1004,55 @@
   apply();
  })();
 
+ // ---- a card made from a saved word, for pages that are not its lesson:
+ // the Problem words page, and the problem words mixed into other quizzes
+ function probCard(x){
+  var a=document.createElement('article');
+  a.className='card pw';
+  a.dataset.wid=x.id||'';a.dataset.img=x.img||'';a.dataset.alt=(x.mean||'')+' — '+(x.word||'');
+  a.dataset.ch=x.ch||(x.word||' ').slice(0,1);if(x.lesson)a.dataset.lesson=x.lesson;
+  var lang=document.documentElement.lang||'';
+  function div(cls,text,attr){var d=document.createElement('div');d.className=cls;if(text)d.textContent=text;
+   if(attr)for(var k in attr)d.setAttribute(k,attr[k]);return d;}
+  var row=div('throw');row.appendChild(div('th','' ,{lang:lang}));row.firstChild.textContent=x.word||'';
+  a.appendChild(row);
+  if(x.rom)a.appendChild(div('rom',x.rom));
+  if(x.tone){var t=div('tone');var n=document.createElement('span');n.className='tname';n.textContent=x.tone;t.appendChild(n);a.appendChild(t);}
+  a.appendChild(div('en',x.mean||''));
+  if(x.snd||x.slow){var pl=div('plays');
+   if(x.snd){var b1=document.createElement('button');b1.type='button';b1.dataset.play=x.snd;b1.textContent='🔊 Say it';pl.appendChild(b1);}
+   if(x.slow){var b2=document.createElement('button');b2.type='button';b2.dataset.play=x.slow;b2.textContent='🐢 Slowly';pl.appendChild(b2);}
+   a.appendChild(pl);}
+  if(x.lesson){var f=div('pfrom');f.appendChild(document.createTextNode('From '));
+   var l=document.createElement('a');l.href=(document.body.dataset.root||'..')+'/'+x.lesson+'/';
+   l.textContent=(x.title||x.lesson).replace(/ in Thai:.*$/,'');f.appendChild(l);a.appendChild(f);}
+  return a;
+ }
+ function readProblems(){try{var v=JSON.parse(localStorage.getItem('wb.problems')||'[]');
+  return Object.prototype.toString.call(v)==='[object Array]'?v:[];}catch(e){return [];}}
+ // Dan: "The problem list is a list you can add problems words to, you can
+ // then study through these words." The page is built like a lesson, so it
+ // reads, flips and quizzes like one; its cards come from the reader's list.
+ if(document.body.dataset.kind==='problems'){
+  (function(){
+   var ph=document.querySelectorAll('.card'),host=ph.length?ph[0].parentNode:null;
+   if(!host)return;
+   for(var i=0;i<ph.length;i++)ph[i].remove();
+   var list=readProblems();
+   if(!list.length){
+    var e=document.createElement('div');e.className='pempty';
+    e.innerHTML='<h2>No problem words yet</h2><p>Mark a word with <b>⚑ Problem word</b> on any card, '
+     +'or tick the ones you missed at the end of a quiz. They collect here, to study together — '
+     +'and they turn up now and then in your other quizzes. A word leaves the list once you get it right three times in a row.</p>';
+    host.appendChild(e);
+    var md=document.getElementById('modes');if(md)md.hidden=true;
+    return;
+   }
+   list.forEach(function(x){host.appendChild(probCard(x));});
+   var sc=document.getElementById('scrub');if(sc)sc.max=String(list.length);
+  })();
+ }
+
  var cards=[].slice.call(document.querySelectorAll('.card')),at=0,
      prev=document.getElementById('prev'),next=document.getElementById('next'),
      count=document.getElementById('count'),scrub=document.getElementById('scrub'),
@@ -1041,11 +1094,31 @@
  //
  // `big` is the reading pane, which gets the figure and the lazy <img>
  // fallback; a card face gets the same contents without them.
+ // The reader's own pictures, by word: Dan, "need option to allow user to
+ // edit img.. add there own easily". A photo from their device, a link, or an
+ // emoji; kept on the word's row in their browser, never sent anywhere.
+ var MYPIC={};
+ function picFrom(id,v){
+  var was=MYPIC[id];
+  if(was&&was.obj)try{URL.revokeObjectURL(was.url);}catch(e){}
+  if(!v){delete MYPIC[id];return;}
+  if(typeof Blob!=='undefined'&&v instanceof Blob){MYPIC[id]={url:URL.createObjectURL(v),obj:true};return;}
+  if(typeof v==='string'&&v.indexOf('emoji:')===0){MYPIC[id]={emoji:v.slice(6)};return;}
+  if(typeof v==='string'&&/^https?:\/\//.test(v)){MYPIC[id]={url:v};return;}
+  delete MYPIC[id];
+ }
  function pictureFor(me,big){
   var box=document.createElement(big?'figure':'div');
   if(!big)box.className='f-img';
   var ch=me.dataset.ch||'',alt=me.dataset.alt||'',
       src=(picMode==='art')?(me.dataset.img||''):'';
+  // theirs first, in any picture style but "no pictures"
+  var mine=MYPIC[me.dataset.wid||''];
+  if(mine&&picMode!=='off'){
+   if(mine.emoji){var em=document.createElement('div');em.className='nopic mine';
+    em.textContent=mine.emoji;box.appendChild(em);return box;}
+   src=mine.url;
+  }
 
   function blank(){
    var v=me.querySelector('.vis'),d;
@@ -1115,8 +1188,8 @@
    // At the last word › carries on into the next lesson when the reader has
    // asked for that (Auto-start next lesson); otherwise it stops, and the
    // end-of-lesson bar offers the next lesson instead.
-   var onward=at===cards.length-1&&autoNext&&nextLesson;
-   next.disabled=at===cards.length-1&&!onward;
+   var onward=at===cards.length-1&&autoNext&&nextLesson&&quizDone();
+   next.disabled=at===cards.length-1&&!onward&&quizDone();
    next.classList.toggle('tonext',!!onward);
    next.title=onward?'Next lesson: '+nextTitle():'';
    next.setAttribute('aria-label',onward?'Next lesson':'Next word');
@@ -1125,6 +1198,7 @@
   if(pic){
    pic.innerHTML='';
    pic.appendChild(pictureFor(cards[meIdx],true));
+   picButton(pic,cards[meIdx]);
   }
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
   cue(byUser);
@@ -1148,10 +1222,21 @@
  try{autoNext=localStorage.getItem('wb.autonext')==='1';}catch(e){}
  var endBox=null;
  function atEnd(){return cards.length>0&&at===cards.length-1;}
+ // Dan: "quiz, should only stop if all questions answered". In a quiz the
+ // lesson is not over at its last card but at its last answer, so nothing
+ // moves on to the next lesson before then.
+ function quizDone(){
+  if(typeof mode==='undefined'||mode!=='quiz')return true;
+  return typeof asked!=='undefined'&&asked>=cards.length;
+ }
  function nextTitle(){return nextLesson?(nextLesson.getAttribute('title')||''):'';}
  function goNext(){if(nextLesson)location.href=nextLesson.href;}
  function stepOn(){
-  if(atEnd()&&autoNext&&nextLesson){goNext();return;}
+  if(atEnd()&&autoNext&&nextLesson&&quizDone()){goNext();return;}
+  // the last card of an unfinished quiz: on to the first unanswered one
+  if(atEnd()&&typeof mode!=='undefined'&&mode==='quiz'&&!quizDone()){
+   for(var q=0;q<cards.length;q++)if(!answered[q]){show(q,true);return;}
+  }
   show(at+1,true);
  }
  function paintEnd(){
@@ -1421,8 +1506,15 @@
   if(!window.indexedDB){kPaint('This browser cannot keep sounds.',0,0);return Promise.resolve();}
   return kSaved().then(function(a){
    if(kBox)kBox.hidden=!(keepOn||a.n);
-   kPaint(a.n?a.n+' sound'+(a.n===1?'':'s')+' kept on this device ('+mb(a.bytes)+').'
+   // Dan: "if I already have the audio (downloaded), the system should say
+   // that" — so this page's own count comes first.
+   var pg=Object.keys(kPage),have=0,i;
+   for(i=0;i<pg.length;i++)if(a.set[pg[i]])have++;
+   var here=pg.length?(have===pg.length?'\u2713 All '+pg.length+' sounds on this page are on this device. '
+                       :have?'This page: '+have+' of '+pg.length+' sounds on this device. ':''):'';
+   kPaint(a.n?here+a.n+' sound'+(a.n===1?'':'s')+' kept in all ('+mb(a.bytes)+').'
               :'Nothing kept yet.',0,0);
+   if(kMsg)kMsg.classList.toggle('allhere',!!pg.length&&have===pg.length);
    if(kClr)kClr.hidden=!a.n;
   },function(){
    kPaint('This browser will not keep sounds here (private window?).',0,0);
@@ -1466,7 +1558,12 @@
     function next(){
      if(me!==keepRun||quit||cursor>=todo.length){if(!live)end();return;}
      var u=todo[cursor++],k=abs(u);live++;
-     fetch(k,{mode:'cors',credentials:'omit'}).then(function(r){
+     // `no-store`: the browser may already hold this clip from playing it,
+     // stored WITHOUT the header that lets a page read it (the bucket does not
+     // say Vary: Origin). Reusing that copy is refused even once the bucket
+     // allows the site — which is how "0 of 12050 are kept" happened after the
+     // rule was set. A fresh request carries the header.
+     fetch(k,{mode:'cors',credentials:'omit',cache:'no-store'}).then(function(r){
       if(!r.ok)throw new Error('HTTP '+r.status);
       return r.blob();
      }).then(function(blob){
@@ -1488,7 +1585,7 @@
        // not reachable, or not allowed: the browser does not say which
        if(++fails>=4)quit=(navigator.onLine===false)
         ?'You are offline, so no more could be kept. '+done+' of '+total+' are kept.'
-        :'The sound host will not let this page keep sounds yet (the site owner needs to allow it). '+done+' of '+total+' are kept.';
+        :'The sound host refused. '+done+' of '+total+' are kept. If the site owner has just allowed it, reload the page and try again.';
       }else if(++fails>=6)quit='Could not keep more sounds ('+(e&&e.message||'error')+'). '+done+' of '+total+' are kept.';
      }).then(function(){live--;next();});
     }
@@ -1892,6 +1989,7 @@
    all:impl.all,
    get:impl.get,
    clear:impl.clear,
+   put:function(row){return impl.put(row);},
    // Merge fields into a word's row without touching the counters. The
    // reader's own edits live on the same row their progress does — one
    // record per word, one store, no second schema to version.
@@ -1958,11 +2056,13 @@
   var th=card.querySelector('.th'),en=card.querySelector('.en');
   return {word:th?th.textContent.trim():'',
           mean:en?en.textContent.trim():'',
-          lesson:document.body.dataset.lesson||''};
+          // a problem word asked on another page still belongs to its lesson
+          lesson:card.dataset.lesson||document.body.dataset.lesson||''};
  }
  // An answer, right or wrong — the quiz's business.
  function scored(card,right){
   var k=wordKey(card);if(!k)return;
+  if(typeof Problems!=='undefined')Problems.answered(k,right);
   Progress.note(k,right,cardFacts(card)).then(function(row){
    if(typeof knownNow!=='undefined')knownNow[k]=row.state;
   });
@@ -1990,10 +2090,19 @@
  // text out of them, the quiz builds its options from them, the search reads
  // them — so changing them in place means an edit reaches all of it without
  // any of it knowing this feature exists.
+ // The Remember it by box says whether it has anything in it, and its button
+ // says Add yours or Edit to match.
+ function aidState(card){
+  var a=card&&card.querySelector('.aid');if(!a)return;
+  var t=a.querySelector('.aidtx'),has=!!(t&&(t.textContent||'').trim());
+  a.classList.toggle('empty',!has);
+  var l=a.querySelector('.aidedit span');if(l)l.textContent=has?'Edit':'Add yours';
+ }
  var Edits=(function(){
   // `:scope > .rom` — the card's own line, not the opposite version's romanization
   // that sits in the male / female pop-up beside the word
-  var FIELDSEL={word:'.th',rom:':scope > .rom',pos:'.pos',mean:'.en',hook:'.aid',ex:'.ex'};
+  // `.aid .aidtx`: the words of the memory hook, not its "Remember it by" label
+  var FIELDSEL={word:'.th',rom:':scope > .rom',pos:'.pos',mean:'.en',hook:'.aid .aidtx',ex:'.ex'};
   var cache={},on=false;
 
   function idOf(card){return (card&&card.dataset&&card.dataset.wid)||'';}
@@ -2004,7 +2113,7 @@
    if(e){
     for(k in FIELDSEL)if(e.f&&e.f[k]!==undefined){
      el=card.querySelector(FIELDSEL[k]);
-     if(el){el.textContent=e.f[k];el.classList.add('mine');}
+     if(el){el.textContent=e.f[k];el.classList.add('mine');if(k==='hook')aidState(card);}
     }
    }
    // Always, even with nothing stored: turning editing on has to offer an
@@ -2037,6 +2146,7 @@
     for(var i=0;i<(rows||[]).length;i++){
      var r=rows[i];
      if(r&&(r.edits||r.note))cache[r.id]={f:r.edits||{},note:r.note||''};
+     if(r&&r.pic)picFrom(r.id,r.pic);
     }
     applyAll();
    }).catch(function(){});
@@ -2048,12 +2158,14 @@
    e.f[k]=value;
    var el=card.querySelector(FIELDSEL[k]);
    if(el)el.classList.add('mine');
+   if(typeof Backup!=='undefined')Backup.touched();
    Progress.patch(id,{edits:e.f,note:e.note});
   }
   function setNote(card,value){
    var id=idOf(card);if(!id)return;
    var e=cache[id]||(cache[id]={f:{},note:''});
    e.note=value;
+   if(typeof Backup!=='undefined')Backup.touched();
    Progress.patch(id,{edits:e.f,note:e.note});
   }
 
@@ -2126,7 +2238,7 @@
   {k:'mean',  label:'English meaning',sel:'.en',  cls:'f-mean'},
   {k:'image', label:'Picture',        img:true},
   {k:'sound', label:'Sound',          snd:true},
-  {k:'hook',  label:'Memory hook',    sel:'.aid', cls:'f-hook'},
+  {k:'hook',  label:'Memory hook',    sel:'.aid .aidtx', cls:'f-hook'},
   {k:'ex',    label:'Example sentence',sel:'.ex', cls:'f-ex'}
  ];
  // Thai one side, English and the picture the other. What a vocabulary card
@@ -2326,14 +2438,14 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   shuffled=!shuffled;buildOrder();
   if(barEl){var b=barEl.querySelector('[data-act=shuffle]');
             if(b)b.classList.toggle('on',shuffled);}
-  if(mode==='quiz'){answered={};score=0;asked=0;}
+  if(mode==='quiz')resetQuiz();
   show(0,true);
  }
  function toggleReverse(){
   reversed=!reversed;
   if(barEl){var b=barEl.querySelector('[data-act=reverse]');
             if(b)b.classList.toggle('on',reversed);}
-  if(mode==='quiz'){answered={};score=0;asked=0;}
+  if(mode==='quiz')resetQuiz();
   draw();
  }
 
@@ -2344,7 +2456,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   // How many wrong answers, and what goes on each side, are settings for
   // the run rather than controls you reach for mid-question — so they live
   // in the panel under Reset, not up here beside it.
-  if(kind==='quiz')html+='<span class="score"></span>';
+  if(kind==='quiz')html+='<span class="score"></span><span class="qstreak" hidden></span>';
   // Shuffle, reverse and reset sit at the right-hand end: they are what you
   // do to the whole run, not to the word in front of you.
   html+='<span class="sp"></span>'
@@ -2365,7 +2477,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    if(t.dataset.act==='reverse')toggleReverse();
    if(t.dataset.act==='sides')sidesPanel();
    if(t.dataset.act==='reset'){
-    if(mode==='quiz'){answered={};score=0;asked=0;}
+    if(mode==='quiz')resetQuiz();
     show(0,true);
    }
   });
@@ -2607,6 +2719,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   // so these keep their place and their handlers instead of being thrown
   // away and rebuilt five times a lesson.
   quizBox.innerHTML='<div class="qtools">'
+   +(qstyle==='listen'?'<div class="qlisten">\uD83C\uDFA7 Listening</div>'
+     :'<div class="qstyles" role="group" aria-label="Kinds of question">'
+     +'<button class="nbtn" data-qs="mix" title="Every kind of question, mixed">Mixed</button>'
+     +'<button class="nbtn" data-qs="classic" title="Only: what does it mean?">Classic</button></div>')
+   +'<button class="nbtn qtypebtn" data-act="type" aria-pressed="false" title="Type your answer before you see the choices">\u2328 Type first</button>'
    +'<div class="qwrongs"><b>Wrong answers</b>'
    +'<button class="nbtn" data-n="2">2</button>'
    +'<button class="nbtn" data-n="3">3</button>'
@@ -2615,13 +2732,26 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    +'<button class="qshow" data-act="sides" title="Choose what to show">'
    +'⚙ Show</button></div><div class="qbody"></div>';
   quizBox.querySelector('.qtools').addEventListener('click',function(e){
-   var t=e.target.closest?e.target.closest('[data-n],[data-act]'):null;
+   var t=e.target.closest?e.target.closest('[data-n],[data-act],[data-qs]'):null;
    if(!t)return;t.blur();
    if(t.dataset.n)setWrongs(parseInt(t.dataset.n,10));
-   else sidesPanel();
+   else if(t.dataset.qs){
+    qstyle=t.dataset.qs;try{localStorage.setItem('wb.qstyle',qstyle);}catch(e2){}
+    paintQtools();resetQuiz();show(0,true);
+   }else if(t.dataset.act==='type'){
+    typeFirst=!typeFirst;try{localStorage.setItem('wb.qtype',typeFirst?'1':'0');}catch(e2){}
+    paintQtools();if(!answered[at])drawQuiz();
+   }else sidesPanel();
   });
   right.appendChild(barEl);right.appendChild(quizBox);
   setWrongs(wrongs);
+  paintQtools();
+ }
+ function paintQtools(){
+  if(!quizBox)return;
+  quizBox.querySelectorAll('[data-qs]').forEach(function(b){b.classList.toggle('on',b.dataset.qs===qstyle);});
+  var tb=quizBox.querySelector('[data-act=type]');
+  if(tb){tb.classList.toggle('on',typeFirst);tb.setAttribute('aria-pressed',typeFirst?'true':'false');}
  }
 
  // A fixed shuffle per question, so the options stay put when you come back
@@ -2635,123 +2765,514 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   return a;
  }
 
+ // ============================================================ quiz 2.0
+ //
+ // Dan's list: "need listening quiz, need to create a lot of question forms",
+ // "try a sentence", "quiz needs typing mode, aswell as multiple choice",
+ // "need a better way of showing right, need some small animation, something
+ // to make the user feel good? Also, some sort of streak counter", and "need
+ // review after finishing quiz, offer to add wrong words to problem list".
+ //
+ // One question per card, as before, but each card is asked in one of several
+ // ways, chosen per card and kept (so coming back to a question shows the
+ // same question). A question is a spec: what to show, the options, which
+ // option is right, and what a typed answer may be checked against.
+ //
+ //   meaning  the word → what it means          (the classic quiz; ⚙ Show applies)
+ //   thai     what it means → the word
+ //   listen   hear it → what it means            (all of the 🎧 Listening mode)
+ //   rom      the romanization → the Thai script
+ //   tone     the Thai, heard → which tone
+ //   gap      a sentence with the word missing → the word
+ //   order    "try a sentence": the words of a sentence, mixed → in order
+ var qstyle='mix',typeFirst=false,qkind={},typedMiss={},autoPlayed={},
+     qrun=0,qbest=0;
+ try{qstyle=localStorage.getItem('wb.qstyle')||'mix';}catch(e){}
+ try{typeFirst=localStorage.getItem('wb.qtype')==='1';}catch(e){}
+ try{qrun=parseInt(localStorage.getItem('wb.qrun'),10)||0;
+     qbest=parseInt(localStorage.getItem('wb.qbest'),10)||0;}catch(e){}
+ var TONES=['mid','low','falling','high','rising'];
+ var KLABEL={meaning:'What does it mean?',thai:'Which is the Thai?',listen:'Listen — what does it mean?',
+  rom:'Which Thai word is this?',tone:'Which tone is it?',gap:'Which word fills the gap?',order:'Try a sentence: put the words in order'};
+
+ // The text of an element without its tone marks: the marks are drawings,
+ // and their <title> ("rising tone") is text that would end up in the answer.
+ function qtxt(el){
+  if(!el)return '';
+  var c=el.cloneNode(true);
+  c.querySelectorAll('.tm,svg,.gtip,.aidedit').forEach(function(x){x.remove();});
+  return (c.textContent||'').replace(/\s+/g,' ').trim();
+ }
+ function cdata(card){
+  if(card._qd)return card._qd;
+  var isS=card.classList.contains('sc'),d={isS:isS,
+   word:qtxt(card.querySelector(isS?'.th':'.throw .th')||card.querySelector('.th')),
+   rom:qtxt(card.querySelector(':scope > .rom')),mean:qtxt(card.querySelector('.en')),
+   snd:null,slow:null,tone:'',sents:[]};
+  var ps=card.querySelectorAll('.plays [data-play]');
+  if(ps[0])d.snd=ps[0].dataset.play;if(ps[1])d.slow=ps[1].dataset.play;
+  var tn=card.querySelector('.tone .tname');d.tone=tn?qtxt(tn).toLowerCase():'';
+  if(isS){
+   var tk=[].map.call(card.querySelectorAll('.th .tw'),qtxt).filter(Boolean);
+   if(tk.length)d.sents.push({toks:tk,text:d.word,tr:d.mean,snd:d.snd});
+  }
+  card.querySelectorAll('.sents .sent').forEach(function(s){
+   var st=s.querySelector('.stext:not([hidden])');if(!st)return;
+   var sx=st.querySelector('.sx');if(!sx)return;
+   var toks=[].map.call(sx.querySelectorAll('.tw'),qtxt).filter(Boolean);
+   var tr=st.querySelector('.st'),pl=st.querySelector('[data-play]');
+   d.sents.push({toks:toks,text:qtxt(sx),tr:tr?qtxt(tr):'',snd:pl?pl.dataset.play:null});
+  });
+  card._qd=d;return d;
+ }
+ function kindsFor(card,meIdx){
+  var d=cdata(card),k=['meaning'];
+  if(cards.length>2)k.push('thai');
+  if(d.snd)k.push('listen');
+  if(!d.isS&&d.rom&&cards.length>2)k.push('rom');
+  if(!d.isS&&TONES.indexOf(d.tone)>=0)k.push('tone');
+  var i;
+  for(i=0;i<d.sents.length;i++)if(!d.isS&&d.sents[i].toks.indexOf(d.word)>=0&&d.sents[i].toks.length>=3){k.push('gap');break;}
+  for(i=0;i<d.sents.length;i++)if(d.sents[i].toks.length>=3&&d.sents[i].toks.length<=8&&d.sents[i].tr){k.push('order');break;}
+  return k;
+ }
+ var KWEIGHT={meaning:3,thai:2,listen:2,rom:1,tone:1,gap:2,order:1};
+ function kindAt(pos,card,meIdx){
+  if(qkind[pos])return qkind[pos];
+  var ok=kindsFor(card,meIdx),k;
+  if(qstyle==='listen')k=ok.indexOf('listen')>=0?'listen':'meaning';
+  else if(qstyle==='classic'||pos===0)k='meaning';   // a mixed quiz starts gently
+  else{
+   var bag=[],i,j;
+   for(i=0;i<ok.length;i++)for(j=0;j<(KWEIGHT[ok[i]]||1);j++)bag.push(ok[i]);
+   k=seeded(bag,pos*7+3)[0]||'meaning';
+  }
+  qkind[pos]=k;return k;
+ }
+ function resetQuiz(){answered={};score=0;asked=0;qkind={};typedMiss={};autoPlayed={};}
+
+ // ---- checking a typed answer, forgivingly
+ function normMean(t){
+  return (t||'').toLowerCase().replace(/\[[^\]]*\]|\([^)]*\)/g,' ')
+   .replace(/^(to|a|an|the)\s+/,'').replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
+ }
+ function meanings(m){
+  return (m||'').replace(/\[[^\]]*\]|\([^)]*\)/g,' ').split(/[,;\/]| or /).map(normMean).filter(Boolean);
+ }
+ function normRom(t){
+  return (t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()
+   .replace(/ɔ/g,'o').replace(/ɛ/g,'e').replace(/ʉ/g,'u').replace(/ə/g,'e').replace(/ŋ/g,'ng')
+   .replace(/[^a-z]/g,'');
+ }
+ function lev(a,b){
+  if(Math.abs(a.length-b.length)>2)return 9;
+  var m=[],i,j;for(i=0;i<=a.length;i++){m[i]=[i];}for(j=0;j<=b.length;j++)m[0][j]=j;
+  for(i=1;i<=a.length;i++)for(j=1;j<=b.length;j++)
+   m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+  return m[a.length][b.length];
+ }
+ function typedRight(spec,raw){
+  var t=(raw||'').trim();if(!t)return false;
+  var i,c;
+  if(spec.typeMean){
+   var n=normMean(t),ms=meanings(spec.typeMean);
+   for(i=0;i<ms.length;i++){c=ms[i];
+    if(n===c||(c.length>=5&&lev(n,c)<=1)||(c.length>=9&&lev(n,c)<=2))return true;}
+  }
+  if(spec.typeThai){
+   if(t.replace(/\s/g,'')===spec.typeThai.replace(/\s/g,''))return true;
+   if(spec.typeRom&&normRom(t)&&normRom(t)===normRom(spec.typeRom))return true;
+  }
+  return false;
+ }
+
+ // ---- the question, as a spec
+ function others(meIdx,n,seed,keyOf){
+  var pool=[],i,seen={},mine=keyOf(meIdx);seen[mine]=1;
+  for(i=0;i<cards.length;i++)if(i!==meIdx)pool.push(i);
+  pool=seeded(pool,seed);
+  var out=[];
+  for(i=0;i<pool.length&&out.length<n;i++){var k=keyOf(pool[i]);if(k&&!seen[k]){seen[k]=1;out.push(pool[i]);}}
+  return out;
+ }
+ function playBtns(snd,slow){
+  var h='';
+  if(snd)h+='<button type="button" class="qplay" data-play="'+esc(snd)+'" aria-label="Play it">🔊 Play</button>';
+  if(slow)h+='<button type="button" class="qplay" data-play="'+esc(slow)+'" aria-label="Play it slowly">🐢 Slowly</button>';
+  return h?'<div class="qplays">'+h+'</div>':'';
+ }
+ function specFor(kind,card,meIdx){
+  var d=cdata(card),seed=at+1,s={kind:kind,opts:[],right:'c'+meIdx},ws;
+  var cardOpt=function(k,side){return {key:'c'+k,draw:function(el){faceInto(el,cards[k],side);}};};
+  var textOpt=function(k,text,cls,lang){return {key:'c'+k,draw:function(el){
+   var x=document.createElement('span');x.className=cls||'';if(lang)x.setAttribute('lang',lang);
+   x.textContent=text;el.appendChild(x);}};};
+  var lang=document.documentElement.lang||'';
+  if(kind==='meaning'||kind==='thai'){
+   var qs=(kind==='meaning')!==reversed?'front':'back',as=qs==='front'?'back':'front';
+   s.face=function(el){faceInto(el,card,qs);gLabel(el,card);};
+   ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i])[as==='back'?'mean':'word'];});
+   s.opts=ws.concat([meIdx]).map(function(k){return cardOpt(k,as);});
+   if(as==='back')s.typeMean=d.mean;else{s.typeThai=d.word;s.typeRom=d.rom;}
+  }else if(kind==='listen'){
+   s.face=function(el){el.innerHTML='<div class="qear" aria-hidden="true">🎧</div>'+playBtns(d.snd,d.slow);};
+   s.autoplay=d.snd;
+   ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i]).mean;});
+   s.opts=ws.concat([meIdx]).map(function(k){return textOpt(k,cdata(cards[k]).mean,'f-mean');});
+   s.typeMean=d.mean;s.typeThai=d.word;s.typeRom=d.rom;
+  }else if(kind==='rom'){
+   s.face=function(el){el.innerHTML='<div class="f-rom qbig"></div>';el.firstChild.textContent=d.rom;};
+   ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i]).word;});
+   s.opts=ws.concat([meIdx]).map(function(k){return textOpt(k,cdata(cards[k]).word,'f-word qthai',lang);});
+   s.typeThai=d.word;
+  }else if(kind==='tone'){
+   s.face=function(el){el.innerHTML='<div class="f-word" lang="'+lang+'"></div>'+playBtns(d.snd,d.slow);
+    el.firstChild.textContent=d.word;};
+   s.right='t:'+d.tone;
+   s.opts=TONES.map(function(t){return {key:'t:'+t,draw:function(el){
+    el.innerHTML='<span class="tc t-'+t+' qtone">'+t+'</span>';}};});
+   s.fixed=true;
+  }else if(kind==='gap'){
+   var sn=null,i;
+   for(i=0;i<d.sents.length;i++)if(d.sents[i].toks.indexOf(d.word)>=0&&d.sents[i].toks.length>=3){sn=d.sents[i];break;}
+   s.face=function(el){
+    var h='<div class="qsent" lang="'+lang+'">',done=false;
+    sn.toks.forEach(function(t){h+=(!done&&t===d.word)?(done=true,'<span class="qgap">＿＿</span>'):'<span>'+esc(t)+'</span>';});
+    el.innerHTML=h+'</div>'+(sn.tr?'<div class="qtr"></div>':'');
+    if(sn.tr)el.querySelector('.qtr').textContent=sn.tr;
+   };
+   ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i]).word;});
+   s.opts=ws.concat([meIdx]).map(function(k){return textOpt(k,cdata(cards[k]).word,'f-word qthai',lang);});
+   s.typeThai=d.word;s.typeRom=d.rom;s.after=sn;
+  }else if(kind==='order'){
+   var so=null,j;
+   for(j=0;j<d.sents.length;j++)if(d.sents[j].toks.length>=3&&d.sents[j].toks.length<=8&&d.sents[j].tr){so=d.sents[j];break;}
+   s.sent=so;s.right='order';
+   s.face=function(el){el.innerHTML='<div class="qtr qbigtr"></div>';el.firstChild.textContent=so.tr;};
+  }
+  if(!s.fixed&&s.opts.length)s.opts=seeded(s.opts,at+7);
+  s.short=d.word;
+  return s;
+ }
+
+ // ---- one question
  function drawQuiz(){
   if(!quizBox||!cards.length)return;
   var meIdx=order[at],card=cards[meIdx];
   if(!card)return;
-  var qSide=reversed?'back':'front',aSide=reversed?'front':'back';
-  var pool=[],i;
-  for(i=0;i<cards.length;i++)if(i!==meIdx)pool.push(i);
-  var picked=seeded(pool,at+1).slice(0,wrongs);
-  var all=seeded(picked.concat([meIdx]),at+7);
-  var already=answered[at];
-
-  // The word, then the answers to it, in one column. A question and its
-  // options are a short list read downwards, not two things side by side
-  // with the screen split between them.
+  var kind=kindAt(at,card,meIdx),spec=specFor(kind,card,meIdx),already=answered[at];
   quizBox.querySelector('.qbody').innerHTML=
-   '<div class="qsplit"><div class="qcard"><div class="qface"></div></div>'
-   +'<div class="qopts"></div><div class="qresult"></div></div>';
-  faceInto(quizBox.querySelector('.qface'),card,qSide);
-  gLabel(quizBox.querySelector('.qface'),card);
+   '<div class="qsplit"><div class="qask"></div><div class="qcard"><div class="qface"></div></div>'
+   +'<div class="qtyp"></div><div class="qopts"></div><div class="qresult"></div></div>';
+  quizBox.querySelector('.qask').textContent=(card.classList.contains('injected')?'\u2691 One of your problem words \u00b7 ':'')+(KLABEL[kind]||'');
+  spec.face(quizBox.querySelector('.qface'));
+  var opts=quizBox.querySelector('.qopts'),res=quizBox.querySelector('.qresult'),
+      typ=quizBox.querySelector('.qtyp');
 
-  var opts=quizBox.querySelector('.qopts');
-  for(i=0;i<all.length;i++)(function(k,n){
-   var b=document.createElement('button');
-   b.className='qopt';b.type='button';
-   var key=document.createElement('span');key.className='qkey';
-   key.textContent=String(n+1);
-   var txt=document.createElement('span');txt.className='qtext';
-   faceInto(txt,cards[k],aSide);
-   b.appendChild(key);b.appendChild(txt);
-   if(already){
-    b.disabled=true;
-    if(k===meIdx)b.classList.add('qok');
-    else if(already.picked===k)b.classList.add('qno');
-   }else b.onclick=function(ev){
-    // The answer may have a sound on it. Asking to hear a word is not the
-    // same as choosing it, and choosing by accident cannot be undone.
-    if(playHit(ev))return;
-    b.blur();answer(k,meIdx);
-   };
-   opts.appendChild(b);
-  })(all[i],i);
-
-  if(picked.length<wrongs){
-   var note=document.createElement('div');
-   note.className='qnote';
-   note.textContent='Only '+picked.length+' other word'
-    +(picked.length===1?'':'s')+' in this lesson to choose from.';
-   opts.appendChild(note);
+  if(kind==='order')drawOrder(spec,meIdx,opts,already);
+  else{
+   spec.opts.forEach(function(o,n){
+    var b=document.createElement('button');
+    b.className='qopt';b.type='button';
+    var key=document.createElement('span');key.className='qkey';key.textContent=String(n+1);
+    var txt=document.createElement('span');txt.className='qtext';
+    o.draw(txt);
+    b.appendChild(key);b.appendChild(txt);
+    if(already){
+     // Answered, but NOT disabled: a disabled button swallows every click
+     // inside it, and the play buttons are inside it. Dan: "audio stops
+     // working on answer.. the audio should always work".
+     b.classList.add('qlocked');
+     if(o.key===spec.right)b.classList.add('qok');
+     else if(already.picked===o.key)b.classList.add('qno');
+    }else b.onclick=function(ev){
+     // asking to hear a word is not choosing it
+     if(playHit(ev))return;
+     b.blur();answer(o.key,spec,meIdx,{btn:b});
+    };
+    opts.appendChild(b);
+   });
+   // Typing first: the choices wait until the reader has had a go.
+   var canType=typeFirst&&(spec.typeMean||spec.typeThai);
+   if(canType&&!already&&!typedMiss[at]){
+    opts.hidden=true;
+    typ.innerHTML='<label class="qtlab"><span></span><input type="text" class="qin" autocomplete="off" '
+     +'autocapitalize="off" spellcheck="false"></label><div class="qtbtns">'
+     +'<button type="button" class="qnext qcheck">Check</button>'
+     +'<button type="button" class="qskip">Show the choices</button></div>';
+    typ.querySelector('span').textContent=spec.typeMean&&!spec.typeThai?'Type what it means'
+     :spec.typeThai&&!spec.typeMean?'Type it — in Thai or in romanization':'Type what it means, or the word';
+    var inp=typ.querySelector('.qin');
+    var go=function(){
+     if(!inp.value.trim())return;
+     if(typedRight(spec,inp.value)){answer(spec.right,spec,meIdx,{typed:true,said:inp.value});}
+     else{typedMiss[at]=inp.value;drawQuiz();}
+    };
+    typ.querySelector('.qcheck').onclick=go;
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();go();}});
+    typ.querySelector('.qskip').onclick=function(){typedMiss[at]=' ';drawQuiz();};
+    setTimeout(function(){try{inp.focus();}catch(e){}},30);
+   }else if(typedMiss[at]&&typedMiss[at]!==' '&&!already){
+    typ.innerHTML='<div class="qmiss"></div>';
+    typ.firstChild.textContent='Not quite (“'+typedMiss[at].trim()+'”). Pick it from these:';
+   }
   }
-
-  var res=quizBox.querySelector('.qresult');
+  if(spec.autoplay&&!already&&!autoPlayed[at]){
+   autoPlayed[at]=1;
+   setTimeout(function(){try{var a=snd(spec.autoplay);a.currentTime=0;var p=a.play();if(p&&p.catch)p.catch(function(){});}catch(e){}},150);
+  }
   if(already){
    var say=document.createElement('span');
-   say.textContent=already.right?'Right.':'Not that one.';
+   say.className=already.right?'qsay ok':'qsay no';
+   say.textContent=already.right?(already.typed?'Right — and you typed it.':'Right.'):'Not that one.';
    res.appendChild(say);
-   if(at<cards.length-1){
+   // what the answer was, with its sound, for every kind that hid something
+   if(kind!=='meaning'&&kind!=='thai'){
+    var d=cdata(card),rv=document.createElement('div');rv.className='qreveal';
+    rv.innerHTML='<b lang="'+(document.documentElement.lang||'')+'"></b> <span class="f-rom"></span> — <span class="m"></span>'
+     +playBtns(kind==='order'&&spec.sent?spec.sent.snd:(spec.after&&spec.after.snd)||d.snd,null);
+    rv.querySelector('b').textContent=kind==='order'&&spec.sent?spec.sent.toks.join(''):d.word;
+    rv.querySelector('.f-rom').textContent=kind==='order'?'':d.rom;
+    rv.querySelector('.m').textContent=kind==='order'&&spec.sent?spec.sent.tr:d.mean;
+    res.appendChild(rv);
+   }
+   var nxt=nextOpen(at);
+   if(nxt>=0){
     var nx=document.createElement('button');
-    nx.className='qnext';nx.type='button';nx.textContent='Next word →';
-    nx.onclick=function(){nx.blur();show(at+1,true);};
+    nx.className='qnext';nx.type='button';
+    nx.textContent=nxt===at+1?'Next →':(cards.length-asked)+' still to answer →';
+    nx.onclick=function(){nx.blur();show(nxt,true);};
     res.appendChild(nx);
+    setTimeout(function(){try{if(!document.activeElement||document.activeElement===document.body)nx.focus();}catch(e){}},50);
    }
   }
   document.body.classList.toggle('answered',!!already);
   drawScore();
   if(asked>=cards.length)finish();
-  else if(at===cards.length-1&&already){
-   var miss=[],k2;
-   for(k2=0;k2<cards.length;k2++)if(!answered[k2])miss.push(k2);
-   if(miss.length){
-    var l=document.createElement('button');
-    l.className='qnext';l.type='button';
-    l.textContent=miss.length+' still to answer →';
-    l.onclick=function(){l.blur();show(miss[0],true);};
-    res.appendChild(l);
-   }
+ }
+ // the next question still to answer, after this one and then from the top
+ function nextOpen(pos){
+  var i;
+  for(i=pos+1;i<cards.length;i++)if(!answered[i])return i;
+  for(i=0;i<pos;i++)if(!answered[i])return i;
+  return -1;
+ }
+
+ // "Try a sentence": tap the words in order; tap a placed one to take it back.
+ function drawOrder(spec,meIdx,opts,already){
+  var so=spec.sent,lang=document.documentElement.lang||'';
+  var box=document.createElement('div');box.className='qorder';
+  box.innerHTML='<div class="qline" lang="'+lang+'"></div><div class="qtiles" lang="'+lang+'"></div>'
+   +'<div class="qtbtns"><button type="button" class="qnext qcheck">Check</button>'
+   +'<button type="button" class="qskip">Start again</button></div>';
+  opts.appendChild(box);
+  var line=box.querySelector('.qline'),tiles=box.querySelector('.qtiles');
+  if(already){
+   (already.said||[]).forEach(function(t){var s=document.createElement('span');s.className='qtile placed';s.textContent=t;line.appendChild(s);});
+   line.classList.add(already.right?'ok':'no');
+   box.querySelector('.qtbtns').remove();
+   return;
   }
+  var order2=seeded(so.toks.map(function(t,i){return i;}),at+11),placed=[];
+  // never already in order
+  if(order2.join()===so.toks.map(function(t,i){return i;}).join())order2.push(order2.shift());
+  function paint(){
+   line.innerHTML='';tiles.innerHTML='';
+   placed.forEach(function(i,n){var b=document.createElement('button');b.type='button';b.className='qtile placed';
+    b.textContent=so.toks[i];b.onclick=function(){placed.splice(n,1);paint();};line.appendChild(b);});
+   order2.forEach(function(i){if(placed.indexOf(i)>=0)return;var b=document.createElement('button');b.type='button';
+    b.className='qtile';b.textContent=so.toks[i];b.onclick=function(){placed.push(i);paint();};tiles.appendChild(b);});
+   box.querySelector('.qcheck').disabled=placed.length!==so.toks.length;
+  }
+  box.querySelector('.qcheck').onclick=function(){
+   var said=placed.map(function(i){return so.toks[i];});
+   // two words that are the same word may swap places and still be right
+   var ok=said.join('')===so.toks.join('');
+   answer(ok?'order':'order:wrong',spec,meIdx,{said:said,box:line});
+  };
+  box.querySelector('.qskip').onclick=function(){placed=[];paint();};
+  paint();
  }
 
  function drawScore(){
   if(!barEl)return;
   var el=barEl.querySelector('.score');
   if(el)el.textContent=asked?(score+' of '+asked+' right'):'';
+  var st=barEl.querySelector('.qstreak');
+  if(st){st.hidden=!qrun&&!qbest;
+   st.innerHTML=(qrun?'<b>🔥 '+qrun+'</b> in a row':'')+(qbest?' <span>best '+qbest+'</span>':'');}
  }
 
- function answer(picked,me){
+ function answer(picked,spec,me,extra){
   if(answered[at])return;
-  answered[at]={picked:picked,right:picked===me};
-  asked++;if(picked===me)score++;
-  // The quiz already knows whether you knew it. Saying so is the whole of
-  // what "track my progress" means here.
-  scored(cards[me],picked===me);
+  extra=extra||{};
+  var right=picked===spec.right;
+  answered[at]={picked:picked,right:right,kind:spec.kind,typed:!!extra.typed,
+                said:extra.said,me:me};
+  asked++;if(right)score++;
+  // a run of right answers, kept across lessons, and the best one ever
+  qrun=right?qrun+1:0;if(qrun>qbest)qbest=qrun;
+  try{localStorage.setItem('wb.qrun',String(qrun));localStorage.setItem('wb.qbest',String(qbest));}catch(e){}
+  scored(cards[me],right);
   drawQuiz();
+  cheer(right,extra);
+ }
+ // Something to feel: a pop and a tick for right (and a little buzz on a
+ // phone), a shake for wrong. Brief, and never in the way of the next press.
+ function cheer(right,extra){
+  var hit=quizBox&&(quizBox.querySelector(right?'.qopt.qok':'.qopt.qno')||quizBox.querySelector('.qline'));
+  if(hit){hit.classList.add(right?'qyay':'qshake');}
+  var res=quizBox&&quizBox.querySelector('.qresult');
+  if(right&&res){
+   var b=document.createElement('span');b.className='qburst';b.setAttribute('aria-hidden','true');
+   b.textContent=qrun>=5&&qrun%5===0?'🔥 '+qrun+'!':'✓';
+   res.appendChild(b);setTimeout(function(){b.remove();},900);
+  }
+  try{if(navigator.vibrate)navigator.vibrate(right?25:[12,40,12]);}catch(e){}
  }
 
+ // The end: how it went, every question with your answer beside the right
+ // one, and the words you missed already ticked to go on your Problem list.
  function finish(){
+  var was=quizBox.querySelector('.qdone');if(was)was.remove();
   var done=document.createElement('div');
   done.className='qdone';
-  var pct=Math.round(100*score/Math.max(1,cards.length));
-  done.innerHTML='<h2>'+score+' of '+cards.length+' — '+pct+'%</h2><p>'
-   +(pct===100?'Every word. Nothing left to look up here.'
-     :pct>=70?'Most of them. The ones you missed are worth another look.'
-     :'Worth reading through again before the next go.')+'</p>';
+  var pct=Math.round(100*score/Math.max(1,cards.length)),days=(typeof Days!=='undefined')?Days.streak():0;
+  done.innerHTML='<h2>'+score+' of '+cards.length+' — '+pct+'%</h2><p class="qdp"></p>'
+   +'<div class="qrev"></div><div class="qdbtns"></div>';
+  done.querySelector('.qdp').textContent=(pct===100?'Every one. ':pct>=70?'Most of them. ':'Worth another go. ')
+   +(qbest?'Best run: '+qbest+' in a row. ':'')+(days>1?days+' days in a row studying.':'');
+  var rev=done.querySelector('.qrev'),wrong=[],pos;
+  for(pos=0;pos<cards.length;pos++){
+   var a=answered[pos];if(!a)continue;
+   var d=cdata(cards[a.me]),row=document.createElement('label');
+   row.className='qrow '+(a.right?'ok':'no');
+   row.innerHTML=(a.right?'<span class="qmark">✓</span>':'<input type="checkbox" checked>')
+    +'<span class="qw" lang="'+(document.documentElement.lang||'')+'"></span><span class="qr"></span>'
+    +'<span class="qm"></span><span class="qk"></span>';
+   row.querySelector('.qw').textContent=d.word;row.querySelector('.qr').textContent=d.rom;
+   row.querySelector('.qm').textContent=d.mean;row.querySelector('.qk').textContent=(KLABEL[a.kind]||'').replace(/\?.*$/,'?');
+   if(!a.right){row.dataset.me=String(a.me);wrong.push(row);}
+   rev.appendChild(row);
+  }
+  var bt=done.querySelector('.qdbtns');
+  if(wrong.length&&typeof Problems!=='undefined'){
+   var add=document.createElement('button');add.type='button';add.className='qadd';
+   add.textContent='Add the ticked words to my Problem list';
+   add.onclick=function(){
+    var n=0;wrong.forEach(function(r){var cb=r.querySelector('input');
+     if(cb&&cb.checked){Problems.add(cards[+r.dataset.me]);n++;}});
+    add.textContent=n?n+' added to your Problem list ✓':'Nothing ticked';add.disabled=!!n;
+   };
+   bt.appendChild(add);
+  }
   var again=document.createElement('button');
   again.type='button';again.textContent='Go again';
-  again.onclick=function(){answered={};score=0;asked=0;show(0,true);};
+  again.onclick=function(){resetQuiz();show(0,true);};
   var read=document.createElement('button');
   read.type='button';read.textContent='Read the lesson';
   read.onclick=function(){setMode('info');};
-  done.appendChild(again);done.appendChild(read);
+  bt.appendChild(again);bt.appendChild(read);
   if(nextLesson){
    var on=document.createElement('a');
    on.className='qnextlesson';on.href=nextLesson.href;
    on.textContent='Next lesson: '+nextTitle()+' →';
-   done.appendChild(on);
+   bt.appendChild(on);
   }
   quizBox.appendChild(done);
  }
+
+ // ---------------------------------------------------------- problem words
+ // Dan: "The problem list is a list you can add problems words to, you can
+ // then study through these words. problem words, can randomly appear in
+ // other quizes." Each word is kept with what is needed to show it anywhere
+ // on the site — its Thai, romanization, meaning, sound and picture — so a
+ // page that is not its lesson can still ask it. In this browser only.
+ var Problems=(function(){
+  var KEY='wb.problems';
+  function all(){try{var v=JSON.parse(localStorage.getItem(KEY)||'[]');
+   return Object.prototype.toString.call(v)==='[object Array]'?v:[];}catch(e){return [];}}
+  function put(l){try{localStorage.setItem(KEY,JSON.stringify(l.slice(0,500)));}catch(e){}
+   if(typeof Backup!=='undefined')Backup.touched();
+   window.dispatchEvent(new Event('wb:problems'));}
+  function snap(card){
+   var d=cdata(card),im=card.getAttribute('data-img')||'';
+   return {id:card.dataset.wid||d.word,word:d.word,rom:d.rom,mean:d.mean,
+           snd:d.snd?abs(d.snd):'',slow:d.slow?abs(d.slow):'',img:im?abs(im):'',ch:card.dataset.ch||'',
+           tone:d.tone,lesson:card.dataset.lesson||document.body.dataset.lesson||'',
+           title:card.dataset.lesson?((card.querySelector('.pfrom a')||{}).textContent||''):document.title,
+           at:Date.now(),ok:0};
+  }
+  return {
+   all:all,
+   has:function(id){return all().some(function(x){return x.id===id;});},
+   add:function(card){var r=snap(card),l=all().filter(function(x){return x.id!==r.id;});l.unshift(r);put(l);return r;},
+   remove:function(id){put(all().filter(function(x){return x.id!==id;}));},
+   // Right three times running and it has stopped being a problem.
+   answered:function(id,right){
+    var l=all(),i,hit=false;
+    for(i=0;i<l.length;i++)if(l[i].id===id){hit=true;l[i].ok=right?(l[i].ok||0)+1:0;
+     if(l[i].ok>=3){l.splice(i,1);}break;}
+    if(hit)put(l);
+    return hit;
+   }
+  };
+ })();
+
+ // A few of the reader's problem words, mixed into another lesson's quiz —
+ // "problem words, can randomly appear in other quizes". Up to three, never
+ // one this lesson already has, put in at places of their own, and taken out
+ // again when the quiz is left.
+ var injected=[];
+ function injectProblems(){
+  if(injected.length||document.body.dataset.kind==='problems'||!cards.length)return;
+  var here={},i;for(i=0;i<cards.length;i++)here[cards[i].dataset.wid]=1;
+  var pool=readProblems().filter(function(x){return x.id&&!here[x.id]&&x.word&&x.mean;});
+  if(!pool.length)return;
+  var day=Math.floor(Date.now()/864e5),n=Math.min(3,pool.length,Math.max(1,Math.round(cards.length/8)));
+  pool=seeded(pool,day).slice(0,n);
+  var host=cards[0].parentNode;
+  pool.forEach(function(x){var c=probCard(x);c.hidden=true;c.classList.add('injected');host.appendChild(c);
+   cards.push(c);injected.push(c);});
+  buildOrder();
+  // spread through the run rather than all at the end
+  var extra=order.splice(order.length-injected.length,injected.length);
+  extra.forEach(function(ix,k){var at2=Math.min(order.length,Math.round((k+1)*order.length/(extra.length+1))+1);
+   order.splice(at2,0,ix);});
+  if(scrub)scrub.max=String(cards.length);
+  resetQuiz();
+ }
+ function dropInjected(){
+  if(!injected.length)return;
+  injected.forEach(function(c){var i=cards.indexOf(c);if(i>=0)cards.splice(i,1);c.remove();});
+  injected=[];buildOrder();
+  if(scrub)scrub.max=String(cards.length);
+  if(at>=cards.length)at=cards.length-1;
+  resetQuiz();
+ }
+ // ⚑ Problem word, on every card in the reading pane
+ function probButtons(){
+  cards.forEach(function(c){
+   if(c.classList.contains('sc')||c.querySelector('.probbtn'))return;
+   var id=c.dataset.wid;if(!id)return;
+   var b=document.createElement('button');b.type='button';b.className='probbtn';
+   var paint=function(){var on=Problems.has(id);b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'⚑ On your problem list':'⚐ Problem word';
+    b.title=on?'Take it off your problem list':'Put it on your problem list, to study with the others';};
+   b.addEventListener('click',function(e){e.stopPropagation();
+    if(Problems.has(id))Problems.remove(id);else Problems.add(c);paint();});
+   paint();
+   var after=c.querySelector('.plays')||c.querySelector('.en');
+   if(after&&after.parentNode)after.parentNode.insertBefore(b,after.nextSibling);
+  });
+ }
+ // the count beside "Problem words" in the menu
+ function paintProbCount(){
+  var m=document.getElementById('m-prob');if(!m)return;
+  var n=readProblems().length,el=m.querySelector('.n');
+  if(el)el.textContent=n?String(n):'';
+ }
+ window.addEventListener('wb:problems',paintProbCount);
 
  // ------------------------------------------------------------- the switch
  function draw(){
@@ -2760,7 +3281,17 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
 
  function setMode(m){
+  // 🎧 Listening is the quiz, every question heard first. Dan: "We will need
+  // a separate quiz mode, listening. Which in the beginning will play audio,
+  // and the user can answer a multiple choice."
+  var listen=m==='listen';
+  if(listen||m==='quiz'){
+   var want=listen?'listen':(function(){try{return localStorage.getItem('wb.qstyle')||'mix';}catch(e){return 'mix';}})();
+   if(want!==qstyle){qstyle=want;if(quizBox){quizBox.remove();quizBox=null;}resetQuiz();}
+   qstyle=want;m='quiz';
+  }
   mode=(m==='card'||m==='quiz')?m:'info';
+  if(mode==='quiz'&&qstyle!=='listen')injectProblems();else dropInjected();
   var panel=right?right.querySelector('.sides'):null;if(panel)panel.remove();
   if(barEl){barEl.remove();barEl=null;}
   if(fcWrap&&mode!=='card'){fcWrap.remove();fcWrap=null;}
@@ -2769,14 +3300,16 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   document.body.classList.add('mode-'+mode);
   if(modes){
    var b=modes.querySelectorAll('.md'),i;
-   for(i=0;i<b.length;i++)
-    b[i].setAttribute('aria-pressed',b[i].dataset.mode===mode?'true':'false');
+   for(i=0;i<b.length;i++){
+    var bm=b[i].dataset.mode,on=mode==='quiz'?(bm===(qstyle==='listen'?'listen':'quiz')):bm===mode;
+    b[i].setAttribute('aria-pressed',on?'true':'false');
+   }
   }
   if(mode==='card')buildCard();
   if(mode==='quiz')buildQuiz();
   paintEnd();
   draw();
-  try{localStorage.setItem('wb.mode',mode);}catch(e){}
+  try{localStorage.setItem('wb.mode',mode==='quiz'&&qstyle==='listen'?'listen':mode);}catch(e){}
  }
 
  var infoCog=document.getElementById('info-show');
@@ -2802,6 +3335,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   }
  });
 
+ if(cards.length&&typeof Problems!=='undefined')probButtons();
+ paintProbCount();
  if(cards.length){
   buildOrder();
   try{setMode(localStorage.getItem('wb.mode')||'info');}catch(e){setMode('info');}
@@ -2871,18 +3406,25 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   function openEditor(el,card,k){
    if(el.querySelector('textarea'))return;
    var was=(el.textContent||'').trim();
+   // a hook and its story are two lines, not one run-together string
+   if(k==='hook'&&el.children.length)
+    was=[].map.call(el.children,function(x){return (x.textContent||'').trim();})
+     .filter(Boolean).join('\n');
    var ta=document.createElement('textarea');
-   ta.className='edin';ta.value=was;ta.rows=1;
+   ta.className='edin';ta.value=was;ta.rows=k==='hook'?3:1;
+   if(k==='hook'){ta.placeholder='A sound, a picture, a story: whatever makes it stick';el.classList.add('aidopen');}
    el.textContent='';el.appendChild(ta);
    ta.style.height=Math.max(ta.scrollHeight,28)+'px';
    ta.focus();ta.select();
    function finish(save){
     var v=save?ta.value.trim():was;
-    el.textContent=v||was;
-    if(save&&v!==was){
+    // a memory hook may be emptied; every other field keeps its words
+    el.textContent=(k==='hook')?v:(v||was);
+    if(save&&v!==was&&(v||k==='hook')){
      Edits.setField(card,k,v);
      toastEdit('Saved on this device');
     }
+    if(k==='hook'){aidState(card);el.classList.remove('aidopen');}
    }
    ta.addEventListener('keydown',function(e){
     if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();finish(true);}
@@ -2917,6 +3459,15 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    ta.addEventListener('blur',function(){finish(true);});
   }
 
+  // ✎ on Remember it by works at any time, not only in Edit mode: writing
+  // your own way to remember a word is studying, not correcting the course.
+  right2.addEventListener('click',function(e){
+   var ab=e.target.closest?e.target.closest('.aidedit'):null;
+   if(!ab||mode!=='info')return;
+   e.preventDefault();e.stopPropagation();
+   var card=ab.closest('.card'),tx=card&&card.querySelector('.aid .aidtx');
+   if(tx)openEditor(tx,card,'hook');
+  },true);
   right2.addEventListener('click',function(e){
    if(!Edits.editing()||mode!=='info')return;
    var card=e.target.closest?e.target.closest('.card'):null;
@@ -2924,12 +3475,93 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    var note=e.target.closest?e.target.closest('.mynote'):null;
    if(note)return openNote(note,card);
    var el=e.target.closest
-    ? e.target.closest('.th,.rom,.pos,.en,.aid,.ex') : null;
+    ? e.target.closest('.th,.rom,.pos,.en,.aidtx,.ex') : null;
    if(!el)return;
    var k=keyFor(el);
    if(k)openEditor(el,card,k);
   });
  })();
+
+ // ✎ Picture, on the picture itself
+ function picButton(host,card){
+  var id=card&&card.dataset.wid;if(!id)return;
+  var b=document.createElement('button');
+  b.type='button';b.className='picedit';
+  b.innerHTML='\u270e <span>'+(MYPIC[id]?'Your picture':'Change picture')+'</span>';
+  b.title='Use your own picture for this word';
+  b.addEventListener('click',function(e){e.stopPropagation();picPanel(card);});
+  host.appendChild(b);
+ }
+ function savePic(card,v){
+  var id=card.dataset.wid;if(!id)return Promise.resolve();
+  return Promise.resolve(Progress.patch(id,{pic:v||null})).then(function(){
+   picFrom(id,v);
+   if(typeof Backup!=='undefined')Backup.touched();
+   var s2=document.querySelector('.sheet');if(s2)s2.remove();
+   show(at);
+   toastEdit(v?'Picture saved on this device':'Back to the course picture');
+  });
+ }
+ // A photo is shrunk here, before it is stored: a phone's 4000-pixel picture
+ // is several megabytes, and the card shows it a few hundred pixels wide.
+ function shrink(file){
+  return new Promise(function(ok,no){
+   var url=URL.createObjectURL(file),im=new Image();
+   im.onload=function(){
+    var M=720,w=im.naturalWidth,h=im.naturalHeight,r=Math.min(1,M/Math.max(w,h));
+    var c=document.createElement('canvas');c.width=Math.round(w*r);c.height=Math.round(h*r);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+    URL.revokeObjectURL(url);
+    c.toBlob(function(b){
+     if(b)return ok(b);
+     c.toBlob(function(b2){b2?ok(b2):no(new Error('could not read the picture'));},'image/jpeg',0.85);
+    },'image/webp',0.85);
+   };
+   im.onerror=function(){URL.revokeObjectURL(url);no(new Error('That file is not a picture this browser can read'));};
+   im.src=url;
+  });
+ }
+ function picPanel(card){
+  var word=(card.querySelector('.th')||{}).textContent||'this word',id=card.dataset.wid;
+  panel('Picture for '+word.trim(),function(body){
+   body.classList.add('picsheet');
+   body.innerHTML='<p class="sheet-p">Use a picture that helps you remember it. It is kept in this '
+    +'browser only and shows instead of the course\'s picture, for you.</p>'
+    +'<div class="ppv"></div>'
+    +'<div class="prow"><button type="button" class="cbtn primary pup">Upload a photo</button>'
+    +'<input type="file" accept="image/*" class="pfile" hidden></div>'
+    +'<label class="bl"><span>Or a link to a picture</span><span class="prow">'
+    +'<input type="url" class="purl" placeholder="https://\u2026"><button type="button" class="cbtn plink">Use it</button></span></label>'
+    +'<label class="bl"><span>Or an emoji</span><span class="prow">'
+    +'<input type="text" class="pemo" maxlength="8" placeholder="\ud83c\udf5c"><button type="button" class="cbtn pem">Use it</button></span></label>'
+    +'<p class="perr" hidden></p><div class="sheet-row prow"></div>';
+   body.querySelector('.ppv').appendChild(pictureFor(card,false));
+   var err=body.querySelector('.perr');
+   function bad(m){err.hidden=false;err.textContent=m;}
+   var fi=body.querySelector('.pfile');
+   body.querySelector('.pup').addEventListener('click',function(){fi.click();});
+   fi.addEventListener('change',function(){
+    var f=fi.files&&fi.files[0];if(!f)return;
+    shrink(f).then(function(b){return savePic(card,b);}).catch(function(e){bad(e.message);});
+   });
+   body.querySelector('.plink').addEventListener('click',function(){
+    var u=(body.querySelector('.purl').value||'').trim();
+    if(!/^https:\/\//.test(u))return bad('A link starting https:// is needed.');
+    savePic(card,u);
+   });
+   body.querySelector('.pem').addEventListener('click',function(){
+    var e2=(body.querySelector('.pemo').value||'').trim();
+    if(!e2)return bad('Type or paste an emoji first.');
+    savePic(card,'emoji:'+e2);
+   });
+   if(MYPIC[id]){
+    var rs=document.createElement('button');rs.type='button';rs.className='cbtn';
+    rs.textContent='Back to the course picture';
+    rs.addEventListener('click',function(){savePic(card,null);});
+    body.querySelector('.sheet-row').appendChild(rs);
+   }
+  });
+ }
 
  var toastT=null;
  function toastEdit(msg){
@@ -3584,6 +4216,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
       r.onsuccess=function(){res();};r.onerror=function(){res();};});});}
    };
   })();
+  CoursesStore=Courses;
   function chosen(){var v=false;try{v=!!localStorage.getItem('wb.courses');}catch(e){}return v;}
   function touched(){try{localStorage.setItem('wb.courses','1');}catch(e){}}
   var LIST=[];
@@ -3614,7 +4247,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     .catch(function(){});
   }
   function save(c){
-   c.at=Date.now();touched();
+   c.at=Date.now();touched();if(typeof Backup!=='undefined')Backup.touched();
    return Promise.resolve(Courses.put(c)).then(loadCourses);
   }
 
@@ -3773,6 +4406,171 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    if(chosen())withMenu(loadCourses);
    else paintCourses();
   },250);
+ })();
+ // ================================================ backup and restore
+ //
+ // Dan: "All user data gets saved via dexie, we need to warn/remind the user
+ // to backup if they make any changes" and "will need load/save system".
+ // Everything the reader has made lives in this browser — their progress,
+ // their own words and notes, their pictures, their courses, their problem
+ // words — and a browser can lose it (cleared data, a new phone, Safari
+ // tidying up after a week away). So: one file that holds all of it, one way
+ // to load it back, and a quiet reminder when there is something unsaved.
+ // Kept sounds are not in it; they can be fetched again.
+ var Backup=(function(){
+  var CK='wb.bk.changes',FK='wb.bk.first',LK='wb.bk.last',SK='wb.bk.snooze';
+  function num(k){try{return parseInt(localStorage.getItem(k),10)||0;}catch(e){return 0;}}
+  function set(k,v){try{localStorage.setItem(k,String(v));}catch(e){}}
+  var asked=false;
+  function touched(){
+   set(CK,num(CK)+1);if(!num(FK))set(FK,Date.now());
+   // the first thing worth keeping is the moment to ask the browser to keep it
+   if(!asked){asked=true;try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}}
+   setTimeout(nag,400);
+  }
+  function blobTo(b){
+   return new Promise(function(ok){var r=new FileReader();r.onload=function(){ok(r.result);};
+    r.onerror=function(){ok(null);};r.readAsDataURL(b);});
+  }
+  function toBlob(u){
+   try{var p=u.split(','),m=/:(.*?);/.exec(p[0])[1],b=atob(p[1]),a=new Uint8Array(b.length);
+    for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return new Blob([a],{type:m});}catch(e){return null;}
+  }
+  function collect(){
+   var local={},i,k;
+   try{for(i=0;i<localStorage.length;i++){k=localStorage.key(i);
+    if(k&&k.indexOf('wb.')===0&&k.indexOf('wb.bk.')!==0)local[k]=localStorage.getItem(k);}}catch(e){}
+   return Promise.resolve(Progress.all()).then(function(rows){
+    rows=rows||[];
+    return Promise.all(rows.map(function(r){
+     var c={};for(var x in r)if(r.hasOwnProperty(x))c[x]=r[x];
+     if(typeof Blob!=='undefined'&&r.pic instanceof Blob)return blobTo(r.pic).then(function(d){c.pic=d?{dataUrl:d}:null;return c;});
+     return c;
+    }));
+   }).then(function(rows){
+    return Promise.resolve(CoursesStore?CoursesStore.all():[]).then(function(cs){
+     return {kind:'wordbase-backup',v:1,site:location.host,at:new Date().toISOString(),
+             progress:rows,courses:cs||[],local:local};
+    });
+   });
+  }
+  function save(){
+   return collect().then(function(data){
+    var blob=new Blob([JSON.stringify(data)],{type:'application/json'}),
+        a=document.createElement('a'),d=new Date(),
+        day=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    a.href=URL.createObjectURL(blob);
+    a.download=(location.host||'site').split('.')[0]+'-inaflash-backup-'+day+'.json';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);
+    set(CK,0);set(FK,0);set(LK,Date.now());
+    nag();
+    return data;
+   });
+  }
+  // merge: what the file has is added, and a row is replaced only by a newer
+  // one; replace: what is here goes, and the file's is put in its place
+  function load(data,how){
+   if(!data||data.kind!=='wordbase-backup')return Promise.reject(new Error('That file is not a backup from this site.'));
+   var rows=data.progress||[],courses=data.courses||[],local=data.local||{};
+   var start=how==='replace'?Promise.resolve(Progress.clear()):Promise.resolve();
+   return start.then(function(){return Promise.resolve(Progress.all());}).then(function(have){
+    var by={};(have||[]).forEach(function(r){by[r.id]=r;});
+    return rows.reduce(function(pr,r){
+     return pr.then(function(){
+      if(!r||!r.id)return;
+      var mine=by[r.id];
+      if(how!=='replace'&&mine&&(mine.at||0)>(r.at||0))return;
+      var c={};for(var x in r)if(r.hasOwnProperty(x))c[x]=r[x];
+      if(c.pic&&c.pic.dataUrl)c.pic=toBlob(c.pic.dataUrl);
+      return Progress.put(c);
+     });
+    },Promise.resolve());
+   }).then(function(){
+    if(!CoursesStore)return;
+    var pr=Promise.resolve();
+    if(how==='replace')pr=Promise.resolve(CoursesStore.all()).then(function(cs){
+     return Promise.all((cs||[]).map(function(c){return CoursesStore.del(c.id);}));});
+    return pr.then(function(){return Promise.all(courses.map(function(c){return CoursesStore.put(c);}));})
+     .then(function(){if(courses.length)try{localStorage.setItem('wb.courses','1');}catch(e){}});
+   }).then(function(){
+    Object.keys(local).forEach(function(k){
+     if(k.indexOf('wb.')!==0)return;
+     var cur=null;try{cur=localStorage.getItem(k);}catch(e){}
+     // the lists are joined rather than one replacing the other
+     if(how!=='replace'&&(k==='wb.problems'||k==='wb.recent'||k==='wb.fav'||k==='wb.days')&&cur){
+      try{var a=JSON.parse(cur),b=JSON.parse(local[k]),seen={},outl=[];
+       a.concat(b).forEach(function(x){var id=typeof x==='string'?x:(x.id||x.folder);if(!seen[id]){seen[id]=1;outl.push(x);}});
+       if(k==='wb.days')outl.sort();
+       localStorage.setItem(k,JSON.stringify(outl));}catch(e){}
+      return;
+     }
+     if(how==='replace'||cur===null)try{localStorage.setItem(k,local[k]);}catch(e){}
+    });
+    set(CK,0);set(FK,0);set(LK,Date.now());
+    return {rows:rows.length,courses:courses.length};
+   });
+  }
+  // The reminder: a slim bar, when there are ten changes unsaved, or any
+  // change unsaved for three days. "Later" puts it away for a day.
+  function nag(){
+   var n=num(CK),first=num(FK),snooze=num(SK),now=Date.now(),
+       due=n>0&&(n>=10||(first&&now-first>3*864e5))&&now>snooze;
+   var bar=document.getElementById('bknag');
+   if(!due){if(bar)bar.remove();return;}
+   if(!bar){
+    bar=document.createElement('div');bar.id='bknag';bar.setAttribute('role','status');
+    bar.innerHTML='<span class="bt"></span><button type="button" class="bs">Save a backup</button>'
+     +'<button type="button" class="bl">Later</button>';
+    bar.querySelector('.bs').onclick=function(){save();};
+    bar.querySelector('.bl').onclick=function(){set(SK,Date.now()+864e5);bar.remove();};
+    document.body.appendChild(bar);
+   }
+   bar.querySelector('.bt').textContent=n+' change'+(n===1?'':'s')+' to your notes, pictures, courses or problem words '
+    +'are only in this browser. A backup file keeps them safe.';
+  }
+  function panelOpen(){
+   if(typeof mmOpen==='function')mmOpen(false);
+   panel('Back up and restore',function(body){
+    var n=num(CK),last=num(LK);
+    body.innerHTML='<p class="sheet-p">Everything you make here — your progress, your own words and notes, '
+     +'your pictures, your courses and your problem words — is kept in this browser only. Save a backup file '
+     +'now and then, and you can load it back here or on another device.</p>'
+     +'<p class="sheet-p bkstat"></p>'
+     +'<div class="sheet-row bkrow"><button type="button" class="cbtn primary bksave">Save a backup</button></div>'
+     +'<div class="sheet-row bkrow"><button type="button" class="cbtn bkload">Load a backup…</button>'
+     +'<label class="bkhow"><input type="checkbox" class="bkrep"> Replace what is here (otherwise the two are joined)</label>'
+     +'<input type="file" accept=".json,application/json" class="bkfile" hidden></div>'
+     +'<p class="sheet-p bkmsg" hidden></p>';
+    body.querySelector('.bkstat').textContent=(last?'Last backup: '+new Date(last).toLocaleDateString()+'. ':'No backup saved yet. ')
+     +(n?n+' change'+(n===1?'':'s')+' since.':'Nothing changed since.');
+    var msg=body.querySelector('.bkmsg');
+    function say(t){msg.hidden=false;msg.textContent=t;}
+    body.querySelector('.bksave').onclick=function(){
+     save().then(function(d){say('Saved: '+d.progress.length+' words of progress, '+d.courses.length+' course'
+      +(d.courses.length===1?'':'s')+'. Keep the file somewhere safe.');
+      body.querySelector('.bkstat').textContent='Last backup: today.';});
+    };
+    var fi=body.querySelector('.bkfile');
+    body.querySelector('.bkload').onclick=function(){fi.click();};
+    fi.onchange=function(){
+     var f=fi.files&&fi.files[0];if(!f)return;
+     var rd=new FileReader();
+     rd.onload=function(){
+      var data=null;try{data=JSON.parse(rd.result);}catch(e){return say('That file could not be read.');}
+      load(data,body.querySelector('.bkrep').checked?'replace':'merge').then(function(r){
+       say('Loaded '+r.rows+' words of progress and '+r.courses+' course'+(r.courses===1?'':'s')+'. Reloading…');
+       setTimeout(function(){location.reload();},900);
+      },function(e){say(e.message||'That file could not be loaded.');});
+     };
+     rd.readAsText(f);
+    };
+   });
+  }
+  var mb=document.getElementById('mm-backup');
+  if(mb)mb.addEventListener('click',panelOpen);
+  setTimeout(nag,1500);
+  return {touched:touched,save:save,load:load,collect:collect,open:panelOpen};
  })();
 })();
 </script>
