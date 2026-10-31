@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /record/
 Sitemap: https://thai.inaflash.cards/sitemap.xml
