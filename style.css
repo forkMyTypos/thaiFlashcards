@@ -452,7 +452,24 @@ body.no-lessons .menu .mcollapse{color:var(--text2);border:1px solid var(--edge)
 .info .rom{font-size:1.0625rem;color:var(--accent2);margin-top:4px}
 .info .en{font-size:1.1875rem;color:var(--text);margin-top:14px}
 .info .pos{font-size:0.75rem;color:var(--dim);margin-top:2px}
-.info .plays{display:flex;gap:8px;margin-top:16px}
+.info .plays{display:flex;gap:8px;margin-top:16px;align-items:center;flex-wrap:wrap}
+.info .ropts{display:inline-flex;gap:12px;align-items:center;margin-left:6px;font-size:0.75rem;color:var(--dim)}
+.info .ropts label{display:inline-flex;gap:5px;align-items:center;cursor:pointer;white-space:nowrap}
+.info .ropts input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px}
+.info .ropts .ro-n{width:3.2em;padding:2px 4px;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text);border-radius:6px;font:inherit;text-align:center}
+.info .plays .probbtn{margin:0 0 0 auto}
+.info .ropts .sh{display:none}
+/* a narrow reading pane: short labels, and the flag on its own, so the whole
+   row stays on one line with the problem button at the far end */
+.info .card{container-type:inline-size;container-name:wcard}
+@container wcard (max-width: 560px){
+  .info .ropts .lg{display:none}
+  .info .ropts .sh{display:inline}
+  .info .ropts{gap:8px;margin-left:2px}
+  .info .plays .probbtn .pt{display:none}
+}
+.info .wpl{text-align:right;margin:22px 0 0}
 .info .plays button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
   border-radius:8px;padding:7px 12px;font-size:0.8125rem;cursor:pointer}
 .info .plays button:hover{border-color:var(--accent);color:var(--bright)}
@@ -1508,7 +1525,7 @@ html.light-pre body,body.light{--tone-mid:#4f6475;--tone-low:#1f62d0;--tone-fall
 .aboutpop a{color:var(--accent2)}
 
 /* a lesson card's link to the word's own page */
-.info .wpl{margin:2px 0 10px;font-size:0.75rem}
+.info .wpl{font-size:0.75rem}
 .info .wpl a{color:var(--accent2);text-decoration:none;font-weight:600}
 .info .wpl a:hover{color:var(--accent3);text-decoration:underline}
 

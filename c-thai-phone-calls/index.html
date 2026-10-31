@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="18 Thai lessons, 216 words in all, including โทรศัพท์ (thoo-rá-sàp) telephone, โทร (thoo) call, สาย (sǎai) line."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=e64ec886"/>
+<link rel="stylesheet" href="../style.css?v=51e40716"/>
 </head>
 <body class="shell" data-root=".." data-lang="th">
 <div class="page">
@@ -1075,6 +1075,7 @@
    picButton(pic,cards[meIdx]);
   }
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
+  try{document.dispatchEvent(new CustomEvent('wb:card',{detail:{card:cards[meIdx]}}));}catch(e){}
   cue(byUser);
   // A new word is a new card to turn over and a new question to ask.
   if(typeof mode!=='undefined'&&mode!=='info')draw();
@@ -1214,6 +1215,25 @@
  // "Keep sounds on this device" below) rather than from the network.
  var KEPT={};
  function abs(u){try{return new URL(u,location.href).href;}catch(e){return u;}}
+ // Play a clip n times over, with a breath between. A newer play — another
+ // button, the next card — cancels the rest of the run.
+ var REP=0;
+ function playTimes(u,n){
+  var t=++REP,a=snd(u),k=0;
+  function once(){
+   if(t!==REP)return;
+   try{a.currentTime=0;}catch(e){}
+   var p=a.play();if(p&&p.catch)p.catch(function(){});
+  }
+  a.onended=function(){
+   if(t!==REP)return;
+   k++;if(k<n)setTimeout(once,650);else a.onended=null;
+  };
+  once();
+  return a;
+ }
+ window.wbPlayTimes=playTimes;
+ window.wbStopRepeats=function(){REP++;};
  function snd(u){
   var a=SND[u];
   if(!a){
@@ -1555,11 +1575,11 @@
   var b=playHit(e);
   if(!b)return;
   // It is only ever a sound. A clip that will not load should not take the
-  // rest of the click down with it.
-  try{var a=snd(b.dataset.play);
-      try{a.currentTime=0;}catch(err){}
-      var p=a.play();
-      if(p&&p.catch)p.catch(function(){});}catch(err){}
+  // rest of the click down with it. In Read it, "Play it N times" repeats
+  // whatever button was pressed.
+  try{var ro=window.WBRead||{};
+      var n=(ro.rep&&document.body.classList.contains('mode-info')&&b.closest('.info'))?(ro.n||1):1;
+      playTimes(b.dataset.play,n);}catch(err){}
  },true);
 
  // ‹ the sentence › under a word. Every sentence is in the markup; this
@@ -2251,6 +2271,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     if(!plays)continue;
     var box=plays.cloneNode(true);
     box.className='f-snd';
+    // the sound buttons only: the Read it options and the problem button
+    // belong to the reading pane
+    box.querySelectorAll('.ropts,.probbtn').forEach(function(x){x.remove();});
     host.appendChild(box);n++;continue;
    }
    var el=card.querySelector(f.sel);
@@ -3131,15 +3154,81 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    var id=c.dataset.wid;if(!id)return;
    var b=document.createElement('button');b.type='button';b.className='probbtn';
    var paint=function(){var on=Problems.has(id);b.setAttribute('aria-pressed',on?'true':'false');
-    b.textContent=on?'⚑ On your problem list':'⚐ Problem word';
+    b.innerHTML=on?'⚑<span class="pt"> On your problem list</span>':'⚐<span class="pt"> Problem word</span>';
+    b.setAttribute('aria-label',on?'On your problem list':'Problem word');
     b.title=on?'Take it off your problem list':'Put it on your problem list, to study with the others';};
    b.addEventListener('click',function(e){e.stopPropagation();
     if(Problems.has(id))Problems.remove(id);else Problems.add(c);paint();});
    paint();
-   var after=c.querySelector('.plays')||c.querySelector('.en');
-   if(after&&after.parentNode)after.parentNode.insertBefore(b,after.nextSibling);
+   // Dan: "needs to be moved all the way to the right, it can go on the same
+   // line as say it/slowly, but needs to be really far away"
+   var pl=c.querySelector('.plays');
+   if(!pl){
+    pl=document.createElement('div');pl.className='plays';
+    var en=c.querySelector('.en');
+    if(en&&en.parentNode)en.parentNode.insertBefore(pl,en.nextSibling);else c.appendChild(pl);
+   }
+   pl.appendChild(b);
   });
  }
+
+ // 🔁 Read it: Auto-play as each card opens, and Play it N times. Dan: "play it
+ // [x] times works on auto load, plus whenever you press an audio button, if
+ // turned on." Remembered in this browser; one setting for every card.
+ var RO={auto:false,rep:false,n:2};
+ try{var ro0=JSON.parse(localStorage.getItem('wb.readplay')||'{}');
+  RO.auto=!!ro0.auto;RO.rep=!!ro0.rep;RO.n=Math.max(1,Math.min(9,+ro0.n||2));}catch(e){}
+ window.WBRead=RO;
+ function roSave(){try{localStorage.setItem('wb.readplay',JSON.stringify(RO));}catch(e){}}
+ function roPaint(){
+  var w=document.querySelectorAll('.ropts');
+  for(var i=0;i<w.length;i++){
+   w[i].querySelector('.ro-auto').checked=RO.auto;
+   w[i].querySelector('.ro-rep').checked=RO.rep;
+   w[i].querySelector('.ro-n').value=RO.n;
+  }
+ }
+ function readOpts(){
+  cards.forEach(function(c){
+   var pl=c.querySelector('.plays');
+   if(!pl||c.querySelector('.ropts'))return;
+   var btns=pl.querySelectorAll('[data-play]');
+   if(!btns.length)return;
+   var w=document.createElement('span');w.className='ropts';
+   // full words when the pane is wide; on a narrow one the CSS keeps the
+   // short forms, so the row still fits on one line
+   w.innerHTML='<label title="Auto-play: play the word as each card opens"><input type="checkbox" class="ro-auto"> '
+    +'<span class="lg">Auto-play</span><span class="sh">Auto</span></label>'
+    +'<label title="Play it this many times — on Auto-play and on every sound button"><input type="checkbox" class="ro-rep"> '
+    +'<span class="lg">Play it</span><span class="sh">🔁</span> '
+    +'<input type="number" class="ro-n" min="1" max="9" inputmode="numeric" aria-label="how many times"> '
+    +'<span class="lg">times</span><span class="sh">×</span></label>';
+   var last=btns[btns.length-1];
+   pl.insertBefore(w,last.nextSibling);
+  });
+  roPaint();
+ }
+ function autoPlayCard(card){
+  if(!RO.auto||!card||!document.body.classList.contains('mode-info'))return;
+  var b=card.querySelector('.plays [data-play]');
+  if(!b||!window.wbPlayTimes)return;
+  setTimeout(function(){
+   if(card.hidden)return;                    // moved on already
+   try{window.wbPlayTimes(b.dataset.play,RO.rep?RO.n:1);}catch(e){}
+  },250);
+ }
+ document.addEventListener('change',function(e){
+  var t=e.target;if(!t||!t.closest||!t.closest('.ropts'))return;
+  if(t.classList.contains('ro-auto')){RO.auto=t.checked;
+   if(RO.auto)autoPlayCard(t.closest('.card'));}
+  if(t.classList.contains('ro-rep'))RO.rep=t.checked;
+  if(t.classList.contains('ro-n')){RO.n=Math.max(1,Math.min(9,+t.value||1));RO.rep=true;}
+  roSave();roPaint();
+ });
+ document.addEventListener('wb:card',function(e){
+  if(window.wbStopRepeats)window.wbStopRepeats();
+  autoPlayCard(e.detail&&e.detail.card);
+ });
  // the count beside "Problem words" in the menu
  function paintProbCount(){
   var m=document.getElementById('m-prob');if(!m)return;
@@ -3210,6 +3299,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  });
 
  if(cards.length&&typeof Problems!=='undefined')probButtons();
+ if(cards.length)readOpts();
  paintProbCount();
  if(cards.length){
   buildOrder();
