@@ -14,7 +14,9 @@
   "use strict";
 
   // Arena in world units. Portrait, because the game lives in a tall column.
-  const W = 600, H = 1000, CX = W / 2, CY = H / 2;
+  // The arena is 1000 units tall; its width follows the game column's shape
+  // (opts.width / setWidth), from WMIN to WMAX. 600 is the classic size.
+  const W = 600, H = 1000, CX = W / 2, CY = H / 2, WMIN = 480, WMAX = 1200;
 
   // For Flash these stats are bonuses around 1.0 (0.25 = +25%), not raw values.
   const BONUS = new Set(["damage", "weapon_damage", "spell_damage", "area", "duration", "projectile_speed",
@@ -76,6 +78,7 @@
     opts = opts || {};
     const DATA_HASH = dataHash(data);
     const rnd = opts.random || Math.random;
+    let W = Math.max(WMIN, Math.min(WMAX, Math.round(opts.width || 600)));
     // Flash's position. Every system aims at / measures from these, and they
     // follow Flash now that he moves (they were fixed at the centre before).
     let CX = W / 2, CY = H / 2;
@@ -128,7 +131,7 @@
     function telStart(weaponId) {
       tel = { v: 1, uid: (opts.uid || "run_" + Date.now().toString(36) + "_" + Math.floor(rnd() * 1e6).toString(36)),
         source: opts.source || "human", started: new Date().toISOString(), status: "running",
-        data_hash: DATA_HASH, meta: opts.meta || null,
+        data_hash: DATA_HASH, meta: opts.meta || null, arena_width: W,
         start_weapon: weaponId, settings: { tuning: T, director: DR, movement: MV },
         sample_keys: SAMPLE_KEYS, samples: [], rounds: [], picks: [], dmg_by: {}, kills_by: {}, taken_by: {},
         rewards: {}, study: [], study_keys: ["t", "what", "strength"], final: null };
@@ -172,7 +175,7 @@
     const ev = e => { st.events.push(e); };
 
     // ------------------------------------------------------------- grid
-    const CS = 48, GX0 = -240, GY0 = -240, GW = Math.ceil((W + 480) / CS), GH = Math.ceil((H + 480) / CS);
+    const CS = 48, GX0 = -240, GY0 = -240, GW = Math.ceil((WMAX + 480) / CS), GH = Math.ceil((H + 480) / CS);
     const head = new Int32Array(GW * GH);
     let nxt = new Int32Array(2048);
     function buildGrid() {
@@ -964,6 +967,19 @@
       },
       setGod(on) { st.god = !!on; if (on) st.stressUsed = true; },
       setWeapons(on) { st.noWeapons = !on; },
+      // The column was resized: the arena gets wider or narrower (height stays 1000).
+      setWidth(w) {
+        W = Math.max(WMIN, Math.min(WMAX, Math.round(w)));
+        st.W = W; B.x1 = W - 30;
+        if (st.flash) {
+          if (!st.moveOn) { st.flash.x = W / 2; CX = W / 2; }
+          else if (st.flash.x > B.x1) { st.flash.x = B.x1; CX = B.x1; }
+        }
+        return W;
+      },
+      // Something the learner did that isn't a reward (a wrong word match, a
+      // closed pop quiz), so balance can see it.
+      noteStudy(what) { if (tel && tel.study.length < 5000) tel.study.push([Math.round(st.fightT * 10) / 10, String(what), 0]); },
       setMove(on) { st.moveOn = !!on; if (!on && st.flash) { st.flash.x = W / 2; st.flash.y = H / 2; CX = W / 2; CY = H / 2; } },
       setDirector(on) { st.directorOn = !!on; },
       clearEnemies() { st.enemies = []; st.proj = []; st.eproj = []; },
@@ -988,5 +1004,5 @@
     };
   }
 
-  return { create, W, H, DATA_TYPES };
+  return { create, W, H, WMIN, WMAX, DATA_TYPES };
 });

@@ -198,5 +198,24 @@
       "hp_power": 0.5
     },
     "notes": "Keeps rounds tense. Raises intensity (more, tougher, harder-hitting skeletons) while Flash is comfortable; backs off (never below 1 = normal) when he's struggling. The cap grows each round. Below danger_hp the game shows 'answer a quiz to heal him'. Last final_surge_seconds of a round spawn faster."
+  },
+  {
+    "id": "words",
+    "values": {
+      "enabled": true,
+      "max_pairs": 3,
+      "first_after": 4,
+      "spawn_every": 10,
+      "life": 45,
+      "speed": 16,
+      "pop_quiz": true,
+      "pop_quiz_every_words": 8,
+      "pop_quiz_min_seconds": 50,
+      "pop_quiz_max_backoff": 4,
+      "slow_motion": 0.35,
+      "rescue_chain": 3,
+      "rescue_cooldown": 25
+    },
+    "notes": "Word gems: up to max_pairs Thai/English pairs drift in the arena (a new pair every spawn_every s, each lives life s, drifting at speed). Pop quiz: over the lesson after about pop_quiz_every_words words read and at least pop_quiz_min_seconds apart; each one closed without answering doubles the wait, up to pop_quiz_max_backoff times. Rescue: when Flash is in danger a question appears in the game column (another after a right answer, up to rescue_chain), at most every rescue_cooldown s. slow_motion = game speed while a question is open."
   }
 ]

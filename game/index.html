@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=b9c068167c"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=9f45b89813"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -15,8 +15,13 @@
 html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   font: 13px/1.4 "Segoe UI", system-ui, sans-serif; overflow: hidden; }
 .gm { display: flex; height: 100vh; }
-.gm-col { width: 33%; min-width: 300px; height: 100vh; flex: none; display: flex; flex-direction: column;
-  border-right: 1px solid #2e333d; position: relative; }
+.gm-col { width: var(--gw, 40%); min-width: 300px; height: 100vh; flex: none; display: flex; flex-direction: column;
+  position: relative; }
+/* the divider: drag to share the screen differently, double-click for 40% */
+.gm-grip { flex: none; width: 6px; cursor: col-resize; background: #2e333d; position: relative; z-index: 2; }
+.gm-grip:hover, .gm.drag .gm-grip { background: #4f9cf9; }
+.gm.drag #site { pointer-events: none; }
+.gm.drag { cursor: col-resize; user-select: none; }
 #game { flex: 1; min-height: 0; position: relative; }
 .gm-bar { flex: none; display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #16181d;
   border-top: 1px solid #2e333d; font-size: 12px; color: #9aa2af; }
@@ -48,11 +53,12 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
       <button id="gm-exit" title="Back to the course without the game">✕ Leave</button>
     </div>
   </div>
+  <div class="gm-grip" id="gm-grip" title="Drag to resize · double-click for 40%"></div>
   <iframe id="site" title="The course"></iframe>
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
-<script src="../games/flash/flash-sim.js?v=21e2688a37"></script>
-<script src="../games/flash/flash-game.js?v=173b670c02"></script>
+<script src="../games/flash/flash-sim.js?v=d12f14f691"></script>
+<script src="../games/flash/flash-game.js?v=8a03f2bb73"></script>
 <script>
 (function () {
   "use strict";
@@ -89,9 +95,30 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     var m = e.data || {};
     if (m.type === "inaflash:reward") window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: m.detail || {} }));
     else if (m.type === "ftc:exit") leave();
+    else if (m.type === "ftc:words") { if (api) api.setWords(m.words || []); else pendingWords = m.words; }
+    else if (m.type === "ftc:slow") { if (api) api.setSlow(!!m.on); }
+    else if (m.type === "ftc:question") { var r = asks[m.req]; if (r) { delete asks[m.req]; r(m.q || null); } }
+    else if (m.type === "ftc:popquiz") {
+      // a pop quiz over the lesson: right = a power-up; wrong or closed costs nothing (it is only noted)
+      if (m.right) window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: { v: 1, kind: "reward", source: "popquiz", strength: 1, word: m.word || "" } }));
+      else if (api) api.sim.noteStudy(m.closed ? "popquiz_closed" : "popquiz_wrong");
+    }
   });
   // ...and the game's state back to the course (it lights up the quiz button in danger)
-  function tell() { try { site.contentWindow.postMessage({ type: "ftc:state", state: window.FTC_STATE }, location.origin); } catch (e) {} }
+  function toSite(m) { try { site.contentWindow.postMessage(m, location.origin); } catch (e) {} }
+  function tell() {
+    toSite({ type: "ftc:state", state: window.FTC_STATE });
+    if (api) toSite({ type: "ftc:config", words: api.wordSettings() });   // the site answers with its words
+  }
+  var asks = {}, askN = 0, pendingWords = null;
+  // the game wants a question about the learner's words ("Save Flash!")
+  function askQuestion(kind) {
+    return new Promise(function (res) {
+      var req = ++askN; asks[req] = res;
+      toSite({ type: "ftc:ask", kind: kind, req: req });
+      setTimeout(function () { if (asks[req]) { delete asks[req]; res(null); } }, 1500);
+    });
+  }
   window.addEventListener("inaflash:game", function (e) { window.FTC_STATE = (e.detail || {}).state; tell(); });
 
   // --------------------------------------------------- how the games go
@@ -160,13 +187,41 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   // ------------------------------------------------------------ the game
   var api = null;
   FlashGame.mount(document.getElementById("game"), { base: "../games/flash/", source: "site",
-                                                     telemetry: save, telemetryMeta: meta })
-    .then(function (a) { api = a; window.ftc = a; })
+                                                     telemetry: save, telemetryMeta: meta,
+                                                     askQuestion: askQuestion,
+                                                     onAnswer: function (q, right) { toSite({ type: "ftc:answered", id: q.right, right: right }); },
+                                                     onWord: function (r) { toSite(Object.assign({ type: "ftc:word" }, r)); },
+                                                     goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); } })
+    .then(function (a) {
+      api = a; window.ftc = a;
+      if (pendingWords) api.setWords(pendingWords);
+      tell();
+    })
     .catch(function (e) {
       document.getElementById("game").innerHTML = '<p style="padding:20px;color:#f2705f">The game could not start: ' +
         String(e && e.message || e).replace(/</g, "&lt;") + "</p>";
     });
   count();
+
+  // ------------------------------------------------------------ the divider
+  var gm = document.querySelector(".gm"), col = document.querySelector(".gm-col"), grip = document.getElementById("gm-grip");
+  function setW(pct, remember) {
+    pct = Math.max(22, Math.min(65, pct));
+    // the course keeps room for its normal (non-phone) layout where it can
+    var maxPx = window.innerWidth - 940;
+    if (maxPx > 300 && pct / 100 * window.innerWidth > maxPx) pct = Math.max(22, maxPx / window.innerWidth * 100);
+    document.documentElement.style.setProperty("--gw", pct.toFixed(1) + "%");
+    if (remember) try { localStorage.setItem("ftc.gw", pct.toFixed(1)); } catch (e) {}
+  }
+  try { var saved = parseFloat(localStorage.getItem("ftc.gw")); setW(saved || 40, false); } catch (e) { setW(40, false); }
+  grip.addEventListener("mousedown", function (e) {
+    e.preventDefault(); gm.classList.add("drag");
+    function move(ev) { setW(ev.clientX / window.innerWidth * 100, false); }
+    function up(ev) { gm.classList.remove("drag"); setW(ev.clientX / window.innerWidth * 100, true);
+      document.removeEventListener("mousemove", move); document.removeEventListener("mouseup", up); }
+    document.addEventListener("mousemove", move); document.addEventListener("mouseup", up);
+  });
+  grip.addEventListener("dblclick", function () { setW(40, true); });
 
   // ------------------------------------------------- the testing notice
   var NOTE = "ftc.noted";
@@ -176,6 +231,7 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     n.className = "gm-note";
     n.innerHTML = "<p><b>🎮 Game mode is new, and we're testing it.</b></p>" +
       "<p>Study as usual: quiz answers make Flash strong, reading, listening and flashcards help a little. " +
+      "Match the Thai and English word gems in the arena for a boost, and watch for pop quizzes. " +
       "Move around the course as much as you like; the game keeps going.</p>" +
       "<p>To balance the game, this browser keeps a record of how each game goes (rounds, Flash's health, " +
       "which kinds of studying you did, not your answers). It stays on this computer unless you press " +

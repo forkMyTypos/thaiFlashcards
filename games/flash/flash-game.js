@@ -47,7 +47,11 @@
     await Promise.all(TYPES.map(async t => { data[t] = await loadJSON(base + (opts.dataPath || "data/") + t + ".json"); }));
     await Promise.all(SHARED.map(async t => { data["shared_" + t] = await loadJSON(base + (opts.sharedPath || "shared/") + t + ".json"); }));
 
-    const sim = FlashSim.create(data, { source: opts.source || "human" });
+    // The arena is always 1000 units tall; its width follows the column's shape,
+    // so a wider column shows more arena instead of black bars.
+    const fitW = () => { const w = el.clientWidth, hh = el.clientHeight;
+      return w > 50 && hh > 50 ? Math.max(FlashSim.WMIN, Math.min(FlashSim.WMAX, Math.round(FlashSim.H * w / hh))) : 600; };
+    const sim = FlashSim.create(data, { source: opts.source || "human", width: fitW() });
 
     // ---------------------------------------------------------- telemetry
     // When opts.telemetry is a URL, every run is sent there (round ends, death,
@@ -107,6 +111,7 @@
       ["combo_meter", "Combo meter", "Big combo counter during hordes", "event", true],
       ["flash_lean", "Flash lean", "Flash leans and faces the way he's running", "sprite", true],
       ["danger_alarm", "Danger alarm", "Red pulsing edges + 'answer a quiz' prompt when Flash is low", "event", true],
+      ["word_gems", "Word gems", "Thai / English word pairs to match in the arena (pairs spawned per second)", "event", true],
     ];
     const ANIM_DEF = {}; for (const a of ANIMS) ANIM_DEF[a[0]] = a[4];
     prefs.anim = prefs.anim || {};
@@ -145,7 +150,7 @@
     const pools = { enemies: [], rings: [], proj: [], eproj: [], blades: [], parts: [], bones: [], texts: [] };
     let kick = 0;
     const fx = [];           // {kind, x, y, r, life, max, colour}
-    let acc = 0, speed = 1, lastUi = 0;
+    let acc = 0, speed = 1, lastUi = 0, slowF = 1, slowTo = 1;
     const perf = { sim: 0, draw: 0 };
 
     const env = (data.shared_environments || []).find(e => e.id === "dungeon");
@@ -157,12 +162,11 @@
     function makeTextures(s) {
       const g = s.make.graphics({ x: 0, y: 0, add: false });
       // floor: stone tiles in the dungeon palette (Shared library > environments > dungeon)
-      g.fillStyle(hexNum(pal[0])); g.fillRect(0, 0, FlashSim.W, FlashSim.H);
-      for (let y = 0; y < FlashSim.H; y += 50) for (let x = (y / 50) % 2 ? -25 : 0; x < FlashSim.W; x += 50) {
+      g.fillStyle(hexNum(pal[0])); g.fillRect(0, 0, FlashSim.WMAX, FlashSim.H);
+      for (let y = 0; y < FlashSim.H; y += 50) for (let x = (y / 50) % 2 ? -25 : 0; x < FlashSim.WMAX; x += 50) {
         g.fillStyle(hexNum(pal[1]), 0.18 + Math.random() * 0.14); g.fillRect(x + 2, y + 2, 46, 46);
       }
-      g.fillStyle(hexNum(pal[2]), 0.05); g.fillCircle(FlashSim.W / 2, FlashSim.H / 2, 260);
-      g.generateTexture("ftc-floor", FlashSim.W, FlashSim.H); g.clear();
+      g.generateTexture("ftc-floor", FlashSim.WMAX, FlashSim.H); g.clear();
       // Flash: an orange cat-ish circle with ears (placeholder until the cutout rig has art)
       g.fillStyle(0xff9f5a); g.fillTriangle(6, 18, 14, 0, 22, 16); g.fillTriangle(42, 18, 34, 0, 26, 16);
       g.fillCircle(24, 28, 20); g.fillStyle(0xffffff); g.fillCircle(17, 25, 5); g.fillCircle(31, 25, 5);
@@ -187,7 +191,7 @@
       makeTextures(this);
       this.add.image(0, 0, "ftc-floor").setOrigin(0);
       this.aura = this.add.graphics();
-      this.flash = this.add.image(FlashSim.W / 2, FlashSim.H / 2, "ftc-flash").setDepth(5);
+      this.flash = this.add.image(st.W / 2, FlashSim.H / 2, "ftc-flash").setDepth(5);
       this.swings = this.add.graphics().setDepth(6);
       this.game.loop.targetFps = 60;
     }
@@ -229,12 +233,14 @@
             if (!e.bad) fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 60, life: 0.6, max: 0.6, c: C.healing }); }
         } else if (e.t === "danger") {
           announce(e.on ? "danger" : "safe");       // the site can use this to nudge the learner towards a quiz
+          if (e.on) maybeRescue();
           if (e.on && A("danger_alarm")) use("danger_alarm");
         } else if (e.t === "rush") {
           if (A("banners")) { use("banners"); banner("The last ones charge!", ""); }
-        } else if (e.t === "round_end") { showBreak(); announce("round_end"); sendTel(); }
-        else if (e.t === "over") { showOver(); announce("died"); sendTel(); }
+        } else if (e.t === "round_end") { closeQuestion(); showBreak(); announce("round_end"); sendTel(); }
+        else if (e.t === "over") { clearGems(); closeQuestion(); showOver(); announce("died"); sendTel(); }
         else if (e.t === "start" || e.t === "round_start") {
+          if (e.t === "start") { clearGems(); rescueChain = 0; }
           hideOverlay(); announce(e.t === "start" ? "started" : "round_start");
           if (e.t === "round_start" && A("banners")) { use("banners"); banner(`Round ${e.round}`, ""); }
         }
@@ -263,7 +269,7 @@
 
     function draw(dt) {
       const s = scene; if (!s) return;
-      const W2 = st.flash ? st.flash.x : FlashSim.W / 2, H2 = st.flash ? st.flash.y : FlashSim.H / 2;
+      const W2 = st.flash ? st.flash.x : st.W / 2, H2 = st.flash ? st.flash.y : FlashSim.H / 2;
       // Flash
       for (const k in usedFrame) usedFrame[k] = 0;
       s.flash.setTint(A("flash_hurt") && st.flash && st.flash.hurtT > 0 ? 0xff7a7a : 0xffffff).setVisible(st.phase !== "start");
@@ -361,7 +367,8 @@
 
     function sceneUpdate(time, delta) {
       const dt = Math.min(delta / 1000, 0.1);
-      acc += dt * speed;
+      slowF += (slowTo - slowF) * Math.min(1, dt * 5);
+      acc += dt * speed * slowF;
       let steps = 0;
       const t0 = performance.now();
       while (acc >= 1 / 60 && steps < 8 * speed) { sim.step(1 / 60); acc -= 1 / 60; steps++; }
@@ -369,16 +376,215 @@
       const t1 = performance.now();
       handleEvents(sim.drain());
       draw(dt);
+      updateGems(dt);
       const t2 = performance.now();
       perf.sim = perf.sim * 0.9 + (t1 - t0) * 0.1; perf.draw = perf.draw * 0.9 + (t2 - t1) * 0.1;
       if (time - lastUi > 100) { lastUi = time; updateHud(); }
     }
 
     const game = new Phaser.Game({
-      type: Phaser.AUTO, parent: canvasBox, width: FlashSim.W, height: FlashSim.H, backgroundColor: "#14111a",
+      type: Phaser.AUTO, parent: canvasBox, width: st.W, height: FlashSim.H, backgroundColor: "#14111a",
       scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
       scene: { create: sceneCreate, update: sceneUpdate }, banner: false, audio: { noAudio: true },
     });
+
+    // ------------------------------------------------------------ word gems
+    // Words the learner has been studying drift through the arena: Thai with
+    // its romanization on one gem, the English on another. Click one, then
+    // its partner. A Thai gem says its word when clicked. A match bursts both
+    // for a reward; a wrong pair just shakes (it is noted for balancing, and
+    // the site moves that word up its "practise this" list).
+    // Tuned in Game settings > words.
+    const WD = Object.assign({ enabled: true, max_pairs: 3, first_after: 4, spawn_every: 10, life: 45, speed: 16,
+                               slow_motion: 0.35, rescue_chain: 3, rescue_cooldown: 25 },
+                             ((sim.D.settings || {}).words || {}).values || {});
+    let words = [], gems = [], gemAcc = WD.spawn_every - WD.first_after, picked = null, sayEl = null, matchRun = 0;
+    const GEM_FONT = '"Noto Sans Thai", "Leelawadee UI", "Tahoma", "Segoe UI", sans-serif';
+    function say(url) {
+      if (!url) return;
+      try { if (!sayEl) sayEl = new Audio(); sayEl.src = url; sayEl.currentTime = 0; const p = sayEl.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+    }
+    function pickWord() {
+      const live = new Set(gems.map(g => g.word.id));
+      const pool = words.filter(w => !live.has(w.id) && w.th && w.en);
+      if (!pool.length) return null;
+      let sum = 0; for (const w of pool) sum += w.weight || 1;
+      let r = Math.random() * sum;
+      for (const w of pool) { r -= w.weight || 1; if (r <= 0) return w; }
+      return pool[pool.length - 1];
+    }
+    // "plate, dish, classifier for plates; a course" -> "plate, dish"
+    const short = (t, max = 22) => {
+      t = String(t || "").split(/;|\s\/\s/)[0].replace(/\s*[\[(][^\])]*[\])]/g, "").trim();
+      const ps = t.split(/,\s*/); let out = ps[0] || t;
+      for (let i = 1; i < ps.length && i < 3; i++) { if ((out + ", " + ps[i]).length > max) break; out += ", " + ps[i]; }
+      return out.length > max + 6 ? out.slice(0, max + 5) + "…" : out;
+    };
+    function makeGem(word, side) {
+      const s = scene;
+      const c = s.add.container(0, 0).setDepth(40);
+      const parts = side === "th"
+        ? [s.add.text(0, word.rom ? -9 : 0, word.th, { fontFamily: GEM_FONT, fontSize: "30px", color: "#fff7e0" }).setOrigin(0.5)]
+            .concat(word.rom ? [s.add.text(0, 19, word.rom, { fontFamily: "Segoe UI, system-ui, sans-serif", fontSize: "15px", color: "#ffd27a" }).setOrigin(0.5)] : [])
+        : [s.add.text(0, 0, short(word.en), { fontFamily: "Segoe UI, system-ui, sans-serif", fontSize: "19px", fontStyle: "bold",
+                                               color: "#e6f3ff", align: "center", wordWrap: { width: 190 } }).setOrigin(0.5)];
+      const w = Math.max(...parts.map(t => t.width)) + 30, hh = side === "th" ? (word.rom ? 70 : 50) : parts[0].height + 24;
+      const bg = s.add.graphics();
+      const g = { word, side, c, bg, w, h: hh, x: 0, y: 0, vx: 0, vy: 0, age: 0, life: WD.life, shake: 0 };
+      g.paint = sel => {
+        bg.clear();
+        bg.fillStyle(side === "th" ? 0x3b2560 : 0x123a4c, 0.93).fillRoundedRect(-w / 2, -hh / 2, w, hh, 14);
+        bg.lineStyle(sel ? 4 : 2, sel ? 0xffd23a : (side === "th" ? 0xb98cff : 0x6cc8ff), 1).strokeRoundedRect(-w / 2, -hh / 2, w, hh, 14);
+      };
+      g.paint(false);
+      c.add([bg, ...parts]);
+      c.setSize(w, hh).setInteractive({ useHandCursor: true });
+      c.on("pointerdown", () => clickGem(g));
+      return g;
+    }
+    function placeGem(g) {
+      const x0 = 30 + g.w / 2, x1 = st.W - 30 - g.w / 2, y0 = 150 + g.h / 2, y1 = FlashSim.H - 110 - g.h / 2;
+      let best = null, bestD = -1;
+      for (let i = 0; i < 12; i++) {
+        const x = x0 + Math.random() * Math.max(1, x1 - x0), y = y0 + Math.random() * Math.max(1, y1 - y0);
+        let d = 1e9;
+        for (const o of gems) d = Math.min(d, Math.hypot(o.x - x, o.y - y));
+        if (st.flash) d = Math.min(d, Math.hypot(st.flash.x - x, st.flash.y - y) * 1.5);
+        if (d > bestD) { bestD = d; best = { x, y }; }
+      }
+      const a = Math.random() * 6.283, sp = WD.speed * (0.6 + Math.random() * 0.8);
+      Object.assign(g, best, { vx: Math.cos(a) * sp, vy: Math.sin(a) * sp });
+      g.c.setPosition(g.x, g.y).setAlpha(0).setScale(0.6);
+    }
+    function spawnPair() {
+      const w = pickWord(); if (!w || !scene) return false;
+      for (const side of ["th", "en"]) { const g = makeGem(w, side); placeGem(g); gems.push(g); }
+      use("word_gems");
+      return true;
+    }
+    function dropGem(g) { try { g.c.destroy(); } catch (e) {} gems = gems.filter(x => x !== g); if (picked === g) picked = null; }
+    function clearGems() { for (const g of gems.slice()) dropGem(g); picked = null; gemAcc = WD.spawn_every - WD.first_after; }
+    function clickGem(g) {
+      if (st.phase !== "fight" || st.paused) return;
+      if (g.side === "th") say(g.word.audio);
+      if (!picked) { picked = g; g.paint(true); return; }
+      if (picked === g) { g.paint(false); picked = null; return; }
+      if (picked.side === g.side) { picked.paint(false); picked = g; g.paint(true); return; }
+      const a = picked; picked = null; a.paint(false);
+      if (a.word.id === g.word.id) {
+        matchRun++;
+        for (const x of [a, g]) for (let i = 0; i < 14; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 260);
+        floatText(`${a.word.th} = ${short(a.word.en)}${matchRun >= 3 ? `  ×${matchRun}!` : ""}`);
+        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: 1, streak: matchRun, word: a.word.th });
+        dropGem(a); dropGem(g);
+        if (opts.onWord) try { opts.onWord({ result: "match", id: a.word.id }); } catch (e) {}
+      } else {
+        matchRun = 0;
+        a.shake = g.shake = 0.4;
+        sim.noteStudy("mismatch");
+        const th = a.side === "th" ? a : g;
+        if (opts.onWord) try { opts.onWord({ result: "miss", id: th.word.id, other: (th === a ? g : a).word.id }); } catch (e) {}
+      }
+    }
+    function updateGems(dt) {
+      if (!WD.enabled || !scene) return;
+      if (!A("word_gems")) { if (gems.length) clearGems(); return; }
+      const live = st.phase === "fight" && !st.paused;
+      for (const g of gems) g.c.setVisible(st.phase === "fight");
+      if (!live) return;
+      gemAcc += dt;
+      if (words.length && gemAcc >= WD.spawn_every && gems.length / 2 < WD.max_pairs) { if (spawnPair()) gemAcc = 0; }
+      for (const g of gems.slice()) {
+        g.age += dt;
+        const x0 = 30 + g.w / 2, x1 = st.W - 30 - g.w / 2, y0 = 150 + g.h / 2, y1 = FlashSim.H - 110 - g.h / 2;
+        g.x += g.vx * dt; g.y += g.vy * dt;
+        if (g.x < x0 || g.x > x1) { g.vx = -g.vx; g.x = Math.max(x0, Math.min(x1, g.x)); }
+        if (g.y < y0 || g.y > y1) { g.vy = -g.vy; g.y = Math.max(y0, Math.min(y1, g.y)); }
+        const sx = g.shake > 0 ? Math.sin(g.age * 60) * 7 * (g.shake / 0.4) : 0;
+        g.shake = Math.max(0, g.shake - dt);
+        const fadeIn = Math.min(1, g.age / 0.5), fadeOut = Math.min(1, (g.life - g.age) / 4);
+        g.c.setPosition(g.x + sx, g.y + Math.sin(g.age * 1.7) * 3).setAlpha(Math.max(0, Math.min(fadeIn, fadeOut))).setScale(0.6 + 0.4 * fadeIn);
+        if (g.age >= g.life) {
+          // a pair leaves together
+          const mate = gems.find(o => o !== g && o.word.id === g.word.id);
+          dropGem(g); if (mate) dropGem(mate);
+        }
+      }
+    }
+
+    // --------------------------------------------- questions in the column
+    // "Save Flash!": when he's in danger the game asks the host (the Thai
+    // site) for a question about words the learner has seen, and shows it
+    // here, in slow motion. Right = a big heal (and maybe another question);
+    // wrong just shows the answer. opts.askQuestion(kind) -> Promise<question>
+    //   question: { id, prompt: "th"|"en", th, rom, en, audio, options: [{ id, label, sub, audio }], right, can_quiz }
+    const qEl = h("div", "ftc-q"); root.append(qEl);
+    let qOpen = null, rescueChain = 0, rescueAt = -1e9;
+    function setSlow(on) { slowTo = on ? Math.max(0.1, Math.min(1, +WD.slow_motion || 0.35)) : 1; root.classList.toggle("ftc-slowmo", !!on); }
+    function closeQuestion() { if (!qOpen) return; qOpen = null; qEl.classList.remove("show"); qEl.innerHTML = ""; setSlow(false); }
+    async function maybeRescue() {
+      if (!opts.askQuestion || qOpen || st.phase !== "fight" || st.god) return;
+      if (performance.now() - rescueAt < WD.rescue_cooldown * 1000) return;
+      rescueAt = performance.now();
+      rescueChain = 0;
+      ask();
+    }
+    async function ask() {
+      let q = null;
+      try { q = await opts.askQuestion("rescue"); } catch (e) { q = null; }
+      if (!q || !q.options || q.options.length < 2 || st.phase !== "fight") return;
+      showQuestion(q);
+    }
+    function showQuestion(q) {
+      qOpen = q; setSlow(true);
+      const head = rescueChain ? `❤️ Again! Keep Flash going (${rescueChain + 1}/${WD.rescue_chain})` : "❤️ Save Flash! He needs the power of the quiz";
+      const prompt = q.prompt === "th"
+        ? `<div class="ftc-q-th" lang="th">${esc(q.th)}</div>${q.rom ? `<div class="ftc-q-rom">${esc(q.rom)}</div>` : ""}<div class="ftc-q-ask">means…?</div>`
+        : `<div class="ftc-q-en">${esc(q.en)}</div><div class="ftc-q-ask">in Thai is…?</div>`;
+      qEl.innerHTML = `<div class="ftc-q-card"><button class="ftc-q-x" title="Close">✕</button><div class="ftc-q-head">${head}</div>${prompt}
+        <div class="ftc-q-opts"></div><div class="ftc-q-foot"></div></div>`;
+      const box = qEl.querySelector(".ftc-q-opts");
+      q.options.forEach(o => {
+        const b = h("button", "ftc-q-opt", o.sub ? `<span lang="th">${esc(o.label)}</span><small>${esc(o.sub)}</small>` : esc(o.label));
+        b.onclick = () => answer(q, o, b);
+        box.append(b);
+      });
+      if (q.prompt === "th" && q.audio) { say(q.audio); const sp = h("button", "ftc-q-say", "🔊"); sp.onclick = () => say(q.audio); qEl.querySelector(".ftc-q-th").append(sp); }
+      const foot = qEl.querySelector(".ftc-q-foot");
+      if (opts.goQuiz && q.can_quiz) { const gq = h("button", "ftc-btn", "❓ Go to quiz mode"); gq.onclick = () => { closeQuestion(); opts.goQuiz(); }; foot.append(gq); }
+      qEl.querySelector(".ftc-q-x").onclick = () => { if (opts.onAnswer) try { opts.onAnswer(q, null); } catch (e) {} sim.noteStudy("rescue_closed"); closeQuestion(); };
+      qEl.classList.add("show");
+    }
+    function answer(q, o, btn) {
+      if (qOpen !== q) return;
+      const right = o.id === q.right;
+      qEl.querySelectorAll(".ftc-q-opt").forEach((b, i) => { b.disabled = true; if (q.options[i].id === q.right) b.classList.add("ok"); });
+      if (!right) btn.classList.add("no");
+      if (o.audio) say(o.audio);
+      if (opts.onAnswer) try { opts.onAnswer(q, right); } catch (e) {}
+      if (right) sim.applyReward({ v: 1, kind: "reward", source: "rescue", strength: 1, word: q.th });
+      else sim.noteStudy("rescue_wrong");
+      setTimeout(() => {
+        if (qOpen !== q) return;
+        closeQuestion();
+        const f = st.flash;
+        rescueChain++;
+        if (right && f && st.phase === "fight" && f.hp / f.maxHp() < 0.45 && rescueChain < WD.rescue_chain) ask();
+      }, right ? 900 : 1800);
+    }
+
+    // the column was resized (the divider in game mode, or the window)
+    let resizeT = 0;
+    const ro = window.ResizeObserver ? new ResizeObserver(() => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(() => {
+        const w = fitW();
+        if (Math.abs(w - st.W) < 6) return;
+        sim.setWidth(w);
+        try { game.scale.setGameSize(st.W, FlashSim.H); if (scene) scene.cameras.resize(st.W, FlashSim.H); } catch (e) {}
+      }, 120);
+    }) : null;
+    if (ro) ro.observe(el);
 
     // -------------------------------------------------------------- HUD
     function updateHud() {
@@ -548,9 +754,17 @@
       setDirector: on => sim.setDirector(on),
       clearEnemies: () => sim.clearEnemies(),
       telemetry: () => sim.telemetry(),
+      // words: [{ id, th, rom, en, audio, weight }] from the host
+      setWords: list => { words = Array.isArray(list) ? list.filter(w => w && w.id && w.th && w.en) : []; },
+      wordSettings: () => Object.assign({}, WD),
+      questionOpen: () => !!qOpen,
+      gems: () => gems.map(g => ({ id: g.word.id, side: g.side, x: g.x, y: g.y, w: g.w, h: g.h })),
+      setSlow: on => setSlow(on),
+      showQuestion: q => showQuestion(q),
+      rescue: () => { rescueAt = -1e9; maybeRescue(); },
       sendTelemetry: () => sendTel(),
       destroy() {
-        clearInterval(secTimer); clearInterval(telTimer); sendTel(true);
+        clearInterval(secTimer); clearInterval(telTimer); sendTel(true); if (ro) ro.disconnect();
         window.removeEventListener("pagehide", onUnload);
         window.removeEventListener("inaflash:reward", onReward);
         document.removeEventListener("visibilitychange", onVis);

@@ -80,5 +80,62 @@
     "stacks": false,
     "clears_buffs": "newest",
     "floating_text": "Oops! Flash lost a buff"
+  },
+  {
+    "id": "word_match",
+    "kind": "reward",
+    "source": "match",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.12
+      }
+    ],
+    "heal_pct": 0.04,
+    "duration": 15,
+    "stacks": true,
+    "streak_bonus_per_step": 0.05,
+    "streak_cap": 10,
+    "floating_text": "MATCH! +POWER"
+  },
+  {
+    "id": "pop_quiz_right",
+    "kind": "reward",
+    "source": "popquiz",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.3
+      },
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.12
+      }
+    ],
+    "heal_pct": 0.12,
+    "duration": 25,
+    "stacks": true,
+    "streak_bonus_per_step": 0.05,
+    "streak_cap": null,
+    "floating_text": "POP QUIZ! +POWER ({word})"
+  },
+  {
+    "id": "rescue_right",
+    "kind": "reward",
+    "source": "rescue",
+    "effects": [
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.3
+      }
+    ],
+    "heal_pct": 0.35,
+    "duration": 12,
+    "stacks": true,
+    "floating_text": "SAVED! ({word})"
   }
 ]

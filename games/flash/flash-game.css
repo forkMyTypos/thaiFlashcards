@@ -89,3 +89,36 @@
   background: rgba(200, 30, 40, .92); color: #fff; font-weight: 800; text-align: center; pointer-events: none;
   opacity: 0; transform: translateY(10px); transition: opacity .25s, transform .25s; z-index: 2; }
 .ftc-danger.show { opacity: 1; transform: none; animation: ftc-pulse .7s infinite alternate; }
+
+/* slow motion while a question is open */
+.ftc.ftc-slowmo .ftc-canvas { filter: saturate(.55) brightness(.8); transition: filter .3s; }
+.ftc .ftc-canvas { transition: filter .3s; }
+
+/* "Save Flash!" question, in the game column */
+.ftc-q { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 14px;
+  z-index: 4; pointer-events: none; }
+.ftc-q.show { display: flex; }
+.ftc-q-card { pointer-events: auto; position: relative; width: 100%; max-width: 380px; background: rgba(24,18,32,.96);
+  border: 2px solid #ff5a6a; border-radius: 14px; padding: 14px 14px 12px; text-align: center;
+  box-shadow: 0 0 30px rgba(255,60,80,.35), 0 10px 30px rgba(0,0,0,.6); animation: ftc-qin .25s ease-out; }
+@keyframes ftc-qin { from { transform: scale(.85); opacity: 0 } to { transform: none; opacity: 1 } }
+.ftc-q-head { font-weight: 800; color: #ff8a8a; font-size: 14px; margin: 0 22px 8px; }
+.ftc-q-x { position: absolute; top: 6px; right: 8px; background: none; border: 0; color: #9b93a8; font-size: 16px; cursor: pointer; }
+.ftc-q-x:hover { color: #fff; }
+.ftc-q-th { font: 400 40px/1.2 "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
+.ftc-q-say { margin-left: 8px; vertical-align: middle; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px; color: inherit; font-size: 16px; cursor: pointer; padding: 2px 7px; }
+.ftc-q-rom { color: #ffd27a; font-size: 15px; }
+.ftc-q-en { font-size: 22px; font-weight: 700; color: #e6f3ff; }
+.ftc-q-ask { color: #9b93a8; font-size: 12px; margin: 2px 0 10px; }
+.ftc-q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.ftc-q-opt { background: #2a2236; border: 1px solid #4a3f5c; color: #f2ede4; border-radius: 10px; padding: 9px 8px;
+  font: 600 13.5px/1.25 "Segoe UI", system-ui, sans-serif; cursor: pointer; min-height: 44px; }
+.ftc-q-opt span { display: block; font: 400 22px/1.2 "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; }
+.ftc-q-opt small { display: block; color: #ffd27a; font-weight: 400; font-size: 12px; }
+.ftc-q-opt:hover:not(:disabled) { border-color: #ff9f5a; background: #352a44; }
+.ftc-q-opt.ok { border-color: #34c98e; background: rgba(52,201,142,.22); }
+.ftc-q-opt.no { border-color: #f2705f; background: rgba(242,112,95,.22); }
+.ftc-q-opt:disabled { cursor: default; }
+.ftc-q-foot { margin-top: 10px; display: flex; justify-content: center; }
+.ftc-q-foot:empty { display: none; }

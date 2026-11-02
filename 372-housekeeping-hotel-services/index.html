@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Learn how to talk about cleaning, towels, laundry, and hotel services."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=47368b5a"/>
+<link rel="stylesheet" href="../style.css?v=34b8e6c2"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -1187,7 +1187,8 @@
    picButton(pic,cards[meIdx]);
   }
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
-  if(byUser&&window.wbGame&&document.body.classList.contains('mode-info'))wbGame.study('lesson',meIdx);
+  if(window.wbGame){wbGame.saw(cards[meIdx],byUser);
+   if(byUser&&document.body.classList.contains('mode-info'))wbGame.study('lesson',meIdx);}
   try{document.dispatchEvent(new CustomEvent('wb:card',{detail:{card:cards[meIdx]}}));}catch(e){}
   cue(byUser);
   // A new word is a new card to turn over and a new question to ask.
@@ -3126,7 +3127,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   qrun=right?qrun+1:0;if(qrun>qbest)qbest=qrun;
   try{localStorage.setItem('wb.qrun',String(qrun));localStorage.setItem('wb.qbest',String(qbest));}catch(e){}
   scored(cards[me],right);
-  if(window.wbGame)wbGame.quiz(right,qrun,(cards[me].querySelector('.th')||{}).textContent||'');
+  if(window.wbGame)wbGame.quiz(right,qrun,cards[me]);
   drawQuiz();
   cheer(right,extra);
  }
@@ -4676,7 +4677,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  window.wbGame=(function(){
   var frame=null;
   try{if(window.parent!==window&&window.parent.FTC_FRAME)frame=window.parent;}catch(e){frame=null;}
-  var KEY='wb.rewards',FREE=2,SHRINK=0.7,FLOOR=0.2,RUN=25,
+  var KEY='wb.rewards',WKEY='wb.gamewords',FREE=2,SHRINK=0.7,FLOOR=0.2,RUN=25,
       GAP={lesson:2500,audio:2000,flashcard:1500},last={},seenCard={};
   function rootUrl(){try{return new URL((base()||'.')+'/',location.href);}catch(e){return new URL('/',location.href);}}
   function here(){var r=rootUrl().href,u=location.href;return u.indexOf(r)===0?u.slice(r.length):'';}
@@ -4693,10 +4694,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    return Math.round(Math.min(f,g)*100)/100;
   }
   function needQuiz(on){document.body.classList.toggle('game-needquiz',!!on);}
-  function show(st){
-   var b=document.body;
-   b.classList.toggle('game-danger',st==='danger');
-  }
+  function show(st){document.body.classList.toggle('game-danger',st==='danger');}
   // the 🎮 button beside the modes, and its row in the main menu
   function toggle(){
    if(frame){post({type:'ftc:exit'});return;}
@@ -4709,7 +4707,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   if(gm){gm.addEventListener('click',toggle);
    gm.setAttribute('aria-pressed',frame?'true':'false');
    var gt=gm.querySelector('.t');if(gt)gt.textContent=frame?'Leave game mode':'Game mode';}
-  if(!frame)return {study:function(){},quiz:function(){},on:false};
+  var off=function(){};
+  if(!frame)return {study:off,quiz:off,saw:off,on:false};
 
   document.body.classList.add('in-game');
   // Inside the frame a link to another site would try to open in the
@@ -4718,17 +4717,184 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    var a=e.target.closest?e.target.closest('a[href]'):null;
    if(a&&a.origin&&a.origin!==location.origin&&!a.target)a.target='_blank';
   },true);
+
+  // ------------------------------------------------ the words being studied
+  //
+  // Dan: "add the words we are studying to the game environment, the Thai-
+  // romanization, and then the english word. The player tries to match the
+  // words." and pop-up questions "either about the current page, or the
+  // previous ones".
+  //
+  // Every word card the reader has looked at (in any lesson) is remembered
+  // here with what it needs to be asked about: Thai, romanization, meaning,
+  // its recording. Mistakes are counted, so words that went wrong — in the
+  // quiz, a pop quiz or a gem match — come back more often.
+  var cfg={pop_quiz:true,pop_quiz_every_words:8,pop_quiz_min_seconds:50,pop_quiz_max_backoff:4};
+  function clean(el){if(!el)return '';var c=el.cloneNode(true);
+   c.querySelectorAll('.tm,svg,.gtip,.aidedit,button').forEach(function(x){x.remove();});
+   return (c.textContent||'').replace(/\s+/g,' ').trim();}
+  function factsOf(card){
+   if(!card||card.classList.contains('sc'))return null;
+   var th=clean(card.querySelector('.throw .th')||card.querySelector('.th')),
+       en=clean(card.querySelector('.en')),
+       rom=clean(card.querySelector(':scope > .rom')||card.querySelector('.rom')),
+       pl=card.querySelector('.plays [data-play]'),k=wordKey(card);
+   if(!th||!en||!k)return null;
+   var au='';try{au=pl?new URL(pl.dataset.play,location.href).href:'';}catch(e){}
+   return {k:k,th:th,rom:rom,en:en,audio:au,lesson:document.body.dataset.lesson||''};
+  }
+  function pool(){var p=read(WKEY,null);return (p&&typeof p==='object')?p:{};}
+  function savePool(p){
+   var ks=Object.keys(p);
+   if(ks.length>400){ks.sort(function(a,b){return (p[a].t||0)-(p[b].t||0);});
+    ks.slice(0,ks.length-400).forEach(function(k){delete p[k];});}
+   write(WKEY,p);
+  }
+  function note(k,right){var p=pool(),w=p[k];if(!w)return;
+   if(right)w.right=(w.right||0)+1;else w.wrong=(w.wrong||0)+1;savePool(p);pushSoon();}
+  function weight(w,les){
+   return 1+(w.lesson===les?2:0)+Math.min(3,w.wrong||0)*1.5-((w.right||0)>=3&&!(w.wrong||0)?0.5:0);
+  }
+  function listed(){
+   var p=pool(),les=document.body.dataset.lesson||'';
+   return Object.keys(p).map(function(k){return p[k];})
+    .sort(function(a,b){return (b.t||0)-(a.t||0);}).slice(0,120)
+    .map(function(w){return {id:w.k,th:w.th,rom:w.rom,en:w.en,audio:w.audio,lesson:w.lesson,weight:weight(w,les)};});
+  }
+  var pushT=0;
+  function pushWords(){post({type:'ftc:words',words:listed()});}
+  function pushSoon(){clearTimeout(pushT);pushT=setTimeout(pushWords,1200);}
+
+  // A question about one of those words: Thai -> meaning, or meaning -> Thai.
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  // "to get, receive, obtain, [past tense/completion]; can" -> "to get, receive, obtain"
+  function shortEn(t,max){max=max||34;
+   t=String(t||'').split(/;|\s\/\s/)[0].replace(/\s*[\[(][^\])]*[\])]/g,'').trim();
+   var ps=t.split(/,\s*/),out=ps[0]||t;
+   for(var i=1;i<ps.length&&i<3;i++){if((out+', '+ps[i]).length>max)break;out+=', '+ps[i];}
+   return out.length>max+6?out.slice(0,max+5)+'…':out;}
+  function question(){
+   var ws=listed();
+   var seenEn={},cands=ws.filter(function(w){var e=shortEn(w.en).toLowerCase();
+    if(!e||seenEn[e])return false;seenEn[e]=1;return true;});
+   if(cands.length<4)return null;
+   var sum=0;cands.forEach(function(w){sum+=w.weight;});
+   var r=Math.random()*sum,target=cands[0];
+   for(var i=0;i<cands.length;i++){r-=cands[i].weight;if(r<=0){target=cands[i];break;}}
+   var others=shuffle(cands.filter(function(w){return w!==target;}));
+   // distractors from the same lesson first, so the choice is a real one
+   others.sort(function(a,b){return (b.lesson===target.lesson)-(a.lesson===target.lesson);});
+   var opts=shuffle([target].concat(others.slice(0,3)));
+   var th=Math.random()<0.6;
+   return {id:target.id,prompt:th?'th':'en',th:target.th,rom:target.rom,en:shortEn(target.en),audio:target.audio,
+    right:target.id,
+    can_quiz:!!(document.querySelector('.modes [data-mode="quiz"]'))&&!document.body.classList.contains('mode-quiz'),
+    options:opts.map(function(w){return th?{id:w.id,label:shortEn(w.en)}:{id:w.id,label:w.th,sub:w.rom,audio:w.audio};})};
+  }
+
+  // ------------------------------------------------------- the pop quiz
+  // Over the lesson, now and then while reading (Dan: "if the user is in
+  // game mode, random pop up quiz divs are acceptable"). A right answer
+  // powers Flash up; a wrong one only shows the answer — nobody asked for
+  // this question, so it never costs anything. Closing it makes the next
+  // one wait longer.
+  var popEl=null,wordsSince=0,lastPop=Date.now(),backoff=1,curQ=null,sayA=null;
+  function say(u){if(!u)return;try{if(!sayA)sayA=new Audio();sayA.src=u;var pp=sayA.play();if(pp&&pp.catch)pp.catch(function(){});}catch(e){}}
+  function gameAsking(){try{return !!(frame.ftc&&frame.ftc.questionOpen&&frame.ftc.questionOpen());}catch(e){return false;}}
+  function popDue(){
+   if(!cfg.pop_quiz||popEl||document.hidden||gameAsking())return false;
+   if(document.body.classList.contains('mode-quiz'))return false;
+   var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='range')return false;
+   return wordsSince>=cfg.pop_quiz_every_words*backoff&&Date.now()-lastPop>=cfg.pop_quiz_min_seconds*1000*backoff;
+  }
+  function closePop(how){
+   if(!popEl)return;popEl.remove();popEl=null;curQ=null;
+   post({type:'ftc:slow',on:false});
+   document.removeEventListener('keydown',popKeys,true);
+   if(how==='closed'){backoff=Math.min(cfg.pop_quiz_max_backoff||4,backoff*2);post({type:'ftc:popquiz',closed:true});}
+  }
+  function popKeys(e){
+   if(!popEl)return;
+   if(e.key==='Escape'){e.preventDefault();e.stopPropagation();closePop('closed');return;}
+   if(e.key>='1'&&e.key<='4'){var b=popEl.querySelectorAll('.wbpop-o')[+e.key-1];
+    if(b){e.preventDefault();e.stopPropagation();b.click();}}
+  }
+  function popQuiz(){
+   var q=question();if(!q)return;
+   curQ=q;wordsSince=0;lastPop=Date.now();
+   popEl=document.createElement('div');popEl.className='wbpop';popEl.setAttribute('role','dialog');
+   popEl.innerHTML='<div class="wbpop-h"><b>⚡ Pop quiz!</b> <span>A right answer powers up Flash</span>'
+    +'<button class="wbpop-x" title="Not now (Esc)">✕</button></div><div class="wbpop-p"></div><div class="wbpop-os"></div>';
+   var pr=popEl.querySelector('.wbpop-p');
+   if(q.prompt==='th'){
+    pr.innerHTML='<div class="wbpop-th" lang="th"></div><div class="wbpop-rom"></div><div class="wbpop-ask">means…?</div>';
+    pr.querySelector('.wbpop-th').textContent=q.th;pr.querySelector('.wbpop-rom').textContent=q.rom||'';
+    if(q.audio){var sb=document.createElement('button');sb.className='wbpop-say';sb.textContent='🔊';sb.title='Hear it';
+     sb.onclick=function(){say(q.audio);};pr.querySelector('.wbpop-th').appendChild(sb);say(q.audio);}
+   }else{
+    pr.innerHTML='<div class="wbpop-en"></div><div class="wbpop-ask">in Thai is…?</div>';
+    pr.querySelector('.wbpop-en').textContent=q.en;
+   }
+   var os=popEl.querySelector('.wbpop-os');
+   q.options.forEach(function(o,i){
+    var b=document.createElement('button');b.className='wbpop-o';b.type='button';
+    b.innerHTML='<i>'+(i+1)+'</i><span></span>'+(o.sub?'<small></small>':'');
+    b.querySelector('span').textContent=o.label;if(o.sub)b.querySelector('small').textContent=o.sub;
+    if(o.sub)b.querySelector('span').setAttribute('lang','th');
+    b.onclick=function(){popAnswer(q,o,b);};os.appendChild(b);
+   });
+   popEl.querySelector('.wbpop-x').onclick=function(){closePop('closed');};
+   document.body.appendChild(popEl);
+   document.addEventListener('keydown',popKeys,true);
+   post({type:'ftc:slow',on:true});
+  }
+  function popAnswer(q,o,btn){
+   if(curQ!==q)return;curQ=null;
+   var right=o.id===q.right,bs=popEl.querySelectorAll('.wbpop-o');
+   for(var i=0;i<bs.length;i++){bs[i].disabled=true;if(q.options[i].id===q.right)bs[i].classList.add('ok');}
+   if(!right)btn.classList.add('no');
+   if(o.audio)say(o.audio);
+   note(q.id,right);backoff=1;quizReset();
+   post({type:'ftc:popquiz',right:right,word:q.th});
+   setTimeout(function(){closePop('answered');},right?1100:2200);
+  }
+  setInterval(function(){if(popDue())popQuiz();},2000);
+
+  // ------------------------------------------------ messages from the game
   window.addEventListener('message',function(e){
    if(e.origin!==location.origin||e.source!==frame)return;
-   var m=e.data||{};if(m.type==='ftc:state')show(m.state);
+   var m=e.data||{};
+   if(m.type==='ftc:state')show(m.state);
+   else if(m.type==='ftc:config'){if(m.words)for(var k in cfg)if(m.words[k]!==undefined)cfg[k]=m.words[k];pushWords();}
+   // one question at a time: no "Save Flash!" while a pop quiz is up
+   else if(m.type==='ftc:ask')post({type:'ftc:question',req:m.req,q:popEl?null:question()});
+   else if(m.type==='ftc:answered'){if(m.right!==null&&m.right!==undefined){note(m.id,!!m.right);quizReset();}}
+   else if(m.type==='ftc:word'){if(m.result==='miss')note(m.id,false);else if(m.result==='match')note(m.id,true);}
+   else if(m.type==='ftc:mode'){var mb=document.querySelector('.modes [data-mode="'+m.mode+'"]');if(mb)mb.click();}
   });
   try{show(frame.FTC_STATE);}catch(e){}
   // a lesson the reader has not opened since game mode started counting
   var s=state(),les=document.body.dataset.lesson;
   if(les&&!s.seen[les]){s.seen[les]=1;s.since++;keep(s);}
   needQuiz(s.warned);
+  function quizReset(){var st=state();st.since=0;st.n=0;st.warned=0;keep(st);needQuiz(false);}
+  // the card already on screen when the page opened
+  setTimeout(function(){
+   var c=[].filter.call(document.querySelectorAll('.card'),function(x){return !x.hidden;})[0];
+   if(c&&window.wbGame&&wbGame.saw)wbGame.saw(c,false);
+   pushWords();
+  },300);
 
   return {on:true,
+   // a card was put on screen
+   saw:function(card,byUser){
+    var f=factsOf(card);if(!f)return;
+    var p=pool(),was=p[f.k];
+    p[f.k]={k:f.k,th:f.th,rom:f.rom,en:f.en,audio:f.audio||(was&&was.audio)||'',lesson:f.lesson||(was&&was.lesson)||'',
+     t:Date.now(),wrong:was?was.wrong||0:0,right:was?was.right||0:0};
+    savePool(p);pushSoon();
+    if(byUser&&!document.body.classList.contains('mode-quiz'))wordsSince++;
+   },
    study:function(src,cardIdx){
     if(src==='lesson'){if(seenCard[cardIdx])return;seenCard[cardIdx]=1;}
     var now=Date.now();
@@ -4743,9 +4909,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     keep(st);
     send({kind:'reward',source:src,strength:k});
    },
-   quiz:function(right,streak,word){
-    var st=state();st.since=0;st.n=0;st.warned=0;keep(st);needQuiz(false);
-    send(right?{kind:'reward',source:'quiz',strength:1,streak:streak||0,word:word||''}
+   quiz:function(right,streak,card){
+    var f=factsOf(card);
+    if(f)note(f.k,right);
+    quizReset();
+    send(right?{kind:'reward',source:'quiz',strength:1,streak:streak||0,word:f?f.th:''}
               :{kind:'penalty',source:'quiz',streak:0});
    }};
  })();

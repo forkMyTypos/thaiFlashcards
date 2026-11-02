@@ -1806,3 +1806,31 @@ body.game-danger .slider .md[data-mode="quiz"],
 body.game-needquiz .slider .md[data-mode="quiz"]{border-color:#f2705f;color:var(--bright);animation:wb-gq .7s ease-in-out infinite alternate}
 body.game-danger.mode-quiz .slider .md[data-mode="quiz"],
 body.game-needquiz.mode-quiz .slider .md[data-mode="quiz"]{animation:none}
+/* the pop quiz (game mode only): a card over the lesson now and then */
+.wbpop{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;width:min(460px,calc(100vw - 32px));
+ background:var(--s2);border:2px solid #ff9f5a;border-radius:16px;padding:12px 14px 14px;color:var(--text);
+ box-shadow:0 12px 40px rgba(0,0,0,.45);animation:wbpop-in .25s ease-out}
+@keyframes wbpop-in{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.wbpop-h{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.wbpop-h b{color:#ff9f5a;font-size:1rem}
+.wbpop-h span{color:var(--muted);font-size:.8rem;flex:1}
+.wbpop-x{background:none;border:0;color:var(--muted);font-size:1rem;cursor:pointer;padding:2px 4px}
+.wbpop-x:hover{color:var(--text)}
+.wbpop-p{text-align:center;margin-bottom:10px}
+.wbpop-th{font-size:2.3rem;line-height:1.2;color:var(--bright)}
+.wbpop-say{margin-left:8px;vertical-align:middle;font-size:1rem;background:var(--s3);border:1px solid var(--edge);
+ border-radius:8px;color:var(--text);cursor:pointer;padding:2px 7px}
+.wbpop-rom{color:#ffb35a;font-size:.95rem}
+.wbpop-en{font-size:1.35rem;font-weight:700;color:var(--bright)}
+.wbpop-ask{color:var(--muted);font-size:.8rem;margin-top:2px}
+.wbpop-os{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wbpop-o{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;position:relative;
+ background:var(--s3);border:1px solid var(--edge);border-radius:11px;padding:9px 10px 8px;min-height:48px;
+ color:var(--text);font:inherit;font-size:.92rem;cursor:pointer}
+.wbpop-o i{position:absolute;left:8px;top:6px;font-style:normal;font-size:.7rem;color:var(--muted)}
+.wbpop-o span[lang]{font-size:1.35rem}
+.wbpop-o small{color:#ffb35a;font-size:.78rem}
+.wbpop-o:hover:not(:disabled){border-color:#ff9f5a}
+.wbpop-o.ok{border-color:#34c98e;background:rgba(52,201,142,.18)}
+.wbpop-o.no{border-color:#f2705f;background:rgba(242,112,95,.18)}
+.wbpop-o:disabled{cursor:default}
