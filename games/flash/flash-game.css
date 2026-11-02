@@ -122,3 +122,15 @@
 .ftc-q-opt:disabled { cursor: default; }
 .ftc-q-foot { margin-top: 10px; display: flex; justify-content: center; }
 .ftc-q-foot:empty { display: none; }
+.ftc-q-t { position: relative; height: 5px; border-radius: 3px; background: rgba(255,255,255,.08); margin: 0 0 10px; }
+.ftc-q-t i { display: block; height: 100%; width: 100%; border-radius: 3px; background: #ff9f5a; }
+.ftc-q-t em { position: absolute; right: 0; top: -16px; font-style: normal; font-size: 11px; color: #9b93a8; font-variant-numeric: tabular-nums; }
+.ftc-q.hurry .ftc-q-t i { background: #f2705f; }
+.ftc-q.hurry .ftc-q-t em { color: #f2705f; font-weight: 700; }
+.ftc-q-opt { position: relative; }
+.ftc-q-opt > i { position: absolute; left: 7px; top: 5px; font-style: normal; font-size: 10px; color: #7d7590; }
+
+/* studying is blue (inaflash blue): rewards, buffs from the course */
+.ftc-float div.study { color: #9cc8ff; text-shadow: 0 0 10px rgba(59,130,246,.9), 0 2px 3px #000; }
+.ftc-buff { background: rgba(59,130,246,.18); border-color: rgba(59,130,246,.55); }
+.ftc-buff.quiz { background: rgba(59,130,246,.32); border-color: #3b82f6; }

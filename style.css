@@ -1834,3 +1834,15 @@ body.game-needquiz.mode-quiz .slider .md[data-mode="quiz"]{animation:none}
 .wbpop-o.ok{border-color:#34c98e;background:rgba(52,201,142,.18)}
 .wbpop-o.no{border-color:#f2705f;background:rgba(242,112,95,.18)}
 .wbpop-o:disabled{cursor:default}
+/* the pop quiz's countdown */
+.wbpop-s{font-style:normal;font-variant-numeric:tabular-nums;color:var(--muted);font-size:.8rem;min-width:2.4em;text-align:right}
+.wbpop-t{height:4px;border-radius:2px;background:var(--s3);overflow:hidden;margin:-2px 0 10px}
+.wbpop-t i{display:block;height:100%;width:100%;background:#ff9f5a;border-radius:2px}
+.wbpop.hurry .wbpop-t i{background:#f2705f}
+.wbpop.hurry .wbpop-s{color:#f2705f;font-weight:700}
+.wbpop.timeout{border-color:#f2705f}
+/* quiz: Auto-play Thai, styled like Type first */
+.qtools .qautobtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;padding:4px 10px;font-size:0.6875rem;cursor:pointer;font-family:inherit;line-height:1.2}
+.qtools .qautobtn:hover{border-color:var(--accent);color:var(--bright)}
+.qtools .qautobtn.on{background:var(--accent);border-color:var(--accent);color:#fff}

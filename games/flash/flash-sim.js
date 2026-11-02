@@ -657,8 +657,20 @@
     }
 
     // ------------------------------------------------------------ rewards
+    const DASH = { every: Math.max(1, set("words", "dash_every", 5)), radius: set("words", "dash_radius", 240),
+                   damage: set("words", "dash_damage", 15), per_level: set("words", "dash_damage_per_level", 4),
+                   knockback: set("words", "dash_knockback", 160) };
+    function flashDash() {
+      if (!st.flash || st.phase !== "fight") return;
+      const dmg = DASH.damage + DASH.per_level * st.level, hits = [];
+      query(CX, CY, DASH.radius, (e, d2) => hits.push([e, Math.sqrt(d2)]));
+      for (const [e, d] of hits) hitEnemy(e, dmg, 0, 1, DASH.knockback * (0.5 + 0.5 * Math.max(0, 1 - d / DASH.radius)), "flash_dash");
+      ev({ t: "dash", x: CX, y: CY, r: DASH.radius, n: hits.length, streak: st.streak });
+      if (tel && tel.study.length < 5000) tel.study.push([Math.round(st.fightT * 10) / 10, "flash_dash", hits.length]);
+    }
     function applyReward(d) {
       d = d || {};
+      if (st.paused) return;               // a paused game earns nothing
       const kind = d.kind || "reward", source = d.source || "quiz";
       const logStudy = (what, strength) => { if (tel && tel.study.length < 5000) tel.study.push([Math.round(st.fightT * 10) / 10, what, strength]); };
       if (kind === "warning") { logStudy("warning", 0); st.warning = { text: d.message || "Flash needs quiz answers to survive!", until: st.t + 6 }; ev({ t: "warning", text: st.warning.text }); return; }
@@ -688,6 +700,9 @@
       }
       if (row.heal_pct) st.flash.hp = Math.min(st.flash.maxHp(), st.flash.hp + st.flash.maxHp() * row.heal_pct * scale);
       logStudy(source, Math.round(strength * 100) / 100);
+      // "in a flash": every DASH.every quiz answers in a row, Flash lets out a
+      // blue shockwave that throws back (and hurts) everything close by
+      if (source === "quiz" && st.streak > 0 && st.streak % DASH.every === 0) flashDash();
       if (tel) { add(tel.rewards, source, 1); acc1.rewards++; if (accR) accR.rewards++; }
       const text = (row.floating_text || "+POWER").replace("{word}", d.word || "").replace(/\(\s*\)/, "").trim();
       ev({ t: "reward", text, source });

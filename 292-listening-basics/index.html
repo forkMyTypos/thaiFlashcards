@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Learn to recognise the most important features of spoken Thai in everyday conversation"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=34b8e6c2"/>
+<link rel="stylesheet" href="../style.css?v=5d74092d"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -2721,6 +2721,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
      +'<button class="nbtn" data-qs="mix" title="Every kind of question, mixed">Mixed</button>'
      +'<button class="nbtn" data-qs="classic" title="Only: what does it mean?">Classic</button></div>')
    +'<button class="nbtn qtypebtn" data-act="type" aria-pressed="false" title="Type your answer before you see the choices">\u2328 Type first</button>'
+   +'<button class="nbtn qautobtn" data-act="auto" aria-pressed="false" title="Play the Thai word as soon as a question shows it">\uD83D\uDD0A Auto-play Thai</button>'
    +'<div class="qwrongs"><b>Wrong answers</b>'
    +'<button class="nbtn" data-n="2">2</button>'
    +'<button class="nbtn" data-n="3">3</button>'
@@ -2738,6 +2739,10 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    }else if(t.dataset.act==='type'){
     typeFirst=!typeFirst;try{localStorage.setItem('wb.qtype',typeFirst?'1':'0');}catch(e2){}
     paintQtools();if(!answered[at])drawQuiz();
+   }else if(t.dataset.act==='auto'){
+    qAuto=!qAuto;try{localStorage.setItem('wb.qauto',qAuto?'1':'0');}catch(e2){}
+    paintQtools();
+    if(qAuto&&!answered[at]){delete autoPlayed[at];drawQuiz();}
    }else sidesPanel();
   });
   right.appendChild(barEl);right.appendChild(quizBox);
@@ -2749,6 +2754,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   quizBox.querySelectorAll('[data-qs]').forEach(function(b){b.classList.toggle('on',b.dataset.qs===qstyle);});
   var tb=quizBox.querySelector('[data-act=type]');
   if(tb){tb.classList.toggle('on',typeFirst);tb.setAttribute('aria-pressed',typeFirst?'true':'false');}
+  var ab=quizBox.querySelector('[data-act=auto]');
+  if(ab){ab.classList.toggle('on',qAuto);ab.setAttribute('aria-pressed',qAuto?'true':'false');}
  }
 
  // A fixed shuffle per question, so the options stay put when you come back
@@ -2783,6 +2790,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  //   gap      a sentence with the word missing → the word
  //   order    "try a sentence": the words of a sentence, mixed → in order
  var qstyle='mix',typeFirst=false,qkind={},typedMiss={},autoPlayed={},
+     // Dan: "with quiz mode, when the word is Thai, can we have an autoplay
+     // option." Off until the reader turns it on; remembered.
+     qAuto=(function(){try{return localStorage.getItem('wb.qauto')==='1';}catch(e){return false;}})(),
      qrun=0,qbest=0;
  try{qstyle=localStorage.getItem('wb.qstyle')||'mix';}catch(e){}
  try{typeFirst=localStorage.getItem('wb.qtype')==='1';}catch(e){}
@@ -2911,6 +2921,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i])[as==='back'?'mean':'word'];});
    s.opts=ws.concat([meIdx]).map(function(k){return cardOpt(k,as);});
    if(as==='back')s.typeMean=d.mean;else{s.typeThai=d.word;s.typeRom=d.rom;}
+   // the question shows the Thai word: Auto-play Thai may say it
+   if((sides[qs]||[]).indexOf('word')>=0)s.thaiSnd=d.snd;
   }else if(kind==='listen'){
    s.face=function(el){el.innerHTML='<div class="qear" aria-hidden="true">🎧</div>'+playBtns(d.snd,d.slow);};
    s.autoplay=d.snd;
@@ -2925,7 +2937,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   }else if(kind==='tone'){
    s.face=function(el){el.innerHTML='<div class="f-word" lang="'+lang+'"></div>'+playBtns(d.snd,d.slow);
     el.firstChild.textContent=d.word;};
-   s.right='t:'+d.tone;
+   s.right='t:'+d.tone;s.thaiSnd=d.snd;
    s.opts=TONES.map(function(t){return {key:'t:'+t,draw:function(el){
     el.innerHTML='<span class="tc t-'+t+' qtone">'+t+'</span>';}};});
    s.fixed=true;
@@ -3014,9 +3026,10 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     typ.firstChild.textContent='Not quite (“'+typedMiss[at].trim()+'”). Pick it from these:';
    }
   }
-  if(spec.autoplay&&!already&&!autoPlayed[at]){
+  var auto=spec.autoplay||(qAuto?spec.thaiSnd:null);
+  if(auto&&!already&&!autoPlayed[at]){
    autoPlayed[at]=1;
-   setTimeout(function(){try{var a=snd(spec.autoplay);a.currentTime=0;var p=a.play();if(p&&p.catch)p.catch(function(){});}catch(e){}},150);
+   setTimeout(function(){try{var a=snd(auto);a.currentTime=0;var p=a.play();if(p&&p.catch)p.catch(function(){});}catch(e){}},150);
   }
   if(already){
    var say=document.createElement('span');
@@ -4713,7 +4726,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   // here with what it needs to be asked about: Thai, romanization, meaning,
   // its recording. Mistakes are counted, so words that went wrong — in the
   // quiz, a pop quiz or a gem match — come back more often.
-  var cfg={pop_quiz:true,pop_quiz_every_words:8,pop_quiz_min_seconds:50,pop_quiz_max_backoff:4};
+  var cfg={pop_quiz:true,pop_quiz_every_words:8,pop_quiz_min_seconds:50,pop_quiz_max_backoff:4,
+           pop_timer_new:30,pop_timer_min:6,pop_timer_shrink:0.7};
   function clean(el){if(!el)return '';var c=el.cloneNode(true);
    c.querySelectorAll('.tm,svg,.gtip,.aidedit,button').forEach(function(x){x.remove();});
    return (c.textContent||'').replace(/\s+/g,' ').trim();}
@@ -4735,7 +4749,14 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    write(WKEY,p);
   }
   function note(k,right){var p=pool(),w=p[k];if(!w)return;
-   if(right)w.right=(w.right||0)+1;else w.wrong=(w.wrong||0)+1;savePool(p);pushSoon();}
+   if(right){w.right=(w.right||0)+1;w.rs=(w.rs||0)+1;}else{w.wrong=(w.wrong||0)+1;w.rs=0;}
+   savePool(p);pushSoon();}
+  // Dan: "a timer, super long at the beginning, or for new words, but gets
+  // faster if correctly answered before." Seconds for a question about this
+  // word: 30 for a word never answered right, ×0.7 for each right answer in a
+  // row since its last mistake, never under 6.
+  function timeFor(k){var w=pool()[k]||{};
+   return Math.round(Math.max(cfg.pop_timer_min,cfg.pop_timer_new*Math.pow(cfg.pop_timer_shrink,w.rs||0)));}
   function weight(w,les){
    return 1+(w.lesson===les?2:0)+Math.min(3,w.wrong||0)*1.5-((w.right||0)>=3&&!(w.wrong||0)?0.5:0);
   }
@@ -4746,7 +4767,15 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     .map(function(w){return {id:w.k,th:w.th,rom:w.rom,en:w.en,audio:w.audio,lesson:w.lesson,weight:weight(w,les)};});
   }
   var pushT=0;
-  function pushWords(){post({type:'ftc:words',words:listed()});}
+  // Every word card on this page too (read yet or not), so the game has wrong
+  // answers to mix in with the pairs.
+  function pageWords(){
+   var out=[];[].forEach.call(document.querySelectorAll('.card'),function(c){
+    if(out.length>=60)return;var f=factsOf(c);
+    if(f)out.push({id:f.k,th:f.th,rom:f.rom,en:f.en,audio:f.audio,lesson:f.lesson,weight:1});});
+   return out;
+  }
+  function pushWords(){post({type:'ftc:words',words:listed(),extra:pageWords()});}
   function pushSoon(){clearTimeout(pushT);pushT=setTimeout(pushWords,1200);}
 
   // A question about one of those words: Thai -> meaning, or meaning -> Thai.
@@ -4771,7 +4800,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    var opts=shuffle([target].concat(others.slice(0,3)));
    var th=Math.random()<0.6;
    return {id:target.id,prompt:th?'th':'en',th:target.th,rom:target.rom,en:shortEn(target.en),audio:target.audio,
-    right:target.id,
+    right:target.id,time:timeFor(target.id),
     can_quiz:!!(document.querySelector('.modes [data-mode="quiz"]'))&&!document.body.classList.contains('mode-quiz'),
     options:opts.map(function(w){return th?{id:w.id,label:shortEn(w.en)}:{id:w.id,label:w.th,sub:w.rom,audio:w.audio};})};
   }
@@ -4785,17 +4814,22 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   var popEl=null,wordsSince=0,lastPop=Date.now(),backoff=1,curQ=null,sayA=null;
   function say(u){if(!u)return;try{if(!sayA)sayA=new Audio();sayA.src=u;var pp=sayA.play();if(pp&&pp.catch)pp.catch(function(){});}catch(e){}}
   function gameAsking(){try{return !!(frame.ftc&&frame.ftc.questionOpen&&frame.ftc.questionOpen());}catch(e){return false;}}
+  // Dan: "when the game is paused, flash shouldn't get any xp/bonuses from
+  // anything the user is doing." (The game ignores rewards while paused too;
+  // this also keeps pausing from counting towards the shrinking rewards.)
+  function gamePaused(){try{var g=frame.ftc;return !!(g&&g.sim&&g.sim.st&&(g.sim.st.paused||g.sim.st.phase==='start'||g.sim.st.phase==='over'));}catch(e){return false;}}
   function popDue(){
-   if(!cfg.pop_quiz||popEl||document.hidden||gameAsking())return false;
+   if(!cfg.pop_quiz||popEl||document.hidden||gameAsking()||gamePaused())return false;
    if(document.body.classList.contains('mode-quiz'))return false;
    var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='range')return false;
    return wordsSince>=cfg.pop_quiz_every_words*backoff&&Date.now()-lastPop>=cfg.pop_quiz_min_seconds*1000*backoff;
   }
   function closePop(how){
-   if(!popEl)return;popEl.remove();popEl=null;curQ=null;
+   if(!popEl)return;if(curQ&&curQ._tick)clearInterval(curQ._tick);popEl.remove();popEl=null;curQ=null;
    post({type:'ftc:slow',on:false});
    document.removeEventListener('keydown',popKeys,true);
-   if(how==='closed'){backoff=Math.min(cfg.pop_quiz_max_backoff||4,backoff*2);post({type:'ftc:popquiz',closed:true});}
+   if(how==='closed'){if(curQ&&curQ._tick)clearInterval(curQ._tick);
+    backoff=Math.min(cfg.pop_quiz_max_backoff||4,backoff*2);post({type:'ftc:popquiz',closed:true});}
   }
   function popKeys(e){
    if(!popEl)return;
@@ -4808,7 +4842,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    curQ=q;wordsSince=0;lastPop=Date.now();
    popEl=document.createElement('div');popEl.className='wbpop';popEl.setAttribute('role','dialog');
    popEl.innerHTML='<div class="wbpop-h"><b>⚡ Pop quiz!</b> <span>A right answer powers up Flash</span>'
-    +'<button class="wbpop-x" title="Not now (Esc)">✕</button></div><div class="wbpop-p"></div><div class="wbpop-os"></div>';
+    +'<em class="wbpop-s"></em><button class="wbpop-x" title="Not now (Esc)">✕</button></div>'
+    +'<div class="wbpop-t"><i></i></div><div class="wbpop-p"></div><div class="wbpop-os"></div>';
    var pr=popEl.querySelector('.wbpop-p');
    if(q.prompt==='th'){
     pr.innerHTML='<div class="wbpop-th" lang="th"></div><div class="wbpop-rom"></div><div class="wbpop-ask">means…?</div>';
@@ -4831,9 +4866,32 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    document.body.appendChild(popEl);
    document.addEventListener('keydown',popKeys,true);
    post({type:'ftc:slow',on:true});
+   // the countdown: a bar that empties, and the seconds left
+   var bar=popEl.querySelector('.wbpop-t i'),sec=popEl.querySelector('.wbpop-s'),t0=Date.now(),T=q.time*1000;
+   bar.style.transition='none';bar.style.width='100%';void bar.offsetWidth;
+   bar.style.transition='width '+q.time+'s linear';bar.style.width='0%';
+   sec.textContent=q.time+'s';
+   q._tick=setInterval(function(){
+    if(curQ!==q){clearInterval(q._tick);return;}
+    var left=Math.max(0,Math.ceil((T-(Date.now()-t0))/1000));
+    sec.textContent=left+'s';popEl.classList.toggle('hurry',left<=3);
+    if(left<=0){clearInterval(q._tick);popTimeout(q);}
+   },250);
+  }
+  function popTimeout(q){
+   if(curQ!==q||!popEl)return;curQ=null;
+   var bs=popEl.querySelectorAll('.wbpop-o');
+   for(var i=0;i<bs.length;i++){bs[i].disabled=true;if(q.options[i].id===q.right)bs[i].classList.add('ok');}
+   popEl.classList.add('timeout');popEl.querySelector('.wbpop-s').textContent='time!';
+   note(q.id,false);
+   // nobody answered: maybe nobody was looking, so the next one waits longer too
+   backoff=Math.min(cfg.pop_quiz_max_backoff||4,backoff*2);
+   post({type:'ftc:popquiz',timeout:true});
+   setTimeout(function(){closePop('timeout');},2000);
   }
   function popAnswer(q,o,btn){
-   if(curQ!==q)return;curQ=null;
+   if(curQ!==q)return;curQ=null;clearInterval(q._tick);
+   var tb=popEl.querySelector('.wbpop-t i');if(tb){tb.style.width=getComputedStyle(tb).width;tb.style.transition='none';}
    var right=o.id===q.right,bs=popEl.querySelectorAll('.wbpop-o');
    for(var i=0;i<bs.length;i++){bs[i].disabled=true;if(q.options[i].id===q.right)bs[i].classList.add('ok');}
    if(!right)btn.classList.add('no');
@@ -4855,6 +4913,14 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    else if(m.type==='ftc:answered'){if(m.right!==null&&m.right!==undefined){note(m.id,!!m.right);quizReset();}}
    else if(m.type==='ftc:word'){if(m.result==='miss')note(m.id,false);else if(m.result==='match')note(m.id,true);}
    else if(m.type==='ftc:mode'){var mb=document.querySelector('.modes [data-mode="'+m.mode+'"]');if(mb)mb.click();}
+   // Dan: "whenever the user presses the arrow keys, we should move the
+   // slider." After a click in the game column the keyboard is in the game
+   // page, so it hands ← → (and the pop quiz's 1-4 / Esc) over to here.
+   else if(m.type==='ftc:key'){
+    if(popEl&&(/^[1-4]$/.test(m.key)||m.key==='Escape')){popKeys({key:m.key,preventDefault:off,stopPropagation:off});return;}
+    var nb=document.getElementById(m.key==='ArrowLeft'?'prev':m.key==='ArrowRight'?'next':'');
+    if(nb&&!nb.disabled)nb.click();
+   }
   });
   try{show(frame.FTC_STATE);}catch(e){}
   // a lesson the reader has not opened since game mode started counting
@@ -4880,6 +4946,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     if(byUser&&!document.body.classList.contains('mode-quiz'))wordsSince++;
    },
    study:function(src,cardIdx){
+    if(gamePaused())return;
     if(src==='lesson'){if(seenCard[cardIdx])return;seenCard[cardIdx]=1;}
     var now=Date.now();
     if(now-(last[src]||0)<(GAP[src]||1500))return;
@@ -4895,7 +4962,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    },
    quiz:function(right,streak,card){
     var f=factsOf(card);
-    if(f)note(f.k,right);
+    if(f)note(f.k,right);              // the learner's own record of the word, paused or not
+    if(gamePaused())return;
     quizReset();
     send(right?{kind:'reward',source:'quiz',strength:1,streak:streak||0,word:f?f.th:''}
               :{kind:'penalty',source:'quiz',streak:0});

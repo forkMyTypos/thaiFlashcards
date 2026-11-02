@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=9f45b89813"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=ed5ceea369"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -57,8 +57,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   <iframe id="site" title="The course"></iframe>
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
-<script src="../games/flash/flash-sim.js?v=d12f14f691"></script>
-<script src="../games/flash/flash-game.js?v=8a03f2bb73"></script>
+<script src="../games/flash/flash-sim.js?v=82e83e2ab4"></script>
+<script src="../games/flash/flash-game.js?v=b774e3bebe"></script>
 <script>
 (function () {
   "use strict";
@@ -95,13 +95,13 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     var m = e.data || {};
     if (m.type === "inaflash:reward") window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: m.detail || {} }));
     else if (m.type === "ftc:exit") leave();
-    else if (m.type === "ftc:words") { if (api) api.setWords(m.words || []); else pendingWords = m.words; }
+    else if (m.type === "ftc:words") { if (api) api.setWords(m.words || [], m.extra || []); else pendingWords = m; }
     else if (m.type === "ftc:slow") { if (api) api.setSlow(!!m.on); }
     else if (m.type === "ftc:question") { var r = asks[m.req]; if (r) { delete asks[m.req]; r(m.q || null); } }
     else if (m.type === "ftc:popquiz") {
       // a pop quiz over the lesson: right = a power-up; wrong or closed costs nothing (it is only noted)
       if (m.right) window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: { v: 1, kind: "reward", source: "popquiz", strength: 1, word: m.word || "" } }));
-      else if (api) api.sim.noteStudy(m.closed ? "popquiz_closed" : "popquiz_wrong");
+      else if (api) api.sim.noteStudy(m.closed ? "popquiz_closed" : m.timeout ? "popquiz_timeout" : "popquiz_wrong");
     }
   });
   // ...and the game's state back to the course (it lights up the quiz button in danger)
@@ -194,7 +194,7 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
                                                      goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); } })
     .then(function (a) {
       api = a; window.ftc = a;
-      if (pendingWords) api.setWords(pendingWords);
+      if (pendingWords) api.setWords(pendingWords.words || [], pendingWords.extra || []);
       tell();
     })
     .catch(function (e) {
@@ -202,6 +202,17 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
         String(e && e.message || e).replace(/</g, "&lt;") + "</p>";
     });
   count();
+
+  // ← → move through the course even when the keyboard is in the game page
+  // (after clicking a gem, say); so do the pop quiz's 1-4 and Esc.
+  document.addEventListener("keydown", function (e) {
+    var t = e.target; if (t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
+    if (api && api.questionOpen && api.questionOpen()) return;     // the game's own question has the keys
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Escape" || /^[1-4]$/.test(e.key)) {
+      if (e.key.indexOf("Arrow") === 0) e.preventDefault();
+      toSite({ type: "ftc:key", key: e.key });
+    }
+  });
 
   // ------------------------------------------------------------ the divider
   var gm = document.querySelector(".gm"), col = document.querySelector(".gm-col"), grip = document.getElementById("gm-grip");
