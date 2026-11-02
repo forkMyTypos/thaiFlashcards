@@ -225,5 +225,38 @@
       "rescue_time": 20
     },
     "notes": "Word gems: up to max_pairs Thai/English pairs drift in the arena (a new pair every spawn_every s, each lives life s, drifting at speed). Pop quiz: over the lesson after about pop_quiz_every_words words read and at least pop_quiz_min_seconds apart; each one closed without answering doubles the wait, up to pop_quiz_max_backoff times. Rescue: when Flash is in danger a question appears in the game column (another after a right answer, up to rescue_chain), at most every rescue_cooldown s. slow_motion = game speed while a question is open. Decoys: gems with no partner, decoys_min at the start of a run and one more every decoys_every_matches pairs matched, up to decoys_max (a new one at most every decoy_every s). Timers: a pop quiz gives pop_timer_new s for a word never answered right, x pop_timer_shrink for each right answer in a row since its last mistake, never under pop_timer_min s. rescue_time = the Save Flash! countdown."
+  },
+  {
+    "id": "learn",
+    "values": {
+      "enabled": true,
+      "min_words": 4,
+      "max_words": 8,
+      "reps": 2,
+      "reps_hard": 3,
+      "show_seconds": 5,
+      "test_pairs": 3,
+      "pass": 0.8,
+      "max_bonus": 3,
+      "bonus_rarities": [
+        "rare",
+        "epic"
+      ],
+      "skeleton_every": 3.5,
+      "skeleton_max": 3
+    },
+    "notes": "Learning mode, offered on the 'Flash fell!' screen. Words: the ones missed (a gem pair drifted away, a question timed out) or got wrong this run, worst first, up to max_words; topped up to min_words with other words from the run. Each is shown as a joined Thai = English pair reps times (reps_hard for words that went wrong twice or more), Thai first then English first; each stays show_seconds unless the learner taps on. Then a test: test_pairs pairs at a time, no decoys; a word is right if matched with no wrong try starting from it. A score of pass (0.8 = 80%) or more wins one random item of bonus_rarities, given at the start of the next run (up to max_bonus can wait). The arena stays calm: one skeleton every skeleton_every s, never more than skeleton_max, Flash can't be hurt, no XP or gold."
+  },
+  {
+    "id": "modes",
+    "values": {
+      "learn_hint_until": 2,
+      "learn_helped_strength": 0.5,
+      "learn_decoys_min": 2,
+      "learn_decoys_max": 3,
+      "learn_new_per_round": 2,
+      "learn_enemy_damage": 0.75
+    },
+    "notes": "Learn mode (chosen on the start screen; Test is the game as it was). A word's Thai gem shows its English, and the pair shares a colour, until the word has been matched learn_hint_until times without help (or the course already counts it as known); 👁 Show answers shows it on every word. A match made with the answer showing gives learn_helped_strength of the power. A wrong pair lights up the right partner. Decoys: learn_decoys_min to learn_decoys_max, only from words already met. At most learn_new_per_round never-seen words per round. Skeletons hit for learn_enemy_damage of normal. In the course: gems and pop quizzes lean hard on the words just read, and ⏩ Auto-move (reading mode) moves the slide on by itself."
   }
 ]

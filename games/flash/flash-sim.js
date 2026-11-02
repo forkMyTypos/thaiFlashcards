@@ -64,7 +64,7 @@
   // Shared library for looks). A bot runner loads exactly these.
   const DATA_TYPES = ["weapons", "stats_base", "enemies", "enemy_equipment", "reward_effects", "game_settings",
                       "enemy_scaling", "spawn_curve", "enemy_mix", "elite_modifiers", "upgrades", "items",
-                      "passives", "rarities", "mega_waves"];
+                      "passives", "rarities", "mega_waves", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock"];
   // A short fingerprint of the game data, so balance charts can separate runs
   // played before and after a change.
   function dataHash(data) {
@@ -132,9 +132,9 @@
       tel = { v: 1, uid: (opts.uid || "run_" + Date.now().toString(36) + "_" + Math.floor(rnd() * 1e6).toString(36)),
         source: opts.source || "human", started: new Date().toISOString(), status: "running",
         data_hash: DATA_HASH, meta: opts.meta || null, arena_width: W,
-        start_weapon: weaponId, settings: { tuning: T, director: DR, movement: MV },
+        start_weapon: weaponId, mode: st.mode || "test", settings: { tuning: T, director: DR, movement: MV },
         sample_keys: SAMPLE_KEYS, samples: [], rounds: [], picks: [], dmg_by: {}, kills_by: {}, taken_by: {},
-        rewards: {}, study: [], study_keys: ["t", "what", "strength"], final: null };
+        rewards: {}, study: [], study_keys: ["t", "what", "strength"], shop: [], bosses: [], final: null };
       acc1 = { next: 1, dealt: 0, taken: 0, rewards: 0 };
       telRoundStart();
     }
@@ -171,6 +171,8 @@
       runStats: null, nextId: 1, damageDone: 0,
       wave: null, pops: [], combo: 0, lastKillT: -9, comboMax: 0, wavesCleared: 0,
       intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, moveOn: MV.enabled, directorOn: DR.enabled,
+      spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
+      shop: null, shield: 0, shieldMax: 0, shieldUntil: 0,
     };
     const ev = e => { st.events.push(e); };
 
@@ -271,8 +273,12 @@
     function hitEnemy(e, base, critC, critD, kb, src) {
       if (!e.alive) return 0;
       const crit = rnd() < critC;
-      let dmg = base * (crit ? critD : 1);
-      dmg = Math.max(S.minDamage, Math.round(dmg * (1 - e.def)));
+      let dmg = base * (crit ? critD : 1), def = e.def;
+      if (e.fx) {
+        if (e.fx.mark > st.t) dmg *= 1 + (e.fx.markB || 0.4);                 // Death Mark
+        if (e.fx.curse > st.t) def = Math.max(0, def - (e.fx.curseD || 0.2));  // Bone Curse
+      }
+      dmg = Math.max(S.minDamage, Math.round(dmg * (1 - def)));
       e.hp -= dmg; e.hitT = 0.08; st.damageDone += dmg;
       if (tel) { add(tel.dmg_by, src || "other", dmg); acc1.dealt += dmg; if (accR) accR.dealt += dmg; }
       if (kb > 0) {
@@ -286,9 +292,9 @@
       if (e.hp <= 0) kill(e, src);
       return dmg;
     }
-    function explode(x, y, r, dmg, critC, critD, src) {
-      ev({ t: "explode", x, y, r });
-      query(x, y, r, e => { hitEnemy(e, dmg, critC, critD, 4, src); });
+    function explode(x, y, r, dmg, critC, critD, src, fx, power, c) {
+      ev({ t: "explode", x, y, r, c });
+      query(x, y, r, e => { hitEnemy(e, dmg, critC, critD, 4, src); if (fx) for (const id of fx) applyStatus(e, id, power, src); });
     }
     function kill(e, src) {
       if (!e.alive) return;
@@ -298,10 +304,18 @@
       if (st.combo > st.comboMax) st.comboMax = st.combo;
       if (e.fodder && st.wave) st.wave.killed++;
       if (e.chain > 0 && st.pops.length < 400 && rnd() < e.chain) st.pops.push({ x: e.x, y: e.y, r: e.chainR, dmg: e.max * 1.2 });
+      if (e.fx) {
+        const pl = e.fx.plague, bu = e.fx.burst;
+        if (pl && pl.until > st.t) query(e.x, e.y, 75, o => { if (o !== e && !(o.fx && o.fx.poison && o.fx.poison.until > st.t)) {
+          const x = fxOf(o); x.poison = { dps: (e.fx.poison ? e.fx.poison.dps : 5), until: st.t + 4, src: pl.src }; x.plague = Object.assign({}, pl); } });
+        if (bu && bu.until > st.t && st.delayed.length < 200) st.delayed.push({ at: st.t + 0.05, x: e.x, y: e.y, r: bu.r, dmg: bu.dmg, src: bu.src, c: 0xc8a0ff });
+      }
+      if (e.boss) bossDown(e);
       const f = st.flash.stats;
+      ev({ t: "death", x: e.x, y: e.y, elite: e.elite, colour: e.colour, size: e.size });
+      if (st.practice) return;                       // learning mode: no XP, gold or level-ups
       st.xp += e.xp * f.get("xp_gain") * T.xp;
       st.gold += Math.round(e.gold * f.get("gold_gain"));
-      ev({ t: "death", x: e.x, y: e.y, elite: e.elite, colour: e.colour, size: e.size });
       while (st.xp >= st.xpNext) {
         st.xp -= st.xpNext; st.level++; st.pending++; st.xpNext = xpNext(st.level);
         ev({ t: "levelup", level: st.level });
@@ -390,7 +404,7 @@
           const dx = CX - pr.x, dy = CY - pr.y, d = Math.hypot(dx, dy);
           if (d < 20) { pr.alive = false; continue; }
           pr.vx = dx / d * pr.speed; pr.vy = dy / d * pr.speed;
-        } else if (pr.b === "projectile" && pr.target && pr.target.alive && pr.w && D.weapons[pr.w] && D.weapons[pr.w].targeting === "homing") {
+        } else if ((pr.b === "projectile" || pr.homing) && pr.target && pr.target.alive && (pr.homing || (pr.w && D.weapons[pr.w] && D.weapons[pr.w].targeting === "homing"))) {
           const dx = pr.target.x - pr.x, dy = pr.target.y - pr.y, d = Math.hypot(dx, dy) || 1;
           pr.vx = dx / d * pr.speed; pr.vy = dy / d * pr.speed;
         }
@@ -405,8 +419,9 @@
           pr.hit.add(e.id);
           if (e === pr.target) { e.incoming = Math.max(0, e.incoming - pr.dmg); pr.target = null; }
           hitEnemy(e, pr.dmg, pr.critC, pr.critD, pr.kb, pr.w);
+          if (pr.fx) for (const id of pr.fx) applyStatus(e, id, pr.power, pr.w, pr.chance);
           if (pr.b === "explosive_projectile" || (pr.expl > 0 && rnd() < pr.expl)) {
-            explode(pr.x, pr.y, pr.radius, pr.dmg * 0.6, pr.critC, pr.critD, pr.w);
+            explode(pr.x, pr.y, pr.radius, pr.dmg * 0.6, pr.critC, pr.critD, pr.w, pr.fx, pr.power, pr.c);
             if (pr.b === "explosive_projectile") { pr.alive = false; return false; }
           }
           if (pr.b === "bouncing_projectile") {
@@ -468,10 +483,10 @@
     };
     const pickOne = arr => arr && arr.length ? arr[(rnd() * arr.length) | 0] : null;
 
-    function spawnEnemy(forceElite) {
+    function spawnEnemy(forceElite, defId, at) {
       if (st.enemies.length >= S.maxCap) return null;
       const { pool, elite } = mixFor(st.stage);
-      const def = pickWeighted(pool, e => e.spawn_weight || 1);
+      const def = (defId && D.enemies.find(x => x.id === defId)) || pickWeighted(pool, e => e.spawn_weight || 1);
       if (!def) return null;
       const base = (D.base[def.base] && D.base[def.base].stats) || { max_hp: 40, damage: 5, attack_speed: 1, movement_speed: 60, attack_range: 60 };
       const s = new Stats(base, false);
@@ -490,6 +505,7 @@
       let x, y;
       if (side === 0) { x = rnd() * W; y = -m; } else if (side === 1) { x = W + m; y = rnd() * H; }
       else if (side === 2) { x = rnd() * W; y = H + m; } else { x = -m; y = rnd() * H; }
+      if (at) { x = at.x; y = at.y; }
       const role = def.role || "melee";
       const ranged = role === "ranged" || role === "caster";
       const e = {
@@ -577,12 +593,18 @@
     }
 
     function hurtFlash(dmg, e) {
-      if (st.god) return;
+      if (st.god || st.practice) return;
       dmg *= Math.pow(st.intensity, DR.dmgPow);
+      if (st.mode === "learn") dmg *= LEARN_DMG;          // Learn mode: gentler skeletons, time to read
       const f = st.flash, s = f.stats;
       if (rnd() < Math.min(s.get("dodge"), S.dodgeCap)) { ev({ t: "dodge" }); return; }
       if (rnd() < s.get("ignore_damage_chance")) { ev({ t: "dodge" }); return; }
-      const d = Math.max(S.minDamage, dmg * (1 - s.get("defence")));
+      let d = Math.max(S.minDamage, dmg * (1 - s.get("defence")));
+      if (st.shield > 0 && st.shieldUntil > st.t) {             // Magic Shield soaks it first
+        const soak = Math.min(st.shield, d); st.shield -= soak; d -= soak;
+        ev({ t: "shield_hit", left: st.shield });
+        if (d <= 0) return;
+      }
       f.hp -= d; f.hurtT = 0.15;
       const who = e ? (e.elite ? "elite_" + e.type : e.type) : "explosion";
       st.lastHitBy = who;
@@ -602,16 +624,19 @@
         if (!e.alive) continue;
         if (e.hitT > 0) e.hitT -= dt;
         if (e.regen > 0 && e.hp < e.max) e.hp = Math.min(e.max, e.hp + e.regen * dt);
+        let move = 1;
+        if (e.fx) { move = statusTick(e, dt); if (!e.alive) continue; }
+        if (e.slowMul != null) { move *= e.slowMul; e.slowMul = null; }
         // knockback velocity
         e.x += e.kx * dt; e.y += e.ky * dt; e.kx *= 0.86; e.ky *= 0.86;
         const dx = CX - e.x, dy = CY - e.y, d = Math.hypot(dx, dy) || 1;
         const reach = e.ranged ? e.range : st.flash.r + e.r + Math.min(e.range, 40) * 0.5;
         if (d > reach) {
           e.attacking = false;
-          e.x += dx / d * e.speed * dt; e.y += dy / d * e.speed * dt;
+          e.x += dx / d * e.speed * dt * move; e.y += dy / d * e.speed * dt * move;
         } else {
-          e.attacking = true;
-          e.atkT -= dt;
+          e.attacking = move > 0;
+          e.atkT -= dt * (move > 0 ? Math.max(0.4, move) : 0);
           if (e.atkT <= 0) {
             e.atkT = 1 / e.atkSpd;
             if (e.ranged) st.eproj.push({ x: e.x, y: e.y, vx: dx / d * 240, vy: dy / d * 240, dmg: e.dmg, alive: true, life: 4, src: e, colour: e.colour });
@@ -656,6 +681,403 @@
       es.length = j;
     }
 
+    // =================================================================
+    // Spells, status effects, bosses and the shop (2 Nov)
+    // =================================================================
+    // Everything here reads Gamebase data: spells, status_effects, bosses,
+    // boss_schedule, shop_stock, and the Game settings rows "shop" / "boss".
+    const SPELLS = byId(data.spells), STATUS = byId(data.status_effects), BOSSES = byId(data.bosses);
+    const BOSS_SCHED = data.boss_schedule || [], SHOP = data.shop_stock || [];
+    const SPELL_COLOUR = { fire: 0xff7a2a, ice: 0xaee8ff, lightning: 0xd8c8ff, dark: 0xa66cff, poison: 0x8fe36a,
+                           wind: 0xdff5ec, earth: 0xc8a070, holy: 0xfff0a0, arcane: 0x7cc4ff };
+    const spellColour = d => SPELL_COLOUR[d.element] || 0xb59aff;
+    const SH = { slots: set("shop", "stock_slots", 5), reroll: set("shop", "reroll_cost", 25),
+                 growth: set("shop", "price_scaling_per_stage", 0.02), potion: set("shop", "potion_heal", 0.4) };
+    const BS = { first: set("boss", "first_stage", 10), every: set("boss", "every_stages", 10), hp: set("boss", "hp_mult", 1),
+                 damage: set("boss", "damage_mult", 1), picks: set("boss", "bonus_picks", 2) };
+    const FAVOUR = set("choices", "favour_current_build", 0.5);
+
+    // ---- status effects on skeletons
+    const fxOf = e => e.fx || (e.fx = {});
+    function applyStatus(e, id, power, src, extraChance) {
+      if (!e.alive || !id) return;
+      const row = STATUS[id] || {}, f = st.flash.stats, x = fxOf(e);
+      const dur = (row.duration || 3) * f.get("duration");
+      const chance = (row.chance == null ? 1 : row.chance) + f.get("effect_chance") + (extraChance || 0);
+      if (id === "burn" || id === "poison" || id === "bleed") {
+        const dps = (row.damage_per_second || 5) * (power || 1), cur = x[id];
+        const grow = cur && cur.until > st.t && row.stacking === "refresh_and_increase";
+        x[id] = { dps: grow ? Math.min(dps * 3, cur.dps + dps * 0.5) : Math.max(dps, cur && cur.until > st.t ? cur.dps : 0), until: st.t + dur, src };
+      } else if (id === "freeze") { if (!e.boss && rnd() < chance) x.frozen = st.t + dur; }
+      else if (id === "shock") { if (rnd() < chance) { if (!e.boss) x.stun = st.t + (row.duration || 0.3); hitEnemy(e, (row.damage || 10) * (power || 1), 0, 1, 0, src); } }
+      else if (id === "stun") { if (!e.boss) x.stun = st.t + dur; }
+      else if (id === "knockback") { const dx = e.x - CX, dy = e.y - CY, d = Math.hypot(dx, dy) || 1; e.kx += dx / d * 500 / e.size; e.ky += dy / d * 500 / e.size; }
+      else if (id === "plague_spread") x.plague = { until: st.t + dur + 2, src, power };
+    }
+    // burns and poisons tick twice a second; returns how fast this skeleton can move (0 = frozen)
+    function statusTick(e, dt) {
+      const x = e.fx;
+      let dot = 0, src = null;
+      for (const k of ["burn", "poison", "bleed"]) { const s = x[k]; if (s && s.until > st.t) { dot += s.dps; src = s.src; } }
+      if (dot > 0) {
+        x.acc = (x.acc || 0) + dot * dt; x.tickT = (x.tickT || 0) + dt;
+        if (x.tickT >= 0.5) { const d = x.acc; x.acc = 0; x.tickT = 0; hitEnemy(e, d, 0, 1, 0, src); }
+      }
+      if ((x.frozen || 0) > st.t || (x.stun || 0) > st.t) return 0;
+      return 1;
+    }
+
+    // ---- spells: owned like weapons, but unlimited, and they cast themselves
+    function addSpell(id) {
+      const def = SPELLS[id]; if (!def || st.spellOwned[id]) return null;
+      const s = { uid: st.nextId++, id, def, level: 1, mods: [], cd: 0.6 + rnd() * 0.8 };
+      st.spells.push(s); st.spellOwned[id] = s;
+      return s;
+    }
+    function spp(s) {       // a spell's effective numbers right now
+      const f = st.flash.stats, d = s.def, m = k => modSum(s.mods, k);
+      const lv = 1 + 0.15 * (s.level - 1), pw = m("damage").mul * lv * f.get("damage") * f.get("spell_damage");
+      return {
+        damage: (d.damage || 0) * pw, dps: (d.damage_per_second || 0) * pw, power: pw,
+        cooldown: (d.cooldown || 5) * Math.max(0.35, 1 - m("cooldown_reduction").A - f.get("cooldown_reduction") - 0.04 * (s.level - 1)),
+        radius: (d.radius || 0) * m("area").mul * f.get("area"), range: d.range || 400,
+        duration: (d.duration || 3) * m("duration").mul * f.get("duration"),
+        count: Math.max(1, Math.round((d.projectile_count || 1) + m("projectile_count").A)),
+        targets: Math.max(1, (d.targets || 1) + m("targets").A + Math.floor((s.level - 1) / 2)),
+        summons: Math.max(1, (d.summons || 1) + Math.floor((s.level - 1) / 3)),
+        summonDur: (d.summon_duration || 8) * m("summon_duration").mul * f.get("duration"),
+        heal: ((d.heal || 0) + (d.heal_per_second || 0)) * m("healing_power").mul * f.get("healing_power"),
+        shield: (d.shield || 0) * lv, chance: m("effect_chance").A,
+        critC: f.get("crit_chance"), critD: f.get("crit_damage"),
+      };
+    }
+    function countNear(x, y, r) { let n = 0; query(x, y, r, () => { n++; }); return n; }
+    function castSpell(s) {
+      const d = s.def, p = spp(s), b = d.behaviour, c = spellColour(d), src = s.id, f = st.flash;
+      const fxs = d.applies_effects || [], hpFrac = f.hp / f.maxHp();
+      const hitAll = (x, y, r, dmg, kb) => query(x, y, r, e => { hitEnemy(e, dmg, p.critC, p.critD, kb || 0, src); for (const id of fxs) applyStatus(e, id, p.power, src, p.chance); });
+      if (b === "projectile") {
+        const ts = targets(d.targeting === "spread" ? "spread" : "smart", p.range, p.count);
+        if (!ts.length) return false;
+        for (let i = 0; i < p.count; i++) {
+          const t = ts[i % ts.length], a = Math.atan2(t.y - CY, t.x - CX) + (i >= ts.length ? (rnd() - 0.5) * 0.5 : 0);
+          t.incoming += p.damage;
+          st.proj.push({ x: CX, y: CY, vx: Math.cos(a) * 420, vy: Math.sin(a) * 420, r: 9, w: src, b: p.radius ? "explosive_projectile" : "projectile",
+            dmg: p.damage, critC: p.critC, critD: p.critD, kb: 0, pierce: d.pierce || 0, bounces: 0, radius: p.radius || 60,
+            life: p.range / 420, back: false, hit: new Set(), target: t, expl: 0, speed: 420, alive: true,
+            homing: d.targeting !== "spread", spell: true, c, fx: fxs, power: p.power, chance: p.chance });
+        }
+        ev({ t: "cast", s: src, k: "projectile", c });
+        return true;
+      }
+      if (b === "chain") {
+        const [t0] = targets("smart", 340, 1); if (!t0) return false;
+        const hit = new Set([t0.id]), pts = [{ x: CX, y: CY }, { x: t0.x, y: t0.y }];
+        hitEnemy(t0, p.damage, p.critC, p.critD, 0, src); applyStatus(t0, "shock", p.power, src, p.chance);
+        let cur = t0;
+        for (let j = 0; j < p.targets; j++) {
+          let best = null, bd = 1e9;
+          query(cur.x, cur.y, 180, (o, d2) => { if (!hit.has(o.id) && d2 < bd) { bd = d2; best = o; } });
+          if (!best) break;
+          hit.add(best.id); hitEnemy(best, p.damage * 0.85, p.critC, p.critD, 0, src); applyStatus(best, "shock", p.power, src, p.chance);
+          pts.push({ x: best.x, y: best.y }); cur = best;
+        }
+        ev({ t: "cast", s: src, k: "chain", pts, c });
+        return true;
+      }
+      if (b === "nova" || b === "ground_area") {
+        const r = p.radius || 150; if (!countNear(CX, CY, r)) return false;
+        hitAll(CX, CY, r, p.damage, b === "ground_area" ? 30 : 6);
+        ev({ t: "cast", s: src, k: b === "nova" ? "nova" : "quake", x: CX, y: CY, r, c });
+        return true;
+      }
+      if (b === "area_drop") {
+        const ts = targets("random", 460, 4 + s.level); if (!ts.length) return false;
+        const r = p.radius || 100, drops = [];
+        ts.forEach((t, i) => { const at = st.t + 0.55 + i * 0.16; st.delayed.push({ at, x: t.x, y: t.y, r, dmg: p.damage, src, fx: fxs, power: p.power, c }); drops.push({ x: t.x, y: t.y, at }); });
+        ev({ t: "cast", s: src, k: "meteors", drops, r, c });
+        return true;
+      }
+      if (b === "vortex") {
+        const [t] = targets("smart", 360, 1); if (!t) return false;
+        st.zones.push({ k: "tornado", x: t.x, y: t.y, r: p.radius || 90, dps: p.dps, until: st.t + p.duration, src, c, tick: 0 });
+        ev({ t: "cast", s: src, k: "tornado", c });
+        return true;
+      }
+      if (b === "drain") {
+        const r = p.radius || 120; if (countNear(CX, CY, r) < 2) return false;
+        st.zones.push({ k: "drain", follow: true, x: CX, y: CY, r, dps: p.dps, until: st.t + p.duration, src, c, tick: 0, hits: [] });
+        ev({ t: "cast", s: src, k: "drain", c });
+        return true;
+      }
+      if (b === "mark") {
+        const [t] = targets("strongest", 460, 1); if (!t || (t.fx && t.fx.mark > st.t)) return false;
+        const x = fxOf(t); x.mark = st.t + p.duration; x.markB = d.damage_taken_bonus || 0.4;
+        ev({ t: "cast", s: src, k: "mark", id: t.id, x: t.x, y: t.y, c });
+        return true;
+      }
+      if (b === "spread") {
+        const ts = targets("nearest", 320, 2 + s.level); if (!ts.length) return false;
+        for (const e of ts) { const x = fxOf(e); x.poison = { dps: Math.max(p.dps, 1), until: st.t + p.duration, src }; x.plague = { until: st.t + p.duration + 2, src, power: p.power }; }
+        ev({ t: "cast", s: src, k: "plague", pts: ts.map(e => ({ x: e.x, y: e.y })), c });
+        return true;
+      }
+      if (b === "curse") {
+        const ts = targets("smart", 360, 4 + s.level); if (!ts.length) return false;
+        for (const e of ts) { const x = fxOf(e); x.curse = st.t + p.duration; x.curseD = d.defence_reduction || 0.2; hitEnemy(e, p.damage, p.critC, p.critD, 0, src); }
+        ev({ t: "cast", s: src, k: "curse", pts: ts.map(e => ({ x: e.x, y: e.y })), c });
+        return true;
+      }
+      if (b === "death_burst") {
+        const r = 230; if (countNear(CX, CY, r) < 3) return false;
+        query(CX, CY, r, e => { fxOf(e).burst = { until: st.t + 4, dmg: p.damage, r: p.radius || 100, src }; });
+        ev({ t: "cast", s: src, k: "souls", x: CX, y: CY, r, c });
+        return true;
+      }
+      if (b === "shield") {
+        if (st.shieldUntil > st.t || (countNear(CX, CY, 220) < 3 && hpFrac > 0.8)) return false;
+        st.shield = p.shield; st.shieldMax = p.shield; st.shieldUntil = st.t + p.duration;
+        ev({ t: "cast", s: src, k: "shield", c });
+        return true;
+      }
+      if (b === "heal_aura") {
+        if (hpFrac > 0.85) return false;
+        st.zones.push({ k: "heal", follow: true, x: CX, y: CY, r: 60, hps: p.heal, until: st.t + p.duration, src, c });
+        ev({ t: "cast", s: src, k: "heal", c });
+        return true;
+      }
+      if (b === "heal_burst") {
+        const r = p.radius || 130;
+        if (hpFrac > 0.9 && countNear(CX, CY, r) < 4) return false;
+        f.hp = Math.min(f.maxHp(), f.hp + p.heal);
+        hitAll(CX, CY, r, p.damage, 4);
+        ev({ t: "cast", s: src, k: "holy", x: CX, y: CY, r, c });
+        return true;
+      }
+      if (b === "slow_field") {
+        const r = p.radius || 200; if (countNear(CX, CY, r) < 4) return false;
+        st.zones.push({ k: "slow", x: CX, y: CY, r, mul: 1 - (d.slow || 0.4), until: st.t + p.duration, src, c });
+        ev({ t: "cast", s: src, k: "slow", x: CX, y: CY, r, c });
+        return true;
+      }
+      if (b === "summon") {
+        if (!countNear(CX, CY, 450)) return false;
+        for (let i = 0; i < p.summons; i++) {
+          const a = rnd() * 6.283;
+          st.allies.push({ id: st.nextId++, kind: s.id === "ghost_cats" ? "ghost_cat" : "wolf", x: CX + Math.cos(a) * 30, y: CY + Math.sin(a) * 30,
+            dmg: p.damage, until: st.t + p.summonDur, cd: 0, speed: 240, src, c, r: 10 });
+        }
+        ev({ t: "cast", s: src, k: "summon", c });
+        return true;
+      }
+      if (b === "convert") {
+        let best = null, bd = 1e12;
+        query(CX, CY, 320, (e, d2) => { if (!e.boss && !e.fodder && !e.elite && d2 < bd) { bd = d2; best = e; } });
+        if (!best) return false;
+        best.alive = false;                                   // leaves the horde (no XP: he's on our side now)
+        st.allies.push({ id: st.nextId++, kind: "bone", type: best.type, colour: best.colour, size: best.size, x: best.x, y: best.y,
+          dmg: Math.max(10, best.dmg * 2), until: st.t + p.duration, cd: 0, speed: Math.max(120, best.speed * 1.6), src, c: 0x8fe36a, r: best.r });
+        ev({ t: "cast", s: src, k: "convert", x: best.x, y: best.y, c: 0x8fe36a });
+        return true;
+      }
+      return false;
+    }
+    function castSpells(dt) {
+      for (const s of st.spells) {
+        s.cd -= dt;
+        if (s.cd <= 0) s.cd = castSpell(s) ? spp(s).cooldown : 0.3;
+      }
+    }
+    function updateZones(dt) {
+      const f = st.flash;
+      for (const z of st.zones) {
+        if (z.follow) { z.x = CX; z.y = CY; }
+        if (z.k === "tornado") {
+          let best = null, bd = 1e12;
+          query(z.x, z.y, 320, (e, d2) => { if (d2 < bd) { bd = d2; best = e; } });
+          if (best) { const dx = best.x - z.x, dy = best.y - z.y, d = Math.hypot(dx, dy) || 1; z.x += dx / d * 70 * dt; z.y += dy / d * 70 * dt; }
+          query(z.x, z.y, z.r, e => { if (!e.boss) { e.x += (z.x - e.x) * 2.2 * dt; e.y += (z.y - e.y) * 2.2 * dt; } });
+        }
+        if (z.k === "tornado" || z.k === "drain") {
+          z.tick += dt;
+          if (z.tick >= 0.25) {
+            const dmg = z.dps * z.tick; z.tick = 0; let dealt = 0; z.hits = [];
+            query(z.x, z.y, z.r, e => { dealt += hitEnemy(e, dmg, 0, 1, 0, z.src); if (z.hits && z.hits.length < 8) z.hits.push({ x: e.x, y: e.y }); });
+            if (z.k === "drain" && dealt > 0) f.hp = Math.min(f.maxHp(), f.hp + dealt * 0.3 * f.stats.get("healing_power"));
+          }
+        }
+        if (z.k === "heal") f.hp = Math.min(f.maxHp(), f.hp + z.hps * dt);
+        if (z.k === "slow") query(z.x, z.y, z.r, e => { e.slowMul = Math.min(e.slowMul == null ? 1 : e.slowMul, e.boss ? Math.max(z.mul, 0.7) : z.mul); });
+      }
+      st.zones = st.zones.filter(z => z.until > st.t);
+      if (st.shieldUntil <= st.t) st.shield = 0;
+    }
+    function updateAllies(dt) {
+      for (const a of st.allies) {
+        let best = null, bd = 1e12;
+        query(a.x, a.y, 420, (e, d2) => { if (d2 < bd) { bd = d2; best = e; } });
+        if (!best) {                                         // nothing to bite: stay with Flash
+          const dx = CX - a.x, dy = CY - a.y, d = Math.hypot(dx, dy) || 1;
+          if (d > 50) { a.x += dx / d * a.speed * 0.6 * dt; a.y += dy / d * a.speed * 0.6 * dt; }
+          continue;
+        }
+        const dx = best.x - a.x, dy = best.y - a.y, d = Math.sqrt(bd) || 1;
+        a.face = dx >= 0 ? 1 : -1;
+        if (d > best.r + a.r + 2) { a.x += dx / d * a.speed * dt; a.y += dy / d * a.speed * dt; }
+        a.cd -= dt;
+        if (a.cd <= 0 && d < best.r + a.r + 10) { a.cd = 0.55; hitEnemy(best, a.dmg, 0, 1, 3, a.src); ev({ t: "stab", x: best.x, y: best.y, w: a.src }); }
+      }
+      st.allies = st.allies.filter(a => a.until > st.t);
+    }
+    function updateDelayed() {
+      if (!st.delayed.length) return;
+      const keep = [];
+      for (const d of st.delayed) {
+        if (st.t < d.at) { keep.push(d); continue; }
+        explode(d.x, d.y, d.r, d.dmg, 0, 1, d.src, d.fx, d.power, d.c);
+      }
+      st.delayed = keep;
+    }
+
+    // ---- bosses (boss_schedule: every 10 stages from stage 10)
+    const BOSS_COLOUR = { skeleton_king: 0xffd23a, bone_dragon: 0xff7a4a, lich: 0xb59aff, bone_golem: 0xb8c4d0 };
+    function bossRowFor(stage) {
+      if (stage < BS.first || (stage - BS.first) % BS.every !== 0 || st.bossDone[stage]) return null;
+      return BOSS_SCHED.find(r => stage >= r.from_stage && (r.to_stage == null || stage <= r.to_stage)) || null;
+    }
+    function spawnBoss(row) {
+      st.bossDone[st.stage] = true;
+      const pool = (row.boss_pool || []).filter(id => BOSSES[id]);
+      const def = BOSSES[pickOne(pool.length ? pool : Object.keys(BOSSES))]; if (!def) return;
+      const base = (D.base[def.base] && D.base[def.base].stats) || { max_hp: 40, damage: 5, attack_speed: 1, movement_speed: 60, attack_range: 60 };
+      const hpMul = lerpStage(D.scaling, "hp_mult", st.stage) * T.enemy_hp * BS.hp;
+      const dmgMul = lerpStage(D.scaling, "damage_mult", st.stage) * T.enemy_damage * BS.damage;
+      const max = Math.max(50, (base.max_hp || 40) * (def.hp_multiplier || 60) * hpMul);
+      const e = {
+        id: st.nextId++, type: def.id, role: "boss", ranged: false, x: W / 2, y: -50, kx: 0, ky: 0, alive: true, elite: false,
+        boss: def, size: 3, r: 30, max, hp: max, dmg: (base.damage || 5) * dmgMul * 3, atkSpd: 0.7, range: 60,
+        speed: (base.movement_speed || 60) * 0.55 * T.enemy_speed, def: 0.1, regen: 0, lifesteal: 0, atkT: 1, attacking: false,
+        incoming: 0, hitT: 0, xp: def.xp || 250, gold: def.gold || 100, colour: BOSS_COLOUR[def.id] || 0xff6a6a, explodes: false,
+        phase: 1, phases: Math.max(1, def.phases || 1), specT: 3, sumT: 5,
+      };
+      st.enemies.push(e); st.boss = e;
+      if (tel) tel.bosses.push({ id: def.id, stage: st.stage, round: st.round, spawned: Math.round(st.fightT), down: null });
+      ev({ t: "boss", id: def.id, name: def.name, encounter: row.encounter || "" });
+    }
+    function updateBoss(dt) {
+      const e = st.boss;
+      if (!e || !e.alive) { st.boss = null; return; }
+      // phases: at each threshold the boss gets angrier
+      const want = Math.min(e.phases, 1 + Math.floor((1 - e.hp / e.max) * e.phases));
+      if (want > e.phase) { e.phase = want; e.speed *= 1.2; e.atkSpd *= 1.25; ev({ t: "boss_phase", phase: e.phase, name: e.boss.name }); }
+      e.specT -= dt;
+      if (e.specT <= 0) {
+        e.specT = 3.6 / (1 + 0.3 * (e.phase - 1));
+        const atk = pickOne(e.boss.attacks || ["slam"]) || "slam";
+        const dx = CX - e.x, dy = CY - e.y, a0 = Math.atan2(dy, dx);
+        if (/breath/.test(atk)) {
+          for (let i = -3; i <= 3; i++) { const a = a0 + i * 0.12; st.eproj.push({ x: e.x, y: e.y, vx: Math.cos(a) * 260, vy: Math.sin(a) * 260, dmg: e.dmg * 0.5, alive: true, life: 4, src: e, colour: 0xff8a3a }); }
+        } else if (/volley/.test(atk)) {
+          for (let i = 0; i < 12; i++) { const a = i / 12 * 6.283; st.eproj.push({ x: e.x, y: e.y, vx: Math.cos(a) * 200, vy: Math.sin(a) * 200, dmg: e.dmg * 0.45, alive: true, life: 5, src: e, colour: 0xb59aff }); }
+        } else if (/tail|sweep|nova/.test(atk)) {
+          st.tele.push({ x: e.x, y: e.y, r: /nova/.test(atk) ? 230 : 160, at: st.t + 1.1, dmg: e.dmg * 1.2, src: e, c: /nova/.test(atk) ? 0xa66cff : 0xff7a4a, follow: e });
+        } else {   // slam / smash: where Flash is standing now
+          st.tele.push({ x: CX, y: CY, r: 95, at: st.t + 1.15, dmg: e.dmg * 1.6, src: e, c: 0xff5a3a });
+        }
+        ev({ t: "boss_attack", kind: atk });
+      }
+      if (e.boss.summons) {
+        e.sumT -= dt;
+        if (e.sumT <= 0) {
+          e.sumT = 7 / (1 + 0.3 * (e.phase - 1));
+          for (let i = 0; i < 2 + e.phase; i++) spawnEnemy(false, e.boss.summons, { x: e.x + (rnd() - 0.5) * 120, y: e.y + (rnd() - 0.5) * 120 });
+          ev({ t: "boss_summon", x: e.x, y: e.y });
+        }
+      }
+    }
+    function updateTele() {
+      if (!st.tele.length) return;
+      const keep = [];
+      for (const t of st.tele) {
+        if (t.follow && t.follow.alive) { t.x = t.follow.x; t.y = t.follow.y; }
+        if (st.t < t.at) { keep.push(t); continue; }
+        ev({ t: "explode", x: t.x, y: t.y, r: t.r, enemy: true, c: t.c });
+        if (Math.hypot(CX - t.x, CY - t.y) < t.r + st.flash.r * 0.5) hurtFlash(t.dmg, t.src);
+      }
+      st.tele = keep;
+    }
+    function bossDown(e) {
+      st.boss = null; st.bossesKilled = (st.bossesKilled || 0) + 1;
+      st.tele = [];
+      st.pending += BS.picks;
+      if (tel) { const b = tel.bosses.filter(x => x.id === e.type && x.down == null).pop(); if (b) b.down = Math.round(st.fightT); }
+      ev({ t: "boss_down", id: e.type, name: e.boss.name, x: e.x, y: e.y, picks: BS.picks });
+    }
+
+    // ---- the shop, in the break between rounds
+    function spellOffer(sp) {
+      return { kind: "spell", id: sp.id, name: sp.name, rarity: sp.rarity || "uncommon", desc: sp.description || "", tag: "New spell" };
+    }
+    function shopOffer(row) {
+      const k = row.kind; let o = null;
+      if (k === "item") {
+        const pool = D.items.filter(it => it.effects && it.effects.length && (it.rarity || "common") === (row.rarity || "common"));
+        const it = pickOne(pool);
+        if (it) o = { kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: it.description || fmtMods(it.effects), effects: it.effects };
+      } else if (k === "weapon") {
+        if (st.weapons.length < S.slots + (st.tail ? 1 : 0)) {
+          const w = pickOne(Object.values(D.weapons).filter(w => !st.owned[w.id] && (w.unlock_stage || 1) <= Math.max(2, st.stage)));
+          if (w) o = { kind: "weapon", id: w.id, name: w.name, rarity: w.rarity || "common", desc: w.description || "" };
+        }
+      } else if (k === "spell") {
+        const sp = pickOne(Object.values(SPELLS).filter(s => !st.spellOwned[s.id] && (s.unlock_stage || 1) <= Math.max(1, st.stage)));
+        if (sp) o = spellOffer(sp);
+      } else if (k === "upgrade") {
+        const u = pickOne(D.upgrades.filter(u => u.applies_to === "global" && u.effects && u.effects.length));
+        if (u) o = { kind: "stat", id: u.id, name: u.name, rarity: u.rarity || "common", desc: fmtMods(u.effects), effects: u.effects };
+      } else if (k === "consumable") {
+        o = { kind: "potion", id: row.id, name: row.name || "Healing potion", rarity: "common", desc: `Heals ${Math.round(SH.potion * 100)}% of Flash's HP now` };
+      }
+      if (!o) return null;
+      return Object.assign(o, { row: row.id, price: Math.round((row.price || 50) * (1 + (st.stage - 1) * SH.growth)), tag: "Shop" });
+    }
+    function makeShop(rerolls) {
+      const rows = SHOP.filter(r => r.kind !== "reroll"), out = [];
+      for (let tries = 0; rows.length && out.length < SH.slots && tries < 60; tries++) {
+        const row = pickWeighted(rows, r => r.kind === "item" ? rarityW(r.rarity) * 4 : r.kind === "consumable" ? 0.5 : 0.7);
+        const o = shopOffer(row);
+        if (o && !out.some(x => x.kind === o.kind && x.id === o.id)) out.push(o);
+      }
+      st.shop = { items: out, rerolls: rerolls || 0 };
+    }
+    const rerollPrice = () => { const row = SHOP.find(r => r.kind === "reroll");
+      return Math.round((row ? row.price : SH.reroll) * (1 + 0.5 * (st.shop ? st.shop.rerolls : 0)) * (1 + (st.stage - 1) * SH.growth)); };
+    function buy(i) {
+      const sh = st.shop; if (!sh || st.phase !== "break") return false;
+      const o = sh.items[i]; if (!o || o.sold || st.gold < o.price) return false;
+      st.gold -= o.price; o.sold = true;
+      applyOffer(o);
+      if (tel) tel.shop.push({ round: st.round, bought: offerKey(o), price: o.price });
+      ev({ t: "bought", name: o.name, price: o.price });
+      return true;
+    }
+    function reroll() {
+      if (!st.shop || st.phase !== "break") return false;
+      const price = rerollPrice(); if (st.gold < price) return false;
+      st.gold -= price; makeShop(st.shop.rerolls + 1);
+      if (tel) tel.shop.push({ round: st.round, bought: "reroll", price });
+      return true;
+    }
+    function applyOffer(o) {
+      if (o.kind === "weapon") addWeapon(o.id);
+      else if (o.kind === "spell") addSpell(o.id);
+      else if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid); const u = D.upgrades.find(x => x.id === o.id); if (w && u) { w.mods.push(...u.effects); w.level++; } }
+      else if (o.kind === "sup") { const s = st.spells.find(x => x.uid === o.suid); const u = D.upgrades.find(x => x.id === o.id); if (s && u) { s.mods.push(...u.effects); s.level++; } }
+      else if (o.kind === "tail") st.tail = true;
+      else if (o.kind === "potion") { const f = st.flash; f.hp = Math.min(f.maxHp(), f.hp + f.maxHp() * SH.potion); }
+      else if (o.effects) changeMax(() => st.flash.stats.add(o.effects, "perm"));
+    }
+
     // ------------------------------------------------------------ rewards
     const DASH = { every: Math.max(1, set("words", "dash_every", 5)), radius: set("words", "dash_radius", 240),
                    damage: set("words", "dash_damage", 15), per_level: set("words", "dash_damage_per_level", 4),
@@ -663,6 +1085,7 @@
     function flashDash() {
       if (!st.flash || st.phase !== "fight") return;
       const dmg = DASH.damage + DASH.per_level * st.level, hits = [];
+      buildGrid();                   // called between steps (a reward arrived): the grid may be stale
       query(CX, CY, DASH.radius, (e, d2) => hits.push([e, Math.sqrt(d2)]));
       for (const [e, d] of hits) hitEnemy(e, dmg, 0, 1, DASH.knockback * (0.5 + 0.5 * Math.max(0, 1 - d / DASH.radius)), "flash_dash");
       ev({ t: "dash", x: CX, y: CY, r: DASH.radius, n: hits.length, streak: st.streak });
@@ -746,27 +1169,40 @@
         if (u.id === "extra_weapon_slot") { if (!st.tail && st.weapons.length >= S.slots) pool.push({ kind: "tail", id: u.id, name: u.name, rarity: u.rarity || "legendary", desc: u.description, tag: "Special" }); continue; }
         if (u.effects && u.effects.length) pool.push({ kind: "stat", id: u.id, name: u.name, rarity: u.rarity || "common", desc: fmtMods(u.effects), tag: "Upgrade", effects: u.effects });
       }
+      for (const sp of Object.values(SPELLS)) if (!st.spellOwned[sp.id] && (sp.unlock_stage || 1) <= Math.max(1, st.stage)) pool.push(spellOffer(sp));
+      for (const s of st.spells) {
+        if (s.level >= 8) continue;
+        for (const u of D.upgrades.filter(u => u.applies_to === "spell")) {
+          const st_ = (u.effects[0] || {}).stat, b = s.def.behaviour;
+          if (st_ === "projectile_count" && b !== "projectile") continue;
+          if (st_ === "summon_duration" && b !== "summon") continue;
+          if (st_ === "healing_power" && !/heal|drain/.test(b)) continue;
+          if (st_ === "targets" && !/chain|spread|curse|projectile/.test(b)) continue;
+          if (st_ === "area" && !s.def.radius && !/nova|ground_area|area_drop|vortex|slow_field|drain/.test(b)) continue;
+          pool.push({ kind: "sup", id: u.id, suid: s.uid, sid: s.id, name: `${s.def.name} · ${u.name}`, rarity: u.rarity || "common",
+            desc: fmtMods(u.effects), tag: `Lv ${s.level} → ${s.level + 1}` });
+        }
+      }
       for (const it of D.items) if (it.effects && it.effects.length) pool.push({ kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: it.description || fmtMods(it.effects), tag: "Item", effects: it.effects });
       for (const p of D.passives) if (p.trigger === "always" && p.effects && p.effects.length) pool.push({ kind: "passive", id: p.id, name: p.name, rarity: p.rarity || "uncommon", desc: p.description || fmtMods(p.effects), tag: "Passive", effects: p.effects });
       const out = [], used = new Set();
       for (let i = 0; i < S.choices && pool.length; i++) {
         let pick, tries = 0;
-        do { pick = pickWeighted(pool, o => rarityW(o.rarity) * (o.kind === "weapon" ? 1.6 : o.kind === "wup" ? 1.2 : 1)); tries++; }
+        // favour_current_build: upgrades to what Flash already has come up more often
+        do { pick = pickWeighted(pool, o => rarityW(o.rarity) * (o.kind === "weapon" ? 1.6 : o.kind === "spell" ? 1.3
+               : o.kind === "wup" || o.kind === "sup" ? 1.2 * (1 + FAVOUR) : 1)); tries++; }
         while (used.has(pick.kind + pick.id + (pick.wuid || "")) && tries < 30);
         used.add(pick.kind + pick.id + (pick.wuid || ""));
         out.push(pick);
       }
       return out;
     }
-    const offerKey = o => o.kind === "wup" ? `wup:${o.wid}:${o.id}` : `${o.kind}:${o.id}`;
+    const offerKey = o => o.kind === "wup" ? `wup:${o.wid}:${o.id}` : o.kind === "sup" ? `sup:${o.sid}:${o.id}` : `${o.kind}:${o.id}`;
     function choose(i) {
       if (!st.offer || !st.offer[i]) return;
       const o = st.offer[i];
       if (tel) tel.picks.push({ round: st.round, level: st.level, offered: st.offer.map(offerKey), picked: offerKey(o) });
-      if (o.kind === "weapon") { addWeapon(o.id); }
-      else if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid); const u = D.upgrades.find(x => x.id === o.id); if (w && u) { w.mods.push(...u.effects); w.level++; } }
-      else if (o.kind === "tail") { st.tail = true; }
-      else changeMax(() => st.flash.stats.add(o.effects, "perm"));
+      applyOffer(o);
       st.picked = (st.picked || []).concat([o.name]);
       st.pending--;
       st.offer = st.pending > 0 ? makeOffer() : null;
@@ -786,7 +1222,9 @@
         buffs: [], enemies: [], proj: [], eproj: [], spawnAcc: 0, warning: null, streak: 0, runStats: null,
         damageDone: 0, picked: [], wave: null, pops: [], combo: 0, lastKillT: -9, comboMax: 0, wavesCleared: 0,
         intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, lastHitBy: null,
-        stressUsed: !!st.god, megaUsed: false });
+        stressUsed: !!st.god, megaUsed: false,
+        spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
+        bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false });
       CX = W / 2; CY = H / 2;
       st.flash = newFlash();
       addWeapon(weaponId || Object.values(D.weapons).find(w => w.starting).id);
@@ -800,18 +1238,65 @@
       telRoundEnd(); st.danger = false;
       for (const e of st.enemies) if (e.alive) ev({ t: "death", x: e.x, y: e.y, colour: e.colour, size: e.size, quiet: true });
       st.enemies = []; st.proj = []; st.eproj = [];
+      st.zones = []; st.allies = []; st.delayed = []; st.tele = []; st.boss = null;
       st.offer = st.pending > 0 ? makeOffer() : null;
+      makeShop(0);
       ev({ t: "round_end", round: st.round });
     }
     function nextRound() {
       if (st.phase !== "break" || st.pending > 0) return;
-      st.round++; st.roundT = 0; st.phase = "fight"; st.spawnAcc = 0; st.minHpRound = 1;
+      st.round++; st.roundT = 0; st.phase = "fight"; st.spawnAcc = 0; st.minHpRound = 1; st.shop = null;
       st.intensity = 1 + (st.intensity - 1) * 0.5;          // a breather at the start of each round
       ev({ t: "round_start", round: st.round });
       const mw = waveFor(st.round);
       if (mw) startWave(mw);
       else for (let i = 0; i < S.initial + st.round; i++) spawnEnemy();
       telRoundStart();
+    }
+    // ---- learning mode after Flash falls (Dan: "very few skeletons, we show
+    // the user the correct answers ... then test mode, if the user gets above
+    // 80% they get a bonus item next run"). The renderer runs the words; the
+    // sim only keeps the arena calm and Flash safe, and gives no XP or gold.
+    // The finished run's record is put aside so practice adds nothing to it
+    // but the result (tel.learn).
+    const PR = { every: set("learn", "skeleton_every", 3.5), max: set("learn", "skeleton_max", 3) };
+    // the run's mode, chosen on the start screen: "learn" (hints, gentler) or "test"
+    const LEARN_DMG = set("modes", "learn_enemy_damage", 0.75);
+    let practiceTel = null;
+    function startPractice() {
+      if (st.phase !== "over" || !st.flash) return false;
+      practiceTel = tel; tel = null; accR = null;
+      Object.assign(st, { phase: "fight", paused: false, practice: true, enemies: [], proj: [], eproj: [], zones: [], allies: [],
+        delayed: [], tele: [], pops: [], boss: null, bossQueue: null, wave: null, offer: null, shop: null, pending: 0, buffs: [],
+        danger: false, intensity: 1, spawnAcc: PR.every - 1, warning: null, surge: false, combo: 0 });
+      const f = st.flash; f.hp = f.maxHp(); f.hurtT = 0;
+      ev({ t: "practice", on: true });
+      return true;
+    }
+    function endPractice(result) {
+      if (!st.practice) return false;
+      st.practice = false; tel = practiceTel; practiceTel = null;
+      if (tel && result) (tel.learn = tel.learn || []).push(result);
+      for (const e of st.enemies) if (e.alive) ev({ t: "death", x: e.x, y: e.y, colour: e.colour, size: e.size, quiet: true });
+      Object.assign(st, { phase: "over", enemies: [], proj: [], eproj: [], zones: [], allies: [], delayed: [], tele: [] });
+      ev({ t: "practice", on: false });
+      return true;
+    }
+    // a study bonus carried into a new run: one item, as if picked
+    function grantItem(id) {
+      const it = D.items.find(x => x.id === id && x.effects && x.effects.length);
+      if (!it || !st.flash) return null;
+      applyOffer({ kind: "item", id: it.id, name: it.name, effects: it.effects });
+      if (tel) (tel.bonus = tel.bonus || []).push(it.id);
+      return it;
+    }
+    // which item a pass earns: random, from the better rarities when there are any
+    function bonusItem() {
+      const want = set("learn", "bonus_rarities", ["rare", "epic"]);
+      const all = D.items.filter(it => it.effects && it.effects.length);
+      const pool = all.filter(it => (want || []).includes(it.rarity || "common"));
+      const from = pool.length ? pool : all;
+      return from.length ? from[Math.floor(Math.random() * from.length)] : null;
     }
     function gameOver() {
       if (st.phase === "over") return;
@@ -824,7 +1309,8 @@
         tel.status = "over";
         tel.final = { round: st.round, stage: st.stage, level: st.level, kills: st.kills, seconds: Math.round(st.fightT),
           cause: st.lastHitBy || "unknown", damage: Math.round(st.damageDone), combo_max: st.comboMax,
-          waves: st.wavesCleared, gold: st.gold, weapons: st.weapons.map(w => ({ id: w.id, level: w.level })) };
+          waves: st.wavesCleared, gold: st.gold, weapons: st.weapons.map(w => ({ id: w.id, level: w.level })),
+          spells: st.spells.map(s => ({ id: s.id, level: s.level })), bosses: st.bossesKilled || 0 };
       }
       ev({ t: "over", stats: st.runStats });
     }
@@ -884,6 +1370,10 @@
           const cx = p.x + vx * tt - px, cy = p.y + vy * tt - py, dd = Math.sqrt(cx * cx + cy * cy);
           if (dd < 28) sc += 3 * (1 - dd / 28);
         }
+        for (const t of st.tele) {                       // a boss attack is about to land here: get out
+          const dd = Math.hypot(px - t.x, py - t.y);
+          if (dd < t.r + 14) sc += 5 + 4 * (1 - dd / (t.r + 14));
+        }
         if (near.length) sc += Math.abs(nd - prefRange) / Math.max(60, prefRange) * 0.5;
         else if (hunt) sc += Math.hypot(hunt.x - px, hunt.y - py) / 400;
         else sc += Math.hypot((B.x0 + B.x1) / 2 - px, (B.y0 + B.y1) / 2 - py) / 600;      // calm: drift home
@@ -913,7 +1403,7 @@
     function direct(dt) {
       const f = st.flash, hp = f.hp / f.maxHp();
       st.minHpRound = Math.min(st.minHpRound, hp);
-      if (st.god || !st.directorOn) { st.intensity = 1; return; }
+      if (st.god || st.practice || !st.directorOn) { st.intensity = 1; return; }
       st.stressAvg += ((1 - hp) - st.stressAvg) * Math.min(1, dt / 3);
       // pressure builds over the run: round 1 can only get a little harder, later rounds much more
       const cap = Math.min(DR.max, 1 + DR.perRound * st.round);
@@ -928,8 +1418,8 @@
 
     function step(dt) {
       if (st.phase !== "fight" || st.paused) return;
-      st.t += dt; st.fightT += dt; st.roundT += dt;
-      st.stage = 1 + Math.floor(st.fightT / S.stageLen);
+      st.t += dt;
+      if (!st.practice) { st.fightT += dt; st.roundT += dt; st.stage = 1 + Math.floor(st.fightT / S.stageLen); }
       const f = st.flash;
       buildGrid();
       moveFlash(dt);
@@ -941,8 +1431,12 @@
       const sp = spawnParams(st.stage), alive = st.enemies.length;
       const surge = !st.wave && st.roundT > S.roundLen - DR.surge ? DR.surgeMul : 1;
       st.surge = surge > 1;
-      st.spawnAcc += st.wave ? 0 : dt * T.spawn_rate * st.intensity * surge * (alive < Math.min(6, sp.target * 0.25) ? 1.6 : 1);
-      while (st.spawnAcc >= sp.interval) {
+      if (st.practice) {
+        // learning mode: a calm arena, just a few skeletons wandering in
+        st.spawnAcc += dt;
+        if (st.spawnAcc >= PR.every) { st.spawnAcc = 0; if (alive < PR.max) spawnEnemy(); }
+      } else st.spawnAcc += st.wave ? 0 : dt * T.spawn_rate * st.intensity * surge * (alive < Math.min(6, sp.target * 0.25) ? 1.6 : 1);
+      while (!st.practice && st.spawnAcc >= sp.interval) {
         st.spawnAcc -= sp.interval;
         if (alive < sp.target * 1.5 * st.intensity) {
           const n = sp.min + ((rnd() * (sp.max - sp.min + 1)) | 0);
@@ -961,18 +1455,34 @@
         }
       }
       if (!st.noWeapons) updateOrbits(dt);
+      if (!st.noWeapons) castSpells(dt);
+      updateZones(dt);
+      updateAllies(dt);
+      updateDelayed();
+      // a boss stage was reached: the boss comes as soon as no mega wave is on
+      if (!st.practice) { const br = bossRowFor(st.stage); if (br) { st.bossDone[st.stage] = true; st.bossQueue = br; } }
+      if (st.bossQueue && !st.boss && !st.wave) { const br = st.bossQueue; st.bossQueue = null; spawnBoss(br); }
+      if (st.boss) updateBoss(dt);
+      updateTele();
+      if (st.phase !== "fight") return;
       updateProjectiles(dt);
       updateEnemies(dt);
       compact();
       telSample();
-      if (st.phase === "fight" && !st.wave && st.roundT >= S.roundLen) endRound();
+      // a round can't end with a boss still standing
+      if (st.phase === "fight" && !st.practice && !st.wave && !st.boss && st.roundT >= S.roundLen) endRound();
       if (st.t - st.lastKillT > 1.2) st.combo = 0;
     }
 
     return {
-      st, D, S, T, step, startRun, choose, skip, nextRound, applyReward, wp, xpNext,
+      st, D, S, T, step, startRun, choose, skip, nextRound, applyReward, wp, xpNext, spp, buy, reroll, rerollPrice,
+      addSpell(id) { return !!addSpell(id); },
+      spellIds: () => Object.keys(SPELLS),
+      // test bench: bring the next boss now
+      bossNow(id) { if (st.phase !== "fight" || st.boss) return false; buildGrid();
+        spawnBoss(id && BOSSES[id] ? { boss_pool: [id] } : (BOSS_SCHED[0] || { boss_pool: Object.keys(BOSSES) })); st.bossDone[st.stage] = false; st.stressUsed = true; return true; },
       pause(on) { st.paused = on === undefined ? !st.paused : !!on; },
-      spawn(n, elite) { buildGrid(); for (let i = 0; i < n; i++) spawnEnemy(elite); },
+      spawn(n, elite, defId) { buildGrid(); for (let i = 0; i < n; i++) spawnEnemy(elite, defId); },
       telemetry() {     // a snapshot safe to send (adds the current state of an unfinished round)
         if (!tel) return null;
         const t = Object.assign({}, tel, { snapshot_at: new Date().toISOString(),
@@ -981,6 +1491,9 @@
         return t;
       },
       setGod(on) { st.god = !!on; if (on) st.stressUsed = true; },
+      startPractice, endPractice, grantItem, bonusItem,
+      die() { if (st.phase === "fight" && !st.practice) gameOver(); },
+      setMode(m) { st.mode = m === "learn" ? "learn" : "test"; if (tel && st.phase === "fight") tel.mode = st.mode; },
       setWeapons(on) { st.noWeapons = !on; },
       // The column was resized: the arena gets wider or narrower (height stays 1000).
       setWidth(w) {

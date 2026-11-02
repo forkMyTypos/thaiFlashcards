@@ -14,7 +14,7 @@
   "use strict";
   const TYPES = ["weapons", "stats_base", "enemies", "enemy_equipment", "reward_effects", "game_settings",
                  "enemy_scaling", "spawn_curve", "enemy_mix", "elite_modifiers", "upgrades", "items",
-                 "passives", "rarities", "mega_waves", "icons"];
+                 "passives", "rarities", "mega_waves", "icons", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock"];
   const SHARED = ["environments", "effects"];
 
   const PROJ_COLOUR = { returning_projectile: 0xf3ead2, explosive_projectile: 0xff8a3a, bouncing_projectile: 0x7ee0ff,
@@ -80,9 +80,56 @@
     const icon = (type, id, d) => ICON[type + "." + id] || d || "";
     const offerIcon = o => o.kind === "weapon" ? icon("weapons", o.id, "🗡️")
       : o.kind === "wup" ? icon("upgrades", o.id, "⬆️") : o.kind === "item" ? icon("items", o.id, "🎒")
-      : o.kind === "passive" ? icon("passives", o.id, "✨") : o.kind === "tail" ? "🐈" : icon("upgrades", o.id, "⬆️");
+      : o.kind === "passive" ? icon("passives", o.id, "✨") : o.kind === "tail" ? "🐈"
+      : o.kind === "spell" ? icon("spells", o.id, "🔮") : o.kind === "sup" ? icon("spells", o.sid, "🔮")
+      : o.kind === "potion" ? "🧪" : icon("upgrades", o.id, "⬆️");
     const prefs = (() => { try { return JSON.parse(localStorage.getItem("ftc.prefs") || "{}"); } catch (e) { return {}; } })();
     const savePrefs = () => { try { localStorage.setItem("ftc.prefs", JSON.stringify(prefs)); } catch (e) {} };
+    // What carries over between runs (the chosen mode, show-answers, bonus
+    // items, best round): IndexedDB through Dexie when the page has it
+    // ("ftc-game", table save), mirrored in localStorage so it survives
+    // either one being cleared or blocked.
+    async function openSave() {
+      let data = {};
+      try { data = JSON.parse(localStorage.getItem("ftc.save") || "{}") || {}; } catch (e) {}
+      let db = null;
+      try {
+        if (window.Dexie) {
+          db = new Dexie("ftc-game"); db.version(1).stores({ save: "k" });
+          const row = await Promise.race([db.save.get("main"), new Promise(r => setTimeout(() => r(undefined), 1500))]);
+          if (row && row.v && typeof row.v === "object") data = Object.assign({}, data, row.v);
+        }
+      } catch (e) { db = null; }
+      return {
+        get: () => JSON.parse(JSON.stringify(data)),
+        set(v) {
+          data = v || {};
+          try { localStorage.setItem("ftc.save", JSON.stringify(data)); } catch (e) {}
+          if (db) try { db.save.put({ k: "main", v: data, at: Date.now() }).catch(() => {}); } catch (e) {}
+        },
+        engine: () => db ? "dexie" : "localStorage",
+      };
+    }
+    const SAVE = await openSave();
+    const saveSet = (k, v) => { const d = SAVE.get(); d[k] = v; SAVE.set(d); };
+    // Learn or Test (Dan: "What are they trying to do? learn, or test?")
+    //   learn: new words show their English on the Thai gem and their partner
+    //          glows the same colour; the help fades per word once it has been
+    //          matched hint_until times without it. 👁 Show answers shows it on
+    //          every word. A wrong pair lights up the right partner. Fewer
+    //          decoys, only from words already met; new words come in slowly;
+    //          gentler skeletons; a match made with the answer showing gives
+    //          helped_strength of the power.
+    //   test:  no help, full decoys and timers, full power.
+    // Tuned in Game settings > modes.
+    const MS = Object.assign({ learn_hint_until: 2, learn_helped_strength: 0.5, learn_decoys_min: 2, learn_decoys_max: 3,
+                               learn_new_per_round: 2 }, ((sim.D.settings || {}).modes || {}).values || {});
+    let mode = SAVE.get().mode === "learn" ? "learn" : "test", showAll = !!SAVE.get().show_answers;
+    sim.setMode(mode);
+    function setMode(m) {
+      mode = m === "learn" ? "learn" : "test"; saveSet("mode", mode); sim.setMode(mode);
+      if (opts.onMode) try { opts.onMode(mode); } catch (e) {}
+    }
 
     // ----------------------------------------------- animation switchboard
     // Every visual flourish has an id, can be switched off, and counts how much
@@ -111,7 +158,9 @@
       ["combo_meter", "Combo meter", "Big combo counter during hordes", "event", true],
       ["flash_lean", "Flash lean", "Flash leans and faces the way he's running", "sprite", true],
       ["danger_alarm", "Danger alarm", "Red pulsing edges + 'answer a quiz' prompt when Flash is low", "event", true],
-      ["study_bolts", "Study bolts", "A blue bolt strikes Flash for every study reward (his collar tag glints)", "event", true],
+      ["spell_fx", "Spell effects", "Spell casts, zones, summons and the shield (summons on screen per frame)", "event", true],
+      ["status_tints", "Status tints", "Frozen / burning / poisoned / cursed skeletons change colour, Death Mark reticles", "event", true],
+      ["study_bolts", "Study bolts", "A blue bolt strikes Flash for every study reward, and lightning flashes in his eyes", "event", true],
       ["flash_dash", "Flash dash", "Blue shockwave when the quiz streak reaches 5, 10, 15 …", "event", true],
       ["word_gems", "Word gems", "Thai / English word pairs to match in the arena (pairs spawned per second)", "event", true],
     ];
@@ -130,14 +179,17 @@
     const root = h("div", "ftc"), canvasBox = h("div", "ftc-canvas"), hud = h("div", "ftc-hud"), overlay = h("div", "ftc-overlay");
     const top = h("div", "ftc-top"), stageEl = h("span"), timerEl = h("span", "ftc-timer"), goldEl = h("span");
     const pauseBtn = h("button", "ftc-btn", "⏸"); pauseBtn.title = "Pause";
-    top.append(stageEl, timerEl, goldEl, pauseBtn);
+    const eyeBtn = h("button", "ftc-btn ftc-eye", "👁"); eyeBtn.title = "Show answers on every word";
+    top.append(stageEl, timerEl, goldEl, eyeBtn, pauseBtn);
     const bars = h("div", "ftc-bars"), hpBar = h("div", "ftc-bar hp", "<i></i><span></span>"), xpBar = h("div", "ftc-bar xp", "<i></i><span></span>");
     bars.append(hpBar, xpBar);
     const waveBar = h("div", "ftc-bar wave", "<i></i><span></span>"); waveBar.style.display = "none"; bars.append(waveBar);
+    const bossBar = h("div", "ftc-bar boss", "<i></i><span></span>"); bossBar.style.display = "none"; bars.append(bossBar);
     const buffsEl = h("div", "ftc-buffs"), warnEl = h("div", "ftc-warn"), floatEl = h("div", "ftc-float"), bottom = h("div", "ftc-bottom");
     const bannerEl = h("div", "ftc-banner"), comboEl = h("div", "ftc-combo");
     const vignette = h("div", "ftc-vignette"), dangerEl = h("div", "ftc-danger", "❤️ Flash is in trouble! Answer a quiz to heal him");
-    hud.append(top, bars, buffsEl, warnEl, bottom);
+    const learnEl = h("div", "ftc-learn");
+    hud.append(top, bars, buffsEl, warnEl, learnEl, bottom);
     root.append(canvasBox, vignette, hud, floatEl, comboEl, bannerEl, dangerEl, overlay);
     let bannerT = null, lastWave = null;
     function banner(text, sub) {
@@ -149,10 +201,10 @@
 
     // ----------------------------------------------------------- Phaser
     let scene = null;
-    const pools = { enemies: [], rings: [], proj: [], eproj: [], blades: [], parts: [], bones: [], texts: [] };
+    const pools = { enemies: [], rings: [], proj: [], eproj: [], blades: [], parts: [], bones: [], texts: [], allies: [] };
     let kick = 0;
     const fx = [];           // {kind, x, y, r, life, max, colour}
-    let acc = 0, speed = 1, lastUi = 0, slowF = 1, slowTo = 1, dashT = 0;
+    let acc = 0, speed = 1, lastUi = 0, slowF = 1, slowTo = 1, dashT = 0, eyesT = 0;
     const perf = { sim: 0, draw: 0 };
 
     const env = (data.shared_environments || []).find(e => e.id === "dungeon");
@@ -172,18 +224,28 @@
         g.fillStyle(hexNum(pal[1]), 0.18 + Math.random() * 0.14); g.fillRect(x + 2, y + 2, 46, 46);
       }
       g.generateTexture("ftc-floor", FlashSim.WMAX, FlashSim.H); g.clear();
-      // Flash: an orange cat-ish circle with ears (placeholder until the cutout rig has art),
-      // wearing his collar: inaflash blue, with the site's lightning-bolt logo as the tag
+      // Flash: an orange cat-ish circle with ears (placeholder until the cutout rig has art)
       g.fillStyle(0xff9f5a); g.fillTriangle(6, 18, 14, 0, 22, 16); g.fillTriangle(42, 18, 34, 0, 26, 16);
       g.fillCircle(24, 28, 20); g.fillStyle(0xffffff); g.fillCircle(17, 25, 5); g.fillCircle(31, 25, 5);
       g.fillStyle(0x1a1010); g.fillCircle(18, 26, 2.6); g.fillCircle(32, 26, 2.6); g.fillStyle(0xff6a7a); g.fillTriangle(22, 32, 26, 32, 24, 35);
-      g.lineStyle(5, 0x1d4fb8, 1); g.beginPath(); g.arc(24, 28, 18.5, 0.55, Math.PI - 0.55); g.strokePath();
-      g.lineStyle(3, BLUE, 1); g.beginPath(); g.arc(24, 28, 18.5, 0.6, Math.PI - 0.6); g.strokePath();
-      // the tag: the favicon (dark rounded square, blue bolt), 15 px
-      g.fillStyle(0x10131f, 1); g.fillRoundedRect(16.5, 43, 15, 15, 3.5); g.lineStyle(1.2, BLUE, 1); g.strokeRoundedRect(16.5, 43, 15, 15, 3.5);
-      g.fillStyle(BLUE, 1);
-      g.fillPoints([[12.67, 4.5], [6, 13.5], [12, 13.5], [11.33, 19.5], [18, 10.5], [12, 10.5]].map(([x, y]) => ({ x: 16.5 + x * 15 / 24, y: 43 + y * 15 / 24 })), true);
-      g.generateTexture("ftc-flash", 48, 60); g.clear();
+      g.generateTexture("ftc-flash", 48, 50); g.clear();
+      // a lightning bolt for his eyes when he powers up (the site's bolt, blue-white with a blue edge)
+      const bolt = [[12.67, 4.5], [6, 13.5], [12, 13.5], [11.33, 19.5], [18, 10.5], [12, 10.5]].map(([x, y]) => ({ x: (x - 3) * 0.75, y: (y - 2.5) * 0.75 }));
+      g.fillStyle(0xeaf4ff, 1); g.fillPoints(bolt, true); g.lineStyle(1.4, BLUE, 1); g.strokePoints(bolt, true);
+      g.generateTexture("ftc-eyebolt", 13, 14); g.clear();
+      // a boss: a big skull with a gold crown (not tinted, so the crown stays gold)
+      g.fillStyle(0xf2ede0); g.fillCircle(36, 44, 30); g.fillStyle(0x1a1418); g.fillCircle(25, 42, 7); g.fillCircle(47, 42, 7);
+      g.fillStyle(0xff3a3a); g.fillCircle(25, 42, 2.5); g.fillCircle(47, 42, 2.5); g.fillStyle(0x1a1418); g.fillRect(28, 58, 16, 4);
+      g.fillStyle(0xffd23a); g.fillTriangle(14, 18, 20, 2, 26, 18); g.fillTriangle(28, 18, 36, 0, 44, 18); g.fillTriangle(46, 18, 52, 2, 58, 18);
+      g.fillRect(14, 16, 44, 7); g.fillStyle(0xff4a6a); g.fillCircle(36, 19, 3);
+      g.generateTexture("ftc-boss", 72, 76); g.clear();
+      // spirit wolf and ghost cat (summons), drawn white so they can be tinted
+      g.fillStyle(0xffffff); g.fillTriangle(4, 10, 8, 0, 13, 9); g.fillTriangle(24, 10, 20, 0, 15, 9); g.fillCircle(14, 15, 10);
+      g.fillTriangle(7, 18, 21, 18, 14, 27); g.fillStyle(0x203040); g.fillCircle(10, 13, 1.8); g.fillCircle(18, 13, 1.8);
+      g.generateTexture("ftc-wolf", 28, 28); g.clear();
+      g.fillStyle(0xffffff); g.fillTriangle(3, 9, 7, 0, 11, 8); g.fillTriangle(21, 9, 17, 0, 13, 8); g.fillCircle(12, 14, 10);
+      g.fillStyle(0x203040); g.fillCircle(8.5, 13, 2); g.fillCircle(15.5, 13, 2);
+      g.generateTexture("ftc-ghostcat", 24, 26); g.clear();
       // skeleton: white skull circle (tinted per type), dark eyes
       g.fillStyle(0xffffff); g.fillCircle(12, 12, 11); g.fillStyle(0x1a1418); g.fillCircle(8, 11, 2.6); g.fillCircle(16, 11, 2.6);
       g.fillRect(9, 17, 6, 2);
@@ -202,10 +264,15 @@
       scene = this;
       makeTextures(this);
       this.add.image(0, 0, "ftc-floor").setOrigin(0);
+      this.zonesG = this.add.graphics().setDepth(1);       // spell zones, under the horde
       this.aura = this.add.graphics();
-      this.flash = this.add.image(st.W / 2, FlashSim.H / 2, "ftc-flash").setOrigin(0.5, 28 / 60).setDepth(5);
+      this.bossImg = this.add.image(0, 0, "ftc-boss").setDepth(4).setVisible(false);
+      this.flash = this.add.image(st.W / 2, FlashSim.H / 2, "ftc-flash").setDepth(5);
       this.swings = this.add.graphics().setDepth(6);
+      this.eyes = [0, 1].map(() => this.add.image(0, 0, "ftc-eyebolt").setDepth(5.5).setVisible(false));
       this.game.loop.targetFps = 60;
+      // a click on empty ground lets go of a picked gem
+      this.input.on("pointerdown", (p, over) => { if (!over || !over.length) deselect(); });
     }
 
     function handleEvents(events) {
@@ -229,8 +296,8 @@
           lastWave = e;          // shown at the top of the break screen instead of a banner
         } else if (e.t === "explode") {
           if (A("explosion_rings")) { use("explosion_rings");
-            fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.35, max: 0.35, c: e.enemy ? 0xff5a5a : C.explosion });
-            for (let i = 0; i < 6; i++) burst(e.x, e.y, C.explosion, 200); }
+            fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.35, max: 0.35, c: e.c || (e.enemy ? 0xff5a5a : C.explosion) });
+            for (let i = 0; i < 6; i++) burst(e.x, e.y, e.c || C.explosion, 200); }
         } else if (e.t === "swing") {
           if (A("swing_arcs")) { use("swing_arcs"); fx.push({ k: "arc", x: e.x, y: e.y, a: e.a, r: e.r, life: 0.16, max: 0.16, c: 0xffffff }); }
         } else if (e.t === "stab") {
@@ -238,6 +305,19 @@
         } else if (e.t === "hurt") {
           if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(70, 0.0025); }
           if (A("flash_hurt")) use("flash_hurt");
+        } else if (e.t === "cast") {
+          if (A("spell_fx")) { use("spell_fx"); spellFx(e); }
+        } else if (e.t === "boss") {
+          if (A("banners")) { use("banners"); banner(`👑 ${e.name} approaches!`, e.encounter || "A boss fight: the round won't end until it falls"); }
+          if (scene && A("screen_shake")) scene.cameras.main.shake(400, 0.008);
+        } else if (e.t === "boss_phase") {
+          if (A("banners")) { use("banners"); banner(`${e.name} is furious!`, `Phase ${e.phase}`); }
+        } else if (e.t === "boss_down") {
+          if (A("banners")) { use("banners"); banner(`👑 ${e.name} defeated!`, `+${e.picks} free picks`); }
+          for (let i = 0; i < 40; i++) burst(e.x, e.y, i % 2 ? 0xffd23a : 0xffffff, 520);
+          if (scene && A("screen_shake")) scene.cameras.main.shake(300, 0.01);
+        } else if (e.t === "shield_hit") {
+          if (st.flash) fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 34, life: 0.2, max: 0.2, c: 0x9cc8ff });
         } else if (e.t === "dash") {
           // "in a flash": a blue shockwave and bolts in every direction
           if (A("flash_dash")) {
@@ -258,7 +338,7 @@
           if (!e.bad && A("study_bolts") && st.flash) {
             use("study_bolts");
             fx.push({ k: "zap", pts: zigzag(st.flash.x + (Math.random() - 0.5) * 60, Math.max(0, st.flash.y - 520), st.flash.x, st.flash.y - 8, 34), life: 0.32, max: 0.32 });
-            fx.push({ k: "spark", x: st.flash.x, y: st.flash.y + 22, r: 9, life: 0.35, max: 0.35, c: 0xffffff });     // the tag glints
+            eyesT = 0.7;                                   // lightning in his eyes
           }
         } else if (e.t === "danger") {
           announce(e.on ? "danger" : "safe");       // the site can use this to nudge the learner towards a quiz
@@ -267,10 +347,26 @@
         } else if (e.t === "rush") {
           if (A("banners")) { use("banners"); banner("The last ones charge!", ""); }
         } else if (e.t === "round_end") { closeQuestion(); showBreak(); announce("round_end"); sendTel(); }
-        else if (e.t === "over") { clearGems(); closeQuestion(); showOver(); announce("died"); sendTel(); }
+        else if (e.t === "over") {
+          const best = SAVE.get().best || {};
+          if ((st.round || 0) > (best[mode] || 0)) { best[mode] = st.round; saveSet("best", best); }
+          clearGems(); closeQuestion(); showOver(); announce("died"); sendTel();
+        }
+        else if (e.t === "practice") { if (e.on) hideOverlay(); }
         else if (e.t === "start" || e.t === "round_start") {
-          if (e.t === "start") { clearGems(); rescueChain = 0; }
+          if (e.t === "start") {
+            if (learn) { endLearnGems(); learn = null; }
+            clearGems(); rescueChain = 0; runWords = {};
+            // a bonus item earned in learning mode (one per run)
+            const sv = ftcSave.get(), b = (sv.bonus || []).filter(x => x && x.id);
+            if (b.length) {
+              const it = sim.grantItem(b[0].id);
+              sv.bonus = b.slice(1); ftcSave.set(sv);
+              if (it) setTimeout(() => { floatText(`🎁 Study bonus: ${it.name}`, false, true); if (A("banners")) banner(`🎁 ${it.name}`, "your study bonus"); }, 400);
+            }
+          }
           hideOverlay(); announce(e.t === "start" ? "started" : "round_start");
+          newThisRound = 0;
           if (e.t === "round_start" && A("banners")) { use("banners"); banner(`Round ${e.round}`, ""); }
         }
       }
@@ -295,6 +391,85 @@
     function floatText(text, bad, study) {
       const d = h("div", bad ? "bad" : study ? "study" : "", esc(text)); floatEl.append(d); setTimeout(() => d.remove(), 1600);
     }
+    // ------------------------------------------------------- spell effects
+    const lastName = {};
+    function spellFx(e) {
+      const f = st.flash, c = e.c || 0xb59aff;
+      if (f && (lastName[e.s] || 0) < performance.now() - 4000 && sim.D && data.spells) {
+        lastName[e.s] = performance.now();
+        const sp = (data.spells || []).find(x => x.id === e.s);
+        if (sp) spawnText(f.x, f.y - 46, `${icon("spells", sp.id, "")} ${sp.name}`.trim(), "#" + c.toString(16).padStart(6, "0"), 14);
+      }
+      if (e.k === "chain") {
+        for (let i = 1; i < e.pts.length; i++) fx.push({ k: "zap", pts: zigzag(e.pts[i - 1].x, e.pts[i - 1].y, e.pts[i].x, e.pts[i].y, 18), life: 0.28, max: 0.28, c });
+      } else if (e.k === "nova" || e.k === "quake" || e.k === "holy" || e.k === "souls" || e.k === "slow") {
+        fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.5, max: 0.5, c });
+        fx.push({ k: "ring", x: e.x, y: e.y, r: e.r * 0.7, life: 0.4, max: 0.4, c: 0xffffff });
+        for (let i = 0; i < 22; i++) { const a = Math.random() * 6.283, d = Math.random() * e.r; burst(e.x + Math.cos(a) * d, e.y + Math.sin(a) * d, c, 120); }
+        if (e.k === "quake" && scene && A("screen_shake")) scene.cameras.main.shake(260, 0.008);
+      } else if (e.k === "meteors") {
+        const now = st.t;
+        for (const d of e.drops) fx.push({ k: "warn", x: d.x, y: d.y, r: e.r, life: Math.max(0.2, d.at - now), max: Math.max(0.2, d.at - now), c });
+      } else if (e.k === "plague" || e.k === "curse" || e.k === "convert") {
+        for (const p of e.pts || [{ x: e.x, y: e.y }]) for (let i = 0; i < 8; i++) burst(p.x, p.y, c, 140);
+      } else if (e.k === "mark") {
+        fx.push({ k: "ring", x: e.x, y: e.y, r: 40, life: 0.4, max: 0.4, c: 0xff4a6a });
+      } else if (f && (e.k === "shield" || e.k === "heal" || e.k === "summon" || e.k === "drain" || e.k === "tornado")) {
+        fx.push({ k: "ring", x: f.x, y: f.y, r: 50, life: 0.4, max: 0.4, c });
+      }
+    }
+    // zones, telegraphs, the shield and summons are drawn every frame from the game state
+    function drawSpells(s, dt) {
+      const g = s.zonesG, now = performance.now() / 1000;
+      g.clear();
+      for (const z of st.zones) {
+        const left = Math.min(1, Math.max(0, (z.until - st.t) / 0.4));
+        if (z.k === "tornado") {
+          for (let i = 0; i < 4; i++) {
+            const a = now * 7 + i * 1.57, r = z.r * (0.35 + i * 0.18);
+            g.lineStyle(3, z.c, 0.55 * left); g.beginPath(); g.arc(z.x, z.y, r, a, a + 2.2); g.strokePath();
+          }
+          g.fillStyle(z.c, 0.10 * left); g.fillCircle(z.x, z.y, z.r);
+        } else if (z.k === "slow") {
+          g.fillStyle(0x7c5cff, 0.12 * left); g.fillCircle(z.x, z.y, z.r);
+          g.lineStyle(2, 0xb59aff, 0.5 * left); g.strokeCircle(z.x, z.y, z.r);
+          const a = now * 1.2; g.lineStyle(2, 0xffffff, 0.4 * left); g.beginPath(); g.moveTo(z.x, z.y); g.lineTo(z.x + Math.cos(a) * z.r * 0.6, z.y + Math.sin(a) * z.r * 0.6); g.strokePath();
+        } else if (z.k === "heal") {
+          const p = (now * 1.6) % 1;
+          g.lineStyle(3, 0x5aff9a, (1 - p) * 0.7 * left); g.strokeCircle(z.x, z.y, 24 + p * 46);
+        } else if (z.k === "drain") {
+          g.fillStyle(0xa66cff, 0.08 * left); g.fillCircle(z.x, z.y, z.r);
+          for (const h of z.hits || []) { g.lineStyle(2, 0xc8a0ff, 0.6 * left); g.beginPath(); g.moveTo(h.x, h.y); g.lineTo(z.x, z.y); g.strokePath(); }
+        }
+      }
+      // boss attacks about to land: fill up, then hit
+      for (const t of st.tele) {
+        const tot = 1.15, k = Math.max(0, Math.min(1, 1 - (t.at - st.t) / tot));
+        g.fillStyle(t.c || 0xff5a3a, 0.12 + 0.25 * k); g.fillCircle(t.x, t.y, t.r * k);
+        g.lineStyle(2, t.c || 0xff5a3a, 0.8); g.strokeCircle(t.x, t.y, t.r);
+      }
+      // Magic Shield
+      if (st.shield > 0 && st.shieldUntil > st.t && st.flash) {
+        const k = st.shieldMax ? st.shield / st.shieldMax : 1;
+        g.fillStyle(0x7cc4ff, 0.10 + 0.08 * k); g.fillCircle(st.flash.x, st.flash.y, 34);
+        g.lineStyle(2, 0xbfe4ff, 0.5 + 0.4 * k); g.strokeCircle(st.flash.x, st.flash.y, 34 + Math.sin(now * 6) * 1.5);
+      }
+      // summons
+      let i = 0;
+      for (const a of st.allies) {
+        const key = a.kind === "wolf" ? "ftc-wolf" : a.kind === "ghost_cat" ? "ftc-ghostcat" : "ftc-skel";
+        let sp = pools.allies[i];
+        if (!sp) sp = pools.allies[i] = s.add.image(0, 0, key).setDepth(4);
+        if (sp.texture.key !== key) sp.setTexture(key);
+        const fade = Math.min(1, (a.until - st.t) / 0.6);
+        sp.setVisible(true).setPosition(a.x, a.y + Math.sin(now * 8 + a.id) * 2).setTint(a.kind === "bone" ? 0x9fe36a : a.c)
+          .setAlpha((a.kind === "ghost_cat" ? 0.7 : 0.95) * fade).setScale((a.size || 1) * (a.face < 0 ? -1 : 1), a.size || 1);
+        i++;
+      }
+      for (; i < pools.allies.length; i++) pools.allies[i].setVisible(false);
+      if (st.allies.length) useF("spell_fx", st.allies.length);
+    }
+
     // a jagged line from (x0,y0) to (x1,y1), for lightning
     function zigzag(x0, y0, x1, y1, seg) {
       const n = Math.max(2, Math.round(Math.hypot(x1 - x0, y1 - y0) / seg)), pts = [];
@@ -320,6 +495,15 @@
       if (lean) useF("flash_lean");
       s.flash.setPosition(W2, H2).setRotation(lean)
         .setScale((1 + bob + kick * 1.2) * (A("flash_lean") && f0 && f0.face < 0 ? -1 : 1), 1 + bob - kick * 1.5);
+      // power-up: a lightning bolt over each eye, flickering, for a moment (longer after a Flash dash)
+      eyesT = Math.max(eyesT - dt, dashT > 0 ? 0.35 : 0);
+      const showEyes = eyesT > 0 && st.phase !== "start";
+      for (let k = 0; k < 2; k++) {
+        const ex = W2 + (k ? 7 : -7) * Math.cos(lean), ey = H2 + (k ? 7 : -7) * Math.sin(lean);
+        const flick = 0.85 + Math.random() * 0.3;
+        s.eyes[k].setVisible(showEyes).setPosition(ex, ey).setRotation(lean + (k ? 0.12 : -0.12))
+          .setScale(flick * (0.9 + Math.min(1, eyesT) * 0.4)).setAlpha(Math.min(1, eyesT * 3));
+      }
       // study aura grows with active buffs
       s.aura.clear();
       if (st.buffs.length && st.phase !== "start" && A("study_aura")) {
@@ -342,8 +526,22 @@
         } else if (!e.attacking && waddle) { // waddle
           sp.setPosition(e.x, e.y + Math.abs(Math.sin(ph)) * -2).setRotation(Math.sin(ph) * 0.16).setScale(e.size); nW++;
         } else sp.setPosition(e.x, e.y).setRotation(0).setScale(e.size);
+        if (e.boss) {                         // the boss is its own big sprite
+          sp.setVisible(false);
+          const bi = s.bossImg; bi.setVisible(true).setPosition(sp.x, sp.y).setScale(1 + Math.sin(now / 300) * 0.02);
+          if (e.hitT > 0 && hitFlash) bi.setTintFill(0xffffff); else bi.clearTint();
+          s.swings.lineStyle(3, e.colour, 0.7); s.swings.strokeCircle(e.x, e.y + 6, 40 + Math.sin(now / 200) * 2);
+          continue;
+        }
         sp.setVisible(true);
-        if (e.hitT > 0 && hitFlash) { sp.setTintFill(0xffffff); nH++; } else sp.setTint(e.colour);
+        const x = e.fx, tnow = st.t;
+        if (e.hitT > 0 && hitFlash) { sp.setTintFill(0xffffff); nH++; }
+        else if (x && A("status_tints")) {
+          const tint = (x.frozen || 0) > tnow ? 0xbfefff : (x.stun || 0) > tnow ? 0xffffa0 : x.burn && x.burn.until > tnow ? 0xff9a50
+            : x.poison && x.poison.until > tnow ? 0x9fe36a : (x.curse || 0) > tnow ? 0xc08aff : e.colour;
+          sp.setTint(tint);
+          if ((x.mark || 0) > tnow) { s.swings.lineStyle(2, 0xff4a6a, 0.9); s.swings.strokeCircle(e.x, e.y, 16 * e.size); s.swings.lineBetween(e.x - 22, e.y, e.x - 10, e.y); s.swings.lineBetween(e.x + 10, e.y, e.x + 22, e.y); }
+        } else sp.setTint(e.colour);
         if (e.elite) {      // rings only for elites, not one per skeleton
           const rg = pools.rings[ri] || (pools.rings[ri] = s.add.image(0, 0, "ftc-ring").setDepth(2)); ri++;
           rg.setVisible(true).setPosition(e.x, e.y).setScale(e.size * (elitePulse ? 0.95 + Math.sin(ph * 0.5) * 0.06 : 1));
@@ -351,25 +549,26 @@
         }
       }
       for (; i < pools.enemies.length; i++) pools.enemies[i].setVisible(false);
+      if (!st.boss || !st.boss.alive) s.bossImg.setVisible(false);
       for (; ri < pools.rings.length; ri++) pools.rings[ri].setVisible(false);
       useF("lunge", nL); useF("waddle", nW); useF("hit_flash", nH); useF("elite_pulse", nE);
       // projectiles
       i = 0;
       for (const p of st.proj) {
         const sp = pools.proj[i] || (pools.proj[i] = s.add.image(0, 0, "ftc-bolt").setDepth(4));
-        const c = PROJ_COLOUR[p.b] || 0xffe08a;
+        const c = p.c || PROJ_COLOUR[p.b] || 0xffe08a;
         const spin = A("projectile_spin") && (p.b === "returning_projectile" || p.b === "bouncing_projectile");
         if (spin) useF("projectile_spin");
         sp.setVisible(true).setPosition(p.x, p.y).setTint(c)
           .setRotation(spin ? performance.now() / 60 : Math.atan2(p.vy, p.vx))
-          .setScale(p.b === "explosive_projectile" ? 1.3 : 1, p.b === "explosive_projectile" ? 3 : spin ? 2 : 1);
+          .setScale(p.spell ? 1.4 : p.b === "explosive_projectile" ? 1.3 : 1, p.spell ? 2.8 : p.b === "explosive_projectile" ? 3 : spin ? 2 : 1);
         i++;
       }
       for (; i < pools.proj.length; i++) pools.proj[i].setVisible(false);
       i = 0;
       for (const p of st.eproj) {
         const sp = pools.eproj[i] || (pools.eproj[i] = s.add.image(0, 0, "ftc-dot").setDepth(4));
-        sp.setVisible(true).setPosition(p.x, p.y).setTint(0xff6a5a).setScale(0.9); i++;
+        sp.setVisible(true).setPosition(p.x, p.y).setTint(p.colour && p.src && p.src.boss ? p.colour : 0xff6a5a).setScale(p.src && p.src.boss ? 1.5 : 0.9); i++;
       }
       for (; i < pools.eproj.length; i++) pools.eproj[i].setVisible(false);
       // orbit blades
@@ -389,8 +588,12 @@
         if (f.k === "ring") { s.swings.lineStyle(3, f.c, a); s.swings.strokeCircle(f.x, f.y, f.r * (1.15 - a * 0.6)); }
         else if (f.k === "arc") { s.swings.lineStyle(5, f.c, a * 0.8); s.swings.beginPath(); s.swings.arc(f.x, f.y, f.r * 0.8, f.a - 1.1, f.a + 1.1); s.swings.strokePath(); }
         else if (f.k === "spark") { s.swings.fillStyle(f.c, a); s.swings.fillCircle(f.x, f.y, f.r * (1.5 - a * 0.5)); }
+        else if (f.k === "warn") {
+          s.swings.lineStyle(2, f.c, 0.9); s.swings.strokeCircle(f.x, f.y, f.r);
+          s.swings.fillStyle(f.c, 0.25 * (1 - a)); s.swings.fillCircle(f.x, f.y, f.r * (1 - a));
+        }
         else if (f.k === "zap") {
-          s.swings.lineStyle(7, BLUE, a * 0.55); s.swings.strokePoints(f.pts, false);
+          s.swings.lineStyle(7, f.c || BLUE, a * 0.55); s.swings.strokePoints(f.pts, false);
           s.swings.lineStyle(2.5, 0xffffff, a); s.swings.strokePoints(f.pts, false);
         }
         else if (f.k === "bone") {
@@ -420,6 +623,7 @@
       const t1 = performance.now();
       handleEvents(sim.drain());
       draw(dt);
+      if (scene) drawSpells(scene, dt);
       updateGems(dt);
       const t2 = performance.now();
       perf.sim = perf.sim * 0.9 + (t1 - t0) * 0.1; perf.draw = perf.draw * 0.9 + (t2 - t1) * 0.1;
@@ -451,10 +655,54 @@
     let words = [], extra = [], gems = [], gemAcc = WD.spawn_every - WD.first_after, decoyAcc = 0, matchesRun = 0,
         picked = null, sayEl = null, matchRun = 0;
     const GEM_FONT = '"Noto Sans Thai", "Leelawadee UI", "Tahoma", "Segoe UI", sans-serif';
-    function say(url) {
-      if (!url) return;
-      try { if (!sayEl) sayEl = new Audio(); sayEl.src = url; sayEl.currentTime = 0; const p = sayEl.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+    // Every word this run met, and how it went: matched (right), paired wrong
+    // or answered wrong (wrong), or left to drift away / time out (missed).
+    // The learning mode after Flash falls is built from it.
+    let runWords = {};
+    function logWord(w, what) {
+      if (!w || !w.id || !w.th || !w.en) return;
+      const r = runWords[w.id] || (runWords[w.id] = { w: { id: w.id, th: w.th, rom: w.rom || "", en: w.en, audio: w.audio || "" }, seen: 0, right: 0, wrong: 0, missed: 0 });
+      if (!r.w.audio && w.audio) r.w.audio = w.audio;
+      r[what] = (r[what] || 0) + 1;
     }
+    const wordById = id => words.find(w => w.id === id) || extra.find(w => w.id === id) || (runWords[id] && runWords[id].w) || null;
+    // Gems keep clear of the HUD at the top (bars, buffs, warnings, the learn
+    // panel) and the weapon/spell bar at the bottom, however tall they get.
+    let band = { top: 150, bottom: 110 }, bandAt = 0;
+    function gemBand() {
+      const now = performance.now(); if (now - bandAt < 400) return band; bandAt = now;
+      try {
+        const r = game.canvas.getBoundingClientRect();
+        if (r.height > 50) {
+          const k = FlashSim.H / r.height;
+          let tb = buffsEl.getBoundingClientRect().bottom;
+          for (const x of [warnEl, learnEl]) if (x.offsetParent && x.offsetHeight) tb = Math.max(tb, x.getBoundingClientRect().bottom);
+          band = { top: Math.max(110, (tb - r.top) * k + 8), bottom: Math.max(80, (r.bottom - bottom.getBoundingClientRect().top) * k + 8) };
+        }
+      } catch (e) {}
+      return band;
+    }
+    const gemBox = g => { const b = gemBand(); return { x0: 30 + g.w / 2, x1: st.W - 30 - g.w / 2, y0: b.top + g.h / 2, y1: FlashSim.H - b.bottom - g.h / 2 }; };
+    // Dan: "whenever anyone clicks the Thai word, I want the sound to play."
+    // The word's own recording when it has one; the browser's Thai voice when
+    // it hasn't (or the file won't play).
+    function speak(th) {
+      try {
+        if (!th || !window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
+        const u = new SpeechSynthesisUtterance(th); u.lang = "th-TH"; u.rate = 0.9;
+        const v = speechSynthesis.getVoices().find(x => /^th/i.test(x.lang)); if (v) u.voice = v;
+        speechSynthesis.cancel(); speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+    function say(url, th) {
+      if (!url) { speak(th); return; }
+      try {
+        if (!sayEl) sayEl = new Audio();
+        sayEl.pause(); sayEl.src = url; sayEl.currentTime = 0;
+        const p = sayEl.play(); if (p && p.catch) p.catch(err => { if (!err || err.name !== "AbortError") speak(th); });
+      } catch (e) { speak(th); }
+    }
+    const sayWord = w => { if (w) say(w.audio, w.th); };
     // a word that can join the arena: not already there, and not one whose
     // Thai or meaning reads the same as a gem already there (two "to get"s
     // would make a fair match impossible)
@@ -463,8 +711,13 @@
       for (const g of gems) if (g.word.id === w.id || g.word.th === w.th || short(g.word.en) === short(w.en)) return false;
       return true;
     }
+    let newThisRound = 0;
     function pickWord() {
-      const pool = words.filter(free);
+      let pool = words.filter(free);
+      if (mode === "learn" && newThisRound >= MS.learn_new_per_round) {
+        const known = pool.filter(w => (w.level || 0) > 0 || runWords[w.id]);
+        if (known.length) pool = known;
+      }
       if (!pool.length) return null;
       let sum = 0; for (const w of pool) sum += w.weight || 1;
       let r = Math.random() * sum;
@@ -478,21 +731,41 @@
       for (let i = 1; i < ps.length && i < 3; i++) { if ((out + ", " + ps[i]).length > max) break; out += ", " + ps[i]; }
       return out.length > max + 6 ? out.slice(0, max + 5) + "…" : out;
     };
-    function makeGem(word, side) {
+    // Learn mode: is this gem's help showing? (its English under the Thai,
+    // and the pair's shared colour)
+    const PAIR_COLOURS = [0xffd23a, 0x5cf0a0, 0xff8fd0, 0x7fd8ff, 0xffa25c, 0xc6a8ff];
+    let pairN = 0;
+    const needsHint = w => (w.level || 0) < MS.learn_hint_until && !w.known;
+    const hintOn = g => mode === "learn" && !g.learn && !g.test && (showAll || g.hinted);
+    function makeGem(word, side, o = {}) {
       const s = scene;
       const c = s.add.container(0, 0).setDepth(40);
+      // in Learn mode a Thai gem keeps room for its English underneath
+      const room = side === "th" && mode === "learn" && !o.noHint;
+      const off = room ? -10 : 0;
       const parts = side === "th"
-        ? [s.add.text(0, word.rom ? -9 : 0, word.th, { fontFamily: GEM_FONT, fontSize: "30px", color: "#fff7e0" }).setOrigin(0.5)]
-            .concat(word.rom ? [s.add.text(0, 19, word.rom, { fontFamily: "Segoe UI, system-ui, sans-serif", fontSize: "15px", color: "#ffd27a" }).setOrigin(0.5)] : [])
+        ? [s.add.text(0, (word.rom ? -9 : 0) + off, word.th, { fontFamily: GEM_FONT, fontSize: "30px", color: "#fff7e0" }).setOrigin(0.5)]
+            .concat(word.rom ? [s.add.text(0, 19 + off, word.rom, { fontFamily: "Segoe UI, system-ui, sans-serif", fontSize: "15px", color: "#ffd27a" }).setOrigin(0.5)] : [])
         : [s.add.text(0, 0, short(word.en), { fontFamily: "Segoe UI, system-ui, sans-serif", fontSize: "19px", fontStyle: "bold",
                                                color: "#e6f3ff", align: "center", wordWrap: { width: 190 } }).setOrigin(0.5)];
-      const w = Math.max(...parts.map(t => t.width)) + 30, hh = side === "th" ? (word.rom ? 70 : 50) : parts[0].height + 24;
+      let hintText = null;
+      if (room) {
+        hintText = s.add.text(0, (word.rom ? 40 : 22) + off, "= " + short(word.en, 18), { fontFamily: "Segoe UI, system-ui, sans-serif",
+          fontSize: "14px", fontStyle: "italic", color: "#bfe6ff" }).setOrigin(0.5).setVisible(false);
+        parts.push(hintText);
+      }
+      const w = Math.max(...parts.map(t => t.width)) + 30, hh = side === "th" ? (word.rom ? 70 : 50) + (room ? 22 : 0) : parts[0].height + 24;
       const bg = s.add.graphics();
-      const g = { word, side, c, bg, w, h: hh, x: 0, y: 0, vx: 0, vy: 0, age: 0, life: WD.life, shake: 0 };
+      const g = { word, side, c, bg, w, h: hh, x: 0, y: 0, vx: 0, vy: 0, age: 0, life: WD.life, shake: 0, hintText,
+                  decoy: !!o.decoy, hinted: !o.decoy && !o.noHint && mode === "learn" && needsHint(word), pc: o.pc || 0, _hint: null };
       g.paint = sel => {
         bg.clear();
+        const hinting = hintOn(g), pc = hinting && g.pc && !g.decoy ? g.pc : 0;
         bg.fillStyle(side === "th" ? 0x3b2560 : 0x123a4c, 0.93).fillRoundedRect(-w / 2, -hh / 2, w, hh, 14);
-        bg.lineStyle(sel ? 4 : 2, sel ? 0xffd23a : (side === "th" ? 0xb98cff : 0x6cc8ff), 1).strokeRoundedRect(-w / 2, -hh / 2, w, hh, 14);
+        bg.lineStyle(sel ? 4 : pc ? 3.5 : 2, sel ? 0xffd23a : pc || (side === "th" ? 0xb98cff : 0x6cc8ff), 1).strokeRoundedRect(-w / 2, -hh / 2, w, hh, 14);
+        if (pc && !sel) { bg.fillStyle(pc, 1).fillCircle(w / 2 - 9, -hh / 2 + 9, 5); }
+        if (hintText) hintText.setVisible(hinting);
+        g._sel = !!sel;
       };
       g.paint(false);
       c.add([bg, ...parts]);
@@ -501,7 +774,7 @@
       return g;
     }
     function placeGem(g) {
-      const x0 = 30 + g.w / 2, x1 = st.W - 30 - g.w / 2, y0 = 150 + g.h / 2, y1 = FlashSim.H - 110 - g.h / 2;
+      const { x0, x1, y0, y1 } = gemBox(g);
       let best = null, bestD = -1;
       for (let i = 0; i < 12; i++) {
         const x = x0 + Math.random() * Math.max(1, x1 - x0), y = y0 + Math.random() * Math.max(1, y1 - y0);
@@ -510,53 +783,115 @@
         if (st.flash) d = Math.min(d, Math.hypot(st.flash.x - x, st.flash.y - y) * 1.5);
         if (d > bestD) { bestD = d; best = { x, y }; }
       }
-      const a = Math.random() * 6.283, sp = WD.speed * (0.6 + Math.random() * 0.8);
+      const a = Math.random() * 6.283, sp = WD.speed * (0.6 + Math.random() * 0.8) * (learn ? 0.6 : 1);
       Object.assign(g, best, { vx: Math.cos(a) * sp, vy: Math.sin(a) * sp });
       g.c.setPosition(g.x, g.y).setAlpha(0).setScale(0.6);
     }
     function spawnPair() {
       const w = pickWord(); if (!w || !scene) return false;
-      for (const side of ["th", "en"]) { const g = makeGem(w, side); placeGem(g); gems.push(g); }
-      use("word_gems");
+      if (!(w.level || 0) && !runWords[w.id]) newThisRound++;
+      const pc = PAIR_COLOURS[pairN++ % PAIR_COLOURS.length];
+      for (const side of ["th", "en"]) { const g = makeGem(w, side, { pc }); placeGem(g); gems.push(g); }
+      use("word_gems"); logWord(w, "seen");
       return true;
     }
-    const decoyTarget = () => Math.min(WD.decoys_max, WD.decoys_min + Math.floor(matchesRun / Math.max(1, WD.decoys_every_matches)));
+    const decoyTarget = () => {
+      const lo = mode === "learn" ? MS.learn_decoys_min : WD.decoys_min, hi = mode === "learn" ? MS.learn_decoys_max : WD.decoys_max;
+      return Math.min(hi, lo + Math.floor(matchesRun / Math.max(1, WD.decoys_every_matches)));
+    };
     function spawnDecoy() {
       const seen = new Set(), cands = [];
-      for (const w of extra.concat(words)) if (!seen.has(w.id)) { seen.add(w.id); if (free(w)) cands.push(w); }
+      for (const w of (mode === "learn" ? words : extra.concat(words))) if (!seen.has(w.id)) { seen.add(w.id); if (free(w)) cands.push(w); }
       if (!cands.length || !scene) return false;
       const w = cands[Math.floor(Math.random() * cands.length)];
-      const g = makeGem(w, Math.random() < 0.55 ? "en" : "th");
-      g.decoy = true; placeGem(g); gems.push(g);
+      const g = makeGem(w, Math.random() < 0.55 ? "en" : "th", { decoy: true });
+      placeGem(g); gems.push(g);
       return true;
+    }
+    let teach = null, teachG = null;
+    function drawTeach(dt) {
+      if (!teachG && scene) teachG = scene.add.graphics().setDepth(41);
+      if (!teachG) return;
+      teachG.clear();
+      if (!teach) return;
+      teach.t -= dt;
+      if (teach.t <= 0 || !gems.includes(teach.a) || !gems.includes(teach.b)) { teach = null; return; }
+      const k = Math.min(1, teach.t / 0.5), pulse = 3 + 2.5 * (0.5 + 0.5 * Math.sin(teach.t * 12));
+      teachG.lineStyle(6, 0x5cf0a0, k).lineBetween(teach.a.x, teach.a.y, teach.b.x, teach.b.y);
+      for (const x of [teach.a, teach.b]) teachG.lineStyle(pulse, 0x5cf0a0, k).strokeRoundedRect(x.x - x.w / 2 - 6, x.y - x.h / 2 - 6, x.w + 12, x.h + 12, 16);
     }
     function dropGem(g) { try { g.c.destroy(); } catch (e) {} gems = gems.filter(x => x !== g); if (picked === g) picked = null; }
     function clearGems() { for (const g of gems.slice()) dropGem(g); picked = null; gemAcc = WD.spawn_every - WD.first_after; decoyAcc = 0; matchesRun = 0; }
+    function deselect() { if (!picked) return false; picked.paint(false); picked = null; return true; }
+    let gemTips = +(prefs.gemTips || 0);
     function clickGem(g) {
+      if (g.side === "th") sayWord(g.word);           // always, even paused or as a wrong answer
       if (st.phase !== "fight" || st.paused) return;
-      if (g.side === "th") say(g.word.audio);
-      if (!picked) { picked = g; g.paint(true); return; }
+      if (learn && learn.mode === "learn") return learnClick(g);
+      if (!picked) {
+        picked = g; g.paint(true);
+        if (gemTips < 3 && !learn) { gemTips++; prefs.gemTips = gemTips; savePrefs(); floatText("Now click its partner · click it again to let go"); }
+        return;
+      }
       if (picked === g) { g.paint(false); picked = null; return; }
       if (picked.side === g.side) { picked.paint(false); picked = g; g.paint(true); return; }
       const a = picked; picked = null; a.paint(false);
+      if (learn && learn.mode === "test") return testPair(a, g);
       if (!a.decoy && !g.decoy && a.word.id === g.word.id) {
+        const helped = hintOn(a) || hintOn(g);
+        logWord(a.word, helped ? "helped" : "right");
+        if (helped) sim.noteStudy("match_helped");
+        if (!helped) a.word.level = Math.min(5, (a.word.level || 0) + 1);   // the help fades as it is learned
         matchRun++; matchesRun++;
         for (const x of [a, g]) for (let i = 0; i < 14; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 260);
         floatText(`${a.word.th} = ${short(a.word.en)}${matchRun >= 3 ? `  ×${matchRun}!` : ""}`);
-        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: 1, streak: matchRun, word: a.word.th });
+        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: helped ? MS.learn_helped_strength : 1, streak: matchRun, word: a.word.th });
         dropGem(a); dropGem(g);
-        if (opts.onWord) try { opts.onWord({ result: "match", id: a.word.id }); } catch (e) {}
+        if (opts.onWord) try { opts.onWord({ result: "match", id: a.word.id, helped }); } catch (e) {}
       } else {
         matchRun = 0;
         a.shake = g.shake = 0.4;
         sim.noteStudy("mismatch");
         // the word the learner was trying to match is the real (non-decoy) one
         const real = [a, g].find(x => !x.decoy && x.side === "th") || [a, g].find(x => !x.decoy) || (a.side === "th" ? a : g);
+        logWord(real.word, "wrong");
+        real.word.level = Math.max(0, (real.word.level || 0) - 1);
+        // Learn mode: show the right partner of the gem picked first
+        if (mode === "learn" && !a.decoy) { const mate = gems.find(o => o !== a && !o.decoy && o.word.id === a.word.id && o.side !== a.side); if (mate) teach = { a, b: mate, t: 1.8 }; }
         if (opts.onWord) try { opts.onWord({ result: "miss", id: real.word.id, other: (real === a ? g : a).word.id }); } catch (e) {}
       }
     }
+    // gems never sit on top of each other (a covered partner looked like a
+    // pair with half missing)
+    function spreadGems(dt) {
+      for (let i = 0; i < gems.length; i++) for (let j = i + 1; j < gems.length; j++) {
+        const a = gems[i], b = gems[j];
+        if (a.fixed && b.fixed) continue;
+        const dx = b.x - a.x, dy = b.y - a.y, ox = (a.w + b.w) / 2 + 12 - Math.abs(dx), oy = (a.h + b.h) / 2 + 12 - Math.abs(dy);
+        if (ox <= 0 || oy <= 0) continue;
+        const push = Math.min(ox < oy ? ox : oy, 140 * dt) / ((a.fixed || b.fixed) ? 1 : 2);
+        const sx = ox < oy ? (dx >= 0 ? 1 : -1) : 0, sy = ox < oy ? 0 : (dy >= 0 ? 1 : -1);
+        if (!a.fixed) { a.x -= sx * push; a.y -= sy * push; }
+        if (!b.fixed) { b.x += sx * push; b.y += sy * push; }
+      }
+    }
+    // learning-mode gems: no expiry; "fixed" ones (the learn cards) stay put
+    function moveGem(g, dt) {
+      g.age += dt;
+      const { x0, x1, y0, y1 } = gemBox(g);
+      if (!g.fixed) {
+        g.x += g.vx * dt; g.y += g.vy * dt;
+        if (g.x < x0 || g.x > x1) { g.vx = -g.vx; g.x = Math.max(x0, Math.min(x1, g.x)); }
+        if (g.y < y0 || g.y > y1) { g.vy = -g.vy; g.y = Math.max(y0, Math.min(y1, g.y)); }
+      } else { g.x = Math.max(x0, Math.min(x1, g.x)); }
+      const sx = g.shake > 0 ? Math.sin(g.age * 60) * 7 * (g.shake / 0.4) : 0;
+      g.shake = Math.max(0, g.shake - dt);
+      const vis = g.delay ? g.age >= g.delay : true, a = vis ? Math.min(1, (g.age - (g.delay || 0)) / 0.4) : 0;
+      g.c.setVisible(vis && st.phase === "fight").setPosition(g.x + sx, g.y + Math.sin(g.age * 1.7) * 3).setAlpha(a).setScale(0.7 + 0.3 * a);
+    }
     function updateGems(dt) {
       if (!WD.enabled || !scene) return;
+      if (learn) return updateLearn(dt);
       if (!A("word_gems")) { if (gems.length) clearGems(); return; }
       const live = st.phase === "fight" && !st.paused;
       for (const g of gems) g.c.setVisible(st.phase === "fight");
@@ -566,9 +901,11 @@
       if (words.length && gemAcc >= WD.spawn_every && pairs < WD.max_pairs) { if (spawnPair()) gemAcc = 0; }
       decoyAcc += dt;
       if (pairs > 0 && decoys < decoyTarget() && decoyAcc >= WD.decoy_every) { if (spawnDecoy()) decoyAcc = 0; }
+      spreadGems(dt); drawTeach(dt);
       for (const g of gems.slice()) {
+        const hv = hintOn(g); if (hv !== g._hint) { g._hint = hv; g.paint(picked === g); }
         g.age += dt;
-        const x0 = 30 + g.w / 2, x1 = st.W - 30 - g.w / 2, y0 = 150 + g.h / 2, y1 = FlashSim.H - 110 - g.h / 2;
+        const { x0, x1, y0, y1 } = gemBox(g);
         g.x += g.vx * dt; g.y += g.vy * dt;
         if (g.x < x0 || g.x > x1) { g.vx = -g.vx; g.x = Math.max(x0, Math.min(x1, g.x)); }
         if (g.y < y0 || g.y > y1) { g.vy = -g.vy; g.y = Math.max(y0, Math.min(y1, g.y)); }
@@ -579,8 +916,180 @@
         if (g.age >= g.life) {
           // a pair leaves together
           const mate = g.decoy ? null : gems.find(o => o !== g && !o.decoy && o.word.id === g.word.id);
+          if (!g.decoy) {                                // nobody matched it in time: a missed word
+            logWord(g.word, "missed"); sim.noteStudy("gem_missed");
+            if (opts.onWord) try { opts.onWord({ result: "expired", id: g.word.id }); } catch (e) {}
+          }
           dropGem(g); if (mate) dropGem(mate);
         }
+      }
+    }
+
+    // ------------------------------------------- learning mode (after a fall)
+    // Dan: "When a player dies, we should have a learning mode, very few
+    // skeletons, we show the user the correct answers Thai <-> English, 2/3
+    // times for each word, then test mode, if the user gets above 80% they get
+    // a bonus item next run."
+    //   learn: each word shown as a joined pair, Thai first one time, English
+    //          first the next (2 times; 3 for words that went wrong twice or
+    //          more). The Thai says itself; tap the English (or wait) to go on.
+    //   test:  the same words as gems, 3 pairs at a time, no decoys. A word is
+    //          right if it was matched without a wrong try starting from it.
+    //   pass (80%): one bonus item, kept in this browser (ftc.save), given at
+    //          the start of the next run.
+    // Tuned in Game settings > learn.
+    const LM = Object.assign({ enabled: true, min_words: 4, max_words: 8, reps: 2, reps_hard: 3, show_seconds: 5,
+                               test_pairs: 3, pass: 0.8, max_bonus: 3 }, ((sim.D.settings || {}).learn || {}).values || {});
+    let learn = null, learnAttempts = 0;
+    const ftcSave = SAVE;
+    const bonusWaiting = () => (ftcSave.get().bonus || []).filter(b => b && b.id);
+    const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    function learnList() {
+      const all = Object.values(runWords).filter(r => r.w && r.w.th && r.w.en);
+      const bad = r => (r.wrong || 0) * 2 + (r.missed || 0);
+      const out = [], have = new Set(), ths = new Set(), ens = new Set();
+      const add = r => {
+        if (out.length >= LM.max_words || !r || !r.w || !r.w.th || !r.w.en || have.has(r.w.id)) return;
+        const en = short(r.w.en);
+        if (ths.has(r.w.th) || ens.has(en)) return;           // two "to get"s would make the test unfair
+        have.add(r.w.id); ths.add(r.w.th); ens.add(en); out.push(r);
+      };
+      all.filter(r => bad(r) > 0).sort((a, b) => bad(b) - bad(a)).forEach(add);
+      const fill = list => { for (const r of list) { if (out.length >= LM.min_words) break; add(r); } };
+      fill(all.slice().sort((a, b) => (a.right || 0) - (b.right || 0)));
+      fill(words.slice().sort((a, b) => (b.weight || 1) - (a.weight || 1)).map(w => ({ w, seen: 0, right: 0, wrong: 0, missed: 0 })));
+      return out;
+    }
+    function learnPanel(html, buttons) {
+      learnEl.innerHTML = html;
+      const row = h("div", "ftc-learn-row");
+      for (const [label, fn, cls] of buttons || []) { const b = h("button", "ftc-btn" + (cls ? " " + cls : ""), label); b.onclick = fn; row.append(b); }
+      learnEl.append(row);
+      learnEl.classList.add("show"); bandAt = 0;
+    }
+    function startLearn() {
+      const list = learnList();
+      if (!list.length || !sim.startPractice()) return;
+      hideOverlay(); clearGems(); closeQuestion();
+      const rounds = [];
+      for (let rep = 0; rep < Math.max(LM.reps, LM.reps_hard); rep++) {
+        const r = shuffle(list.filter(x => rep < ((x.wrong || 0) + (x.missed || 0) >= 2 ? LM.reps_hard : LM.reps)));
+        const prev = rounds.length && rounds[rounds.length - 1];
+        if (prev && r.length > 1 && r[0] === prev.r) [r[0], r[1]] = [r[1], r[0]];   // never the same word twice in a row
+        for (const x of r) rounds.push({ r: x, rep });
+      }
+      learn = { mode: "learn", list, queue: rounds, i: -1, item: null, started: performance.now(), attempt: ++learnAttempts, link: scene.add.graphics().setDepth(39) };
+      announce("learning");
+      nextLearn();
+    }
+    function nextLearn() {
+      if (!learn) return;
+      for (const g of gems.slice()) dropGem(g);
+      learn.i++;
+      if (learn.i >= learn.queue.length) return startTest();
+      const it = learn.queue[learn.i], w = it.r.w, first = it.rep % 2 ? "en" : "th";
+      const b = gemBand(), mid = (b.top + FlashSim.H - b.bottom) / 2, x = st.W / 2;
+      const g1 = makeGem(w, first, { noHint: true }), g2 = makeGem(w, first === "th" ? "en" : "th", { noHint: true });
+      Object.assign(g1, { x, y: mid - 85, fixed: true, learn: true }); Object.assign(g2, { x, y: mid + 85, fixed: true, learn: true, delay: 0.9 });
+      for (const g of [g1, g2]) { g.paint(true); g.c.setAlpha(0); gems.push(g); }
+      learn.item = { w, g1, g2, t: 0, said: false, done: false };
+      if (first === "th") { sayWord(w); learn.item.said = true; }
+      learnPanel(`<b>📚 Learning</b> <span>${learn.i + 1} / ${learn.queue.length}</span><i class="ftc-learn-bar"><i style="width:${Math.round(learn.i / learn.queue.length * 100)}%"></i></i>
+        <small>Look, listen, remember. Tap the Thai to hear it again, the English to go on.</small>`,
+        [["⏭ Skip to the test", () => startTest()], ["✕ Stop", () => stopLearn()]]);
+    }
+    function learnClick(g) {
+      const it = learn.item; if (!it || it.done) return;
+      if (g.side === "th") return;                              // it has just spoken
+      it.done = true;
+      for (const x of [it.g1, it.g2]) for (let i = 0; i < 10; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 200);
+      setTimeout(nextLearn, 250);
+    }
+    function startTest() {
+      if (!learn) return;
+      for (const g of gems.slice()) dropGem(g); picked = null;
+      if (learn.link) learn.link.clear();
+      Object.assign(learn, { mode: "test", order: shuffle(learn.list.slice()), next: 0, right: 0, done: 0, bad: new Set(), item: null });
+      fillTest(); drawTestPanel();
+    }
+    function fillTest() {
+      while (learn.next < learn.order.length && gems.length / 2 < LM.test_pairs) {
+        const w = learn.order[learn.next++].w;
+        for (const side of ["th", "en"]) { const g = makeGem(w, side, { noHint: true }); g.test = true; placeGem(g); gems.push(g); }
+      }
+    }
+    function drawTestPanel() {
+      learnPanel(`<b>✍ Test</b> <span>${learn.done} / ${learn.order.length}</span><i class="ftc-learn-bar"><i style="width:${Math.round(learn.done / learn.order.length * 100)}%"></i></i>
+        <small>Match each Thai word to its English. ${Math.round(LM.pass * 100)}% right first time wins a bonus item for the next run.</small>`,
+        [["✕ Stop", () => stopLearn()]]);
+    }
+    function testPair(a, g) {
+      if (a.word.id === g.word.id && a.side !== g.side) {
+        if (!learn.bad.has(a.word.id)) { learn.right++; logWord(a.word, "right"); }
+        learn.done++;
+        for (const x of [a, g]) for (let i = 0; i < 14; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 260);
+        floatText(`${a.word.th} = ${short(a.word.en)}`);
+        if (opts.onWord) try { opts.onWord({ result: "match", id: a.word.id }); } catch (e) {}
+        dropGem(a); dropGem(g);
+        fillTest(); drawTestPanel();
+        if (learn.done >= learn.order.length) setTimeout(finishTest, 600);
+      } else {
+        // the wrong try counts against the word it started from
+        a.shake = g.shake = 0.4;
+        if (!learn.bad.has(a.word.id)) { learn.bad.add(a.word.id); logWord(a.word, "wrong"); }
+        if (opts.onWord) try { opts.onWord({ result: "miss", id: a.word.id, other: g.word.id }); } catch (e) {}
+      }
+    }
+    function endLearnGems() { for (const g of gems.slice()) dropGem(g); picked = null; if (learn && learn.link) learn.link.destroy(); learnEl.classList.remove("show"); learnEl.innerHTML = ""; bandAt = 0; }
+    function stopLearn() {
+      if (!learn) return;
+      const r = { words: learn.list.length, stopped: true, stage: learn.mode, seconds: Math.round((performance.now() - learn.started) / 1000), attempt: learn.attempt };
+      endLearnGems(); learn = null;
+      sim.endPractice(r); sendTel(); showOver();
+    }
+    function finishTest() {
+      if (!learn || learn.mode !== "test") return;
+      const total = learn.order.length, score = total ? learn.right / total : 0, passed = score >= LM.pass - 1e-9;
+      let item = null, full = false;
+      if (passed) {
+        const sv = ftcSave.get(), b = (sv.bonus || []).filter(x => x && x.id);
+        if (b.length < LM.max_bonus) { item = sim.bonusItem(); if (item) { b.push({ id: item.id, name: item.name, at: Date.now() }); sv.bonus = b; ftcSave.set(sv); } }
+        else full = true;
+      }
+      const res = { words: total, right: learn.right, score: Math.round(score * 100), passed, item: item ? item.id : null,
+                    seconds: Math.round((performance.now() - learn.started) / 1000), attempt: learn.attempt };
+      const missed = learn.order.filter(r => learn.bad.has(r.w.id)).map(r => r.w);
+      endLearnGems(); learn = null;
+      sim.endPractice(res); sendTel();
+      overlay.innerHTML = "";
+      overlay.append(h("h2", "", passed ? "🎉 Test passed!" : "✍ Test done"),
+        h("p", "ftc-learn-score", `<b>${res.right} / ${total}</b> right first time · <b>${res.score}%</b>`));
+      if (item) overlay.append(h("p", "ftc-learn-prize", `🎁 Flash starts the next run with <b>${icon("items", item.id, "🎁")} ${esc(item.name)}</b>`));
+      else if (full) overlay.append(h("p", "", `🎁 You already have ${LM.max_bonus} bonus items waiting, so this one is just for the glory.`));
+      else overlay.append(h("p", "", `${Math.round(LM.pass * 100)}% wins a bonus item for the next run. So close, try again?`));
+      if (missed.length) overlay.append(h("p", "ftc-small", "Still tricky: " + missed.map(w => `<span lang="th">${esc(w.th)}</span> = ${esc(short(w.en))}`).join(" · ")));
+      const row = h("div", "ftc-row");
+      if (!passed) { const b = h("button", "ftc-btn", "📚 Learn again"); b.onclick = () => startLearn(); row.append(b); }
+      const again = h("button", "ftc-btn big", "Play again"); again.onclick = showStart; row.append(again);
+      overlay.append(row); overlay.classList.add("show");
+    }
+    function updateLearn(dt) {
+      if (st.phase !== "fight" || st.paused) { for (const g of gems) g.c.setVisible(false); return; }
+      spreadGems(dt);
+      for (const g of gems.slice()) moveGem(g, dt);
+      if (learn.mode === "learn" && learn.item) {
+        const it = learn.item;
+        it.t += dt;
+        if (!it.said && it.t >= it.g2.delay) { it.said = true; sayWord(it.w); }
+        // the gold link between the pair
+        learn.link.clear();
+        const a = Math.min(1, Math.max(0, it.t - it.g2.delay) / 0.4);
+        if (a > 0) {
+          const top = it.g1.y < it.g2.y ? it.g1 : it.g2, bot = top === it.g1 ? it.g2 : it.g1;
+          learn.link.lineStyle(4, 0xffd23a, 0.85 * a).lineBetween(top.x, top.y + top.h / 2, bot.x, bot.y - bot.h / 2);
+          learn.link.fillStyle(0xffd23a, a).fillCircle((top.x + bot.x) / 2, (top.y + top.h / 2 + bot.y - bot.h / 2) / 2, 13);
+        }
+        if (!it.done && it.t >= it.g2.delay + LM.show_seconds) { it.done = true; nextLearn(); }
       }
     }
 
@@ -639,15 +1148,18 @@
         if (left <= 0) { clearInterval(q._tick); timeUp(q); }
       }, 250);
     }
+    const qWord = q => ({ id: q.right || q.id, th: q.th, rom: q.rom, en: q.en, audio: q.audio });
     function timeUp(q) {
       if (qOpen !== q) return;
       qEl.querySelectorAll(".ftc-q-opt").forEach((b, i) => { b.disabled = true; if (q.options[i].id === q.right) b.classList.add("ok"); });
       qOpen = Object.assign({}, q, { done: true });       // keys and clicks are over
       sim.noteStudy("rescue_timeout");
+      logWord(qWord(q), "missed");
       if (opts.onAnswer) try { opts.onAnswer(q, false); } catch (e) {}
       setTimeout(closeQuestion, 1800);
     }
     window.addEventListener("keydown", e => {
+      if (!qOpen && e.key === "Escape" && deselect()) { e.preventDefault(); return; }
       if (!qOpen || qOpen.done) return;
       if (e.key === "Escape") { const x = qEl.querySelector(".ftc-q-x"); if (x) { e.preventDefault(); x.click(); } }
       else if (/^[1-9]$/.test(e.key)) { const b = qEl.querySelectorAll(".ftc-q-opt")[+e.key - 1]; if (b && !b.disabled) { e.preventDefault(); b.click(); } }
@@ -661,6 +1173,7 @@
       if (!right) btn.classList.add("no");
       if (o.audio) say(o.audio);
       if (opts.onAnswer) try { opts.onAnswer(q, right); } catch (e) {}
+      logWord(qWord(q), right ? "right" : "wrong");
       if (right) sim.applyReward({ v: 1, kind: "reward", source: "rescue", strength: 1, word: q.th });
       else sim.noteStudy("rescue_wrong");
       setTimeout(() => {
@@ -688,9 +1201,10 @@
     // -------------------------------------------------------------- HUD
     function updateHud() {
       const f = st.flash;
-      stageEl.textContent = st.phase === "start" ? "" : `Round ${st.round} · Stage ${st.stage}`;
+      stageEl.textContent = st.phase === "start" ? "" : st.practice ? "📚 Learning mode"
+        : `${mode === "learn" ? "📚 " : "✍ "}Round ${st.round} · Stage ${st.stage}`;
       const wv = st.wave;
-      timerEl.textContent = st.phase !== "fight" ? "" : wv ? `💀 ${(wv.total - wv.killed).toLocaleString()} left` : fmtT(Math.max(0, sim.S.roundLen - st.roundT));
+      timerEl.textContent = st.phase !== "fight" || st.practice ? "" : wv ? `💀 ${(wv.total - wv.killed).toLocaleString()} left` : fmtT(Math.max(0, sim.S.roundLen - st.roundT));
       waveBar.style.display = wv ? "" : "none";
       if (wv) { waveBar.querySelector("i").style.width = `${wv.killed / wv.total * 100}%`;
                 waveBar.querySelector("span").textContent = `${wv.row.name} · ${wv.killed.toLocaleString()} / ${wv.total.toLocaleString()}`; }
@@ -707,6 +1221,8 @@
       } else comboEl.classList.remove("show");
       goldEl.textContent = st.phase === "start" ? "" : `💰 ${st.gold}`;
       pauseBtn.style.visibility = st.phase === "fight" ? "visible" : "hidden";
+      eyeBtn.style.display = mode === "learn" && !st.practice && (st.phase === "fight" || st.phase === "break") ? "" : "none";
+      eyeBtn.classList.toggle("on", showAll);
       pauseBtn.textContent = st.paused ? "▶" : "⏸";
       if (f) {
         const mx = f.maxHp();
@@ -733,7 +1249,17 @@
                      : `<span class="ftc-slot empty${i >= sim.S.slots ? " tail" : ""}">${i >= sim.S.slots ? "tail" : "empty"}</span>`);
       }
       if (!st.tail) parts.push(`<span class="ftc-slot empty tail">🔒 tail</span>`);
+      // spells: unlimited, each with a little cooldown bar
+      for (const sp of st.spells) {
+        const cd = sim.spp(sp).cooldown, k = Math.max(0, Math.min(1, 1 - sp.cd / cd));
+        parts.push(`<span class="ftc-slot spell" title="${esc(sp.def.name)} · level ${sp.level}"><span class="ftc-ico">${icon("spells", sp.id, "🔮")}</span><b>${sp.level}</b><i style="width:${Math.round(k * 100)}%"></i></span>`);
+      }
       bottom.innerHTML = st.phase === "start" ? "" : parts.join("");
+      // the boss's health
+      const b = st.boss;
+      bossBar.style.display = b && b.alive ? "" : "none";
+      if (b && b.alive) { bossBar.querySelector("i").style.width = `${Math.max(0, b.hp / b.max) * 100}%`;
+                          bossBar.querySelector("span").textContent = `👑 ${b.boss.name}${b.phases > 1 ? ` · phase ${b.phase}/${b.phases}` : ""}`; }
     }
 
     // ---------------------------------------------------------- screens
@@ -748,7 +1274,24 @@
     }
     function showStart() {
       overlay.innerHTML = "";
-      overlay.append(h("h2", "", "🐈 Flash the Cat"), h("p", "", "Pick a starting weapon. Study to keep Flash alive!"));
+      overlay.append(h("h2", "", "🐈 Flash the Cat"));
+      // what is the learner here for?
+      const pick = h("div", "ftc-mode");
+      for (const [m, label, sub] of [["learn", "📚 Learn", "I'm new to these words: show me the answers"], ["test", "✍ Test", "I know them: no help, full power"]]) {
+        const b = h("button", "ftc-mode-b" + (mode === m ? " on" : ""), `<b>${label}</b><small>${sub}</small>`);
+        b.onclick = () => { setMode(m); showStart(); };
+        pick.append(b);
+      }
+      overlay.append(pick);
+      if (mode === "learn") {
+        const sa = h("label", "ftc-small ftc-showall", `<input type="checkbox" ${showAll ? "checked" : ""}> 👁 Show answers on every word (otherwise only on words you're still learning)`);
+        sa.querySelector("input").onchange = e => { showAll = e.target.checked; saveSet("show_answers", showAll); };
+        overlay.append(sa);
+      }
+      const best = SAVE.get().best || {};
+      overlay.append(h("p", "", `Pick a starting weapon. Study to keep Flash alive!${best[mode] ? ` <span class="ftc-small">Best (${mode === "learn" ? "Learn" : "Test"}): round ${best[mode]}</span>` : ""}`));
+      const waiting = bonusWaiting();
+      if (waiting.length) overlay.append(h("p", "ftc-learn-prize", `🎁 Study bonus for this run: <b>${icon("items", waiting[0].id, "🎁")} ${esc(waiting[0].name || waiting[0].id)}</b>`));
       const cards = h("div", "ftc-cards");
       for (const w of sim.startingWeapons())
         cards.append(card({ icon: icon("weapons", w.id, "🗡️"), name: w.name, desc: w.description, rarity: w.rarity, tag: w.behaviour.replace(/_/g, " "),
@@ -777,6 +1320,28 @@
         const go = h("button", "ftc-btn big", `Start round ${st.round + 1}`); go.onclick = () => { lastWave = null; sim.nextRound(); };
         overlay.append(go);
       }
+      // the shop: spend gold between rounds
+      if (st.shop && st.shop.items.length) {
+        const shop = h("div", "ftc-shop");
+        shop.append(h("div", "ftc-shop-h", `<b>🛒 Shop</b><span>💰 ${st.gold}</span>`));
+        const grid = h("div", "ftc-shop-grid");
+        st.shop.items.forEach((o, i) => {
+          const can = !o.sold && st.gold >= o.price;
+          const c = h("button", "ftc-shop-item" + (o.sold ? " sold" : can ? "" : " poor"),
+            `<span class="ftc-cardico">${offerIcon(o)}</span><span class="ftc-name">${esc(o.name)}</span><span class="ftc-desc">${esc(o.desc || "")}</span>
+             <span class="ftc-price">${o.sold ? "bought ✓" : `💰 ${o.price}`}</span>`);
+          c.style.borderColor = rarityColour(o.rarity);
+          c.disabled = !can;
+          c.onclick = () => { if (sim.buy(i)) { floatText(`Bought ${o.name}`); showBreak(); } };
+          grid.append(c);
+        });
+        shop.append(grid);
+        const rp = sim.rerollPrice();
+        const rr = h("button", "ftc-btn", `🎲 Reroll (💰 ${rp})`); rr.disabled = st.gold < rp;
+        rr.onclick = () => { if (sim.reroll()) showBreak(); };
+        shop.append(h("div", "ftc-row"), rr);
+        overlay.append(shop);
+      }
       const auto = h("label", "ftc-small", `<input type="checkbox" ${prefs.auto ? "checked" : ""}> Auto-pick & continue (for when you're busy studying)`);
       auto.querySelector("input").onchange = e => { prefs.auto = e.target.checked; savePrefs(); if (prefs.auto) autoBreak(); };
       overlay.append(auto);
@@ -801,8 +1366,21 @@
           <span>Damage</span><b>${(r.damage || 0).toLocaleString()}</b><span>Best combo</span><b>×${(r.comboMax || 0).toLocaleString()}</b>
           <span>Mega waves</span><b>${r.waves || 0}</b>`),
         h("p", "ftc-small", esc((r.weapons || []).join(" · "))));
-      const again = h("button", "ftc-btn big", "Play again"); again.onclick = showStart;
-      overlay.append(again);
+      const list = LM.enabled ? learnList() : [];
+      const row = h("div", "ftc-row");
+      if (list.length) {
+        const bad = list.filter(x => x.wrong || x.missed).length;
+        const box = h("div", "ftc-learn-offer",
+          `<b>📚 Learning mode</b><span>${bad ? `${bad} word${bad === 1 ? "" : "s"} you missed or got wrong this run` : "Words from this run"}${list.length > bad ? (bad ? `, plus ${list.length - bad} more` : "") : ""}:
+           ${list.slice(0, 8).map(x => `<span lang="th">${esc(x.w.th)}</span>`).join(" · ")}</span>
+           <small>See each one with its English, then a quick test. ${Math.round(LM.pass * 100)}% or more and Flash starts the next run with a bonus item.</small>`);
+        overlay.append(box);
+        const lb = h("button", "ftc-btn big primary", "📚 Learn the words"); lb.onclick = () => startLearn(); row.append(lb);
+      }
+      const waiting = bonusWaiting();
+      if (waiting.length) overlay.append(h("p", "ftc-small", `🎁 Waiting for your next run: ${waiting.map(b => esc(b.name || b.id)).join(", ")}`));
+      const again = h("button", "ftc-btn big", "Play again"); again.onclick = showStart; row.append(again);
+      overlay.append(row);
       overlay.classList.add("show");
     }
     function showPaused() {
@@ -818,10 +1396,11 @@
       updateHud();
     }
     pauseBtn.onclick = () => togglePause();
+    eyeBtn.onclick = () => { showAll = !showAll; saveSet("show_answers", showAll); updateHud(); floatText(showAll ? "👁 Answers showing on every word" : "👁 Answers only on words you're learning"); };
 
     // ------------------------------------------------------------ rewards
     // nothing counts while paused (Dan: "when the game is paused, flash shouldn't get any xp/bonuses")
-    const onReward = e => { if ((st.phase === "fight" || st.phase === "break") && !st.paused) sim.applyReward(e.detail || {}); };
+    const onReward = e => { if ((st.phase === "fight" || st.phase === "break") && !st.paused && !st.practice) sim.applyReward(e.detail || {}); };
     window.addEventListener("inaflash:reward", onReward);
     // pause when the tab is hidden, so the flashcards never fight the game for the CPU
     const onVis = () => { if (document.hidden && st.phase === "fight" && !st.paused) togglePause(true); };
@@ -838,7 +1417,7 @@
       reward: d => onReward({ detail: d }),
       pause: on => togglePause(on),
       setSpeed: n => { speed = Math.max(0.25, Math.min(8, n)); },
-      spawn: (n, elite) => sim.spawn(n, elite),
+      spawn: (n, elite, defId) => sim.spawn(n, elite, defId),
       megaWave: n => sim.megaWave(n),
       stats: () => ({ fps: game.loop.actualFps, enemies: st.enemies.length, projectiles: st.proj.length + st.eproj.length, fx: fx.length,
                       simMs: perf.sim, drawMs: perf.draw, intensity: st.intensity,
@@ -861,8 +1440,22 @@
         words = Array.isArray(list) ? list.filter(ok) : [];
         if (more !== undefined) extra = Array.isArray(more) ? more.filter(ok) : [];
       },
-      wordSettings: () => Object.assign({}, WD),
+      wordSettings: () => Object.assign({}, WD, { game_mode: mode }),
+      mode: () => mode,
+      setMode: m => { setMode(m); if (st.phase === "start") showStart(); },
+      showAnswers: on => { if (on !== undefined) { showAll = !!on; saveSet("show_answers", showAll); } return showAll; },
+      save: () => SAVE.get(),
+      saveEngine: () => SAVE.engine(),
       questionOpen: () => !!qOpen,
+      // a gem is picked: Esc / a click on empty ground lets go of it
+      hasPick: () => !!picked,
+      deselect: () => deselect(),
+      // a word result from the host (pop quizzes), for learning mode: "right" | "wrong" | "missed"
+      noteWord: (w, what) => logWord(w, what),
+      runWords: () => JSON.parse(JSON.stringify(runWords)),
+      learnState: () => learn ? { mode: learn.mode, i: learn.i, queue: learn.queue.length, done: learn.done, right: learn.right, total: learn.list.length } : null,
+      startLearn: () => startLearn(),
+      bonusWaiting: () => bonusWaiting(),
       gems: () => gems.map(g => ({ id: g.word.id, side: g.side, x: g.x, y: g.y, w: g.w, h: g.h })),
       setSlow: on => setSlow(on),
       showQuestion: q => showQuestion(q),

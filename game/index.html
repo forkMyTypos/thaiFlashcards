@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=ed5ceea369"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=4f26555f4d"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -57,8 +57,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   <iframe id="site" title="The course"></iframe>
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
-<script src="../games/flash/flash-sim.js?v=82e83e2ab4"></script>
-<script src="../games/flash/flash-game.js?v=b774e3bebe"></script>
+<script src="../games/flash/flash-sim.js?v=f6b035aade"></script>
+<script src="../games/flash/flash-game.js?v=622b492608"></script>
 <script>
 (function () {
   "use strict";
@@ -102,6 +102,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
       // a pop quiz over the lesson: right = a power-up; wrong or closed costs nothing (it is only noted)
       if (m.right) window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: { v: 1, kind: "reward", source: "popquiz", strength: 1, word: m.word || "" } }));
       else if (api) api.sim.noteStudy(m.closed ? "popquiz_closed" : m.timeout ? "popquiz_timeout" : "popquiz_wrong");
+      // for learning mode after Flash falls
+      if (api && api.noteWord && m.w && !m.closed) api.noteWord(m.w, m.right ? "right" : m.timeout ? "missed" : "wrong");
     }
   });
   // ...and the game's state back to the course (it lights up the quiz button in danger)
@@ -162,7 +164,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
         rows.sort(function (a, b) { return b.updated - a.updated; })
             .forEach(function (r) { if (!seen[r.uid]) { seen[r.uid] = 1; runs.push(r.data); } });
         var blob = new Blob([JSON.stringify({ format: "ftc-telemetry", version: 1, site: location.host,
-                                              exported_at: new Date().toISOString(), runs: runs })], { type: "application/json" });
+                                              exported_at: new Date().toISOString(), runs: runs,
+                                              save: api && api.save ? api.save() : null })], { type: "application/json" });
         var a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
         a.download = "flash-the-cat-game-data-" + new Date().toISOString().slice(0, 10) + ".json";
@@ -191,6 +194,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
                                                      askQuestion: askQuestion,
                                                      onAnswer: function (q, right) { toSite({ type: "ftc:answered", id: q.right, right: right }); },
                                                      onWord: function (r) { toSite(Object.assign({ type: "ftc:word" }, r)); },
+                                                     // Learn / Test changed: the course weights its words and questions by it
+                                                     onMode: function () { tell(); },
                                                      goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); } })
     .then(function (a) {
       api = a; window.ftc = a;
@@ -208,6 +213,7 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   document.addEventListener("keydown", function (e) {
     var t = e.target; if (t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
     if (api && api.questionOpen && api.questionOpen()) return;     // the game's own question has the keys
+    if (e.key === "Escape" && api && api.hasPick && api.hasPick()) return;   // Esc lets go of a picked gem (the game does it)
     if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Escape" || /^[1-4]$/.test(e.key)) {
       if (e.key.indexOf("Arrow") === 0) e.preventDefault();
       toSite({ type: "ftc:key", key: e.key });

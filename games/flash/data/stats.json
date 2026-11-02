@@ -111,7 +111,7 @@
   {
     "id": "movement_speed",
     "name": "Movement speed",
-    "purpose": "Movement rate (Flash is stationary)",
+    "purpose": "Movement rate (Flash moves on his own; the player never steers him)",
     "unit": "units_per_second",
     "applies_to": "both",
     "flash_start": 0,
