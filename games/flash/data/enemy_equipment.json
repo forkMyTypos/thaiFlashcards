@@ -1,0 +1,443 @@
+[
+  {
+    "id": "rusty_sword",
+    "name": "Rusty Sword",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 5
+      }
+    ],
+    "special": "basic melee"
+  },
+  {
+    "id": "bone_club",
+    "name": "Bone Club",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 8
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.7
+      }
+    ],
+    "special": "knockback"
+  },
+  {
+    "id": "rusty_spear",
+    "name": "Rusty Spear",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 6
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.8
+      },
+      {
+        "stat": "attack_range",
+        "op": "add",
+        "value": 30
+      }
+    ],
+    "special": "longer reach"
+  },
+  {
+    "id": "bone_bow",
+    "name": "Bone Bow",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 4
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.8
+      },
+      {
+        "stat": "attack_range",
+        "op": "add",
+        "value": 240
+      }
+    ],
+    "special": "ranged projectile"
+  },
+  {
+    "id": "skeleton_crossbow",
+    "name": "Crossbow",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 8
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.5
+      },
+      {
+        "stat": "attack_range",
+        "op": "add",
+        "value": 260
+      }
+    ],
+    "special": "piercing chance"
+  },
+  {
+    "id": "skull_mace",
+    "name": "Skull Mace",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 12
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.5
+      }
+    ],
+    "special": "heavy impact"
+  },
+  {
+    "id": "skeleton_daggers",
+    "name": "Twin Daggers",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 3
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 1.8
+      }
+    ],
+    "special": "rapid attacks"
+  },
+  {
+    "id": "flaming_sword",
+    "name": "Flaming Sword",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 10
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.8
+      }
+    ],
+    "special": "burn"
+  },
+  {
+    "id": "frost_axe",
+    "name": "Frost Axe",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 9
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.7
+      }
+    ],
+    "special": "freeze chance"
+  },
+  {
+    "id": "lightning_staff",
+    "name": "Lightning Staff",
+    "slot": "weapon",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add",
+        "value": 7
+      },
+      {
+        "stat": "attack_speed",
+        "op": "multiply",
+        "value": 0.6
+      },
+      {
+        "stat": "attack_range",
+        "op": "add",
+        "value": 200
+      }
+    ],
+    "special": "shock"
+  },
+  {
+    "id": "scrap_armour",
+    "name": "Scrap Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 10
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.02
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "bone_armour",
+    "name": "Bone Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 20
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "iron_armour",
+    "name": "Iron Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 35
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "steel_armour",
+    "name": "Steel Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 50
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.15
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "golden_armour",
+    "name": "Golden Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 40
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.12
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "shadow_armour",
+    "name": "Shadow Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 15
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.05
+      },
+      {
+        "stat": "dodge",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "spiked_armour",
+    "name": "Spiked Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 25
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.08
+      }
+    ],
+    "special": "thorns"
+  },
+  {
+    "id": "dragon_armour",
+    "name": "Dragon Armour",
+    "slot": "armour",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 75
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.2
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "skull_ring",
+    "name": "Skull Ring",
+    "slot": "accessory",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "rusty_amulet",
+    "name": "Rusty Amulet",
+    "slot": "accessory",
+    "modifiers": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 10
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "speed_boots",
+    "name": "Speed Boots",
+    "slot": "accessory",
+    "modifiers": [
+      {
+        "stat": "movement_speed",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "lucky_charm",
+    "name": "Lucky Charm",
+    "slot": "accessory",
+    "modifiers": [
+      {
+        "stat": "crit_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "vampire_ring",
+    "name": "Vampire Ring",
+    "slot": "accessory",
+    "modifiers": [
+      {
+        "stat": "lifesteal",
+        "op": "add",
+        "value": 0.02
+      }
+    ],
+    "special": ""
+  },
+  {
+    "id": "fire_pendant",
+    "name": "Fire Pendant",
+    "slot": "accessory",
+    "modifiers": [],
+    "special": "fire resistance"
+  },
+  {
+    "id": "ice_pendant",
+    "name": "Ice Pendant",
+    "slot": "accessory",
+    "modifiers": [],
+    "special": "freeze resistance"
+  },
+  {
+    "id": "berserker_mask",
+    "name": "Berserker Mask",
+    "slot": "accessory",
+    "modifiers": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.2
+      },
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": -0.1
+      }
+    ],
+    "special": ""
+  }
+]

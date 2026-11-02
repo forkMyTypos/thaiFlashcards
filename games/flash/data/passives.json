@@ -1,0 +1,277 @@
+[
+  {
+    "id": "bloodlust",
+    "name": "Bloodlust",
+    "category": "combat",
+    "trigger": "on_kill",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.005
+      }
+    ],
+    "description": "+0.5% damage per kill, stacks for the run",
+    "level_milestones": [
+      "higher levels: more per kill",
+      "eventually kill streaks trigger explosions"
+    ]
+  },
+  {
+    "id": "adrenaline",
+    "name": "Adrenaline",
+    "category": "combat",
+    "trigger": "below_hp",
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% attack speed while below 30% HP",
+    "trigger_value": 0.3
+  },
+  {
+    "id": "predator",
+    "name": "Predator",
+    "category": "combat",
+    "trigger": "target_full_hp",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% damage against enemies at full HP"
+  },
+  {
+    "id": "executioner",
+    "name": "Executioner",
+    "category": "combat",
+    "trigger": "target_low_hp",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.25
+      }
+    ],
+    "description": "+25% damage against enemies below 20% HP",
+    "trigger_value": 0.2
+  },
+  {
+    "id": "overkill",
+    "name": "Overkill",
+    "category": "combat",
+    "trigger": "on_kill",
+    "effects": [],
+    "description": "Excess damage has a 10% chance to hit another enemy",
+    "special": "overflow damage, 10% chance"
+  },
+  {
+    "id": "berserker",
+    "name": "Berserker",
+    "category": "combat",
+    "trigger": "kill_streak",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.02
+      }
+    ],
+    "description": "+2% damage for every 5 consecutive kills",
+    "trigger_value": 5
+  },
+  {
+    "id": "regeneration",
+    "name": "Regeneration",
+    "category": "survival",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "hp_regen",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "description": "+1 HP/sec"
+  },
+  {
+    "id": "lifesteal",
+    "name": "Lifesteal",
+    "category": "survival",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "lifesteal",
+        "op": "add",
+        "value": 0.01
+      }
+    ],
+    "description": "Heal 1% of damage dealt"
+  },
+  {
+    "id": "second_wind",
+    "name": "Second Wind",
+    "category": "survival",
+    "trigger": "below_hp",
+    "effects": [],
+    "description": "Recover 20% HP when dropping below 25% HP",
+    "trigger_value": 0.25,
+    "special": "heal 20% max HP once per drop"
+  },
+  {
+    "id": "iron_body",
+    "name": "Iron Body",
+    "category": "survival",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% defence"
+  },
+  {
+    "id": "last_stand",
+    "name": "Last Stand",
+    "category": "survival",
+    "trigger": "below_hp",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.3
+      }
+    ],
+    "description": "+30% damage while below 15% HP",
+    "trigger_value": 0.15
+  },
+  {
+    "id": "rebirth",
+    "name": "Rebirth",
+    "category": "survival",
+    "trigger": "on_death",
+    "effects": [],
+    "description": "Revive once with 25% HP",
+    "special": "revive at 25% HP, once"
+  },
+  {
+    "id": "fortune",
+    "name": "Fortune",
+    "category": "economy",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "luck",
+        "op": "add",
+        "value": 10
+      }
+    ],
+    "description": "+10 luck"
+  },
+  {
+    "id": "greed",
+    "name": "Greed",
+    "category": "economy",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "gold_gain",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "description": "+15% gold"
+  },
+  {
+    "id": "scholar",
+    "name": "Scholar",
+    "category": "economy",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "xp_gain",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "description": "+15% XP"
+  },
+  {
+    "id": "treasure_hunter",
+    "name": "Treasure Hunter",
+    "category": "economy",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "item_drop_chance",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% item drop chance"
+  },
+  {
+    "id": "experience_magnet",
+    "name": "Experience Magnet",
+    "category": "economy",
+    "trigger": "always",
+    "effects": [
+      {
+        "stat": "pickup_range",
+        "op": "add_pct",
+        "value": 0.5
+      }
+    ],
+    "description": "Automatically attracts XP from further away",
+    "special": "pickup range value guessed"
+  },
+  {
+    "id": "necromancy",
+    "name": "Necromancy",
+    "category": "strange",
+    "trigger": "on_kill",
+    "effects": [],
+    "description": "5% chance killed skeletons rise as allies",
+    "special": "5% raise chance",
+    "level_milestones": [
+      "L5 raised skeletons deal 50% more damage",
+      "L10 double health",
+      "L20 skeletons can raise other skeletons"
+    ]
+  },
+  {
+    "id": "thorns",
+    "name": "Thorns",
+    "category": "strange",
+    "trigger": "on_hit_taken",
+    "effects": [
+      {
+        "stat": "thorns_pct",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "description": "Reflect 10% of incoming damage"
+  },
+  {
+    "id": "chaos",
+    "name": "Chaos",
+    "category": "strange",
+    "trigger": "interval",
+    "effects": [],
+    "description": "Every 10 seconds, trigger a random beneficial effect",
+    "trigger_value": 10,
+    "level_milestones": [
+      "L5 every 7 seconds",
+      "L10 chance of two effects",
+      "L20 occasionally something completely unexpected"
+    ]
+  }
+]

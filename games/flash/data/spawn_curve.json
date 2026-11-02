@@ -1,0 +1,75 @@
+[
+  {
+    "id": "stage_1",
+    "stage": 1,
+    "spawn_interval": 2.0,
+    "per_spawn_min": 1,
+    "per_spawn_max": 1,
+    "active_target": 40
+  },
+  {
+    "id": "stage_5",
+    "stage": 5,
+    "spawn_interval": 1.8,
+    "per_spawn_min": 1,
+    "per_spawn_max": 2,
+    "active_target": 50
+  },
+  {
+    "id": "stage_10",
+    "stage": 10,
+    "spawn_interval": 1.5,
+    "per_spawn_min": 2,
+    "per_spawn_max": 2,
+    "active_target": 65
+  },
+  {
+    "id": "stage_20",
+    "stage": 20,
+    "spawn_interval": 1.2,
+    "per_spawn_min": 2,
+    "per_spawn_max": 3,
+    "active_target": 90
+  },
+  {
+    "id": "stage_30",
+    "stage": 30,
+    "spawn_interval": 1.0,
+    "per_spawn_min": 3,
+    "per_spawn_max": 3,
+    "active_target": 120
+  },
+  {
+    "id": "stage_50",
+    "stage": 50,
+    "spawn_interval": 0.8,
+    "per_spawn_min": 3,
+    "per_spawn_max": 4,
+    "active_target": 160
+  },
+  {
+    "id": "stage_75",
+    "stage": 75,
+    "spawn_interval": 0.6,
+    "per_spawn_min": 4,
+    "per_spawn_max": 5,
+    "active_target": 220
+  },
+  {
+    "id": "stage_100",
+    "stage": 100,
+    "spawn_interval": 0.5,
+    "per_spawn_min": 5,
+    "per_spawn_max": 6,
+    "active_target": 300
+  },
+  {
+    "id": "stage_150",
+    "stage": 150,
+    "spawn_interval": 0.4,
+    "per_spawn_min": 6,
+    "per_spawn_max": 8,
+    "active_target": 400,
+    "notes": "150+ keeps increasing; values guessed. Active target is soft: spawn more if Flash kills everything instantly"
+  }
+]

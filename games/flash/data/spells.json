@@ -1,0 +1,297 @@
+[
+  {
+    "id": "fireball",
+    "name": "Fireball",
+    "school": "elemental",
+    "element": "fire",
+    "behaviour": "projectile",
+    "cooldown": 2.0,
+    "unlock_stage": 1,
+    "description": "Homing fire projectile that explodes on impact, damaging nearby enemies.",
+    "damage": 25,
+    "range": 400,
+    "radius": 60,
+    "applies_effects": [
+      "burn"
+    ],
+    "targeting": "smart"
+  },
+  {
+    "id": "chain_lightning",
+    "name": "Chain Lightning",
+    "school": "elemental",
+    "element": "lightning",
+    "behaviour": "chain",
+    "cooldown": 3.0,
+    "unlock_stage": 1,
+    "description": "Strikes one skeleton, then jumps to another.",
+    "damage": 18,
+    "targets": 2,
+    "targeting": "smart",
+    "level_path": [
+      "L1 jumps to 2",
+      "L2 +20% damage",
+      "L3 jumps to 3",
+      "L4 faster cooldown",
+      "L5 can critically strike",
+      "L6 jumps to 5"
+    ]
+  },
+  {
+    "id": "ice_shards",
+    "name": "Ice Shards",
+    "school": "elemental",
+    "element": "ice",
+    "behaviour": "projectile",
+    "cooldown": 2.5,
+    "unlock_stage": 2,
+    "description": "Fires three piercing ice shards at nearby enemies. Chance to freeze.",
+    "damage": 12,
+    "projectile_count": 3,
+    "pierce": 1,
+    "applies_effects": [
+      "freeze"
+    ],
+    "targeting": "spread"
+  },
+  {
+    "id": "frost_nova",
+    "name": "Frost Nova",
+    "school": "elemental",
+    "element": "ice",
+    "behaviour": "nova",
+    "cooldown": 7.0,
+    "unlock_stage": 1,
+    "description": "Freezes enemies around Flash. Waits until enough skeletons are close.",
+    "damage": 15,
+    "radius": 150,
+    "applies_effects": [
+      "freeze"
+    ],
+    "targeting": "area",
+    "min_targets": 5
+  },
+  {
+    "id": "meteor_shower",
+    "name": "Meteor Shower",
+    "school": "elemental",
+    "element": "fire",
+    "behaviour": "area_drop",
+    "cooldown": 8.0,
+    "unlock_stage": 3,
+    "description": "Drops several meteors onto groups of enemies.",
+    "damage": 50,
+    "radius": 100,
+    "projectile_count": 5,
+    "applies_effects": [
+      "burn"
+    ],
+    "targeting": "area"
+  },
+  {
+    "id": "tornado",
+    "name": "Tornado",
+    "school": "elemental",
+    "element": "wind",
+    "behaviour": "vortex",
+    "cooldown": 8.0,
+    "unlock_stage": 2,
+    "description": "Pulls skeletons together and damages them.",
+    "damage_per_second": 8,
+    "duration": 4,
+    "radius": 90
+  },
+  {
+    "id": "earthquake",
+    "name": "Earthquake",
+    "school": "elemental",
+    "element": "earth",
+    "behaviour": "ground_area",
+    "cooldown": 9.0,
+    "unlock_stage": 3,
+    "description": "Shakes the ground, damaging and knocking enemies back.",
+    "damage": 35,
+    "radius": 180,
+    "applies_effects": [
+      "knockback"
+    ]
+  },
+  {
+    "id": "shadow_bolt",
+    "name": "Shadow Bolt",
+    "school": "dark",
+    "element": "dark",
+    "behaviour": "projectile",
+    "cooldown": 2.5,
+    "unlock_stage": 1,
+    "description": "Fast dark homing projectile.",
+    "damage": 30,
+    "range": 450,
+    "targeting": "homing"
+  },
+  {
+    "id": "soul_drain",
+    "name": "Soul Drain",
+    "school": "dark",
+    "element": "dark",
+    "behaviour": "drain",
+    "cooldown": 6.0,
+    "unlock_stage": 2,
+    "description": "Drains health from nearby enemies and gives it to Flash.",
+    "damage_per_second": 12,
+    "duration": 3,
+    "radius": 120
+  },
+  {
+    "id": "death_mark",
+    "name": "Death Mark",
+    "school": "dark",
+    "element": "dark",
+    "behaviour": "mark",
+    "cooldown": 8.0,
+    "unlock_stage": 3,
+    "description": "Marks a powerful target: it takes +40% damage.",
+    "damage_taken_bonus": 0.4,
+    "duration": 6,
+    "targeting": "strongest",
+    "notes": "unlock stage guessed (not in plan)"
+  },
+  {
+    "id": "plague",
+    "name": "Plague",
+    "school": "dark",
+    "element": "poison",
+    "behaviour": "spread",
+    "cooldown": 7.0,
+    "unlock_stage": 3,
+    "description": "Poison that spreads between enemies.",
+    "damage_per_second": 5,
+    "duration": 5,
+    "applies_effects": [
+      "poison",
+      "plague_spread"
+    ]
+  },
+  {
+    "id": "bone_curse",
+    "name": "Bone Curse",
+    "school": "dark",
+    "element": "dark",
+    "behaviour": "curse",
+    "cooldown": 6.0,
+    "unlock_stage": 2,
+    "description": "Weakens enemy defence.",
+    "damage": 20,
+    "defence_reduction": 0.2,
+    "duration": 5,
+    "notes": "unlock stage and defence reduction guessed"
+  },
+  {
+    "id": "soul_explosion",
+    "name": "Soul Explosion",
+    "school": "dark",
+    "element": "dark",
+    "behaviour": "death_burst",
+    "cooldown": 10.0,
+    "unlock_stage": 4,
+    "description": "Explodes around a dying enemy.",
+    "damage": 45,
+    "radius": 100,
+    "applies_effects": [
+      "soul_explosion"
+    ]
+  },
+  {
+    "id": "magic_shield",
+    "name": "Magic Shield",
+    "school": "defensive",
+    "element": "arcane",
+    "behaviour": "shield",
+    "cooldown": 8.0,
+    "unlock_stage": 2,
+    "description": "Temporary barrier that absorbs 40 damage.",
+    "shield": 40,
+    "duration": 6
+  },
+  {
+    "id": "healing_aura",
+    "name": "Healing Aura",
+    "school": "defensive",
+    "element": "holy",
+    "behaviour": "heal_aura",
+    "cooldown": 10.0,
+    "unlock_stage": 2,
+    "description": "Heals 5 HP per second for 3 seconds.",
+    "heal_per_second": 5,
+    "duration": 3,
+    "notes": "unlock stage guessed"
+  },
+  {
+    "id": "holy_light",
+    "name": "Holy Light",
+    "school": "defensive",
+    "element": "holy",
+    "behaviour": "heal_burst",
+    "cooldown": 7.0,
+    "unlock_stage": 3,
+    "description": "Damages nearby enemies and heals Flash.",
+    "damage": 35,
+    "heal": 15,
+    "radius": 130,
+    "notes": "unlock stage and heal amount guessed"
+  },
+  {
+    "id": "time_warp",
+    "name": "Time Warp",
+    "school": "defensive",
+    "element": "arcane",
+    "behaviour": "slow_field",
+    "cooldown": 12.0,
+    "unlock_stage": 4,
+    "description": "Slows nearby enemies by 40% for 3 seconds.",
+    "slow": 0.4,
+    "duration": 3,
+    "radius": 200
+  },
+  {
+    "id": "spirit_wolves",
+    "name": "Spirit Wolves",
+    "school": "summoning",
+    "element": "arcane",
+    "behaviour": "summon",
+    "cooldown": 12.0,
+    "unlock_stage": 3,
+    "description": "Summons 2 spirit wolves that attack enemies.",
+    "damage": 15,
+    "summons": 2,
+    "summon_duration": 8,
+    "notes": "summon duration/HP guessed"
+  },
+  {
+    "id": "ghost_cats",
+    "name": "Ghost Cats",
+    "school": "summoning",
+    "element": "arcane",
+    "behaviour": "summon",
+    "cooldown": 15.0,
+    "unlock_stage": 4,
+    "description": "Summons 2 spectral cats that periodically attack.",
+    "damage": 20,
+    "summons": 2,
+    "summon_duration": 8,
+    "notes": "summon duration/HP guessed"
+  },
+  {
+    "id": "skeleton_conversion",
+    "name": "Skeleton Conversion",
+    "school": "summoning",
+    "element": "dark",
+    "behaviour": "convert",
+    "cooldown": 18.0,
+    "unlock_stage": 4,
+    "description": "Temporarily turns an enemy into an ally.",
+    "targets": 1,
+    "duration": 10,
+    "notes": "conversion duration guessed"
+  }
+]

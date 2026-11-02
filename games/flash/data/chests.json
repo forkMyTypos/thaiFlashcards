@@ -1,0 +1,39 @@
+[
+  {
+    "id": "wooden",
+    "name": "Wooden chest",
+    "chance": 0.6,
+    "reward_rarities": [
+      "common",
+      "uncommon"
+    ]
+  },
+  {
+    "id": "silver",
+    "name": "Silver chest",
+    "chance": 0.25,
+    "reward_rarities": [
+      "uncommon",
+      "rare"
+    ]
+  },
+  {
+    "id": "golden",
+    "name": "Golden chest",
+    "chance": 0.12,
+    "reward_rarities": [
+      "rare",
+      "epic"
+    ]
+  },
+  {
+    "id": "mythical",
+    "name": "Mythical chest",
+    "chance": 0.03,
+    "reward_rarities": [
+      "epic",
+      "legendary",
+      "mythical"
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "common",
+    "name": "Common",
+    "weight": 0.6,
+    "colour": "#9aa2af"
+  },
+  {
+    "id": "uncommon",
+    "name": "Uncommon",
+    "weight": 0.25,
+    "colour": "#34c98e"
+  },
+  {
+    "id": "rare",
+    "name": "Rare",
+    "weight": 0.1,
+    "colour": "#4f9cf9"
+  },
+  {
+    "id": "epic",
+    "name": "Epic",
+    "weight": 0.04,
+    "colour": "#a66cff"
+  },
+  {
+    "id": "legendary",
+    "name": "Legendary",
+    "weight": 0.009,
+    "colour": "#f5b355"
+  },
+  {
+    "id": "mythical",
+    "name": "Mythical",
+    "weight": 0.001,
+    "colour": "#f2705f"
+  }
+]

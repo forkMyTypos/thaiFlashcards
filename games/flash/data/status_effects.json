@@ -1,0 +1,214 @@
+[
+  {
+    "id": "burn",
+    "name": "Burn",
+    "category": "elemental",
+    "stacking": "refresh_and_increase",
+    "animation": "burning",
+    "description": "Fire damage over time",
+    "damage_per_second": 5,
+    "duration": 4,
+    "interacts_with": [
+      "lava"
+    ]
+  },
+  {
+    "id": "freeze",
+    "name": "Freeze",
+    "category": "elemental",
+    "stacking": "increase_chance",
+    "animation": "frozen",
+    "description": "Stops enemy movement",
+    "chance": 0.2,
+    "duration": 2,
+    "interacts_with": [
+      "shatter"
+    ]
+  },
+  {
+    "id": "shock",
+    "name": "Shock",
+    "category": "elemental",
+    "stacking": "increase_chance",
+    "animation": "electric",
+    "description": "Damages and briefly stuns",
+    "damage": 15,
+    "chance": 0.2,
+    "duration": 0.3
+  },
+  {
+    "id": "poison",
+    "name": "Poison",
+    "category": "elemental",
+    "stacking": "refresh_and_increase",
+    "animation": "poisoned",
+    "description": "Damage over time",
+    "damage_per_second": 4,
+    "duration": 5,
+    "interacts_with": [
+      "plague_spread"
+    ]
+  },
+  {
+    "id": "bleed",
+    "name": "Bleed",
+    "category": "elemental",
+    "stacking": "refresh_and_increase",
+    "animation": "impact",
+    "description": "Physical damage over time",
+    "damage_per_second": 5,
+    "duration": 3,
+    "tint": "#d33",
+    "interacts_with": [
+      "execution"
+    ]
+  },
+  {
+    "id": "explosion",
+    "name": "Explosion",
+    "category": "elemental",
+    "stacking": "increase_damage_radius",
+    "animation": "explosion",
+    "description": "Damages nearby enemies",
+    "damage": 30,
+    "radius": 80,
+    "interacts_with": [
+      "chain_reaction"
+    ]
+  },
+  {
+    "id": "lava",
+    "name": "Lava",
+    "category": "elemental",
+    "stacking": "refresh_and_increase",
+    "animation": "burning",
+    "description": "Creates a damaging ground area",
+    "damage_per_second": 8,
+    "duration": 5,
+    "radius": 60
+  },
+  {
+    "id": "knockback",
+    "name": "Knockback",
+    "category": "physical",
+    "stacking": "increase_force",
+    "animation": "knockback",
+    "description": "Pushes enemies away",
+    "force": 100
+  },
+  {
+    "id": "stun",
+    "name": "Stun",
+    "category": "physical",
+    "stacking": "increase_duration",
+    "animation": "electric",
+    "description": "Prevents enemy actions",
+    "duration": 1,
+    "tint": "#ffd84a"
+  },
+  {
+    "id": "pierce",
+    "name": "Pierce",
+    "category": "physical",
+    "stacking": "increase_targets",
+    "animation": "impact",
+    "description": "Projectile passes through another enemy",
+    "targets": 1
+  },
+  {
+    "id": "ricochet",
+    "name": "Ricochet",
+    "category": "physical",
+    "stacking": "increase_targets",
+    "animation": "impact",
+    "description": "Projectile jumps to another target",
+    "targets": 1
+  },
+  {
+    "id": "shatter",
+    "name": "Shatter",
+    "category": "physical",
+    "stacking": "increase_damage",
+    "animation": "frozen",
+    "description": "Extra damage against frozen enemies",
+    "damage": 40,
+    "requires": "freeze"
+  },
+  {
+    "id": "crush",
+    "name": "Crush",
+    "category": "physical",
+    "stacking": "increase_damage",
+    "animation": "knockback",
+    "description": "Extra damage against armoured enemies",
+    "bonus_pct": 0.2
+  },
+  {
+    "id": "cleave",
+    "name": "Cleave",
+    "category": "physical",
+    "stacking": "increase_damage",
+    "animation": "impact",
+    "description": "Spreads damage to nearby enemies",
+    "bonus_pct": 0.5,
+    "radius": 60
+  },
+  {
+    "id": "soul_explosion",
+    "name": "Soul Explosion",
+    "category": "death",
+    "stacking": "increase_damage_radius",
+    "animation": "death",
+    "description": "Dead enemy explodes with magical energy",
+    "damage": 25,
+    "radius": 100
+  },
+  {
+    "id": "chain_reaction",
+    "name": "Chain Reaction",
+    "category": "death",
+    "stacking": "increase_chance",
+    "animation": "explosion",
+    "description": "One explosion can trigger another",
+    "chance": 0.15
+  },
+  {
+    "id": "bone_shrapnel",
+    "name": "Bone Shrapnel",
+    "category": "death",
+    "stacking": "increase_damage",
+    "animation": "death",
+    "description": "Dead skeleton fires bone fragments",
+    "damage": 8,
+    "projectiles": 5
+  },
+  {
+    "id": "soul_harvest",
+    "name": "Soul Harvest",
+    "category": "death",
+    "stacking": "increase_damage",
+    "animation": "healing",
+    "description": "Flash gains health per kill",
+    "heal": 2
+  },
+  {
+    "id": "plague_spread",
+    "name": "Plague Spread",
+    "category": "death",
+    "stacking": "increase_chance",
+    "animation": "poisoned",
+    "description": "Poison jumps to nearby enemies",
+    "chance": 0.2,
+    "radius": 80
+  },
+  {
+    "id": "execution",
+    "name": "Execution",
+    "category": "death",
+    "stacking": "increase_chance",
+    "animation": "death",
+    "description": "Instantly kills enemies below 10% HP",
+    "chance": 0.1,
+    "hp_threshold": 0.1
+  }
+]

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>🎮 Game mode · Flash the Cat</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=b9c068167c"/>
+<style>
+/* Game mode: Flash the Cat in a column on the left, the course in a frame on
+   the right. The game lives in this page, so moving around the course only
+   reloads the frame and the game never stops. */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
+  font: 13px/1.4 "Segoe UI", system-ui, sans-serif; overflow: hidden; }
+.gm { display: flex; height: 100vh; }
+.gm-col { width: 33%; min-width: 300px; height: 100vh; flex: none; display: flex; flex-direction: column;
+  border-right: 1px solid #2e333d; position: relative; }
+#game { flex: 1; min-height: 0; position: relative; }
+.gm-bar { flex: none; display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #16181d;
+  border-top: 1px solid #2e333d; font-size: 12px; color: #9aa2af; }
+.gm-bar .sp { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gm-bar button { background: #23272f; color: #e8eaee; border: 1px solid #2e333d; border-radius: 7px;
+  padding: 3px 9px; font: inherit; cursor: pointer; white-space: nowrap; }
+.gm-bar button:hover { border-color: #4f9cf9; }
+#site { flex: 1; height: 100vh; border: 0; background: #101014; min-width: 0; }
+.gm-note { position: absolute; left: 12px; right: 12px; bottom: 44px; z-index: 10; background: #1b1e24;
+  border: 1px solid #4f9cf9; border-radius: 12px; padding: 12px 14px; box-shadow: 0 8px 30px rgba(0,0,0,.5);
+  font-size: 13px; line-height: 1.5; }
+.gm-note b { color: #ffd27a; }
+.gm-note p { margin: 0 0 8px; color: #c9ced6; }
+.gm-note .row { display: flex; gap: 8px; justify-content: flex-end; }
+.gm-note button { background: #4f9cf9; color: #0d1117; border: 0; border-radius: 8px; padding: 6px 14px;
+  font: inherit; font-weight: 700; cursor: pointer; }
+.gm-note button.ghost { background: transparent; color: #9aa2af; border: 1px solid #2e333d; font-weight: 400; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous"
+  referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
+</head>
+<body>
+<div class="gm">
+  <div class="gm-col">
+    <div id="game"></div>
+    <div class="gm-bar">
+      <span class="sp" id="gm-runs" title="How your games go is kept in this browser to help balance the game">🧪 Testing</span>
+      <button id="gm-dl" title="Save how your games went as a file (to send to us)">⬇ Game data</button>
+      <button id="gm-exit" title="Back to the course without the game">✕ Leave</button>
+    </div>
+  </div>
+  <iframe id="site" title="The course"></iframe>
+</div>
+<script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
+<script src="../games/flash/flash-sim.js?v=21e2688a37"></script>
+<script src="../games/flash/flash-game.js?v=173b670c02"></script>
+<script>
+(function () {
+  "use strict";
+  var site = document.getElementById("site");
+  var ROOT = new URL("../", location.href).href;
+  var started = Date.now();
+
+  // ------------------------------------------------------------ the course
+  // ?p= is where the reader was (a path inside the site). Only ever a path:
+  // nothing that could point the frame at another site.
+  var p = new URLSearchParams(location.search).get("p") || "";
+  if (/^[a-z][a-z0-9+.-]*:|^\/\/|\.\./i.test(p)) p = "";
+  site.src = ROOT + p.replace(/^\/+/, "");
+  function rel(href) { return href.indexOf(ROOT) === 0 ? href.slice(ROOT.length) : ""; }
+  function siteHref() { try { return site.contentWindow.location.href; } catch (e) { return ROOT; } }
+
+  var pages = 0, lessons = {}, nav = [];
+  site.addEventListener("load", function () {
+    var w = site.contentWindow, r;
+    try { r = rel(w.location.href); } catch (e) { return; }
+    pages++;
+    try { var les = w.document.body.dataset.lesson; if (les) lessons[les] = 1; } catch (e) {}
+    if (nav.length < 400) nav.push([Math.round((Date.now() - started) / 1000), r.split("#")[0]]);
+    try { history.replaceState(null, "", "?p=" + encodeURIComponent(r)); } catch (e) {}
+    try { document.title = "🎮 " + w.document.title; } catch (e) {}
+    tell();
+  });
+  function leave() { location.href = siteHref(); }
+  document.getElementById("gm-exit").onclick = leave;
+
+  // messages from the course: study rewards, and "leave game mode"
+  window.addEventListener("message", function (e) {
+    if (e.origin !== location.origin || e.source !== site.contentWindow) return;
+    var m = e.data || {};
+    if (m.type === "inaflash:reward") window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: m.detail || {} }));
+    else if (m.type === "ftc:exit") leave();
+  });
+  // ...and the game's state back to the course (it lights up the quiz button in danger)
+  function tell() { try { site.contentWindow.postMessage({ type: "ftc:state", state: window.FTC_STATE }, location.origin); } catch (e) {} }
+  window.addEventListener("inaflash:game", function (e) { window.FTC_STATE = (e.detail || {}).state; tell(); });
+
+  // --------------------------------------------------- how the games go
+  // Every run is kept in this browser (IndexedDB through Dexie, or
+  // localStorage if Dexie didn't load) and nowhere else. "⬇ Game data" saves
+  // them as a file, which Gamebase's Balance screen imports.
+  var db = null, LS = "ftc.runs", MAX = 400;
+  try { if (window.Dexie) { db = new Dexie("ftc-telemetry"); db.version(1).stores({ runs: "uid, updated" }); } } catch (e) { db = null; }
+  function lsAll() { try { return JSON.parse(localStorage.getItem(LS) || "{}"); } catch (e) { return {}; } }
+  function lsPut(row) {
+    var all = lsAll(); all[row.uid] = row;
+    var keys = Object.keys(all).sort(function (a, b) { return all[a].updated - all[b].updated; });
+    while (keys.length > 30) delete all[keys.shift()];
+    try { localStorage.setItem(LS, JSON.stringify(all)); } catch (e) {}
+  }
+  function save(t) {
+    var row = { uid: t.uid, updated: Date.now(), data: t };
+    if (db) db.runs.put(row).then(prune).then(count).catch(function () { lsPut(row); count(); });
+    else { lsPut(row); count(); }
+  }
+  function prune() {
+    return db.runs.count().then(function (n) {
+      if (n > MAX) return db.runs.orderBy("updated").limit(n - MAX).delete();
+    });
+  }
+  function all() {
+    var fromLs = Object.values(lsAll());
+    if (!db) return Promise.resolve(fromLs);
+    return db.runs.toArray().then(function (r) { return r.concat(fromLs); }).catch(function () { return fromLs; });
+  }
+  function count() {
+    all().then(function (rows) {
+      document.getElementById("gm-runs").textContent = "🧪 Testing · " + rows.length + " game" + (rows.length === 1 ? "" : "s") + " recorded";
+    });
+  }
+  document.getElementById("gm-dl").onclick = function () {
+    if (api) api.sendTelemetry();
+    setTimeout(function () {
+      all().then(function (rows) {
+        var seen = {}, runs = [];
+        rows.sort(function (a, b) { return b.updated - a.updated; })
+            .forEach(function (r) { if (!seen[r.uid]) { seen[r.uid] = 1; runs.push(r.data); } });
+        var blob = new Blob([JSON.stringify({ format: "ftc-telemetry", version: 1, site: location.host,
+                                              exported_at: new Date().toISOString(), runs: runs })], { type: "application/json" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "flash-the-cat-game-data-" + new Date().toISOString().slice(0, 10) + ".json";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+      });
+    }, 300);
+  };
+
+  // what the course side of a run looked like
+  var hiddenMs = 0, hiddenAt = 0;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { hiddenAt = Date.now(); if (api) api.sendTelemetry(); }
+    else if (hiddenAt) { hiddenMs += Date.now() - hiddenAt; hiddenAt = 0; }
+  });
+  function meta() {
+    return { site: { pages: pages, lessons: Object.keys(lessons).length, nav: nav.slice(-400),
+                     hidden_s: Math.round((hiddenMs + (hiddenAt ? Date.now() - hiddenAt : 0)) / 1000),
+                     game_width: document.querySelector(".gm-col").offsetWidth, window_width: window.innerWidth } };
+  }
+
+  // ------------------------------------------------------------ the game
+  var api = null;
+  FlashGame.mount(document.getElementById("game"), { base: "../games/flash/", source: "site",
+                                                     telemetry: save, telemetryMeta: meta })
+    .then(function (a) { api = a; window.ftc = a; })
+    .catch(function (e) {
+      document.getElementById("game").innerHTML = '<p style="padding:20px;color:#f2705f">The game could not start: ' +
+        String(e && e.message || e).replace(/</g, "&lt;") + "</p>";
+    });
+  count();
+
+  // ------------------------------------------------- the testing notice
+  var NOTE = "ftc.noted";
+  var noted = false; try { noted = localStorage.getItem(NOTE) === "1"; } catch (e) {}
+  if (!noted) {
+    var n = document.createElement("div");
+    n.className = "gm-note";
+    n.innerHTML = "<p><b>🎮 Game mode is new, and we're testing it.</b></p>" +
+      "<p>Study as usual: quiz answers make Flash strong, reading, listening and flashcards help a little. " +
+      "Move around the course as much as you like; the game keeps going.</p>" +
+      "<p>To balance the game, this browser keeps a record of how each game goes (rounds, Flash's health, " +
+      "which kinds of studying you did, not your answers). It stays on this computer unless you press " +
+      "<b>⬇ Game data</b> and send us the file.</p>" +
+      '<div class="row"><button class="ghost" id="gm-no">Leave game mode</button><button id="gm-ok">OK, let\'s play</button></div>';
+    document.querySelector(".gm-col").appendChild(n);
+    n.querySelector("#gm-ok").onclick = function () { try { localStorage.setItem(NOTE, "1"); } catch (e) {} n.remove(); };
+    n.querySelector("#gm-no").onclick = leave;
+  }
+})();
+</script>
+</body>
+</html>

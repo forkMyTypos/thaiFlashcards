@@ -1,0 +1,1164 @@
+[
+  {
+    "id": "weapons.bone_boomerang",
+    "type": "weapons",
+    "target": "bone_boomerang",
+    "icon": "🪃",
+    "image": null
+  },
+  {
+    "id": "weapons.crossbow",
+    "type": "weapons",
+    "target": "crossbow",
+    "icon": "🏹",
+    "image": null
+  },
+  {
+    "id": "weapons.great_sword",
+    "type": "weapons",
+    "target": "great_sword",
+    "icon": "⚔️",
+    "image": null
+  },
+  {
+    "id": "weapons.pocket_cannon",
+    "type": "weapons",
+    "target": "pocket_cannon",
+    "icon": "💣",
+    "image": null
+  },
+  {
+    "id": "weapons.twin_daggers",
+    "type": "weapons",
+    "target": "twin_daggers",
+    "icon": "🗡️",
+    "image": null
+  },
+  {
+    "id": "weapons.throwing_axe",
+    "type": "weapons",
+    "target": "throwing_axe",
+    "icon": "🪓",
+    "image": null
+  },
+  {
+    "id": "weapons.whirling_blades",
+    "type": "weapons",
+    "target": "whirling_blades",
+    "icon": "🌀",
+    "image": null
+  },
+  {
+    "id": "weapons.skull_crusher",
+    "type": "weapons",
+    "target": "skull_crusher",
+    "icon": "🔨",
+    "image": null
+  },
+  {
+    "id": "weapons.ricochet_disc",
+    "type": "weapons",
+    "target": "ricochet_disc",
+    "icon": "💿",
+    "image": null
+  },
+  {
+    "id": "weapons.spear",
+    "type": "weapons",
+    "target": "spear",
+    "icon": "🔱",
+    "image": null
+  },
+  {
+    "id": "weapons.sniper_rifle",
+    "type": "weapons",
+    "target": "sniper_rifle",
+    "icon": "🔭",
+    "image": null
+  },
+  {
+    "id": "weapons.bone_saw",
+    "type": "weapons",
+    "target": "bone_saw",
+    "icon": "🪚",
+    "image": null
+  },
+  {
+    "id": "weapons.spiked_flail",
+    "type": "weapons",
+    "target": "spiked_flail",
+    "icon": "⛓️",
+    "image": null
+  },
+  {
+    "id": "weapons.repeater_cannon",
+    "type": "weapons",
+    "target": "repeater_cannon",
+    "icon": "🧨",
+    "image": null
+  },
+  {
+    "id": "weapons.razor_feathers",
+    "type": "weapons",
+    "target": "razor_feathers",
+    "icon": "🪶",
+    "image": null
+  },
+  {
+    "id": "weapons.giant_hammer",
+    "type": "weapons",
+    "target": "giant_hammer",
+    "icon": "🛠️",
+    "image": null
+  },
+  {
+    "id": "weapons.blade_storm",
+    "type": "weapons",
+    "target": "blade_storm",
+    "icon": "🌪️",
+    "image": null
+  },
+  {
+    "id": "weapons.skull_gatling",
+    "type": "weapons",
+    "target": "skull_gatling",
+    "icon": "💀",
+    "image": null
+  },
+  {
+    "id": "weapons.flying_fish",
+    "type": "weapons",
+    "target": "flying_fish",
+    "icon": "🐟",
+    "image": null
+  },
+  {
+    "id": "weapons.iron_paw",
+    "type": "weapons",
+    "target": "iron_paw",
+    "icon": "🐾",
+    "image": null
+  },
+  {
+    "id": "spells.fireball",
+    "type": "spells",
+    "target": "fireball",
+    "icon": "🔥",
+    "image": null
+  },
+  {
+    "id": "spells.chain_lightning",
+    "type": "spells",
+    "target": "chain_lightning",
+    "icon": "⚡",
+    "image": null
+  },
+  {
+    "id": "spells.ice_shards",
+    "type": "spells",
+    "target": "ice_shards",
+    "icon": "🧊",
+    "image": null
+  },
+  {
+    "id": "spells.frost_nova",
+    "type": "spells",
+    "target": "frost_nova",
+    "icon": "❄️",
+    "image": null
+  },
+  {
+    "id": "spells.meteor_shower",
+    "type": "spells",
+    "target": "meteor_shower",
+    "icon": "☄️",
+    "image": null
+  },
+  {
+    "id": "spells.tornado",
+    "type": "spells",
+    "target": "tornado",
+    "icon": "🌪️",
+    "image": null
+  },
+  {
+    "id": "spells.earthquake",
+    "type": "spells",
+    "target": "earthquake",
+    "icon": "🌋",
+    "image": null
+  },
+  {
+    "id": "spells.shadow_bolt",
+    "type": "spells",
+    "target": "shadow_bolt",
+    "icon": "🌑",
+    "image": null
+  },
+  {
+    "id": "spells.soul_drain",
+    "type": "spells",
+    "target": "soul_drain",
+    "icon": "🩸",
+    "image": null
+  },
+  {
+    "id": "spells.death_mark",
+    "type": "spells",
+    "target": "death_mark",
+    "icon": "🎯",
+    "image": null
+  },
+  {
+    "id": "spells.plague",
+    "type": "spells",
+    "target": "plague",
+    "icon": "☣️",
+    "image": null
+  },
+  {
+    "id": "spells.bone_curse",
+    "type": "spells",
+    "target": "bone_curse",
+    "icon": "🦴",
+    "image": null
+  },
+  {
+    "id": "spells.soul_explosion",
+    "type": "spells",
+    "target": "soul_explosion",
+    "icon": "👻",
+    "image": null
+  },
+  {
+    "id": "spells.magic_shield",
+    "type": "spells",
+    "target": "magic_shield",
+    "icon": "🛡️",
+    "image": null
+  },
+  {
+    "id": "spells.healing_aura",
+    "type": "spells",
+    "target": "healing_aura",
+    "icon": "💚",
+    "image": null
+  },
+  {
+    "id": "spells.holy_light",
+    "type": "spells",
+    "target": "holy_light",
+    "icon": "✨",
+    "image": null
+  },
+  {
+    "id": "spells.time_warp",
+    "type": "spells",
+    "target": "time_warp",
+    "icon": "⏳",
+    "image": null
+  },
+  {
+    "id": "spells.spirit_wolves",
+    "type": "spells",
+    "target": "spirit_wolves",
+    "icon": "🐺",
+    "image": null
+  },
+  {
+    "id": "spells.ghost_cats",
+    "type": "spells",
+    "target": "ghost_cats",
+    "icon": "🐈‍⬛",
+    "image": null
+  },
+  {
+    "id": "spells.skeleton_conversion",
+    "type": "spells",
+    "target": "skeleton_conversion",
+    "icon": "🧟",
+    "image": null
+  },
+  {
+    "id": "items.iron_collar",
+    "type": "items",
+    "target": "iron_collar",
+    "icon": "🔗",
+    "image": null
+  },
+  {
+    "id": "items.bone_armour",
+    "type": "items",
+    "target": "bone_armour",
+    "icon": "🦴",
+    "image": null
+  },
+  {
+    "id": "items.spiked_vest",
+    "type": "items",
+    "target": "spiked_vest",
+    "icon": "🦔",
+    "image": null
+  },
+  {
+    "id": "items.lucky_helmet",
+    "type": "items",
+    "target": "lucky_helmet",
+    "icon": "⛑️",
+    "image": null
+  },
+  {
+    "id": "items.shadow_cloak",
+    "type": "items",
+    "target": "shadow_cloak",
+    "icon": "🧥",
+    "image": null
+  },
+  {
+    "id": "items.golden_shield",
+    "type": "items",
+    "target": "golden_shield",
+    "icon": "🛡️",
+    "image": null
+  },
+  {
+    "id": "items.reinforced_boots",
+    "type": "items",
+    "target": "reinforced_boots",
+    "icon": "🥾",
+    "image": null
+  },
+  {
+    "id": "items.nine_lives_pendant",
+    "type": "items",
+    "target": "nine_lives_pendant",
+    "icon": "🐈",
+    "image": null
+  },
+  {
+    "id": "items.lucky_bell",
+    "type": "items",
+    "target": "lucky_bell",
+    "icon": "🔔",
+    "image": null
+  },
+  {
+    "id": "items.magnetic_collar",
+    "type": "items",
+    "target": "magnetic_collar",
+    "icon": "🧲",
+    "image": null
+  },
+  {
+    "id": "items.golden_fish",
+    "type": "items",
+    "target": "golden_fish",
+    "icon": "🐠",
+    "image": null
+  },
+  {
+    "id": "items.catnip_pouch",
+    "type": "items",
+    "target": "catnip_pouch",
+    "icon": "🌿",
+    "image": null
+  },
+  {
+    "id": "items.pocket_watch",
+    "type": "items",
+    "target": "pocket_watch",
+    "icon": "⌚",
+    "image": null
+  },
+  {
+    "id": "items.hunters_charm",
+    "type": "items",
+    "target": "hunters_charm",
+    "icon": "🎯",
+    "image": null
+  },
+  {
+    "id": "items.experience_amulet",
+    "type": "items",
+    "target": "experience_amulet",
+    "icon": "📿",
+    "image": null
+  },
+  {
+    "id": "items.treasure_map",
+    "type": "items",
+    "target": "treasure_map",
+    "icon": "🗺️",
+    "image": null
+  },
+  {
+    "id": "items.silver_whiskers",
+    "type": "items",
+    "target": "silver_whiskers",
+    "icon": "🥈",
+    "image": null
+  },
+  {
+    "id": "items.merchants_ring",
+    "type": "items",
+    "target": "merchants_ring",
+    "icon": "💍",
+    "image": null
+  },
+  {
+    "id": "items.sharpening_stone",
+    "type": "items",
+    "target": "sharpening_stone",
+    "icon": "🪨",
+    "image": null
+  },
+  {
+    "id": "items.berserker_band",
+    "type": "items",
+    "target": "berserker_band",
+    "icon": "😤",
+    "image": null
+  },
+  {
+    "id": "items.critical_lens",
+    "type": "items",
+    "target": "critical_lens",
+    "icon": "🔍",
+    "image": null
+  },
+  {
+    "id": "items.heavyweight_charm",
+    "type": "items",
+    "target": "heavyweight_charm",
+    "icon": "🏋️",
+    "image": null
+  },
+  {
+    "id": "items.rangefinder",
+    "type": "items",
+    "target": "rangefinder",
+    "icon": "📡",
+    "image": null
+  },
+  {
+    "id": "items.explosive_trinket",
+    "type": "items",
+    "target": "explosive_trinket",
+    "icon": "🧨",
+    "image": null
+  },
+  {
+    "id": "items.piercing_fang",
+    "type": "items",
+    "target": "piercing_fang",
+    "icon": "🦷",
+    "image": null
+  },
+  {
+    "id": "items.rapid_gear",
+    "type": "items",
+    "target": "rapid_gear",
+    "icon": "⚙️",
+    "image": null
+  },
+  {
+    "id": "items.chaos_orb",
+    "type": "items",
+    "target": "chaos_orb",
+    "icon": "🔮",
+    "image": null
+  },
+  {
+    "id": "items.power_crystal",
+    "type": "items",
+    "target": "power_crystal",
+    "icon": "💎",
+    "image": null
+  },
+  {
+    "id": "items.vampire_fang",
+    "type": "items",
+    "target": "vampire_fang",
+    "icon": "🧛",
+    "image": null
+  },
+  {
+    "id": "items.golden_cat_statue",
+    "type": "items",
+    "target": "golden_cat_statue",
+    "icon": "🏆",
+    "image": null
+  },
+  {
+    "id": "passives.bloodlust",
+    "type": "passives",
+    "target": "bloodlust",
+    "icon": "🩸",
+    "image": null
+  },
+  {
+    "id": "passives.adrenaline",
+    "type": "passives",
+    "target": "adrenaline",
+    "icon": "💉",
+    "image": null
+  },
+  {
+    "id": "passives.predator",
+    "type": "passives",
+    "target": "predator",
+    "icon": "🐆",
+    "image": null
+  },
+  {
+    "id": "passives.executioner",
+    "type": "passives",
+    "target": "executioner",
+    "icon": "🪓",
+    "image": null
+  },
+  {
+    "id": "passives.overkill",
+    "type": "passives",
+    "target": "overkill",
+    "icon": "💥",
+    "image": null
+  },
+  {
+    "id": "passives.berserker",
+    "type": "passives",
+    "target": "berserker",
+    "icon": "😡",
+    "image": null
+  },
+  {
+    "id": "passives.regeneration",
+    "type": "passives",
+    "target": "regeneration",
+    "icon": "💚",
+    "image": null
+  },
+  {
+    "id": "passives.lifesteal",
+    "type": "passives",
+    "target": "lifesteal",
+    "icon": "🧛",
+    "image": null
+  },
+  {
+    "id": "passives.second_wind",
+    "type": "passives",
+    "target": "second_wind",
+    "icon": "🌬️",
+    "image": null
+  },
+  {
+    "id": "passives.iron_body",
+    "type": "passives",
+    "target": "iron_body",
+    "icon": "🛡️",
+    "image": null
+  },
+  {
+    "id": "passives.last_stand",
+    "type": "passives",
+    "target": "last_stand",
+    "icon": "🔥",
+    "image": null
+  },
+  {
+    "id": "passives.rebirth",
+    "type": "passives",
+    "target": "rebirth",
+    "icon": "🐣",
+    "image": null
+  },
+  {
+    "id": "passives.fortune",
+    "type": "passives",
+    "target": "fortune",
+    "icon": "🍀",
+    "image": null
+  },
+  {
+    "id": "passives.greed",
+    "type": "passives",
+    "target": "greed",
+    "icon": "💰",
+    "image": null
+  },
+  {
+    "id": "passives.scholar",
+    "type": "passives",
+    "target": "scholar",
+    "icon": "🎓",
+    "image": null
+  },
+  {
+    "id": "passives.treasure_hunter",
+    "type": "passives",
+    "target": "treasure_hunter",
+    "icon": "🗝️",
+    "image": null
+  },
+  {
+    "id": "passives.experience_magnet",
+    "type": "passives",
+    "target": "experience_magnet",
+    "icon": "🧲",
+    "image": null
+  },
+  {
+    "id": "passives.necromancy",
+    "type": "passives",
+    "target": "necromancy",
+    "icon": "💀",
+    "image": null
+  },
+  {
+    "id": "passives.thorns",
+    "type": "passives",
+    "target": "thorns",
+    "icon": "🌵",
+    "image": null
+  },
+  {
+    "id": "passives.chaos",
+    "type": "passives",
+    "target": "chaos",
+    "icon": "🎲",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_damage",
+    "type": "upgrades",
+    "target": "weapon_damage",
+    "icon": "💥",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_attack_speed",
+    "type": "upgrades",
+    "target": "weapon_attack_speed",
+    "icon": "⚡",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_range",
+    "type": "upgrades",
+    "target": "weapon_range",
+    "icon": "📏",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_projectile_speed",
+    "type": "upgrades",
+    "target": "weapon_projectile_speed",
+    "icon": "💨",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_crit_chance",
+    "type": "upgrades",
+    "target": "weapon_crit_chance",
+    "icon": "🎯",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_crit_damage",
+    "type": "upgrades",
+    "target": "weapon_crit_damage",
+    "icon": "☠️",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_knockback",
+    "type": "upgrades",
+    "target": "weapon_knockback",
+    "icon": "🥊",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_area",
+    "type": "upgrades",
+    "target": "weapon_area",
+    "icon": "🌀",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_projectile_count",
+    "type": "upgrades",
+    "target": "weapon_projectile_count",
+    "icon": "➕",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_pierce",
+    "type": "upgrades",
+    "target": "weapon_pierce",
+    "icon": "📌",
+    "image": null
+  },
+  {
+    "id": "upgrades.weapon_ricochet",
+    "type": "upgrades",
+    "target": "weapon_ricochet",
+    "icon": "🔁",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_damage",
+    "type": "upgrades",
+    "target": "spell_damage",
+    "icon": "💥",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_cooldown",
+    "type": "upgrades",
+    "target": "spell_cooldown",
+    "icon": "⏱️",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_radius",
+    "type": "upgrades",
+    "target": "spell_radius",
+    "icon": "🌀",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_duration",
+    "type": "upgrades",
+    "target": "spell_duration",
+    "icon": "⏳",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_projectile_count",
+    "type": "upgrades",
+    "target": "spell_projectile_count",
+    "icon": "➕",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_targets",
+    "type": "upgrades",
+    "target": "spell_targets",
+    "icon": "🎯",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_effect_chance",
+    "type": "upgrades",
+    "target": "spell_effect_chance",
+    "icon": "🎲",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_summon_duration",
+    "type": "upgrades",
+    "target": "spell_summon_duration",
+    "icon": "🐺",
+    "image": null
+  },
+  {
+    "id": "upgrades.spell_healing",
+    "type": "upgrades",
+    "target": "spell_healing",
+    "icon": "💚",
+    "image": null
+  },
+  {
+    "id": "upgrades.quick_paws",
+    "type": "upgrades",
+    "target": "quick_paws",
+    "icon": "🐾",
+    "image": null
+  },
+  {
+    "id": "upgrades.heavy_hitter",
+    "type": "upgrades",
+    "target": "heavy_hitter",
+    "icon": "🔨",
+    "image": null
+  },
+  {
+    "id": "upgrades.arcane_overload",
+    "type": "upgrades",
+    "target": "arcane_overload",
+    "icon": "🔮",
+    "image": null
+  },
+  {
+    "id": "upgrades.big_boom",
+    "type": "upgrades",
+    "target": "big_boom",
+    "icon": "💥",
+    "image": null
+  },
+  {
+    "id": "upgrades.long_lasting",
+    "type": "upgrades",
+    "target": "long_lasting",
+    "icon": "⏳",
+    "image": null
+  },
+  {
+    "id": "upgrades.more_projectiles",
+    "type": "upgrades",
+    "target": "more_projectiles",
+    "icon": "➕",
+    "image": null
+  },
+  {
+    "id": "upgrades.lucky_paws",
+    "type": "upgrades",
+    "target": "lucky_paws",
+    "icon": "🍀",
+    "image": null
+  },
+  {
+    "id": "upgrades.cool_cat",
+    "type": "upgrades",
+    "target": "cool_cat",
+    "icon": "😎",
+    "image": null
+  },
+  {
+    "id": "upgrades.extra_weapon_slot",
+    "type": "upgrades",
+    "target": "extra_weapon_slot",
+    "icon": "🐈",
+    "image": null
+  },
+  {
+    "id": "status_effects.burn",
+    "type": "status_effects",
+    "target": "burn",
+    "icon": "🔥",
+    "image": null
+  },
+  {
+    "id": "status_effects.freeze",
+    "type": "status_effects",
+    "target": "freeze",
+    "icon": "❄️",
+    "image": null
+  },
+  {
+    "id": "status_effects.shock",
+    "type": "status_effects",
+    "target": "shock",
+    "icon": "⚡",
+    "image": null
+  },
+  {
+    "id": "status_effects.poison",
+    "type": "status_effects",
+    "target": "poison",
+    "icon": "☠️",
+    "image": null
+  },
+  {
+    "id": "status_effects.bleed",
+    "type": "status_effects",
+    "target": "bleed",
+    "icon": "🩸",
+    "image": null
+  },
+  {
+    "id": "status_effects.explosion",
+    "type": "status_effects",
+    "target": "explosion",
+    "icon": "💥",
+    "image": null
+  },
+  {
+    "id": "status_effects.lava",
+    "type": "status_effects",
+    "target": "lava",
+    "icon": "🌋",
+    "image": null
+  },
+  {
+    "id": "status_effects.knockback",
+    "type": "status_effects",
+    "target": "knockback",
+    "icon": "🥊",
+    "image": null
+  },
+  {
+    "id": "status_effects.stun",
+    "type": "status_effects",
+    "target": "stun",
+    "icon": "💫",
+    "image": null
+  },
+  {
+    "id": "status_effects.pierce",
+    "type": "status_effects",
+    "target": "pierce",
+    "icon": "📌",
+    "image": null
+  },
+  {
+    "id": "status_effects.ricochet",
+    "type": "status_effects",
+    "target": "ricochet",
+    "icon": "🔁",
+    "image": null
+  },
+  {
+    "id": "status_effects.shatter",
+    "type": "status_effects",
+    "target": "shatter",
+    "icon": "💎",
+    "image": null
+  },
+  {
+    "id": "status_effects.crush",
+    "type": "status_effects",
+    "target": "crush",
+    "icon": "🔨",
+    "image": null
+  },
+  {
+    "id": "status_effects.cleave",
+    "type": "status_effects",
+    "target": "cleave",
+    "icon": "🪓",
+    "image": null
+  },
+  {
+    "id": "status_effects.soul_explosion",
+    "type": "status_effects",
+    "target": "soul_explosion",
+    "icon": "👻",
+    "image": null
+  },
+  {
+    "id": "status_effects.chain_reaction",
+    "type": "status_effects",
+    "target": "chain_reaction",
+    "icon": "⛓️",
+    "image": null
+  },
+  {
+    "id": "status_effects.bone_shrapnel",
+    "type": "status_effects",
+    "target": "bone_shrapnel",
+    "icon": "🦴",
+    "image": null
+  },
+  {
+    "id": "status_effects.soul_harvest",
+    "type": "status_effects",
+    "target": "soul_harvest",
+    "icon": "💚",
+    "image": null
+  },
+  {
+    "id": "status_effects.plague_spread",
+    "type": "status_effects",
+    "target": "plague_spread",
+    "icon": "☣️",
+    "image": null
+  },
+  {
+    "id": "status_effects.execution",
+    "type": "status_effects",
+    "target": "execution",
+    "icon": "⚰️",
+    "image": null
+  },
+  {
+    "id": "enemies.skeleton_grunt",
+    "type": "enemies",
+    "target": "skeleton_grunt",
+    "icon": "💀",
+    "image": null
+  },
+  {
+    "id": "enemies.skeleton_archer",
+    "type": "enemies",
+    "target": "skeleton_archer",
+    "icon": "🏹",
+    "image": null
+  },
+  {
+    "id": "enemies.skeleton_armoured",
+    "type": "enemies",
+    "target": "skeleton_armoured",
+    "icon": "🛡️",
+    "image": null
+  },
+  {
+    "id": "enemies.skeleton_berserker",
+    "type": "enemies",
+    "target": "skeleton_berserker",
+    "icon": "😡",
+    "image": null
+  },
+  {
+    "id": "enemies.skeleton_mage",
+    "type": "enemies",
+    "target": "skeleton_mage",
+    "icon": "🧙",
+    "image": null
+  },
+  {
+    "id": "enemies.skeleton_elemental",
+    "type": "enemies",
+    "target": "skeleton_elemental",
+    "icon": "🔥",
+    "image": null
+  },
+  {
+    "id": "bosses.skeleton_king",
+    "type": "bosses",
+    "target": "skeleton_king",
+    "icon": "👑",
+    "image": null
+  },
+  {
+    "id": "bosses.bone_dragon",
+    "type": "bosses",
+    "target": "bone_dragon",
+    "icon": "🐉",
+    "image": null
+  },
+  {
+    "id": "bosses.lich",
+    "type": "bosses",
+    "target": "lich",
+    "icon": "🧙‍♂️",
+    "image": null
+  },
+  {
+    "id": "bosses.bone_golem",
+    "type": "bosses",
+    "target": "bone_golem",
+    "icon": "🗿",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.giant",
+    "type": "elite_modifiers",
+    "target": "giant",
+    "icon": "🦣",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.armoured",
+    "type": "elite_modifiers",
+    "target": "armoured",
+    "icon": "🛡️",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.swift",
+    "type": "elite_modifiers",
+    "target": "swift",
+    "icon": "💨",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.vampiric",
+    "type": "elite_modifiers",
+    "target": "vampiric",
+    "icon": "🧛",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.explosive",
+    "type": "elite_modifiers",
+    "target": "explosive",
+    "icon": "💣",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.regenerating",
+    "type": "elite_modifiers",
+    "target": "regenerating",
+    "icon": "💚",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.flaming",
+    "type": "elite_modifiers",
+    "target": "flaming",
+    "icon": "🔥",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.frozen",
+    "type": "elite_modifiers",
+    "target": "frozen",
+    "icon": "❄️",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.enraged",
+    "type": "elite_modifiers",
+    "target": "enraged",
+    "icon": "😡",
+    "image": null
+  },
+  {
+    "id": "elite_modifiers.summoner",
+    "type": "elite_modifiers",
+    "target": "summoner",
+    "icon": "📯",
+    "image": null
+  },
+  {
+    "id": "mega_waves.horde",
+    "type": "mega_waves",
+    "target": "horde",
+    "icon": "💀",
+    "image": null
+  },
+  {
+    "id": "mega_waves.mega_horde",
+    "type": "mega_waves",
+    "target": "mega_horde",
+    "icon": "💀",
+    "image": null
+  },
+  {
+    "id": "mega_waves.skeleton_apocalypse",
+    "type": "mega_waves",
+    "target": "skeleton_apocalypse",
+    "icon": "☠️",
+    "image": null
+  },
+  {
+    "id": "reward_sources.quiz",
+    "type": "reward_sources",
+    "target": "quiz",
+    "icon": "✍️",
+    "image": null
+  },
+  {
+    "id": "reward_sources.lesson",
+    "type": "reward_sources",
+    "target": "lesson",
+    "icon": "📖",
+    "image": null
+  },
+  {
+    "id": "reward_sources.audio",
+    "type": "reward_sources",
+    "target": "audio",
+    "icon": "🔊",
+    "image": null
+  },
+  {
+    "id": "reward_sources.flashcard",
+    "type": "reward_sources",
+    "target": "flashcard",
+    "icon": "🃏",
+    "image": null
+  }
+]

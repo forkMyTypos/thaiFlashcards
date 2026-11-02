@@ -1,0 +1,161 @@
+[
+  {
+    "id": "explosive_build",
+    "kind": "item_build",
+    "ingredients": [
+      "explosive_trinket",
+      "rapid_gear",
+      "lucky_bell",
+      "pocket_cannon"
+    ],
+    "result": "More attacks, more explosions, more chaos"
+  },
+  {
+    "id": "vampire_build",
+    "kind": "item_build",
+    "ingredients": [
+      "vampire_fang",
+      "berserker_band",
+      "bone_armour",
+      "twin_daggers"
+    ],
+    "result": "More hits, more healing, more survivability"
+  },
+  {
+    "id": "treasure_goblin",
+    "kind": "item_build",
+    "ingredients": [
+      "lucky_bell",
+      "treasure_map",
+      "golden_fish",
+      "merchants_ring"
+    ],
+    "result": "More gold, better loot, cheaper shopping"
+  },
+  {
+    "id": "snowball",
+    "kind": "passive_combo",
+    "ingredients": [
+      "bloodlust",
+      "berserker"
+    ],
+    "result": "Damage snowballs with kills"
+  },
+  {
+    "id": "frenzy",
+    "kind": "passive_combo",
+    "ingredients": [
+      "lifesteal",
+      "adrenaline"
+    ],
+    "result": "Low-health attack frenzy with healing"
+  },
+  {
+    "id": "bone_court",
+    "kind": "passive_combo",
+    "ingredients": [
+      "necromancy",
+      "thorns"
+    ],
+    "result": "Dead enemies become allies; attackers suffer"
+  },
+  {
+    "id": "loot_machine",
+    "kind": "passive_combo",
+    "ingredients": [
+      "fortune",
+      "treasure_hunter"
+    ],
+    "result": "Loot-finding machine"
+  },
+  {
+    "id": "chain_executions",
+    "kind": "passive_combo",
+    "ingredients": [
+      "executioner",
+      "overkill"
+    ],
+    "result": "Chain executions"
+  },
+  {
+    "id": "unkillable",
+    "kind": "passive_combo",
+    "ingredients": [
+      "regeneration",
+      "iron_body"
+    ],
+    "result": "Very difficult to kill"
+  },
+  {
+    "id": "shatter_factory",
+    "kind": "effect_interaction",
+    "ingredients": [
+      "freeze",
+      "shatter"
+    ],
+    "result": "Frozen skeletons take bonus damage and shatter"
+  },
+  {
+    "id": "plague_wave",
+    "kind": "effect_interaction",
+    "ingredients": [
+      "poison",
+      "plague_spread"
+    ],
+    "result": "Poison spreads through entire groups"
+  },
+  {
+    "id": "chain_explosions",
+    "kind": "effect_interaction",
+    "ingredients": [
+      "explosion",
+      "chain_reaction"
+    ],
+    "result": "One skeleton explodes, setting off its neighbours"
+  },
+  {
+    "id": "bleed_out",
+    "kind": "effect_interaction",
+    "ingredients": [
+      "bleed",
+      "execution"
+    ],
+    "result": "Bleeding enemies become easier to execute"
+  },
+  {
+    "id": "bolt_storm",
+    "kind": "upgrade_interaction",
+    "ingredients": [
+      "explosive_trinket",
+      "weapon_projectile_count"
+    ],
+    "result": "Explosive bolts + extra projectiles"
+  },
+  {
+    "id": "spreading_fire",
+    "kind": "upgrade_interaction",
+    "ingredients": [
+      "burn",
+      "weapon_ricochet"
+    ],
+    "result": "Fire damage + ricochet"
+  },
+  {
+    "id": "healing_machine",
+    "kind": "upgrade_interaction",
+    "ingredients": [
+      "quick_paws",
+      "lifesteal"
+    ],
+    "result": "High attack speed + lifesteal"
+  },
+  {
+    "id": "fire_cannonballs",
+    "kind": "upgrade_interaction",
+    "ingredients": [
+      "fireball",
+      "pocket_cannon"
+    ],
+    "result": "A fire-enhancing item improves Fireball and makes cannonballs explode"
+  }
+]

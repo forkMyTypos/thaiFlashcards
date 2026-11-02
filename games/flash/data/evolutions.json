@@ -1,0 +1,94 @@
+[
+  {
+    "id": "bone_storm",
+    "name": "Bone Storm",
+    "kind": "weapon",
+    "from": "bone_boomerang",
+    "requires": [
+      "weapon_projectile_count",
+      "explosive_trinket"
+    ],
+    "description": "Splits into multiple returning boomerangs that cause bone explosions.",
+    "notes": "requirements guessed"
+  },
+  {
+    "id": "storm_crossbow",
+    "name": "Storm Crossbow",
+    "kind": "weapon",
+    "from": "crossbow",
+    "requires": [
+      "chain_lightning",
+      "weapon_attack_speed"
+    ],
+    "description": "Bolts become lightning.",
+    "notes": "requirements and effect guessed"
+  },
+  {
+    "id": "world_splitter",
+    "name": "World Splitter",
+    "kind": "weapon",
+    "from": "great_sword",
+    "requires": [
+      "weapon_area",
+      "heavyweight_charm"
+    ],
+    "description": "A sweep that splits the arena.",
+    "notes": "requirements and effect guessed"
+  },
+  {
+    "id": "doom_cannon",
+    "name": "Doom Cannon",
+    "kind": "weapon",
+    "from": "pocket_cannon",
+    "requires": [
+      "explosive_trinket",
+      "big_boom"
+    ],
+    "description": "Nuclear-sized cannonballs.",
+    "notes": "requirements and effect guessed"
+  },
+  {
+    "id": "phantom_blades",
+    "name": "Phantom Blades",
+    "kind": "weapon",
+    "from": "twin_daggers",
+    "requires": [
+      "shadow_cloak",
+      "weapon_attack_speed"
+    ],
+    "description": "Shadow clones join the stabbing.",
+    "notes": "requirements guessed"
+  },
+  {
+    "id": "firestorm",
+    "name": "Firestorm",
+    "kind": "spell",
+    "from": "tornado",
+    "requires": [
+      "fireball"
+    ],
+    "description": "Fire tornado that burns everything in its path.",
+    "notes": "requirements guessed"
+  },
+  {
+    "id": "thunderstorm",
+    "name": "Thunderstorm",
+    "kind": "spell",
+    "from": "meteor_shower",
+    "requires": [
+      "chain_lightning"
+    ],
+    "description": "Meteors trigger lightning chains on impact."
+  },
+  {
+    "id": "undead_army",
+    "name": "Undead Army",
+    "kind": "spell",
+    "from": "skeleton_conversion",
+    "requires": [
+      "necromancy"
+    ],
+    "description": "A growing army of summoned creatures.",
+    "notes": "requirements guessed"
+  }
+]

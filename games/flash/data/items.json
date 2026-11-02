@@ -1,0 +1,447 @@
+[
+  {
+    "id": "iron_collar",
+    "name": "Iron Collar",
+    "category": "armour",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "+5% defence"
+  },
+  {
+    "id": "bone_armour",
+    "name": "Bone Armour",
+    "category": "armour",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 30
+      }
+    ],
+    "description": "+30 maximum HP"
+  },
+  {
+    "id": "spiked_vest",
+    "name": "Spiked Vest",
+    "category": "armour",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "thorns",
+        "op": "add",
+        "value": 5
+      }
+    ],
+    "description": "Reflect 5 damage when hit. 10 of them = skeletons regret touching Flash."
+  },
+  {
+    "id": "lucky_helmet",
+    "name": "Lucky Helmet",
+    "category": "armour",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "ignore_damage_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "5% chance to ignore damage"
+  },
+  {
+    "id": "shadow_cloak",
+    "name": "Shadow Cloak",
+    "category": "armour",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "dodge",
+        "op": "add",
+        "value": 0.03
+      }
+    ],
+    "description": "+3% dodge"
+  },
+  {
+    "id": "golden_shield",
+    "name": "Golden Shield",
+    "category": "armour",
+    "rarity": "rare",
+    "stacking": "upgradeable",
+    "effects": [],
+    "description": "Absorbs 10 damage every 8 seconds",
+    "special": "shield 10 every 8s"
+  },
+  {
+    "id": "reinforced_boots",
+    "name": "Reinforced Boots",
+    "category": "armour",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "knockback_resist",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "+5% resistance to knockback"
+  },
+  {
+    "id": "nine_lives_pendant",
+    "name": "Nine Lives Pendant",
+    "category": "armour",
+    "rarity": "legendary",
+    "stacking": "upgradeable",
+    "effects": [],
+    "description": "Survive one fatal hit. Recharges after 60 seconds.",
+    "special": "cheat death, 60s recharge"
+  },
+  {
+    "id": "lucky_bell",
+    "name": "Lucky Bell",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "luck",
+        "op": "add",
+        "value": 5
+      }
+    ],
+    "description": "+5 luck. 20 of them = ridiculous luck."
+  },
+  {
+    "id": "magnetic_collar",
+    "name": "Magnetic Collar",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "pickup_range",
+        "op": "add_pct",
+        "value": 0.25
+      }
+    ],
+    "description": "+25% pickup range"
+  },
+  {
+    "id": "golden_fish",
+    "name": "Golden Fish",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "gold_gain",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% gold"
+  },
+  {
+    "id": "catnip_pouch",
+    "name": "Catnip Pouch",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "confuse_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "5% chance enemies become confused and attack each other"
+  },
+  {
+    "id": "pocket_watch",
+    "name": "Pocket Watch",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "cooldown_reduction",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "+5% cooldown reduction"
+  },
+  {
+    "id": "hunters_charm",
+    "name": "Hunter's Charm",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "crit_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "+5% critical chance"
+  },
+  {
+    "id": "experience_amulet",
+    "name": "Experience Amulet",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "xp_gain",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% XP gained"
+  },
+  {
+    "id": "treasure_map",
+    "name": "Treasure Map",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "rare_loot",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% rare loot chance"
+  },
+  {
+    "id": "silver_whiskers",
+    "name": "Silver Whiskers",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "pickup_range",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "description": "+15% pickup range"
+  },
+  {
+    "id": "merchants_ring",
+    "name": "Merchant's Ring",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "shop_discount",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "-5% shop prices"
+  },
+  {
+    "id": "sharpening_stone",
+    "name": "Sharpening Stone",
+    "category": "combat",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "weapon_damage",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% weapon damage"
+  },
+  {
+    "id": "berserker_band",
+    "name": "Berserker Band",
+    "category": "combat",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.08
+      }
+    ],
+    "description": "+8% attack speed"
+  },
+  {
+    "id": "critical_lens",
+    "name": "Critical Lens",
+    "category": "combat",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "crit_damage",
+        "op": "add",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% critical damage"
+  },
+  {
+    "id": "heavyweight_charm",
+    "name": "Heavyweight Charm",
+    "category": "combat",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "knockback",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "description": "+20% knockback"
+  },
+  {
+    "id": "rangefinder",
+    "name": "Rangefinder",
+    "category": "combat",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "weapon_range",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% weapon range"
+  },
+  {
+    "id": "explosive_trinket",
+    "name": "Explosive Trinket",
+    "category": "combat",
+    "rarity": "rare",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "explode_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "5% chance attacks explode. 15 of them = the screen is a safety hazard."
+  },
+  {
+    "id": "piercing_fang",
+    "name": "Piercing Fang",
+    "category": "combat",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "pierce",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "description": "+1 projectile pierce"
+  },
+  {
+    "id": "rapid_gear",
+    "name": "Rapid Gear",
+    "category": "combat",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "projectile_speed",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "description": "+15% projectile speed"
+  },
+  {
+    "id": "chaos_orb",
+    "name": "Chaos Orb",
+    "category": "combat",
+    "rarity": "rare",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "random_effect_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "5% chance to trigger a random effect"
+  },
+  {
+    "id": "power_crystal",
+    "name": "Power Crystal",
+    "category": "combat",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "spell_damage",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "+10% spell damage"
+  },
+  {
+    "id": "vampire_fang",
+    "name": "Vampire Fang",
+    "category": "special",
+    "rarity": "rare",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "lifesteal",
+        "op": "add",
+        "value": 0.02
+      }
+    ],
+    "description": "2% lifesteal. 10 of them = a tiny furry vampire."
+  },
+  {
+    "id": "golden_cat_statue",
+    "name": "Golden Cat Statue",
+    "category": "special",
+    "rarity": "legendary",
+    "stacking": "unique",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.05
+      },
+      {
+        "stat": "xp_gain",
+        "op": "add_pct",
+        "value": 0.05
+      }
+    ],
+    "description": "+5% damage and +5% XP"
+  }
+]

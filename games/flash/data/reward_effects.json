@@ -1,0 +1,84 @@
+[
+  {
+    "id": "quiz_correct",
+    "kind": "reward",
+    "source": "quiz",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.25
+      },
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "heal_pct": 0.05,
+    "duration": 20,
+    "stacks": true,
+    "streak_bonus_per_step": 0.05,
+    "streak_cap": null,
+    "floating_text": "+POWER! ({word})"
+  },
+  {
+    "id": "lesson_new",
+    "kind": "reward",
+    "source": "lesson",
+    "effects": [
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "heal_pct": 0.03,
+    "duration": 20,
+    "stacks": true,
+    "floating_text": "+SHIELD (lesson)"
+  },
+  {
+    "id": "audio_play",
+    "kind": "reward",
+    "source": "audio",
+    "effects": [
+      {
+        "stat": "hp_regen",
+        "op": "add",
+        "value": 2
+      }
+    ],
+    "heal_pct": 0,
+    "duration": 15,
+    "stacks": true,
+    "floating_text": "+REGEN"
+  },
+  {
+    "id": "flashcard_tap",
+    "kind": "reward",
+    "source": "flashcard",
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.08
+      }
+    ],
+    "heal_pct": 0.01,
+    "duration": 15,
+    "stacks": true,
+    "floating_text": "+SPEED"
+  },
+  {
+    "id": "quiz_wrong",
+    "kind": "penalty",
+    "source": "quiz",
+    "effects": [],
+    "heal_pct": 0,
+    "duration": 0,
+    "stacks": false,
+    "clears_buffs": "newest",
+    "floating_text": "Oops! Flash lost a buff"
+  }
+]

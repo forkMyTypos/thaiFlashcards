@@ -1,0 +1,437 @@
+[
+  {
+    "id": "weapon_damage",
+    "name": "Damage",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% damage for this weapon"
+  },
+  {
+    "id": "weapon_attack_speed",
+    "name": "Attack speed",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+10% attack speed"
+  },
+  {
+    "id": "weapon_range",
+    "name": "Range",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "attack_range",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+10% range"
+  },
+  {
+    "id": "weapon_projectile_speed",
+    "name": "Projectile speed",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "projectile_speed",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% projectile speed"
+  },
+  {
+    "id": "weapon_crit_chance",
+    "name": "Critical chance",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "crit_chance",
+        "op": "add",
+        "value": 0.02
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+2 percentage points crit"
+  },
+  {
+    "id": "weapon_crit_damage",
+    "name": "Critical damage",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "crit_damage",
+        "op": "add",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% crit damage"
+  },
+  {
+    "id": "weapon_knockback",
+    "name": "Knockback",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "knockback",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% knockback"
+  },
+  {
+    "id": "weapon_area",
+    "name": "Area",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "area",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% area of effect"
+  },
+  {
+    "id": "weapon_projectile_count",
+    "name": "Projectile count",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "projectile_count",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "rarity": "uncommon",
+    "repeatable": true,
+    "description": "+1 projectile"
+  },
+  {
+    "id": "weapon_pierce",
+    "name": "Pierce",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "pierce",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "rarity": "uncommon",
+    "repeatable": true,
+    "description": "+1 target pierced"
+  },
+  {
+    "id": "weapon_ricochet",
+    "name": "Ricochet",
+    "applies_to": "weapon",
+    "effects": [
+      {
+        "stat": "bounces",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "rarity": "uncommon",
+    "repeatable": true,
+    "description": "+1 bounce"
+  },
+  {
+    "id": "spell_damage",
+    "name": "Spell damage",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% damage for this spell"
+  },
+  {
+    "id": "spell_cooldown",
+    "name": "Cooldown",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "cooldown_reduction",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "-10% cooldown"
+  },
+  {
+    "id": "spell_radius",
+    "name": "Radius",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "area",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% radius"
+  },
+  {
+    "id": "spell_duration",
+    "name": "Duration",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "duration",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% duration"
+  },
+  {
+    "id": "spell_projectile_count",
+    "name": "Projectile count",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "projectile_count",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "rarity": "uncommon",
+    "repeatable": true,
+    "description": "+1 projectile"
+  },
+  {
+    "id": "spell_targets",
+    "name": "Targets",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "targets",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "rarity": "uncommon",
+    "repeatable": true,
+    "description": "+1 target hit"
+  },
+  {
+    "id": "spell_effect_chance",
+    "name": "Effect chance",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "effect_chance",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+10 percentage points effect chance"
+  },
+  {
+    "id": "spell_summon_duration",
+    "name": "Summon duration",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "summon_duration",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% summon duration"
+  },
+  {
+    "id": "spell_healing",
+    "name": "Healing power",
+    "applies_to": "spell",
+    "effects": [
+      {
+        "stat": "healing_power",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% healing"
+  },
+  {
+    "id": "quick_paws",
+    "name": "Quick Paws",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% attack speed for everything"
+  },
+  {
+    "id": "heavy_hitter",
+    "name": "Heavy Hitter",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "weapon_damage",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% physical damage"
+  },
+  {
+    "id": "arcane_overload",
+    "name": "Arcane Overload",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "spell_damage",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% magical damage"
+  },
+  {
+    "id": "big_boom",
+    "name": "Big Boom",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "area",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+15% area for explosions and spells",
+    "notes": "value guessed"
+  },
+  {
+    "id": "long_lasting",
+    "name": "Long Lasting",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "duration",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+20% duration for clouds, shields and effects",
+    "notes": "value guessed"
+  },
+  {
+    "id": "more_projectiles",
+    "name": "More Projectiles",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "projectile_count",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "rarity": "rare",
+    "repeatable": true,
+    "description": "+1 projectile for everything",
+    "notes": "value guessed"
+  },
+  {
+    "id": "lucky_paws",
+    "name": "Lucky Paws",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "luck",
+        "op": "add",
+        "value": 5
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "+5 luck",
+    "notes": "value guessed"
+  },
+  {
+    "id": "cool_cat",
+    "name": "Cool Cat",
+    "applies_to": "global",
+    "effects": [
+      {
+        "stat": "cooldown_reduction",
+        "op": "add",
+        "value": 0.08
+      }
+    ],
+    "rarity": "common",
+    "repeatable": true,
+    "description": "-8% cooldowns",
+    "notes": "value guessed"
+  },
+  {
+    "id": "extra_weapon_slot",
+    "name": "The Tail",
+    "applies_to": "global",
+    "effects": [],
+    "rarity": "legendary",
+    "repeatable": true,
+    "description": "Unlocks the 5th (tail) weapon slot",
+    "notes": "rare; how it appears is still open"
+  }
+]

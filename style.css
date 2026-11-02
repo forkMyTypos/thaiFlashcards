@@ -1794,3 +1794,15 @@ body.mode-card .info .probbtn,body.mode-quiz .info .probbtn{display:none}
 .sheet-body .bkhow{font-size:0.8125rem;color:var(--text2);display:flex;gap:6px;align-items:center}
 .sheet-body .bkmsg[hidden]{display:none}
 .sheet-body .bkmsg{color:var(--ok)}
+
+/* ---------------------------------------------------------------- game mode
+   🎮 beside the study modes opens game mode (Flash the Cat in a column, the
+   course beside it). Inside game mode the button is lit, and the quiz button
+   pulses when Flash is in trouble or needs quiz answers to stay strong. */
+.slider .md.gmode{margin-left:6px}
+.slider .md.gmode[aria-pressed="true"]{border-color:#ff9f5a;background:rgba(255,159,90,.16);color:var(--bright)}
+@keyframes wb-gq{from{box-shadow:0 0 0 0 rgba(242,112,95,.0)}to{box-shadow:0 0 0 3px rgba(242,112,95,.85)}}
+body.game-danger .slider .md[data-mode="quiz"],
+body.game-needquiz .slider .md[data-mode="quiz"]{border-color:#f2705f;color:var(--bright);animation:wb-gq .7s ease-in-out infinite alternate}
+body.game-danger.mode-quiz .slider .md[data-mode="quiz"],
+body.game-needquiz.mode-quiz .slider .md[data-mode="quiz"]{animation:none}

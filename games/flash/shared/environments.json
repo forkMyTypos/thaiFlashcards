@@ -1,0 +1,147 @@
+[
+  {
+    "id": "graveyard",
+    "name": "Graveyard",
+    "floor": "dark grass and dirt",
+    "palette": [
+      "#2b3a2f",
+      "#55624f",
+      "#9aa08a"
+    ],
+    "props": [
+      "gravestone",
+      "iron_fence",
+      "dead_tree",
+      "coffin",
+      "bones_pile",
+      "candle"
+    ],
+    "variations": [
+      "normal",
+      "foggy",
+      "haunted",
+      "burning",
+      "frozen"
+    ],
+    "weather": "fog",
+    "ambience": "wind, crows"
+  },
+  {
+    "id": "dungeon",
+    "name": "Dungeon",
+    "floor": "stone tiles",
+    "palette": [
+      "#2a2a33",
+      "#4a4a58",
+      "#c48a3a"
+    ],
+    "props": [
+      "stone_wall",
+      "torch",
+      "chains",
+      "barrel",
+      "crate",
+      "skull"
+    ],
+    "variations": [
+      "normal",
+      "flooded",
+      "burning"
+    ],
+    "weather": "dust",
+    "ambience": "drips, distant chains"
+  },
+  {
+    "id": "dark_forest",
+    "name": "Dark Forest",
+    "floor": "moss and roots",
+    "palette": [
+      "#1f2b22",
+      "#3c5a3a",
+      "#8a6ad1"
+    ],
+    "props": [
+      "tree_stump",
+      "mushroom",
+      "roots",
+      "bush",
+      "glowing_mushroom",
+      "rock"
+    ],
+    "variations": [
+      "normal",
+      "foggy",
+      "haunted"
+    ],
+    "weather": "fireflies",
+    "ambience": "owls, rustling"
+  },
+  {
+    "id": "volcanic_wasteland",
+    "name": "Volcanic Wasteland",
+    "floor": "scorched rock with lava cracks",
+    "palette": [
+      "#2a1a16",
+      "#5a2a1a",
+      "#ff6a1a"
+    ],
+    "props": [
+      "rock",
+      "lava_crack",
+      "crystal",
+      "skull"
+    ],
+    "variations": [
+      "normal",
+      "erupting"
+    ],
+    "weather": "embers",
+    "ambience": "rumbling"
+  },
+  {
+    "id": "frozen_wastes",
+    "name": "Frozen Wastes",
+    "floor": "snow and ice",
+    "palette": [
+      "#cfe6f2",
+      "#8fb6cc",
+      "#3a5a78"
+    ],
+    "props": [
+      "frozen_tree",
+      "ice_crystal",
+      "rock",
+      "bones_pile"
+    ],
+    "variations": [
+      "normal",
+      "blizzard"
+    ],
+    "weather": "snow",
+    "ambience": "howling wind"
+  },
+  {
+    "id": "castle_ruins",
+    "name": "Castle Ruins",
+    "floor": "broken flagstones",
+    "palette": [
+      "#3a3530",
+      "#6a6258",
+      "#a03a3a"
+    ],
+    "props": [
+      "broken_column",
+      "rubble",
+      "banner",
+      "broken_wall",
+      "candle"
+    ],
+    "variations": [
+      "normal",
+      "burning",
+      "haunted"
+    ],
+    "weather": "ash",
+    "ambience": "flapping banners"
+  }
+]

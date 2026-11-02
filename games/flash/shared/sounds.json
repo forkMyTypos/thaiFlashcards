@@ -1,0 +1,86 @@
+[
+  {
+    "id": "explosion",
+    "name": "explosion",
+    "category": "impact",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "hit",
+    "name": "hit",
+    "category": "impact",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "crit_hit",
+    "name": "crit hit",
+    "category": "impact",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "projectile_fire",
+    "name": "projectile fire",
+    "category": "attack",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "spell_cast",
+    "name": "spell cast",
+    "category": "spell",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "skeleton_death",
+    "name": "skeleton death",
+    "category": "death",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "pickup_xp",
+    "name": "pickup xp",
+    "category": "pickup",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "pickup_gold",
+    "name": "pickup gold",
+    "category": "pickup",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "level_up",
+    "name": "level up",
+    "category": "ui",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "ui_click",
+    "name": "ui click",
+    "category": "ui",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "boss_roar",
+    "name": "boss roar",
+    "category": "boss",
+    "file": null,
+    "pitch_variation": 0.1
+  },
+  {
+    "id": "reward_chime",
+    "name": "reward chime",
+    "category": "ui",
+    "file": null,
+    "pitch_variation": 0.1
+  }
+]

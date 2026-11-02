@@ -1,0 +1,173 @@
+[
+  {
+    "id": "flash_turnaround",
+    "subject": "flash",
+    "order": 1,
+    "name": "Master character turnaround",
+    "deliverable": "Front, three-quarter, side and back views",
+    "status": "todo",
+    "linked": [],
+    "notes": "the reference every later step matches"
+  },
+  {
+    "id": "flash_expressions",
+    "subject": "flash",
+    "order": 2,
+    "name": "Expression sheet",
+    "deliverable": "Happy, angry, smug, scared, hurt, victorious...",
+    "status": "todo",
+    "linked": []
+  },
+  {
+    "id": "flash_pose_sheet",
+    "subject": "flash",
+    "order": 3,
+    "name": "Animation pose sheet",
+    "deliverable": "Key poses for each gameplay animation",
+    "status": "todo",
+    "linked": [
+      "cat_flash"
+    ]
+  },
+  {
+    "id": "flash_parts",
+    "subject": "flash",
+    "order": 4,
+    "name": "Cutout parts",
+    "deliverable": "Separate transparent images: head, body, legs, tail, ears, eyes, mouth, accessories, with pivots",
+    "status": "todo",
+    "linked": [
+      "cat_flash"
+    ]
+  },
+  {
+    "id": "flash_outfit_base",
+    "subject": "flash",
+    "order": 5,
+    "name": "Outfit and equipment base",
+    "deliverable": "Base outfit + where weapons attach",
+    "status": "todo",
+    "linked": [
+      "cat_flash"
+    ]
+  },
+  {
+    "id": "flash_gameplay_animations",
+    "subject": "flash",
+    "order": 6,
+    "name": "Gameplay animations",
+    "deliverable": "idle, crouch, walk, jump, attack, hit, cast, victory, death",
+    "status": "todo",
+    "linked": [
+      "cat_flash_idle",
+      "cat_flash_attack",
+      "cat_flash_hit",
+      "cat_flash_cast",
+      "cat_flash_death",
+      "cat_flash_crouch",
+      "cat_flash_walk",
+      "cat_flash_jump",
+      "cat_flash_victory"
+    ]
+  },
+  {
+    "id": "flash_specials",
+    "subject": "flash",
+    "order": 7,
+    "name": "Special attacks and cinematics",
+    "deliverable": "Elaborate one-offs (evolutions, bosses)",
+    "status": "todo",
+    "linked": []
+  },
+  {
+    "id": "skeleton_master",
+    "subject": "skeleton",
+    "order": 1,
+    "name": "Master skeleton template",
+    "deliverable": "One skeleton with its rig and animations working FIRST: fixed pixel scale, pivots, bone lengths, attachment coordinates",
+    "status": "todo",
+    "linked": [
+      "skeleton_modular"
+    ]
+  },
+  {
+    "id": "skeleton_parts",
+    "subject": "skeleton",
+    "order": 2,
+    "name": "Part variations",
+    "deliverable": "Up to 10 per part (skull, ribcage, pelvis, arms, legs...)",
+    "status": "todo",
+    "linked": [
+      "skeleton_modular"
+    ]
+  },
+  {
+    "id": "skeleton_equipment",
+    "subject": "skeleton",
+    "order": 3,
+    "name": "Enemy equipment sprites",
+    "deliverable": "Swords, bows, armour, accessories",
+    "status": "todo",
+    "linked": [],
+    "notes": "links to the enemy_equipment data type"
+  },
+  {
+    "id": "skeleton_animations",
+    "subject": "skeleton",
+    "order": 4,
+    "name": "Skeleton animations",
+    "deliverable": "idle, walk, attack, hit, death, explode",
+    "status": "todo",
+    "linked": [
+      "skeleton_modular_idle",
+      "skeleton_modular_walk",
+      "skeleton_modular_attack",
+      "skeleton_modular_hit",
+      "skeleton_modular_death",
+      "skeleton_modular_explode"
+    ]
+  },
+  {
+    "id": "weapon_sprites",
+    "subject": "weapons",
+    "order": 1,
+    "name": "Weapon sprites",
+    "deliverable": "One sprite per weapon; projectiles and swings use effects",
+    "status": "todo",
+    "linked": []
+  },
+  {
+    "id": "effects_art",
+    "subject": "effects",
+    "order": 1,
+    "name": "Effect sprites (optional)",
+    "deliverable": "Effects already work as particles; sprites are polish",
+    "status": "todo",
+    "linked": [
+      "burning",
+      "frozen",
+      "explosion"
+    ]
+  },
+  {
+    "id": "arena_dungeon",
+    "subject": "environment",
+    "order": 1,
+    "name": "First arena: Dungeon",
+    "deliverable": "Floor + props + lighting for one polished arena",
+    "status": "todo",
+    "linked": [
+      "dungeon"
+    ],
+    "notes": "build one polished arena before the other five"
+  },
+  {
+    "id": "ui_icons",
+    "subject": "ui",
+    "order": 1,
+    "name": "UI icons",
+    "deliverable": "Weapon, spell, item and rarity icons for the HUD and level-up cards",
+    "status": "todo",
+    "linked": []
+  }
+]

@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Professional Thai for answering, transferring and handling workplace calls"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=51e40716"/>
+<link rel="stylesheet" href="../style.css?v=47368b5a"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -32,6 +32,7 @@
       <button class="mm" id="mm-lessons" aria-pressed="true"><span class="i">&#9776;</span><span class="t">Hide the lessons</span></button>
       <button class="mm" id="mm-backup"><span class="i">&#10515;</span><span class="t">Back up &amp; restore</span></button>
       <button class="mm" id="mm-progress"><span class="i">&#9684;</span><span class="t">My progress</span></button>
+      <button class="mm" id="mm-game" aria-pressed="false"><span class="i">&#127918;</span><span class="t">Game mode</span></button>
       <button class="mm" id="mm-pics" aria-pressed="true"><span class="i">&#127748;</span><span class="t">Pictures on</span></button>
       <label class="mm mm-check" title="Load this page's sounds in the background so they play at once"><input type="checkbox" id="mm-preload"><span class="t">Preload sounds</span></label>
       <label class="mm mm-check" title="Save the sounds in this browser so they play at once, even offline"><input type="checkbox" id="mm-keep"><span class="t">Keep sounds on this device</span></label>
@@ -274,6 +275,7 @@
       <button class="md" data-mode="card" aria-pressed="false" title="Flashcards — the answer stays hidden until you ask for it">&#127183;</button>
       <button class="md" data-mode="quiz" aria-pressed="false" title="Quiz — every kind of question">&#10067;</button>
       <button class="md" data-mode="listen" aria-pressed="false" title="Listening — hear it first, then answer">&#127911;</button>
+      <button class="md gmode" id="md-game" aria-pressed="false" title="Game mode — Flash the Cat plays beside you while you study">&#127918;</button>
     </div>
     <span class="hint" aria-hidden="true">← → keys</span>
     <input class="scrub" id="scrub" type="range" min="1" max="10" value="1" step="1" aria-label="Move through the words"/>
@@ -1169,6 +1171,7 @@
    picButton(pic,cards[meIdx]);
   }
   if(history.replaceState)history.replaceState(null,'','#'+(at+1));
+  if(byUser&&window.wbGame&&document.body.classList.contains('mode-info'))wbGame.study('lesson',meIdx);
   try{document.dispatchEvent(new CustomEvent('wb:card',{detail:{card:cards[meIdx]}}));}catch(e){}
   cue(byUser);
   // A new word is a new card to turn over and a new question to ask.
@@ -1674,6 +1677,7 @@
   try{var ro=window.WBRead||{};
       var n=(ro.rep&&document.body.classList.contains('mode-info')&&b.closest('.info'))?(ro.n||1):1;
       playTimes(b.dataset.play,n);}catch(err){}
+  if(window.wbGame)wbGame.study('audio');
  },true);
 
  // ‹ the sentence › under a word. Every sentence is in the markup; this
@@ -2641,6 +2645,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   if(mode!=='card'||!fcWrap)return;
   var shell=fcWrap._shell,
       want=(on===undefined)?!shell.classList.contains('flipped'):!!on;
+  if(want&&!shell.classList.contains('flipped')&&window.wbGame)wbGame.study('flashcard');
   shell.classList.toggle('flipped',want);
   // Reverse starts you on the back, so what the badge should say is not
   // simply "flipped or not".
@@ -3105,6 +3110,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   qrun=right?qrun+1:0;if(qrun>qbest)qbest=qrun;
   try{localStorage.setItem('wb.qrun',String(qrun));localStorage.setItem('wb.qbest',String(qbest));}catch(e){}
   scored(cards[me],right);
+  if(window.wbGame)wbGame.quiz(right,qrun,(cards[me].querySelector('.th')||{}).textContent||'');
   drawQuiz();
   cheer(right,extra);
  }
@@ -3356,7 +3362,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   document.body.classList.remove('mode-info','mode-card','mode-quiz','answered');
   document.body.classList.add('mode-'+mode);
   if(modes){
-   var b=modes.querySelectorAll('.md'),i;
+   // [data-mode] only: the 🎮 game mode button sits in this row but is not a
+   // way of studying, and says for itself whether it is on
+   var b=modes.querySelectorAll('.md[data-mode]'),i;
    for(i=0;i<b.length;i++){
     var bm=b[i].dataset.mode,on=mode==='quiz'?(bm===(qstyle==='listen'?'listen':'quiz')):bm===mode;
     b[i].setAttribute('aria-pressed',on?'true':'false');
@@ -4629,6 +4637,101 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   if(mb)mb.addEventListener('click',panelOpen);
   setTimeout(nag,1500);
   return {touched:touched,save:save,load:load,collect:collect,open:panelOpen};
+ })();
+ // ------------------------------------------------------------ game mode
+ //
+ // Dan: "create a game mode icon, and put it near the other modes. But, the
+ // user can freely navigate the site while playing."
+ //
+ // Game mode is a page of its own, /game/: Flash the Cat in a column on the
+ // left and the site in a frame beside it. The game lives in the outer page,
+ // so moving between lessons only reloads the frame and the game never
+ // stops. This page, when it is the one inside that frame, tells the game
+ // what the reader is doing; outside the frame everything here is idle.
+ //
+ // What counts, and for how much (Dan's rules):
+ //   quiz answers      always full; a wrong one costs Flash his last buff
+ //   reading words, audio, flashcards
+ //                     full for the first 2 new lessons since the last quiz
+ //                     answer, then ×0.7 per extra lesson (never under 0.2),
+ //                     and slowly less after many in a row; any quiz answer
+ //                     resets it. The first time it shrinks the game says so.
+ // Each kind also has a short cool-down, so tapping fast is not a strategy.
+ window.wbGame=(function(){
+  var frame=null;
+  try{if(window.parent!==window&&window.parent.FTC_FRAME)frame=window.parent;}catch(e){frame=null;}
+  var KEY='wb.rewards',FREE=2,SHRINK=0.7,FLOOR=0.2,RUN=25,
+      GAP={lesson:2500,audio:2000,flashcard:1500},last={},seenCard={};
+  function rootUrl(){try{return new URL((base()||'.')+'/',location.href);}catch(e){return new URL('/',location.href);}}
+  function here(){var r=rootUrl().href,u=location.href;return u.indexOf(r)===0?u.slice(r.length):'';}
+  function post(m){if(frame)try{frame.postMessage(m,location.origin);}catch(e){}}
+  function state(){var s=read(KEY,null);
+   return (s&&typeof s==='object')?s:{seen:{},since:0,n:0,warned:0};}
+  function keep(s){var k=Object.keys(s.seen||{});
+   if(k.length>400)k.slice(0,k.length-400).forEach(function(x){delete s.seen[x];});
+   write(KEY,s);}
+  function send(d){d.v=1;post({type:'inaflash:reward',detail:d});}
+  function strength(s){
+   var f=s.since<=FREE?1:Math.max(FLOOR,Math.pow(SHRINK,s.since-FREE));
+   var g=s.n<=RUN?1:Math.max(FLOOR,Math.pow(0.96,s.n-RUN));
+   return Math.round(Math.min(f,g)*100)/100;
+  }
+  function needQuiz(on){document.body.classList.toggle('game-needquiz',!!on);}
+  function show(st){
+   var b=document.body;
+   b.classList.toggle('game-danger',st==='danger');
+  }
+  // the 🎮 button beside the modes, and its row in the main menu
+  function toggle(){
+   if(frame){post({type:'ftc:exit'});return;}
+   location.href=rootUrl().href+'game/?p='+encodeURIComponent(here());
+  }
+  var gb=document.getElementById('md-game'),gm=document.getElementById('mm-game');
+  if(gb){gb.addEventListener('click',toggle);
+   gb.setAttribute('aria-pressed',frame?'true':'false');
+   gb.title=frame?'Leave game mode':'Game mode — Flash the Cat plays beside you while you study';}
+  if(gm){gm.addEventListener('click',toggle);
+   gm.setAttribute('aria-pressed',frame?'true':'false');
+   var gt=gm.querySelector('.t');if(gt)gt.textContent=frame?'Leave game mode':'Game mode';}
+  if(!frame)return {study:function(){},quiz:function(){},on:false};
+
+  document.body.classList.add('in-game');
+  // Inside the frame a link to another site would try to open in the
+  // frame, and most of them (YouTube, the app) refuse to be framed.
+  document.addEventListener('click',function(e){
+   var a=e.target.closest?e.target.closest('a[href]'):null;
+   if(a&&a.origin&&a.origin!==location.origin&&!a.target)a.target='_blank';
+  },true);
+  window.addEventListener('message',function(e){
+   if(e.origin!==location.origin||e.source!==frame)return;
+   var m=e.data||{};if(m.type==='ftc:state')show(m.state);
+  });
+  try{show(frame.FTC_STATE);}catch(e){}
+  // a lesson the reader has not opened since game mode started counting
+  var s=state(),les=document.body.dataset.lesson;
+  if(les&&!s.seen[les]){s.seen[les]=1;s.since++;keep(s);}
+  needQuiz(s.warned);
+
+  return {on:true,
+   study:function(src,cardIdx){
+    if(src==='lesson'){if(seenCard[cardIdx])return;seenCard[cardIdx]=1;}
+    var now=Date.now();
+    if(now-(last[src]||0)<(GAP[src]||1500))return;
+    last[src]=now;
+    var st=state();st.n++;
+    var k=strength(st);
+    if(k<1&&!st.warned){
+     st.warned=1;needQuiz(true);
+     send({kind:'warning',message:'Flash is getting weaker! He needs quiz answers to stay strong. Try ❓ Quiz mode.'});
+    }
+    keep(st);
+    send({kind:'reward',source:src,strength:k});
+   },
+   quiz:function(right,streak,word){
+    var st=state();st.since=0;st.n=0;st.warned=0;keep(st);needQuiz(false);
+    send(right?{kind:'reward',source:'quiz',strength:1,streak:streak||0,word:word||''}
+              :{kind:'penalty',source:'quiz',streak:0});
+   }};
  })();
 })();
 </script>

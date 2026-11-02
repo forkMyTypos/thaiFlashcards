@@ -1,0 +1,262 @@
+[
+  {
+    "id": "max_hp",
+    "name": "Maximum HP",
+    "purpose": "Health capacity",
+    "unit": "flat",
+    "applies_to": "both",
+    "flash_start": 150,
+    "skeleton_start": 40,
+    "cap": null
+  },
+  {
+    "id": "hp_regen",
+    "name": "Health regeneration",
+    "purpose": "Passive healing, continuous",
+    "unit": "per_second",
+    "applies_to": "both",
+    "flash_start": 1,
+    "skeleton_start": 0,
+    "cap": null
+  },
+  {
+    "id": "damage",
+    "name": "Damage",
+    "purpose": "General damage (Flash: bonus multiplier; enemies: base attack)",
+    "unit": "flat",
+    "applies_to": "both",
+    "flash_start": 0,
+    "skeleton_start": 5,
+    "cap": null
+  },
+  {
+    "id": "weapon_damage",
+    "name": "Weapon damage",
+    "purpose": "Physical damage bonus",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "spell_damage",
+    "name": "Spell damage",
+    "purpose": "Magical damage bonus",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "attack_speed",
+    "name": "Attack speed",
+    "purpose": "Attacks per second / weapon frequency",
+    "unit": "multiplier",
+    "applies_to": "both",
+    "flash_start": 1,
+    "skeleton_start": 1,
+    "cap": null,
+    "notes": "interval = 1 / attack speed"
+  },
+  {
+    "id": "cooldown_reduction",
+    "name": "Cooldown reduction",
+    "purpose": "Spell casting frequency",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "defence",
+    "name": "Defence",
+    "purpose": "Percentage damage reduction, all damage types",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0.05,
+    "skeleton_start": 0,
+    "cap": null,
+    "notes": "no cap; damage never below 1"
+  },
+  {
+    "id": "crit_chance",
+    "name": "Critical chance",
+    "purpose": "Chance of a critical hit (shared by weapons and spells)",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0.05,
+    "skeleton_start": 0,
+    "cap": 1
+  },
+  {
+    "id": "crit_damage",
+    "name": "Critical damage",
+    "purpose": "Critical multiplier",
+    "unit": "multiplier",
+    "applies_to": "both",
+    "flash_start": 1.5,
+    "skeleton_start": 1.5,
+    "cap": null
+  },
+  {
+    "id": "dodge",
+    "name": "Dodge",
+    "purpose": "Chance to avoid an attack entirely",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0.05,
+    "skeleton_start": 0,
+    "cap": 0.75
+  },
+  {
+    "id": "movement_speed",
+    "name": "Movement speed",
+    "purpose": "Movement rate (Flash is stationary)",
+    "unit": "units_per_second",
+    "applies_to": "both",
+    "flash_start": 0,
+    "skeleton_start": 60,
+    "cap": null
+  },
+  {
+    "id": "attack_range",
+    "name": "Attack range",
+    "purpose": "Weapon / attack reach",
+    "unit": "units",
+    "applies_to": "both",
+    "flash_start": 1,
+    "skeleton_start": 60,
+    "cap": null,
+    "notes": "Flash: range modifier on top of each weapon's range"
+  },
+  {
+    "id": "projectile_speed",
+    "name": "Projectile speed",
+    "purpose": "Projectile travel speed",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "projectile_count",
+    "name": "Projectile count",
+    "purpose": "Extra projectiles",
+    "unit": "count",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "area",
+    "name": "Area",
+    "purpose": "Size of attacks and effects",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "duration",
+    "name": "Duration",
+    "purpose": "Length of effects",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "luck",
+    "name": "Luck",
+    "purpose": "Influences random rewards, rarity and chests",
+    "unit": "flat",
+    "applies_to": "both",
+    "flash_start": 0,
+    "skeleton_start": 0,
+    "cap": null
+  },
+  {
+    "id": "xp_gain",
+    "name": "XP gain",
+    "purpose": "Experience multiplier",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "gold_gain",
+    "name": "Gold gain",
+    "purpose": "Gold multiplier",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "pickup_range",
+    "name": "Pickup range",
+    "purpose": "Distance for collecting drops",
+    "unit": "pct",
+    "applies_to": "player",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "knockback",
+    "name": "Knockback",
+    "purpose": "Force applied to enemies",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "effect_chance",
+    "name": "Effect chance",
+    "purpose": "Chance to trigger special effects",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0,
+    "cap": null
+  },
+  {
+    "id": "lifesteal",
+    "name": "Lifesteal",
+    "purpose": "Heal a share of damage dealt",
+    "unit": "pct",
+    "applies_to": "both",
+    "flash_start": 0,
+    "skeleton_start": 0,
+    "cap": null
+  },
+  {
+    "id": "thorns",
+    "name": "Thorns",
+    "purpose": "Damage reflected when hit",
+    "unit": "flat",
+    "applies_to": "both",
+    "flash_start": 0,
+    "skeleton_start": 0,
+    "cap": null
+  },
+  {
+    "id": "fire_resist",
+    "name": "Fire resistance",
+    "purpose": "Reduces burn and fire effects",
+    "unit": "pct",
+    "applies_to": "enemy",
+    "skeleton_start": 0,
+    "cap": null,
+    "notes": "from Fire Pendant; resistance stats can be added per element"
+  },
+  {
+    "id": "freeze_resist",
+    "name": "Freeze resistance",
+    "purpose": "Reduces freeze chance and duration",
+    "unit": "pct",
+    "applies_to": "enemy",
+    "skeleton_start": 0,
+    "cap": null
+  }
+]

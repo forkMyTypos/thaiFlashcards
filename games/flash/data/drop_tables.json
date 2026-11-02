@@ -1,0 +1,44 @@
+[
+  {
+    "id": "skeleton_grunt",
+    "gold": 1.0,
+    "health": 0.02,
+    "item_or_chest": 0.005
+  },
+  {
+    "id": "skeleton_archer",
+    "gold": 1.0,
+    "health": 0.03,
+    "item_or_chest": 0.01
+  },
+  {
+    "id": "skeleton_armoured",
+    "gold": 1.0,
+    "health": 0.05,
+    "item_or_chest": 0.02
+  },
+  {
+    "id": "skeleton_berserker",
+    "gold": 1.0,
+    "health": 0.04,
+    "item_or_chest": 0.015
+  },
+  {
+    "id": "skeleton_mage",
+    "gold": 1.0,
+    "health": 0.05,
+    "item_or_chest": 0.03
+  },
+  {
+    "id": "elite",
+    "gold": 1.0,
+    "health": 0.25,
+    "item_or_chest": 0.25
+  },
+  {
+    "id": "boss",
+    "gold": 1.0,
+    "health": 1.0,
+    "item_or_chest": 1.0
+  }
+]

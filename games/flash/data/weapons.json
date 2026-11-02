@@ -1,0 +1,421 @@
+[
+  {
+    "id": "bone_boomerang",
+    "name": "Bone Boomerang",
+    "damage": 12,
+    "cooldown": 1.8,
+    "range": 250,
+    "behaviour": "returning_projectile",
+    "targeting": "smart",
+    "unlock_stage": 1,
+    "starting": true,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": -1,
+    "description": "Flies out and back, hitting every skeleton on the way out AND on the way back.",
+    "special_upgrades": [
+      "split into multiple boomerangs",
+      "extra return damage",
+      "explosive return"
+    ],
+    "projectile_speed": 350,
+    "hits_on_return": true
+  },
+  {
+    "id": "crossbow",
+    "name": "Crossbow",
+    "damage": 8,
+    "cooldown": 0.65,
+    "range": 450,
+    "behaviour": "projectile",
+    "targeting": "spread",
+    "unlock_stage": 1,
+    "starting": true,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "One bolt, one target. Spreads shots so it never wastes bolts on doomed skeletons.",
+    "special_upgrades": [
+      "multi-shot",
+      "explosive bolts",
+      "piercing bolts",
+      "ricochet"
+    ],
+    "projectile_speed": 550
+  },
+  {
+    "id": "great_sword",
+    "name": "Great Sword",
+    "damage": 30,
+    "cooldown": 1.5,
+    "range": 90,
+    "behaviour": "melee_arc",
+    "targeting": "area",
+    "unlock_stage": 1,
+    "starting": true,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "A big satisfying sweep through everything close.",
+    "special_upgrades": [
+      "wider sweep",
+      "double strike",
+      "shockwave",
+      "execute"
+    ],
+    "knockback": 15
+  },
+  {
+    "id": "pocket_cannon",
+    "name": "Pocket Cannon",
+    "damage": 45,
+    "cooldown": 2.5,
+    "range": 400,
+    "behaviour": "explosive_projectile",
+    "targeting": "strongest",
+    "unlock_stage": 1,
+    "starting": true,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Slow, heavy, explodes. Aims at the scariest thing on screen.",
+    "special_upgrades": [
+      "bigger explosions",
+      "cluster bombs",
+      "triple barrel",
+      "nuclear blast"
+    ],
+    "projectile_speed": 300,
+    "radius": 60
+  },
+  {
+    "id": "twin_daggers",
+    "name": "Twin Daggers",
+    "damage": 7,
+    "cooldown": 0.35,
+    "range": 65,
+    "behaviour": "melee_rapid",
+    "targeting": "nearest",
+    "unlock_stage": 1,
+    "starting": true,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Stabby stabby. Very fast, very close.",
+    "special_upgrades": [
+      "faster combos",
+      "extra strikes",
+      "bleed",
+      "shadow clones"
+    ]
+  },
+  {
+    "id": "throwing_axe",
+    "name": "Throwing Axe",
+    "damage": 20,
+    "cooldown": 1.4,
+    "range": 300,
+    "behaviour": "piercing_projectile",
+    "targeting": "nearest",
+    "unlock_stage": 2,
+    "starting": false,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 3,
+    "description": "Pierces through a line of skeletons.",
+    "special_upgrades": [
+      "return to Flash",
+      "split axes",
+      "spinning axes"
+    ],
+    "projectile_speed": 400
+  },
+  {
+    "id": "whirling_blades",
+    "name": "Whirling Blades",
+    "damage": 10,
+    "cooldown": 0.5,
+    "range": 100,
+    "behaviour": "orbit",
+    "targeting": "area",
+    "unlock_stage": 2,
+    "starting": false,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Blades orbit Flash and cut anything that gets close.",
+    "special_upgrades": [
+      "more blades",
+      "wider orbit",
+      "elemental blades"
+    ]
+  },
+  {
+    "id": "skull_crusher",
+    "name": "Skull Crusher",
+    "damage": 40,
+    "cooldown": 2.0,
+    "range": 75,
+    "behaviour": "melee_heavy",
+    "targeting": "nearest",
+    "unlock_stage": 2,
+    "starting": false,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Heavy strikes with big knockback.",
+    "special_upgrades": [
+      "ground shockwave",
+      "stun",
+      "armour breaking"
+    ],
+    "knockback": 40
+  },
+  {
+    "id": "ricochet_disc",
+    "name": "Ricochet Disc",
+    "damage": 15,
+    "cooldown": 1.2,
+    "range": 350,
+    "behaviour": "bouncing_projectile",
+    "targeting": "smart",
+    "unlock_stage": 2,
+    "starting": false,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Bounces between skeletons.",
+    "special_upgrades": [
+      "more bounces",
+      "splitting discs",
+      "explosive impact"
+    ],
+    "projectile_speed": 450,
+    "bounces": 3
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "damage": 25,
+    "cooldown": 1.3,
+    "range": 220,
+    "behaviour": "piercing_projectile",
+    "targeting": "nearest",
+    "unlock_stage": 2,
+    "starting": false,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": 2,
+    "description": "Long piercing thrust.",
+    "special_upgrades": [
+      "longer reach",
+      "multiple targets",
+      "piercing charge"
+    ]
+  },
+  {
+    "id": "sniper_rifle",
+    "name": "Sniper Rifle",
+    "damage": 80,
+    "cooldown": 3.0,
+    "range": 650,
+    "behaviour": "projectile",
+    "targeting": "strongest",
+    "unlock_stage": 3,
+    "starting": false,
+    "rarity": "rare",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Extremely powerful precision shots.",
+    "special_upgrades": [
+      "headshots",
+      "explosive rounds",
+      "chain kills"
+    ],
+    "projectile_speed": 1200
+  },
+  {
+    "id": "bone_saw",
+    "name": "Bone Saw",
+    "damage": 5,
+    "cooldown": 0.15,
+    "range": 60,
+    "behaviour": "continuous",
+    "targeting": "nearest",
+    "unlock_stage": 3,
+    "starting": false,
+    "rarity": "rare",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Continuous rapid hits up close.",
+    "special_upgrades": [
+      "longer reach",
+      "continuous damage",
+      "bleeding"
+    ]
+  },
+  {
+    "id": "spiked_flail",
+    "name": "Spiked Flail",
+    "damage": 22,
+    "cooldown": 1.0,
+    "range": 110,
+    "behaviour": "orbit",
+    "targeting": "area",
+    "unlock_stage": 3,
+    "starting": false,
+    "rarity": "rare",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Large swinging attack radius.",
+    "special_upgrades": [
+      "more chains",
+      "larger swing",
+      "stun"
+    ]
+  },
+  {
+    "id": "repeater_cannon",
+    "name": "Repeater Cannon",
+    "damage": 12,
+    "cooldown": 0.4,
+    "range": 400,
+    "behaviour": "projectile",
+    "targeting": "spread",
+    "unlock_stage": 3,
+    "starting": false,
+    "rarity": "rare",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Bursts of heavy projectiles.",
+    "special_upgrades": [
+      "burst fire",
+      "extra barrels",
+      "rapid reload"
+    ],
+    "projectile_speed": 500
+  },
+  {
+    "id": "razor_feathers",
+    "name": "Razor Feathers",
+    "damage": 9,
+    "cooldown": 0.5,
+    "range": 300,
+    "behaviour": "spread_projectile",
+    "targeting": "spread",
+    "unlock_stage": 3,
+    "starting": false,
+    "rarity": "rare",
+    "projectile_count": 3,
+    "pierce": 0,
+    "description": "Fires a fan of sharp feathers.",
+    "special_upgrades": [
+      "more feathers",
+      "homing",
+      "poison"
+    ]
+  },
+  {
+    "id": "giant_hammer",
+    "name": "Giant Hammer",
+    "damage": 65,
+    "cooldown": 2.8,
+    "range": 85,
+    "behaviour": "area_smash",
+    "targeting": "area",
+    "unlock_stage": 4,
+    "starting": false,
+    "rarity": "epic",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Massive area impact.",
+    "special_upgrades": [
+      "bigger impact",
+      "earthquake",
+      "meteor strike"
+    ],
+    "radius": 120
+  },
+  {
+    "id": "blade_storm",
+    "name": "Blade Storm",
+    "damage": 15,
+    "cooldown": 1.0,
+    "range": 180,
+    "behaviour": "orbit",
+    "targeting": "area",
+    "unlock_stage": 4,
+    "starting": false,
+    "rarity": "epic",
+    "projectile_count": 4,
+    "pierce": 0,
+    "description": "Multiple blades sweep across the arena.",
+    "special_upgrades": [
+      "more blades",
+      "faster rotation",
+      "larger radius"
+    ]
+  },
+  {
+    "id": "skull_gatling",
+    "name": "Skull Gatling",
+    "damage": 5,
+    "cooldown": 0.1,
+    "range": 450,
+    "behaviour": "projectile",
+    "targeting": "spread",
+    "unlock_stage": 4,
+    "starting": false,
+    "rarity": "epic",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "Extremely rapid fire.",
+    "special_upgrades": [
+      "more barrels",
+      "overheating bonus",
+      "explosive ammunition"
+    ],
+    "projectile_speed": 700
+  },
+  {
+    "id": "flying_fish",
+    "name": "Flying Fish",
+    "damage": 18,
+    "cooldown": 1.0,
+    "range": 250,
+    "behaviour": "bouncing_projectile",
+    "targeting": "smart",
+    "unlock_stage": 4,
+    "starting": false,
+    "rarity": "epic",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "A fish. It bounces. Between skeletons.",
+    "special_upgrades": [
+      "more bounces",
+      "splitting fish",
+      "electric fish"
+    ],
+    "bounces": 4
+  },
+  {
+    "id": "iron_paw",
+    "name": "Iron Paw",
+    "damage": 35,
+    "cooldown": 1.2,
+    "range": 80,
+    "behaviour": "melee_heavy",
+    "targeting": "strongest",
+    "unlock_stage": 4,
+    "starting": false,
+    "rarity": "epic",
+    "projectile_count": 1,
+    "pierce": 0,
+    "description": "A giant spectral paw repeatedly smashes enemies.",
+    "special_upgrades": [
+      "combo strikes",
+      "crushing blow",
+      "giant paw"
+    ]
+  }
+]

@@ -1,0 +1,91 @@
+/* Flash the Cat - everything inside the game column. Namespaced .ftc so it can
+   sit inside the Thai site without touching the site's own styles. */
+.ftc { position: relative; width: 100%; height: 100%; overflow: hidden; background: #14111a;
+  font: 13px/1.35 "Segoe UI", system-ui, sans-serif; color: #f2ede4; user-select: none; }
+.ftc-canvas { position: absolute; inset: 0; }
+.ftc-canvas canvas { display: block; }
+.ftc-hud { position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; }
+.ftc-top { display: flex; align-items: center; gap: 8px; padding: 8px 10px 4px; font-weight: 600;
+  text-shadow: 0 1px 2px #000; }
+.ftc-top .ftc-timer { margin: 0 auto; font-variant-numeric: tabular-nums; font-size: 15px; }
+.ftc-top button { pointer-events: auto; }
+.ftc-btn { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); color: inherit;
+  border-radius: 8px; padding: 4px 10px; cursor: pointer; font: inherit; }
+.ftc-btn:hover { background: rgba(255,255,255,.16); }
+.ftc-btn.big { padding: 10px 18px; font-size: 15px; font-weight: 700; background: #ff9f5a; color: #1a1010; border: none; }
+.ftc-btn.big:hover { background: #ffb57d; }
+.ftc-bars { padding: 0 10px; display: flex; flex-direction: column; gap: 4px; }
+.ftc-bar { position: relative; height: 14px; border-radius: 7px; background: rgba(0,0,0,.55); overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12); }
+.ftc-bar i { position: absolute; inset: 0 auto 0 0; width: 0; transition: width .15s; }
+.ftc-bar.hp i { background: linear-gradient(90deg, #e8484a, #ff7a5a); }
+.ftc-bar.xp { height: 13px; }
+.ftc-bar.xp i { background: linear-gradient(90deg, #4f9cf9, #7cc4ff); }
+.ftc-bar span { position: absolute; inset: 0; text-align: center; font-size: 10.5px; line-height: 13px; font-weight: 700;
+  text-shadow: 0 1px 1px #000; }
+.ftc-buffs { display: flex; flex-wrap: wrap; gap: 4px; padding: 5px 10px 0; min-height: 22px; }
+.ftc-buff { background: rgba(124,196,255,.18); border: 1px solid rgba(124,196,255,.45); border-radius: 10px;
+  padding: 0 7px; font-size: 11px; font-weight: 600; }
+.ftc-buff.quiz { background: rgba(255,159,90,.2); border-color: rgba(255,159,90,.6); }
+.ftc-warn { margin: 6px 10px 0; padding: 6px 10px; border-radius: 8px; background: rgba(242,112,95,.85);
+  color: #fff; font-weight: 700; text-align: center; display: none; animation: ftc-pulse 1s infinite alternate; }
+@keyframes ftc-pulse { from { opacity: .75 } to { opacity: 1 } }
+.ftc-float { position: absolute; left: 0; right: 0; top: 46%; text-align: center; pointer-events: none; }
+.ftc-float div { font-weight: 800; font-size: 15px; color: #ffd27a; text-shadow: 0 2px 3px #000;
+  animation: ftc-up 1.6s ease-out forwards; }
+.ftc-float div.bad { color: #ff8a7a; }
+@keyframes ftc-up { from { transform: translateY(0); opacity: 1 } to { transform: translateY(-70px); opacity: 0 } }
+.ftc-bottom { margin-top: auto; padding: 6px 8px 8px; display: flex; gap: 5px; flex-wrap: wrap; }
+.ftc-slot { background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.14); border-radius: 8px;
+  padding: 3px 7px; font-size: 11px; min-width: 0; }
+.ftc-slot b { color: #ffd27a; }
+.ftc-slot.empty { opacity: .4; }
+.ftc-slot.tail { border-style: dashed; }
+.ftc-overlay { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; padding: 18px; background: rgba(12,10,16,.82); text-align: center;
+  overflow-y: auto; }
+.ftc-overlay.show { display: flex; }
+.ftc-overlay h2 { margin: 0; font-size: 22px; color: #ffb57d; }
+.ftc-overlay p { margin: 0; color: #c9c2b8; }
+.ftc-cards { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 360px; }
+.ftc-card { text-align: left; background: #221c2a; border: 2px solid #3a3346; border-radius: 10px; padding: 9px 11px;
+  cursor: pointer; transition: transform .08s, border-color .08s; }
+.ftc-card:hover { transform: translateY(-1px); border-color: #ff9f5a; }
+.ftc-card .ftc-tag { float: right; font-size: 10.5px; opacity: .75; text-transform: uppercase; letter-spacing: .5px; }
+.ftc-card .ftc-name { font-weight: 800; font-size: 14px; }
+.ftc-card .ftc-desc { font-size: 12px; color: #c9c2b8; margin-top: 2px; }
+.ftc-card .ftc-stats { font-size: 11px; color: #9b93a8; margin-top: 3px; }
+.ftc-row { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.ftc-small { font-size: 11.5px; color: #9b93a8; }
+.ftc-statgrid { display: grid; grid-template-columns: auto auto; gap: 3px 14px; font-size: 13px; text-align: left; }
+.ftc-statgrid b { color: #ffd27a; }
+
+.ftc-bar.wave { height: 13px; }
+.ftc-bar.wave i { background: linear-gradient(90deg, #a66cff, #ff6a9a); }
+.ftc-ico { font-size: 13px; }
+.ftc-cardico { float: left; font-size: 26px; line-height: 1; margin: 1px 10px 0 0; }
+.ftc-tease { color: #ffd27a !important; }
+.ftc-banner { position: absolute; left: 0; right: 0; top: 30%; text-align: center; pointer-events: none;
+  opacity: 0; transform: scale(.6); }
+.ftc-banner.show { animation: ftc-banner 2.6s ease-out forwards; }
+.ftc-banner b { display: block; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: .5px;
+  text-shadow: 0 0 12px #ff6a9a, 0 3px 4px #000; }
+.ftc-banner small { display: block; margin-top: 4px; font-size: 13px; color: #ffd27a; text-shadow: 0 2px 3px #000; }
+@keyframes ftc-banner { 0% { opacity: 0; transform: scale(.6) } 12% { opacity: 1; transform: scale(1.08) }
+  20% { transform: scale(1) } 80% { opacity: 1 } 100% { opacity: 0; transform: translateY(-20px) } }
+.ftc-combo { position: absolute; right: 12px; top: 22%; text-align: right; pointer-events: none; opacity: 0;
+  transition: opacity .3s; font-size: 18px; }
+.ftc-combo.show { opacity: 1; }
+.ftc-combo b { display: block; font-weight: 900; color: #ffd23a; text-shadow: 0 0 10px #ff8a3a, 0 2px 3px #000; }
+.ftc-combo small { display: block; font-size: 11px; color: #ffb57d; letter-spacing: 2px; text-transform: uppercase; }
+.ftc-wavewin { color: #ffd23a !important; text-shadow: 0 0 12px #ff6a9a; }
+.ftc-overlay.show ~ .ftc-banner, .ftc-banner { z-index: 2; }
+.ftc-overlay { z-index: 3; }
+.ftc-vignette { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+  box-shadow: inset 0 0 90px 30px rgba(230, 30, 40, .75); }
+.ftc-vignette.pulse { animation: ftc-heart .8s ease-in-out infinite; }
+@keyframes ftc-heart { 0%, 100% { box-shadow: inset 0 0 90px 30px rgba(230,30,40,.75) } 50% { box-shadow: inset 0 0 130px 50px rgba(255,40,50,.95) } }
+.ftc-danger { position: absolute; left: 10px; right: 10px; bottom: 54px; padding: 8px 10px; border-radius: 10px;
+  background: rgba(200, 30, 40, .92); color: #fff; font-weight: 800; text-align: center; pointer-events: none;
+  opacity: 0; transform: translateY(10px); transition: opacity .25s, transform .25s; z-index: 2; }
+.ftc-danger.show { opacity: 1; transform: none; animation: ftc-pulse .7s infinite alternate; }

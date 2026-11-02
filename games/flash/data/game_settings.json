@@ -1,0 +1,202 @@
+[
+  {
+    "id": "rounds",
+    "values": {
+      "round_length": 60,
+      "break_length": 0,
+      "picks_banked_until_break": true,
+      "pause_allowed": true
+    },
+    "notes": "Break has no time limit: it waits for the player's skill picks."
+  },
+  {
+    "id": "spawning",
+    "values": {
+      "initial_enemies": 5,
+      "spawn_interval": 2.0,
+      "enemies_per_spawn": 1,
+      "max_active": 40,
+      "spawn_radius": 400,
+      "max_active_cap": 1000
+    },
+    "notes": "Starting values from the plan; they ramp per level."
+  },
+  {
+    "id": "levelling",
+    "values": {
+      "xp_base": 50,
+      "xp_linear": 25,
+      "xp_square": 5,
+      "choices_per_level": 3
+    },
+    "notes": "XP to next level = 50 + 25L + 5L^2"
+  },
+  {
+    "id": "combat",
+    "values": {
+      "min_damage": 1,
+      "dodge_cap": 0.75,
+      "weapon_slots": 4,
+      "tail_slot_unlockable": true
+    },
+    "notes": ""
+  },
+  {
+    "id": "performance",
+    "values": {
+      "target_fps": 60,
+      "fixed_timestep": 0.0166667,
+      "pause_when_hidden": true
+    },
+    "notes": "Game must never make the flashcards stutter."
+  },
+  {
+    "id": "shop",
+    "values": {
+      "stock_slots": 5,
+      "reroll_cost": 25,
+      "every_levels": 5,
+      "pauses_combat": true,
+      "price_scaling_per_stage": 0.02,
+      "unaffordable_visible": true
+    },
+    "notes": "price scaling guessed; Merchant's Ring etc. reduce prices"
+  },
+  {
+    "id": "choices",
+    "values": {
+      "level_up_choices": 3,
+      "reroll_allowed": true,
+      "skip_allowed": true,
+      "skip_gold": 10,
+      "favour_current_build": 0.5
+    },
+    "notes": "skip gold and build weighting guessed"
+  },
+  {
+    "id": "stages",
+    "values": {
+      "stage_length_seconds": 30
+    },
+    "notes": "Flash level (XP) and run stage (time) are separate. Stage length guessed so stage 100 ~ 50-60 min"
+  },
+  {
+    "id": "run_targets",
+    "values": {
+      "first_mini_boss_min": 5,
+      "first_major_boss_min": 10,
+      "stage_50_min": 30,
+      "stage_100_min": 55
+    },
+    "notes": "targets to test, not fixed timings"
+  },
+  {
+    "id": "player_options",
+    "values": {
+      "sound": true,
+      "music": true,
+      "volume": 0.8,
+      "damage_numbers": true,
+      "screen_shake": true,
+      "particles": "high",
+      "enemy_health_bars": true,
+      "pause_when_hidden": true
+    },
+    "notes": "player-facing settings"
+  },
+  {
+    "id": "hud",
+    "values": {
+      "stage": "top-left",
+      "timer": "top-centre",
+      "gold": "top-right",
+      "health": "upper",
+      "xp_bar": "below health",
+      "weapons": "bottom-left",
+      "spells": "bottom-right",
+      "pause": "top corner",
+      "boss_bar": "top"
+    },
+    "notes": "adapt for the tall narrow game column"
+  },
+  {
+    "id": "worlds",
+    "values": {
+      "environments": [
+        "dungeon",
+        "graveyard",
+        "dark_forest",
+        "volcanic_wasteland",
+        "frozen_wastes",
+        "castle_ruins"
+      ],
+      "start_with": "dungeon"
+    },
+    "notes": "Shared library environment ids. Order guessed. Build one polished arena first."
+  },
+  {
+    "id": "damage_formula",
+    "values": {
+      "formula": "damage = attack x modifiers x (1 - defence)",
+      "min_damage": 1,
+      "crit_multiplier": 1.5,
+      "crit_shared": true,
+      "defence": "percentage, applies to all damage, no cap",
+      "dodge_cap": 0.75,
+      "regen": "continuous",
+      "modifier_order": [
+        "add",
+        "add_pct",
+        "multiply"
+      ]
+    },
+    "notes": "From the design summary. Crit applies after defence."
+  },
+  {
+    "id": "tuning",
+    "values": {
+      "enemy_hp": 0.4,
+      "enemy_damage": 0.2,
+      "spawn_rate": 3,
+      "enemy_speed": 1,
+      "flash_hp": 1,
+      "xp": 1,
+      "study_power": 3
+    },
+    "notes": "Global multipliers on top of all the other data. study_power scales every study reward. Tuned 1 Nov: no study = dies in round 1-2; quiz every 5-10s = several rounds. 1 Nov: enemy_damage 0.1 -> 0.2 because Flash now moves and dodges."
+  },
+  {
+    "id": "movement",
+    "values": {
+      "enabled": true,
+      "speed": 95,
+      "look_ahead": 0.5,
+      "wall_margin": 45,
+      "decide_every": 0.1,
+      "preferred_range": 0.6,
+      "fear": 1,
+      "trap_fear": 1
+    },
+    "notes": "Flash scores 16 directions every decide_every seconds and takes the safest. preferred_range is a fraction of his longest weapon range (melee builds move in, ranged builds hang back). fear = how much he avoids skeletons; trap_fear = how much he avoids being boxed in."
+  },
+  {
+    "id": "director",
+    "values": {
+      "enabled": true,
+      "target_low": 0.3,
+      "target_high": 0.65,
+      "min_intensity": 1,
+      "max_intensity": 5,
+      "ramp_up": 0.03,
+      "ramp_down": 0.25,
+      "cap_per_round": 0.35,
+      "warmup_seconds": 15,
+      "final_surge_seconds": 10,
+      "final_surge_mult": 1.6,
+      "danger_hp": 0.3,
+      "damage_power": 0.8,
+      "hp_power": 0.5
+    },
+    "notes": "Keeps rounds tense. Raises intensity (more, tougher, harder-hitting skeletons) while Flash is comfortable; backs off (never below 1 = normal) when he's struggling. The cap grows each round. Below danger_hp the game shows 'answer a quiz to heal him'. Last final_surge_seconds of a round spawn faster."
+  }
+]

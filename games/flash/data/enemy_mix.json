@@ -1,0 +1,88 @@
+[
+  {
+    "id": "stages_1_5",
+    "from_stage": 1,
+    "to_stage": 5,
+    "enemies": [
+      "skeleton_grunt"
+    ],
+    "elite_chance": 0
+  },
+  {
+    "id": "stages_6_10",
+    "from_stage": 6,
+    "to_stage": 10,
+    "enemies": [
+      "skeleton_grunt",
+      "skeleton_archer"
+    ],
+    "elite_chance": 0
+  },
+  {
+    "id": "stages_11_20",
+    "from_stage": 11,
+    "to_stage": 20,
+    "enemies": [
+      "skeleton_grunt",
+      "skeleton_archer",
+      "skeleton_armoured",
+      "skeleton_berserker"
+    ],
+    "elite_chance": 0.02
+  },
+  {
+    "id": "stages_21_30",
+    "from_stage": 21,
+    "to_stage": 30,
+    "enemies": [
+      "skeleton_grunt",
+      "skeleton_archer",
+      "skeleton_armoured",
+      "skeleton_berserker",
+      "skeleton_mage",
+      "skeleton_elemental"
+    ],
+    "elite_chance": 0.04
+  },
+  {
+    "id": "stages_31_50",
+    "from_stage": 31,
+    "to_stage": 50,
+    "enemies": [
+      "*"
+    ],
+    "elite_chance": 0.07,
+    "notes": "mixed equipment and elite modifiers"
+  },
+  {
+    "id": "stages_51_75",
+    "from_stage": 51,
+    "to_stage": 75,
+    "enemies": [
+      "*"
+    ],
+    "elite_chance": 0.1,
+    "notes": "more elites, tougher equipment combinations"
+  },
+  {
+    "id": "stages_76_100",
+    "from_stage": 76,
+    "to_stage": 100,
+    "enemies": [
+      "*"
+    ],
+    "elite_chance": 0.15,
+    "notes": "high-tier equipment, dangerous combinations"
+  },
+  {
+    "id": "endless",
+    "from_stage": 101,
+    "to_stage": null,
+    "enemies": [
+      "*"
+    ],
+    "elite_chance": 0.15,
+    "elite_growth_per_stage": 0.001,
+    "notes": "everything, increasingly ridiculous; growth guessed"
+  }
+]
