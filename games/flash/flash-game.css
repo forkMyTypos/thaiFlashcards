@@ -302,8 +302,8 @@
 .ftc-lvline b { color: #9cc8ff; }
 
 /* romanization in the course's tone colours, the tone names, the streak */
-.ftc-wc .tn.t-mid { color: #8fa8bf; } .ftc-wc .tn.t-low { color: #6aa7ff; } .ftc-wc .tn.t-falling { color: #ff7b72; }
-.ftc-wc .tn.t-high { color: #f2c14e; } .ftc-wc .tn.t-rising { color: #58d68d; }
+.ftc .tn.t-mid { color: #8fa8bf; } .ftc .tn.t-low { color: #6aa7ff; } .ftc .tn.t-falling { color: #ff7b72; }
+.ftc .tn.t-high { color: #f2c14e; } .ftc .tn.t-rising { color: #58d68d; }
 .ftc-wc-rom .tn { font-weight: 600; }
 .ftc-wc-tones { display: block; font-size: 11px; color: #9b93a8; margin-top: 1px; }
 .ftc-wc-streak { color: #ffb57d; font-weight: 700; }
@@ -349,3 +349,58 @@
 .ftc-hard-w small { display: block; color: #9b93a8; font-size: 11px; }
 .ftc-share-img { width: min(420px, 90%); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
 .ftc-share-tx { max-width: 520px; font-size: 13px; color: #e6f3ff !important; background: rgba(255,255,255,.05); padding: 8px 10px; border-radius: 10px; user-select: text; }
+
+/* ---- phones and narrow columns: the arena on top, the word card under it */
+.ftc.stack .ftc-arena { bottom: var(--stack, 320px); }
+.ftc.stack .ftc-side { left: 0; right: 0; bottom: 0; top: auto; transform: none; width: auto; height: var(--stack, 320px);
+  display: flex; flex-direction: column; gap: 6px; padding: 6px 8px 8px; background: #15121d; border-top: 1px solid #2e2838; overflow-y: auto; }
+.ftc.stack .ftc-side-head { display: block; }
+.ftc.stack .ftc-side-idle { display: block; margin: auto 0; text-align: center; color: #9b93a8; font-size: 13px; }
+.ftc-side-mini { display: flex; gap: 8px; align-items: center; font-size: 12px; white-space: nowrap; overflow: hidden; }
+.ftc-side-mini b { color: #9cc8ff; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.ftc-side-mini .ftc-btn { margin-left: auto; padding: 1px 7px; }
+.ftc.stack .ftc-wc { padding: 8px 10px 10px; }
+.ftc.stack .ftc-wc-th.big { font-size: 38px; }
+.ftc.stack .ftc-wc-o { min-height: 42px; padding: 7px 8px 7px 20px; }
+.ftc.stack .ftc-wc-aid img { width: 60px; height: 60px; }
+.ftc-word { display: none; }
+
+/* ---- the word, the way the course's card shows it (wide screens) */
+.ftc.panel .ftc-word { display: block; background: #1b1726; border: 1px solid #2e2838; border-radius: 14px; padding: 12px 14px; }
+.ftc.panel .ftc-word:empty, .ftc.panel .ftc-word.hidden { display: none; }
+.ftc-word-k { font-size: 11px; color: #9b93a8; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+.ftc-word-k .lab { color: #5cf0a0; text-transform: none; letter-spacing: 0; }
+.ftc-word-top { display: flex; gap: 14px; align-items: center; }
+.ftc-word-pic img { width: 150px; height: 150px; object-fit: cover; border-radius: 12px; display: block; background: #221c2a; }
+.ftc-word-pic .ftc-wc-emoji { font-size: 90px; width: 130px; }
+.ftc-word-main { min-width: 0; }
+.ftc-word-th { font: 400 46px/1.15 "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
+.ftc-word-rom { font-size: 20px; color: #ffd27a; }
+.ftc-word-pos { font-size: 12px; color: #9b93a8; margin-top: 2px; }
+.ftc-word-btns { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.ftc-word-btns .ftc-btn { font-size: 12.5px; padding: 4px 10px; }
+.ftc-word-en { font-size: 18px; color: #e6f3ff; margin: 10px 0 6px; line-height: 1.35; }
+.ftc-word-aid { padding: 8px 10px; border-radius: 10px; background: rgba(255,210,58,.07); border: 1px solid rgba(255,210,58,.28); margin: 8px 0; }
+.ftc-word-aid b { display: block; font-size: 12.5px; color: #ffd27a; }
+.ftc-word-aid span { display: block; font-size: 13px; color: #d9d2c6; line-height: 1.4; }
+.ftc-word-sents b { display: block; font-size: 11px; color: #9b93a8; text-transform: uppercase; letter-spacing: .5px; margin: 10px 0 4px; }
+.ftc-word-sents ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ftc-word-sents li { padding-left: 10px; border-left: 2px solid #3a3346; }
+.ftc-word-sents li div { font: 400 19px/1.3 "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
+.ftc-word-sents li div .ftc-wc-say { position: static; font-size: 12px; padding: 1px 6px; vertical-align: middle; }
+.ftc-word-sents li i { display: block; font-style: normal; font-size: 13px; color: #ffd27a; }
+.ftc-word-sents li span { display: block; font-size: 13px; color: #c9c2b8; }
+
+/* the game-over list of words that moved up */
+.ftc-run ul { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+.ftc-run li { font-size: 13px; display: flex; gap: 6px; align-items: baseline; }
+.ftc-run li b { display: inline; margin: 0; font: 400 17px "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
+.ftc-run li em { margin-left: auto; font-style: normal; font-size: 11px; color: #5cf0a0; }
+.ftc.stack.nocard .ftc-arena { bottom: 0; }
+.ftc.stack.nocard .ftc-side { display: none; }
+/* overlays scroll from the top when they're taller than the screen (phones) */
+.ftc-overlay { justify-content: flex-start; }
+.ftc-overlay > :first-child { margin-top: auto; }
+.ftc-overlay > :last-child { margin-bottom: auto; }
+.ftc.stack .ftc-wc-aid.pic .ftc-wc-emoji { font-size: 34px; width: auto; }
+.ftc.stack .ftc-wc-aid.pic img { width: 56px; height: 56px; }

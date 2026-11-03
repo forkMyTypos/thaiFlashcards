@@ -1069,7 +1069,18 @@
       if (tel) tel.shop.push({ round: st.round, bought: "reroll", price });
       return true;
     }
+    // every offer a run takes, in order, so a saved run can be rebuilt (Dan:
+    // "do we have a way to save the game state? ... in learning mode, the game
+    // might last longer")
+    function logOffer(o) {
+      if (!st.log || o.kind === "potion") return;
+      const l = { k: o.kind, id: o.id };
+      if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid); l.w = o.wid || (w && w.id); }
+      if (o.kind === "sup") { const sp = st.spells.find(x => x.uid === o.suid); l.s = o.sid || (sp && sp.id); }
+      st.log.push(l);
+    }
     function applyOffer(o) {
+      logOffer(o);
       if (o.kind === "weapon") addWeapon(o.id);
       else if (o.kind === "spell") addSpell(o.id);
       else if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid); const u = D.upgrades.find(x => x.id === o.id); if (w && u) { w.mods.push(...u.effects); w.level++; } }
@@ -1226,13 +1237,54 @@
         intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, lastHitBy: null,
         stressUsed: !!st.god, megaUsed: false,
         spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
-        bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false });
+        bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false, log: [], startWeapon: weaponId || null });
       CX = W / 2; CY = H / 2;
       st.flash = newFlash();
       addWeapon(weaponId || Object.values(D.weapons).find(w => w.starting).id);
       telStart(st.weapons[0].id);
       for (let i = 0; i < S.initial; i++) spawnEnemy();
       ev({ t: "start" });
+    }
+    // ---- saving a run: only between rounds, when the arena is empty. What is
+    // kept is the run's recipe (the starting weapon and every pick, upgrade
+    // and purchase, in order) and its numbers; restoring replays the recipe.
+    const RUN_KEEP = ["round", "stage", "level", "xp", "xpNext", "gold", "kills", "pending", "damageDone", "comboMax",
+                      "wavesCleared", "fightT", "t", "bossesKilled", "mode"];
+    function exportRun() {
+      if (st.phase !== "break" || st.practice || !st.flash || !st.log) return null;
+      const n = {}; for (const k of RUN_KEEP) n[k] = st[k];
+      n.bossDone = Object.assign({}, st.bossDone); n.hp = st.flash.hp / st.flash.maxHp(); n.picked = (st.picked || []).slice(-60);
+      return { v: 1, start: st.startWeapon || (st.weapons[0] && st.weapons[0].id), log: st.log.slice(), n, data: DATA_HASH, at: Date.now() };
+    }
+    function restoreRun(s) {
+      if (!s || !s.start || !D.weapons[s.start] || !Array.isArray(s.log) || !s.n) return false;
+      startRun(s.start);
+      st.enemies = []; st.events = [];
+      const log = st.log = [];
+      const eff = (list, id) => { const x = (list || []).find(r => r.id === id); return x && x.effects && x.effects.length ? x.effects : null; };
+      for (const l of s.log) {
+        if (!l || !l.k) continue;
+        if (l.k === "weapon") { if (D.weapons[l.id] && !st.owned[l.id]) addWeapon(l.id); else continue; }
+        else if (l.k === "spell") { if (!addSpell(l.id)) continue; }
+        else if (l.k === "wup") { const w = st.owned[l.w], u = D.upgrades.find(x => x.id === l.id); if (!w || !u) continue; w.mods.push(...u.effects); w.level++; }
+        else if (l.k === "sup") { const sp = st.spellOwned[l.s], u = D.upgrades.find(x => x.id === l.id); if (!sp || !u) continue; sp.mods.push(...u.effects); sp.level++; }
+        else if (l.k === "tail") st.tail = true;
+        else {
+          const e = l.k === "stat" ? eff(D.upgrades, l.id) : l.k === "item" ? eff(D.items, l.id) : l.k === "passive" ? eff(D.passives, l.id) : null;
+          if (!e) continue;
+          changeMax(() => st.flash.stats.add(e, "perm"));
+        }
+        log.push(l);
+      }
+      for (const k of RUN_KEEP) if (s.n[k] !== undefined) st[k] = s.n[k];
+      st.bossDone = Object.assign({}, s.n.bossDone || {}); st.picked = (s.n.picked || []).slice();
+      st.flash.hp = st.flash.maxHp() * Math.max(0.05, Math.min(1, +s.n.hp || 1));
+      st.phase = "break"; st.roundT = 0;
+      st.offer = st.pending > 0 ? makeOffer() : null;
+      makeShop(0);
+      if (tel) tel.resumed = { round: st.round, level: st.level, saved_at: s.at || null };
+      ev({ t: "resumed", round: st.round });
+      return true;
     }
     function endRound() {
       st.phase = "break";
@@ -1535,6 +1587,7 @@
       megaWave(total) { if (st.phase === "fight" && !st.wave) { st.megaUsed = true; st.enemies = []; startWave(Object.assign({}, waveFor(999) || {}, { total, name: total >= 10000 ? "Skeleton apocalypse" : "Mega horde", banner: null })); } },
       drain() { const e = st.events; st.events = []; return e; },
       startingWeapons: () => Object.values(D.weapons).filter(w => w.starting),
+      exportRun, restoreRun,
       fmtMods,
     };
   }

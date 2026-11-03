@@ -466,7 +466,9 @@
         } else if (e.t === "rush") {
           if (A("banners")) { use("banners"); banner("The last ones charge!", ""); }
         } else if (e.t === "round_end") { SFX.play("round"); closeQuestion(); showBreak(); announce("round_end"); sendTel(); }
+        else if (e.t === "resumed") { if (learn) { endLearnGems(); learn = null; } clearGems(); rescueChain = 0; runWords = {}; closeQuestion(); showBreak(); announce("round_end"); }
         else if (e.t === "over") {
+          saveSet("run", null);                    // a run that's over can't be continued
           const best = SAVE.get().best || {};
           if ((st.round || 0) > (best[mode] || 0)) { best[mode] = st.round; saveSet("best", best); }
           SFX.play("over");
@@ -1261,17 +1263,26 @@
     // above the weapon bar.
     const sideEl = h("div", "ftc-side"), sideHead = h("div", "ftc-side-head"), sideIdle = h("div", "ftc-side-idle");
     const cardEl = h("div", "ftc-wc");
-    sideEl.append(sideHead, cardEl, sideIdle); root.append(sideEl);
+    // Dan: "we should be able to just show cards from the site". The last word
+    // answered (or the new one being met), the way the lesson page shows it:
+    // its picture, the Thai with tones, the meaning, part of speech, both
+    // recordings, the memory hook and the course's sentences.
+    const sideWord = h("div", "ftc-word");
+    sideEl.append(sideHead, cardEl, sideIdle, sideWord); root.append(sideEl);
+    let infoW = null;
     let cq = null, cState = "", cShown = 0, cNextAt = 0, cTimer = null, cStreak = 0, levelSeen = {};
     let cRun = { right: 0, wrong: 0, up: {}, best: 0 };
     const nowPic = {};                    // a picture from the reader's device, only while the lesson page is open
     const cardOn = () => wordMode === "card" && !!LE;
     const panelOn = () => cardOn() && root.classList.contains("panel");
+    const stackOn = () => cardOn() && root.classList.contains("stack");
     // Dan: "If we have auto select mode on in the game we can continue answering
     // questions": the card stays up between rounds when the study panel has its
     // own side of the screen, or auto-pick runs the break by itself.
     const cardLive = () => cardOn() && !learn && !st.practice && !st.paused && !qOpen && !optsOpen
       && (st.phase === "fight" || (st.phase === "break" && (panelOn() || prefs.auto)));
+    // the lesson's name, wherever it came from
+    const levelTitle = () => (lesson && lesson.title) || (pack && pack.title) || (LE && LE.level().title) || "This lesson";
     function syncLevel() {
       if (!LE) return;
       const list = lessonWords();
@@ -1339,6 +1350,30 @@
         const ch = im.dataset.ch; if (ch) { const e = h("span", "ftc-wc-emoji", esc(ch)); im.replaceWith(e); } else im.remove(); });
     }
     function cardHide() { cardEl.classList.remove("show"); }
+    function showWordInfo(w, current) {
+      if (!w || !panelOn()) return;
+      infoW = w;
+      const src = nowPic[w.id] || w.img || "";
+      const pic = src ? `<img src="${esc(src)}" alt="" data-ch="${esc(w.ch || "")}">` : w.ch ? `<span class="ftc-wc-emoji">${esc(w.ch)}</span>` : "";
+      const tn = toneNames(w);
+      const sents = (w.sents || []).slice(0, 3).map((x, i) => `<li><div lang="th">${esc(x.th)}${x.audio ? ` <button class="ftc-wc-say" data-s="${i}" title="Hear the sentence">🔊</button>` : ""}</div>${x.rom ? `<i>${esc(x.rom)}</i>` : ""}${x.en ? `<span>${esc(x.en)}</span>` : ""}</li>`).join("");
+      sideWord.innerHTML = `<div class="ftc-word-k">📖 ${q0label(w, current)}</div>
+        <div class="ftc-word-top">${pic ? `<div class="ftc-word-pic">${pic}</div>` : ""}
+          <div class="ftc-word-main"><div class="ftc-word-th" lang="th">${esc(w.th)}</div>
+            ${w.rom ? `<div class="ftc-word-rom">${romHtml(w)}</div>` : ""}
+            ${tn ? `<div class="ftc-wc-tones">${esc(tn)} tone${(w.tones || []).length > 1 ? "s" : ""}</div>` : ""}
+            ${w.pos ? `<div class="ftc-word-pos">${esc(w.pos)}${w.gender && w.gender !== "neutral" ? ` · said by ${esc(w.gender === "male" ? "men" : w.gender === "female" ? "women" : w.gender)}` : ""}</div>` : ""}
+            <div class="ftc-word-btns"><button class="ftc-btn" data-say>🔊 Say it</button>${w.slow ? `<button class="ftc-btn" data-slow>🐢 Slowly</button>` : ""}</div></div></div>
+        <div class="ftc-word-en">${esc(w.en)}</div>
+        ${w.hook || w.aid ? `<div class="ftc-word-aid"><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : ""}
+        ${sents ? `<div class="ftc-word-sents"><b>In a sentence</b><ul>${sents}</ul></div>` : ""}`;
+      sideWord.querySelectorAll(".ftc-word-pic img").forEach(im => im.onerror = () => { const ch = im.dataset.ch; im.replaceWith(h("span", "ftc-wc-emoji", esc(ch || "🖼"))); });
+      const sb = sideWord.querySelector("[data-say]"); if (sb) sb.onclick = () => sayWord(w);
+      const sl = sideWord.querySelector("[data-slow]"); if (sl) sl.onclick = () => say(w.slow, w.th);
+      sideWord.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { const x = (w.sents || [])[+b.dataset.s]; if (x && x.audio) say(x.audio, x.th); });
+      sideWord.classList.remove("hidden");
+    }
+    const q0label = (w, current) => { const lab = LE ? LE.label(w.id) : "new"; return `${current ? "New word" : "Last word"} · <span class="lab">${LABEL_TXT[lab] || lab}</span>`; };
     function cardNext() {
       clearTimeout(cTimer); cTimer = null; cq = null; cState = "";
       if (!cardLive()) { cardHide(); return; }
@@ -1348,6 +1383,7 @@
       renderCard();
       if (q.dir === "th" || q.dir === "au") sayWord(q.word, true);
       if (q.isNew && !cRun.newSaid) { cRun.newSaid = 1; floatText(`✨ ${PUN.new_word}`, false, true); }
+      if (q.kind === "meet") showWordInfo(q.word, true);
       // the next few words' sounds, so they're ready when they come up
       preloadAudio(LE.level().ids.slice(0, 40).map(id => LE.word(id)));
     }
@@ -1444,7 +1480,7 @@
       }
       if (r && r.opened && r.opened.includes("en")) floatText(`🔄 ${w.th}: now the other way round too`, false, true);
       if (opts.onWord) try { opts.onWord({ result: right ? "match" : "miss", id: w.id, helped: meet }); } catch (e) {}
-      noteDay(right && !meet); checkLevel(); drawSide(true);
+      noteDay(right && !meet); checkLevel(); showWordInfo(w); drawSide(true);
       // a wrong answer with a memory aid to read gets a little longer
       const wait = meet ? CM.next_after_meet : right ? CM.next_after_right : CM.next_after_wrong + (w.aid ? 1.2 : 0);
       cTimer = setTimeout(() => { cq = null; cState = ""; cardNext(); }, wait * 1000);
@@ -1453,19 +1489,24 @@
     // the top of the study panel: the level, how far along it is, the streak
     let sideAt = 0;
     function drawSide(now) {
-      if (!panelOn()) return;
+      if (!panelOn() && !stackOn()) return;
       const t = performance.now(); if (!now && t - sideAt < 400) return; sideAt = t;
       const p = LE.levelProgress(), sm = LE.summary(), k = p.total ? p.recognises / p.total : 0;
-      const html = `<div class="ftc-side-lv"><span>📘 Level · ${PUN.course}</span><b>${esc(lesson && lesson.title ? lesson.title : "These words")}</b></div>
+      const today = Math.min(GOAL, (dayLog()[dayKey()] || {}).n || 0);
+      const html = stackOn() ? `<div class="ftc-side-mini"><b>📘 ${esc(short(levelTitle(), 26))}</b><span>👀 ${p.recognises}/${p.total}</span><span>🔥 ${cStreak}</span><span>🎯 ${today}/${GOAL}</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>`
+        : `<div class="ftc-side-lv"><span>📘 Level · ${PUN.course}</span><b>${esc(levelTitle())}</b></div>
         <div class="ftc-side-bar" title="${p.recognises} of ${p.total} recognised · next level at ${Math.round(LE.S.ready_share * 100)}%"><i style="width:${Math.round(k * 100)}%"></i><em style="left:${Math.round(LE.S.ready_share * 100)}%"></em></div>
         <div class="ftc-side-n"><span title="seen at least once">✨ ${p.met}/${p.total} met</span><span title="right with 4 choices">👀 ${p.recognises}</span><span title="remembered with no choices">🧠 ${p.recalls}</span>${p.learned ? `<span title="recalled on two different days">⭐ ${p.learned}</span>` : ""}${sm.due ? `<span title="words from earlier sessions due for review">🔁 ${sm.due}</span>` : ""}</div>
-        <div class="ftc-side-day"><span title="answers today (the daily goal)">🎯 ${Math.min(GOAL, (dayLog()[dayKey()] || {}).n || 0)}/${GOAL} today</span><span title="days in a row with at least one answer">📅 ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>
+        <div class="ftc-side-day"><span title="answers today (the daily goal)">🎯 ${today}/${GOAL} today</span><span title="days in a row with at least one answer">📅 ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>
         <div class="ftc-side-streak${cStreak >= STREAK_EVERY ? " hot" : ""}">🔥 <b>${cStreak}</b> in a row<small>${cStreak % STREAK_EVERY === 0 && cStreak ? "Flash dash!" : `${STREAK_EVERY - (cStreak % STREAK_EVERY)} more for a Flash dash`} · best ${cRun.best}</small></div>`;
       if (sideHead._h !== html) { sideHead._h = html; sideHead.innerHTML = html; const pb = sideHead.querySelector("[data-prog]"); if (pb) pb.onclick = () => showProgress(); }
       const live = cardLive();
       const idle = live ? "" : st.phase === "start" ? "Pick a weapon to start: the words come here." : st.paused || optsOpen ? "⏸ Paused" :
         qOpen ? "❤️ Answer the Save Flash question" : st.phase === "break" ? "Between rounds. Tick <b>Auto-pick</b> to keep answering here." : st.phase === "over" ? "Flash fell. Play again to keep studying." : "";
       sideIdle.innerHTML = idle; sideIdle.style.display = idle && !cardEl.classList.contains("show") ? "" : "none";
+      // the word card from the course hides while that same word is being asked
+      const hideInfo = !!(cq && infoW && cq.id === infoW.id && cq.kind !== "meet" && cState !== "done");
+      sideWord.classList.toggle("hidden", hideInfo);
     }
     // Dan: "if every word in the lesson is at 80%, can probably offer the choice to move on"
     function checkLevel() {
@@ -1807,15 +1848,37 @@
     if (ro) { ro.observe(el); ro.observe(arena); }
 
     // -------------------------------------------------------------- HUD
+    // Dan: "put the game fully on the left side of the screen ... 60% game, 40%
+    // words+stats+info" and "a basic version for phones, just less info".
+    //   panel  a wide screen: the arena on the left, at most 60% and never
+    //          wider than its 1200x1000 shape (so no black bars), the study
+    //          side gets the rest
+    //   stack  a phone or a narrow column: the arena on top, the word card
+    //          under it with one line of stats
+    let layoutKey = "";
+    function layoutSide() {
+      const W = root.clientWidth, H = root.clientHeight;
+      let mode = "", key;
+      if (cardOn() && W >= 900) {
+        const aw = Math.round(Math.min(W * 0.6, H * FlashSim.WMAX / FlashSim.H));
+        mode = "panel"; key = mode + (W - aw);
+        if (key !== layoutKey) root.style.setProperty("--side", (W - aw) + "px");
+      } else if (cardOn()) {
+        const sh = Math.round(Math.max(250, Math.min(460, H * 0.46)));
+        mode = "stack"; key = mode + sh;
+        if (key !== layoutKey) root.style.setProperty("--stack", sh + "px");
+      } else key = "none";
+      if (key === layoutKey) return;
+      layoutKey = key; bandAt = 0;
+      root.classList.toggle("panel", mode === "panel"); root.classList.toggle("stack", mode === "stack");
+      sideAt = 0; drawSide(true);
+    }
     function updateHud() {
       const f = st.flash;
       // the word card: docked on the right when there's room, else above the weapon bar
-      const panel = cardOn() && root.clientWidth >= 940;
-      if (panel !== root.classList.contains("panel")) {
-        root.classList.toggle("panel", panel); bandAt = 0;
-        root.style.setProperty("--side", Math.round(Math.max(330, Math.min(440, root.clientWidth * 0.3))) + "px");
-      }
-      if (!panel) sideEl.style.setProperty("--cb", (bottom.offsetHeight + 10) + "px");
+      layoutSide();
+      // on a phone the start, game-over and options screens get the whole height
+      root.classList.toggle("nocard", stackOn() && (st.phase === "start" || st.phase === "over" || optsOpen));
       stageEl.textContent = st.phase === "start" ? "" : st.practice ? "📚 Learning mode"
         : `${cardOn() ? "" : mode === "learn" ? "📚 " : "✍ "}Round ${st.round} · Stage ${st.stage}`;
       const wv = st.wave;
@@ -1839,7 +1902,7 @@
       eyeBtn.style.display = !cardOn() && mode === "learn" && !st.practice && (st.phase === "fight" || st.phase === "break") ? "" : "none";
       eyeBtn.classList.toggle("on", showAll);
       // Learn mode: where the lesson's words are on the ladder
-      const levelOn = cardOn() && !panelOn() && !st.practice && (st.phase === "fight" || st.phase === "break");
+      const levelOn = cardOn() && !panelOn() && !stackOn() && !st.practice && (st.phase === "fight" || st.phase === "break");
       const ladderOn = !cardOn() && mode === "learn" && !st.practice && st.phase === "fight";
       ladderEl.style.display = ladderOn || levelOn ? "" : "none";
       if (levelOn) {
@@ -1908,6 +1971,13 @@
     function showStart() {
       overlay.innerHTML = "";
       overlay.append(h("h2", "", "🐈 Flash the Cat"));
+      const sr = savedRun();
+      if (sr) {
+        const box = h("div", "ftc-learn-offer ftc-saved", `<b>💾 Your saved run</b><span>Round ${sr.n.round} · level ${sr.n.level} · 💰 ${sr.n.gold}${sr.show && sr.show.weapons ? ` · ${esc(sr.show.weapons.join(", "))}` : ""}</span>
+          <small>Saved at the end of round ${sr.n.round}, ${ago(sr.at || Date.now())}${sr.show && sr.show.lesson ? ` · ${esc(sr.show.lesson)}` : ""}. Picking a weapon below starts a new run instead.</small>`);
+        const row = h("div", "ftc-row"), go = h("button", "ftc-btn big primary", `▶ Continue round ${sr.n.round + 1}`);
+        go.onclick = () => continueRun(); row.append(go); box.append(row); overlay.append(box);
+      }
       if (cardOn()) {
         const p = LE.levelProgress(), sm = LE.summary();
         overlay.append(h("p", "ftc-slogan", `${PUN.slogan} ⚡`));
@@ -1941,13 +2011,33 @@
       const cards = h("div", "ftc-cards");
       for (const w of sim.startingWeapons())
         cards.append(card({ icon: icon("weapons", w.id, "🗡️"), name: w.name, desc: w.description, rarity: w.rarity, tag: w.behaviour.replace(/_/g, " "),
-          stats: `${w.damage} dmg · ${w.cooldown}s · range ${w.range}` }, () => { cRun = { right: 0, wrong: 0, up: {}, best: 0 }; cStreak = 0; sim.startRun(w.id); }));
+          stats: `${w.damage} dmg · ${w.cooldown}s · range ${w.range}` }, () => { cRun = { right: 0, wrong: 0, up: {}, best: 0 }; cStreak = 0; saveSet("run", null); sim.startRun(w.id); }));
       overlay.append(cards);
       const ob = h("button", "ftc-btn", "⚙ Options"), orow = h("div", "ftc-row"); ob.onclick = () => showOptions(); orow.append(ob); overlay.append(orow);
       if (cardOn()) { const pb = h("button", "ftc-btn", `📊 ${PUN.check}`); pb.onclick = () => showProgress(); orow.append(pb); }
       overlay.classList.add("show");
     }
+    // Dan: "do we have a way to save the game state? ... in learning mode, the
+    // game might last longer". The run is saved between rounds (the arena is
+    // empty then): at the end of each round and after every pick or purchase.
+    // Close the tab mid-round and it comes back at the last break.
+    function saveRun() {
+      const r = sim.exportRun && sim.exportRun();
+      if (!r) return;
+      r.study = { right: cRun.right, wrong: cRun.wrong, best: cRun.best, up: cRun.up };
+      r.show = { weapons: st.weapons.map(w => w.def.name), spells: st.spells.map(x => x.def.name), lesson: lesson && lesson.title || "" };
+      saveSet("run", r);
+    }
+    function savedRun() { const r = SAVE.get().run; return r && r.v === 1 && r.start && r.n ? r : null; }
+    function continueRun() {
+      const r = savedRun(); if (!r) return;
+      cRun = Object.assign({ right: 0, wrong: 0, up: {}, best: 0 }, r.study || {}); cStreak = 0;
+      if (!sim.restoreRun(r)) { saveSet("run", null); floatText("That saved run couldn't be loaded", true); showStart(); return; }
+      SFX.play("round"); floatText(`💾 Welcome back! Round ${st.round} · level ${st.level}`, false, true);
+    }
+    const ago = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? "just now" : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} day${m < 2880 ? "" : "s"} ago`; };
     function showBreak() {
+      if (st.phase === "break") saveRun();
       overlay.innerHTML = "";
       bannerEl.classList.remove("show");
       if (lastWave) overlay.append(h("h2", "ftc-wavewin", `💀 ${esc(lastWave.name)} cleared!`),
@@ -1965,7 +2055,7 @@
       } else {
         const next = (data.mega_waves || []).filter(w => st.round + 1 === w.from_round || (w.every_rounds > 0 && st.round + 1 > w.from_round && (st.round + 1 - w.from_round) % w.every_rounds === 0)).sort((a, b) => b.total - a.total)[0];
         if (next) overlay.append(h("p", "ftc-tease", `${icon("mega_waves", next.id, "💀")} Next: <b>${esc(next.name)}</b> · ${next.total.toLocaleString()} skeletons`));
-        const go = h("button", "ftc-btn big", `Start round ${st.round + 1}`); go.onclick = () => { lastWave = null; sim.nextRound(); };
+        const go = h("button", "ftc-btn big", `Start round ${st.round + 1}`); go.onclick = () => { saveRun(); lastWave = null; sim.nextRound(); };
         overlay.append(go);
       }
       // the shop: spend gold between rounds
@@ -2024,7 +2114,7 @@
         if (st.phase !== "break" || !prefs.auto) return;
         if (optsOpen) { autoBreak(); return; }
         if (st.offer) { sim.choose(Math.floor(Math.random() * st.offer.length)); showBreak(); }
-        else { autoShop(); lastWave = null; sim.nextRound(); }
+        else { autoShop(); saveRun(); lastWave = null; sim.nextRound(); }
       }, 1500);
     }
     function showOver() {
@@ -2037,8 +2127,8 @@
           <span>Mega waves</span><b>${r.waves || 0}</b>`),
         h("p", "ftc-small", esc((r.weapons || []).join(" · "))));
       if (cardOn()) {
-        const up = Object.entries(cRun.up).slice(0, 8).map(([id, lab]) => { const w = LE.word(id); return w ? `<span lang="th">${esc(w.th)}</span> = ${esc(short(w.en))} <small>${LABEL_TXT[lab]}</small>` : ""; }).filter(Boolean);
-        if (cRun.right + cRun.wrong) overlay.append(h("div", "ftc-learn-offer", `<b>🧠 This run</b><span>${cRun.right} right · ${cRun.wrong} to practise · best streak 🔥 ${cRun.best}</span>${up.length ? `<span>Moved up: ${up.join(" · ")}</span>` : ""}`));
+        const up = Object.entries(cRun.up).slice(0, 10).map(([id, lab]) => { const w = LE.word(id); return w ? `<li><b lang="th">${esc(w.th)}</b> = ${esc(short(w.en))}<em>${LABEL_TXT[lab]}</em></li>` : ""; }).filter(Boolean);
+        if (cRun.right + cRun.wrong) overlay.append(h("div", "ftc-learn-offer ftc-run", `<b>🧠 This run</b><span>${cRun.right} right · ${cRun.wrong} to practise · best streak 🔥 ${cRun.best}</span>${up.length ? `<span>Moved up:</span><ul>${up.join("")}</ul>` : ""}`));
         overlay.append(h("p", "ftc-small", `${pick1(PUN.encourage)} 😺`));
       }
       const list = LM.enabled && !cardOn() ? learnList() : [];
@@ -2061,7 +2151,8 @@
     }
     function showPaused() {
       overlay.innerHTML = "";
-      overlay.append(h("h2", "", "Paused"), h("p", "", "While Flash is paused, studying doesn't power him up. Resume to earn rewards again."));
+      overlay.append(h("h2", "", "Paused"), h("p", "", "While Flash is paused, studying doesn't power him up. Resume to earn rewards again."),
+        h("p", "ftc-small", "💾 Your run is saved at the end of every round, and your words after every answer, so you can close the game and carry on later."));
       const go = h("button", "ftc-btn big", "Resume"); go.onclick = () => togglePause(false);
       overlay.append(go); overlay.classList.add("show");
     }
@@ -2359,6 +2450,8 @@
       learnState: () => learn ? { mode: learn.mode, i: learn.i, queue: learn.queue.length, done: learn.done, right: learn.right, total: learn.list.length } : null,
       startLearn: () => startLearn(),
       bonusWaiting: () => bonusWaiting(),
+      savedRun: () => savedRun(),
+      continueRun: () => continueRun(),
       gems: () => gems.map(g => ({ id: g.word.id, side: g.side, x: g.x, y: g.y, w: g.w, h: g.h, mt: !!g.mt, decoy: !!g.decoy })),
       setSlow: on => setSlow(on),
       showQuestion: q => showQuestion(q),
