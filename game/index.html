@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=f1f119430f"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=7d1c69f5fe"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -30,6 +30,13 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   padding: 3px 9px; font: inherit; cursor: pointer; white-space: nowrap; }
 .gm-bar button:hover { border-color: #4f9cf9; }
 #site { flex: 1; height: 100vh; border: 0; background: #101014; min-width: 0; }
+/* Dan: "full screen will be the default option, but we should have an option
+   screen where the user can go back to split mode". Full: the game fills the
+   page and the course keeps running out of sight, still supplying the words,
+   moving between levels and saving study progress. Split: side by side. */
+body.full .gm-col { width: 100%; }
+body.full .gm-grip { display: none; }
+body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height: 800px; flex: none; visibility: hidden; }
 .gm-note { position: absolute; left: 12px; right: 12px; bottom: 44px; z-index: 10; background: #1b1e24;
   border: 1px solid #4f9cf9; border-radius: 12px; padding: 12px 14px; box-shadow: 0 8px 30px rgba(0,0,0,.5);
   font-size: 13px; line-height: 1.5; }
@@ -59,11 +66,26 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
 <script src="../games/flash/flash-sim.js?v=f93339c761"></script>
-<script src="../games/flash/flash-game.js?v=26918c3a2c"></script>
+<script src="../games/flash/flash-learn.js?v=f67aaca6fb"></script>
+<script src="../games/flash/flash-game.js?v=c9f5e1cc6a"></script>
 <script>
 (function () {
   "use strict";
   var site = document.getElementById("site");
+  // the layout: full (the default) or split, remembered in this browser
+  var layout = "full";
+  try { layout = localStorage.getItem("ftc.layout") === "split" ? "split" : "full"; } catch (e) {}
+  function applyLayout() {
+    document.body.classList.toggle("full", layout === "full");
+    site.setAttribute("aria-hidden", layout === "full" ? "true" : "false");
+    site.tabIndex = layout === "full" ? -1 : 0;
+  }
+  applyLayout();
+  function setLayout(v) {
+    layout = v === "split" ? "split" : "full";
+    try { localStorage.setItem("ftc.layout", layout); } catch (e) {}
+    applyLayout(); tell();
+  }
   var ROOT = new URL("../", location.href).href;
   var started = Date.now();
 
@@ -126,7 +148,11 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   function toSite(m) { try { site.contentWindow.postMessage(m, location.origin); } catch (e) {} }
   function tell() {
     toSite({ type: "ftc:state", state: window.FTC_STATE });
-    if (api) toSite({ type: "ftc:config", words: api.wordSettings() });   // the site answers with its words
+    if (api) {
+      var ws = api.wordSettings();
+      if (layout === "full") ws.pop_quiz = false;            // they'd pop up over a course nobody can see
+      toSite({ type: "ftc:config", words: ws });             // the site answers with its words
+    }
   }
   var asks = {}, askN = 0, pendingWords = null;
   // the game wants a question about the learner's words ("Save Flash!")
@@ -175,13 +201,16 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   document.getElementById("gm-dl").onclick = function () {
     if (api) api.sendTelemetry();
     setTimeout(function () {
-      all().then(function (rows) {
-        var seen = {}, runs = [];
+      var learnP = api && api.learn ? Promise.resolve(api.learn.attempts()).catch(function () { return []; }) : Promise.resolve([]);
+      Promise.all([all(), learnP]).then(function (got) {
+        var rows = got[0], seen = {}, runs = [];
         rows.sort(function (a, b) { return b.updated - a.updated; })
             .forEach(function (r) { if (!seen[r.uid]) { seen[r.uid] = 1; runs.push(r.data); } });
         var blob = new Blob([JSON.stringify({ format: "ftc-telemetry", version: 1, site: location.host,
                                               exported_at: new Date().toISOString(), runs: runs,
-                                              save: api && api.save ? api.save() : null })], { type: "application/json" });
+                                              save: api && api.save ? api.save() : null,
+                                              // the word card: each word's state per direction, and every answer
+                                              learn: api && api.learn ? { items: api.learn.items(), attempts: got[1].slice(-5000) } : null })], { type: "application/json" });
         var a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
         a.download = "flash-the-cat-game-data-" + new Date().toISOString().slice(0, 10) + ".json";
@@ -200,7 +229,33 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   function meta() {
     return { site: { pages: pages, lessons: Object.keys(lessons).length, nav: nav.slice(-400),
                      hidden_s: Math.round((hiddenMs + (hiddenAt ? Date.now() - hiddenAt : 0)) / 1000),
-                     game_width: document.querySelector(".gm-col").offsetWidth, window_width: window.innerWidth } };
+                     game_width: document.querySelector(".gm-col").offsetWidth, window_width: window.innerWidth, layout: layout } };
+  }
+
+  // ------------------------------------------------------------ levels
+  // Each word lesson of the course is a level (the site's menu.json, in course
+  // order). Picking one moves the course to it, and the course sends its words.
+  var levelList = null;
+  function catNames() {
+    var out = {};
+    try { [].forEach.call(site.contentWindow.document.querySelectorAll(".catwrap[data-cat]"), function (c) { out[c.dataset.cat] = c.dataset.name || ""; }); } catch (e) {}
+    return out;
+  }
+  function levels() {
+    if (levelList) return Promise.resolve(levelList);
+    return fetch(ROOT + "menu.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      var names = catNames();
+      levelList = ((d && d.lessons) || []).filter(function (l) { return l && l.folder && l.title; }).map(function (l) {
+        var c = l.cat || "";
+        return { id: l.folder, title: l.title, cat: c, w: l.w || 0,
+                 catName: names[c] || c.replace(/^c-/, "").replace(/-/g, " ").replace(/^\w/, function (x) { return x.toUpperCase(); }) };
+      });
+      return levelList;
+    }).catch(function () { return []; });
+  }
+  function goLevel(id) {
+    if (!id || /[^a-z0-9._-]/i.test(id)) return;
+    site.src = ROOT + id + "/";
   }
 
   // ------------------------------------------------------------ the game
@@ -214,7 +269,10 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
                                                      onMode: function () { tell(); },
                                                      // a lesson mastered: on to the next one (the game keeps going)
                                                      goNextLesson: function () { toSite({ type: "ftc:goto", where: "next" }); },
-                                                     goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); } })
+                                                     goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); },
+                                                     // ⚙ Options: the layout and the level
+                                                     layout: function () { return layout; }, setLayout: setLayout,
+                                                     levels: levels, goLevel: goLevel })
     .then(function (a) {
       api = a; window.ftc = a;
       if (pendingWords) { api.setWords(pendingWords.words || [], pendingWords.extra || []); if (api.setLesson) api.setLesson(pendingWords.lesson || null); }
@@ -232,6 +290,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     var t = e.target; if (t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
     if (api && api.questionOpen && api.questionOpen()) return;     // the game's own question has the keys
     if (e.key === "Escape" && api && api.hasPick && api.hasPick()) return;   // Esc lets go of a picked gem (the game does it)
+    if (api && api.cardOpen && api.cardOpen() && /^[1-4 ]$|^Enter$/.test(e.key)) return;   // the word card's answer keys
+    if (layout === "full") return;                                             // the course is out of sight
     if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Escape" || /^[1-4]$/.test(e.key)) {
       if (e.key.indexOf("Arrow") === 0) e.preventDefault();
       toSite({ type: "ftc:key", key: e.key });
@@ -265,9 +325,9 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     var n = document.createElement("div");
     n.className = "gm-note";
     n.innerHTML = "<p><b>🎮 Game mode is new, and we're testing it.</b></p>" +
-      "<p>Study as usual: quiz answers make Flash strong, reading, listening and flashcards help a little. " +
-      "Match the Thai and English word gems in the arena for a boost, and watch for pop quizzes. " +
-      "Move around the course as much as you like; the game keeps going.</p>" +
+      "<p>Answer the word card to power Flash up: each word starts easy and asks more of your memory as you learn it, " +
+      "and comes back over the following days so it sticks. Each lesson of the course is a level. " +
+      "⚙ Options has the level, and can put the course beside the game instead.</p>" +
       "<p>To balance the game, this browser keeps a record of how each game goes (rounds, Flash's health, " +
       "which kinds of studying you did, not your answers). It stays on this computer unless you press " +
       "<b>⬇ Game data</b> and send us the file.</p>" +
