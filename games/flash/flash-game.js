@@ -113,17 +113,19 @@
     const SAVE = await openSave();
     const saveSet = (k, v) => { const d = SAVE.get(); d[k] = v; SAVE.set(d); };
     // Learn or Test (Dan: "What are they trying to do? learn, or test?")
-    //   learn: new words show their English on the Thai gem and their partner
-    //          glows the same colour; the help fades per word once it has been
-    //          matched hint_until times without it. 👁 Show answers shows it on
-    //          every word. A wrong pair lights up the right partner. Fewer
-    //          decoys, only from words already met; new words come in slowly;
-    //          gentler skeletons; a match made with the answer showing gives
-    //          helped_strength of the power.
-    //   test:  no help, full decoys and timers, full power.
+    //   learn: the normal game, with the answers showing (Dan: "learn mode =
+    //          normal mode but with all the answers, we don't need to make the
+    //          game easier"). The whole lesson as gems, a found pair replaced at
+    //          once; words still being learned show their English on the Thai
+    //          gem and share a colour with their partner, then get a ✍ mini
+    //          test (the word ladder). 👁 Show answers shows it on every word.
+    //          A wrong pair lights up the right partner. 2-3 decoys.
+    //   test:  no help, full decoys and timers.
     // Tuned in Game settings > modes.
-    const MS = Object.assign({ learn_hint_until: 2, learn_helped_strength: 0.5, learn_decoys_min: 2, learn_decoys_max: 3,
-                               learn_new_per_round: 2 }, ((sim.D.settings || {}).modes || {}).values || {});
+    const MS = Object.assign({ learn_helped_strength: 1, learn_decoys_min: 2, learn_decoys_max: 3, learn_new_per_round: 0,
+                               learn_pairs: 3, learn_shows: 5, learn_relearn_shows: 2, learned_after: 2,
+                               learn_test_choices: 3, learn_test_after: 2 },
+                             ((sim.D.settings || {}).modes || {}).values || {});
     let mode = SAVE.get().mode === "learn" ? "learn" : "test", showAll = !!SAVE.get().show_answers;
     sim.setMode(mode);
     function setMode(m) {
@@ -188,8 +190,8 @@
     const buffsEl = h("div", "ftc-buffs"), warnEl = h("div", "ftc-warn"), floatEl = h("div", "ftc-float"), bottom = h("div", "ftc-bottom");
     const bannerEl = h("div", "ftc-banner"), comboEl = h("div", "ftc-combo");
     const vignette = h("div", "ftc-vignette"), dangerEl = h("div", "ftc-danger", "❤️ Flash is in trouble! Answer a quiz to heal him");
-    const learnEl = h("div", "ftc-learn");
-    hud.append(top, bars, buffsEl, warnEl, learnEl, bottom);
+    const learnEl = h("div", "ftc-learn"), ladderEl = h("div", "ftc-ladder"), masterEl = h("div", "ftc-learn ftc-master");
+    hud.append(top, bars, ladderEl, buffsEl, warnEl, learnEl, masterEl, bottom);
     root.append(canvasBox, vignette, hud, floatEl, comboEl, bannerEl, dangerEl, overlay);
     let bannerT = null, lastWave = null;
     function banner(text, sub) {
@@ -198,6 +200,97 @@
       clearTimeout(bannerT); bannerT = setTimeout(() => bannerEl.classList.remove("show"), 2600);
     }
     el.append(root);
+
+    // ------------------------------------------------------------ sounds
+    // Dan: "with game sounds, we will need a volume slider, only affecting
+    // game sounds". Every effect is made in the browser (Web Audio, no files),
+    // goes through one volume that never touches the lesson's audio or a Thai
+    // gem's word, and is rate-limited so 500 skeletons don't become noise.
+    // The browser only allows sound after a click, so it starts on the first one.
+    const SFX = (() => {
+      let ctx = null, master = null, noiseBuf = null;
+      let vol = SAVE.get().sfx_volume ?? 0.5, muted = !!SAVE.get().sfx_muted;
+      const last = {};
+      const apply = () => { if (master) master.gain.value = muted ? 0 : vol * vol; };
+      function unlock() {
+        const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+        try {
+          if (!ctx) { ctx = new AC(); master = ctx.createGain(); master.connect(ctx.destination); apply(); }
+          if (ctx.state === "suspended") ctx.resume().catch(() => {});
+        } catch (e) { ctx = null; }
+      }
+      function noise() {
+        if (!noiseBuf) { noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+        return noiseBuf;
+      }
+      function tone(f, t0, dur, type, g, f2) {
+        const o = ctx.createOscillator(), a = ctx.createGain();
+        o.type = type || "sine"; o.frequency.setValueAtTime(f, t0); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t0 + dur);
+        a.gain.setValueAtTime(0.0001, t0); a.gain.exponentialRampToValueAtTime(g, t0 + 0.01); a.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        o.connect(a); a.connect(master); o.start(t0); o.stop(t0 + dur + 0.03);
+      }
+      function hiss(t0, dur, g, freq, q, kind) {
+        const s = ctx.createBufferSource(), fl = ctx.createBiquadFilter(), a = ctx.createGain();
+        s.buffer = noise(); fl.type = kind || "bandpass"; fl.frequency.value = freq || 1500; fl.Q.value = q || 1;
+        a.gain.setValueAtTime(g, t0); a.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        s.connect(fl); fl.connect(a); a.connect(master); s.start(t0); s.stop(t0 + dur + 0.03);
+      }
+      const notes = (fs, t, step, dur, type, g) => fs.forEach((f, i) => tone(f, t + i * step, dur, type, g));
+      const SOUNDS = {
+        hit: t => hiss(t, 0.04, 0.08, 2400, 2),
+        kill: t => tone(480 + Math.random() * 320, t, 0.07, "triangle", 0.09, 170),
+        pop: t => tone(900 + Math.random() * 500, t, 0.05, "sine", 0.06, 380),
+        explode: t => { hiss(t, 0.35, 0.4, 420, 0.7, "lowpass"); tone(90, t, 0.3, "sine", 0.35, 40); },
+        swing: t => hiss(t, 0.11, 0.12, 900, 0.8),
+        hurt: t => tone(190, t, 0.12, "square", 0.1, 90),
+        cast: t => { tone(620, t, 0.2, "sine", 0.1, 1300); hiss(t, 0.14, 0.05, 4200, 3); },
+        match: t => notes([1046, 1318], t, 0.08, 0.22, "sine", 0.24),
+        helped: t => tone(880, t, 0.16, "sine", 0.18),
+        mismatch: t => notes([220, 196], t, 0.09, 0.15, "square", 0.08),
+        learned: t => notes([784, 988, 1175, 1568], t, 0.07, 0.26, "triangle", 0.2),
+        levelup: t => notes([523, 659, 784, 1046], t, 0.06, 0.2, "triangle", 0.18),
+        reward: t => { tone(1800, t, 0.18, "sawtooth", 0.06, 300); hiss(t, 0.12, 0.1, 5000, 1.5); },
+        dash: t => { hiss(t, 0.4, 0.3, 700, 0.6); tone(70, t, 0.35, "sine", 0.4, 35); tone(1500, t, 0.25, "sawtooth", 0.05, 200); },
+        danger: t => notes([880, 660], t, 0.16, 0.14, "square", 0.1),
+        question: t => notes([1318, 1760], t, 0.1, 0.32, "sine", 0.16),
+        right: t => notes([784, 1175], t, 0.08, 0.26, "sine", 0.22),
+        wrong: t => tone(150, t, 0.3, "sawtooth", 0.1, 100),
+        boss: t => { tone(110, t, 0.9, "sawtooth", 0.14, 82); tone(55, t, 1.0, "sine", 0.3); },
+        boss_down: t => notes([392, 523, 659, 784, 1046], t, 0.09, 0.3, "triangle", 0.2),
+        coin: t => notes([988, 1319], t, 0.06, 0.14, "square", 0.08),
+        round: t => notes([523, 784], t, 0.12, 0.25, "triangle", 0.16),
+        over: t => notes([523, 440, 349, 262], t, 0.16, 0.3, "triangle", 0.18),
+      };
+      const GAP = { hit: 0.07, kill: 0.06, pop: 0.05, swing: 0.1, hurt: 0.2, cast: 0.12, explode: 0.12, reward: 0.15, danger: 1 };
+      return {
+        play(id) {
+          if (muted || vol <= 0 || !ctx || ctx.state !== "running" || !SOUNDS[id]) return;
+          const now = ctx.currentTime;
+          if (now - (last[id] ?? -9) < (GAP[id] || 0.03)) return; last[id] = now;
+          try { SOUNDS[id](now + 0.005); } catch (e) {}
+        },
+        unlock,
+        volume(v) { if (v !== undefined) { vol = Math.max(0, Math.min(1, +v)); saveSet("sfx_volume", vol); apply(); } return vol; },
+        mute(m) { if (m !== undefined) { muted = !!m; saveSet("sfx_muted", muted); apply(); } return muted; },
+        state: () => ctx ? ctx.state : "locked",
+        ids: () => Object.keys(SOUNDS),
+      };
+    })();
+    root.addEventListener("pointerdown", () => SFX.unlock(), true);
+    root.addEventListener("keydown", () => SFX.unlock(), true);
+    // 🔊 in the top bar: the game's own volume and mute
+    const volBtn = h("button", "ftc-btn ftc-volbtn", SFX.mute() ? "🔇" : "🔊"); volBtn.title = "Game sounds (not the lesson audio)";
+    const volBox = h("div", "ftc-vol", `<label>🔊 Game sounds</label><input type="range" min="0" max="100" step="5">
+      <label class="ftc-small"><input type="checkbox"> Mute</label><small>Only the game's effects. The lesson's audio and the Thai words keep their own volume.</small>`);
+    const volRange = volBox.querySelector('input[type="range"]'), volMute = volBox.querySelector('input[type="checkbox"]');
+    volRange.value = Math.round(SFX.volume() * 100); volMute.checked = SFX.mute();
+    volRange.oninput = () => { SFX.volume(volRange.value / 100); if (SFX.mute() && +volRange.value > 0) { SFX.mute(false); volMute.checked = false; } volBtn.textContent = SFX.mute() || !+volRange.value ? "🔇" : "🔊"; };
+    volRange.onchange = () => SFX.play("match");
+    volMute.onchange = () => { SFX.mute(volMute.checked); volBtn.textContent = volMute.checked ? "🔇" : "🔊"; };
+    volBtn.onclick = e => { e.stopPropagation(); volBox.classList.toggle("show"); };
+    document.addEventListener("pointerdown", e => { if (!volBox.contains(e.target) && e.target !== volBtn) volBox.classList.remove("show"); });
+    top.insertBefore(volBtn, top.lastChild);
+    root.append(volBox);
 
     // ----------------------------------------------------------- Phaser
     let scene = null;
@@ -279,13 +372,15 @@
       let texts = 0, deaths = 0;
       for (const e of events) {
         if (e.t === "hit") {
+          SFX.play("hit");
           if (A("damage_numbers") && texts < (st.wave ? 3 : 6) && (e.crit || events.length < 60)) { texts++; use("damage_numbers"); spawnText(e.x, e.y - 10, String(e.v), e.crit ? "#ffd23a" : "#ffffff", e.crit ? 18 : 13); }
           if (A("hit_sparks") && fx.length < 400) { use("hit_sparks"); fx.push({ k: "spark", x: e.x, y: e.y, r: 3, life: 0.15, max: 0.15, c: C.impact }); }
         } else if (e.t === "death") {
-          deaths++;
+          deaths++; if (!e.quiet) SFX.play("kill");
           if (deaths < 30 && !e.quiet && A("death_particles")) { use("death_particles"); for (let i = 0; i < 3; i++) burst(e.x, e.y, e.colour || C.death, 120); }
           if (A("bone_shards") && deaths < 120) { use("bone_shards"); boneShard(e.x, e.y); if (deaths < 30) boneShard(e.x, e.y); }
         } else if (e.t === "pop") {
+          SFX.play("pop");
           if (A("chain_pops") && fx.length < 450) { use("chain_pops"); fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.22, max: 0.22, c: 0xffe6a0 }); }
         } else if (e.t === "fire") {
           if (A("flash_squash")) { kick = 0.08; use("flash_squash"); }
@@ -295,30 +390,37 @@
         } else if (e.t === "mega_end") {
           lastWave = e;          // shown at the top of the break screen instead of a banner
         } else if (e.t === "explode") {
+          SFX.play("explode");
           if (A("explosion_rings")) { use("explosion_rings");
             fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.35, max: 0.35, c: e.c || (e.enemy ? 0xff5a5a : C.explosion) });
             for (let i = 0; i < 6; i++) burst(e.x, e.y, e.c || C.explosion, 200); }
         } else if (e.t === "swing") {
+          SFX.play("swing");
           if (A("swing_arcs")) { use("swing_arcs"); fx.push({ k: "arc", x: e.x, y: e.y, a: e.a, r: e.r, life: 0.16, max: 0.16, c: 0xffffff }); }
         } else if (e.t === "stab") {
           if (A("hit_sparks")) { use("hit_sparks"); fx.push({ k: "spark", x: e.x, y: e.y, r: 7, life: 0.12, max: 0.12, c: 0xffffff }); }
         } else if (e.t === "hurt") {
+          SFX.play("hurt");
           if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(70, 0.0025); }
           if (A("flash_hurt")) use("flash_hurt");
         } else if (e.t === "cast") {
+          SFX.play("cast");
           if (A("spell_fx")) { use("spell_fx"); spellFx(e); }
         } else if (e.t === "boss") {
+          SFX.play("boss");
           if (A("banners")) { use("banners"); banner(`👑 ${e.name} approaches!`, e.encounter || "A boss fight: the round won't end until it falls"); }
           if (scene && A("screen_shake")) scene.cameras.main.shake(400, 0.008);
         } else if (e.t === "boss_phase") {
           if (A("banners")) { use("banners"); banner(`${e.name} is furious!`, `Phase ${e.phase}`); }
         } else if (e.t === "boss_down") {
+          SFX.play("boss_down");
           if (A("banners")) { use("banners"); banner(`👑 ${e.name} defeated!`, `+${e.picks} free picks`); }
           for (let i = 0; i < 40; i++) burst(e.x, e.y, i % 2 ? 0xffd23a : 0xffffff, 520);
           if (scene && A("screen_shake")) scene.cameras.main.shake(300, 0.01);
         } else if (e.t === "shield_hit") {
           if (st.flash) fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 34, life: 0.2, max: 0.2, c: 0x9cc8ff });
         } else if (e.t === "dash") {
+          SFX.play("dash");
           // "in a flash": a blue shockwave and bolts in every direction
           if (A("flash_dash")) {
             use("flash_dash");
@@ -331,8 +433,10 @@
             dashT = 0.35;
           }
         } else if (e.t === "levelup") {
+          SFX.play("levelup");
           if (A("level_up_ring")) { use("level_up_ring"); floatText(`LEVEL ${e.level}!`); fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 90, life: 0.5, max: 0.5, c: 0x7cc4ff }); }
         } else if (e.t === "reward") {
+          SFX.play(e.bad ? "wrong" : "reward");
           if (A("reward_fx")) { use("reward_fx"); floatText(e.text, e.bad, !e.bad);
             if (!e.bad) fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 60, life: 0.6, max: 0.6, c: BLUE }); }
           if (!e.bad && A("study_bolts") && st.flash) {
@@ -344,12 +448,14 @@
           announce(e.on ? "danger" : "safe");       // the site can use this to nudge the learner towards a quiz
           if (e.on) maybeRescue();
           if (e.on && A("danger_alarm")) use("danger_alarm");
+          if (e.on) SFX.play("danger");
         } else if (e.t === "rush") {
           if (A("banners")) { use("banners"); banner("The last ones charge!", ""); }
-        } else if (e.t === "round_end") { closeQuestion(); showBreak(); announce("round_end"); sendTel(); }
+        } else if (e.t === "round_end") { SFX.play("round"); closeQuestion(); showBreak(); announce("round_end"); sendTel(); }
         else if (e.t === "over") {
           const best = SAVE.get().best || {};
           if ((st.round || 0) > (best[mode] || 0)) { best[mode] = st.round; saveSet("best", best); }
+          SFX.play("over");
           clearGems(); closeQuestion(); showOver(); announce("died"); sendTel();
         }
         else if (e.t === "practice") { if (e.on) hideOverlay(); }
@@ -711,17 +817,95 @@
       for (const g of gems) if (g.word.id === w.id || g.word.th === w.th || short(g.word.en) === short(w.en)) return false;
       return true;
     }
+    // ---- the word ladder (Dan: "keep track of the number of times a word
+    // has been shown, after 5 shows, we do test mode, if they get it right, the
+    // word stays in test mode, if wrong the word goes back to learning mode")
+    //   learn   the answer shows; each match with it showing is a "show"
+    //   test    after learn_shows shows: no answer. Right = stays tested;
+    //           wrong = back to learn for learn_relearn_shows more
+    //   learned learned_after right in a row without help: ⭐, comes up less
+    // A show counts when the learner matches the pair (copying it), not when
+    // it merely drifts by. Kept per word here for the session, sent to the
+    // course to save (newest wins both ways, by `lt`).
+    const ladder = {};
+    function rung(w) {
+      let r = ladder[w.id];
+      if (!r || (w.lt && w.lt > r.lt)) {
+        r = ladder[w.id] = { stage: w.stage || (w.known ? "test" : "learn"), shows: w.shows || 0, trs: w.trs || 0, lt: w.lt || 0 };
+      }
+      return r;
+    }
+    function ladderSave(w, r, why) {
+      r.lt = Date.now(); w.stage = r.stage; w.shows = r.shows; w.trs = r.trs; w.lt = r.lt;
+      if (opts.onWord) try { opts.onWord({ result: "ladder", id: w.id, stage: r.stage, shows: r.shows, trs: r.trs, lt: r.lt, why,
+                                       th: w.th, rom: w.rom || "", en: w.en, audio: w.audio || "" }); } catch (e) {}
+    }
+    function ladderRight(w, helped) {
+      if (!w || !w.id) return;
+      const r = rung(w), was = r.stage;
+      if (helped) {
+        if (r.stage !== "learn") return;                 // the answer was showing: nothing proved
+        r.shows++;
+        if (r.shows >= MS.learn_shows) { r.stage = "test"; r.trs = 0; dueAt[w.id] = matchesRun; floatText(`✍ ${w.th}: a mini test is coming up`); }
+      } else {
+        r.trs++; if (r.stage === "learn") r.stage = "test";
+        if (r.trs >= MS.learned_after && r.stage !== "learned") { r.stage = "learned"; SFX.play("learned"); floatText(`⭐ ${w.th} = ${short(w.en)} learned!`, false, true); }
+      }
+      if (r.stage !== was || helped) ladderSave(w, r, helped ? "show" : "right"); else ladderSave(w, r, "right");
+    }
+    function ladderWrong(w) {
+      if (!w || !w.id) return;
+      const r = rung(w);
+      if (r.stage === "learn") { r.trs = 0; return ladderSave(w, r, "wrong"); }
+      r.stage = "learn"; r.trs = 0; r.shows = Math.max(0, MS.learn_shows - MS.learn_relearn_shows);
+      floatText(`↩ ${w.th}: back to learning`, true);
+      ladderSave(w, r, "wrong");
+    }
+    // ---- a lesson mastered (Dan: "if the player masters one lesson, we
+    // should offer the option of moving onto the next lesson"): every word on
+    // the lesson's page is ⭐ learned. The game keeps going; the course moves
+    // on only if the learner says so. Once per lesson per visit, noted in the save.
+    let lesson = null, masteredSeen = {};
+    function lessonWords() { return extra.filter(w => w && w.id && w.th && w.en); }
+    function checkMastered() {
+      if (st.phase !== "fight" || st.practice || learn) return;
+      const ws = lessonWords(), id = (lesson && lesson.id) || "bench";
+      if (ws.length < 3 || masteredSeen[id]) return;
+      if (!ws.every(w => rung(w).stage === "learned")) return;
+      masteredSeen[id] = 1;
+      const m = SAVE.get().mastered || {}; if (!m[id]) { m[id] = { at: Date.now(), words: ws.length, title: lesson && lesson.title || "" }; saveSet("mastered", m); }
+      SFX.play("boss_down");
+      if (A("banners")) banner("🏆 Lesson mastered!", `all ${ws.length} words ⭐ learned`);
+      for (let i = 0; i < 30; i++) burst(st.flash.x, st.flash.y, i % 2 ? 0xffd23a : BLUE, 420);
+      sim.applyReward({ v: 1, kind: "reward", source: "match", strength: 1, streak: 10, word: "🏆" });
+      const nx = lesson && lesson.next;
+      masterEl.innerHTML = `<b>🏆 Lesson mastered!</b><small>All ${ws.length} words${lesson && lesson.title ? ` in <i>${esc(lesson.title)}</i>` : ""} are ⭐ learned.${nx ? "" : " That's the last lesson, well done!"}</small>`;
+      const row = h("div", "ftc-learn-row");
+      if (nx && opts.goNextLesson) { const go = h("button", "ftc-btn primary", `➡ Next lesson${nx.title ? ": " + esc(nx.title) : ""}`);
+        go.onclick = () => { masterEl.classList.remove("show"); bandAt = 0; try { opts.goNextLesson(); } catch (e) {} }; row.append(go); }
+      const stay = h("button", "ftc-btn", nx ? "Keep practising here" : "OK"); stay.onclick = () => { masterEl.classList.remove("show"); bandAt = 0; };
+      row.append(stay); masterEl.append(row); masterEl.classList.add("show"); bandAt = 0;
+      sim.noteStudy("lesson_mastered");
+    }
     let newThisRound = 0;
+    // Learn mode: the whole lesson (Dan: "We can use all the words in the
+    // current lesson"), words still being learned first, ⭐ learned ones now and then
+    function learnPool() {
+      const seen = new Set(), out = [];
+      for (const w of extra.concat(words)) if (!seen.has(w.id)) { seen.add(w.id); out.push(w); }
+      return out;
+    }
     function pickWord() {
-      let pool = words.filter(free);
-      if (mode === "learn" && newThisRound >= MS.learn_new_per_round) {
+      let pool = (mode === "learn" ? learnPool().filter(w => !isDue(w)) : words).filter(free);
+      if (mode === "learn" && MS.learn_new_per_round > 0 && newThisRound >= MS.learn_new_per_round) {
         const known = pool.filter(w => (w.level || 0) > 0 || runWords[w.id]);
         if (known.length) pool = known;
       }
       if (!pool.length) return null;
-      let sum = 0; for (const w of pool) sum += w.weight || 1;
+      const wt = w => (w.weight || 1) * (mode !== "learn" ? 1 : ({ learn: 3, test: 2, learned: 0.5 })[rung(w).stage] || 1);
+      let sum = 0; for (const w of pool) sum += wt(w);
       let r = Math.random() * sum;
-      for (const w of pool) { r -= w.weight || 1; if (r <= 0) return w; }
+      for (const w of pool) { r -= wt(w); if (r <= 0) return w; }
       return pool[pool.length - 1];
     }
     // "plate, dish, classifier for plates; a course" -> "plate, dish"
@@ -735,8 +919,9 @@
     // and the pair's shared colour)
     const PAIR_COLOURS = [0xffd23a, 0x5cf0a0, 0xff8fd0, 0x7fd8ff, 0xffa25c, 0xc6a8ff];
     let pairN = 0;
-    const needsHint = w => (w.level || 0) < MS.learn_hint_until && !w.known;
-    const hintOn = g => mode === "learn" && !g.learn && !g.test && (showAll || g.hinted);
+    const needsHint = w => rung(w).stage === "learn";
+    // live, so a gem stops helping the moment its word moves up the ladder
+    const hintOn = g => mode === "learn" && !g.learn && !g.test && !g.noHint && (showAll || (!g.decoy && needsHint(g.word)));
     function makeGem(word, side, o = {}) {
       const s = scene;
       const c = s.add.container(0, 0).setDepth(40);
@@ -757,10 +942,10 @@
       const w = Math.max(...parts.map(t => t.width)) + 30, hh = side === "th" ? (word.rom ? 70 : 50) + (room ? 22 : 0) : parts[0].height + 24;
       const bg = s.add.graphics();
       const g = { word, side, c, bg, w, h: hh, x: 0, y: 0, vx: 0, vy: 0, age: 0, life: WD.life, shake: 0, hintText,
-                  decoy: !!o.decoy, hinted: !o.decoy && !o.noHint && mode === "learn" && needsHint(word), pc: o.pc || 0, _hint: null };
+                  decoy: !!o.decoy, noHint: !!o.noHint, pc: o.pc || 0, _hint: null };
       g.paint = sel => {
         bg.clear();
-        const hinting = hintOn(g), pc = hinting && g.pc && !g.decoy ? g.pc : 0;
+        const hinting = hintOn(g), pc = g.mt ? 0xffd23a : hinting && g.pc && !g.decoy ? g.pc : 0;
         bg.fillStyle(side === "th" ? 0x3b2560 : 0x123a4c, 0.93).fillRoundedRect(-w / 2, -hh / 2, w, hh, 14);
         bg.lineStyle(sel ? 4 : pc ? 3.5 : 2, sel ? 0xffd23a : pc || (side === "th" ? 0xb98cff : 0x6cc8ff), 1).strokeRoundedRect(-w / 2, -hh / 2, w, hh, 14);
         if (pc && !sel) { bg.fillStyle(pc, 1).fillCircle(w / 2 - 9, -hh / 2 + 9, 5); }
@@ -787,6 +972,77 @@
       Object.assign(g, best, { vx: Math.cos(a) * sp, vy: Math.sin(a) * sp });
       g.c.setPosition(g.x, g.y).setAlpha(0).setScale(0.6);
     }
+    // ---- the mini test (Dan: "once we shown the user a word 5 times, we do a
+    // mini test mode for that word. We should warn the user, when we start
+    // test mode"). A word that has been matched learn_shows times with its
+    // answer showing is due; after learn_test_after other matches (so it is
+    // not just short-term memory) it comes back as a test: a banner and a
+    // sound say so, the game goes into slow motion, and its Thai gem (no
+    // answer, "✍ MINI TEST") waits with learn_test_choices English answers
+    // under it. Right = it stays in testing (⭐ after learned_after in a row);
+    // wrong = the right answer lights up and it goes back to learning.
+    const dueAt = {};
+    const isDue = w => { const r = rung(w); return r.stage === "test" && !r.trs; };
+    const mtOn = () => gems.some(g => g.mt);
+    function dueWord() {
+      for (const w of learnPool()) {
+        if (!isDue(w) || gems.some(g => g.word.id === w.id)) continue;
+        if (dueAt[w.id] === undefined || matchesRun - dueAt[w.id] >= MS.learn_test_after) return w;
+      }
+      return null;
+    }
+    function spawnMiniTest(w) {
+      if (!scene) return false;
+      const b = gemBand(), x = st.W / 2;
+      const thai = makeGem(w, "th", { noHint: true });
+      thai.c.add(scene.add.text(0, -thai.h / 2 - 13, "✍ MINI TEST", { fontFamily: "Segoe UI, system-ui, sans-serif", fontSize: "15px",
+        fontStyle: "bold", color: "#ffd23a" }).setOrigin(0.5));
+      const opts2 = [makeGem(w, "en", { noHint: true })];
+      const taken = new Set([short(w.en)]);
+      for (const d of shuffle(learnPool().filter(o => o.id !== w.id))) {
+        if (opts2.length >= MS.learn_test_choices) break;
+        const e = short(d.en); if (taken.has(e) || gems.some(g => g.word.id === d.id)) continue;
+        taken.add(e); opts2.push(makeGem(d, "en", { decoy: true, noHint: true }));
+      }
+      shuffle(opts2);
+      const y0 = b.top + 70;
+      Object.assign(thai, { x, y: y0 + thai.h / 2 });
+      let y = y0 + thai.h + 40;
+      for (const o of opts2) { Object.assign(o, { x, y: y + o.h / 2 }); y += o.h + 18; }
+      for (const g of [thai, ...opts2]) {
+        Object.assign(g, { mt: true, mtWord: w.id, fixed: true, vx: 0, vy: 0, life: 1e9 });
+        g.c.setPosition(g.x, g.y).setAlpha(0); g.paint(false); gems.push(g);
+      }
+      SFX.play("question"); setSlow(true);
+      if (A("banners")) banner("✍ Mini test!", `${w.th}: which one is it?`);
+      floatText(`✍ Mini test: what is ${w.th}?`, false, true);
+      sim.noteStudy("mini_test");
+      return true;
+    }
+    function endMiniTest(after) {
+      setTimeout(() => { for (const g of gems.filter(x => x.mt)) dropGem(g); if (!qOpen) setSlow(false); gemAcc = 1; }, after || 0);
+    }
+    function miniTestPair(a, g) {
+      const thai = a.side === "th" ? a : g, en = thai === a ? g : a, w = thai.word;
+      if (thai.word.id !== thai.mtWord) return;
+      if (thai.done) return;
+      thai.done = true;
+      if (!en.decoy && en.word.id === w.id) {
+        SFX.play("right"); ladderRight(w, false); logWord(w, "right"); matchesRun++;
+        for (const x of [thai, en]) for (let i = 0; i < 18; i++) burst(x.x, x.y, 0xffd23a, 300);
+        floatText(`✅ Passed! ${w.th} = ${short(w.en)}`, false, true);
+        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: 1, streak: ++matchRun, word: w.th });
+        if (opts.onWord) try { opts.onWord({ result: "match", id: w.id }); } catch (e) {}
+        endMiniTest(350);
+      } else {
+        SFX.play("wrong"); en.shake = thai.shake = 0.4; matchRun = 0;
+        ladderWrong(w); logWord(w, "wrong");
+        const right = gems.find(x => x.mt && !x.decoy && x.side === "en");
+        if (right) teach = { a: thai, b: right, t: 2.2 };
+        if (opts.onWord) try { opts.onWord({ result: "miss", id: w.id, other: en.word.id }); } catch (e) {}
+        endMiniTest(2200);
+      }
+    }
     function spawnPair() {
       const w = pickWord(); if (!w || !scene) return false;
       if (!(w.level || 0) && !runWords[w.id]) newThisRound++;
@@ -801,7 +1057,7 @@
     };
     function spawnDecoy() {
       const seen = new Set(), cands = [];
-      for (const w of (mode === "learn" ? words : extra.concat(words))) if (!seen.has(w.id)) { seen.add(w.id); if (free(w)) cands.push(w); }
+      for (const w of extra.concat(words)) if (!seen.has(w.id)) { seen.add(w.id); if (free(w)) cands.push(w); }
       if (!cands.length || !scene) return false;
       const w = cands[Math.floor(Math.random() * cands.length)];
       const g = makeGem(w, Math.random() < 0.55 ? "en" : "th", { decoy: true });
@@ -821,7 +1077,7 @@
       for (const x of [teach.a, teach.b]) teachG.lineStyle(pulse, 0x5cf0a0, k).strokeRoundedRect(x.x - x.w / 2 - 6, x.y - x.h / 2 - 6, x.w + 12, x.h + 12, 16);
     }
     function dropGem(g) { try { g.c.destroy(); } catch (e) {} gems = gems.filter(x => x !== g); if (picked === g) picked = null; }
-    function clearGems() { for (const g of gems.slice()) dropGem(g); picked = null; gemAcc = WD.spawn_every - WD.first_after; decoyAcc = 0; matchesRun = 0; }
+    function clearGems() { for (const g of gems.slice()) dropGem(g); picked = null; gemAcc = mode === "learn" ? 0 : WD.spawn_every - WD.first_after; decoyAcc = 0; matchesRun = 0; }
     function deselect() { if (!picked) return false; picked.paint(false); picked = null; return true; }
     let gemTips = +(prefs.gemTips || 0);
     function clickGem(g) {
@@ -837,25 +1093,33 @@
       if (picked.side === g.side) { picked.paint(false); picked = g; g.paint(true); return; }
       const a = picked; picked = null; a.paint(false);
       if (learn && learn.mode === "test") return testPair(a, g);
+      if (a.mt || g.mt) {
+        if (a.mt && g.mt) return miniTestPair(a, g);
+        a.shake = g.shake = 0.3; floatText("✍ Answer the mini test with one of its answers"); return;
+      }
       if (!a.decoy && !g.decoy && a.word.id === g.word.id) {
         const helped = hintOn(a) || hintOn(g);
+        SFX.play(helped ? "helped" : "match");
         logWord(a.word, helped ? "helped" : "right");
         if (helped) sim.noteStudy("match_helped");
-        if (!helped) a.word.level = Math.min(5, (a.word.level || 0) + 1);   // the help fades as it is learned
+        if (!helped) a.word.level = Math.min(5, (a.word.level || 0) + 1);
+        ladderRight(a.word, helped);
         matchRun++; matchesRun++;
         for (const x of [a, g]) for (let i = 0; i < 14; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 260);
         floatText(`${a.word.th} = ${short(a.word.en)}${matchRun >= 3 ? `  ×${matchRun}!` : ""}`);
         sim.applyReward({ v: 1, kind: "reward", source: "match", strength: helped ? MS.learn_helped_strength : 1, streak: matchRun, word: a.word.th });
         dropGem(a); dropGem(g);
+        if (mode === "learn") gemAcc = 1;                  // a new pair at once (Dan: "whenever a match is found, a new one should appear")
         if (opts.onWord) try { opts.onWord({ result: "match", id: a.word.id, helped }); } catch (e) {}
       } else {
-        matchRun = 0;
+        matchRun = 0; SFX.play("mismatch");
         a.shake = g.shake = 0.4;
         sim.noteStudy("mismatch");
         // the word the learner was trying to match is the real (non-decoy) one
         const real = [a, g].find(x => !x.decoy && x.side === "th") || [a, g].find(x => !x.decoy) || (a.side === "th" ? a : g);
         logWord(real.word, "wrong");
         real.word.level = Math.max(0, (real.word.level || 0) - 1);
+        ladderWrong(!a.decoy ? a.word : real.word);        // the word the learner meant: the one picked first
         // Learn mode: show the right partner of the gem picked first
         if (mode === "learn" && !a.decoy) { const mate = gems.find(o => o !== a && !o.decoy && o.word.id === a.word.id && o.side !== a.side); if (mate) teach = { a, b: mate, t: 1.8 }; }
         if (opts.onWord) try { opts.onWord({ result: "miss", id: real.word.id, other: (real === a ? g : a).word.id }); } catch (e) {}
@@ -898,7 +1162,12 @@
       if (!live) return;
       gemAcc += dt;
       const pairs = gems.filter(g => !g.decoy).length / 2, decoys = gems.length - pairs * 2;
-      if (words.length && gemAcc >= WD.spawn_every && pairs < WD.max_pairs) { if (spawnPair()) gemAcc = 0; }
+      if (mode === "learn") {
+        const due = !mtOn() && gemAcc >= 0.3 ? dueWord() : null;
+        if (due) { if (spawnMiniTest(due)) gemAcc = 0; }
+        else if ((words.length || extra.length) && (gemAcc >= 0.6 || (pairs === 0 && gemAcc >= 0.3)) && pairs < MS.learn_pairs + (mtOn() ? 1 : 0)) { if (spawnPair()) gemAcc = pairs + 1 < MS.learn_pairs && pairs === 0 ? 0.45 : 0; }
+      }
+      else if (words.length && gemAcc >= WD.spawn_every && pairs < WD.max_pairs) { if (spawnPair()) gemAcc = 0; }
       decoyAcc += dt;
       if (pairs > 0 && decoys < decoyTarget() && decoyAcc >= WD.decoy_every) { if (spawnDecoy()) decoyAcc = 0; }
       spreadGems(dt); drawTeach(dt);
@@ -1001,7 +1270,7 @@
     function learnClick(g) {
       const it = learn.item; if (!it || it.done) return;
       if (g.side === "th") return;                              // it has just spoken
-      it.done = true;
+      it.done = true; ladderRight(it.w, true);
       for (const x of [it.g1, it.g2]) for (let i = 0; i < 10; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 200);
       setTimeout(nextLearn, 250);
     }
@@ -1025,7 +1294,8 @@
     }
     function testPair(a, g) {
       if (a.word.id === g.word.id && a.side !== g.side) {
-        if (!learn.bad.has(a.word.id)) { learn.right++; logWord(a.word, "right"); }
+        if (!learn.bad.has(a.word.id)) { learn.right++; logWord(a.word, "right"); ladderRight(a.word, false); }
+        SFX.play("match");
         learn.done++;
         for (const x of [a, g]) for (let i = 0; i < 14; i++) burst(x.x, x.y, x.side === "th" ? 0xc58aff : 0x6cc8ff, 260);
         floatText(`${a.word.th} = ${short(a.word.en)}`);
@@ -1035,8 +1305,8 @@
         if (learn.done >= learn.order.length) setTimeout(finishTest, 600);
       } else {
         // the wrong try counts against the word it started from
-        a.shake = g.shake = 0.4;
-        if (!learn.bad.has(a.word.id)) { learn.bad.add(a.word.id); logWord(a.word, "wrong"); }
+        a.shake = g.shake = 0.4; SFX.play("mismatch");
+        if (!learn.bad.has(a.word.id)) { learn.bad.add(a.word.id); logWord(a.word, "wrong"); ladderWrong(a.word); }
         if (opts.onWord) try { opts.onWord({ result: "miss", id: a.word.id, other: g.word.id }); } catch (e) {}
       }
     }
@@ -1089,7 +1359,7 @@
           learn.link.lineStyle(4, 0xffd23a, 0.85 * a).lineBetween(top.x, top.y + top.h / 2, bot.x, bot.y - bot.h / 2);
           learn.link.fillStyle(0xffd23a, a).fillCircle((top.x + bot.x) / 2, (top.y + top.h / 2 + bot.y - bot.h / 2) / 2, 13);
         }
-        if (!it.done && it.t >= it.g2.delay + LM.show_seconds) { it.done = true; nextLearn(); }
+        if (!it.done && it.t >= it.g2.delay + LM.show_seconds) { it.done = true; ladderRight(it.w, true); nextLearn(); }
       }
     }
 
@@ -1117,7 +1387,7 @@
       showQuestion(q);
     }
     function showQuestion(q) {
-      qOpen = q; setSlow(true);
+      qOpen = q; setSlow(true); SFX.play("question");
       const head = rescueChain ? `❤️ Again! Keep Flash going (${rescueChain + 1}/${WD.rescue_chain})` : "❤️ Save Flash! He needs the power of the quiz";
       const prompt = q.prompt === "th"
         ? `<div class="ftc-q-th" lang="th">${esc(q.th)}</div>${q.rom ? `<div class="ftc-q-rom">${esc(q.rom)}</div>` : ""}<div class="ftc-q-ask">means…?</div>`
@@ -1171,6 +1441,7 @@
       const right = o.id === q.right;
       qEl.querySelectorAll(".ftc-q-opt").forEach((b, i) => { b.disabled = true; if (q.options[i].id === q.right) b.classList.add("ok"); });
       if (!right) btn.classList.add("no");
+      SFX.play(right ? "right" : "wrong");
       if (o.audio) say(o.audio);
       if (opts.onAnswer) try { opts.onAnswer(q, right); } catch (e) {}
       logWord(qWord(q), right ? "right" : "wrong");
@@ -1223,6 +1494,16 @@
       pauseBtn.style.visibility = st.phase === "fight" ? "visible" : "hidden";
       eyeBtn.style.display = mode === "learn" && !st.practice && (st.phase === "fight" || st.phase === "break") ? "" : "none";
       eyeBtn.classList.toggle("on", showAll);
+      // Learn mode: where the lesson's words are on the ladder
+      const ladderOn = mode === "learn" && !st.practice && st.phase === "fight";
+      ladderEl.style.display = ladderOn ? "" : "none";
+      checkMastered();
+      if (ladderOn) {
+        const n = { learn: 0, test: 0, learned: 0 };
+        for (const w of learnPool()) n[rung(w).stage] = (n[rung(w).stage] || 0) + 1;
+        ladderEl.innerHTML = `<span title="the answer shows until a word has been matched ${MS.learn_shows} times">📚 ${n.learn} learning</span>`
+          + `<span title="no answer: right = stays, wrong = back to learning">✍ ${n.test} testing</span><span title="${MS.learned_after} right in a row without help">⭐ ${n.learned} learned</span>`;
+      }
       pauseBtn.textContent = st.paused ? "▶" : "⏸";
       if (f) {
         const mx = f.maxHp();
@@ -1332,7 +1613,7 @@
              <span class="ftc-price">${o.sold ? "bought ✓" : `💰 ${o.price}`}</span>`);
           c.style.borderColor = rarityColour(o.rarity);
           c.disabled = !can;
-          c.onclick = () => { if (sim.buy(i)) { floatText(`Bought ${o.name}`); showBreak(); } };
+          c.onclick = () => { if (sim.buy(i)) { SFX.play("coin"); floatText(`Bought ${o.name}`); showBreak(); } };
           grid.append(c);
         });
         shop.append(grid);
@@ -1440,7 +1721,9 @@
         words = Array.isArray(list) ? list.filter(ok) : [];
         if (more !== undefined) extra = Array.isArray(more) ? more.filter(ok) : [];
       },
-      wordSettings: () => Object.assign({}, WD, { game_mode: mode }),
+      // the lesson on the page: { id, title, next: { title } | null }
+      setLesson: l => { const was = lesson && lesson.id; lesson = l && l.id ? l : null; if ((lesson && lesson.id) !== was) masterEl.classList.remove("show"); },
+      wordSettings: () => Object.assign({}, WD, { game_mode: mode, learn_shows: MS.learn_shows, learn_relearn_shows: MS.learn_relearn_shows, learned_after: MS.learned_after }),
       mode: () => mode,
       setMode: m => { setMode(m); if (st.phase === "start") showStart(); },
       showAnswers: on => { if (on !== undefined) { showAll = !!on; saveSet("show_answers", showAll); } return showAll; },
@@ -1449,6 +1732,8 @@
       questionOpen: () => !!qOpen,
       // a gem is picked: Esc / a click on empty ground lets go of it
       hasPick: () => !!picked,
+      ladder: () => JSON.parse(JSON.stringify(ladder)),
+      sfx: SFX,
       deselect: () => deselect(),
       // a word result from the host (pop quizzes), for learning mode: "right" | "wrong" | "missed"
       noteWord: (w, what) => logWord(w, what),
@@ -1456,7 +1741,7 @@
       learnState: () => learn ? { mode: learn.mode, i: learn.i, queue: learn.queue.length, done: learn.done, right: learn.right, total: learn.list.length } : null,
       startLearn: () => startLearn(),
       bonusWaiting: () => bonusWaiting(),
-      gems: () => gems.map(g => ({ id: g.word.id, side: g.side, x: g.x, y: g.y, w: g.w, h: g.h })),
+      gems: () => gems.map(g => ({ id: g.word.id, side: g.side, x: g.x, y: g.y, w: g.w, h: g.h, mt: !!g.mt, decoy: !!g.decoy })),
       setSlow: on => setSlow(on),
       showQuestion: q => showQuestion(q),
       rescue: () => { rescueAt = -1e9; maybeRescue(); },

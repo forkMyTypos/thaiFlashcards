@@ -595,7 +595,7 @@
     function hurtFlash(dmg, e) {
       if (st.god || st.practice) return;
       dmg *= Math.pow(st.intensity, DR.dmgPow);
-      if (st.mode === "learn") dmg *= LEARN_DMG;          // Learn mode: gentler skeletons, time to read
+      if (st.mode === "learn") dmg *= LEARN_DMG;          // 1 (normal) unless set
       const f = st.flash, s = f.stats;
       if (rnd() < Math.min(s.get("dodge"), S.dodgeCap)) { ev({ t: "dodge" }); return; }
       if (rnd() < s.get("ignore_damage_chance")) { ev({ t: "dodge" }); return; }
@@ -606,6 +606,7 @@
         if (d <= 0) return;
       }
       f.hp -= d; f.hurtT = 0.15;
+      if (st.mode === "learn" && LEARN_FLOOR > 0) f.hp = Math.max(f.hp, f.maxHp() * LEARN_FLOOR);   // off unless set
       const who = e ? (e.elite ? "elite_" + e.type : e.type) : "explosion";
       st.lastHitBy = who;
       if (tel) { add(tel.taken_by, who, d); acc1.taken += d; if (accR) accR.taken += d; }
@@ -1261,7 +1262,12 @@
     // but the result (tel.learn).
     const PR = { every: set("learn", "skeleton_every", 3.5), max: set("learn", "skeleton_max", 3) };
     // the run's mode, chosen on the start screen: "learn" (hints, gentler) or "test"
-    const LEARN_DMG = set("modes", "learn_enemy_damage", 0.75);
+    // Learn mode is the normal game with the answers showing (Dan: "learn mode
+    // = normal mode but with all the answers, we don't need to make the game
+    // easier"). These stay as knobs, off by default: 1 = normal damage, 0 = no
+    // health floor, 1 = normal skeleton rate.
+    const LEARN_DMG = set("modes", "learn_enemy_damage", 1), LEARN_FLOOR = set("modes", "learn_hp_floor", 0),
+          LEARN_SPAWN = set("modes", "learn_spawn_rate", 1);
     let practiceTel = null;
     function startPractice() {
       if (st.phase !== "over" || !st.flash) return false;
@@ -1435,7 +1441,7 @@
         // learning mode: a calm arena, just a few skeletons wandering in
         st.spawnAcc += dt;
         if (st.spawnAcc >= PR.every) { st.spawnAcc = 0; if (alive < PR.max) spawnEnemy(); }
-      } else st.spawnAcc += st.wave ? 0 : dt * T.spawn_rate * st.intensity * surge * (alive < Math.min(6, sp.target * 0.25) ? 1.6 : 1);
+      } else st.spawnAcc += st.wave ? 0 : dt * T.spawn_rate * st.intensity * surge * (alive < Math.min(6, sp.target * 0.25) ? 1.6 : 1) * (st.mode === "learn" ? LEARN_SPAWN : 1);
       while (!st.practice && st.spawnAcc >= sp.interval) {
         st.spawnAcc -= sp.interval;
         if (alive < sp.target * 1.5 * st.intensity) {

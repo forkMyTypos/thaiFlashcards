@@ -251,12 +251,20 @@
     "id": "modes",
     "values": {
       "learn_hint_until": 2,
-      "learn_helped_strength": 0.5,
+      "learn_helped_strength": 1,
       "learn_decoys_min": 2,
       "learn_decoys_max": 3,
-      "learn_new_per_round": 2,
-      "learn_enemy_damage": 0.75
+      "learn_new_per_round": 0,
+      "learn_enemy_damage": 1,
+      "learn_pairs": 3,
+      "learn_shows": 5,
+      "learn_relearn_shows": 2,
+      "learned_after": 2,
+      "learn_hp_floor": 0,
+      "learn_spawn_rate": 1,
+      "learn_test_choices": 3,
+      "learn_test_after": 2
     },
-    "notes": "Learn mode (chosen on the start screen; Test is the game as it was). A word's Thai gem shows its English, and the pair shares a colour, until the word has been matched learn_hint_until times without help (or the course already counts it as known); 👁 Show answers shows it on every word. A match made with the answer showing gives learn_helped_strength of the power. A wrong pair lights up the right partner. Decoys: learn_decoys_min to learn_decoys_max, only from words already met. At most learn_new_per_round never-seen words per round. Skeletons hit for learn_enemy_damage of normal. In the course: gems and pop quizzes lean hard on the words just read, and ⏩ Auto-move (reading mode) moves the slide on by itself."
+    "notes": "Learn mode (chosen on the start screen; Test is the game as it was). A word's Thai gem shows its English, and the pair shares a colour, until the word has been matched learn_hint_until times without help (or the course already counts it as known); 👁 Show answers shows it on every word. A match made with the answer showing gives learn_helped_strength of the power. A wrong pair lights up the right partner. Decoys: learn_decoys_min to learn_decoys_max, only from words already met. At most learn_new_per_round never-seen words per round. Skeletons hit for learn_enemy_damage of normal. In the course: gems and pop quizzes lean hard on the words just read, and ⏩ Auto-move (reading mode) moves the slide on by itself. Word ladder (Learn mode): learn_pairs pairs stay on screen, from the whole lesson; a popped pair is replaced at once. A word shows its answer until it has been matched learn_shows times; then it is tested (no answer). Right = it stays tested (learned_after right in a row = ⭐ learned, comes up less); wrong = back to learning for learn_relearn_shows more. learn_new_per_round 0 = no limit on new words. Learn mode is not balanced: Flash's health never goes below learn_hp_floor, skeletons come at learn_spawn_rate. A word due for testing comes back as a warned ✍ mini test after learn_test_after other matches, with learn_test_choices English answers. (3 Nov) Learn mode is the normal game with the answers showing: learn_enemy_damage 1, learn_hp_floor 0, learn_spawn_rate 1, learn_helped_strength 1 = no difference from Test; change them only to make Learn mode gentler on purpose."
   }
 ]

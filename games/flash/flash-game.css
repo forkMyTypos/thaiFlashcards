@@ -190,3 +190,13 @@
 .ftc-showall { display: block; margin: 0 auto 6px; max-width: 400px; }
 .ftc-eye { opacity: .55; }
 .ftc-eye.on { opacity: 1; background: rgba(59,130,246,.35); border-color: #3b82f6; }
+/* Learn mode: the lesson's words on the ladder */
+.ftc-ladder { display: flex; gap: 6px; flex-wrap: wrap; padding: 5px 10px 0; font-size: 11.5px; }
+.ftc-ladder span { padding: 2px 8px; border-radius: 999px; background: rgba(59,130,246,.18); border: 1px solid rgba(59,130,246,.45); color: #dbe7ff; }
+/* 🔊 game sounds: its own volume, never the lesson's */
+.ftc-vol { display: none; position: absolute; top: 40px; right: 8px; z-index: 30; width: 210px; padding: 10px 12px; border-radius: 12px;
+  background: rgba(20, 24, 44, .96); border: 1px solid #3b82f6; color: #e6ecff; font-size: 13px; box-shadow: 0 8px 26px rgba(0,0,0,.45); }
+.ftc-vol.show { display: flex; flex-direction: column; gap: 6px; }
+.ftc-vol input[type="range"] { width: 100%; accent-color: #3b82f6; }
+.ftc-vol small { color: #a9b3cf; font-size: 11px; line-height: 1.35; }
+.ftc-vol label.ftc-small { display: flex; gap: 6px; align-items: center; }

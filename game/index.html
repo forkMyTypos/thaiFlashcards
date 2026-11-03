@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=4f26555f4d"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=f1f119430f"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -50,6 +50,7 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     <div class="gm-bar">
       <span class="sp" id="gm-runs" title="How your games go is kept in this browser to help balance the game">🧪 Testing</span>
       <button id="gm-dl" title="Save how your games went as a file (to send to us)">⬇ Game data</button>
+      <button id="gm-full" title="Full screen: the game and the course, without the browser around them (Esc to leave)">⛶ Full screen</button>
       <button id="gm-exit" title="Back to the course without the game">✕ Leave</button>
     </div>
   </div>
@@ -57,8 +58,8 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   <iframe id="site" title="The course"></iframe>
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
-<script src="../games/flash/flash-sim.js?v=f6b035aade"></script>
-<script src="../games/flash/flash-game.js?v=622b492608"></script>
+<script src="../games/flash/flash-sim.js?v=f93339c761"></script>
+<script src="../games/flash/flash-game.js?v=26918c3a2c"></script>
 <script>
 (function () {
   "use strict";
@@ -88,6 +89,21 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   });
   function leave() { location.href = siteHref(); }
   document.getElementById("gm-exit").onclick = leave;
+  // Full screen: the whole game-mode page (game and course together), so
+  // studying beside the game still works; Esc (or the button) leaves it.
+  var fullBtn = document.getElementById("gm-full");
+  var canFull = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+  if (!canFull) fullBtn.hidden = true;
+  fullBtn.onclick = function () {
+    var d = document, el = d.documentElement;
+    try {
+      if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+      else { var r = (el.requestFullscreen || el.webkitRequestFullscreen).call(el); if (r && r.catch) r.catch(function () {}); }
+    } catch (e) {}
+  };
+  function fullLabel() { var on = !!(document.fullscreenElement || document.webkitFullscreenElement);
+    fullBtn.textContent = on ? "⛶ Exit full screen" : "⛶ Full screen"; }
+  document.addEventListener("fullscreenchange", fullLabel); document.addEventListener("webkitfullscreenchange", fullLabel);
 
   // messages from the course: study rewards, and "leave game mode"
   window.addEventListener("message", function (e) {
@@ -95,7 +111,7 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
     var m = e.data || {};
     if (m.type === "inaflash:reward") window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: m.detail || {} }));
     else if (m.type === "ftc:exit") leave();
-    else if (m.type === "ftc:words") { if (api) api.setWords(m.words || [], m.extra || []); else pendingWords = m; }
+    else if (m.type === "ftc:words") { if (api) { api.setWords(m.words || [], m.extra || []); if (api.setLesson) api.setLesson(m.lesson || null); } else pendingWords = m; }
     else if (m.type === "ftc:slow") { if (api) api.setSlow(!!m.on); }
     else if (m.type === "ftc:question") { var r = asks[m.req]; if (r) { delete asks[m.req]; r(m.q || null); } }
     else if (m.type === "ftc:popquiz") {
@@ -196,10 +212,12 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
                                                      onWord: function (r) { toSite(Object.assign({ type: "ftc:word" }, r)); },
                                                      // Learn / Test changed: the course weights its words and questions by it
                                                      onMode: function () { tell(); },
+                                                     // a lesson mastered: on to the next one (the game keeps going)
+                                                     goNextLesson: function () { toSite({ type: "ftc:goto", where: "next" }); },
                                                      goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); } })
     .then(function (a) {
       api = a; window.ftc = a;
-      if (pendingWords) api.setWords(pendingWords.words || [], pendingWords.extra || []);
+      if (pendingWords) { api.setWords(pendingWords.words || [], pendingWords.extra || []); if (api.setLesson) api.setLesson(pendingWords.lesson || null); }
       tell();
     })
     .catch(function (e) {
