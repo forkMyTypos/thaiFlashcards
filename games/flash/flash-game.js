@@ -1338,23 +1338,35 @@
     // reader's own first, then the course's, then its emoji) and, unless it
     // would give the answer away, its "Remember it by" hook.
     function struggling(q) { const it = LE.item(q.id, "th"), me = LE.item(q.id, q.dir); return (it && it.wrong >= 2) || (me && me.retry) || (me && me.wrong >= 2); }
-    function aidHtml(w, withText) {
+    // Dan: "can we get our images into the game, either my actual art, or the
+    // emoji basic art from wordbase". The same order as the course's card:
+    // the reader's own picture, the word's photo, WordBase's drawn picture
+    // (its recipe art, an SVG), then the emoji. A photo that won't load falls
+    // back to the drawing or the emoji.
+    const svgOk = v => typeof v === "string" && /^\s*<svg[\s>]/i.test(v) && !/<script|\son\w+\s*=|javascript:/i.test(v);
+    function picHtml(w) {
       const src = nowPic[w.id] || w.img || "";
-      const pic = src ? `<img src="${esc(src)}" alt="" data-ch="${esc(w.ch || "")}">` : w.ch ? `<span class="ftc-wc-emoji">${esc(w.ch)}</span>` : "";
+      const fallback = svgOk(w.vis) ? `<span class="ftc-wc-vis">${w.vis}</span>` : w.ch ? `<span class="ftc-wc-emoji">${esc(w.ch)}</span>` : "";
+      if (src) return `<img src="${esc(src)}" alt="" data-id="${esc(w.id)}">`;
+      return fallback;
+    }
+    function aidHtml(w, withText) {
+      const pic = picHtml(w);
       const txt = withText && (w.hook || w.aid) ? `<div><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : "";
       if (!pic && !txt) return "";
       return `<div class="ftc-wc-aid${txt ? "" : " pic"}">${pic}${txt}</div>`;
     }
     function fixPics(box) {
-      box.querySelectorAll(".ftc-wc-aid img").forEach(im => im.onerror = () => {
-        const ch = im.dataset.ch; if (ch) { const e = h("span", "ftc-wc-emoji", esc(ch)); im.replaceWith(e); } else im.remove(); });
+      box.querySelectorAll("img[data-id]").forEach(im => im.onerror = () => {
+        const w = LE && LE.word(im.dataset.id) || {};
+        const e = svgOk(w.vis) ? h("span", "ftc-wc-vis", w.vis) : w.ch ? h("span", "ftc-wc-emoji", esc(w.ch)) : null;
+        if (e) im.replaceWith(e); else im.remove(); });
     }
     function cardHide() { cardEl.classList.remove("show"); }
     function showWordInfo(w, current) {
       if (!w || !panelOn()) return;
       infoW = w;
-      const src = nowPic[w.id] || w.img || "";
-      const pic = src ? `<img src="${esc(src)}" alt="" data-ch="${esc(w.ch || "")}">` : w.ch ? `<span class="ftc-wc-emoji">${esc(w.ch)}</span>` : "";
+      const pic = picHtml(w);
       const tn = toneNames(w);
       const sents = (w.sents || []).slice(0, 3).map((x, i) => `<li><div lang="th">${esc(x.th)}${x.audio ? ` <button class="ftc-wc-say" data-s="${i}" title="Hear the sentence">🔊</button>` : ""}</div>${x.rom ? `<i>${esc(x.rom)}</i>` : ""}${x.en ? `<span>${esc(x.en)}</span>` : ""}</li>`).join("");
       sideWord.innerHTML = `<div class="ftc-word-k">📖 ${q0label(w, current)}</div>
@@ -1367,7 +1379,7 @@
         <div class="ftc-word-en">${esc(w.en)}</div>
         ${w.hook || w.aid ? `<div class="ftc-word-aid"><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : ""}
         ${sents ? `<div class="ftc-word-sents"><b>In a sentence</b><ul>${sents}</ul></div>` : ""}`;
-      sideWord.querySelectorAll(".ftc-word-pic img").forEach(im => im.onerror = () => { const ch = im.dataset.ch; im.replaceWith(h("span", "ftc-wc-emoji", esc(ch || "🖼"))); });
+      fixPics(sideWord);
       const sb = sideWord.querySelector("[data-say]"); if (sb) sb.onclick = () => sayWord(w);
       const sl = sideWord.querySelector("[data-slow]"); if (sl) sl.onclick = () => say(w.slow, w.th);
       sideWord.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { const x = (w.sents || [])[+b.dataset.s]; if (x && x.audio) say(x.audio, x.th); });
@@ -1399,7 +1411,8 @@
       let body = "";
       if (q.kind === "meet") {
         const ans = q.dir === "en" ? thaiHtml(w, false, true) : esc(short(w.en, 40));
-        body = aidHtml(w, true) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`;
+        // on a wide screen the full word card under this one already shows the picture and hook
+        body = (panelOn() ? "" : aidHtml(w, true)) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`;
       } else {
         // a word that keeps going wrong gets its picture as a hint (not the hook: that would give it away)
         const hint = q.dir !== "en" && struggling(q) ? aidHtml(w, false) : "";

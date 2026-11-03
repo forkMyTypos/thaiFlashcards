@@ -404,3 +404,10 @@
 .ftc-overlay > :last-child { margin-bottom: auto; }
 .ftc.stack .ftc-wc-aid.pic .ftc-wc-emoji { font-size: 34px; width: auto; }
 .ftc.stack .ftc-wc-aid.pic img { width: 56px; height: 56px; }
+/* WordBase's drawn pictures (SVG), wherever a photo would go */
+.ftc-wc-vis { display: block; flex: none; width: 86px; height: 86px; border-radius: 9px; overflow: hidden; background: #f4f6f8; }
+.ftc-wc-vis svg { display: block; width: 100%; height: 100%; }
+.ftc.panel .ftc-wc-aid .ftc-wc-vis { width: 110px; height: 110px; }
+.ftc-word-pic .ftc-wc-vis { width: 150px; height: 150px; border-radius: 12px; }
+.ftc-hard .ftc-wc-vis { width: 64px; height: 64px; }
+.ftc.stack .ftc-wc-aid .ftc-wc-vis { width: 56px; height: 56px; }

@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=04518bf9f4"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=7ea6bf1449"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -66,8 +66,8 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
 <script src="../games/flash/flash-sim.js?v=7e5624c2d9"></script>
-<script src="../games/flash/flash-learn.js?v=c7ae48d14f"></script>
-<script src="../games/flash/flash-game.js?v=c1301b1f42"></script>
+<script src="../games/flash/flash-learn.js?v=6db3eac819"></script>
+<script src="../games/flash/flash-game.js?v=96eb29dcf1"></script>
 <script>
 (function () {
   "use strict";
@@ -76,15 +76,38 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
   var layout = "full";
   try { layout = localStorage.getItem("ftc.layout") === "split" ? "split" : "full"; } catch (e) {}
   function applyLayout() {
+    window.FTC_LAYOUT = layout;                      // the course reads it (no auto-play when it's out of sight)
     document.body.classList.toggle("full", layout === "full");
     site.setAttribute("aria-hidden", layout === "full" ? "true" : "false");
     site.tabIndex = layout === "full" ? -1 : 0;
   }
   applyLayout();
+  // Dan: "when we load up the game, it keeps repeating a word". With the game
+  // full screen the course is out of sight, but it was still auto-playing its
+  // cards (Auto-play, 3 times). Each page the frame opens is silenced as soon
+  // as it exists, before its own auto-play gets going; Game + course lets it
+  // speak again. The game's own sounds play from this page, not the frame.
+  var muteDoc = null;
+  function muteFrame() {
+    var w; try { w = site.contentWindow; if (!w || !w.document || w.location.href === "about:blank") return; } catch (e) { return; }
+    w.__ftcMute = layout === "full";
+    if (w.document === muteDoc) return;
+    muteDoc = w.document;
+    try {
+      var P = w.HTMLMediaElement && w.HTMLMediaElement.prototype;
+      if (P && !P.__ftcPatched) {
+        var play = P.play; P.__ftcPatched = 1;
+        P.play = function () { if (w.__ftcMute) { try { this.pause(); } catch (e) {} return Promise.resolve(); } return play.apply(this, arguments); };
+      }
+      var ss = w.speechSynthesis;
+      if (ss && !ss.__ftcPatched) { var speak = ss.speak.bind(ss); ss.__ftcPatched = 1; ss.speak = function (u) { if (!w.__ftcMute) speak(u); }; }
+    } catch (e) {}
+  }
+  setInterval(muteFrame, 25);
   function setLayout(v) {
     layout = v === "split" ? "split" : "full";
     try { localStorage.setItem("ftc.layout", layout); } catch (e) {}
-    applyLayout(); tell();
+    applyLayout(); muteFrame(); tell();
   }
   var ROOT = new URL("../", location.href).href;
   var started = Date.now();
@@ -270,9 +293,14 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
     if (!id || id === packFor || /[^a-z0-9._-]/i.test(id)) return;
     packFor = id;
     var base = ROOT + id + "/";
-    fetch(base + "words.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-      if (!d || !d.words || packFor !== id) return;
+    fetch(base + "words.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (d) {
+      if (packFor !== id) return;
+      // no word pack yet (the course not rebuilt since): read the lesson's own cards
+      if (!d || !d.words) d = packFromPage(id);
+      if (!d || !d.words || !d.words.length) { packFor = null; return; }
       var abs = function (u) { try { return u ? new URL(u, base).href : ""; } catch (e) { return ""; } };
+      // a page that loaded before its cards were ready: try again shortly
+      if (d.from === "page" && d.words.length < 2) { packFor = null; setTimeout(function () { loadPack(id); }, 1500); return; }
       d.words.forEach(function (w) {
         w.audio = abs(w.audio); w.slow = abs(w.slow); w.img = abs(w.img); w.lesson = id;
         (w.sents || []).forEach(function (x) { if (x.audio) x.audio = abs(x.audio); });
@@ -281,6 +309,36 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
       keptFor(d.words);
       if (api && api.setPack) api.setPack(d);
     }).catch(function () {});
+  }
+  // The lesson page's word cards, as a word pack. Same origin, so the frame's
+  // markup can be read: the picture (data-img), the drawn picture (.vis), the
+  // emoji (data-ch), tones, recordings, memory hook and sentences.
+  function packFromPage(id) {
+    var doc, w; try { w = site.contentWindow; doc = w.document; } catch (e) { return null; }
+    if (!doc || (doc.body && doc.body.dataset.lesson) !== id) return null;
+    var txt = function (el) { if (!el) return ""; var c = el.cloneNode(true); [].forEach.call(c.querySelectorAll(".tm,svg,.gtip,.aidedit,button,.gword"), function (x) { x.remove(); }); return (c.textContent || "").replace(/\s+/g, " ").trim(); };
+    var url = function (u) { try { return u ? new URL(u, w.location.href).href : ""; } catch (e) { return ""; } };
+    var words = [];
+    [].forEach.call(doc.querySelectorAll("article.card:not(.sc)"), function (c) {
+      var th = txt(c.querySelector(".throw .th") || c.querySelector(".th")), en = txt(c.querySelector(".en"));
+      if (!c.dataset.wid || !th || !en) return;
+      var pl = c.querySelectorAll(".plays [data-play]"), vis = c.dataset.vis ? c.querySelector(".vis svg") : null, aid = c.querySelector(".aid .aidtx");
+      var hook = aid && aid.querySelector(".hook"), rest = "";
+      if (aid) { var a2 = aid.cloneNode(true), h2 = a2.querySelector(".hook"); if (h2) h2.remove(); rest = (a2.textContent || "").replace(/\s+/g, " ").trim(); }
+      var sents = [];
+      [].forEach.call(c.querySelectorAll(".sents .sent, .ex li"), function (x) {
+        if (sents.length >= 3) return;
+        var sx = txt(x.querySelector(".sx")); if (!sx) return;
+        var b = x.querySelector("[data-play]");
+        sents.push({ th: sx, rom: txt(x.querySelector(".sr")), en: txt(x.querySelector(".st")), audio: b ? url(b.dataset.play) : "" });
+      });
+      words.push({ id: c.dataset.wid, th: th, en: en, rom: txt(c.querySelector(":scope > .rom")), pos: txt(c.querySelector(".pos")),
+        tones: [].map.call(c.querySelectorAll(":scope > .rom .rt"), function (r) { var m = /\bt-([a-z]+)/.exec(r.className); return [(r.textContent || "").trim(), m ? m[1] : ""]; }),
+        audio: pl[0] ? pl[0].dataset.play : "", slow: pl[1] ? pl[1].dataset.play : "", img: c.getAttribute("data-img") || "",
+        ch: c.dataset.ch || "", vis: vis ? vis.outerHTML : "", hook: hook ? (hook.textContent || "").trim() : "", aid: rest, sents: sents });
+    });
+    var h1 = doc.getElementById("fav-btn");
+    return { format: "wb-words", version: 1, lesson: id, title: (h1 && h1.dataset.title) || "", words: words, from: "page" };
   }
   // Sounds the reader chose to keep on this device (the course's "Keep sounds
   // offline", IndexedDB wb-sounds): the game plays those copies, instantly.

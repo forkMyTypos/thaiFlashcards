@@ -52,7 +52,7 @@
     reverse: true, audio: true,
   };
   const DIRS = ["th", "en", "au"];
-  const WORD_EXTRAS = ["img", "ch", "hook", "aid", "tones", "slow", "tone", "pos", "gender", "sents"];
+  const WORD_EXTRAS = ["img", "ch", "vis", "hook", "aid", "tones", "slow", "tone", "pos", "gender", "sents"];
   const LABELS = ["new", "met", "recognises", "recalls", "learned", "longterm"];
   const norm = t => String(t || "").replace(/\s*[\[(][^\])]*[\])]/g, "").split(/;|\s\/\s/)[0].replace(/\s*[\[(].*$/, "").split(/,\s*/)[0].trim().toLowerCase();
   const shuffle = (a, rnd) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
