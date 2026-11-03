@@ -1126,7 +1126,8 @@
       logStudy(source, Math.round(strength * 100) / 100);
       // "in a flash": every DASH.every quiz answers in a row, Flash lets out a
       // blue shockwave that throws back (and hurts) everything close by
-      if (source === "quiz" && st.streak > 0 && st.streak % DASH.every === 0) flashDash();
+      // (the word card asks for it on its own streaks: d.dash)
+      if ((source === "quiz" || d.dash) && st.streak > 0 && st.streak % DASH.every === 0) flashDash();
       if (tel) { add(tel.rewards, source, 1); acc1.rewards++; if (accR) accR.rewards++; }
       const text = (row.floating_text || "+POWER").replace("{word}", d.word || "").replace(/\(\s*\)/, "").trim();
       ev({ t: "reward", text, source });

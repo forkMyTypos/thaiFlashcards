@@ -52,6 +52,7 @@
     reverse: true, audio: true,
   };
   const DIRS = ["th", "en", "au"];
+  const WORD_EXTRAS = ["img", "ch", "hook", "aid", "tones", "slow", "tone", "pos", "gender", "sents"];
   const LABELS = ["new", "met", "recognises", "recalls", "learned", "longterm"];
   const norm = t => String(t || "").replace(/\s*[\[(][^\])]*[\])]/g, "").split(/;|\s\/\s/)[0].replace(/\s*[\[(].*$/, "").split(/,\s*/)[0].trim().toLowerCase();
   const shuffle = (a, rnd) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -151,7 +152,9 @@
       for (const w of list || []) {
         if (!w || !w.id || !w.th || !w.en) continue;
         const was = words[w.id], x = { id: w.id, th: w.th, rom: w.rom || "", en: w.en, audio: w.audio || (was && was.audio) || "", lesson: w.lesson || (was && was.lesson) || "" };
-        if (!was || was.th !== x.th || was.en !== x.en || was.rom !== x.rom || was.audio !== x.audio || was.lesson !== x.lesson) { words[w.id] = x; fresh.push(x); }
+        // what the course card adds: picture, emoji, memory hook, tones, slow recording (kept when a later list lacks them)
+        for (const f of WORD_EXTRAS) { const v = w[f] !== undefined && w[f] !== "" ? w[f] : was ? was[f] : undefined; if (v !== undefined && v !== "") x[f] = v; }
+        if (!was || JSON.stringify(was) !== JSON.stringify(x)) { words[w.id] = x; fresh.push(x); }
       }
       if (fresh.length) store.putWords(fresh);
     }
@@ -364,6 +367,28 @@
       items: () => Object.values(items).map(it => Object.assign({}, it)),
       word: id => words[id] || null,
       levelProgress, summary,
+      // "practise these": the words come up next, as if just answered wrong
+      practise(ids) {
+        for (const id of ids || []) for (const d of DIRS) { const it = items[key(id, d)]; if (it && usable(it)) { it.retry = true; it.active = true; it.doneSess = false; it.nextN = n; it.sess = Math.min(it.sess, S.session_cap - 3); } }
+      },
+      // reviews due now, and by the end of tomorrow (local time)
+      dueSoon() {
+        const t = now(), end = new Date(t); end.setHours(24, 0, 0, 0); const tomorrow = end.getTime() + DAY;
+        let a = 0, b = 0;
+        for (const it of Object.values(items)) { if (!usable(it) || !it.box || !it.due) continue; if (it.due <= t) a++; else if (it.due <= tomorrow) b++; }
+        return { now: a, tomorrow: b };
+      },
+      // the words that went wrong most (Thai -> meaning and meaning -> Thai together)
+      hardest(k) {
+        const by = {};
+        for (const it of Object.values(items)) { if (!words[it.id] || !it.wrong) continue; const x = by[it.id] || (by[it.id] = { id: it.id, wrong: 0, right: 0 }); x.wrong += it.wrong; x.right += it.right; }
+        return Object.values(by).sort((a, b) => (b.wrong - b.right * 0.25) - (a.wrong - a.right * 0.25)).slice(0, k || 6).map(x => Object.assign(x, { word: words[x.id] }));
+      },
+      // words by label, most recently answered first (the share card's examples)
+      recent(want, k) {
+        return Object.values(items).filter(it => it.dir === "th" && words[it.id] && atLeast(label(it), want || "recognises"))
+          .sort((a, b) => b.last - a.last).slice(0, k || 6).map(it => words[it.id]);
+      },
       accuracy: acc,
       count: () => n,
       attempts: () => store.attempts ? store.attempts() : Promise.resolve([]),

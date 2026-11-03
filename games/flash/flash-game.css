@@ -203,13 +203,36 @@
 
 /* ---- the word card (Dan: "test recall, not the ability to find words"):
    one question, always in the same place, answers in a fixed row */
-.ftc-wc { position: absolute; left: 50%; bottom: 64px; transform: translateX(-50%); width: min(540px, calc(100% - 20px));
+/* the game's side; the study panel takes the right of a wide screen */
+.ftc-arena { position: absolute; inset: 0; overflow: hidden; }
+.ftc.panel .ftc-arena { right: var(--side, 380px); }
+.ftc-side { position: absolute; left: 50%; bottom: var(--cb, 64px); transform: translateX(-50%); width: min(540px, calc(100% - 20px));
+  z-index: 6; pointer-events: none; }
+.ftc-side > * { pointer-events: auto; }
+.ftc-side-head, .ftc-side-idle { display: none; }
+.ftc.panel .ftc-side { left: auto; right: 0; top: 0; bottom: 0; transform: none; width: var(--side, 380px); display: flex; flex-direction: column;
+  gap: 10px; padding: 12px; background: #15121d; border-left: 1px solid #2e2838; overflow-y: auto; }
+.ftc.panel .ftc-side-head { display: flex; flex-direction: column; gap: 7px; }
+.ftc.panel .ftc-side-idle { display: block; margin: auto 0; text-align: center; color: #9b93a8; font-size: 14px; padding: 20px 10px; }
+.ftc-side-lv { display: flex; flex-direction: column; }
+.ftc-side-lv span { font-size: 11px; color: #9b93a8; text-transform: uppercase; letter-spacing: .6px; }
+.ftc-side-lv b { font-size: 16px; color: #e6f3ff; }
+.ftc-side-bar { position: relative; height: 8px; border-radius: 4px; background: rgba(255,255,255,.08); }
+.ftc-side-bar i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, #3b82f6, #5cf0a0); transition: width .3s; }
+.ftc-side-bar em { position: absolute; top: -3px; bottom: -3px; width: 2px; background: #ffd23a; border-radius: 1px; }
+.ftc-side-n { display: flex; flex-wrap: wrap; gap: 5px; font-size: 12px; }
+.ftc-side-n span { padding: 2px 8px; border-radius: 999px; background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.35); }
+.ftc-side-streak { padding: 7px 10px; border-radius: 10px; background: rgba(255,159,90,.08); border: 1px solid rgba(255,159,90,.3); font-size: 13px; }
+.ftc-side-streak b { font-size: 18px; color: #ffb57d; }
+.ftc-side-streak small { display: block; color: #9b93a8; font-size: 11px; }
+.ftc-side-streak.hot { background: rgba(255,120,60,.18); border-color: #ff8a3a; }
+.ftc-wc { position: relative; width: 100%;
   display: none; z-index: 6; pointer-events: auto; background: rgba(22,18,34,.94); border: 1px solid rgba(124,196,255,.35);
   border-radius: 16px; padding: 10px 14px 12px; text-align: center; box-shadow: 0 10px 34px rgba(0,0,0,.55); }
 .ftc-wc.show { display: block; animation: ftc-wcin .18s ease-out; }
-@keyframes ftc-wcin { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%); } }
-.ftc.wide .ftc-wc { left: auto; right: 18px; bottom: auto; top: 50%; transform: translateY(-50%); width: 400px; }
-.ftc.wide .ftc-wc.show { animation: none; }
+@keyframes ftc-wcin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.ftc.panel .ftc-wc { padding: 14px 16px 16px; }
+.ftc.panel .ftc-wc-th.big { font-size: 54px; }
 .ftc-wc-tag { display: flex; gap: 8px; align-items: baseline; font-size: 11px; color: #9b93a8; margin-bottom: 4px; text-align: left; }
 .ftc-wc-tag b { color: #9cc8ff; font-size: 12px; letter-spacing: .3px; }
 .ftc-wc.k-meet .ftc-wc-tag b { color: #ffd23a; }
@@ -220,7 +243,9 @@
 .ftc-wc-th { font: 400 26px/1.25 "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
 .ftc-wc-th.big { font-size: 46px; }
 .ftc-wc-rom { display: block; color: #ffd27a; font-size: 14px; }
-.ftc-wc-say { position: absolute; right: 0; top: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+.ftc-wc-btns { position: absolute; right: 0; top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.ftc-wc-p > .ftc-wc-say.slow { position: static; margin-top: 4px; }
+.ftc-wc-say { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
   color: inherit; border-radius: 8px; cursor: pointer; padding: 2px 7px; font-size: 15px; }
 .ftc-wc-listen { font-size: 40px; background: rgba(59,130,246,.18); border: 2px solid #3b82f6; border-radius: 50%; width: 84px; height: 84px;
   cursor: pointer; color: inherit; margin: 4px auto; display: block; }
@@ -275,3 +300,52 @@
 .ftc-prog td:first-child { text-align: left; color: #c9c2b8; }
 .ftc-prog small { display: block; color: #9b93a8; font-size: 11px; margin-top: 4px; }
 .ftc-lvline b { color: #9cc8ff; }
+
+/* romanization in the course's tone colours, the tone names, the streak */
+.ftc-wc .tn.t-mid { color: #8fa8bf; } .ftc-wc .tn.t-low { color: #6aa7ff; } .ftc-wc .tn.t-falling { color: #ff7b72; }
+.ftc-wc .tn.t-high { color: #f2c14e; } .ftc-wc .tn.t-rising { color: #58d68d; }
+.ftc-wc-rom .tn { font-weight: 600; }
+.ftc-wc-tones { display: block; font-size: 11px; color: #9b93a8; margin-top: 1px; }
+.ftc-wc-streak { color: #ffb57d; font-weight: 700; }
+/* the word's picture and memory hook */
+.ftc-wc-aid { display: flex; gap: 10px; align-items: center; text-align: left; margin: 8px 0; padding: 7px; border-radius: 10px;
+  background: rgba(255,210,58,.07); border: 1px solid rgba(255,210,58,.28); }
+.ftc-wc-aid.pic { justify-content: center; background: none; border-color: transparent; padding: 0; }
+.ftc-wc-aid img { width: 86px; height: 86px; object-fit: cover; border-radius: 9px; flex: none; background: #221c2a; }
+.ftc.panel .ftc-wc-aid img { width: 110px; height: 110px; }
+.ftc-wc-emoji { font-size: 54px; line-height: 1; flex: none; width: 80px; text-align: center; }
+.ftc-wc-aid b { display: block; font-size: 12.5px; color: #ffd27a; }
+.ftc-wc-aid span:not(.ftc-wc-emoji) { display: block; font-size: 12.5px; color: #d9d2c6; line-height: 1.35; }
+.ftc-wc-fix > div:first-child { margin-bottom: 2px; }
+.ftc-wc-fix .ftc-wc-aid { margin: 6px 0 2px; }
+
+/* puns, the daily line, My progress, the share card */
+.ftc-slogan { color: #ffb57d !important; font-weight: 700; letter-spacing: .3px; }
+.ftc.panel .ftc-side-day { display: flex; gap: 6px; align-items: center; font-size: 12px; flex-wrap: wrap; }
+.ftc-side-day { display: none; }
+.ftc-side-day span { padding: 2px 8px; border-radius: 999px; background: rgba(92,240,160,.1); border: 1px solid rgba(92,240,160,.35); }
+.ftc-side-day .ftc-btn { margin-left: auto; padding: 2px 8px; }
+.ftc-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; width: 100%; max-width: 620px; }
+.ftc-tiles > div { background: #221c2a; border: 1px solid #3a3346; border-radius: 12px; padding: 10px; text-align: left; }
+.ftc-tiles b { display: block; font-size: 24px; color: #fff; }
+.ftc-tiles span { display: block; font-size: 12.5px; color: #c9c2b8; }
+.ftc-tiles small { display: block; font-size: 11px; color: #9b93a8; margin-top: 2px; }
+.ftc-overlay .ftc-prog { max-width: 620px; }
+.ftc-days .bars { position: relative; height: 110px; display: flex; gap: 4px; align-items: flex-end; border-bottom: 1px solid #3a3346; }
+.ftc-days .bars > div { flex: 1; height: 100%; display: flex; align-items: flex-end; }
+.ftc-days .bars i { display: block; width: 100%; background: #3b82f6; border-radius: 4px 4px 0 0; min-height: 0; }
+.ftc-days .bars > div:hover i { background: #7cc4ff; }
+.ftc-days .goal { position: absolute; left: 0; right: 0; height: 0; border-top: 2px dashed #ffd23a; pointer-events: none; }
+.ftc-days .lbls { display: flex; gap: 4px; }
+.ftc-days .lbls em { flex: 1; text-align: center; font-style: normal; font-size: 10px; color: #9b93a8; }
+.ftc-hard { display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 8px; }
+.ftc-hard > .ftc-wc { display: flex; gap: 8px; align-items: center; padding: 6px 8px; text-align: left; animation: none; }
+.ftc-hard .ftc-wc-aid { margin: 0; flex: 1; order: 2; }
+.ftc-hard .ftc-wc-aid img { width: 64px; height: 64px; }
+.ftc-hard .ftc-wc-emoji { font-size: 36px; width: 50px; }
+.ftc-hard-w { flex: 0 0 34%; font-size: 13px; }
+.ftc-hard-w > span { font: 400 22px "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
+.ftc-hard-w i { font-style: normal; font-size: 12px; display: block; }
+.ftc-hard-w small { display: block; color: #9b93a8; font-size: 11px; }
+.ftc-share-img { width: min(420px, 90%); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+.ftc-share-tx { max-width: 520px; font-size: 13px; color: #e6f3ff !important; background: rgba(255,255,255,.05); padding: 8px 10px; border-radius: 10px; user-select: text; }
