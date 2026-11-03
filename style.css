@@ -1846,3 +1846,12 @@ body.game-needquiz.mode-quiz .slider .md[data-mode="quiz"]{animation:none}
   border-radius:7px;padding:4px 10px;font-size:0.6875rem;cursor:pointer;font-family:inherit;line-height:1.2}
 .qtools .qautobtn:hover{border-color:var(--accent);color:var(--bright)}
 .qtools .qautobtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+/* game mode, Learn: ⏩ auto-move bar along the bottom of the course */
+.wbauto{position:fixed;right:14px;bottom:10px;z-index:55;display:flex;align-items:center;gap:8px;
+ padding:7px 14px;border-radius:999px;background:var(--s2);border:1px solid #3b82f6;color:var(--text);font-size:13.5px;
+ box-shadow:0 6px 24px rgba(0,0,0,.35);white-space:nowrap}
+.wbauto[hidden]{display:none}
+.wbauto label{display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:600}
+.wbauto select{background:var(--s1,#1a1d29);color:var(--text);border:1px solid var(--line,#333);border-radius:8px;padding:2px 4px;font:inherit}
+.wbauto-n{color:var(--dim,#9aa);font-variant-numeric:tabular-nums}
+body.has-wbauto .wbpop{bottom:62px}

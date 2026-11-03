@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Explore Thai vegetarian dishes, tofu, mushrooms, and plant-based meals"/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=5d74092d"/>
+<link rel="stylesheet" href="../style.css?v=66adc9bf"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -3484,6 +3484,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
  function autoPlayCard(card){
   if(!RO.auto||!card||!document.body.classList.contains('mode-info'))return;
+  // game mode with the game full screen: this page is out of sight behind it,
+  // and Dan heard its first word on a loop ("it keeps repeating a word, arai")
+  try{if(window.parent!==window&&window.parent.FTC_LAYOUT==='full')return;}catch(e){}
   var b=card.querySelector('.plays [data-play]');
   if(!b||!window.wbPlayTimes)return;
   setTimeout(function(){
@@ -4886,7 +4889,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   // here with what it needs to be asked about: Thai, romanization, meaning,
   // its recording. Mistakes are counted, so words that went wrong — in the
   // quiz, a pop quiz or a gem match — come back more often.
-  var cfg={pop_quiz:true,pop_quiz_every_words:8,pop_quiz_min_seconds:50,pop_quiz_max_backoff:4,
+  var cfg={game_mode:'test',learn_shows:5,learn_relearn_shows:2,learned_after:2,pop_quiz:true,pop_quiz_every_words:8,pop_quiz_min_seconds:50,pop_quiz_max_backoff:4,
            pop_timer_new:30,pop_timer_min:6,pop_timer_shrink:0.7};
   function clean(el){if(!el)return '';var c=el.cloneNode(true);
    c.querySelectorAll('.tm,svg,.gtip,.aidedit,button').forEach(function(x){x.remove();});
@@ -4901,6 +4904,29 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    var au='';try{au=pl?new URL(pl.dataset.play,location.href).href:'';}catch(e){}
    return {k:k,th:th,rom:rom,en:en,audio:au,lesson:document.body.dataset.lesson||''};
   }
+  // Dan: "can we use data/divs from our site in the game?" What the game's
+  // word card shows besides the word, read off the card itself: the picture
+  // (the reader's own first, then the course's, else the card's emoji), the
+  // "Remember it by" hook (their own edit if they made one), each syllable's
+  // tone, and the slow recording.
+  function extrasOf(card){
+   var o={};
+   try{
+    var wid=card.dataset.wid||'',mine=MYPIC[wid],im=card.getAttribute('data-img')||'';
+    if(mine&&mine.emoji)o.ch=mine.emoji;
+    else if(mine&&mine.url)o[mine.obj?'imgNow':'img']=mine.url;   // a photo from their device only lives while this page is open
+    if(!o.img&&im)o.img=new URL(im,location.href).href;
+    if(!o.ch)o.ch=card.dataset.ch||'';
+    var tx=card.querySelector('.aid .aidtx');
+    if(tx){var hk=tx.querySelector('.hook'),c=tx.cloneNode(true),h2=c.querySelector('.hook');if(h2)h2.remove();
+     o.hook=hk?(hk.textContent||'').replace(/\s+/g,' ').trim().slice(0,80):'';
+     o.aid=(c.textContent||'').replace(/\s+/g,' ').trim().slice(0,320);}
+    o.tones=[].map.call(card.querySelectorAll(':scope > .rom .rt'),function(r){var m=/\bt-([a-z]+)/.exec(r.className);return [(r.textContent||'').trim(),m?m[1]:''];})
+     .filter(function(x){return x[0];}).slice(0,12);
+    var pls=card.querySelectorAll('.plays [data-play]');if(pls[1])o.slow=new URL(pls[1].dataset.play,location.href).href;
+   }catch(e){}
+   return o;
+  }
   function pool(){var p=read(WKEY,null);return (p&&typeof p==='object')?p:{};}
   function savePool(p){
    var ks=Object.keys(p);
@@ -4908,34 +4934,84 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     ks.slice(0,ks.length-400).forEach(function(k){delete p[k];});}
    write(WKEY,p);
   }
+  // A word's game record: right / wrong / missed / helped (matched with the
+  // answer showing, Learn mode) and a level 0-5 that rises with each right
+  // answer made without help and drops with a wrong one. Learn mode's hints
+  // fade by it. Kept here for speed (capped at 400 words) and, in full, on the
+  // word's row in the reader's study progress database (IndexedDB through
+  // Dexie: wordbase-progress, field `game`), so nothing is lost to the cap.
   function note(k,right){var p=pool(),w=p[k];if(!w)return;
-   if(right){w.right=(w.right||0)+1;w.rs=(w.rs||0)+1;}else{w.wrong=(w.wrong||0)+1;w.rs=0;}
-   savePool(p);pushSoon();}
+   if(right==='missed')w.missed=(w.missed||0)+1;
+   else if(right==='helped')w.helped=(w.helped||0)+1;
+   else if(right){w.right=(w.right||0)+1;w.rs=(w.rs||0)+1;w.level=Math.min(5,(w.level||0)+1);}
+   else{w.wrong=(w.wrong||0)+1;w.rs=0;w.level=Math.max(0,(w.level||0)-1);}
+   savePool(p);pushSoon();keepGame(k,w);}
+  function keepGame(k,w){
+   try{Progress.patch(k,{game:{right:w.right||0,wrong:w.wrong||0,missed:w.missed||0,helped:w.helped||0,
+    rs:w.rs||0,level:w.level||0,stage:w.stage||'',shows:w.shows||0,trs:w.trs||0,lt:w.lt||0,
+    th:w.th,en:w.en,at:Date.now()}}).catch(function(){});}catch(e){}
+  }
+  // The word ladder (the game's Learn mode): learn (answer shows) → test
+  // (after learn_shows shows) → learned (learned_after right in a row). The
+  // game moves words along it for gem matches and tells us; pop quiz and
+  // "Save Flash!" answers move them here, by the same rules.
+  var LADDER=['stage','shows','trs','lt'];
+  function ladderSet(k,m){var p=pool(),w=p[k];
+   // a lesson word met first as a gem (its card not read yet) joins the list here
+   if(!w){if(!m.th||!m.en)return;w=p[k]={k:k,th:m.th,rom:m.rom||'',en:m.en,audio:m.audio||'',lesson:document.body.dataset.lesson||'',
+    t:Date.now(),wrong:0,right:0,missed:0,rs:0,helped:0,level:0};}
+   if(m.lt&&w.lt&&w.lt>m.lt)return;
+   LADDER.forEach(function(x){if(m[x]!==undefined)w[x]=m[x];});
+   savePool(p);pushSoon();keepGame(k,w);}
+  function ladderAnswer(k,right){var p=pool(),w=p[k];if(!w)return;
+   var st=w.stage||(known[k]?'test':'learn');w.trs=w.trs||0;w.shows=w.shows||0;
+   if(right){w.trs++;if(st==='learn')st='test';if(w.trs>=cfg.learned_after)st='learned';}
+   else{w.trs=0;if(st!=='learn'){st='learn';w.shows=Math.max(0,cfg.learn_shows-cfg.learn_relearn_shows);}}
+   w.stage=st;w.lt=Date.now();savePool(p);pushSoon();keepGame(k,w);}
+  function ladderOf(w){return {stage:w.stage||'',shows:w.shows||0,trs:w.trs||0,lt:w.lt||0};}
+  // words the reader already knows from the course's own quizzes and
+  // flashcards (state 'known'): no Learn-mode hints for those
+  var known={};
+  function loadKnown(){try{Promise.resolve(Progress.all()).then(function(rows){var k={};
+   (rows||[]).forEach(function(r){if(r&&r.state==='known')k[r.id]=1;});known=k;}).catch(function(){});}catch(e){}}
+  loadKnown();setInterval(loadKnown,60000);
   // Dan: "a timer, super long at the beginning, or for new words, but gets
   // faster if correctly answered before." Seconds for a question about this
   // word: 30 for a word never answered right, ×0.7 for each right answer in a
   // row since its last mistake, never under 6.
   function timeFor(k){var w=pool()[k]||{};
    return Math.round(Math.max(cfg.pop_timer_min,cfg.pop_timer_new*Math.pow(cfg.pop_timer_shrink,w.rs||0)));}
+  // Recent words first: what was just on screen is what the game repeats
+  // (much more so in Learn mode).
+  function recency(w){var a=Date.now()-(w.t||0),L=cfg.game_mode==='learn';
+   return a<180000?(L?4:1):a<600000?(L?1.5:0.5):0;}
   function weight(w,les){
-   return 1+(w.lesson===les?2:0)+Math.min(3,w.wrong||0)*1.5-((w.right||0)>=3&&!(w.wrong||0)?0.5:0);
+   return 1+(w.lesson===les?2:0)+Math.min(3,w.wrong||0)*1.5+Math.min(2,w.missed||0)*0.75-((w.right||0)>=3&&!(w.wrong||0)?0.5:0)+recency(w);
   }
   function listed(){
    var p=pool(),les=document.body.dataset.lesson||'';
    return Object.keys(p).map(function(k){return p[k];})
     .sort(function(a,b){return (b.t||0)-(a.t||0);}).slice(0,120)
-    .map(function(w){return {id:w.k,th:w.th,rom:w.rom,en:w.en,audio:w.audio,lesson:w.lesson,weight:weight(w,les)};});
+    .map(function(w){return {id:w.k,th:w.th,rom:w.rom,en:w.en,audio:w.audio,lesson:w.lesson,weight:weight(w,les),
+     level:Math.max(w.level||0,known[w.k]?2:0),known:!!known[w.k],t:w.t||0,
+     stage:w.stage||'',shows:w.shows||0,trs:w.trs||0,lt:w.lt||0};});
   }
   var pushT=0;
   // Every word card on this page too (read yet or not), so the game has wrong
   // answers to mix in with the pairs.
   function pageWords(){
-   var out=[];[].forEach.call(document.querySelectorAll('.card'),function(c){
-    if(out.length>=60)return;var f=factsOf(c);
-    if(f)out.push({id:f.k,th:f.th,rom:f.rom,en:f.en,audio:f.audio,lesson:f.lesson,weight:1});});
+   var out=[],p0=pool();[].forEach.call(document.querySelectorAll('.card'),function(c){
+    if(out.length>=200)return;var f=factsOf(c);
+    if(!f)return;var pw=p0[f.k]||{};
+    out.push(Object.assign({id:f.k,th:f.th,rom:f.rom,en:f.en,audio:f.audio,lesson:f.lesson,weight:1,known:!!known[f.k]},ladderOf(pw),extrasOf(c)));});
    return out;
   }
-  function pushWords(){post({type:'ftc:words',words:listed(),extra:pageWords()});}
+  // this lesson and the one after it, so the game can offer "next lesson" when this one is mastered
+  function lessonInfo(){var nx=document.querySelector('.menu .where a.step.nx'),fav=document.getElementById('fav-btn'),h1=document.querySelector('h1');
+   var title=(fav&&fav.dataset.title)||(h1&&h1.textContent)||document.title||'';
+   return {id:document.body.dataset.lesson||location.pathname,title:title.trim().slice(0,80),
+    next:nx?{title:(nx.getAttribute('title')||nx.textContent||'').trim().slice(0,80)}:null};}
+  function pushWords(){post({type:'ftc:words',words:listed(),extra:pageWords(),lesson:lessonInfo()});}
   function pushSoon(){clearTimeout(pushT);pushT=setTimeout(pushWords,1200);}
 
   // A question about one of those words: Thai -> meaning, or meaning -> Thai.
@@ -4948,6 +5024,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    return out.length>max+6?out.slice(0,max+5)+'…':out;}
   function question(){
    var ws=listed();
+   // Learn mode never asks cold: only words seen in the last 10 minutes, when there are enough
+   if(cfg.game_mode==='learn'){var rec=ws.filter(function(w){return Date.now()-(w.t||0)<600000;});if(rec.length>=4)ws=rec;}
    var seenEn={},cands=ws.filter(function(w){var e=shortEn(w.en).toLowerCase();
     if(!e||seenEn[e])return false;seenEn[e]=1;return true;});
    if(cands.length<4)return null;
@@ -5038,15 +5116,17 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     if(left<=0){clearInterval(q._tick);popTimeout(q);}
    },250);
   }
+  // the word a pop quiz was about, so the game can put it in learning mode
+  function popWord(q){return {id:q.id,th:q.th,rom:q.rom||'',en:q.en,audio:q.audio||''};}
   function popTimeout(q){
    if(curQ!==q||!popEl)return;curQ=null;
    var bs=popEl.querySelectorAll('.wbpop-o');
    for(var i=0;i<bs.length;i++){bs[i].disabled=true;if(q.options[i].id===q.right)bs[i].classList.add('ok');}
    popEl.classList.add('timeout');popEl.querySelector('.wbpop-s').textContent='time!';
-   note(q.id,false);
+   note(q.id,false);ladderAnswer(q.id,false);
    // nobody answered: maybe nobody was looking, so the next one waits longer too
    backoff=Math.min(cfg.pop_quiz_max_backoff||4,backoff*2);
-   post({type:'ftc:popquiz',timeout:true});
+   post({type:'ftc:popquiz',timeout:true,w:popWord(q)});
    setTimeout(function(){closePop('timeout');},2000);
   }
   function popAnswer(q,o,btn){
@@ -5056,11 +5136,53 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    for(var i=0;i<bs.length;i++){bs[i].disabled=true;if(q.options[i].id===q.right)bs[i].classList.add('ok');}
    if(!right)btn.classList.add('no');
    if(o.audio)say(o.audio);
-   note(q.id,right);backoff=1;quizReset();
-   post({type:'ftc:popquiz',right:right,word:q.th});
+   note(q.id,right);ladderAnswer(q.id,right);backoff=1;quizReset();
+   post({type:'ftc:popquiz',right:right,word:q.th,w:popWord(q)});
    setTimeout(function(){closePop('answered');},right?1100:2200);
   }
   setInterval(function(){if(popDue())popQuiz();},2000);
+
+  // ------------------------------------------------------- auto-move
+  // Dan: "On learn mode, if the user has read it mode on, we can
+  // autoMove[x] @ 00:30 secs. Which just moves the slide." A bar along the
+  // bottom of the course (not the game column): ⏩ Auto-move ☐ every 30 s.
+  // It only shows in Learn mode with the course in reading mode (ℹ). The
+  // count starts again whenever the slide moves; it waits while a question is
+  // open, the game is paused or stopped, or the tab is hidden; and it stops at
+  // the end of the lesson (unless Auto-start next lesson carries it on).
+  // Auto-moves give no reading rewards: that would be the game playing itself.
+  var autoMoving=false,AKEY='wb.automove',auto=read(AKEY,null)||{on:false,every:30},left=auto.every,autoBar=null;
+  function autoSave(){write(AKEY,{on:!!auto.on,every:auto.every});}
+  function autoBuild(){
+   autoBar=document.createElement('div');autoBar.className='wbauto';autoBar.hidden=true;
+   autoBar.innerHTML='<label><input type="checkbox"> ⏩ Auto-move</label> every <select>'+
+    [15,30,45,60,90].map(function(n){return '<option value="'+n+'">'+n+' s</option>';}).join('')+
+    '</select><span class="wbauto-n"></span>';
+   var cb=autoBar.querySelector('input'),sel=autoBar.querySelector('select');
+   cb.checked=!!auto.on;sel.value=String(auto.every);
+   cb.onchange=function(){auto.on=cb.checked;left=auto.every;autoSave();autoTick(true);};
+   sel.onchange=function(){auto.every=+sel.value||30;left=auto.every;autoSave();autoTick(true);};
+   document.body.appendChild(autoBar);
+  }
+  function gameAsks(){try{var g=frame.ftc;return !!(g&&((g.questionOpen&&g.questionOpen())||(g.learnState&&g.learnState())));}catch(e){return false;}}
+  function autoTick(now){
+   if(!autoBar)autoBuild();
+   var show=cfg.game_mode==='learn'&&document.body.classList.contains('mode-info')&&!!document.getElementById('next');
+   autoBar.hidden=!show;document.body.classList.toggle('has-wbauto',show);
+   if(!show)return;
+   var n=autoBar.querySelector('.wbauto-n'),nb=document.getElementById('next');
+   if(!auto.on){n.textContent='';return;}
+   if(nb.disabled){n.textContent='· end of the lesson';return;}
+   var wait=gamePaused()?'game paused':popEl||gameAsks()?'question open':document.hidden?'tab hidden':'';
+   if(wait){n.textContent='· waiting ('+wait+')';return;}
+   if(!now)left-=0.5;
+   if(left<=0){left=auto.every;autoMoving=true;try{nb.click();}catch(e){}autoMoving=false;}
+   var sec=Math.max(0,Math.ceil(left));
+   n.textContent='· next in 0:'+(sec<10?'0':'')+sec;
+  }
+  // any move of the slide (the reader's own, or this one) starts the count again
+  document.addEventListener('wb:card',function(){left=auto.every;});
+  setInterval(function(){autoTick(false);},500);
 
   // ------------------------------------------------ messages from the game
   window.addEventListener('message',function(e){
@@ -5070,8 +5192,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    else if(m.type==='ftc:config'){if(m.words)for(var k in cfg)if(m.words[k]!==undefined)cfg[k]=m.words[k];pushWords();}
    // one question at a time: no "Save Flash!" while a pop quiz is up
    else if(m.type==='ftc:ask')post({type:'ftc:question',req:m.req,q:popEl?null:question()});
-   else if(m.type==='ftc:answered'){if(m.right!==null&&m.right!==undefined){note(m.id,!!m.right);quizReset();}}
-   else if(m.type==='ftc:word'){if(m.result==='miss')note(m.id,false);else if(m.result==='match')note(m.id,true);}
+   else if(m.type==='ftc:answered'){if(m.right!==null&&m.right!==undefined){note(m.id,!!m.right);ladderAnswer(m.id,!!m.right);quizReset();}}
+   else if(m.type==='ftc:word'){if(m.result==='miss')note(m.id,false);else if(m.result==='match')note(m.id,m.helped?'helped':true);else if(m.result==='expired')note(m.id,'missed');else if(m.result==='ladder')ladderSet(m.id,m);}
+   else if(m.type==='ftc:goto'&&m.where==='next'){var nx=document.querySelector('.menu .where a.step.nx');
+    // the link is the site's full address; on another address for the same site (a preview, www.) keep the path
+    if(nx)try{var u=new URL(nx.href,location.href);location.href=u.origin===location.origin?u.href:u.pathname+u.search;}catch(e){location.href=nx.href;}}
    else if(m.type==='ftc:mode'){var mb=document.querySelector('.modes [data-mode="'+m.mode+'"]');if(mb)mb.click();}
    // Dan: "whenever the user presses the arrow keys, we should move the
    // slider." After a click in the game column the keyboard is in the game
@@ -5101,12 +5226,18 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     var f=factsOf(card);if(!f)return;
     var p=pool(),was=p[f.k];
     p[f.k]={k:f.k,th:f.th,rom:f.rom,en:f.en,audio:f.audio||(was&&was.audio)||'',lesson:f.lesson||(was&&was.lesson)||'',
-     t:Date.now(),wrong:was?was.wrong||0:0,right:was?was.right||0:0};
+     t:Date.now(),wrong:was?was.wrong||0:0,right:was?was.right||0:0,missed:was?was.missed||0:0,rs:was?was.rs||0:0,
+     helped:was?was.helped||0:0,level:was?was.level||0:0,
+     stage:was?was.stage||'':'',shows:was?was.shows||0:0,trs:was?was.trs||0:0,lt:was?was.lt||0:0};
     savePool(p);pushSoon();
+    // a word the 400-word cache had dropped: its record comes back from the database
+    if(!was)try{Promise.resolve(Progress.get(f.k)).then(function(row){var g=row&&row.game;if(!g)return;
+     var p2=pool(),w2=p2[f.k];if(!w2)return;
+     ['right','wrong','missed','helped','rs','level','shows','trs','lt'].forEach(function(x){w2[x]=g[x]||0;});if(g.stage)w2.stage=g.stage;savePool(p2);pushSoon();}).catch(function(){});}catch(e){}
     if(byUser&&!document.body.classList.contains('mode-quiz'))wordsSince++;
    },
    study:function(src,cardIdx){
-    if(gamePaused())return;
+    if(gamePaused()||autoMoving)return;
     if(src==='lesson'){if(seenCard[cardIdx])return;seenCard[cardIdx]=1;}
     var now=Date.now();
     if(now-(last[src]||0)<(GAP[src]||1500))return;
