@@ -13,6 +13,13 @@
  *   dirs    th  Thai -> meaning
  *           en  meaning -> Thai        (starts once th reaches pick 4)
  *           au  sound only -> meaning  (starts once th reaches recall; words with a recording)
+ *           cx  fill the gap: the word missing from one of the course's sentences
+ *               (starts once th recognises; pick of 4, then recall)
+ *           sm  what does the sentence mean? (starts once th recalls, and only
+ *               with a sentence whose other words are mostly known: a sentence
+ *               only teaches when most of it can be read)
+ *           tp  which word did you hear? the word against its tone partners,
+ *               words that differ only by tone (starts once th recalls)
  *   boxes   reaching recall starts the day schedule: 1, 3, 7, 16, 35 days.
  *           Right when due = the next box; wrong = box 1 and back to pick 4.
  *
@@ -50,9 +57,13 @@
     ready_share: 0.8,        // "next level" once this share of the level's words recognise
     reverse_from_step: 2, audio_from_step: 3,
     reverse: true, audio: true,
+    sentences: true, tones: true,
+    special_gap: 3,          // sentence and tone questions: at least this many others in between
+    sentence_cover: 0.8,     // what share of a sentence's other words must be known for "what does it mean?"
   };
-  const DIRS = ["th", "en", "au"];
-  const WORD_EXTRAS = ["img", "ch", "vis", "hook", "aid", "tones", "slow", "tone", "pos", "gender", "sents"];
+  const DIRS = ["th", "en", "au", "cx", "sm", "tp"];
+  const SPECIAL = new Set(["cx", "sm", "tp"]);
+  const WORD_EXTRAS = ["img", "ch", "vis", "hook", "aid", "tones", "slow", "tone", "pos", "gender", "sents", "pairs"];
   const LABELS = ["new", "met", "recognises", "recalls", "learned", "longterm"];
   const norm = t => String(t || "").replace(/\s*[\[(][^\])]*[\])]/g, "").split(/;|\s\/\s/)[0].replace(/\s*[\[(].*$/, "").split(/,\s*/)[0].trim().toLowerCase();
   const shuffle = (a, rnd) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -130,7 +141,7 @@
     let store = o.store || memStore();
     const items = {}, words = {};
     let level = { id: "", title: "", ids: [] }, pool = [];        // pool: other words, for wrong answers
-    let n = 0, lastId = null, focus = "new";                         // focus: "new" (new words + review) | "review"
+    let n = 0, lastId = null, focus = "new", lastSpecial = -99;                         // focus: "new" (new words + review) | "review"
     const recent = [];                                               // right/wrong of recent choice/recall answers
     const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow"];
     const save = it => { const x = {}; for (const f of KEEP) x[f] = it[f]; store.putItems([x]); };
@@ -191,7 +202,28 @@
       return a !== null && a >= S.high_acc ? S.max_new_good : S.max_new;
     }
     const isDue = it => it.box >= 1 && it.due && it.due <= now();
-    const usable = it => it && words[it.id] && (it.dir !== "au" || words[it.id].audio);
+    const usable = it => it && words[it.id] && it.skipAt !== n && (it.dir !== "au" || words[it.id].audio)
+      && (it.dir !== "tp" || (words[it.id].audio && (words[it.id].pairs || []).length))
+      && (it.dir !== "cx" || !!clozeSents(words[it.id]).length)
+      && (it.dir !== "sm" || !!readable(words[it.id]).length);
+    // ---- sentences: the word's own, from the course
+    const SKNOWN = ["recognises", "recalls", "learned", "longterm"];
+    const toksOf = x => Array.isArray(x.toks) ? x.toks.filter(t => t && t[0]) : [];
+    // sentences where the word can be blanked out (its own token, or its Thai inside the sentence)
+    function clozeSents(w) {
+      if (!w || !Array.isArray(w.sents)) return [];
+      return w.sents.filter(x => x && x.th && (toksOf(x).some(t => t[1] === w.id) || (w.th.length > 1 && x.th.includes(w.th))));
+    }
+    // sentences that are mostly words the learner knows (the word itself counts)
+    function cover(w, x) {
+      const ts = toksOf(x).filter(t => t[1]); if (ts.length < 2) return 0;
+      let k = 0; for (const t of ts) if (t[1] === w.id || SKNOWN.includes(label(items[key(t[1], "th")]))) k++;
+      return k / ts.length;
+    }
+    function readable(w) {
+      if (!w || !Array.isArray(w.sents)) return [];
+      return w.sents.filter(x => x && x.th && x.en && cover(w, x) >= S.sentence_cover);
+    }
     function learning() {           // level words in their first steps, Thai -> meaning
       let c = 0;
       for (const id of level.ids) { const it = items[key(id, "th")]; if (it && it.seen && it.step < 2) c++; }
@@ -203,7 +235,9 @@
     }
     function choose() {
       const all = Object.values(items).filter(usable);
-      const open = it => it.nextN <= n && it.sess < S.session_cap;
+      // sentence and tone questions take longer: one in every few, never two close together
+      const spaced = it => !SPECIAL.has(it.dir) || n - lastSpecial > S.special_gap;
+      const open = it => it.nextN <= n && it.sess < S.session_cap && spaced(it);
       const byTurn = list => list.sort((a, b) => a.nextN - b.nextN || a.step - b.step);
       const canNew = extra => focus !== "review" && learning() < newLimit() + (extra || 0);
       const fresh = () => { const id = nextNew(); return id ? [item(id, "th", {})] : []; };
@@ -213,12 +247,12 @@
         () => byTurn(all.filter(x => isDue(x) && !x.sess && open(x))),         // due from earlier sessions (the warm-up)
         () => byTurn(all.filter(x => x.active && !x.doneSess && open(x))),     // being worked on this session
         () => canNew(0) ? fresh() : [],                                          // a new word from the level
-        () => byTurn(all.filter(x => isDue(x) && x.sess < S.session_cap)),     // nothing ready: the nearest turn
-        () => byTurn(all.filter(x => x.active && !x.doneSess && x.sess < S.session_cap)),
+        () => byTurn(all.filter(x => isDue(x) && x.sess < S.session_cap && spaced(x))),     // nothing ready: the nearest turn
+        () => byTurn(all.filter(x => x.active && !x.doneSess && x.sess < S.session_cap && spaced(x))),
         () => canNew(1) ? fresh() : [],
         // mix in words already met, the level's first (interleaving)
         () => shuffle(level.ids.map(id => items[key(id, "th")]).filter(x => x && x.seen && usable(x) && x.sess < S.session_cap), rnd),
-        () => shuffle(all.filter(x => x.seen && x.sess < S.session_cap), rnd),
+        () => shuffle(all.filter(x => x.seen && x.sess < S.session_cap && spaced(x)), rnd),
       ];
       let first = null;
       for (const t of tiers) {
@@ -252,10 +286,47 @@
       }
       return shuffle(out, rnd);
     }
-    function next() {
+    // the wrong answers for "what does the sentence mean?": other sentences' English
+    function sentenceChoices(w, x, count) {
+      const seen = new Set([norm(x.en)]), out = [{ id: w.id, en: x.en, right: true }];
+      const from = level.ids.map(id => words[id]).concat(Object.values(words));
+      for (const o of shuffle(from.slice(), rnd)) {
+        if (out.length >= count) break;
+        for (const y of (o && o.sents) || []) {
+          if (!y || !y.en || seen.has(norm(y.en)) || y.th === x.th) continue;
+          seen.add(norm(y.en)); out.push({ id: "s:" + o.id + ":" + out.length, en: y.en }); break;
+        }
+      }
+      return shuffle(out, rnd);
+    }
+    function specialQ(it, w) {
+      const base = { n, k: it.k, id: it.id, dir: it.dir, step: it.step, word: w, review: isDue(it), isNew: false, label: label(it), t: now() };
+      if (it.dir === "tp") {
+        const opts = shuffle([w].concat((w.pairs || []).slice(0, 3)), rnd);
+        return Object.assign(base, { kind: "pick", choices: opts });
+      }
+      const pool = it.dir === "cx" ? clozeSents(w) : readable(w);
+      if (!pool.length) return null;
+      const x = pool[Math.floor(rnd() * pool.length)];
+      if (it.dir === "cx") {
+        const kind = it.step >= 3 ? "recall" : "pick";
+        // wrong answers that aren't already in the sentence (that would only confuse)
+        const opts = kind === "recall" ? [] : [w].concat(choices(w, "en", 9).filter(c => c.id !== w.id && !x.th.includes(c.th)).slice(0, 3));
+        return Object.assign(base, { kind, sentence: x, choices: shuffle(opts, rnd) });
+      }
+      const kind = it.step >= 3 ? "recall" : "pick";
+      return Object.assign(base, { kind, sentence: x, choices: kind === "recall" ? [] : sentenceChoices(w, x, 3) });
+    }
+    function next(depth) {
       const it = choose();
       if (!it) return null;
       const w = words[it.id];
+      if (SPECIAL.has(it.dir)) {
+        const q = specialQ(it, w);
+        if (q && (q.kind === "recall" || q.choices.length >= 2)) return q;
+        it.nextN = n + 6; it.skipAt = n;               // not possible right now: try another word
+        return (depth || 0) < 4 ? next((depth || 0) + 1) : null;
+      }
       const kind = it.step === 0 ? "meet" : it.step >= 3 ? "recall" : "pick";
       const count = kind === "meet" ? 1 : kind === "recall" ? 0 : it.step === 1 ? 2 : 4;
       const opts = kind === "recall" ? [] : choices(w, it.dir, count);
@@ -272,7 +343,7 @@
       res = res || {};
       const t = now(), right = q.kind === "meet" ? true : !!res.right, ms = Math.max(0, +res.ms || 0);
       const was = { step: it.step, box: it.box, label: label(it) }, due = isDue(it);
-      n++; lastId = it.id;
+      n++; lastId = it.id; if (SPECIAL.has(it.dir)) lastSpecial = n;
       it.sess++; it.seen++; it.active = true; it.last = t; it.lastOk = right;
       if (q.kind !== "meet") { recent.push(right); if (recent.length > S.acc_window) recent.shift(); it.ms = it.ms ? Math.round(it.ms * 0.7 + ms * 0.3) : ms; }
       const slow = right && q.kind === "pick" && ms > S.slow_ms;
@@ -284,12 +355,18 @@
       } else if (right) {
         it.right++; it.retry = false; it.sessRight++;
         if (q.kind === "pick") {
-          if (q.step >= 2 && q.choices.length >= 4) it.r4 = true;
+          if (q.step >= 2 && (q.choices.length >= 4 || SPECIAL.has(it.dir))) it.r4 = true;
           if (slow) it.slow++;
           else {
             it.streak++;
             const need = it.step === 1 ? S.pick2_right : S.pick4_right;
-            if (it.streak >= need) { it.step++; it.streak = 0; if (it.step === 3 && !it.box) { it.box = 1; it.due = t + S.box_days[0] * DAY; } }
+            if (it.streak >= need) {
+              if (it.dir === "tp") {
+                // a sound can't be "recalled": enough right in a row counts as remembering it
+                it.streak = 0; it.rc = true; it.ok.push(t); if (it.ok.length > 6) it.ok = it.ok.slice(-6); it.doneSess = true;
+                it.box = Math.min(S.box_days.length, Math.max(1, it.box + (due ? 1 : 0))); it.due = t + S.box_days[it.box - 1] * DAY;
+              } else { it.step++; it.streak = 0; if (it.step === 3 && !it.box) { it.box = 1; it.due = t + S.box_days[0] * DAY; } }
+            }
           }
           if (due) { it.box = Math.max(1, it.box); it.due = t + S.box_days[Math.min(S.box_days.length, it.box) - 1] * DAY; }
         } else {                                          // recall: "I knew it"
@@ -313,6 +390,13 @@
       if (it.dir === "th") {
         if (S.reverse && it.step >= S.reverse_from_step && !items[key(it.id, "en")]) { const x = item(it.id, "en", { step: 1 }); x.active = true; x.nextN = n + 3; opened.push("en"); }
         if (S.audio && it.step >= S.audio_from_step && words[it.id] && words[it.id].audio && !items[key(it.id, "au")]) { const x = item(it.id, "au", { step: 2 }); x.active = true; x.nextN = n + 4; opened.push("au"); }
+      }
+      // sentences and tones open once the word itself is strong enough (checked on any answer about it)
+      const w0 = words[it.id], th = items[key(it.id, "th")];
+      if (w0 && th) {
+        if (S.sentences && th.r4 && !items[key(it.id, "cx")] && clozeSents(w0).length) { const x = item(it.id, "cx", { step: 2 }); x.active = true; x.nextN = n + 4; opened.push("cx"); }
+        if (S.sentences && th.rc && !items[key(it.id, "sm")] && readable(w0).length) { const x = item(it.id, "sm", { step: 2 }); x.active = true; x.nextN = n + 6; opened.push("sm"); }
+        if (S.tones && th.rc && !items[key(it.id, "tp")] && w0.audio && (w0.pairs || []).length) { const x = item(it.id, "tp", { step: 2 }); x.active = true; x.nextN = n + 5; opened.push("tp"); }
       }
       save(it);
       const attempt = { id: it.id, dir: it.dir, step: q.step, kind: q.kind, choices: q.choices ? q.choices.length : 0, right, ms, at: t, review: !!q.review, slow };
@@ -360,13 +444,35 @@
       setPool(list) { pool = (list || []).filter(w => w && w.id && w.th && w.en); },
       setFocus(f) { focus = f === "review" ? "review" : "new"; },
       focus: () => focus,
-      next,
+      next: () => next(0),
       answer,
       label: (id, dir) => label(items[key(id, dir || "th")]),
       item: (id, dir) => { const it = items[key(id, dir || "th")]; return it ? Object.assign({}, it) : null; },
       items: () => Object.values(items).map(it => Object.assign({}, it)),
       word: id => words[id] || null,
       levelProgress, summary,
+      // Flash's to-do list: what the learner would do next, in plain numbers
+      todo() {
+        const t = now(); let due = 0, ready = 0, forgot = 0;
+        for (const it of Object.values(items)) {
+          if (!usable(it)) continue;
+          if (it.box && it.due && it.due <= t) due++;
+          if (it.dir === "th" && it.step >= 1 && it.step < 3 && it.streak >= 1) ready++;
+          if (it.dir === "th" && !it.lastOk && (it.rc || it.box >= 2)) forgot++;
+        }
+        const fresh = level.ids.filter(id => words[id] && !(items[key(id, "th")] || {}).seen).length;
+        return { due, ready, forgot, fresh };
+      },
+      // every word the learner has met, with its label in each direction
+      vocab() {
+        const by = {};
+        for (const it of Object.values(items)) {
+          if (!words[it.id] || !(it.seen || it.step)) continue;
+          const v = by[it.id] || (by[it.id] = { id: it.id, word: words[it.id], dirs: {}, wrong: 0, right: 0, last: 0 });
+          v.dirs[it.dir] = label(it); v.wrong += it.wrong; v.right += it.right; v.last = Math.max(v.last, it.last || 0);
+        }
+        return Object.values(by);
+      },
       // "practise these": the words come up next, as if just answered wrong
       practise(ids) {
         for (const id of ids || []) for (const d of DIRS) { const it = items[key(id, d)]; if (it && usable(it)) { it.retry = true; it.active = true; it.doneSess = false; it.nextN = n; it.sess = Math.min(it.sess, S.session_cap - 3); } }

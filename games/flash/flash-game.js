@@ -1251,7 +1251,7 @@
     // A right answer powers Flash up like a matched pair; a wrong one shows
     // the answer, says the word and costs nothing. The classic gem hunt is
     // still there (Options > Words).
-    const CM = Object.assign({ meet_strength: 0.6, recall_strength: 1, next_after_right: 0.55, next_after_wrong: 1.9, next_after_meet: 0.35, daily_goal: 20 },
+    const CM = Object.assign({ meet_strength: 0.6, recall_strength: 1, next_after_right: 0.55, next_after_wrong: 1.9, next_after_meet: 0.35, daily_goal: 20, sentence_strength: 1.3, next_after_sentence: 1.6 },
                              ((sim.D.settings || {}).recall || {}).values || {});
     let wordMode = SAVE.get().words === "gems" ? "gems" : "card";
     // Dan: "I think romanization should always be on: the default setting."
@@ -1267,8 +1267,22 @@
     // answered (or the new one being met), the way the lesson page shows it:
     // its picture, the Thai with tones, the meaning, part of speech, both
     // recordings, the memory hook and the course's sentences.
-    const sideWord = h("div", "ftc-word");
-    sideEl.append(sideHead, cardEl, sideIdle, sideWord); root.append(sideEl);
+    const sideWord = h("div", "ftc-word"), sideTip = h("div", "ftc-tip");
+    sideEl.append(sideHead, sideTip, cardEl, sideIdle, sideWord); root.append(sideEl);
+    // first-time tips: three short ones, each once, at the moment they're useful
+    const TIPS = [
+      ["start", "🐈 <b>Answer the word card to power Flash up.</b> He fights on his own: your job is the words."],
+      ["keys", "⌨ <b>1–4</b> answers, <b>Space</b> shows the answer. A wrong answer costs nothing: the word just comes back."],
+      ["days", "📅 <b>Words come back over the next days</b>, just before you'd forget them. 📊 shows what you've really learned."],
+    ];
+    function tip(id) {
+      const done = SAVE.get().tips || {}; if (done[id]) return;
+      const t = TIPS.find(x => x[0] === id); if (!t) return;
+      done[id] = Date.now(); saveSet("tips", done);
+      sideTip.innerHTML = t[1] + `<button class="ftc-tip-x" title="Got it">✕</button>`; sideTip.classList.add("show");
+      sideTip.querySelector("button").onclick = () => sideTip.classList.remove("show");
+      clearTimeout(sideTip._t); sideTip._t = setTimeout(() => sideTip.classList.remove("show"), 12000);
+    }
     let infoW = null;
     let cq = null, cState = "", cShown = 0, cNextAt = 0, cTimer = null, cStreak = 0, levelSeen = {};
     let cRun = { right: 0, wrong: 0, up: {}, best: 0 };
@@ -1350,6 +1364,7 @@
       if (src) return `<img src="${esc(src)}" alt="" data-id="${esc(w.id)}">`;
       return fallback;
     }
+    const picOnly = (w, cls) => { const p = picHtml(w); return p ? `<div class="ftc-wc-aid pic ${cls || ""}">${p}</div>` : ""; };
     function aidHtml(w, withText) {
       const pic = picHtml(w);
       const txt = withText && (w.hook || w.aid) ? `<div><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : "";
@@ -1393,26 +1408,72 @@
       if (!q) { cardHide(); cNextAt = performance.now() + 2000; return; }
       cq = q; cShown = performance.now(); cState = q.kind === "recall" ? "think" : "ask";
       renderCard();
-      if (q.dir === "th" || q.dir === "au") sayWord(q.word, true);
+      const nAns = (dayLog()[dayKey()] || {}).n || 0;
+      if (LE.count() === 0) tip("start"); else if (LE.count() === 4) tip("keys"); else if (q.kind === "recall" || LE.count() === 14) tip("days");
+      if (q.dir === "th" || q.dir === "au" || q.dir === "tp") sayWord(q.word, true);
+      else if (q.dir === "sm") saySentence(q);
       if (q.isNew && !cRun.newSaid) { cRun.newSaid = 1; floatText(`✨ ${PUN.new_word}`, false, true); }
       if (q.kind === "meet") showWordInfo(q.word, true);
       // the next few words' sounds, so they're ready when they come up
       preloadAudio(LE.level().ids.slice(0, 40).map(id => LE.word(id)));
     }
+    // ---- sentences and tones (flash-learn.js: cx, sm, tp)
+    const SPECIAL = { cx: "🧩 Fill the gap", sm: "💬 What does it mean?", tp: "🎧 Which word did you hear?" };
+    const SDIR = { cx: "a word in a sentence", sm: "sentence meaning", tp: "tones" };
+    function saySentence(q) { const x = q.sentence; if (x && x.audio) say(x.audio, x.th, 1); else if (x) speak(x.th, 1); }
+    // the sentence with the word blanked out (or highlighted, once answered)
+    function sentenceHtml(q, show) {
+      const x = q.sentence, w = q.word, toks = Array.isArray(x.toks) ? x.toks : [];
+      const mark = t => show ? `<b class="ftc-gap ok">${esc(t)}</b>` : `<b class="ftc-gap">${"\u00a0".repeat(Math.max(3, t.length))}</b>`;
+      let html = "";
+      if (toks.length && toks.some(t => t[1] === w.id)) html = toks.map(t => t[1] === w.id ? mark(t[0]) : esc(t[0])).join("");
+      else { const i = x.th.indexOf(w.th); html = i < 0 ? esc(x.th) : esc(x.th.slice(0, i)) + mark(w.th) + esc(x.th.slice(i + w.th.length)); }
+      return `<div class="ftc-sent" lang="th">${html}</div>`;
+    }
+    function renderSpecial(q) {
+      const w = q.word, x = q.sentence;
+      const head = `<div class="ftc-wc-tag"><b>${SPECIAL[q.dir]}</b>${q.review ? `<span class="ftc-wc-rev">🔁 review</span>` : ""}${cStreak >= 2 ? `<span class="ftc-wc-streak">🔥 ${cStreak}</span>` : ""}<span class="ftc-wc-dir">${SDIR[q.dir]}</span></div>`;
+      let prompt = "", body = "";
+      if (q.dir === "tp") {
+        prompt = `<div class="ftc-wc-p"><button class="ftc-wc-listen" data-say>🔊</button></div>`;
+        body = `<div class="ftc-wc-ask">They sound alike: only the tone is different. Listen again as often as you like.</div><div class="ftc-wc-opts n${q.choices.length}">` + q.choices.map((c, i) =>
+          `<button class="ftc-wc-o" data-i="${i}"><i>${i + 1}</i><span>${thaiHtml(c, false, true, true)}</span></button>`).join("") + `</div>`;
+      } else if (q.dir === "cx") {
+        prompt = sentenceHtml(q, false) + (x.en ? `<div class="ftc-sent-en">💬 ${esc(x.en)}</div>` : "");
+        body = q.kind === "pick"
+          ? `<div class="ftc-wc-ask">Which word fits the gap?</div><div class="ftc-wc-opts n${q.choices.length}">` + q.choices.map((c, i) =>
+              `<button class="ftc-wc-o" data-i="${i}"><i>${i + 1}</i><span>${thaiHtml(c, false, romOn(q))}</span></button>`).join("") + `</div>`
+          : `<div class="ftc-wc-ask">Say the missing word in your head…</div><div class="ftc-wc-ans"></div><div class="ftc-wc-opts one"><button class="ftc-wc-o reveal" data-reveal><i>␣</i><span>Show the answer</span></button></div>`;
+      } else {
+        prompt = `<div class="ftc-wc-p"><div class="ftc-sent" lang="th">${esc(x.th)}</div>${x.rom && romMode !== "never" ? `<div class="ftc-sent-rom">${esc(x.rom)}</div>` : ""}${x.audio ? `<span class="ftc-wc-btns"><button class="ftc-wc-say" data-ssay title="Hear it">🔊</button></span>` : ""}</div>`;
+        body = q.kind === "pick"
+          ? `<div class="ftc-wc-ask">What does it mean?</div><div class="ftc-wc-opts one">` + q.choices.map((c, i) =>
+              `<button class="ftc-wc-o" data-i="${i}"><i>${i + 1}</i><span>${esc(c.en)}</span></button>`).join("") + `</div>`
+          : `<div class="ftc-wc-ask">Think of what it means…</div><div class="ftc-wc-ans"></div><div class="ftc-wc-opts one"><button class="ftc-wc-o reveal" data-reveal><i>␣</i><span>Show the answer</span></button></div>`;
+      }
+      cardEl.className = "ftc-wc show k-" + q.kind + " d-" + q.dir;
+      cardEl.innerHTML = head + prompt + body;
+      cardEl.querySelectorAll("[data-say]").forEach(b => b.onclick = e => { e.stopPropagation(); sayWord(w); });
+      cardEl.querySelectorAll("[data-ssay]").forEach(b => b.onclick = e => { e.stopPropagation(); saySentence(q); });
+      cardEl.querySelectorAll(".ftc-wc-o[data-i]").forEach(b => b.onclick = () => cardPick(+b.dataset.i));
+      const rv = cardEl.querySelector("[data-reveal]"); if (rv) rv.onclick = () => cardReveal();
+    }
     function renderCard() {
       const q = cq, w = q.word;
+      if (SPECIAL[q.dir]) return renderSpecial(q);
       const tag = q.kind === "meet" ? (q.isNew ? "✨ New word" : "📖 Meet again") : q.kind === "recall" ? "🧠 Recall" : q.choices.length >= 4 ? "Pick of 4" : "Pick of 2";
       const head = `<div class="ftc-wc-tag"><b>${tag}</b>${q.review ? `<span class="ftc-wc-rev">🔁 review</span>` : ""}${cStreak >= 2 ? `<span class="ftc-wc-streak">🔥 ${cStreak}</span>` : ""}<span class="ftc-wc-dir">${q.dir === "th" ? "Thai → meaning" : q.dir === "en" ? "meaning → Thai" : "🎧 listening"}</span></div>`;
       const slowB = w.slow ? `<button class="ftc-wc-say slow" data-slow title="Slowly">🐢</button>` : "";
       let prompt;
-      if (q.dir === "en") prompt = `<div class="ftc-wc-en big">${esc(short(w.en, 40))}</div>`;
+      // meaning -> Thai: the picture says the same as the English, so it can show
+      if (q.dir === "en") prompt = `<div class="ftc-wc-en big">${esc(short(w.en, 40))}</div>${q.kind !== "meet" ? picOnly(w, "small") : ""}`;
       else if (q.dir === "au") prompt = `<div class="ftc-wc-p"><button class="ftc-wc-listen" data-say>🔊</button>${slowB}</div>`;
       else prompt = `<div class="ftc-wc-p">${thaiHtml(w, true, romOn(q), q.kind === "meet")}<span class="ftc-wc-btns"><button class="ftc-wc-say" data-say title="Hear it">🔊</button>${slowB}</span></div>`;
       let body = "";
       if (q.kind === "meet") {
         const ans = q.dir === "en" ? thaiHtml(w, false, true) : esc(short(w.en, 40));
         // on a wide screen the full word card under this one already shows the picture and hook
-        body = (panelOn() ? "" : aidHtml(w, true)) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`;
+        body = (panelOn() ? picOnly(w, "big") : aidHtml(w, true)) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`;
       } else {
         // a word that keeps going wrong gets its picture as a hint (not the hook: that would give it away)
         const hint = q.dir !== "en" && struggling(q) ? aidHtml(w, false) : "";
@@ -1436,7 +1497,9 @@
       if (!cq || cState !== "think") return;
       const q = cq, w = q.word; cState = "grade";
       const ans = cardEl.querySelector(".ftc-wc-ans");
-      ans.innerHTML = q.dir === "en" ? thaiHtml(w, true, true, true) : `<span class="ftc-wc-en">${esc(short(w.en, 40))}</span>${q.dir === "au" ? thaiHtml(w, false, true, true) : ""}`;
+      if (q.dir === "cx") { const p = cardEl.querySelector(".ftc-sent"); if (p) p.outerHTML = sentenceHtml(q, true); ans.innerHTML = thaiHtml(w, false, true, true) + ` = <b>${esc(short(w.en, 40))}</b>`; saySentence(q); }
+      else if (q.dir === "sm") ans.innerHTML = `<span class="ftc-wc-en">${esc(q.sentence.en)}</span>`;
+      else ans.innerHTML = q.dir === "en" ? thaiHtml(w, true, true, true) : `<span class="ftc-wc-en">${esc(short(w.en, 40))}</span>${q.dir === "au" ? thaiHtml(w, false, true, true) : ""}`;
       ans.classList.add("show");
       if (q.dir === "en") sayWord(w, true);
       const opts = cardEl.querySelector(".ftc-wc-opts");
@@ -1463,17 +1526,33 @@
       cardEl.querySelectorAll(".ftc-wc-o").forEach(b => { b.disabled = true; const i = +b.dataset.i; if (!isNaN(i) && q.choices[i] && q.choices[i].id === q.id) b.classList.add("ok"); });
       if (btn && !right) btn.classList.add("bad");
       if (btn && right) btn.classList.add("ok");
+      const spec = !!SPECIAL[q.dir];
       if (q.dir === "en" && q.kind !== "recall") sayWord(w, true);
+      if (spec && q.kind === "pick") {
+        // the whole sentence (or the tone pair), shown and heard, right or wrong
+        if (q.dir === "cx") { const p = cardEl.querySelector(".ftc-sent"); if (p) p.outerHTML = sentenceHtml(q, true); saySentence(q); }
+        if (q.dir === "sm") saySentence(q);
+        if (q.dir === "tp") {
+          sayWord(w, false);
+          // hearing them side by side is the lesson: each one can be played now
+          const fb = h("div", "ftc-wc-fix ftc-tp", `<small>You heard <b lang="th">${esc(w.th)}</b>${toneNames(w) ? ` (${esc(toneNames(w))} tone)` : ""}. Compare them:</small><div class="ftc-tp-row">${q.choices.map((c, i) =>
+            `<button class="ftc-btn" data-cmp="${i}"><span lang="th">${esc(c.th)}</span> <i>${romHtml(c)}</i> 🔊<small>${esc(short(c.en, 18))}</small></button>`).join("")}</div>`);
+          fb.querySelectorAll("[data-cmp]").forEach(b => b.onclick = () => { const c = q.choices[+b.dataset.cmp]; if (c) say(c.audio, c.th); });
+          cardEl.append(fb);
+        }
+      }
       if (right) {
         SFX.play(meet ? "helped" : "right");
         if (!meet) { cStreak++; cRun.right++; cRun.best = Math.max(cRun.best, cStreak); }
         const milestone = !meet && cStreak > 0 && cStreak % STREAK_EVERY === 0;
-        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: meet ? CM.meet_strength : q.kind === "recall" ? CM.recall_strength : 1,
+        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: meet ? CM.meet_strength : spec ? CM.sentence_strength : q.kind === "recall" ? CM.recall_strength : 1,
                           streak: cStreak, word: w.th, dash: milestone });
         if (milestone) { SFX.play("dash"); if (A("banners")) banner(`🔥 ${cStreak} in a row!`, `Flash dash! ${cStreak % (STREAK_EVERY * 3) === 0 ? pick1(PUN.challenge) : cStreak % (STREAK_EVERY * 2) === 0 ? PUN.right : ""}`); sim.noteStudy("card_streak_" + cStreak); }
         else if (!meet && Math.random() < 0.12) floatText(`😺 ${PUN.right}`, false, true);
         logWord(w, meet ? "helped" : "right");
         if (!meet && st.flash) for (let i = 0; i < 10; i++) burst(st.flash.x, st.flash.y, BLUE_HI, 220);
+        // the word and its picture, so every right answer ends on the picture too
+        if (!meet && !spec) { const pic = picHtml(w); const ok = h("div", "ftc-wc-fix good ftc-wc-okpic", `${pic ? `<span class="ftc-wc-okimg">${pic}</span>` : ""}<div>${thaiHtml(w, false, true)} = <b>${esc(short(w.en, 40))}</b></div>`); cardEl.append(ok); fixPics(ok); }
       } else {
         SFX.play("wrong");
         if (cStreak >= 3) { floatText(`🔥 Streak of ${cStreak} ended`, true); setTimeout(() => floatText(pick1(PUN.encourage), false, true), 700); }
@@ -1481,9 +1560,12 @@
         sim.noteStudy(q.kind === "recall" ? "card_notyet" : "card_wrong");
         logWord(w, "wrong");
         // the right answer, said and shown, with the word's picture and memory hook (corrective feedback)
+        if (spec) { if (q.dir === "sm") cardEl.append(h("div", "ftc-wc-fix", `<div><b>${esc(q.sentence.en)}</b></div><small>${PUN.wrong} It comes back in a moment.</small>`)); }
+        else {
         const fb = h("div", "ftc-wc-fix", `<div>${q.dir === "en" ? "" : thaiHtml(w, false, true, true) + " = "}<b>${esc(short(w.en, 40))}</b>${q.dir === "en" ? " = " + thaiHtml(w, false, true, true) : ""}</div>`
           + aidHtml(w, true) + `<small>${PUN.wrong} It comes back in a moment.</small>`);
         cardEl.append(fb); fixPics(fb); sayWord(w, true);
+        }
       }
       sim.noteStudy("card_" + q.kind + (right ? "_right" : "_wrong"));
       if (r && r.now.label !== r.was.label && LABELS_UP[r.now.label] && right) {
@@ -1492,10 +1574,12 @@
         if (r.now.label === "learned" || r.now.label === "longterm") SFX.play("learned");
       }
       if (r && r.opened && r.opened.includes("en")) floatText(`🔄 ${w.th}: now the other way round too`, false, true);
+      if (r && r.opened && r.opened.includes("cx")) floatText(`🧩 ${w.th}: now in sentences too`, false, true);
+      if (r && r.opened && r.opened.includes("tp")) floatText(`🎧 ${w.th}: can you hear its tone?`, false, true);
       if (opts.onWord) try { opts.onWord({ result: right ? "match" : "miss", id: w.id, helped: meet }); } catch (e) {}
       noteDay(right && !meet); checkLevel(); showWordInfo(w); drawSide(true);
       // a wrong answer with a memory aid to read gets a little longer
-      const wait = meet ? CM.next_after_meet : right ? CM.next_after_right : CM.next_after_wrong + (w.aid ? 1.2 : 0);
+      const wait = meet ? CM.next_after_meet : spec && right ? CM.next_after_sentence : right ? CM.next_after_right + 0.45 : CM.next_after_wrong + (w.aid && !spec ? 1.2 : 0) + (spec ? 0.8 : 0) + (q.dir === "tp" ? 1.5 : 0);
       cTimer = setTimeout(() => { cq = null; cState = ""; cardNext(); }, wait * 1000);
     }
     const LABELS_UP = { recognises: "👀 Recognised:", recalls: "🧠 Recalled:", learned: "⭐ Learned:", longterm: "🏆 Long-term:" };
@@ -1505,12 +1589,14 @@
       if (!panelOn() && !stackOn()) return;
       const t = performance.now(); if (!now && t - sideAt < 400) return; sideAt = t;
       const p = LE.levelProgress(), sm = LE.summary(), k = p.total ? p.recognises / p.total : 0;
-      const today = Math.min(GOAL, (dayLog()[dayKey()] || {}).n || 0);
+      const today = Math.min(GOAL, (dayLog()[dayKey()] || {}).n || 0), td = LE.todo();
+      const todo = `<div class="ftc-todo" title="Flash's to-do list"><b>😼 Flash's to-do</b>${td.due ? `<span>🔁 ${td.due} to review</span>` : ""}${td.ready ? `<span>⬆ ${td.ready} ready for a harder test</span>` : ""}${td.forgot ? `<span>🩹 ${td.forgot} slipping</span>` : ""}${td.fresh ? `<span>🌱 ${td.fresh} new</span>` : ""}${!td.due && !td.ready && !td.forgot && !td.fresh ? "<span>all caught up 😸</span>" : ""}</div>`;
       const html = stackOn() ? `<div class="ftc-side-mini"><b>📘 ${esc(short(levelTitle(), 26))}</b><span>👀 ${p.recognises}/${p.total}</span><span>🔥 ${cStreak}</span><span>🎯 ${today}/${GOAL}</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>`
         : `<div class="ftc-side-lv"><span>📘 Level · ${PUN.course}</span><b>${esc(levelTitle())}</b></div>
         <div class="ftc-side-bar" title="${p.recognises} of ${p.total} recognised · next level at ${Math.round(LE.S.ready_share * 100)}%"><i style="width:${Math.round(k * 100)}%"></i><em style="left:${Math.round(LE.S.ready_share * 100)}%"></em></div>
         <div class="ftc-side-n"><span title="seen at least once">✨ ${p.met}/${p.total} met</span><span title="right with 4 choices">👀 ${p.recognises}</span><span title="remembered with no choices">🧠 ${p.recalls}</span>${p.learned ? `<span title="recalled on two different days">⭐ ${p.learned}</span>` : ""}${sm.due ? `<span title="words from earlier sessions due for review">🔁 ${sm.due}</span>` : ""}</div>
         <div class="ftc-side-day"><span title="answers today (the daily goal)">🎯 ${today}/${GOAL} today</span><span title="days in a row with at least one answer">📅 ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>
+        ${todo}
         <div class="ftc-side-streak${cStreak >= STREAK_EVERY ? " hot" : ""}">🔥 <b>${cStreak}</b> in a row<small>${cStreak % STREAK_EVERY === 0 && cStreak ? "Flash dash!" : `${STREAK_EVERY - (cStreak % STREAK_EVERY)} more for a Flash dash`} · best ${cRun.best}</small></div>`;
       if (sideHead._h !== html) { sideHead._h = html; sideHead.innerHTML = html; const pb = sideHead.querySelector("[data-prog]"); if (pb) pb.onclick = () => showProgress(); }
       const live = cardLive();
@@ -1996,6 +2082,8 @@
         overlay.append(h("p", "ftc-slogan", `${PUN.slogan} ⚡`));
         overlay.append(h("p", "ftc-lvline", `📘 Level: <b>${esc(lesson && lesson.title ? lesson.title : "these words")}</b>${p.total ? ` · 👀 ${p.recognises}/${p.total} recognised` : ""}${sm.due ? ` · 🔁 ${sm.due} to review` : ""}`));
         if (sm.due) overlay.append(h("p", "ftc-small", `🔁 ${PUN.revise}`));
+        const td = LE.todo();
+        if (td.due + td.ready + td.forgot) overlay.append(h("p", "ftc-small ftc-todo-line", `😼 Flash's to-do: ${[td.due ? `${td.due} to review` : "", td.ready ? `${td.ready} ready for a harder test` : "", td.forgot ? `${td.forgot} slipping` : "", td.fresh ? `${td.fresh} new in this level` : ""].filter(Boolean).join(" · ")}`));
         const pick = h("div", "ftc-mode");
         for (const [f, label, sub] of [["new", "📚 New words + review", "Meet this level's words, with the reviews that are due"], ["review", `🔁 ${PUN.review}`, "Review only: no new words, just the ones you've met"]]) {
           const b = h("button", "ftc-mode-b" + (LE.focus() === f ? " on" : ""), `<b>${label}</b><small>${sub}</small>`);
@@ -2228,6 +2316,15 @@
         }).catch(() => {});
         grid.append(box);
       }
+      // where this level's words and pictures come from (to check pictures arrive)
+      if (LE && cardOn()) {
+        const ws = LE.level().ids.map(id => LE.word(id)).filter(Boolean);
+        const ph = ws.filter(w => nowPic[w.id] || w.img), dr = ws.filter(w => svgOk(w.vis)), em = ws.filter(w => w.ch);
+        const box = h("div", "ftc-opt", `<label class="t">Pictures in this level</label><small class="ftc-picinfo">${ws.length} words, from ${pack && lesson && pack.lesson === lesson.id ? (pack.from === "page" ? "the lesson page (rebuild the course for the word file)" : "the lesson's word file") : "the lesson page"} · ${ph.length} photos · ${dr.length} drawings · ${em.length} emoji<span class="ftc-pictest"></span></small>`);
+        const ex = ph[0];
+        if (ex) { const im = new Image(), t = box.querySelector(".ftc-pictest"); im.onload = () => t.textContent = " · photos load ✓"; im.onerror = () => t.textContent = ` · photos don't load ✗ (${(nowPic[ex.id] || ex.img).slice(0, 70)})`; im.src = nowPic[ex.id] || ex.img; }
+        grid.append(box);
+      }
       // game sounds (the same as the 🔊 popover)
       const sb = h("div", "ftc-opt", `<label class="t">Game sounds</label><div class="ftc-row"><input type="range" min="0" max="100" step="5" value="${Math.round(SFX.volume() * 100)}">
         <label class="ftc-small"><input type="checkbox"${SFX.mute() ? " checked" : ""}> Mute</label></div>`);
@@ -2241,7 +2338,7 @@
       overlay.append(grid);
       // what the learner knows, by direction, in words that mean something
       if (LE) {
-        const sm = LE.summary(), rows = [["th", "Thai → meaning"], ["en", "meaning → Thai"], ["au", "🎧 Listening"]];
+        const sm = LE.summary(), rows = [["th", "Thai → meaning"], ["en", "meaning → Thai"], ["au", "🎧 Listening"], ["cx", "🧩 In a sentence"], ["sm", "💬 Sentence meaning"], ["tp", "🎧 Tones"]];
         const cols = [["met", "Met", "seen at least once"], ["recognises", "Recognises", "right with 4 choices"], ["recalls", "Recalls", "remembered with no choices"],
                       ["learned", "Learned", "recalled on two different days, latest right"], ["longterm", "Long-term", "still remembered after a week or more"]];
         overlay.append(h("div", "ftc-prog", `<label>Your words${sm.due ? ` · 🔁 ${sm.due} due for review` : ""}</label><table><tr><th></th>${cols.map(c => `<th title="${c[2]}">${c[1]}</th>`).join("")}</tr>`
@@ -2274,7 +2371,15 @@
         <div title="recalled on two different days, the latest answer right"><b>⭐ ${sm.th.learned}</b><span>words learned</span><small>${sm.th.recognises} recognised · ${sm.th.met} met</small></div>
         <div title="days in a row with at least one answer"><b>📅 ${daysInRow()}</b><span>day${daysInRow() === 1 ? "" : "s"} in a row</span><small>${daysInRow() >= 3 ? PUN.streak : "come back tomorrow to keep it going"}</small></div>
         <div><b>🎯 ${Math.min(today.n, GOAL)}/${GOAL}</b><span>answers today</span><small>${today.n ? Math.round(today.right / today.n * 100) + "% right" : "not started yet"}</small></div>
-        <div title="words from earlier sessions, due for a review"><b>🔁 ${due.now}</b><span>to review now</span><small>${due.tomorrow} more by tomorrow night</small></div>`));
+        <div title="words from earlier sessions, due for a review"><b>🔁 ${due.now}</b><span>to review now</span><small>${due.tomorrow} more by tomorrow night</small></div>
+        <div title="right answers on reviews: words asked again after days away" class="ftc-ret"><b>🧠 …</b><span>remembered on reviews</span><small>&nbsp;</small></div>`));
+      // retention: how often a word asked again after time away was still remembered
+      Promise.resolve(LE.attempts()).then(a => {
+        const rv = (a || []).filter(x => x && x.review && x.kind !== "meet"), el = overlay.querySelector(".ftc-ret"); if (!el) return;
+        const wk = rv.filter(x => x.at > Date.now() - 7 * 864e5);
+        el.innerHTML = rv.length >= 5 ? `<b>🧠 ${Math.round(rv.filter(x => x.right).length / rv.length * 100)}%</b><span>remembered on reviews</span><small>${rv.length} reviews${wk.length >= 5 ? ` · ${Math.round(wk.filter(x => x.right).length / wk.length * 100)}% this week` : ""}</small>`
+          : `<b>🧠 —</b><span>remembered on reviews</span><small>after your first reviews (they start tomorrow)</small>`;
+      }).catch(() => {});
       // answers per day, the last 14 days
       const keys = []; for (let i = 13; i >= 0; i--) { const t = new Date(); t.setDate(t.getDate() - i); keys.push(dayKey(t)); }
       const mx = Math.max(GOAL, ...keys.map(k => (days[k] || {}).n || 0));
@@ -2295,10 +2400,54 @@
       const ms = Object.values(SAVE.get().mastered || {});
       if (ms.length) overlay.append(h("div", "ftc-prog", `<label>🏆 Levels mastered (${ms.length})</label><div class="ftc-small">${ms.map(m => esc(m.title || "a level")).join(" · ")}</div>`));
       const row = h("div", "ftc-row");
+      const mw = h("button", "ftc-btn primary", "📚 My words"); mw.onclick = () => showWords();
       const sh = h("button", "ftc-btn", "📣 Share my progress"); sh.onclick = () => shareCard("progress");
+      row.append(mw);
       const close = h("button", "ftc-btn big", optsPaused ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
       row.append(sh, close); overlay.append(row);
       overlay.scrollTop = 0;
+    }
+
+    // ------------------------------------------------------------ 📚 My words
+    // "Give every word its own little progress bar ... which words are just
+    // discovered, getting familiar, recognised, remembered, truly mastered."
+    const STAGE = { met: ["🌱", "just met"], recognises: ["🐾", "getting familiar"], recalls: ["😸", "remembered"], learned: ["🧠", "learned"], longterm: ["👑", "mastered"] };
+    const STAGE_N = { new: 0, met: 1, recognises: 2, recalls: 3, learned: 4, longterm: 5 };
+    let wordsFilter = "level";
+    function showWords() {
+      if (!LE) return;
+      if (st.phase === "fight" && !st.paused) { sim.pause(true); optsPaused = true; }
+      optsOpen = true; cardHide();
+      overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
+      const all = LE.vocab(), lv = new Set(LE.level().ids);
+      const list = all.filter(v => wordsFilter === "all" ? true : wordsFilter === "tricky" ? v.wrong > 0 : wordsFilter === "strong" ? STAGE_N[v.dirs.th || "new"] >= 3 : lv.has(v.id))
+        .sort((a, b) => wordsFilter === "tricky" ? (b.wrong - b.right * 0.25) - (a.wrong - a.right * 0.25) : STAGE_N[a.dirs.th || "new"] - STAGE_N[b.dirs.th || "new"] || b.last - a.last);
+      const counts = {}; for (const v of all) { const k = v.dirs.th || "met"; counts[k] = (counts[k] || 0) + 1; }
+      overlay.append(h("h2", "", "📚 My words"), h("p", "ftc-slogan", PUN.progress),
+        h("div", "ftc-stagekey", Object.entries(STAGE).map(([k, [ic, t]]) => `<span>${ic} ${t} <b>${counts[k] || 0}</b></span>`).join("")));
+      const seg = h("div", "ftc-seg");
+      for (const [v, t] of [["level", "This level"], ["all", `All (${all.length})`], ["tricky", "Trickiest"], ["strong", "Remembered"]]) {
+        const b = h("button", "ftc-seg-b" + (wordsFilter === v ? " on" : ""), t); b.onclick = () => { wordsFilter = v; showWords(); }; seg.append(b);
+      }
+      overlay.append(h("div", "ftc-opt", ""), seg);
+      const DIRL = [["th", "Thai → meaning"], ["en", "meaning → Thai"], ["au", "listening"], ["cx", "in a sentence"], ["sm", "sentence meaning"], ["tp", "tone"]];
+      const box = h("div", "ftc-vocab");
+      if (!list.length) box.append(h("p", "ftc-small", wordsFilter === "level" ? "No words from this level yet: start a run and they'll appear here." : "Nothing here yet."));
+      for (const v of list.slice(0, 300)) {
+        const w = v.word, sn = STAGE_N[v.dirs.th || "met"] || 1, ic = (STAGE[v.dirs.th] || STAGE.met)[0];
+        const row = h("button", "ftc-vrow", `<span class="ftc-vpic">${picHtml(w)}</span>
+          <span class="ftc-vw"><b lang="th">${esc(w.th)}</b> <i>${romHtml(w)}</i><small>${esc(short(w.en, 40))}</small></span>
+          <span class="ftc-vbar" title="${(STAGE[v.dirs.th] || STAGE.met)[1]}">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= sn ? "on" : ""}"></i>`).join("")}<em>${ic}</em></span>
+          <span class="ftc-vdirs">${DIRL.filter(([d]) => v.dirs[d]).map(([d, t]) => `<i title="${t}: ${LABEL_TXT[v.dirs[d]]}" class="s${STAGE_N[v.dirs[d]]}">${{ th: "👁", en: "✍", au: "🎧", cx: "🧩", sm: "💬", tp: "♪" }[d]}</i>`).join("")}</span>`);
+        row.onclick = () => { if (panelOn()) { showWordInfo(w); sayWord(w); } else sayWord(w); };
+        box.append(row);
+      }
+      fixPics(box);
+      overlay.append(box, h("p", "ftc-small", "The bar is Thai → meaning: 🌱 met · 🐾 recognised with 4 choices · 😸 remembered with none · 🧠 remembered on two different days · 👑 still remembered after a week. The small letters are the other skills. Tap a word to hear it" + (panelOn() ? " and see its card." : ".")));
+      const row = h("div", "ftc-row");
+      const back = h("button", "ftc-btn", "📊 My progress"); back.onclick = () => showProgress();
+      const close = h("button", "ftc-btn big", optsPaused ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
+      row.append(back, close); overlay.append(row);
     }
 
     // ------------------------------------------------------------ share card
@@ -2446,6 +2595,7 @@
       // the lesson's word pack (words.json): { lesson, title, words: [...] }
       setPack: d => { pack = d && Array.isArray(d.words) ? d : null; syncLevel(); },
       progress: () => showProgress(),
+      myWords: () => showWords(),
       share: k => shareCard(k || "run"),
       card: () => cq ? { id: cq.id, dir: cq.dir, kind: cq.kind, step: cq.step, state: cState, choices: (cq.choices || []).map(c => c.id) } : null,
       learn: LE,

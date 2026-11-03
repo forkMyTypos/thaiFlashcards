@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=7ea6bf1449"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=66c59c3bfa"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -66,8 +66,8 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
 <script src="../games/flash/flash-sim.js?v=7e5624c2d9"></script>
-<script src="../games/flash/flash-learn.js?v=6db3eac819"></script>
-<script src="../games/flash/flash-game.js?v=96eb29dcf1"></script>
+<script src="../games/flash/flash-learn.js?v=fb05acc7c0"></script>
+<script src="../games/flash/flash-game.js?v=27d5b12451"></script>
 <script>
 (function () {
   "use strict";
@@ -304,6 +304,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
       d.words.forEach(function (w) {
         w.audio = abs(w.audio); w.slow = abs(w.slow); w.img = abs(w.img); w.lesson = id;
         (w.sents || []).forEach(function (x) { if (x.audio) x.audio = abs(x.audio); });
+        (w.pairs || []).forEach(function (x) { if (x.audio) x.audio = abs(x.audio); });
       });
       pack = d;
       keptFor(d.words);
@@ -322,7 +323,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
     [].forEach.call(doc.querySelectorAll("article.card:not(.sc)"), function (c) {
       var th = txt(c.querySelector(".throw .th") || c.querySelector(".th")), en = txt(c.querySelector(".en"));
       if (!c.dataset.wid || !th || !en) return;
-      var pl = c.querySelectorAll(".plays [data-play]"), vis = c.dataset.vis ? c.querySelector(".vis svg") : null, aid = c.querySelector(".aid .aidtx");
+      var pl = c.querySelectorAll(".plays [data-play]"), vis = c.querySelector(".vis svg"), aid = c.querySelector(".aid .aidtx");
       var hook = aid && aid.querySelector(".hook"), rest = "";
       if (aid) { var a2 = aid.cloneNode(true), h2 = a2.querySelector(".hook"); if (h2) h2.remove(); rest = (a2.textContent || "").replace(/\s+/g, " ").trim(); }
       var sents = [];
