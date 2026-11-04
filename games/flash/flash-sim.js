@@ -483,10 +483,23 @@
     };
     const pickOne = arr => arr && arr.length ? arr[(rnd() * arr.length) | 0] : null;
 
+    // Archers and other shooters (3 Nov balance pass): they stood at 300 range,
+    // out of reach of every melee weapon, and did 75-90% of the damage in
+    // Dan's runs. Tunable in Game settings > combat:
+    //   ranged_max_share  at most this share of the live skeletons shoot
+    //   ranged_damage     their shots' damage (x)
+    //   ranged_range      how far away they stop to shoot (x)
+    //   arrow_speed       how fast their shots fly (slower = Flash dodges more)
+    const RG = { share: set("combat", "ranged_max_share", 1), dmg: set("combat", "ranged_damage", 1),
+                 range: set("combat", "ranged_range", 1), arrow: set("combat", "arrow_speed", 240) };
     function spawnEnemy(forceElite, defId, at) {
       if (st.enemies.length >= S.maxCap) return null;
       const { pool, elite } = mixFor(st.stage);
-      const def = (defId && D.enemies.find(x => x.id === defId)) || pickWeighted(pool, e => e.spawn_weight || 1);
+      let def = (defId && D.enemies.find(x => x.id === defId)) || pickWeighted(pool, e => e.spawn_weight || 1);
+      if (def && !defId && RG.share < 1 && /ranged|caster/.test(def.role || "")) {
+        let n = 0; for (const o of st.enemies) if (o.alive && o.ranged) n++;
+        if (n >= Math.max(2, RG.share * st.enemies.length)) { const melee = pool.filter(e => !/ranged|caster/.test(e.role || "")); if (melee.length) def = pickWeighted(melee, e => e.spawn_weight || 1); }
+      }
       if (!def) return null;
       const base = (D.base[def.base] && D.base[def.base].stats) || { max_hp: 40, damage: 5, attack_speed: 1, movement_speed: 60, attack_range: 60 };
       const s = new Stats(base, false);
@@ -511,8 +524,8 @@
       const e = {
         id: st.nextId++, type: def.id, role, ranged, x, y, kx: 0, ky: 0, alive: true, elite: isElite,
         eliteMod: mod ? mod.id : null, size,
-        r: 11 * Math.sqrt(size), max: Math.max(1, s.get("max_hp") * hpMul), dmg: s.get("damage") * dmgMul,
-        atkSpd: Math.max(0.1, s.get("attack_speed")), range: Math.max(40, s.get("attack_range")),
+        r: 11 * Math.sqrt(size), max: Math.max(1, s.get("max_hp") * hpMul), dmg: s.get("damage") * dmgMul * (ranged ? RG.dmg : 1),
+        atkSpd: Math.max(0.1, s.get("attack_speed")), range: Math.max(40, s.get("attack_range") * (ranged ? RG.range : 1)),
         speed: Math.max(10, s.get("movement_speed") || 60) * T.enemy_speed * (isElite && mod && mod.id === "swift" ? 1 : 1),
         def: s.get("defence"), regen: s.get("hp_regen") + (mod && mod.id === "regenerating" ? 0.05 * s.get("max_hp") * hpMul : 0),
         lifesteal: s.get("lifesteal"), atkT: 0.5 + rnd(), attacking: false, incoming: 0, hitT: 0,
@@ -640,7 +653,7 @@
           e.atkT -= dt * (move > 0 ? Math.max(0.4, move) : 0);
           if (e.atkT <= 0) {
             e.atkT = 1 / e.atkSpd;
-            if (e.ranged) st.eproj.push({ x: e.x, y: e.y, vx: dx / d * 240, vy: dy / d * 240, dmg: e.dmg, alive: true, life: 4, src: e, colour: e.colour });
+            if (e.ranged) st.eproj.push({ x: e.x, y: e.y, vx: dx / d * RG.arrow, vy: dy / d * RG.arrow, dmg: e.dmg, alive: true, life: 4 * 240 / RG.arrow, src: e, colour: e.colour });
             else hurtFlash(e.dmg, e);
           }
         }

@@ -137,5 +137,29 @@
     "duration": 12,
     "stacks": true,
     "floating_text": "SAVED! ({word})"
+  },
+  {
+    "id": "card_right",
+    "kind": "reward",
+    "source": "card",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 0.2
+      },
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.08
+      }
+    ],
+    "heal_pct": 0.05,
+    "duration": 20,
+    "stacks": true,
+    "streak_bonus_per_step": 0.05,
+    "streak_cap": 10,
+    "floating_text": "+POWER! ({word})",
+    "notes": "A right answer on the word card (the main way of studying). Meetings give 0.6 of it, sentence and tone questions 1.3 (Game settings > recall)."
   }
 ]

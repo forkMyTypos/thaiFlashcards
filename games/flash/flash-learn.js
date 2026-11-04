@@ -9,7 +9,8 @@
  *   steps   0 meet     Thai + sound + romanization + meaning, one answer
  *           1 pick 2   two answers
  *           2 pick 4   four answers, the wrong ones from words already met
- *           3 recall   no answers: think, reveal, "I knew it" / "Not yet"
+ *           3 pick 6   six answers (Dan: "the amount of answers should go up to 6")
+ *           4 recall   no answers: think, reveal, "I knew it" / "Not yet"
  *   dirs    th  Thai -> meaning
  *           en  meaning -> Thai        (starts once th reaches pick 4)
  *           au  sound only -> meaning  (starts once th reaches recall; words with a recording)
@@ -43,6 +44,10 @@
     meet_reps: 3,            // meetings before the first choice
     pick2_right: 2,          // right answers to leave pick of 2
     pick4_right: 2,          // right answers to leave pick of 4
+    pick6_right: 2,          // right answers to leave pick of 6
+    new_per_day: 20,         // new words a day at most, so there's room for the reviews (long-term memory)
+    lapse_keep: 0.5,         // a review gone wrong keeps this share of its box (not straight back to day 1)
+    due_fuzz: 0.1,           // review days spread by up to this share, so reviews don't all land together
     gaps: [2, 5, 10, 20],    // questions in between, after the 1st, 2nd, ... right answer this session
     meet_gap: 2,
     wrong_gap: 2,            // a wrong answer comes back after this many other questions
@@ -55,13 +60,14 @@
     longterm_box: 4,         // passed the 7-day review
     session_cap: 8,          // questions per word per direction per session, at most
     ready_share: 0.8,        // "next level" once this share of the level's words recognise
-    reverse_from_step: 2, audio_from_step: 3,
+    reverse_from_step: 2, audio_from_step: 4,
     reverse: true, audio: true,
     sentences: true, tones: true,
     special_gap: 3,          // sentence and tone questions: at least this many others in between
     sentence_cover: 0.8,     // what share of a sentence's other words must be known for "what does it mean?"
   };
   const DIRS = ["th", "en", "au", "cx", "sm", "tp"];
+  const RECALL = 4, CHOICES = [1, 2, 4, 6];      // answers at each step before recall
   const SPECIAL = new Set(["cx", "sm", "tp"]);
   const WORD_EXTRAS = ["img", "ch", "vis", "hook", "aid", "tones", "slow", "tone", "pos", "gender", "sents", "pairs"];
   const LABELS = ["new", "met", "recognises", "recalls", "learned", "longterm"];
@@ -143,7 +149,7 @@
     let level = { id: "", title: "", ids: [] }, pool = [];        // pool: other words, for wrong answers
     let n = 0, lastId = null, focus = "new", lastSpecial = -99;                         // focus: "new" (new words + review) | "review"
     const recent = [];                                               // right/wrong of recent choice/recall answers
-    const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow"];
+    const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow", "born", "v"];
     const save = it => { const x = {}; for (const f of KEEP) x[f] = it[f]; store.putItems([x]); };
     const key = (id, dir) => id + "|" + dir;
 
@@ -152,7 +158,7 @@
       let it = items[k];
       if (!it && init) {
         it = items[k] = Object.assign({ k, id, dir, step: 0, streak: 0, seen: 0, right: 0, wrong: 0, box: 0, due: 0,
-                                        r4: false, rc: false, ok: [], last: 0, lastOk: false, ms: 0, slow: 0 }, init);
+                                        r4: false, rc: false, ok: [], last: 0, lastOk: false, ms: 0, slow: 0, born: now(), v: 2 }, init);
         it.sess = 0; it.sessRight = 0; it.nextN = 0; it.retry = false; it.doneSess = false; it.active = false;
         save(it);
       }
@@ -169,13 +175,15 @@
       }
       if (fresh.length) store.putWords(fresh);
     }
+    // items saved before the pick-of-6 step: their step 3 was recall
+    const up = i => { if (!i.v) { if (i.step >= 3) i.step = RECALL; i.v = 2; } return i; };
     const ready = (async () => {
       try {
         const d = await store.load();
         for (const w of d.words || []) if (w && w.id) words[w.id] = w;
-        for (const i of d.items || []) if (i && i.k) items[i.k] = Object.assign(i, { ok: i.ok || [], sess: 0, sessRight: 0, nextN: 0, retry: false, doneSess: false });
+        for (const i of d.items || []) if (i && i.k) items[i.k] = Object.assign(up(i), { ok: i.ok || [], sess: 0, sessRight: 0, nextN: 0, retry: false, doneSess: false });
       } catch (e) {
-        if (o.fallback) { store = o.fallback; try { const d = await store.load(); for (const w of d.words || []) words[w.id] = w; for (const i of d.items || []) items[i.k] = Object.assign(i, { ok: i.ok || [], sess: 0, sessRight: 0, nextN: 0, retry: false, doneSess: false }); } catch (e2) {} }
+        if (o.fallback) { store = o.fallback; try { const d = await store.load(); for (const w of d.words || []) words[w.id] = w; for (const i of d.items || []) items[i.k] = Object.assign(up(i), { ok: i.ok || [], sess: 0, sessRight: 0, nextN: 0, retry: false, doneSess: false }); } catch (e2) {} }
       }
       return true;
     })();
@@ -196,12 +204,20 @@
 
     // ---- choosing the next question
     const acc = () => recent.length >= S.acc_min ? recent.filter(Boolean).length / recent.length : null;
+    function newToday() {
+      const d0 = new Date(now()); d0.setHours(0, 0, 0, 0); const t0 = d0.getTime();
+      let c = 0; for (const it of Object.values(items)) if (it.dir === "th" && it.seen && (it.born || 0) >= t0) c++;
+      return c;
+    }
     function newLimit() {
+      if (S.new_per_day && newToday() >= S.new_per_day) return 0;
       const a = acc();
       if (a !== null && a < S.low_acc) return 0;
       return a !== null && a >= S.high_acc ? S.max_new_good : S.max_new;
     }
     const isDue = it => it.box >= 1 && it.due && it.due <= now();
+    // when a box's next review falls, spread a little so a day's words don't all come back at once
+    const dueIn = (t, box) => t + S.box_days[Math.min(S.box_days.length, Math.max(1, box)) - 1] * DAY * (1 + (rnd() * 2 - 1) * (S.due_fuzz || 0));
     const usable = it => it && words[it.id] && it.skipAt !== n && (it.dir !== "au" || words[it.id].audio)
       && (it.dir !== "tp" || (words[it.id].audio && (words[it.id].pairs || []).length))
       && (it.dir !== "cx" || !!clozeSents(words[it.id]).length)
@@ -309,12 +325,12 @@
       if (!pool.length) return null;
       const x = pool[Math.floor(rnd() * pool.length)];
       if (it.dir === "cx") {
-        const kind = it.step >= 3 ? "recall" : "pick";
+        const kind = it.step >= RECALL ? "recall" : "pick";
         // wrong answers that aren't already in the sentence (that would only confuse)
         const opts = kind === "recall" ? [] : [w].concat(choices(w, "en", 9).filter(c => c.id !== w.id && !x.th.includes(c.th)).slice(0, 3));
         return Object.assign(base, { kind, sentence: x, choices: shuffle(opts, rnd) });
       }
-      const kind = it.step >= 3 ? "recall" : "pick";
+      const kind = it.step >= RECALL ? "recall" : "pick";
       return Object.assign(base, { kind, sentence: x, choices: kind === "recall" ? [] : sentenceChoices(w, x, 3) });
     }
     function next(depth) {
@@ -327,8 +343,8 @@
         it.nextN = n + 6; it.skipAt = n;               // not possible right now: try another word
         return (depth || 0) < 4 ? next((depth || 0) + 1) : null;
       }
-      const kind = it.step === 0 ? "meet" : it.step >= 3 ? "recall" : "pick";
-      const count = kind === "meet" ? 1 : kind === "recall" ? 0 : it.step === 1 ? 2 : 4;
+      const kind = it.step === 0 ? "meet" : it.step >= RECALL ? "recall" : "pick";
+      const count = kind === "meet" ? 1 : kind === "recall" ? 0 : CHOICES[Math.min(it.step, CHOICES.length - 1)];
       const opts = kind === "recall" ? [] : choices(w, it.dir, count);
       if (kind === "pick" && opts.length < 2) {        // not enough other words yet: meet it again instead
         return { n, k: it.k, id: it.id, dir: it.dir, step: it.step, kind: "meet", word: w, choices: [w], review: isDue(it), isNew: false, label: label(it), t: now() };
@@ -359,29 +375,35 @@
           if (slow) it.slow++;
           else {
             it.streak++;
-            const need = it.step === 1 ? S.pick2_right : S.pick4_right;
+            const need = it.step === 1 ? S.pick2_right : it.step === 2 ? S.pick4_right : S.pick6_right;
             if (it.streak >= need) {
               if (it.dir === "tp") {
                 // a sound can't be "recalled": enough right in a row counts as remembering it
                 it.streak = 0; it.rc = true; it.ok.push(t); if (it.ok.length > 6) it.ok = it.ok.slice(-6); it.doneSess = true;
-                it.box = Math.min(S.box_days.length, Math.max(1, it.box + (due ? 1 : 0))); it.due = t + S.box_days[it.box - 1] * DAY;
-              } else { it.step++; it.streak = 0; if (it.step === 3 && !it.box) { it.box = 1; it.due = t + S.box_days[0] * DAY; } }
+                it.box = Math.min(S.box_days.length, Math.max(1, it.box + (due ? 1 : 0))); it.due = dueIn(t, it.box);
+              } else {
+                // sentences skip the pick of 6 (there are only so many sentences to choose from)
+                it.step = SPECIAL.has(it.dir) && it.step >= 2 ? RECALL : it.step + 1; it.streak = 0;
+                if (it.step === RECALL && !it.box) { it.box = 1; it.due = dueIn(t, 1); }
+              }
             }
           }
-          if (due) { it.box = Math.max(1, it.box); it.due = t + S.box_days[Math.min(S.box_days.length, it.box) - 1] * DAY; }
+          if (due) { it.box = Math.max(1, it.box); it.due = dueIn(t, it.box); }
         } else {                                          // recall: "I knew it"
           it.rc = true; it.ok.push(t); if (it.ok.length > 6) it.ok = it.ok.slice(-6);
           it.doneSess = true;
           if (due) it.box = Math.min(S.box_days.length, it.box + 1);
           it.box = Math.max(1, it.box);
-          it.due = t + S.box_days[it.box - 1] * DAY;
+          it.due = dueIn(t, it.box);
         }
         gap = S.gaps[Math.min(S.gaps.length - 1, it.sessRight - 1)];
       } else {
         it.wrong++; it.streak = 0; it.retry = true;
-        if (q.kind === "recall") it.step = 2;
-        else if (it.step === 2) it.step = 1;
-        if (it.box >= 1) { it.box = 1; it.due = t + S.box_days[0] * DAY; }
+        // one step back, never all the way (recall -> pick of 6, pick of 6 -> pick of 4 ...)
+        if (q.kind === "recall") it.step = SPECIAL.has(it.dir) ? 2 : RECALL - 1;
+        else if (it.step >= 2) it.step = it.step - 1;
+        // a forgotten review keeps part of what it had built up: back to half its box, not to day 1
+        if (it.box >= 1) { it.box = Math.max(1, Math.floor(it.box * S.lapse_keep)); it.due = dueIn(t, it.box); }
         gap = S.wrong_gap;
       }
       it.nextN = n + gap;
@@ -457,7 +479,7 @@
         for (const it of Object.values(items)) {
           if (!usable(it)) continue;
           if (it.box && it.due && it.due <= t) due++;
-          if (it.dir === "th" && it.step >= 1 && it.step < 3 && it.streak >= 1) ready++;
+          if (it.dir === "th" && it.step >= 1 && it.step < RECALL && it.streak >= 1) ready++;
           if (it.dir === "th" && !it.lastOk && (it.rc || it.box >= 2)) forgot++;
         }
         const fresh = level.ids.filter(id => words[id] && !(items[key(id, "th")] || {}).seen).length;

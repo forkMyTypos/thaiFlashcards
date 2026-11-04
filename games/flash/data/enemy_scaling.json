@@ -10,50 +10,50 @@
     "id": "stages_11_20",
     "from_stage": 11,
     "to_stage": 20,
-    "hp_mult": 2,
-    "damage_mult": 1.3
+    "hp_mult": 3,
+    "damage_mult": 1.6
   },
   {
     "id": "stages_21_30",
     "from_stage": 21,
     "to_stage": 30,
-    "hp_mult": 4,
-    "damage_mult": 1.7
+    "hp_mult": 12,
+    "damage_mult": 3
   },
   {
     "id": "stages_31_40",
     "from_stage": 31,
     "to_stage": 40,
-    "hp_mult": 8,
-    "damage_mult": 2.2
+    "hp_mult": 35,
+    "damage_mult": 4.5
   },
   {
     "id": "stages_41_50",
     "from_stage": 41,
     "to_stage": 50,
-    "hp_mult": 16,
-    "damage_mult": 3
+    "hp_mult": 90,
+    "damage_mult": 6.5
   },
   {
     "id": "stages_51_75",
     "from_stage": 51,
     "to_stage": 75,
-    "hp_mult": 40,
-    "damage_mult": 5
+    "hp_mult": 200,
+    "damage_mult": 9
   },
   {
     "id": "stages_76_100",
     "from_stage": 76,
     "to_stage": 100,
-    "hp_mult": 100,
-    "damage_mult": 8
+    "hp_mult": 500,
+    "damage_mult": 13
   },
   {
     "id": "endless",
     "from_stage": 101,
     "to_stage": null,
-    "hp_mult": 100,
-    "damage_mult": 8,
+    "hp_mult": 500,
+    "damage_mult": 13,
     "growth_per_stage": 0.05,
     "notes": "keeps increasing; growth rate guessed. Plan wants a smooth curve, not jumps"
   }

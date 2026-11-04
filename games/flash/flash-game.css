@@ -468,3 +468,8 @@
 .ftc-wc-okimg img, .ftc-wc-okimg .ftc-wc-vis { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; display: block; }
 .ftc-wc-okimg .ftc-wc-emoji { font-size: 38px; width: auto; }
 .ftc.stack .ftc-wc-aid.pic.big img, .ftc.stack .ftc-wc-aid.pic.big .ftc-wc-vis { width: 80px; height: 80px; }
+/* six answers: three across on a wide screen, two across on a phone */
+.ftc-wc-opts.n6 { grid-template-columns: 1fr 1fr 1fr; }
+.ftc.stack .ftc-wc-opts.n6 { grid-template-columns: 1fr 1fr; }
+.ftc-wc-opts.n6 .ftc-wc-o { min-height: 44px; font-size: 14px; }
+.ftc-wc-opts.n6 .ftc-wc-o .ftc-wc-th { font-size: 21px; }

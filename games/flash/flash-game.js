@@ -1461,12 +1461,12 @@
     function renderCard() {
       const q = cq, w = q.word;
       if (SPECIAL[q.dir]) return renderSpecial(q);
-      const tag = q.kind === "meet" ? (q.isNew ? "✨ New word" : "📖 Meet again") : q.kind === "recall" ? "🧠 Recall" : q.choices.length >= 4 ? "Pick of 4" : "Pick of 2";
+      const tag = q.kind === "meet" ? (q.isNew ? "✨ New word" : "📖 Meet again") : q.kind === "recall" ? "🧠 Recall" : `Pick of ${q.choices.length}`;
       const head = `<div class="ftc-wc-tag"><b>${tag}</b>${q.review ? `<span class="ftc-wc-rev">🔁 review</span>` : ""}${cStreak >= 2 ? `<span class="ftc-wc-streak">🔥 ${cStreak}</span>` : ""}<span class="ftc-wc-dir">${q.dir === "th" ? "Thai → meaning" : q.dir === "en" ? "meaning → Thai" : "🎧 listening"}</span></div>`;
       const slowB = w.slow ? `<button class="ftc-wc-say slow" data-slow title="Slowly">🐢</button>` : "";
       let prompt;
       // meaning -> Thai: the picture says the same as the English, so it can show
-      if (q.dir === "en") prompt = `<div class="ftc-wc-en big">${esc(short(w.en, 40))}</div>${q.kind !== "meet" ? picOnly(w, "small") : ""}`;
+      if (q.dir === "en") prompt = `<div class="ftc-wc-en big">${esc(short(w.en, 40))}</div>`;
       else if (q.dir === "au") prompt = `<div class="ftc-wc-p"><button class="ftc-wc-listen" data-say>🔊</button>${slowB}</div>`;
       else prompt = `<div class="ftc-wc-p">${thaiHtml(w, true, romOn(q), q.kind === "meet")}<span class="ftc-wc-btns"><button class="ftc-wc-say" data-say title="Hear it">🔊</button>${slowB}</span></div>`;
       let body = "";
@@ -1476,7 +1476,8 @@
         body = (panelOn() ? picOnly(w, "big") : aidHtml(w, true)) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`;
       } else {
         // a word that keeps going wrong gets its picture as a hint (not the hook: that would give it away)
-        const hint = q.dir !== "en" && struggling(q) ? aidHtml(w, false) : "";
+        // Dan: "We only show the picture when learning, don't need it in quiz mode": no picture on questions
+        const hint = "";
         if (q.kind === "pick") {
           body = hint + `<div class="ftc-wc-ask">${DIR_ASK[q.dir]}</div><div class="ftc-wc-opts n${q.choices.length}">` + q.choices.map((c, i) =>
             `<button class="ftc-wc-o" data-i="${i}"><i>${i + 1}</i><span>${q.dir === "en" ? thaiHtml(c, false, romOn(q)) : esc(short(c.en, 34))}</span></button>`).join("") + `</div>`;
@@ -1545,14 +1546,16 @@
         SFX.play(meet ? "helped" : "right");
         if (!meet) { cStreak++; cRun.right++; cRun.best = Math.max(cRun.best, cStreak); }
         const milestone = !meet && cStreak > 0 && cStreak % STREAK_EVERY === 0;
-        sim.applyReward({ v: 1, kind: "reward", source: "match", strength: meet ? CM.meet_strength : spec ? CM.sentence_strength : q.kind === "recall" ? CM.recall_strength : 1,
+        // its own reward row (Rewards > card_right): the word card is the main way of studying now,
+        // so it powers Flash like a quiz answer, not like the old floating gems
+        sim.applyReward({ v: 1, kind: "reward", source: "card", strength: meet ? CM.meet_strength : spec ? CM.sentence_strength : q.kind === "recall" ? CM.recall_strength : 1,
                           streak: cStreak, word: w.th, dash: milestone });
         if (milestone) { SFX.play("dash"); if (A("banners")) banner(`🔥 ${cStreak} in a row!`, `Flash dash! ${cStreak % (STREAK_EVERY * 3) === 0 ? pick1(PUN.challenge) : cStreak % (STREAK_EVERY * 2) === 0 ? PUN.right : ""}`); sim.noteStudy("card_streak_" + cStreak); }
         else if (!meet && Math.random() < 0.12) floatText(`😺 ${PUN.right}`, false, true);
         logWord(w, meet ? "helped" : "right");
         if (!meet && st.flash) for (let i = 0; i < 10; i++) burst(st.flash.x, st.flash.y, BLUE_HI, 220);
         // the word and its picture, so every right answer ends on the picture too
-        if (!meet && !spec) { const pic = picHtml(w); const ok = h("div", "ftc-wc-fix good ftc-wc-okpic", `${pic ? `<span class="ftc-wc-okimg">${pic}</span>` : ""}<div>${thaiHtml(w, false, true)} = <b>${esc(short(w.en, 40))}</b></div>`); cardEl.append(ok); fixPics(ok); }
+        if (!meet && !spec) { const ok = h("div", "ftc-wc-fix good ftc-wc-okpic", `<div>${thaiHtml(w, false, true)} = <b>${esc(short(w.en, 40))}</b></div>`); cardEl.append(ok); }
       } else {
         SFX.play("wrong");
         if (cStreak >= 3) { floatText(`🔥 Streak of ${cStreak} ended`, true); setTimeout(() => floatText(pick1(PUN.encourage), false, true), 700); }
@@ -1579,7 +1582,7 @@
       if (opts.onWord) try { opts.onWord({ result: right ? "match" : "miss", id: w.id, helped: meet }); } catch (e) {}
       noteDay(right && !meet); checkLevel(); showWordInfo(w); drawSide(true);
       // a wrong answer with a memory aid to read gets a little longer
-      const wait = meet ? CM.next_after_meet : spec && right ? CM.next_after_sentence : right ? CM.next_after_right + 0.45 : CM.next_after_wrong + (w.aid && !spec ? 1.2 : 0) + (spec ? 0.8 : 0) + (q.dir === "tp" ? 1.5 : 0);
+      const wait = meet ? CM.next_after_meet : spec && right ? CM.next_after_sentence : right ? CM.next_after_right + 0.2 : CM.next_after_wrong + (w.aid && !spec ? 1.2 : 0) + (spec ? 0.8 : 0) + (q.dir === "tp" ? 1.5 : 0);
       cTimer = setTimeout(() => { cq = null; cState = ""; cardNext(); }, wait * 1000);
     }
     const LABELS_UP = { recognises: "👀 Recognised:", recalls: "🧠 Recalled:", learned: "⭐ Learned:", longterm: "🏆 Long-term:" };
@@ -1644,7 +1647,7 @@
         if (cState === "ask" && cq.kind === "meet") { cardPick(0); return true; }
         return false;
       }
-      if (/^[1-4]$/.test(e.key)) {
+      if (/^[1-6]$/.test(e.key)) {
         const i = +e.key - 1;
         if (cState === "ask") { cardPick(i); return true; }
         if (cState === "grade" && i < 2) { cardDone(i === 0, cardEl.querySelectorAll(".ftc-wc-o")[i]); return true; }

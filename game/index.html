@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=66c59c3bfa"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=1bb789c902"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -65,9 +65,9 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
   <iframe id="site" title="The course"></iframe>
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
-<script src="../games/flash/flash-sim.js?v=7e5624c2d9"></script>
-<script src="../games/flash/flash-learn.js?v=fb05acc7c0"></script>
-<script src="../games/flash/flash-game.js?v=27d5b12451"></script>
+<script src="../games/flash/flash-sim.js?v=8bf1800074"></script>
+<script src="../games/flash/flash-learn.js?v=aece9c2e70"></script>
+<script src="../games/flash/flash-game.js?v=729dde194c"></script>
 <script>
 (function () {
   "use strict";
@@ -397,7 +397,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
     var t = e.target; if (t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
     if (api && api.questionOpen && api.questionOpen()) return;     // the game's own question has the keys
     if (e.key === "Escape" && api && api.hasPick && api.hasPick()) return;   // Esc lets go of a picked gem (the game does it)
-    if (api && api.cardOpen && api.cardOpen() && /^[1-4 ]$|^Enter$/.test(e.key)) return;   // the word card's answer keys
+    if (api && api.cardOpen && api.cardOpen() && /^[1-6 ]$|^Enter$/.test(e.key)) return;   // the word card's answer keys
     if (layout === "full") return;                                             // the course is out of sight
     if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Escape" || /^[1-4]$/.test(e.key)) {
       if (e.key.indexOf("Arrow") === 0) e.preventDefault();
