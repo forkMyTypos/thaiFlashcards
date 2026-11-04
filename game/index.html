@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow"/>
 <title>🎮 Game mode · Flash the Cat</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
-<link rel="stylesheet" href="../games/flash/flash-game.css?v=1bb789c902"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=eb126cad30"/>
 <style>
 /* Game mode: Flash the Cat in a column on the left, the course in a frame on
    the right. The game lives in this page, so moving around the course only
@@ -14,8 +14,10 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
   font: 13px/1.4 "Segoe UI", system-ui, sans-serif; overflow: hidden; }
-.gm { display: flex; height: 100vh; }
-.gm-col { width: var(--gw, 40%); min-width: 300px; height: 100vh; flex: none; display: flex; flex-direction: column;
+/* 100dvh where it exists: on a phone 100vh is the height with the browser's
+   address bar hidden, so the bottom of the game sat under the bar */
+.gm { display: flex; height: 100vh; height: 100dvh; }
+.gm-col { width: var(--gw, 40%); min-width: 300px; height: 100vh; height: 100dvh; flex: none; display: flex; flex-direction: column;
   position: relative; }
 /* the divider: drag to share the screen differently, double-click for 40% */
 .gm-grip { flex: none; width: 6px; cursor: col-resize; background: #2e333d; position: relative; z-index: 2; }
@@ -29,6 +31,14 @@ html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
 .gm-bar button { background: #23272f; color: #e8eaee; border: 1px solid #2e333d; border-radius: 7px;
   padding: 3px 9px; font: inherit; cursor: pointer; white-space: nowrap; }
 .gm-bar button:hover { border-color: #4f9cf9; }
+.gm-bar { padding-bottom: max(5px, env(safe-area-inset-bottom)); }
+/* a phone: the bar keeps to the buttons, as icons */
+@media (max-width: 600px), (max-height: 500px) {
+  .gm-bar #gm-runs { flex: 1; font-size: 0; }
+  .gm-bar #gm-runs::before { content: "🧪"; font-size: 13px; }
+  .gm-bar button { padding: 6px 11px; font-size: 13px; }
+  .gm-bar .lbl { display: none; }
+}
 #site { flex: 1; height: 100vh; border: 0; background: #101014; min-width: 0; }
 /* Dan: "full screen will be the default option, but we should have an option
    screen where the user can go back to split mode". Full: the game fills the
@@ -56,8 +66,8 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
     <div id="game"></div>
     <div class="gm-bar">
       <span class="sp" id="gm-runs" title="How your games go is kept in this browser to help balance the game">🧪 Testing</span>
-      <button id="gm-dl" title="Save how your games went as a file (to send to us)">⬇ Game data</button>
-      <button id="gm-full" title="Full screen: the game and the course, without the browser around them (Esc to leave)">⛶ Full screen</button>
+      <button id="gm-dl" title="Save how your games went as a file (to send to us)">⬇<span class="lbl"> Game data</span></button>
+      <button id="gm-full" title="Full screen: the game and the course, without the browser around them (Esc to leave)">⛶<span class="lbl"> Full screen</span></button>
       <button id="gm-exit" title="Back to the course without the game">✕ Leave</button>
     </div>
   </div>
@@ -66,8 +76,8 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
 <script src="../games/flash/flash-sim.js?v=8bf1800074"></script>
-<script src="../games/flash/flash-learn.js?v=aece9c2e70"></script>
-<script src="../games/flash/flash-game.js?v=729dde194c"></script>
+<script src="../games/flash/flash-learn.js?v=f7e5bda844"></script>
+<script src="../games/flash/flash-game.js?v=4a739227df"></script>
 <script>
 (function () {
   "use strict";
@@ -75,6 +85,10 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
   // the layout: full (the default) or split, remembered in this browser
   var layout = "full";
   try { layout = localStorage.getItem("ftc.layout") === "split" ? "split" : "full"; } catch (e) {}
+  // A phone has no room for the course beside the game: there it is always
+  // the game alone (the reader's choice for a bigger screen is kept).
+  var narrow = function () { return window.innerWidth < 700; };
+  if (narrow()) layout = "full";
   function applyLayout() {
     window.FTC_LAYOUT = layout;                      // the course reads it (no auto-play when it's out of sight)
     document.body.classList.toggle("full", layout === "full");
@@ -107,6 +121,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
   function setLayout(v) {
     layout = v === "split" ? "split" : "full";
     try { localStorage.setItem("ftc.layout", layout); } catch (e) {}
+    if (narrow()) layout = "full";
     applyLayout(); muteFrame(); tell();
   }
   var ROOT = new URL("../", location.href).href;
@@ -147,7 +162,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
     } catch (e) {}
   };
   function fullLabel() { var on = !!(document.fullscreenElement || document.webkitFullscreenElement);
-    fullBtn.textContent = on ? "⛶ Exit full screen" : "⛶ Full screen"; }
+    fullBtn.innerHTML = on ? '⛶<span class="lbl"> Exit full screen</span>' : '⛶<span class="lbl"> Full screen</span>'; }
   document.addEventListener("fullscreenchange", fullLabel); document.addEventListener("webkitfullscreenchange", fullLabel);
 
   // messages from the course: study rewards, and "leave game mode"

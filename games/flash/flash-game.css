@@ -473,3 +473,74 @@
 .ftc.stack .ftc-wc-opts.n6 { grid-template-columns: 1fr 1fr; }
 .ftc-wc-opts.n6 .ftc-wc-o { min-height: 44px; font-size: 14px; }
 .ftc-wc-opts.n6 .ftc-wc-o .ftc-wc-th { font-size: 21px; }
+
+/* ---- phones (4 Nov, Dan: "a basic version of the game working on mobile") */
+/* a short phone (iPhone SE and the like): the card's level line and a smaller word make room for the answers */
+.ftc.stack.short .ftc-side-head { display: none; }
+.ftc.stack.short .ftc-wc-th.big { font-size: 32px; }
+.ftc.stack.short .ftc-wc { padding: 6px 8px 8px; }
+.ftc.stack.short .ftc-wc-o { min-height: 40px; padding: 6px 8px 6px 18px; font-size: 14px; }
+.ftc.stack.short .ftc-tip { display: none; }
+/* fingers, not a mouse: every button at least ~40px to hit */
+@media (pointer: coarse) {
+  .ftc-top .ftc-btn, .ftc-hud .ftc-btn { min-width: 40px; min-height: 36px; }
+  .ftc-tip-x { padding: 8px 10px; top: 0; right: 0; }
+  .ftc-side-mini .ftc-btn, .ftc-side-day .ftc-btn { min-height: 32px; min-width: 40px; }
+  .ftc-wc-o { min-height: 44px; }
+  .ftc-wc .ftc-btn { min-width: 40px; min-height: 36px; }
+  .ftc-card { -webkit-tap-highlight-color: transparent; }
+  .ftc, .ftc-canvas canvas { touch-action: manipulation; }
+}
+/* a phone: the weapon bar as icons and levels, on one line */
+.ftc.stack .ftc-bottom, .ftc.sideways .ftc-bottom { flex-wrap: nowrap; overflow: hidden; padding: 4px 6px 5px; gap: 4px; }
+.ftc.stack .ftc-slot .nm, .ftc.sideways .ftc-slot .nm { display: none; }
+.ftc.stack .ftc-slot, .ftc.sideways .ftc-slot { padding: 2px 6px; flex: none; }
+.ftc.stack .ftc-slot.empty, .ftc.sideways .ftc-slot.empty { font-size: 0; min-width: 24px; min-height: 22px; }
+.ftc.stack .ftc-slot.empty.tail::before, .ftc.sideways .ftc-slot.empty.tail::before { content: "🔒"; font-size: 11px; }
+@media (pointer: coarse) { .ftc-wc-say { min-width: 40px; min-height: 36px; } }
+/* a phone held sideways: game | card, half each, the card kept to the question */
+.ftc.panel.sideways .ftc-side { padding: 6px 8px; gap: 6px; overflow-y: auto; }
+.ftc.panel.sideways .ftc-side-head, .ftc.panel.sideways .ftc-word, .ftc.panel.sideways .ftc-tip { display: none; }
+.ftc.panel.sideways .ftc-wc { padding: 6px 8px 8px; }
+.ftc.panel.sideways .ftc-wc-th.big { font-size: 30px; }
+.ftc.panel.sideways .ftc-wc-o { min-height: 40px; padding: 5px 8px 5px 18px; font-size: 14px; }
+.ftc.panel.sideways .ftc-wc-aid img, .ftc.panel.sideways .ftc-wc-aid .ftc-wc-vis { width: 56px; height: 56px; }
+.ftc.panel.sideways.nocard .ftc-arena { right: 0; }
+.ftc.panel.sideways.nocard .ftc-side { display: none; }
+/* on a phone the first-time tips would push the answers off the screen */
+.ftc.stack .ftc-tip { display: none; }
+
+/* ---- the sentence slider (4 Nov, Dan: "a sentence section with a slider", like the course's) */
+.ftc-ss { margin-top: 10px; background: #1b1726; border: 1px solid #2e2838; border-radius: 12px; padding: 8px 12px 10px; touch-action: pan-y; user-select: none; }
+.ftc-ss-h { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.ftc-ss-h b { font-size: 11px; color: #9b93a8; text-transform: uppercase; letter-spacing: .5px; }
+.ftc-ss-nav { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.ftc-ss-nav i { font-style: normal; font-size: 12px; color: #9b93a8; font-variant-numeric: tabular-nums; }
+.ftc-ss-b { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); color: #e8eaee; border-radius: 8px; width: 30px; height: 26px; font-size: 16px; line-height: 1; cursor: pointer; }
+.ftc-ss-b:hover { background: rgba(255,255,255,.16); }
+.ftc-ss-th { font: 400 21px/1.35 "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif; color: #fff7e0; }
+.ftc-ss-th mark { background: rgba(255,159,90,.22); color: #ffb57d; border-radius: 4px; padding: 0 2px; }
+.ftc-ss-th .ftc-ss-say { position: static; font-size: 12px; padding: 1px 6px; vertical-align: middle; }
+.ftc-ss-rom { font-size: 13.5px; color: #ffd27a; margin-top: 2px; }
+.ftc-ss-en { font-size: 13.5px; color: #c9c2b8; margin-top: 1px; }
+.ftc-ss.meet { text-align: left; }
+.ftc.stack .ftc-ss { margin-top: 8px; padding: 6px 10px 8px; }
+.ftc.stack .ftc-ss-th { font-size: 18px; }
+@media (pointer: coarse) { .ftc-ss-b { width: 40px; height: 34px; } }
+/* recall: three grades */
+.ftc-wc-opts.n3.grade { grid-template-columns: 1fr 1fr 1fr; }
+.ftc-wc-o.hard { border-color: #b8913a; }
+.ftc-back { font-size: 11.5px; color: #9cc8ff; font-weight: 400; margin-left: 6px; white-space: nowrap; }
+/* ⚙ Options → Questions (the course's quiz bar) */
+.ftc-qbar .ftc-seg { flex-wrap: wrap; margin-bottom: 6px; align-items: center; }
+.ftc-seg-l { font-size: 12px; color: #9b93a8; margin-right: 4px; }
+.ftc-reset.sure { border-color: #f2705f; color: #ffb0a6; }
+.ftc-wc-type { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 2px; }
+.ftc-wc-in { width: 100%; font: 400 18px/1.3 "Noto Sans Thai", system-ui, sans-serif; padding: 10px 12px; border-radius: 10px; border: 1px solid #3a3346; background: #110e18; color: #fff7e0; }
+.ftc-wc-in:focus { outline: none; border-color: #4f9cf9; }
+.ftc-wc-miss { font-size: 13px; color: #ffb0a6; margin: 2px 0 6px; text-align: center; }
+.ftc-seg-l { padding: 0 8px; align-self: center; }
+.ftc-wc-opts[hidden] { display: none !important; }
+.ftc-qbar .ftc-seg { flex-wrap: nowrap; }
+.ftc-qbar .ftc-seg-b { min-width: 0; padding: 8px 4px; font-size: 13px; }
+.ftc-qbar .ftc-seg-l { flex: none; white-space: nowrap; }

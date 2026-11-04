@@ -133,11 +133,16 @@
     // the learning engine behind the word card (flash-learn.js): each word's
     // steps and review days, in IndexedDB (Dexie "ftc-learn"), else localStorage
     let LE = null;
+    // the question choices from ⚙ Options (like the course's quiz bar), kept in the save
+    function qPrefs() { const d = SAVE.get(); return Object.assign({ shuffle: false, reverse: false, style: "mix", type: false, auto: true, wrong: 5,
+                                                                    show: { pic: true, hook: true, tone: true, sents: true } }, d.q || {}, { show: Object.assign({ pic: true, hook: true, tone: true, sents: true }, (d.q || {}).show || {}) }); }
+    function setQ(k, v) { const d = SAVE.get(); d.q = Object.assign(qPrefs(), { [k]: v }); SAVE.set(d); applyQ(); }
+    function applyQ() { if (!LE) return; const q = qPrefs(); Object.assign(LE.S, { shuffle_new: !!q.shuffle, reverse_now: !!q.reverse, classic: q.style === "classic", max_wrong: Math.max(2, Math.min(5, +q.wrong || 5)) }); }
     try {
       const st0 = window.FlashLearn && (FlashLearn.dexieStore("ftc-learn") || FlashLearn.lsStore("ftc.learn"));
       if (st0) LE = FlashLearn.create({ store: st0, fallback: FlashLearn.lsStore("ftc.learn"),
                                         settings: ((sim.D.settings || {}).recall || {}).values || {} });
-      if (LE) { await Promise.race([LE.ready, new Promise(r => setTimeout(r, 3000))]); LE.setFocus(SAVE.get().focus); }
+      if (LE) { await Promise.race([LE.ready, new Promise(r => setTimeout(r, 3000))]); LE.setFocus(SAVE.get().focus); applyQ(); }
     } catch (e) { LE = null; }
     function setMode(m) {
       mode = m === "learn" ? "learn" : "test"; saveSet("mode", mode); sim.setMode(mode);
@@ -1284,6 +1289,7 @@
       clearTimeout(sideTip._t); sideTip._t = setTimeout(() => sideTip.classList.remove("show"), 12000);
     }
     let infoW = null;
+    let cTyped = null;                     // ⌨ Type first: what was typed (null = not yet, " " = skipped)
     let cq = null, cState = "", cShown = 0, cNextAt = 0, cTimer = null, cStreak = 0, levelSeen = {};
     let cRun = { right: 0, wrong: 0, up: {}, best: 0 };
     const nowPic = {};                    // a picture from the reader's device, only while the lesson page is open
@@ -1343,6 +1349,7 @@
     }
     const toneNames = w => (Array.isArray(w.tones) ? w.tones.map(x => TONE_TXT[x[1]]).filter(Boolean) : []).join(" · ");
     function thaiHtml(w, big, rom, tones) {
+      tones = tones && qPrefs().show.tone;
       return `<span class="ftc-wc-th${big ? " big" : ""}" lang="th">${esc(w.th)}</span>`
         + (rom && w.rom ? `<span class="ftc-wc-rom">${romHtml(w)}</span>` : "")
         + (tones && toneNames(w) ? `<span class="ftc-wc-tones">${esc(toneNames(w))} tone${(w.tones || []).length > 1 ? "s" : ""}</span>` : "");
@@ -1364,10 +1371,10 @@
       if (src) return `<img src="${esc(src)}" alt="" data-id="${esc(w.id)}">`;
       return fallback;
     }
-    const picOnly = (w, cls) => { const p = picHtml(w); return p ? `<div class="ftc-wc-aid pic ${cls || ""}">${p}</div>` : ""; };
+    const picOnly = (w, cls) => { const p = qPrefs().show.pic ? picHtml(w) : ""; return p ? `<div class="ftc-wc-aid pic ${cls || ""}">${p}</div>` : ""; };
     function aidHtml(w, withText) {
-      const pic = picHtml(w);
-      const txt = withText && (w.hook || w.aid) ? `<div><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : "";
+      const sh = qPrefs().show, pic = sh.pic ? picHtml(w) : "";
+      const txt = withText && sh.hook && (w.hook || w.aid) ? `<div><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : "";
       if (!pic && !txt) return "";
       return `<div class="ftc-wc-aid${txt ? "" : " pic"}">${pic}${txt}</div>`;
     }
@@ -1378,26 +1385,58 @@
         if (e) im.replaceWith(e); else im.remove(); });
     }
     function cardHide() { cardEl.classList.remove("show"); }
+    // Dan: "include at least one sentence with each word, with romanization ...
+    // a sentence section with a slider" (like the course's). One sentence at a
+    // time: the word picked out in it, romanization, English, 🔊, ‹ 1 / 3 ›,
+    // and a swipe on a phone.
+    function sentSlider(w, cls) {
+      const ss = (w && w.sents || []).filter(x => x && x.th).slice(0, 4);
+      if (!ss.length || !qPrefs().show.sents) return "";
+      return `<div class="ftc-ss ${cls || ""}" data-ss="0"><div class="ftc-ss-h"><b>In a sentence</b>${ss.length > 1 ? `<span class="ftc-ss-nav"><button class="ftc-ss-b" data-ssd="-1" aria-label="Previous sentence">‹</button><i>1 / ${ss.length}</i><button class="ftc-ss-b" data-ssd="1" aria-label="Next sentence">›</button></span>` : ""}</div><div class="ftc-ss-body">${sentSlide(w, ss[0])}</div></div>`;
+    }
+    function markWord(w, x) {
+      // the word itself, picked out: from the sentence's own words when it has them
+      const toks = Array.isArray(x.toks) ? x.toks : [];
+      if (toks.length && toks.some(t => t && t[1] === w.id)) return toks.map(t => t[1] === w.id ? `<mark>${esc(t[0])}</mark>` : esc(t[0])).join("");
+      const i = w.th && w.th.length > 1 ? x.th.indexOf(w.th) : -1;
+      return i < 0 ? esc(x.th) : esc(x.th.slice(0, i)) + `<mark>${esc(w.th)}</mark>` + esc(x.th.slice(i + w.th.length));
+    }
+    const sentSlide = (w, x) => `<div class="ftc-ss-th" lang="th">${markWord(w, x)} <button class="ftc-wc-say ftc-ss-say" title="Hear the sentence">🔊</button></div>${x.rom ? `<div class="ftc-ss-rom">${esc(x.rom)}</div>` : ""}${x.en ? `<div class="ftc-ss-en">${esc(x.en)}</div>` : ""}`;
+    function wireSlider(box, w) {
+      const el = box && box.querySelector(".ftc-ss"); if (!el) return;
+      const ss = (w.sents || []).filter(x => x && x.th).slice(0, 4);
+      const show = i => {
+        i = (i + ss.length) % ss.length; el.dataset.ss = i;
+        el.querySelector(".ftc-ss-body").innerHTML = sentSlide(w, ss[i]);
+        const c = el.querySelector(".ftc-ss-nav i"); if (c) c.textContent = `${i + 1} / ${ss.length}`;
+        const b = el.querySelector(".ftc-ss-say"); if (b) b.onclick = e => { e.stopPropagation(); const x = ss[+el.dataset.ss]; if (x.audio) say(x.audio, x.th, 1); else speak(x.th, 1); };
+      };
+      el.querySelectorAll("[data-ssd]").forEach(b => b.onclick = e => { e.stopPropagation(); show(+el.dataset.ss + +b.dataset.ssd); });
+      let x0 = null;
+      el.addEventListener("pointerdown", e => { x0 = e.clientX; });
+      el.addEventListener("pointerup", e => { if (x0 !== null && ss.length > 1 && Math.abs(e.clientX - x0) > 40) show(+el.dataset.ss + (e.clientX < x0 ? 1 : -1)); x0 = null; });
+      show(0);
+    }
     function showWordInfo(w, current) {
       if (!w || !panelOn()) return;
       infoW = w;
-      const pic = picHtml(w);
+      const SH = qPrefs().show, pic = SH.pic ? picHtml(w) : "";
       const tn = toneNames(w);
-      const sents = (w.sents || []).slice(0, 3).map((x, i) => `<li><div lang="th">${esc(x.th)}${x.audio ? ` <button class="ftc-wc-say" data-s="${i}" title="Hear the sentence">🔊</button>` : ""}</div>${x.rom ? `<i>${esc(x.rom)}</i>` : ""}${x.en ? `<span>${esc(x.en)}</span>` : ""}</li>`).join("");
+      const sents = sentSlider(w, "side");
       sideWord.innerHTML = `<div class="ftc-word-k">📖 ${q0label(w, current)}</div>
         <div class="ftc-word-top">${pic ? `<div class="ftc-word-pic">${pic}</div>` : ""}
           <div class="ftc-word-main"><div class="ftc-word-th" lang="th">${esc(w.th)}</div>
             ${w.rom ? `<div class="ftc-word-rom">${romHtml(w)}</div>` : ""}
-            ${tn ? `<div class="ftc-wc-tones">${esc(tn)} tone${(w.tones || []).length > 1 ? "s" : ""}</div>` : ""}
+            ${tn && SH.tone ? `<div class="ftc-wc-tones">${esc(tn)} tone${(w.tones || []).length > 1 ? "s" : ""}</div>` : ""}
             ${w.pos ? `<div class="ftc-word-pos">${esc(w.pos)}${w.gender && w.gender !== "neutral" ? ` · said by ${esc(w.gender === "male" ? "men" : w.gender === "female" ? "women" : w.gender)}` : ""}</div>` : ""}
             <div class="ftc-word-btns"><button class="ftc-btn" data-say>🔊 Say it</button>${w.slow ? `<button class="ftc-btn" data-slow>🐢 Slowly</button>` : ""}</div></div></div>
         <div class="ftc-word-en">${esc(w.en)}</div>
-        ${w.hook || w.aid ? `<div class="ftc-word-aid"><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : ""}
-        ${sents ? `<div class="ftc-word-sents"><b>In a sentence</b><ul>${sents}</ul></div>` : ""}`;
+        ${SH.hook && (w.hook || w.aid) ? `<div class="ftc-word-aid"><b>💡 Remember it by${w.hook ? `: ${esc(w.hook)}` : ""}</b>${w.aid ? `<span>${esc(w.aid)}</span>` : ""}</div>` : ""}
+        ${sents}`;
       fixPics(sideWord);
       const sb = sideWord.querySelector("[data-say]"); if (sb) sb.onclick = () => sayWord(w);
       const sl = sideWord.querySelector("[data-slow]"); if (sl) sl.onclick = () => say(w.slow, w.th);
-      sideWord.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { const x = (w.sents || [])[+b.dataset.s]; if (x && x.audio) say(x.audio, x.th); });
+      wireSlider(sideWord, w);
       sideWord.classList.remove("hidden");
     }
     const q0label = (w, current) => { const lab = LE ? LE.label(w.id) : "new"; return `${current ? "New word" : "Last word"} · <span class="lab">${LABEL_TXT[lab] || lab}</span>`; };
@@ -1406,11 +1445,12 @@
       if (!cardLive()) { cardHide(); return; }
       const q = LE.next();
       if (!q) { cardHide(); cNextAt = performance.now() + 2000; return; }
-      cq = q; cShown = performance.now(); cState = q.kind === "recall" ? "think" : "ask";
+      cq = q; cShown = performance.now(); cState = q.kind === "recall" ? "think" : "ask"; cTyped = null;
       renderCard();
       const nAns = (dayLog()[dayKey()] || {}).n || 0;
       if (LE.count() === 0) tip("start"); else if (LE.count() === 4) tip("keys"); else if (q.kind === "recall" || LE.count() === 14) tip("days");
-      if (q.dir === "th" || q.dir === "au" || q.dir === "tp") sayWord(q.word, true);
+      // 🔊 Auto-play Thai off: Thai -> meaning stays quiet (🔊 still plays it); listening questions always play
+      if ((q.dir === "th" && qPrefs().auto) || q.dir === "au" || q.dir === "tp") sayWord(q.word, true);
       else if (q.dir === "sm") saySentence(q);
       if (q.isNew && !cRun.newSaid) { cRun.newSaid = 1; floatText(`✨ ${PUN.new_word}`, false, true); }
       if (q.kind === "meet") showWordInfo(q.word, true);
@@ -1473,13 +1513,19 @@
       if (q.kind === "meet") {
         const ans = q.dir === "en" ? thaiHtml(w, false, true) : esc(short(w.en, 40));
         // on a wide screen the full word card under this one already shows the picture and hook
-        body = (panelOn() ? picOnly(w, "big") : aidHtml(w, true)) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`;
+        body = (panelOn() ? picOnly(w, "big") : aidHtml(w, true)) + `<div class="ftc-wc-ask">${q.dir === "en" ? "In Thai it's…" : "It means…"}</div><div class="ftc-wc-opts one"><button class="ftc-wc-o" data-i="0"><i>1</i><span>${ans}</span></button></div>`
+          + (panelOn() && !root.classList.contains("sideways") ? "" : sentSlider(w, "meet"));
       } else {
         // a word that keeps going wrong gets its picture as a hint (not the hook: that would give it away)
         // Dan: "We only show the picture when learning, don't need it in quiz mode": no picture on questions
         const hint = "";
         if (q.kind === "pick") {
-          body = hint + `<div class="ftc-wc-ask">${DIR_ASK[q.dir]}</div><div class="ftc-wc-opts n${q.choices.length}">` + q.choices.map((c, i) =>
+          // ⌨ Type first: a go at typing it before the choices show (the course's quiz does the same)
+          const typing = qPrefs().type && (q.dir === "th" || q.dir === "en") && cTyped === null;
+          const miss = cTyped && cTyped.trim() ? `<div class="ftc-wc-miss">Not quite (“${esc(cTyped.trim())}”). Pick it from these:</div>` : "";
+          body = hint + `<div class="ftc-wc-ask">${DIR_ASK[q.dir]}</div>` + miss
+            + (typing ? `<div class="ftc-wc-type"><input type="text" class="ftc-wc-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${q.dir === "en" ? "Type it — in Thai or in romanization" : "Type what it means"}"><div class="ftc-row"><button class="ftc-btn primary" data-check>Check</button><button class="ftc-btn" data-skip>Show the choices</button></div></div>` : "")
+            + `<div class="ftc-wc-opts n${q.choices.length}"${typing ? " hidden" : ""}>` + q.choices.map((c, i) =>
             `<button class="ftc-wc-o" data-i="${i}"><i>${i + 1}</i><span>${q.dir === "en" ? thaiHtml(c, false, romOn(q)) : esc(short(c.en, 34))}</span></button>`).join("") + `</div>`;
         } else {
           body = hint + `<div class="ftc-wc-ask">${q.dir === "en" ? "Say it in Thai in your head…" : "Think of the meaning…"}</div>
@@ -1488,11 +1534,38 @@
       }
       cardEl.className = "ftc-wc show k-" + q.kind + " d-" + q.dir;
       cardEl.innerHTML = head + prompt + body;
-      fixPics(cardEl);
+      fixPics(cardEl); wireSlider(cardEl, w);
       cardEl.querySelectorAll("[data-say]").forEach(b => b.onclick = e => { e.stopPropagation(); sayWord(w); });
       cardEl.querySelectorAll("[data-slow]").forEach(b => b.onclick = e => { e.stopPropagation(); say(w.slow, w.th); });
       cardEl.querySelectorAll(".ftc-wc-o[data-i]").forEach(b => b.onclick = () => cardPick(+b.dataset.i));
       const rv = cardEl.querySelector("[data-reveal]"); if (rv) rv.onclick = () => cardReveal();
+      const inp = cardEl.querySelector(".ftc-wc-in");
+      if (inp) {
+        const go = () => { const v = inp.value; if (!v.trim()) return;
+          if (typedRight(q, v)) { cTyped = v; cardDone(true, null, 3); floatText("⌨ Typed it! " + PUN.right, false, true); }
+          else { cTyped = v; renderCard(); } };
+        cardEl.querySelector("[data-check]").onclick = go;
+        cardEl.querySelector("[data-skip]").onclick = () => { cTyped = " "; renderCard(); };
+        inp.addEventListener("keydown", e => { e.stopPropagation(); if (e.key === "Enter") { e.preventDefault(); go(); } });
+        setTimeout(() => { try { inp.focus({ preventScroll: true }); } catch (e) {} }, 30);
+      }
+    }
+    // a typed answer, marked like the course's quiz: the meaning (any of them,
+    // one or two letters off on a long word), or the Thai, or its romanization
+    const normMean = t => String(t || "").toLowerCase().replace(/\[[^\]]*\]|\([^)]*\)/g, " ").replace(/^(to|a|an|the)\s+/, "").replace(/[^a-z0-9\s']/g, " ").replace(/\s+/g, " ").trim();
+    const meaningsOf = m => String(m || "").replace(/\[[^\]]*\]|\([^)]*\)/g, " ").split(/[,;\/]| or /).map(normMean).filter(Boolean);
+    const normRom = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ɔ/g, "o").replace(/ɛ/g, "e").replace(/ʉ/g, "u").replace(/ə/g, "e").replace(/ŋ/g, "ng").replace(/[^a-z]/g, "");
+    function lev(a, b) {
+      if (Math.abs(a.length - b.length) > 2) return 9;
+      const m = []; for (let i = 0; i <= a.length; i++) m[i] = [i]; for (let j = 0; j <= b.length; j++) m[0][j] = j;
+      for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) m[i][j] = Math.min(m[i - 1][j] + 1, m[i][j - 1] + 1, m[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      return m[a.length][b.length];
+    }
+    function typedRight(q, raw) {
+      const t = String(raw || "").trim(), w = q.word; if (!t) return false;
+      if (q.dir === "th") { const n = normMean(t); return meaningsOf(w.en).some(c => n === c || (c.length >= 5 && lev(n, c) <= 1) || (c.length >= 9 && lev(n, c) <= 2)); }
+      if (t.replace(/\s/g, "") === String(w.th || "").replace(/\s/g, "")) return true;
+      return !!(w.rom && normRom(t) && normRom(t) === normRom(w.rom));
     }
     function cardReveal() {
       if (!cq || cState !== "think") return;
@@ -1504,25 +1577,29 @@
       ans.classList.add("show");
       if (q.dir === "en") sayWord(w, true);
       const opts = cardEl.querySelector(".ftc-wc-opts");
-      opts.className = "ftc-wc-opts n2 grade";
-      opts.innerHTML = `<button class="ftc-wc-o yes" data-g="1"><i>1</i><span>✓ I knew it</span></button><button class="ftc-wc-o no" data-g="0"><i>2</i><span>✗ Not yet</span></button>`;
-      opts.querySelectorAll("[data-g]").forEach(b => b.onclick = () => cardDone(b.dataset.g === "1", b));
+      // three grades, for the scheduler (FSRS): knew it = Good (Easy when it was
+      // fast), just about = Hard (comes back sooner), not yet = Again
+      opts.className = "ftc-wc-opts n3 grade";
+      opts.innerHTML = `<button class="ftc-wc-o yes" data-g="3"><i>1</i><span>✓ Knew it</span></button><button class="ftc-wc-o hard" data-g="2"><i>2</i><span>😅 Just about</span></button><button class="ftc-wc-o no" data-g="1"><i>3</i><span>✗ Not yet</span></button>`;
+      opts.querySelectorAll("[data-g]").forEach(b => b.onclick = () => cardDone(b.dataset.g !== "1", b, +b.dataset.g));
     }
     function cardPick(i) {
       if (!cq || cState !== "ask") return;
+      if (cardEl.querySelector(".ftc-wc-in")) return;          // typing first: the choices aren't out yet
       const c = cq.choices[i]; if (!c) return;
-      cardDone(c.id === cq.id, cardEl.querySelectorAll(".ftc-wc-o")[i]);
+      // right after a typed miss = Hard for the scheduler
+      cardDone(c.id === cq.id, cardEl.querySelectorAll(".ftc-wc-o")[i], cTyped && cTyped.trim() && c.id === cq.id ? 2 : undefined);
     }
     // Dan: "We can give the user question/answer streaks, which help flash."
     // Right answers in a row (meetings don't count, nor break it) make each
     // reward stronger, and every dash_every in a row Flash lets out his blue
     // shockwave. A wrong answer starts the count again.
     const STREAK_EVERY = Math.max(1, +(WD.dash_every || 5));
-    function cardDone(right, btn) {
+    function cardDone(right, btn, grade) {
       const q = cq; if (!q || cState === "done") return;
       cState = "done";
       const ms = Math.round(performance.now() - cShown);
-      const r = LE.answer(q, { right, ms });
+      const r = LE.answer(q, { right, ms, grade });
       const w = q.word, meet = q.kind === "meet";
       cardEl.querySelectorAll(".ftc-wc-o").forEach(b => { b.disabled = true; const i = +b.dataset.i; if (!isNaN(i) && q.choices[i] && q.choices[i].id === q.id) b.classList.add("ok"); });
       if (btn && !right) btn.classList.add("bad");
@@ -1555,7 +1632,7 @@
         logWord(w, meet ? "helped" : "right");
         if (!meet && st.flash) for (let i = 0; i < 10; i++) burst(st.flash.x, st.flash.y, BLUE_HI, 220);
         // the word and its picture, so every right answer ends on the picture too
-        if (!meet && !spec) { const ok = h("div", "ftc-wc-fix good ftc-wc-okpic", `<div>${thaiHtml(w, false, true)} = <b>${esc(short(w.en, 40))}</b></div>`); cardEl.append(ok); }
+        if (!meet && !spec) { const ok = h("div", "ftc-wc-fix good ftc-wc-okpic", `<div>${thaiHtml(w, false, true)} = <b>${esc(short(w.en, 40))}</b>${r.backIn ? ` <small class="ftc-back" title="when it's due for review (FSRS)">🗓 back in ${r.backIn} day${r.backIn > 1 ? "s" : ""}</small>` : ""}</div>`); cardEl.append(ok); }
       } else {
         SFX.play("wrong");
         if (cStreak >= 3) { floatText(`🔥 Streak of ${cStreak} ended`, true); setTimeout(() => floatText(pick1(PUN.encourage), false, true), 700); }
@@ -1650,7 +1727,7 @@
       if (/^[1-6]$/.test(e.key)) {
         const i = +e.key - 1;
         if (cState === "ask") { cardPick(i); return true; }
-        if (cState === "grade" && i < 2) { cardDone(i === 0, cardEl.querySelectorAll(".ftc-wc-o")[i]); return true; }
+        if (cState === "grade" && i < 3) { const b = cardEl.querySelectorAll(".ftc-wc-o")[i]; if (b) { cardDone(i < 2, b, +b.dataset.g); return true; } }
       }
       return false;
     }
@@ -1961,14 +2038,19 @@
     function layoutSide() {
       const W = root.clientWidth, H = root.clientHeight;
       let mode = "", key;
-      if (cardOn() && W >= 900) {
-        const aw = Math.round(Math.min(W * 0.6, H * FlashSim.WMAX / FlashSim.H));
-        mode = "panel"; key = mode + (W - aw);
-        if (key !== layoutKey) root.style.setProperty("--side", (W - aw) + "px");
+      // a phone held sideways counts as wide too: side by side, half each
+      const sideways = W < 900 && W >= 560 && W > H * 1.3;
+      if (cardOn() && (W >= 900 || sideways)) {
+        const aw = Math.round(Math.min(W * (sideways ? 0.5 : 0.6), H * FlashSim.WMAX / FlashSim.H));
+        mode = "panel"; key = mode + (W - aw) + (sideways ? "s" : "");
+        if (key !== layoutKey) { root.style.setProperty("--side", (W - aw) + "px"); root.classList.toggle("sideways", sideways); }
       } else if (cardOn()) {
-        const sh = Math.round(Math.max(250, Math.min(460, H * 0.46)));
-        mode = "stack"; key = mode + sh;
-        if (key !== layoutKey) root.style.setProperty("--stack", sh + "px");
+        // a phone: the word card gets about half (more on a short screen,
+        // where a pick of 4 with long meanings needs ~290px), the arena keeps
+        // at least 190px
+        const sh = Math.round(Math.max(260, Math.min(470, H * (H < 640 ? 0.56 : 0.5), H - 190)));
+        mode = "stack"; key = mode + sh + (H < 640 ? "s" : "");
+        if (key !== layoutKey) { root.style.setProperty("--stack", sh + "px"); root.classList.toggle("short", H < 640); }
       } else key = "none";
       if (key === layoutKey) return;
       layoutKey = key; bandAt = 0;
@@ -1980,7 +2062,9 @@
       // the word card: docked on the right when there's room, else above the weapon bar
       layoutSide();
       // on a phone the start, game-over and options screens get the whole height
-      root.classList.toggle("nocard", stackOn() && (st.phase === "start" || st.phase === "over" || optsOpen));
+      // ...and so do the level-up picks and the shop between rounds, unless
+      // Auto-pick is on (then the card keeps going and those are skipped)
+      root.classList.toggle("nocard", (stackOn() || (cardOn() && root.classList.contains("sideways") && root.classList.contains("panel"))) && (st.phase === "start" || st.phase === "over" || optsOpen || (st.phase === "break" && !prefs.auto)));
       stageEl.textContent = st.phase === "start" ? "" : st.practice ? "📚 Learning mode"
         : `${cardOn() ? "" : mode === "learn" ? "📚 " : "✍ "}Round ${st.round} · Stage ${st.stage}`;
       const wv = st.wave;
@@ -2043,7 +2127,7 @@
       const slots = sim.S.slots + (st.tail ? 1 : 0), parts = [];
       for (let i = 0; i < slots; i++) {
         const w = st.weapons[i];
-        parts.push(w ? `<span class="ftc-slot${i >= sim.S.slots ? " tail" : ""}" title="${esc(w.def.name)}"><span class="ftc-ico">${icon("weapons", w.id, "🗡️")}</span> ${esc(w.def.name)} <b>${w.level}</b></span>`
+        parts.push(w ? `<span class="ftc-slot${i >= sim.S.slots ? " tail" : ""}" title="${esc(w.def.name)}"><span class="ftc-ico">${icon("weapons", w.id, "🗡️")}</span><span class="nm"> ${esc(w.def.name)}</span> <b>${w.level}</b></span>`
                      : `<span class="ftc-slot empty${i >= sim.S.slots ? " tail" : ""}">${i >= sim.S.slots ? "tail" : "empty"}</span>`);
       }
       if (!st.tail) parts.push(`<span class="ftc-slot empty tail">🔒 tail</span>`);
@@ -2293,7 +2377,8 @@
       overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
       overlay.append(h("h2", "", "⚙ Options"));
       const grid = h("div", "ftc-opts");
-      if (opts.setLayout) grid.append(seg("Screen", [["full", "⛶ Game only"], ["split", "◫ Game + course"]], opts.layout ? opts.layout() : "full",
+      // a phone has no room for the course beside the game (game.html keeps it game-only)
+      if (opts.setLayout && window.innerWidth >= 700) grid.append(seg("Screen", [["full", "⛶ Game only"], ["split", "◫ Game + course"]], opts.layout ? opts.layout() : "full",
         v => { try { opts.setLayout(v); } catch (e) {} }, "Game + course puts the lessons beside the game, with pop quizzes over them."));
       grid.append(seg("Words", [["card", "🃏 Word card"], ["gems", "💎 Classic gem hunt"]], wordMode, v => setWordMode(v),
         wordMode === "card" ? "One word at a time: can you remember it? Help fades as each word gets stronger." : "Match Thai and English gems drifting in the arena."));
@@ -2303,6 +2388,34 @@
           "Coloured by tone, like the course. Fade as I learn hides it once a word reaches Pick of 4."));
         grid.append(seg("Say each word", [[1, "Once"], [2, "2 times"], [3, "3 times"]], sayTimes, v => { sayTimes = v; saveSet("say_times", v); },
           "How many times the card says a word by itself. 🔊 says it again, 🐢 slowly."));
+        // Dan (4 Nov): the course's quiz bar, here: ⇄ Shuffle ⇋ Reverse ↺ Reset · Mixed / Classic ·
+        // ⌨ Type first · 🔊 Auto-play Thai · Wrong answers 2-5 · ⚙ Show
+        const Q = qPrefs(), qb = h("div", "ftc-opt ftc-qbar", `<label class="t">Questions</label>`);
+        const tog = (on, label, title, fn) => { const b = h("button", "ftc-seg-b" + (on ? " on" : ""), label); b.title = title; b.setAttribute("aria-pressed", on ? "true" : "false"); b.onclick = () => { fn(); showOptions(true); }; return b; };
+        const r1 = h("div", "ftc-seg");
+        r1.append(tog(Q.shuffle, "⇄ Shuffle", "New words in a random order, not the lesson's", () => setQ("shuffle", !Q.shuffle)),
+                  tog(Q.reverse, "⇋ Reverse", "Ask it the other way round (meaning → Thai) from the start", () => setQ("reverse", !Q.reverse)));
+        const rs = h("button", "ftc-seg-b ftc-reset", "↺ Reset"); rs.title = "This level's words from the start";
+        rs.onclick = () => {
+          if (!rs.classList.contains("sure")) { rs.classList.add("sure"); rs.textContent = "↺ Tap again: forget this level's words?"; return; }
+          const n = LE.resetLevel(); cq = null; cState = ""; rs.classList.remove("sure"); rs.textContent = n ? "↺ Done: this level starts again" : "↺ Nothing to reset yet"; drawSide(true);
+        };
+        r1.append(rs); qb.append(r1);
+        const r2 = h("div", "ftc-seg");
+        r2.append(tog(Q.style === "mix", "Mixed", "Every kind of question: both ways, listening, sentences, tones", () => setQ("style", "mix")),
+                  tog(Q.style === "classic", "Classic", "Only: what does it mean?", () => setQ("style", "classic")),
+                  tog(Q.type, "⌨ Type first", "Type your answer before you see the choices", () => setQ("type", !Q.type)),
+                  tog(Q.auto, "🔊 Auto-play Thai", "Play the Thai word as soon as a question shows it", () => setQ("auto", !Q.auto)));
+        qb.append(r2);
+        const r3 = h("div", "ftc-seg", `<span class="ftc-seg-l">Wrong answers</span>`);
+        for (const n of [2, 3, 4, 5]) r3.append(tog(+Q.wrong === n, String(n), `At most ${n} wrong answers to choose from`, () => setQ("wrong", n)));
+        qb.append(r3);
+        const r4 = h("div", "ftc-seg", `<span class="ftc-seg-l">⚙ Show</span>`);
+        for (const [k, label] of [["pic", "Picture"], ["hook", "Memory hook"], ["tone", "Tone names"], ["sents", "Sentences"]])
+          r4.append(tog(Q.show[k], label, "Show it on the card", () => setQ("show", Object.assign({}, Q.show, { [k]: !Q.show[k] }))));
+        qb.append(r4);
+        qb.append(h("small", "", "Words climb from 2 choices to 6, then no choices at all; Wrong answers caps the choices. Romanization is above."));
+        grid.append(qb);
       }
       // level: the course's lessons, grouped by course
       if (opts.levels) {

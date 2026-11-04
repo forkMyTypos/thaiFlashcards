@@ -21,8 +21,20 @@
  *               only teaches when most of it can be read)
  *           tp  which word did you hear? the word against its tone partners,
  *               words that differ only by tone (starts once th recalls)
- *   boxes   reaching recall starts the day schedule: 1, 3, 7, 16, 35 days.
- *           Right when due = the next box; wrong = box 1 and back to pick 4.
+ *   days    reaching recall starts the day schedule. Since 4 Nov that is FSRS
+ *           (Free Spaced Repetition Scheduler, the open-source scheduler Anki
+ *           has used since 2023): each word keeps a stability (how many days
+ *           until the chance of remembering it falls to 90%) and a difficulty;
+ *           a review graded Again / Hard / Good / Easy updates both, and the
+ *           next review is set for when recall is predicted to drop to
+ *           `retention`. Hard words come back sooner, easy ones much later.
+ *           Grades: recall "Knew it" = Good (Easy when it came fast), "Just
+ *           about" = Hard, "Not yet" = Again; a pick right = Good (Hard when
+ *           slow), wrong = Again. Only answers at least review_min_h after the
+ *           word's last review count as reviews: inside a session the steps
+ *           above do the work (relearning until right, then it comes back
+ *           another day: successive relearning). fsrs: false = the old fixed
+ *           boxes (1, 3, 7, 16, 35 days).
  *
  * What a word's label means (per direction), never one made-up score:
  *   met         seen at least once
@@ -63,6 +75,20 @@
     reverse_from_step: 2, audio_from_step: 4,
     reverse: true, audio: true,
     sentences: true, tones: true,
+    fsrs: true,              // the day schedule by FSRS (else the fixed box_days)
+    retention: 0.9,          // FSRS: plan each review for when recall is predicted to fall to this
+    max_days: 365,           // FSRS: never further away than this
+    review_min_h: 12,        // an answer counts as a review only this long after the word's last one
+    easy_ms: 2500,           // "Knew it" this fast (from the question appearing) counts as Easy
+    longterm_days: 21,       // "longterm": learned, and FSRS stability of 3 weeks or more
+    review_run: 4,           // reviews in a row before a new word may come in between (when allowed)
+    // the reader's own choices (the game's ⚙ Options, like the course's quiz bar)
+    shuffle_new: false,      // ⇄ new words in a random order, not the lesson's
+    reverse_now: false,      // ⇋ meaning -> Thai from the moment a word is met
+    classic: false,          // Classic: only Thai -> meaning (Mixed: every kind of question)
+    max_wrong: 5,            // Wrong answers: at most this many wrong choices (2-5)
+    // FSRS-4.5's published default weights (fit to millions of Anki reviews)
+    fsrs_w: [0.4872, 1.4003, 3.7145, 13.8206, 5.1618, 1.2298, 0.8975, 0.031, 1.6474, 0.1367, 1.0461, 2.1072, 0.0793, 0.3246, 1.587, 0.2272, 2.8755],
     special_gap: 3,          // sentence and tone questions: at least this many others in between
     sentence_cover: 0.8,     // what share of a sentence's other words must be known for "what does it mean?"
   };
@@ -83,6 +109,7 @@
       load: async () => ({ items: Object.values(items), words: Object.values(words) }),
       putItems: list => { for (const i of list) items[i.k] = i; },
       putWords: list => { for (const w of list) words[w.id] = w; },
+      delItems: keys => { for (const k of keys) delete items[k]; },
       log: a => { attempts.push(a); },
       attempts: async () => attempts.slice(),
     };
@@ -99,6 +126,7 @@
       load: async () => ({ items: Object.values(d.items), words: Object.values(d.words) }),
       putItems: list => { for (const i of list) d.items[i.k] = i; soon(); },
       putWords: list => { for (const w of list) d.words[w.id] = w; soon(); },
+      delItems: keys => { for (const k of keys) delete d.items[k]; soon(); },
       log: a => { d.att.push(a); soon(); },
       attempts: async () => d.att.slice(),
       flush,
@@ -132,6 +160,7 @@
       },
       putItems: list => { for (const i of list) pend.items[i.k] = i; soon(); },
       putWords: list => { for (const w of list) pend.words[w.id] = w; soon(); },
+      delItems: keys => { for (const k of keys) delete pend.items[k]; try { db.items.bulkDelete(keys).catch(() => {}); } catch (e) {} },
       log: a => { pend.att.push(a); soon(); },
       attempts: () => db.attempts.toArray(),
       flush,
@@ -147,9 +176,9 @@
     let store = o.store || memStore();
     const items = {}, words = {};
     let level = { id: "", title: "", ids: [] }, pool = [];        // pool: other words, for wrong answers
-    let n = 0, lastId = null, focus = "new", lastSpecial = -99;                         // focus: "new" (new words + review) | "review"
+    let n = 0, lastId = null, focus = "new", lastSpecial = -99, revRun = 0;                         // focus: "new" (new words + review) | "review"
     const recent = [];                                               // right/wrong of recent choice/recall answers
-    const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow", "born", "v"];
+    const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow", "born", "v", "stab", "diff", "lastRev"];
     const save = it => { const x = {}; for (const f of KEEP) x[f] = it[f]; store.putItems([x]); };
     const key = (id, dir) => id + "|" + dir;
 
@@ -175,8 +204,13 @@
       }
       if (fresh.length) store.putWords(fresh);
     }
-    // items saved before the pick-of-6 step: their step 3 was recall
-    const up = i => { if (!i.v) { if (i.step >= 3) i.step = RECALL; i.v = 2; } return i; };
+    // items saved before the pick-of-6 step: their step 3 was recall; and
+    // before FSRS: a word in box b gets that box's days as its stability
+    const up = i => {
+      if (!i.v) { if (i.step >= 3) i.step = RECALL; i.v = 2; }
+      if (i.box >= 1 && !i.stab) { i.stab = S.box_days[Math.min(S.box_days.length, i.box) - 1]; i.diff = 5; i.lastRev = i.last || now(); }
+      return i;
+    };
     const ready = (async () => {
       try {
         const d = await store.load();
@@ -195,7 +229,7 @@
     }
     function label(it) {
       if (!it) return "new";
-      if (learnedIt(it)) return it.box >= S.longterm_box ? "longterm" : "learned";
+      if (learnedIt(it)) return (it.stab ? it.stab >= S.longterm_days : it.box >= S.longterm_box) ? "longterm" : "learned";
       if (it.rc) return "recalls";
       if (it.r4) return "recognises";
       return it.seen || it.step ? "met" : "new";
@@ -218,7 +252,32 @@
     const isDue = it => it.box >= 1 && it.due && it.due <= now();
     // when a box's next review falls, spread a little so a day's words don't all come back at once
     const dueIn = (t, box) => t + S.box_days[Math.min(S.box_days.length, Math.max(1, box)) - 1] * DAY * (1 + (rnd() * 2 - 1) * (S.due_fuzz || 0));
-    const usable = it => it && words[it.id] && it.skipAt !== n && (it.dir !== "au" || words[it.id].audio)
+    // ---- FSRS (version 4.5): g = 1 Again, 2 Hard, 3 Good, 4 Easy
+    const FF = 19 / 81, DECAY = -0.5, Wt = () => S.fsrs_w;
+    const recallP = (days, stab) => Math.pow(1 + FF * days / stab, DECAY);
+    const clampD = d => Math.min(10, Math.max(1, d));
+    const d0 = g => clampD(Wt()[4] - (g - 3) * Wt()[5]);
+    const daysFor = stab => stab / FF * (Math.pow(S.retention, 1 / DECAY) - 1);
+    function schedule(it, t) {
+      const d = Math.max(1, Math.min(S.max_days, daysFor(it.stab) * (1 + (rnd() * 2 - 1) * (S.due_fuzz || 0))));
+      it.due = t + d * DAY; it.box = Math.max(1, it.box || 0);
+    }
+    // the first day schedule, when a word first reaches recall: tomorrow-ish,
+    // sooner for a word that went wrong while it was being learned
+    function fsrsStart(it, t) {
+      const g = it.wrong >= 2 ? 1 : 2;
+      it.stab = Wt()[g - 1]; it.diff = d0(g + 1); it.lastRev = t; schedule(it, t);
+    }
+    function fsrsReview(it, g, t) {
+      const w = Wt(), el = Math.max(0, (t - (it.lastRev || t)) / DAY), r = recallP(el, it.stab);
+      it.diff = clampD(w[7] * d0(4) + (1 - w[7]) * ((it.diff || 5) - w[6] * (g - 3)));
+      if (g === 1) it.stab = Math.min(it.stab, w[11] * Math.pow(it.diff, -w[12]) * (Math.pow(it.stab + 1, w[13]) - 1) * Math.exp(w[14] * (1 - r)));
+      else it.stab = it.stab * (1 + Math.exp(w[8]) * (11 - it.diff) * Math.pow(it.stab, -w[9]) * (Math.exp(w[10] * (1 - r)) - 1) * (g === 2 ? w[15] : 1) * (g === 4 ? w[16] : 1));
+      it.stab = Math.max(0.1, Math.min(S.max_days * 4, it.stab)); it.lastRev = t; schedule(it, t);
+    }
+    // is this answer a review for FSRS (the word has a schedule and its last review was a while ago)?
+    const crossDay = (it, t) => !!(S.fsrs && it.stab && t - (it.lastRev || 0) >= S.review_min_h * HOUR);
+    const usable = it => it && words[it.id] && it.skipAt !== n && (!S.classic || it.dir === "th") && (it.dir !== "au" || words[it.id].audio)
       && (it.dir !== "tp" || (words[it.id].audio && (words[it.id].pairs || []).length))
       && (it.dir !== "cx" || !!clozeSents(words[it.id]).length)
       && (it.dir !== "sm" || !!readable(words[it.id]).length);
@@ -246,8 +305,14 @@
       return c;
     }
     function nextNew() {
-      for (const id of level.ids) { if (!words[id]) continue; const it = items[key(id, "th")]; if (!it || (!it.seen && !it.step)) return id; }
-      return null;
+      const fresh = level.ids.filter(id => { if (!words[id]) return false; const it = items[key(id, "th")]; return !it || (!it.seen && !it.step); });
+      if (!fresh.length) return null;
+      return S.shuffle_new ? fresh[Math.floor(rnd() * fresh.length)] : fresh[0];
+    }
+    // lowest predicted recall first; words with no schedule yet in between, at random
+    function atRisk(list) {
+      const t = now(), r = x => x.stab ? recallP(Math.max(0, (t - (x.lastRev || t)) / DAY), x.stab) : 0.5 + rnd() * 0.5;
+      return shuffle(list, rnd).map(x => [r(x), x]).sort((a, b) => a[0] - b[0]).map(p => p[1]);
     }
     function choose() {
       const all = Object.values(items).filter(usable);
@@ -260,15 +325,17 @@
       // in order of priority; the first word that isn't the one just asked wins
       const tiers = [
         () => byTurn(all.filter(x => x.retry && open(x))),                     // answered wrong, its turn has come
+        () => revRun >= S.review_run && canNew(0) ? fresh() : [],               // a long run of reviews: a new word in between
         () => byTurn(all.filter(x => isDue(x) && !x.sess && open(x))),         // due from earlier sessions (the warm-up)
         () => byTurn(all.filter(x => x.active && !x.doneSess && open(x))),     // being worked on this session
         () => canNew(0) ? fresh() : [],                                          // a new word from the level
         () => byTurn(all.filter(x => isDue(x) && x.sess < S.session_cap && spaced(x))),     // nothing ready: the nearest turn
         () => byTurn(all.filter(x => x.active && !x.doneSess && x.sess < S.session_cap && spaced(x))),
         () => canNew(1) ? fresh() : [],
-        // mix in words already met, the level's first (interleaving)
-        () => shuffle(level.ids.map(id => items[key(id, "th")]).filter(x => x && x.seen && usable(x) && x.sess < S.session_cap), rnd),
-        () => shuffle(all.filter(x => x.seen && x.sess < S.session_cap && spaced(x)), rnd),
+        // mix in words already met, the level's first (interleaving): the ones
+        // most at risk of being forgotten first (FSRS's predicted recall)
+        () => atRisk(level.ids.map(id => items[key(id, "th")]).filter(x => x && x.seen && usable(x) && x.sess < S.session_cap)),
+        () => atRisk(all.filter(x => x.seen && x.sess < S.session_cap && spaced(x))),
       ];
       let first = null;
       for (const t of tiers) {
@@ -344,7 +411,7 @@
         return (depth || 0) < 4 ? next((depth || 0) + 1) : null;
       }
       const kind = it.step === 0 ? "meet" : it.step >= RECALL ? "recall" : "pick";
-      const count = kind === "meet" ? 1 : kind === "recall" ? 0 : CHOICES[Math.min(it.step, CHOICES.length - 1)];
+      const count = kind === "meet" ? 1 : kind === "recall" ? 0 : Math.min(CHOICES[Math.min(it.step, CHOICES.length - 1)], (S.max_wrong || 5) + 1);
       const opts = kind === "recall" ? [] : choices(w, it.dir, count);
       if (kind === "pick" && opts.length < 2) {        // not enough other words yet: meet it again instead
         return { n, k: it.k, id: it.id, dir: it.dir, step: it.step, kind: "meet", word: w, choices: [w], review: isDue(it), isNew: false, label: label(it), t: now() };
@@ -358,6 +425,11 @@
       const it = items[q.k]; if (!it) return null;
       res = res || {};
       const t = now(), right = q.kind === "meet" ? true : !!res.right, ms = Math.max(0, +res.ms || 0);
+      // the FSRS grade of this answer (used only when it counts as a review)
+      // (a pick can say Hard itself: the right one picked after a typed miss)
+      const grade = !right ? 1 : q.kind === "recall" ? (res.grade === 2 ? 2 : ms && ms <= S.easy_ms ? 4 : 3) : res.grade === 2 || ms > S.slow_ms ? 2 : 3;
+      const review = crossDay(it, t), dueWas = it.due;
+      if (q.review) revRun++; else if (q.kind === "meet" || !it.box) revRun = 0;
       const was = { step: it.step, box: it.box, label: label(it) }, due = isDue(it);
       n++; lastId = it.id; if (SPECIAL.has(it.dir)) lastSpecial = n;
       it.sess++; it.seen++; it.active = true; it.last = t; it.lastOk = right;
@@ -371,7 +443,7 @@
       } else if (right) {
         it.right++; it.retry = false; it.sessRight++;
         if (q.kind === "pick") {
-          if (q.step >= 2 && (q.choices.length >= 4 || SPECIAL.has(it.dir))) it.r4 = true;
+          if (q.step >= 2 && (q.choices.length >= Math.min(4, (S.max_wrong || 5) + 1) || SPECIAL.has(it.dir))) it.r4 = true;
           if (slow) it.slow++;
           else {
             it.streak++;
@@ -380,21 +452,23 @@
               if (it.dir === "tp") {
                 // a sound can't be "recalled": enough right in a row counts as remembering it
                 it.streak = 0; it.rc = true; it.ok.push(t); if (it.ok.length > 6) it.ok = it.ok.slice(-6); it.doneSess = true;
-                it.box = Math.min(S.box_days.length, Math.max(1, it.box + (due ? 1 : 0))); it.due = dueIn(t, it.box);
+                if (S.fsrs) { if (due) it.box = Math.min(S.box_days.length, it.box + 1); if (!it.stab) fsrsStart(it, t); else if (review) fsrsReview(it, grade, t); }
+                else { it.box = Math.min(S.box_days.length, Math.max(1, it.box + (due ? 1 : 0))); it.due = dueIn(t, it.box); }
               } else {
                 // sentences skip the pick of 6 (there are only so many sentences to choose from)
                 it.step = SPECIAL.has(it.dir) && it.step >= 2 ? RECALL : it.step + 1; it.streak = 0;
-                if (it.step === RECALL && !it.box) { it.box = 1; it.due = dueIn(t, 1); }
+                if (it.step === RECALL && !it.box) { if (S.fsrs) fsrsStart(it, t); else { it.box = 1; it.due = dueIn(t, 1); } }
               }
             }
           }
-          if (due) { it.box = Math.max(1, it.box); it.due = dueIn(t, it.box); }
-        } else {                                          // recall: "I knew it"
+          if (S.fsrs) { if (review && it.due === dueWas) fsrsReview(it, grade, t); }
+          else if (due) { it.box = Math.max(1, it.box); it.due = dueIn(t, it.box); }
+        } else {                                          // recall: "I knew it" (or "just about")
           it.rc = true; it.ok.push(t); if (it.ok.length > 6) it.ok = it.ok.slice(-6);
           it.doneSess = true;
           if (due) it.box = Math.min(S.box_days.length, it.box + 1);
-          it.box = Math.max(1, it.box);
-          it.due = dueIn(t, it.box);
+          if (S.fsrs) { if (!it.stab) fsrsStart(it, t); else if (review) fsrsReview(it, grade, t); else it.box = Math.max(1, it.box); }
+          else { it.box = Math.max(1, it.box); it.due = dueIn(t, it.box); }
         }
         gap = S.gaps[Math.min(S.gaps.length - 1, it.sessRight - 1)];
       } else {
@@ -403,19 +477,20 @@
         if (q.kind === "recall") it.step = SPECIAL.has(it.dir) ? 2 : RECALL - 1;
         else if (it.step >= 2) it.step = it.step - 1;
         // a forgotten review keeps part of what it had built up: back to half its box, not to day 1
-        if (it.box >= 1) { it.box = Math.max(1, Math.floor(it.box * S.lapse_keep)); it.due = dueIn(t, it.box); }
+        if (S.fsrs) { if (review) { it.box = Math.max(1, Math.floor(it.box * S.lapse_keep)); fsrsReview(it, 1, t); } }
+        else if (it.box >= 1) { it.box = Math.max(1, Math.floor(it.box * S.lapse_keep)); it.due = dueIn(t, it.box); }
         gap = S.wrong_gap;
       }
       it.nextN = n + gap;
       // the other directions open up as Thai -> meaning gets stronger, and join this session's work
       const opened = [];
       if (it.dir === "th") {
-        if (S.reverse && it.step >= S.reverse_from_step && !items[key(it.id, "en")]) { const x = item(it.id, "en", { step: 1 }); x.active = true; x.nextN = n + 3; opened.push("en"); }
-        if (S.audio && it.step >= S.audio_from_step && words[it.id] && words[it.id].audio && !items[key(it.id, "au")]) { const x = item(it.id, "au", { step: 2 }); x.active = true; x.nextN = n + 4; opened.push("au"); }
+        if (S.reverse && !S.classic && it.step >= (S.reverse_now ? 1 : S.reverse_from_step) && !items[key(it.id, "en")]) { const x = item(it.id, "en", { step: 1 }); x.active = true; x.nextN = n + (S.reverse_now ? 1 : 3); opened.push("en"); }
+        if (S.audio && !S.classic && it.step >= S.audio_from_step && words[it.id] && words[it.id].audio && !items[key(it.id, "au")]) { const x = item(it.id, "au", { step: 2 }); x.active = true; x.nextN = n + 4; opened.push("au"); }
       }
       // sentences and tones open once the word itself is strong enough (checked on any answer about it)
       const w0 = words[it.id], th = items[key(it.id, "th")];
-      if (w0 && th) {
+      if (w0 && th && !S.classic) {
         if (S.sentences && th.r4 && !items[key(it.id, "cx")] && clozeSents(w0).length) { const x = item(it.id, "cx", { step: 2 }); x.active = true; x.nextN = n + 4; opened.push("cx"); }
         if (S.sentences && th.rc && !items[key(it.id, "sm")] && readable(w0).length) { const x = item(it.id, "sm", { step: 2 }); x.active = true; x.nextN = n + 6; opened.push("sm"); }
         if (S.tones && th.rc && !items[key(it.id, "tp")] && w0.audio && (w0.pairs || []).length) { const x = item(it.id, "tp", { step: 2 }); x.active = true; x.nextN = n + 5; opened.push("tp"); }
@@ -423,7 +498,9 @@
       save(it);
       const attempt = { id: it.id, dir: it.dir, step: q.step, kind: q.kind, choices: q.choices ? q.choices.length : 0, right, ms, at: t, review: !!q.review, slow };
       try { store.log(attempt); } catch (e) {}
-      return { right, slow, item: Object.assign({}, it), was, now: { step: it.step, box: it.box, label: label(it) }, opened, retryIn: it.retry ? gap : 0 };
+      // when it comes back (days), if this answer set a new day for it
+      const backIn = it.due && it.due !== dueWas && it.due > t + HOUR ? Math.max(1, Math.round((it.due - t) / DAY)) : 0;
+      return { right, slow, grade, review, backIn, item: Object.assign({}, it), was, now: { step: it.step, box: it.box, label: label(it) }, opened, retryIn: it.retry ? gap : 0 };
     }
 
     // ---- what the level looks like
@@ -465,6 +542,14 @@
       // other words the learner has seen on the course (wrong answers, nothing more)
       setPool(list) { pool = (list || []).filter(w => w && w.id && w.th && w.en); },
       setFocus(f) { focus = f === "review" ? "review" : "new"; },
+      // ↺ this level's words from the start (every direction), as if never met
+      resetLevel() {
+        const ks = [];
+        for (const id of level.ids) for (const d of DIRS) { const k = key(id, d); if (items[k]) { delete items[k]; ks.push(k); } }
+        if (ks.length && store.delItems) store.delItems(ks);
+        recent.length = 0; revRun = 0;
+        return ks.length;
+      },
       focus: () => focus,
       next: () => next(0),
       answer,
@@ -518,6 +603,8 @@
           .sort((a, b) => b.last - a.last).slice(0, k || 6).map(it => words[it.id]);
       },
       accuracy: acc,
+      // FSRS: the chance of recalling this word now (null before it has a schedule)
+      recallNow(id, dir) { const it = items[key(id, dir || "th")]; return it && it.stab ? recallP(Math.max(0, (now() - (it.lastRev || now())) / DAY), it.stab) : null; },
       count: () => n,
       attempts: () => store.attempts ? store.attempts() : Promise.resolve([]),
       flush: () => { if (store.flush) store.flush(); },

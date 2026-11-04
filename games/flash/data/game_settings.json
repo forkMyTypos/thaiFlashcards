@@ -320,7 +320,14 @@
       "sentence_cover": 0.8,
       "sentence_strength": 1.3,
       "next_after_sentence": 1.6,
-      "daily_goal": 20
+      "daily_goal": 20,
+      "fsrs": true,
+      "retention": 0.9,
+      "max_days": 365,
+      "review_min_h": 12,
+      "easy_ms": 2500,
+      "longterm_days": 21,
+      "review_run": 4
     },
     "notes": "The word card (the default; Options > Words can switch back to the classic gem hunt). Each word climbs, separately for Thai -> meaning, meaning -> Thai and listening: meet (one answer, meet_reps times) -> pick of 2 (pick2_right right) -> pick of 4 (pick4_right right) -> recall (no choices, self-graded). Meaning -> Thai starts at pick of 4 of Thai -> meaning; listening at recall (words with a recording). In a session a word comes back after gaps[n] other questions (wrong_gap after a wrong answer); at most max_new words in their first steps (max_new_good above high_acc right, none below low_acc); a right answer slower than slow_ms doesn't move it up. Between sessions: box_days. Learned = recalled twice at least learned_gap_h hours apart; long-term = box longterm_box (passed the 7-day review). Next level offered at ready_share of the level recognised. A right answer powers Flash like a matched pair (meet_strength for a meeting, recall_strength for a recall); the next card comes next_after_* seconds later."
   }
