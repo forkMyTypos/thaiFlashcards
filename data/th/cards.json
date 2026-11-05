@@ -650,8 +650,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000008.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000008.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000008_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000008.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000008_slow.mp3?v=1"
   }
  },
  {
@@ -998,8 +998,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000014.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000014.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000014_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000014.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000014_slow.mp3?v=1"
   }
  },
  {
@@ -1025,48 +1025,48 @@
   "mnemonic_concept": "jack",
   "sentences": [
    {
-    "id": "TH_S000017",
-    "text": "ฉันซื้อส้มมาจากตลาด",
-    "romanization": "chǎn sʉ́ʉ sôm maa jàak dtà-làat",
-    "translation": "I bought oranges from the market.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000103",
-    "text": "ฉันซื้ออาหารจากร้านข้างถนน",
-    "romanization": "chǎn sʉ́ʉ aa-hǎan jàak ráan khâang thà-nǒn",
-    "translation": "I bought food from a street stall.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000817",
-    "text": "ขอข้าวจากตลาดค่ะ",
-    "romanization": "khǎaw khâao jàak dtà-làat khâ",
-    "translation": "Rice from the market, please.",
+    "id": "TH_S002062",
+    "text": "กาแฟจากร้านนี้อร่อยครับ",
+    "romanization": "gaa-fae jàak ráan níi a-rɔ̀i khráp",
+    "translation": "The coffee from this shop is delicious.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000861",
-    "text": "เขาไปจากห้องแล้ว",
-    "romanization": "khǎo bpai jàak hâwng láew",
-    "translation": "He has gone from the room.",
+    "id": "TH_S002063",
+    "text": "ผมมาจากร้านอาหารครับ",
+    "romanization": "phǒm maa jàak ráan aa-hǎan khráp",
+    "translation": "I came from the restaurant.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000930",
-    "text": "ขอชาเย็นจากตลาดค่ะ",
-    "romanization": "khǎaw chaa yen jàak dtà-làat khâ",
-    "translation": "I would like iced tea from the market.",
+    "id": "TH_S002064",
+    "text": "น้ำจากขวดเย็นค่ะ",
+    "romanization": "náam jàak khùuat yen khâ",
+    "translation": "The water from the bottle is cold.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002065",
+    "text": "อาหารจากร้านนั้นเผ็ดมากครับ",
+    "romanization": "aa-hǎan jàak ráan nán phèt mâak khráp",
+    "translation": "The food from that shop is very spicy.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002066",
+    "text": "เงินจากคุณอยู่บนโต๊ะค่ะ",
+    "romanization": "ngern jàak khun yùu bon dtó khâ",
+    "translation": "The money from you is on the table.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2376,52 +2376,52 @@
   "level": "beginner",
   "sound_hook": null,
   "hook_visual": null,
-  "mnemonic": "Digital collectible card art, 1:1 square ratio. A colossal train barreling down a wooden track encounters a giant golden fork that splits the train physically into two separate transparent glowing paths. Painterly digital illustration, rich textures, dramatic cinematic lighting, vibrant golden energy contrast, clear physical divergence action, absurd scale, clean uncluttered central composition.",
-  "mnemonic_concept": "A fork in a wooden track where a massive train splits physically into two separate glowing paths",
+  "mnemonic": "**TH_000037 — หรือ (or)**\n\nCreate a square 1:1 digital collectible card illustration.\n\nA comically indecisive kangaroo standing at a colourful Thai street-food stall, faced with two enormous steaming dishes.\n\nOn one side, a beautiful bowl of Thai boat noodles, rich broth, herbs and noodles. On the other, a vibrant plate of Pad Thai with prawns, crushed peanuts and lime.\n\nThe kangaroo is visibly struggling to choose, looking left and right with an exaggerated expression of indecision. One paw points towards the noodles while the other reaches towards the Pad Thai. Its open pouch contains a few coins, suggesting it can only afford one dish.\n\nGive the scene a distinctly Thai atmosphere: colourful street-food stall, subtle Thai decorative details, tropical warmth, hanging lanterns and rich food textures.\n\nPainterly digital illustration, playful surrealism, expressive character design, dramatic cinematic lighting, vibrant colours, rich textures.\n\n**Composition:** Central kangaroo, both dishes clearly visible and equally prominent. The viewer should immediately understand that the kangaroo must choose between two alternatives.\n\n**Restrictions:** No text, Thai characters, English letters, numbers, labels, watermarks, UI elements, borders or card frames.",
+  "mnemonic_concept": "A Kanga-ROO, making a hard choice. This one, OR, that one.",
   "sentences": [
    {
-    "id": "TH_S000107",
-    "text": "กินที่นี่หรือเอากลับบ้าน",
-    "romanization": "gin thîi-nîi rʉ̌ʉ ao glàp bâan",
-    "translation": "Are you eating here or taking it home?",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S002020",
+    "text": "คุณเอาชาหรือกาแฟครับ",
+    "romanization": "khun ao chaa rǔue gaa-fae khráp",
+    "translation": "Would you like tea or coffee?\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000260",
-    "text": "คุณไม่กินไข่หรือครับ",
-    "romanization": "khun mâi gin khài rǔe khráp",
-    "translation": "You don't eat eggs?",
+    "id": "TH_S002021",
+    "text": "คุณชอบปลาหรือไข่คะ",
+    "romanization": "khun chɔ̂ɔp bplaa rǔue khài khá",
+    "translation": "Do you like fish or eggs?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000478",
-    "text": "หนึ่งหรือสอง",
-    "romanization": "nùeng rǔe sɔ̌ɔng",
-    "translation": "One or two.",
+    "id": "TH_S002022",
+    "text": "คุณอยากกินข้าวหรือผักครับ",
+    "romanization": "khun yàak gin khâao rǔue phàk khráp",
+    "translation": "Would you like rice or vegetables?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000481",
-    "text": "สองหรือสาม",
-    "romanization": "sɔ̌ɔng rǔe sǎam",
-    "translation": "Two or three.",
+    "id": "TH_S002023",
+    "text": "กาแฟร้อนหรือเย็นคะ",
+    "romanization": "gaa-fae rɔ́ɔn rǔue yen khá",
+    "translation": "Would you like hot or cold coffee?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000484",
-    "text": "สามหรือสี่",
-    "romanization": "sǎam rǔe sìi",
-    "translation": "Three or four.",
+    "id": "TH_S002086",
+    "text": "คุณอยากกินปลาหรือไข่ครับ",
+    "romanization": "khun yàak gin bplaa rǔue khài khráp",
+    "translation": "Would you like fish or eggs?",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -2430,7 +2430,9 @@
    "TH_L000018",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000037.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000037.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000037_slow.mp3"
@@ -2591,8 +2593,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000039.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000039_slow.mp3?v=1"
   }
  },
  {
@@ -2755,10 +2757,10 @@
   "examples": "มาถึงแล้ว",
   "example_translation": "Arrived already.",
   "level": "beginner",
-  "sound_hook": "thing",
-  "hook_visual": "an unidentified metallic object thing",
-  "mnemonic": "Digital collectible card art, 1:1 square ratio. A giant, mysterious glowing metallic thing smashing through a massive checkered finish line banner on a track. Painterly digital illustration, rich textures, dramatic dynamic motion lighting, vibrant metallic reflections, clear physical action, simple uncluttered background.",
-  "mnemonic_concept": null,
+  "sound_hook": "TUING goes the bell",
+  "hook_visual": "A bell goes TUING, you signal, you have arrived",
+  "mnemonic": "**TH_000043 — ถึง (to, reach, arrive)**\n\nCreate a square 1:1 digital collectible card illustration.\n\nA gigantic, mysterious metallic object — an unmistakable unidentified THING — hurtles down a racetrack at incredible speed, smashing spectacularly through a massive black-and-white checkered finish-line banner.\n\nThe metallic thing has an unusual, fascinating shape. It should look like an unknown object from another world: polished metal, strange mechanical details and a brilliant glowing core. It must remain an unidentified object rather than resembling a recognisable vehicle, robot or weapon.\n\nCapture the precise moment it reaches its destination: the finish line explodes apart around it, with fabric, dust and fragments flying through the air.\n\nPainterly digital illustration, rich textures, dramatic dynamic motion, cinematic lighting, brilliant metallic reflections, vibrant glowing highlights, strong sense of arrival and accomplishment.\n\n**Composition:** The metallic THING dominates the centre. The finish line is unmistakable and clearly being crossed. Simple uncluttered background.\n\n**Restrictions:** No text, letters, numbers, labels, watermarks, UI elements, borders or card frames.",
+  "mnemonic_concept": "A bell goes TUING, you signal, you have arrived",
   "sentences": [
    {
     "id": "TH_S001082",
@@ -2810,7 +2812,9 @@
    "TH_L000006",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000043.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000043.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000043_slow.mp3"
@@ -3343,8 +3347,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000051.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000051.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000051_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000051.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000051_slow.mp3?v=1"
   }
  },
  {
@@ -3510,54 +3514,54 @@
   "examples": "ไปด้วย",
   "example_translation": "Go too.",
   "level": "beginner",
-  "sound_hook": "do it",
+  "sound_hook": "DOOO AY → DO IT (approximate).",
   "hook_visual": "hand clicking a green start button",
-  "mnemonic": "Digital collectible card art, 1:1 square ratio. A massive armored gauntlet aggressively slamming down on a giant glowing green \"DO IT\" push-button set into an ancient stone altar. Dynamic action lines, intense glowing energetic sparks, dramatic directional lighting, bold silhouette.",
-  "mnemonic_concept": null,
+  "mnemonic": "**TH_000055 — ด้วย (with)**\n\nCreate a square 1:1 digital collectible card illustration.\n\nTwo comically determined characters are struggling together to carry an enormous, ridiculously heavy golden treasure chest through a lush tropical Thai jungle.\n\nOne character grips the front handles while the other holds the back handles. Both are leaning backwards with exaggerated effort, sweat flying, muscles straining, but working together to move the chest.\n\nThe treasure chest is absurdly oversized, decorated with intricate golden Thai-inspired patterns and glowing slightly around its edges.\n\nMake the cooperation unmistakable: both characters are essential to carrying the same object. They are doing it WITH each other.\n\nPainterly digital illustration, rich textures, expressive character design, playful surrealism, dramatic cinematic lighting, vibrant colours, detailed tropical environment, strong visual storytelling.\n\n**Composition:** The two characters and enormous treasure chest dominate the centre. Clearly readable action, clean composition, instantly recognisable at thumbnail size.\n\n**Restrictions:** No text, letters, numbers, labels, watermarks, UI elements, borders or card frames.",
+  "mnemonic_concept": "DOOO AY → DO IT (approximate).WITH — two people doing something together.",
   "sentences": [
    {
-    "id": "TH_S000077",
-    "text": "คิดเงินด้วยครับ",
-    "romanization": "khít ngoen dûai khráp",
-    "translation": "The bill, please.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000078",
-    "text": "ฉันจ่ายเงินด้วยบัตร",
-    "romanization": "chǎn jàai ngoen dûai bàt",
-    "translation": "I pay by card.",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000413",
-    "text": "ขอเงินด้วยครับ",
-    "romanization": "khǎaw ngoen dûay khráp",
-    "translation": "Some money too, please.",
+    "id": "TH_S002032",
+    "text": "ฉันขอกาแฟด้วยค่ะ",
+    "romanization": "chǎn khɔ̌ɔ gaa-fae dûay khâ",
+    "translation": "I'll have a coffee too.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000839",
-    "text": "ขอชื่อด้วยค่ะ",
-    "romanization": "khǎaw chûue dûay khâ",
-    "translation": "Your name, please.",
+    "id": "TH_S002033",
+    "text": "ผมเอาข้าวด้วยครับ",
+    "romanization": "phǒm ao khâao dûay khráp",
+    "translation": "I'll have rice too.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000995",
-    "text": "ช่วยดูด้วยครับ",
-    "romanization": "chûay duu dûay khráp",
-    "translation": "Please help look too.",
+    "id": "TH_S002034",
+    "text": "คุณอยากกินไข่ด้วยไหมครับ",
+    "romanization": "khun yàak gin khài dûay mǎi khráp",
+    "translation": "Would you like eggs too?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002035",
+    "text": "ขอผักสดด้วยค่ะ",
+    "romanization": "khɔ̌ɔ phàk sòt dûay khâ",
+    "translation": "Some fresh vegetables too, please.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002036",
+    "text": "ร้านนี้มีชาเย็นด้วยครับ",
+    "romanization": "ráan níi mii chaa yen dûay khráp",
+    "translation": "This shop has iced tea too.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -3565,10 +3569,12 @@
    "TH_L000014",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000055.jpg"
+  ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000055.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000055_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000055.mp3?v=3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000055_slow.mp3?v=3"
   }
  },
  {
@@ -4819,18 +4825,54 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": "sum up",
+  "sound_hook": "sam rap",
   "hook_visual": "calculator showing total plus sign",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A colossal digital calculator displaying a giant glowing golden plus sign that reaches out with energy tendrils, scooping up a wrapped birthday present. High-tech glow effects, strong central focal point, rich specular highlights.",
-  "mnemonic_concept": null,
+  "mnemonic_concept": "Uncle Sam the rapper, rapping, FOR someone.",
   "sentences": [
    {
-    "id": "TH_S001532",
-    "text": "สำคัญสำหรับโต๊ะครับ",
-    "romanization": "sǎm-khan sǎm-ràp dtó khráp",
-    "translation": "It is important for the table.\\",
+    "id": "TH_S002058",
+    "text": "อาหารนี้สำหรับคุณครับ",
+    "romanization": "aa-hǎan níi sǎm-ràp khun khráp",
+    "translation": "This food is for you.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002059",
+    "text": "กาแฟสำหรับผมค่ะ",
+    "romanization": "gaa-fae sǎm-ràp phǒm khâ",
+    "translation": "The coffee is for me.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002060",
+    "text": "เงินนี้สำหรับอาหารครับ",
+    "romanization": "ngern níi sǎm-ràp aa-hǎan khráp",
+    "translation": "This money is for food.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002061",
+    "text": "ร้านนี้สำหรับกาแฟค่ะ",
+    "romanization": "ráan níi sǎm-ràp gaa-fae khâ",
+    "translation": "This shop is for coffee.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002092",
+    "text": "กาแฟนี้สำหรับคุณหรือผมครับ",
+    "romanization": "gaa-fae níi sǎm-ràp khun rǔue phǒm khráp",
+    "translation": "Is this coffee for you or me?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -4838,7 +4880,9 @@
    "TH_L000013",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000082.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000082.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000082_slow.mp3"
@@ -4921,18 +4965,66 @@
   "examples": "แพงแต่ดี",
   "example_translation": "Expensive but good.",
   "level": "beginner",
-  "sound_hook": "dad",
-  "hook_visual": "middle-aged man smiling",
-  "mnemonic": "Digital collectible card art, 1:1 square ratio. A smiling middle-aged dad throwing his body against a massive solid brick wall, physically holding back a crashing tidal wave. Exaggerated heroic action, dramatic side-lighting, high contrast, vivid warm colors.",
-  "mnemonic_concept": null,
-  "sentences": [],
+  "sound_hook": "dare-kinda",
+  "hook_visual": null,
+  "mnemonic": "Create a stunning 1:1 square digital collectible card illustration.\n\nA humorous, cinematic scene of a miserable man standing on a freezing, snow-covered beach.\n\nHe is wearing a soaked summer shirt, shorts and sandals, shivering in the icy wind. Snow is blowing sideways, grey storm clouds fill the sky, and enormous cold waves crash onto the shore. His expression is miserable.\n\nAbove and around his head, show a beautiful, dreamlike vision of the beach he wishes he were visiting: brilliant sunshine, crystal-clear turquoise water, golden sand, swaying palm trees and a perfect tropical paradise. Make this imagined paradise glow with warm golden light, visibly contrasting with the freezing reality surrounding him.\n\nThe man's eyes are fixed on his imagined tropical paradise, longing to be there.\n\nMake the difference between what he wants and what he actually has immediately obvious. Humorous visual storytelling, rich painterly textures, dramatic lighting, beautiful detail and a strong central composition.\n\nNo text, letters, numbers, captions, labels, watermarks, logos or UI. No card frame.",
+  "mnemonic_concept": "Not what you expect But, what you get.",
+  "sentences": [
+   {
+    "id": "TH_S002024",
+    "text": "ฉันชอบกาแฟแต่ไม่ชอบชาค่ะ",
+    "romanization": "chǎn chɔ̂ɔp gaa-fae dtàe mâi chɔ̂ɔp chaa khâ",
+    "translation": "I like coffee, but I don't like tea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002025",
+    "text": "ผมอยากกินข้าวแต่ไม่อยากกินผักครับ",
+    "romanization": "phǒm yàak gin khâao dtàe mâi yàak gin phàk khráp",
+    "translation": "I want to eat rice, but I don't want vegetables.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002026",
+    "text": "อาหารอร่อยแต่เผ็ดมากค่ะ",
+    "romanization": "aa-hǎan a-rɔ̀i dtàe phèt mâak khâ",
+    "translation": "The food is delicious but very spicy.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002087",
+    "text": "ร้านนี้มีชาแต่ร้านนั้นมีกาแฟครับ",
+    "romanization": "ráan níi mii chaa dtàe ráan nán mii gaa-fae khráp",
+    "translation": "This shop has tea, but that shop has coffee.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002088",
+    "text": "ผมชอบกาแฟแต่คุณชอบชาค่ะ",
+    "romanization": "phǒm chɔ̂ɔp gaa-fae dtàe khun chɔ̂ɔp chaa khâ",
+    "translation": "I like coffee, but you like tea.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000014",
    "TH_L000018",
    "TH_L000119",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000084.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000084.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000084_slow.mp3"
@@ -6101,54 +6193,54 @@
   "examples": null,
   "example_translation": null,
   "level": null,
-  "sound_hook": null,
+  "sound_hook": "Naan bread",
   "hook_visual": "",
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "mnemonic": "Create a stunning 1:1 square digital collectible card illustration.\n\nA humorous scene inside a beautiful restaurant. A man stands in the foreground, extending one ordinary arm and pointing clearly with his index finger towards a large, delicious-looking piece of golden naan bread sitting on a table several metres away.\n\nThe naan bread should be clearly visible in the middle distance, unmistakably the specific object he is pointing at. It has a few golden bubbles, lightly charred patches and a little melted butter.\n\nShow the man from a slight side angle so we can clearly see his face, pointing gesture and the naan bread in the distance. His expression is enthusiastic and certain, as if declaring: THAT one!\n\nUse the composition to create a clear visual relationship between the man, his pointing finger and the distant naan. The bread must not be close to him or in his hands.\n\nWarm restaurant lighting, rich painterly textures, appealing food detail, playful visual storytelling and cinematic composition.\n\nSquare 1:1 composition. No text, letters, numbers, captions, labels, watermarks, logos or UI. No card frame.",
+  "mnemonic_concept": "That naan bread over there.",
   "sentences": [
    {
-    "id": "TH_S000386",
-    "text": "เอาอันนั้น",
-    "romanization": "ao an nán",
-    "translation": "I'll take that one.",
+    "id": "TH_S002045",
+    "text": "ร้านนั้นมีชาไหมครับ",
+    "romanization": "ráan nán mii chaa mǎi khráp",
+    "translation": "Does that shop have tea?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000408",
-    "text": "อันนั้นมีครับ",
-    "romanization": "an nán mii khráp",
-    "translation": "That one is available.",
+    "id": "TH_S002046",
+    "text": "อาหารนั้นเผ็ดมากค่ะ",
+    "romanization": "aa-hǎan nán phèt mâak khâ",
+    "translation": "That food is very spicy.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000410",
-    "text": "อันนั้นเท่าไหร่ครับ",
-    "romanization": "an nán tâo-rài khráp",
-    "translation": "How much is that one?",
+    "id": "TH_S002047",
+    "text": "ผมชอบกาแฟร้านนั้นครับ",
+    "romanization": "phǒm chɔ̂ɔp gaa-fae ráan nán khráp",
+    "translation": "I like the coffee at that shop.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000411",
-    "text": "จานนั้นเท่าไหร่คะ",
-    "romanization": "jaan nán tâo-rài khá",
-    "translation": "How much is that plate?",
+    "id": "TH_S002048",
+    "text": "คุณอยากได้จานนั้นไหมคะ",
+    "romanization": "khun yàak dâai jaan nán mǎi khá",
+    "translation": "Would you like that plate?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000412",
-    "text": "ชิ้นนั้นเท่าไหร่ครับ",
-    "romanization": "chín nán tâo-rài khráp",
-    "translation": "How much is that piece?",
+    "id": "TH_S002090",
+    "text": "เงินนั้นสำหรับคุณครับ",
+    "romanization": "ngern nán sǎm-ràp khun khráp",
+    "translation": "That money is for you.",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -6156,7 +6248,9 @@
    "TH_L000018",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000113.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000113.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000113_slow.mp3"
@@ -8458,36 +8552,54 @@
   "examples": "ฉันก็ชอบ",
   "example_translation": "I also like it.",
   "level": "beginner",
-  "sound_hook": null,
+  "sound_hook": "Gaw, a slightly crazy crow caw",
   "hook_visual": "",
   "mnemonic": null,
-  "mnemonic_concept": null,
+  "mnemonic_concept": "Gaw, a slightly crazy crow caw",
   "sentences": [
    {
-    "id": "TH_S000097",
-    "text": "ใส่น้ำตาลนิดเดียวก็พอ",
-    "romanization": "sài náam-dtaan nít diao gɔ̂ɔ phɔɔ",
-    "translation": "Just a little sugar is enough.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S002027",
+    "text": "ถ้าคุณชอบชาก็เอาชาครับ",
+    "romanization": "thâa khun chɔ̂ɔp chaa gâw ao chaa khráp",
+    "translation": "If you like tea, then have tea.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000982",
-    "text": "หนึ่งหมื่นบาทก็ได้ครับ",
-    "romanization": "nʉ̀ng mʉ̀ʉn bàat gâw dâai khráp",
-    "translation": "Ten thousand baht is fine.",
+    "id": "TH_S002028",
+    "text": "ถ้ากาแฟร้อนก็ขอชาเย็นค่ะ",
+    "romanization": "thâa gaa-fae rɔ́ɔn gâw khɔ̌ɔ chaa yen khâ",
+    "translation": "If the coffee is hot, I'll have cold tea.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001100",
-    "text": "วันไหนก็ได้ค่ะ",
-    "romanization": "wan-nǎi kɔ̂ɔ dâai khâ",
-    "translation": "Any day is fine.\\",
+    "id": "TH_S002029",
+    "text": "คุณไม่เอาข้าวผมก็ไม่เอาครับ",
+    "romanization": "khun mâi ao khâao phǒm gâw mâi ao khráp",
+    "translation": "If you don't want rice, I won't have it either.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002030",
+    "text": "ร้านนี้ถูกผมก็ชอบครับ",
+    "romanization": "ráan níi thùuk phǒm gâw chɔ̂ɔp khráp",
+    "translation": "This shop is cheap, so I like it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002031",
+    "text": "ถ้าคุณอยากได้ก็ขอได้ค่ะ",
+    "romanization": "thâa khun yàak dâai gâw khɔ̌ɔ dâai khâ",
+    "translation": "If you want it, you can ask for it.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -8499,7 +8611,9 @@
    "TH_L000418",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000165.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000165.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000165_slow.mp3"
@@ -12248,10 +12362,10 @@
   "examples": "เพราะฝนตก",
   "example_translation": "Because it rained.",
   "level": "beginner",
-  "sound_hook": null,
-  "hook_visual": "",
-  "mnemonic": null,
-  "mnemonic_concept": null,
+  "sound_hook": "Praw(n). A prawn without it's n.",
+  "hook_visual": "The man is wet because of the Praw(n). A prawn without it's n.",
+  "mnemonic": "Create a stunning 1:1 square digital collectible card illustration.\n\nA hilarious, cinematic scene featuring a fisherman in a small wooden fishing boat out at sea.\n\nA gigantic, bright red-orange king prawn has emerged from the water beside the boat. The enormous prawn is grabbing the boat with its giant claws and dramatically pulling it sideways through the waves.\n\nThe fisherman is desperately clinging to the side of his boat, looking terrified and completely bewildered. Fishing equipment is flying everywhere, water is splashing dramatically, and the boat is tilting at a ridiculous angle.\n\nMake the giant prawn the unmistakable star of the scene. Its distinctive curved body, long antennae, segmented shell and oversized claws should be clearly recognisable.\n\nThe visual story must communicate: **BECAUSE the giant prawn grabbed the boat, the fisherman is in trouble!**\n\nPlayful absurd humour, painterly digital illustration, rich textures, dramatic cinematic lighting, vibrant ocean colours, exaggerated scale, dynamic action and a clean central composition.\n\nSquare 1:1 composition. No text, letters, numbers, captions, labels, watermarks, logos, UI or card frame.",
+  "mnemonic_concept": "The man is wet because of the Praw(n). A prawn without it's n.",
   "sentences": [
    {
     "id": "TH_S000126",
@@ -12259,6 +12373,42 @@
     "romanization": "ráan níi khon yə́ phráw aa-hǎan à-rɔ̀i",
     "translation": "This restaurant is crowded because the food is delicious.",
     "difficulty": "intermediate",
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002071",
+    "text": "ฉันชอบร้านนี้เพราะอาหารอร่อยค่ะ",
+    "romanization": "chǎn chɔ̂ɔp ráan níi phrɔ́ aa-hǎan a-rɔ̀i khâ",
+    "translation": "I like this shop because the food is delicious.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002072",
+    "text": "ผมเอาชาเพราะกาแฟร้อนครับ",
+    "romanization": "phǒm ao chaa phrɔ́ gaa-fae rɔ́ɔn khráp",
+    "translation": "I'll have tea because the coffee is hot.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002073",
+    "text": "ฉันไม่กินปลาเพราะไม่ชอบค่ะ",
+    "romanization": "chǎn mâi gin bplaa phrɔ́ mâi chɔ̂ɔp khâ",
+    "translation": "I don't eat fish because I don't like it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002094",
+    "text": "ฉันเอาผักเพราะผักสดค่ะ",
+    "romanization": "chǎn ao phàk phrɔ́ phàk sòt khâ",
+    "translation": "I'll take vegetables because they're fresh.",
+    "difficulty": null,
     "is_target": true,
     "role": null
    }
@@ -12269,7 +12419,9 @@
    "TH_L000108",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000261.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000261.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000261_slow.mp3"
@@ -13645,8 +13797,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000296.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000296_slow.mp3?v=1"
   }
  },
  {
@@ -16607,8 +16759,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000381.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000381_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000381.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000381_slow.mp3?v=1"
   }
  },
  {
@@ -21751,7 +21903,35 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002027",
+    "text": "ถ้าคุณชอบชาก็เอาชาครับ",
+    "romanization": "thâa khun chɔ̂ɔp chaa gâw ao chaa khráp",
+    "translation": "If you like tea, then have tea.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S002028",
+    "text": "ถ้ากาแฟร้อนก็ขอชาเย็นค่ะ",
+    "romanization": "thâa gaa-fae rɔ́ɔn gâw khɔ̌ɔ chaa yen khâ",
+    "translation": "If the coffee is hot, I'll have cold tea.\\",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   },
+   {
+    "id": "TH_S002031",
+    "text": "ถ้าคุณอยากได้ก็ขอได้ค่ะ",
+    "romanization": "thâa khun yàak dâai gâw khɔ̌ɔ dâai khâ",
+    "translation": "If you want it, you can ask for it.",
+    "difficulty": null,
+    "is_target": false,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000014",
    "TH_L000018",
@@ -23466,10 +23646,10 @@
   "examples": "นี่คืออะไร",
   "example_translation": "What is this?",
   "level": "beginner",
-  "sound_hook": null,
+  "sound_hook": "A rye (bread)",
   "hook_visual": "",
   "mnemonic": null,
-  "mnemonic_concept": null,
+  "mnemonic_concept": "A rye (bread). What bread is this ?",
   "sentences": [
    {
     "id": "TH_S000105",
@@ -23481,39 +23661,39 @@
     "role": null
    },
    {
-    "id": "TH_S000063",
-    "text": "วันนี้ร้านนี้มีเมนูอะไรบ้าง",
-    "romanization": "wan-níi ráan níi mii mee-nuu à-rai bâang",
-    "translation": "What dishes does this restaurant have today?",
-    "difficulty": "intermediate",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000106",
-    "text": "คุณอยากกินอะไร",
-    "romanization": "khun yàak gin à-rai",
-    "translation": "What do you want to eat?",
-    "difficulty": "beginner",
-    "is_target": false,
-    "role": null
-   },
-   {
-    "id": "TH_S000586",
-    "text": "เราชื่ออะไรคะ",
-    "romanization": "rao chûue à-rai khá",
-    "translation": "What is our name?",
+    "id": "TH_S002012",
+    "text": "คุณอยากกินอะไรครับ",
+    "romanization": "khun yàak gin à-rai khráp",
+    "translation": "What would you like to eat?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000592",
-    "text": "คนนี้ชื่ออะไรคะ",
-    "romanization": "khon níi chûue à-rai khá",
-    "translation": "What is this person's name?",
+    "id": "TH_S002013",
+    "text": "คุณชอบดื่มอะไรคะ",
+    "romanization": "khun chɔ̂ɔp dùuem à-rai khá",
+    "translation": "What do you like to drink?\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002014",
+    "text": "คุณเอาอะไรครับ",
+    "romanization": "khun ao à-rai khráp",
+    "translation": "What would you like?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002084",
+    "text": "คุณอยากกินอะไรคะ",
+    "romanization": "khun yàak gin à-rai khá",
+    "translation": "What would you like to eat?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -23526,7 +23706,9 @@
    "TH_L000425",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000569.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000569.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000569_slow.mp3"
@@ -26011,8 +26193,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000639.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000639.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000639_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000639.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000639_slow.mp3?v=1"
   }
  },
  {
@@ -26101,8 +26283,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000642.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000642_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000642.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000642_slow.mp3?v=1"
   }
  },
  {
@@ -27307,8 +27489,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000678.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000678_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000678.mp3?v=3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000678_slow.mp3?v=3"
   }
  },
  {
@@ -28661,8 +28843,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000718.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000718_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000718.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000718_slow.mp3?v=1"
   }
  },
  {
@@ -29256,7 +29438,7 @@
   "example_translation": null,
   "level": null,
   "sound_hook": null,
-  "hook_visual": "",
+  "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [
@@ -29311,7 +29493,9 @@
    "TH_L000123",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000735.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000735.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000735_slow.mp3"
@@ -29644,8 +29828,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000744_slow.mp3?v=1"
   }
  },
  {
@@ -31508,8 +31692,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000800.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000800_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000800.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000800_slow.mp3?v=1"
   }
  },
  {
@@ -33242,8 +33426,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000850.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000850_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000850.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000850_slow.mp3?v=1"
   }
  },
  {
@@ -35903,8 +36087,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000934.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000934_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000934.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000934_slow.mp3?v=1"
   }
  },
  {
@@ -38158,8 +38342,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001143.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001002.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001002_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001002.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001002_slow.mp3?v=2"
   }
  },
  {
@@ -39153,8 +39337,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001016.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001016_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001016.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001016_slow.mp3?v=1"
   }
  },
  {
@@ -40059,8 +40243,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001029.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001029_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001029.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001029_slow.mp3?v=1"
   }
  },
  {
@@ -40222,8 +40406,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001031.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001031_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001031.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001031_slow.mp3?v=1"
   }
  },
  {
@@ -41328,8 +41512,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001060.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001060_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001060.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001060_slow.mp3?v=1"
   }
  },
  {
@@ -41787,8 +41971,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001077.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001077_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001077.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001077_slow.mp3?v=1"
   }
  },
  {
@@ -43957,8 +44141,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001147.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001147_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001147.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001147_slow.mp3?v=2"
   }
  },
  {
@@ -44046,8 +44230,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001149.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001149_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001149.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001149_slow.mp3?v=2"
   }
  },
  {
@@ -44243,8 +44427,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001154.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001154_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001154.mp3?v=9",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001154_slow.mp3?v=8"
   }
  },
  {
@@ -44577,8 +44761,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001164.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001164_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001164.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001164_slow.mp3?v=1"
   }
  },
  {
@@ -44696,8 +44880,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001166.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001166_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001166.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001166_slow.mp3?v=1"
   }
  },
  {
@@ -45405,8 +45589,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001191.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001191_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001191.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001191_slow.mp3?v=1"
   }
  },
  {
@@ -45938,8 +46122,8 @@
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001200.jpg"
   ],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001200.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001200_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001200.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001200_slow.mp3?v=1"
   }
  },
  {
@@ -47779,8 +47963,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001225.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001225_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001225.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001225_slow.mp3?v=1"
   }
  },
  {
@@ -49442,8 +49626,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001279.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001279_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001279.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001279_slow.mp3?v=1"
   }
  },
  {
@@ -49471,8 +49655,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001280.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001280_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001280.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001280_slow.mp3?v=1"
   }
  },
  {
@@ -50153,8 +50337,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001303.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001303_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001303.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001303_slow.mp3?v=1"
   }
  },
  {
@@ -50211,8 +50395,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001305.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001305_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001305.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001305_slow.mp3?v=1"
   }
  },
  {
@@ -50300,8 +50484,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001308.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001308_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001308.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001308_slow.mp3?v=2"
   }
  },
  {
@@ -50798,8 +50982,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001325.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001325_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001325.mp3?v=3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001325_slow.mp3?v=3"
   }
  },
  {
@@ -51183,8 +51367,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001338.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001338_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001338.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001338_slow.mp3?v=1"
   }
  },
  {
@@ -53553,8 +53737,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001418.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001418_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001418.mp3?v=3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001418_slow.mp3?v=3"
   }
  },
  {
@@ -54205,8 +54389,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001440.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001440_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001440.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001440_slow.mp3?v=1"
   }
  },
  {
@@ -54618,8 +54802,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001454.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001454_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001454.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001454_slow.mp3?v=2"
   }
  },
  {
@@ -55976,8 +56160,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001500.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001500_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001500.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001500_slow.mp3?v=1"
   }
  },
  {
@@ -56931,8 +57115,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001532.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001532_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001532.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001532_slow.mp3?v=1"
   }
  },
  {
@@ -58918,8 +59102,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001611.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001611_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001611.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001611_slow.mp3?v=1"
   }
  },
  {
@@ -59266,11 +59450,57 @@
   "examples": null,
   "example_translation": null,
   "level": "B1",
-  "sound_hook": null,
+  "sound_hook": "Praw(n) Waa",
   "hook_visual": "",
   "mnemonic": null,
-  "mnemonic_concept": null,
-  "sentences": [],
+  "mnemonic_concept": "A Praw(n) making people in a traffic jam go waa",
+  "sentences": [
+   {
+    "id": "TH_S002074",
+    "text": "ฉันชอบร้านนี้เพราะว่าอาหารอร่อยค่ะ",
+    "romanization": "chǎn chɔ̂ɔp ráan níi phrɔ́-wâa aa-hǎan a-rɔ̀i khâ",
+    "translation": "I like this shop because the food is delicious.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002075",
+    "text": "ผมเอาชาเพราะว่ากาแฟร้อนครับ",
+    "romanization": "phǒm ao chaa phrɔ́-wâa gaa-fae rɔ́ɔn khráp",
+    "translation": "I'll have tea because the coffee is hot.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002076",
+    "text": "ฉันไม่กินปลาเพราะว่าไม่ชอบค่ะ",
+    "romanization": "chǎn mâi gin bplaa phrɔ́-wâa mâi chɔ̂ɔp khâ",
+    "translation": "I don't eat fish because I don't like it.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002096",
+    "text": "ฉันชอบผักเพราะว่าผักสดค่ะ",
+    "romanization": "chǎn chɔ̂ɔp phàk phrɔ́-wâa phàk sòt khâ",
+    "translation": "I like vegetables because they're fresh.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002097",
+    "text": "ผมชอบร้านนั้นเพราะว่ามีชาเย็นครับ",
+    "romanization": "phǒm chɔ̂ɔp ráan nán phrɔ́-wâa mii chaa yen khráp",
+    "translation": "I like that shop because it has iced tea.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000044",
    "TH_L000108",
@@ -59279,7 +59509,9 @@
    "TH_L000292",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001623.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001623.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001623_slow.mp3"
@@ -59823,8 +60055,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001636.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001636_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001636.mp3?v=3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001636_slow.mp3?v=3"
   }
  },
  {
@@ -59902,7 +60134,7 @@
   "emoji": "⏳",
   "visual": "⏳",
   "ascii": "",
-  "tone": "mid",
+  "tone": "rising",
   "categories": "thinking",
   "examples": null,
   "example_translation": null,
@@ -60029,15 +60261,63 @@
   "example_translation": null,
   "level": "A2",
   "sound_hook": null,
-  "hook_visual": "",
+  "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002081",
+    "text": "ฉันชอบกาแฟน้อยกว่าชาค่ะ",
+    "romanization": "chǎn chɔ̂ɔp gaa-fae nɔ́ɔi-gwàa chaa khâ",
+    "translation": "I like coffee less than tea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002082",
+    "text": "ร้านนี้มีเงินน้อยกว่าร้านนั้นค่ะ",
+    "romanization": "ráan níi mii ngern nɔ́ɔi-gwàa ráan nán khâ",
+    "translation": "This shop has less money than that shop.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002083",
+    "text": "ผมอยากได้ข้าวน้อยกว่าผักครับ",
+    "romanization": "phǒm yàak dâai khâao nɔ́ɔi-gwàa phàk khráp",
+    "translation": "I want less rice than vegetables.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002099",
+    "text": "ร้านนี้มีอาหารน้อยกว่าร้านนั้นครับ",
+    "romanization": "ráan níi mii aa-hǎan nɔ́ɔi-gwàa ráan nán khráp",
+    "translation": "This shop has less food than that shop.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002100",
+    "text": "ผมมีเงินน้อยกว่าคุณครับ",
+    "romanization": "phǒm mii ngern nɔ́ɔi-gwàa khun khráp",
+    "translation": "I have less money than you.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000123",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001642.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001642.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001642_slow.mp3"
@@ -62097,8 +62377,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001721.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001721_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001721.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001721_slow.mp3?v=2"
   }
  },
  {
@@ -62387,8 +62667,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001731.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001731_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001731.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001731_slow.mp3?v=1"
   }
  },
  {
@@ -62619,8 +62899,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001741.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001741_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001741.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001741_slow.mp3?v=1"
   }
  },
  {
@@ -64439,14 +64719,62 @@
   "level": null,
   "sound_hook": null,
   "hook_visual": "",
-  "mnemonic": null,
+  "mnemonic": "Create a stunning 1:1 square digital collectible card illustration.\n\nA confused traveller stands at a three-way crossroads, holding an enormous steaming cup of tea with both hands.\n\nThe traveller is looking around in complete confusion, trying to find a tea shop. Their expression clearly says: WHERE?!\n\nThree distinct roads lead away from the crossroads:\n- One leads towards a small village.\n- One leads towards a forest.\n- One leads towards distant mountains.\n\nAt the crossroads stands a wooden signpost with three empty directional arrows. No writing on the signs.\n\nThe giant teacup is an important visual feature. Make it large, clearly recognisable and filled with steaming amber-coloured tea.\n\nThe traveller looks lost and uncertain about which direction to take. The scene should communicate someone searching for WHERE to find tea.\n\nKeep the composition simple, with the traveller, oversized teacup and three-way crossroads clearly visible.\n\nPlayful visual humour, polished painterly digital illustration, expressive character, rich natural colours, warm cinematic lighting and crisp details.\n\nSquare 1:1 composition. No text, letters, numbers, captions, labels, watermarks, logos, UI or card frame.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002015",
+    "text": "คุณอยู่ที่ไหนครับ",
+    "romanization": "khun yùu thîi-nǎi khráp",
+    "translation": "Where are you?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002016",
+    "text": "ร้านกาแฟอยู่ที่ไหนคะ",
+    "romanization": "ráan gaa-fae yùu thîi-nǎi khá",
+    "translation": "Where is the coffee shop?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002017",
+    "text": "คุณอยากไปที่ไหนครับ",
+    "romanization": "khun yàak bpai thîi-nǎi khráp",
+    "translation": "Where would you like to go?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002018",
+    "text": "ร้านอาหารอยู่ที่ไหนคะ",
+    "romanization": "ráan aa-hǎan yùu thîi-nǎi khá",
+    "translation": "Where is the restaurant?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002019",
+    "text": "คุณได้มาจากที่ไหนครับ",
+    "romanization": "khun dâai maa jàak thîi-nǎi khráp",
+    "translation": "Where did you come from?",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000100",
    "TH_L000459"
   ],
-  "images": [],
+  "images": [
+   "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001824.jpg"
+  ],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001824.mp3",
    "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001824_slow.mp3"
@@ -67306,8 +67634,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001920.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001920_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001920.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001920_slow.mp3?v=1"
   }
  },
  {
@@ -71557,8 +71885,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002063.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002063_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002063.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002063_slow.mp3?v=1"
   }
  },
  {
@@ -72271,8 +72599,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002087.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002087_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002087.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002087_slow.mp3?v=1"
   }
  },
  {
@@ -75488,8 +75816,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002195.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002195_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002195.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002195_slow.mp3?v=2"
   }
  },
  {
@@ -76132,8 +76460,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002217.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002217_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002217.mp3?v=4",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002217_slow.mp3?v=4"
   }
  },
  {
@@ -76543,8 +76871,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002231.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002231_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002231.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002231_slow.mp3?v=1"
   }
  },
  {
@@ -77410,8 +77738,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002259.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002259_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002259.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002259_slow.mp3?v=1"
   }
  },
  {
@@ -77602,8 +77930,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002265.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002265_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002265.mp3?v=6",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002265_slow.mp3?v=6"
   }
  },
  {
@@ -77637,8 +77965,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002266.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002266_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002266.mp3?v=3",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002266_slow.mp3?v=3"
   }
  },
  {
@@ -77892,8 +78220,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002273.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002273_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002273.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002273_slow.mp3?v=1"
   }
  },
  {
@@ -78130,7 +78458,7 @@
   "emoji": "📕",
   "visual": "🧑 + 📕",
   "ascii": "",
-  "tone": "mid-rising-mid-mid",
+  "tone": "rising-rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -78910,8 +79238,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002304.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002304_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002304.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002304_slow.mp3?v=1"
   }
  },
  {
@@ -80661,8 +80989,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002358.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002358_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002358.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002358_slow.mp3?v=1"
   }
  },
  {
@@ -84687,8 +85015,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002479.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002479_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002479.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002479_slow.mp3?v=1"
   }
  },
  {
@@ -111328,7 +111656,7 @@
   "emoji": "👋",
   "visual": "👤 + ⏳",
   "ascii": "",
-  "tone": "mid-mid-mid",
+  "tone": "rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -122715,8 +123043,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003686.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003686_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003686.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003686_slow.mp3?v=1"
   }
  },
  {
@@ -125531,8 +125859,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003776.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003776_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003776.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_003776_slow.mp3?v=1"
   }
  },
  {
@@ -135539,7 +135867,7 @@
   "emoji": "😮",
   "visual": "😮",
   "ascii": "",
-  "tone": "mid",
+  "tone": "rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -135605,7 +135933,7 @@
   "emoji": "💡",
   "visual": "💡",
   "ascii": "",
-  "tone": "mid-mid",
+  "tone": "rising-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -135620,8 +135948,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004098.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004098_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004098.mp3?v=4",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004098_slow.mp3?v=4"
   }
  },
  {
@@ -135886,7 +136214,7 @@
   "emoji": "👍",
   "visual": "👍",
   "ascii": "",
-  "tone": "mid-falling-high",
+  "tone": "rising-falling-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136076,7 +136404,7 @@
   "emoji": "↔",
   "visual": "↔",
   "ascii": "",
-  "tone": "falling-falling-mid-falling",
+  "tone": "falling-falling-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136107,7 +136435,7 @@
   "emoji": "↔",
   "visual": "↔",
   "ascii": "",
-  "tone": "mid-falling-falling-falling",
+  "tone": "rising-falling-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136138,7 +136466,7 @@
   "emoji": "↔",
   "visual": "↔",
   "ascii": "",
-  "tone": "mid-falling-falling-falling",
+  "tone": "rising-falling-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136169,7 +136497,7 @@
   "emoji": "↔",
   "visual": "↔",
   "ascii": "",
-  "tone": "mid-falling-falling-falling-falling",
+  "tone": "rising-falling-falling-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136200,7 +136528,7 @@
   "emoji": "↔",
   "visual": "↔",
   "ascii": "",
-  "tone": "mid-falling-falling-falling-falling",
+  "tone": "rising-falling-falling-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136231,7 +136559,7 @@
   "emoji": "↔",
   "visual": "↔",
   "ascii": "",
-  "tone": "falling-mid-low-low-high",
+  "tone": "falling-rising-low-low-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136576,7 +136904,7 @@
   "emoji": "❓",
   "visual": "❓",
   "ascii": "",
-  "tone": "mid-low-mid-mid-low",
+  "tone": "mid-low-mid-rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136607,7 +136935,7 @@
   "emoji": "✋",
   "visual": "✋",
   "ascii": "",
-  "tone": "mid-low",
+  "tone": "rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136640,7 +136968,7 @@
   "emoji": "⏳",
   "visual": "⏳",
   "ascii": "",
-  "tone": "mid-falling-mid",
+  "tone": "rising-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136704,7 +137032,7 @@
   "emoji": "⏳",
   "visual": "⏳",
   "ascii": "",
-  "tone": "high-mid-mid",
+  "tone": "high-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136865,7 +137193,7 @@
   "emoji": "❓",
   "visual": "❓",
   "ascii": "",
-  "tone": "falling-falling-mid-mid",
+  "tone": "falling-falling-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -136990,7 +137318,7 @@
   "emoji": "👀",
   "visual": "👀",
   "ascii": "",
-  "tone": "falling-falling-mid",
+  "tone": "falling-falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -137021,7 +137349,7 @@
   "emoji": "👀",
   "visual": "👀",
   "ascii": "",
-  "tone": "mid-mid-falling",
+  "tone": "mid-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -137336,7 +137664,7 @@
   "emoji": "⭐",
   "visual": "⭐",
   "ascii": "",
-  "tone": "falling-mid-mid-mid",
+  "tone": "falling-rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -137560,7 +137888,7 @@
   "emoji": "💪",
   "visual": "💪",
   "ascii": "",
-  "tone": "mid-mid",
+  "tone": "mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -137591,7 +137919,7 @@
   "emoji": "💪",
   "visual": "💪",
   "ascii": "",
-  "tone": "mid-high",
+  "tone": "rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -137623,7 +137951,7 @@
   "emoji": "🚫",
   "visual": "🚫",
   "ascii": "",
-  "tone": "falling-mid",
+  "tone": "falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -138037,7 +138365,7 @@
   "emoji": "❓",
   "visual": "❓",
   "ascii": "",
-  "tone": "falling-mid-low",
+  "tone": "falling-rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -138348,7 +138676,7 @@
   "emoji": "🔧",
   "visual": "🔧",
   "ascii": "",
-  "tone": "mid-low-mid-mid",
+  "tone": "rising-low-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -138379,7 +138707,7 @@
   "emoji": "👤",
   "visual": "👤",
   "ascii": "",
-  "tone": "mid-mid",
+  "tone": "rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -138410,7 +138738,7 @@
   "emoji": "👤",
   "visual": "👤",
   "ascii": "",
-  "tone": "mid-mid-mid",
+  "tone": "rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -138723,7 +139051,7 @@
   "emoji": "🗣️",
   "visual": "🗣️",
   "ascii": "",
-  "tone": "mid-mid-mid",
+  "tone": "rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -138754,7 +139082,7 @@
   "emoji": "⏳",
   "visual": "⏳",
   "ascii": "",
-  "tone": "mid-falling-mid",
+  "tone": "rising-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139571,7 +139899,7 @@
   "emoji": "🙏",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-high-mid-low",
+  "tone": "rising-high-mid-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139664,7 +139992,7 @@
   "emoji": "🙏",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-low-falling-high",
+  "tone": "rising-low-falling-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139727,7 +140055,7 @@
   "emoji": "🎭",
   "visual": "👤 ✕ 🎭",
   "ascii": "",
-  "tone": "mid-falling-falling-falling",
+  "tone": "rising-falling-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139789,7 +140117,7 @@
   "emoji": "😳",
   "visual": "👤 + 👥",
   "ascii": "",
-  "tone": "mid-mid",
+  "tone": "mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139820,7 +140148,7 @@
   "emoji": "🎭",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-falling-mid-falling",
+  "tone": "mid-falling-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139851,7 +140179,7 @@
   "emoji": "🎭",
   "visual": "👤 + 👤",
   "ascii": "",
-  "tone": "falling-low-falling-mid-falling",
+  "tone": "falling-low-falling-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -139944,7 +140272,7 @@
   "emoji": "🤫",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "falling-high-mid",
+  "tone": "falling-high-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -140006,7 +140334,7 @@
   "emoji": "🤫",
   "visual": "👤 / 👤",
   "ascii": "",
-  "tone": "high-mid",
+  "tone": "high-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -140223,7 +140551,7 @@
   "emoji": "❤️",
   "visual": "👤 → ❤️",
   "ascii": "",
-  "tone": "low-mid-mid-low-high-mid",
+  "tone": "low-mid-rising-low-high-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -140440,7 +140768,7 @@
   "emoji": "↩",
   "visual": "❓ ↩",
   "ascii": "",
-  "tone": "mid-falling-falling",
+  "tone": "rising-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -140564,7 +140892,7 @@
   "emoji": "👀",
   "visual": "👀 + 👥",
   "ascii": "",
-  "tone": "mid-low-mid-mid-mid",
+  "tone": "mid-low-rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -140595,7 +140923,7 @@
   "emoji": "👀",
   "visual": "👀 + 👥",
   "ascii": "",
-  "tone": "mid-falling-mid-mid",
+  "tone": "mid-falling-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -141438,7 +141766,7 @@
   "emoji": "🚫",
   "visual": "👤 → 🎁",
   "ascii": "",
-  "tone": "mid-low",
+  "tone": "rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -141500,7 +141828,7 @@
   "emoji": "↔",
   "visual": "👤 ↔ 👤",
   "ascii": "",
-  "tone": "high-mid-high-high",
+  "tone": "high-rising-high-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -141719,7 +142047,7 @@
   "emoji": "🚫",
   "visual": "❓ x 🚫",
   "ascii": "",
-  "tone": "falling-mid-mid",
+  "tone": "falling-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -141845,7 +142173,7 @@
   "emoji": "🙏",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-falling-mid-mid",
+  "tone": "rising-falling-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -141909,7 +142237,7 @@
   "emoji": "🙏",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-falling-falling-mid",
+  "tone": "rising-falling-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142033,7 +142361,7 @@
   "emoji": "🍚",
   "visual": "👤 → 🍚",
   "ascii": "",
-  "tone": "mid-high",
+  "tone": "rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142064,7 +142392,7 @@
   "emoji": "🍚",
   "visual": "👤 → 🍚",
   "ascii": "",
-  "tone": "mid-mid-high",
+  "tone": "rising-rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142095,7 +142423,7 @@
   "emoji": "🍚",
   "visual": "👤 → 🍚",
   "ascii": "",
-  "tone": "mid-mid-high",
+  "tone": "rising-rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142375,7 +142703,7 @@
   "emoji": "🙏",
   "visual": "👤 + ⚠️",
   "ascii": "",
-  "tone": "mid-falling-low-mid-mid-high-mid",
+  "tone": "mid-falling-low-rising-mid-high-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142717,7 +143045,7 @@
   "emoji": "✋",
   "visual": "👤 x ⚠️",
   "ascii": "",
-  "tone": "falling-low-mid-mid-mid",
+  "tone": "falling-low-mid-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142939,7 +143267,7 @@
   "emoji": "⚖",
   "visual": "👤 + ⚖",
   "ascii": "",
-  "tone": "low-falling-low-mid",
+  "tone": "low-falling-low-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -142970,7 +143298,7 @@
   "emoji": "🗣️",
   "visual": "👤 ↔ 👤",
   "ascii": "",
-  "tone": "mid-mid-mid-low",
+  "tone": "rising-mid-mid-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143001,7 +143329,7 @@
   "emoji": "❤️",
   "visual": "👤 + ❤️",
   "ascii": "",
-  "tone": "falling-mid-falling",
+  "tone": "falling-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143032,7 +143360,7 @@
   "emoji": "❤️",
   "visual": "👤 ↔ 👤",
   "ascii": "",
-  "tone": "high-mid-mid-mid-mid",
+  "tone": "high-rising-mid-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143156,7 +143484,7 @@
   "emoji": "🚫",
   "visual": "❓ x 🚫",
   "ascii": "",
-  "tone": "low-mid-falling-high",
+  "tone": "low-rising-falling-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143218,7 +143546,7 @@
   "emoji": "🚫",
   "visual": "👤 x 🚫",
   "ascii": "",
-  "tone": "falling-low-mid",
+  "tone": "falling-low-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143280,7 +143608,7 @@
   "emoji": "🚫",
   "visual": "👤 x 🚫",
   "ascii": "",
-  "tone": "mid-mid-high-mid",
+  "tone": "rising-mid-high-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143560,7 +143888,7 @@
   "emoji": "👀",
   "visual": "👀 + 👤",
   "ascii": "",
-  "tone": "mid-mid-falling",
+  "tone": "mid-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143591,7 +143919,7 @@
   "emoji": "👀",
   "visual": "👀",
   "ascii": "",
-  "tone": "mid-low-mid",
+  "tone": "rising-low-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143746,7 +144074,7 @@
   "emoji": "🧩",
   "visual": "👤 + 🧩",
   "ascii": "",
-  "tone": "falling-low-low-mid-mid-mid",
+  "tone": "falling-low-low-rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143777,7 +144105,7 @@
   "emoji": "🚫",
   "visual": "👤 x 🧩",
   "ascii": "",
-  "tone": "falling-falling-low-low-mid-mid-mid",
+  "tone": "falling-falling-low-low-rising-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -143994,7 +144322,7 @@
   "emoji": "👀",
   "visual": "👤 + 👀",
   "ascii": "",
-  "tone": "mid-mid-low",
+  "tone": "rising-mid-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -144025,7 +144353,7 @@
   "emoji": "👀",
   "visual": "👤 + 👀",
   "ascii": "",
-  "tone": "mid-mid-mid-low",
+  "tone": "rising-rising-mid-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -144399,7 +144727,7 @@
   "emoji": "🙏",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "low-mid-mid-low-mid-falling-mid",
+  "tone": "low-mid-rising-low-mid-falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -144492,7 +144820,7 @@
   "emoji": "🗣️",
   "visual": "🗣️ + 🙏",
   "ascii": "",
-  "tone": "mid-falling-mid-mid-high",
+  "tone": "rising-falling-mid-mid-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -144586,7 +144914,7 @@
   "emoji": "❤️",
   "visual": "👤 + ❤️",
   "ascii": "",
-  "tone": "low-mid-mid-high",
+  "tone": "low-rising-rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -144710,7 +145038,7 @@
   "emoji": "❤️",
   "visual": "👤 ↔ 👤",
   "ascii": "",
-  "tone": "high-mid-high-mid-mid",
+  "tone": "high-rising-high-mid-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -145682,7 +146010,7 @@
   "emoji": "😏",
   "visual": "👤 + ⭐",
   "ascii": "",
-  "tone": "falling-mid-low-mid",
+  "tone": "falling-rising-low-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -145886,8 +146214,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004426.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004426_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004426.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004426_slow.mp3?v=1"
   }
  },
  {
@@ -146556,7 +146884,7 @@
   "emoji": "😂",
   "visual": "👤 + 🤪",
   "ascii": "",
-  "tone": "falling-mid-low",
+  "tone": "falling-rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -146681,7 +147009,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-falling-high",
+  "tone": "rising-falling-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -146712,7 +147040,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-falling-high",
+  "tone": "rising-falling-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -146743,7 +147071,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-falling-low",
+  "tone": "rising-falling-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -146774,7 +147102,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-falling-low",
+  "tone": "rising-falling-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147053,7 +147381,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-high-mid",
+  "tone": "mid-high-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147084,7 +147412,7 @@
   "emoji": "😏",
   "visual": "👤 + ⭐",
   "ascii": "",
-  "tone": "mid-high-mid-high-mid-mid",
+  "tone": "mid-high-mid-high-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147208,7 +147536,7 @@
   "emoji": "😮",
   "visual": "👤 + ❓",
   "ascii": "",
-  "tone": "mid-mid-mid",
+  "tone": "mid-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147270,7 +147598,7 @@
   "emoji": "😮",
   "visual": "😮",
   "ascii": "",
-  "tone": "mid-mid-low",
+  "tone": "rising-mid-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147457,7 +147785,7 @@
   "emoji": "😮",
   "visual": "👤 + 😮",
   "ascii": "",
-  "tone": "mid-falling-mid",
+  "tone": "rising-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147612,7 +147940,7 @@
   "emoji": "😏",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "falling-mid-low",
+  "tone": "falling-rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147922,7 +148250,7 @@
   "emoji": "😂",
   "visual": "👤 + 🤪",
   "ascii": "",
-  "tone": "mid-low-mid-mid-mid",
+  "tone": "mid-low-mid-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147953,7 +148281,7 @@
   "emoji": "😂",
   "visual": "👤 + 🤪",
   "ascii": "",
-  "tone": "mid-low-mid-mid-mid",
+  "tone": "mid-low-mid-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -147984,7 +148312,7 @@
   "emoji": "😂",
   "visual": "👤 + ❓",
   "ascii": "",
-  "tone": "mid-low-mid-mid-mid",
+  "tone": "mid-low-mid-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -148015,7 +148343,7 @@
   "emoji": "😂",
   "visual": "👤 + 🗣️",
   "ascii": "",
-  "tone": "falling-low-mid-mid-mid",
+  "tone": "falling-low-mid-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -148141,7 +148469,7 @@
   "emoji": "😂",
   "visual": "👤 + ❓",
   "ascii": "",
-  "tone": "low-mid-mid-mid-falling",
+  "tone": "low-mid-rising-mid-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -148298,7 +148626,7 @@
   "emoji": "😏",
   "visual": "👤 + 👤",
   "ascii": "",
-  "tone": "falling-mid-mid",
+  "tone": "falling-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -148360,7 +148688,7 @@
   "emoji": "👀",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-mid-high",
+  "tone": "mid-rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -148518,7 +148846,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-falling-mid-high",
+  "tone": "mid-falling-rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -148925,7 +149253,7 @@
   "emoji": "✋",
   "visual": "👤 + ✋",
   "ascii": "",
-  "tone": "falling-mid",
+  "tone": "falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -149113,7 +149441,7 @@
   "emoji": "😂",
   "visual": "❓ + 😂",
   "ascii": "",
-  "tone": "low-mid-high-mid",
+  "tone": "low-mid-high-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -149146,7 +149474,7 @@
   "emoji": "😂",
   "visual": "❓ + 😂",
   "ascii": "",
-  "tone": "low-low-mid-high-mid",
+  "tone": "low-low-mid-high-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -149519,7 +149847,7 @@
   "emoji": "👉",
   "visual": "👤 → 👤",
   "ascii": "",
-  "tone": "mid-high-falling",
+  "tone": "rising-high-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -149829,7 +150157,7 @@
   "emoji": "😏",
   "visual": "👤 + ⭐",
   "ascii": "",
-  "tone": "low-mid-mid",
+  "tone": "low-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -150635,7 +150963,7 @@
   "emoji": "😂",
   "visual": "👤 + ❓",
   "ascii": "",
-  "tone": "low-mid-mid-mid",
+  "tone": "low-mid-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -150761,7 +151089,7 @@
   "emoji": "😂",
   "visual": "😂 + 😂",
   "ascii": "",
-  "tone": "rising-falling-mid-falling",
+  "tone": "rising-falling-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -153018,8 +153346,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004655.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004655_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004655.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004655_slow.mp3?v=1"
   }
  },
  {
@@ -158464,8 +158792,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004830.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004830_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004830.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004830_slow.mp3?v=1"
   }
  },
  {
@@ -162577,7 +162905,7 @@
   "emoji": "☝️",
   "visual": "📄+👀",
   "ascii": "",
-  "tone": "high-falling-mid",
+  "tone": "high-falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -162872,8 +163200,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004972.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004972_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004972.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004972_slow.mp3?v=1"
   }
  },
  {
@@ -162904,8 +163232,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004973.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004973_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004973.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_004973_slow.mp3?v=1"
   }
  },
  {
@@ -167773,8 +168101,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005128.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005128_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005128.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005128_slow.mp3?v=1"
   }
  },
  {
@@ -168906,7 +169234,7 @@
   "emoji": "😢",
   "visual": "👤+😢",
   "ascii": "",
-  "tone": "mid-rising",
+  "tone": "rising-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -169869,7 +170197,7 @@
   "emoji": "🎬",
   "visual": "🎬+👀",
   "ascii": "",
-  "tone": "falling-mid",
+  "tone": "falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -170086,7 +170414,7 @@
   "emoji": "👀",
   "visual": "👤+📄",
   "ascii": "",
-  "tone": "mid-mid-mid",
+  "tone": "mid-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -171238,7 +171566,7 @@
   "emoji": "👍",
   "visual": "📖+👍",
   "ascii": "",
-  "tone": "mid-mid",
+  "tone": "rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -171269,7 +171597,7 @@
   "emoji": "👎",
   "visual": "📖+👎",
   "ascii": "",
-  "tone": "falling-mid-mid",
+  "tone": "falling-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -171300,7 +171628,7 @@
   "emoji": "🖼️",
   "visual": "📺+🖼️",
   "ascii": "",
-  "tone": "falling-mid",
+  "tone": "falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -173114,8 +173442,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005300.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005300_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005300.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005300_slow.mp3?v=1"
   }
  },
  {
@@ -173146,8 +173474,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005301.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005301_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005301.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005301_slow.mp3?v=1"
   }
  },
  {
@@ -176650,8 +176978,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005414.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005414_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005414.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005414_slow.mp3?v=1"
   }
  },
  {
@@ -177177,8 +177505,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005431.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005431_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005431.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005431_slow.mp3?v=1"
   }
  },
  {
@@ -178310,7 +178638,7 @@
   "emoji": "📰",
   "visual": "📰+🏆",
   "ascii": "",
-  "tone": "mid-mid-mid",
+  "tone": "mid-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -178341,7 +178669,7 @@
   "emoji": "🏆",
   "visual": "📄+🏆",
   "ascii": "",
-  "tone": "mid-mid-low-rising",
+  "tone": "rising-mid-low-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -179954,7 +180282,7 @@
   "emoji": "🏆",
   "visual": "👥+🏆",
   "ascii": "",
-  "tone": "mid-mid-high-high",
+  "tone": "rising-mid-high-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -182990,8 +183318,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005618.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005618_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005618.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005618_slow.mp3?v=1"
   }
  },
  {
@@ -190207,8 +190535,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005850.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005850_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005850.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005850_slow.mp3?v=2"
   }
  },
  {
@@ -191199,8 +191527,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005882.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005882_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005882.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005882_slow.mp3?v=1"
   }
  },
  {
@@ -191293,8 +191621,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005885.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005885_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005885.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005885_slow.mp3?v=2"
   }
  },
  {
@@ -192056,7 +192384,7 @@
   "emoji": "📍",
   "visual": "อยู่ + ❓",
   "ascii": "",
-  "tone": "low-mid-falling",
+  "tone": "low-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -192381,7 +192709,7 @@
   "emoji": "😵",
   "visual": "ไม่ไหว + แล้ว",
   "ascii": "",
-  "tone": "falling-mid-high",
+  "tone": "falling-rising-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -192691,7 +193019,7 @@
   "emoji": "✋",
   "visual": "✋ + ✋",
   "ascii": "",
-  "tone": "mid-mid",
+  "tone": "rising-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -192706,8 +193034,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005929.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005929_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005929.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_005929_slow.mp3?v=1"
   }
  },
  {
@@ -192910,7 +193238,7 @@
   "emoji": "🗣️",
   "visual": "🗣️ + หมายถึง",
   "ascii": "",
-  "tone": "mid-rising",
+  "tone": "rising-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -193561,7 +193889,7 @@
   "emoji": "😮",
   "visual": "อย่างนั้น + ❓",
   "ascii": "",
-  "tone": "low-high-mid",
+  "tone": "low-high-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -194243,7 +194571,7 @@
   "emoji": "⏳",
   "visual": "เดี๋ยว + ค่อย",
   "ascii": "",
-  "tone": "mid-falling",
+  "tone": "rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -194305,7 +194633,7 @@
   "emoji": "📞",
   "visual": "เออ + 📞",
   "ascii": "",
-  "tone": "mid-mid-mid-low",
+  "tone": "mid-rising-mid-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -194336,7 +194664,7 @@
   "emoji": "👍",
   "visual": "👍 + จัดการ",
   "ascii": "",
-  "tone": "mid-mid-mid-low-mid-falling",
+  "tone": "mid-mid-rising-low-mid-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -194460,7 +194788,7 @@
   "emoji": "🔁",
   "visual": "ไม่เป็นไร + 🔁",
   "ascii": "",
-  "tone": "falling-mid-mid-mid-mid-low",
+  "tone": "falling-mid-mid-rising-rising-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -195770,7 +196098,7 @@
   "emoji": "❓",
   "visual": "👤 + ❓",
   "ascii": "",
-  "tone": "mid-mid-falling-mid",
+  "tone": "rising-mid-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -195956,7 +196284,7 @@
   "emoji": "😮",
   "visual": "👤 + 😮",
   "ascii": "",
-  "tone": "falling-mid",
+  "tone": "falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -196049,7 +196377,7 @@
   "emoji": "💡",
   "visual": "👤 + 💡",
   "ascii": "",
-  "tone": "falling-mid-mid-high",
+  "tone": "falling-rising-mid-high",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -196639,7 +196967,7 @@
   "emoji": "⏳",
   "visual": "👤 + ⏳",
   "ascii": "",
-  "tone": "mid-high-low-mid-falling-mid",
+  "tone": "mid-high-low-rising-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -197073,7 +197401,7 @@
   "emoji": "🤔",
   "visual": "👤 + ❓",
   "ascii": "",
-  "tone": "rising-falling-mid-low-mid",
+  "tone": "rising-falling-mid-low-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -197104,7 +197432,7 @@
   "emoji": "💬",
   "visual": "👤 + 💬",
   "ascii": "",
-  "tone": "rising-mid-rising-falling",
+  "tone": "rising-rising-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -197832,8 +198160,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006072.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006072_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006072.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006072_slow.mp3?v=1"
   }
  },
  {
@@ -198065,7 +198393,7 @@
   "emoji": "😂",
   "visual": "👤 + 😂",
   "ascii": "",
-  "tone": "mid-mid-mid-falling-mid",
+  "tone": "mid-mid-rising-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -198561,7 +198889,7 @@
   "emoji": "😄",
   "visual": "👥 + 😄",
   "ascii": "",
-  "tone": "mid-low-mid-low-low-low-low-mid",
+  "tone": "mid-low-mid-low-low-low-low-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -198778,7 +199106,7 @@
   "emoji": "👥",
   "visual": "👤 + 👥",
   "ascii": "",
-  "tone": "rising-mid-rising-mid",
+  "tone": "rising-rising-rising-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -198964,7 +199292,7 @@
   "emoji": "👥",
   "visual": "👤 + 👤",
   "ascii": "",
-  "tone": "rising-mid-high-high-low-mid-mid",
+  "tone": "rising-mid-high-high-low-mid-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -199305,7 +199633,7 @@
   "emoji": "🗣️",
   "visual": "👤 + 👥",
   "ascii": "",
-  "tone": "mid-rising-rising-falling-falling",
+  "tone": "rising-rising-rising-falling-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -199429,7 +199757,7 @@
   "emoji": "👂",
   "visual": "👤 + 👂",
   "ascii": "",
-  "tone": "mid-rising-mid-mid-high-low",
+  "tone": "rising-rising-mid-mid-high-low",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -199537,8 +199865,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006127.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006127_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006127.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006127_slow.mp3?v=1"
   }
  },
  {
@@ -200018,7 +200346,7 @@
   "emoji": "🤫",
   "visual": "👥 + 👂",
   "ascii": "",
-  "tone": "mid-falling-falling-falling-mid",
+  "tone": "rising-falling-falling-falling-mid",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -200033,8 +200361,8 @@
   ],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006143.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006143_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006143.mp3?v=1",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006143_slow.mp3?v=1"
   }
  },
  {
@@ -201723,7 +202051,7 @@
   "emoji": "🍽️",
   "visual": "👥 + ❓",
   "ascii": "",
-  "tone": "falling-falling-mid-mid-falling-mid-falling-mid",
+  "tone": "falling-falling-mid-mid-falling-mid-falling-rising",
   "categories": null,
   "examples": null,
   "example_translation": null,
@@ -202229,8 +202557,8 @@
   "lessons": [],
   "images": [],
   "audio": {
-   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006211.mp3",
-   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006211_slow.mp3"
+   "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006211.mp3?v=2",
+   "slow_word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006211_slow.mp3?v=2"
   }
  },
  {
@@ -204014,7 +204342,7 @@
   "emoji": null,
   "visual": "",
   "ascii": "",
-  "tone": "rising-mid-rising-falling",
+  "tone": "rising-rising-rising-falling",
   "categories": null,
   "examples": null,
   "example_translation": null,
