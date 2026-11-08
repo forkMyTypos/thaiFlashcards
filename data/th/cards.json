@@ -756,7 +756,53 @@
   "hook_visual": "colorful plastic toy robot",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A oversized wind-up toy train forcefully rams open a massive iron gate, carrying a glowing package directly through the passage with dramatic momentum. Rich textures, dramatic cinematic lighting, vibrant colors, clear visual hierarchy, hyper-focused central composition.",
   "mnemonic_concept": "toy",
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002321",
+    "text": "จากสนามบินถึงโรงแรมโดยรถครับ",
+    "romanization": "jàak sà-nǎam-bin thǔeng roong-raem dooi rót khráp",
+    "translation": "From the airport to the hotel by car.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002322",
+    "text": "จากโรงแรมถึงทะเลโดยรถครับ",
+    "romanization": "jàak roong-raem thǔeng tá-lee dooi rót khráp",
+    "translation": "From the hotel to the sea by car.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002323",
+    "text": "จากสำนักงานถึงสนามบินโดยรถครับ",
+    "romanization": "jàak sǎm-nák-ngaan thǔeng sà-nǎam-bin dooi rót khráp",
+    "translation": "From the office to the airport by car.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002324",
+    "text": "จากวัดถึงโรงแรมโดยรถครับ",
+    "romanization": "jàak wát thǔeng roong-raem dooi rót khráp",
+    "translation": "From the temple to the hotel by car.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002325",
+    "text": "จากสนามบินถึงวัดโดยรถครับ",
+    "romanization": "jàak sà-nǎam-bin thǔeng wát dooi rót khráp",
+    "translation": "From the airport to the temple by car.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000001"
@@ -3451,7 +3497,53 @@
   "hook_visual": "a math sum equation next to a fist knocking on a wooden barn",
   "mnemonic": "Digital collectible card art, 1:1 square ratio. A colossal glowing mathematical sum symbol physically knocking down a massive rustic red barn door with immense force, sending wood splinters flying. Inside the dark barn interior, rows of sleek steel office desks and file cabinets are exposed. Dynamic low-angle perspective, dramatic cinematic lighting, rich textures, vivid colors.",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002340",
+    "text": "สำนักงานมีรถไหมครับ",
+    "romanization": "sǎm-nák-ngaan mii rót mái khráp",
+    "translation": "Does the office have a car?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002341",
+    "text": "โรงแรมกับสำนักงานมีรถครับ",
+    "romanization": "roong-raem gàp sǎm-nák-ngaan mii rót khráp",
+    "translation": "The hotel and office have a car.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002342",
+    "text": "สำนักงานมีรถสำหรับโรงแรมครับ",
+    "romanization": "sǎm-nák-ngaan mii rót sǎm-ràp roong-raem khráp",
+    "translation": "The office has a car for the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002343",
+    "text": "สำนักงานมีรถจากสนามบินครับ",
+    "romanization": "sǎm-nák-ngaan mii rót jàak sà-nǎam-bin khráp",
+    "translation": "The office has a car from the airport.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002344",
+    "text": "สำนักงานมีรถจากโรงแรมครับ",
+    "romanization": "sǎm-nák-ngaan mii rót jàak roong-raem khráp",
+    "translation": "The office has a car from the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000201",
@@ -4146,7 +4238,53 @@
   "hook_visual": "tomcat cartoon character",
   "mnemonic": "tomcat cartoon character",
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002326",
+    "text": "ตามรถจากสนามบินครับ",
+    "romanization": "dtaam rót jàak sà-nǎam-bin khráp",
+    "translation": "Follow the car from the airport.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002327",
+    "text": "ตามรถจากโรงแรมครับ",
+    "romanization": "dtaam rót jàak roong-raem khráp",
+    "translation": "Follow the car from the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002328",
+    "text": "ตามรถจากสำนักงานครับ",
+    "romanization": "dtaam rót jàak sǎm-nák-ngaan khráp",
+    "translation": "Follow the car from the office.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002329",
+    "text": "ตามรถจากวัดครับ",
+    "romanization": "dtaam rót jàak wát khráp",
+    "translation": "Follow the car from the temple.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002346",
+    "text": "รถตามโรงแรมครับ",
+    "romanization": "rót dtaam roong-raem khráp",
+    "translation": "The car follows the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000348"
@@ -4920,21 +5058,39 @@
     "role": null
    },
    {
-    "id": "TH_S000005",
-    "text": "ฉันอยากกินอาหารไทย",
-    "romanization": "chǎn yàak gin aa-hǎan thai",
-    "translation": "I want to eat Thai food.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S002312",
+    "text": "เป็นไทยครับ",
+    "romanization": "pen thai khráp",
+    "translation": "I’m Thai.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000119",
-    "text": "อาหารไทยมีหลายรสชาติ",
-    "romanization": "aa-hǎan thai mii lǎai rót-châat",
-    "translation": "Thai food has many different flavors.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S002313",
+    "text": "เป็นไทยค่ะ",
+    "romanization": "pen thai khâ",
+    "translation": "I’m Thai.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002314",
+    "text": "ไทยครับ",
+    "romanization": "thai khráp",
+    "translation": "Thai.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002315",
+    "text": "ไทยค่ะ",
+    "romanization": "thai khâ",
+    "translation": "Thai.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -6795,7 +6951,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001730",
+    "text": "ประเทศไทย",
+    "romanization": "bprà-thêet thai",
+    "translation": "Thailand.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001731",
+    "text": "จากประเทศไทย",
+    "romanization": "jàak bprà-thêet thai",
+    "translation": "From Thailand.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001732",
+    "text": "ประเทศไทยกับทะเล",
+    "romanization": "bprà-thêet thai gàp tá-lee",
+    "translation": "Thailand and the sea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001733",
+    "text": "สำหรับประเทศไทย",
+    "romanization": "sǎm-ràp bprà-thêet thai",
+    "translation": "For Thailand.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002311",
+    "text": "ประเทศไทยมีทะเลครับ",
+    "romanization": "bprà-thêet thai mii tá-lee khráp",
+    "translation": "Thailand has a sea.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013"
   ],
@@ -7170,7 +7372,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002332",
+    "text": "สนามบินอยู่ระหว่างโรงแรมกับสำนักงานครับ",
+    "romanization": "sà-nǎam-bin yùu rá-wàang roong-raem gàp sǎm-nák-ngaan khráp",
+    "translation": "The airport is between the hotel and the office.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002333",
+    "text": "สำนักงานอยู่ระหว่างสนามบินกับโรงแรมครับ",
+    "romanization": "sǎm-nák-ngaan yùu rá-wàang sà-nǎam-bin gàp roong-raem khráp",
+    "translation": "The office is between the airport and the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002334",
+    "text": "โรงแรมอยู่ระหว่างวัดกับทะเลครับ",
+    "romanization": "roong-raem yùu rá-wàang wát gàp tá-lee khráp",
+    "translation": "The hotel is between the temple and the sea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002335",
+    "text": "ทะเลอยู่ระหว่างสนามบินกับวัดครับ",
+    "romanization": "tá-lee yùu rá-wàang sà-nǎam-bin gàp wát khráp",
+    "translation": "The sea is between the airport and the temple.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002349",
+    "text": "รถระหว่างโรงแรมกับสนามบินครับ",
+    "romanization": "rót rá-wàang roong-raem gàp sà-nǎam-bin khráp",
+    "translation": "A car between the hotel and the airport.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013"
   ],
@@ -15841,7 +16089,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S001728",
+    "text": "รถจากสนามบิน",
+    "romanization": "rót jàak sà-nǎam-bin",
+    "translation": "A car from the airport.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S001729",
+    "text": "รถคันนี้",
+    "romanization": "rót khan níi",
+    "translation": "This car.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002287",
+    "text": "มีรถจากสนามบินครับ",
+    "romanization": "mii rót jàak sà-nǎam-bin khráp",
+    "translation": "There’s a car from the airport.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002288",
+    "text": "รถจากโรงแรมมีไหมครับ",
+    "romanization": "rót jàak roong-raem mii mái khráp",
+    "translation": "Is there a car from the hotel?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002289",
+    "text": "รถสำหรับสนามบินครับ",
+    "romanization": "rót sǎm-ràp sà-nǎam-bin khráp",
+    "translation": "A car for the airport.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013"
   ],
@@ -17063,21 +17357,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000040",
-    "text": "ขอช้อนหนึ่งคันครับ",
-    "romanization": "khɔ̌ɔ chɔ́ɔn nʉ̀ng khan khráp",
-    "translation": "I'd like one spoon, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S002290",
+    "text": "มีรถ 1 คันครับ",
+    "romanization": "mii rót nùeng khan khráp",
+    "translation": "There is one car.\\",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000041",
-    "text": "ขอส้อมหนึ่งคันค่ะ",
-    "romanization": "khɔ̌ɔ sɔ̂ɔm nʉ̀ng khan khâ",
-    "translation": "I'd like one fork, please.",
-    "difficulty": "beginner",
-    "is_target": false,
+    "id": "TH_S002291",
+    "text": "มีรถ 2 คันค่ะ",
+    "romanization": "mii rót sɔ̌ɔng khan khâ",
+    "translation": "There are two cars.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002292",
+    "text": "รถจากสนามบิน 1 คันครับ",
+    "romanization": "rót jàak sà-nǎam-bin nùeng khan khráp",
+    "translation": "One car from the airport.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002293",
+    "text": "รถจากโรงแรม 2 คันครับ",
+    "romanization": "rót jàak roong-raem sɔ̌ɔng khan khráp",
+    "translation": "Two cars from the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002294",
+    "text": "มีรถ 3 คันไหมครับ",
+    "romanization": "mii rót sǎam khan mái khráp",
+    "translation": "Are there three cars?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -18581,39 +18902,39 @@
     "role": null
    },
    {
-    "id": "TH_S000393",
-    "text": "ใบนี้ถูกที่สุด",
-    "romanization": "bai níi thùuk thîi-sùt",
-    "translation": "This leaf is the cheapest.",
+    "id": "TH_S002210",
+    "text": "อาหารนี้อร่อยที่สุดครับ",
+    "romanization": "aa-hǎan níi à-rɔ̀i thîi-sùt khráp",
+    "translation": "This food is the most delicious.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S000416",
-    "text": "ชิ้นนั้นถูกที่สุดครับ",
-    "romanization": "chín nán thùuk thîi-sùt khráp",
-    "translation": "That piece is the cheapest.",
+    "id": "TH_S002211",
+    "text": "กาแฟนี้หวานที่สุดค่ะ",
+    "romanization": "gaa-fae níi wǎan thîi-sùt khâ",
+    "translation": "This coffee is the sweetest.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001461",
-    "text": "ดีที่สุดครับ",
-    "romanization": "dii-thîi-sùt khráp",
-    "translation": "It's the best.\\",
+    "id": "TH_S002212",
+    "text": "น้ำนี้เย็นที่สุดครับ",
+    "romanization": "náam níi yen thîi-sùt khráp",
+    "translation": "This water is the coldest.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001509",
-    "text": "สำคัญที่สุดครับ",
-    "romanization": "sǎm-khan-thîi-sùt khráp",
-    "translation": "It's the most important.\\",
+    "id": "TH_S002213",
+    "text": "ร้านนี้ถูกที่สุดค่ะ",
+    "romanization": "ráan níi thùuk thîi-sùt khâ",
+    "translation": "This shop is the cheapest.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    }
   ],
@@ -19344,7 +19665,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002300",
+    "text": "จากสำนักงานถึงโรงแรมครับ",
+    "romanization": "jàak sǎm-nák-ngaan thǔeng roong-raem khráp",
+    "translation": "From the office to the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002301",
+    "text": "สำนักงานอยู่ระหว่างโรงแรมกับวัดครับ",
+    "romanization": "sǎm-nák-ngaan yùu rá-wàang roong-raem gàp wát khráp",
+    "translation": "The office is between the hotel and the temple.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002336",
+    "text": "โรงแรมมีสำนักงานไหมครับ",
+    "romanization": "roong-raem mii sǎm-nák-ngaan mái khráp",
+    "translation": "Does the hotel have an office?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002337",
+    "text": "สำนักงานอยู่ระหว่างโรงแรมกับสนามบินครับ",
+    "romanization": "sǎm-nák-ngaan yùu rá-wàang roong-raem gàp sà-nǎam-bin khráp",
+    "translation": "The office is between the hotel and the airport.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002338",
+    "text": "รถจากโรงแรมถึงสำนักงานครับ",
+    "romanization": "rót jàak roong-raem thǔeng sǎm-nák-ngaan khráp",
+    "translation": "A car from the hotel to the office.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000018",
@@ -22501,7 +22868,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002295",
+    "text": "สนามบินมีรถไหมครับ",
+    "romanization": "sà-nǎam-bin mii rót mái khráp",
+    "translation": "Are there cars at the airport?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002296",
+    "text": "จากสนามบินถึงโรงแรมครับ",
+    "romanization": "jàak sà-nǎam-bin thǔeng roong-raem khráp",
+    "translation": "From the airport to the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002297",
+    "text": "สนามบินสำหรับประเทศไทยครับ",
+    "romanization": "sà-nǎam-bin sǎm-ràp bprà-thêet thai khráp",
+    "translation": "An airport for Thailand.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002298",
+    "text": "มีโรงแรมจากสนามบินไหมครับ",
+    "romanization": "mii roong-raem jàak sà-nǎam-bin mái khráp",
+    "translation": "Is there a hotel from the airport?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002299",
+    "text": "จากโรงแรมถึงสนามบินโดยรถครับ",
+    "romanization": "jàak roong-raem thǔeng sà-nǎam-bin dooi rót khráp",
+    "translation": "From the hotel to the airport by car.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000028"
@@ -25125,7 +25538,53 @@
   "hook_visual": null,
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002306",
+    "text": "วัดไทยมีไหมครับ",
+    "romanization": "wát thai mii mái khráp",
+    "translation": "Are there Thai temples?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002307",
+    "text": "จากวัดถึงโรงแรมครับ",
+    "romanization": "jàak wát thǔeng roong-raem khráp",
+    "translation": "From the temple to the hotel.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002308",
+    "text": "วัดอยู่ระหว่างโรงแรมกับทะเลครับ",
+    "romanization": "wát yùu rá-wàang roong-raem gàp tá-lee khráp",
+    "translation": "The temple is between the hotel and the sea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002309",
+    "text": "มีรถจากวัดไหมครับ",
+    "romanization": "mii rót jàak wát mái khráp",
+    "translation": "Is there a car from the temple?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002310",
+    "text": "วัดสำหรับประเทศไทยครับ",
+    "romanization": "wát sǎm-ràp bprà-thêet thai khráp",
+    "translation": "A temple for Thailand.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000013",
    "TH_L000373"
@@ -36052,21 +36511,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000669",
-    "text": "หลังจากไปโรงเรียน",
-    "romanization": "lǎng jàak bpai roong-rian",
-    "translation": "After going to school.",
+    "id": "TH_S002167",
+    "text": "หลังจากกินข้าวดื่มน้ำครับ",
+    "romanization": "lǎng-jàak gin khâao dùuem náam khráp",
+    "translation": "Drink water after eating rice.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001425",
-    "text": "ก่อนหรือหลังจากนี้ครับ",
-    "romanization": "gɔ̀ɔn-rʉ̌ʉ-lǎng-jàak-níi khráp",
-    "translation": "Before or after this?\\",
+    "id": "TH_S002168",
+    "text": "หลังจากดื่มกาแฟผมก็ไปครับ",
+    "romanization": "lǎng-jàak dùuem gaa-fae phǒm gɔ̂ɔ bpai khráp",
+    "translation": "After drinking coffee, I go.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002169",
+    "text": "หลังจากกินปลาอยากกินไข่ครับ",
+    "romanization": "lǎng-jàak gin bplaa yàak gin khài khráp",
+    "translation": "After eating fish, I want eggs.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002170",
+    "text": "หลังจากกินอาหารขอชาเย็นครับ",
+    "romanization": "lǎng-jàak gin aa-hǎan khǎaw chaa yen khráp",
+    "translation": "After eating, I’d like iced tea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002171",
+    "text": "หลังจากดื่มน้ำผมกินข้าวครับ",
+    "romanization": "lǎng-jàak dùuem náam phǒm gin khâao khráp",
+    "translation": "After drinking water, I eat rice.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -42467,12 +42953,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S000114",
-    "text": "ฉันแพ้อาหารทะเล",
-    "romanization": "chǎn phɛ́ɛ aa-hǎan thá-lee",
-    "translation": "I'm allergic to seafood.",
-    "difficulty": "intermediate",
-    "is_target": false,
+    "id": "TH_S002302",
+    "text": "จากโรงแรมถึงทะเลครับ",
+    "romanization": "jàak roong-raem thǔeng tá-lee khráp",
+    "translation": "From the hotel to the sea.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002303",
+    "text": "มีรถจากทะเลไหมครับ",
+    "romanization": "mii rót jàak tá-lee mái khráp",
+    "translation": "Is there a car from the sea?\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002304",
+    "text": "ทะเลอยู่ระหว่างโรงแรมกับวัดครับ",
+    "romanization": "tá-lee yùu rá-wàang roong-raem gàp wát khráp",
+    "translation": "The sea is between the hotel and the temple.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002305",
+    "text": "โรงแรมสำหรับทะเลครับ",
+    "romanization": "roong-raem sǎm-ràp tá-lee khráp",
+    "translation": "A hotel for the sea.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002339",
+    "text": "ทะเลอยู่ระหว่างสนามบินกับโรงแรมครับ",
+    "romanization": "tá-lee yùu rá-wàang sà-nǎam-bin gàp roong-raem khráp",
+    "translation": "The sea is between the airport and the hotel.",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -60196,30 +60718,48 @@
   "mnemonic_concept": null,
   "sentences": [
    {
-    "id": "TH_S001384",
-    "text": "ตอนนี้เพิ่งได้ครับ",
-    "romanization": "dtɔɔn-níi phə̂əng dâai khráp",
-    "translation": "I just got it now.\\",
+    "id": "TH_S002201",
+    "text": "ผมเพิ่งกินข้าวครับ",
+    "romanization": "phǒm phə̂ng gin khâao khráp",
+    "translation": "I’ve just eaten rice.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001393",
-    "text": "คืนนี้เพิ่งได้ครับ",
-    "romanization": "khʉʉn-níi phə̂əng dâai khráp",
-    "translation": "I just got it tonight.\\",
+    "id": "TH_S002202",
+    "text": "ผมเพิ่งไปที่ร้านครับ",
+    "romanization": "phǒm phə̂ng bpai thîi ráan khráp",
+    "translation": "I’ve just been to the shop.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
     "role": null
    },
    {
-    "id": "TH_S001398",
-    "text": "เช้านี้เพิ่งได้ครับ",
-    "romanization": "cháo-níi phə̂əng dâai khráp",
-    "translation": "I just got it this morning.\\",
+    "id": "TH_S002203",
+    "text": "ฉันเพิ่งกินอาหารค่ะ",
+    "romanization": "chǎn phə̂ng gin aa-hǎan khâ",
+    "translation": "I’ve just eaten.\\",
     "difficulty": null,
-    "is_target": false,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002204",
+    "text": "ผมเพิ่งดื่มน้ำครับ",
+    "romanization": "phǒm phə̂ng dùuem náam khráp",
+    "translation": "I’ve just had some water.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002216",
+    "text": "คุณเพิ่งดื่มกาแฟไหมคะ",
+    "romanization": "khun phə̂ng dùuem gaa-fae mái khá",
+    "translation": "Have you just had coffee?",
+    "difficulty": null,
+    "is_target": true,
     "role": null
    }
   ],
@@ -63956,7 +64496,53 @@
   "hook_visual": "",
   "mnemonic": null,
   "mnemonic_concept": null,
-  "sentences": [],
+  "sentences": [
+   {
+    "id": "TH_S002182",
+    "text": "ผมอาจจะไปที่ร้านครับ",
+    "romanization": "phǒm àat-jà bpai thîi ráan khráp",
+    "translation": "I might go to the shop.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002183",
+    "text": "คุณอาจจะชอบกาแฟค่ะ",
+    "romanization": "khun àat-jà chɔ̂ɔp gaa-fae khâ",
+    "translation": "You might like coffee.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002184",
+    "text": "อาหารนี้อาจจะเผ็ดครับ",
+    "romanization": "aa-hǎan níi àat-jà phèt khráp",
+    "translation": "This food might be spicy.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002185",
+    "text": "ผมอาจจะกินปลาอีกครับ",
+    "romanization": "phǒm àat-jà gin bplaa ìik khráp",
+    "translation": "I might eat fish again.\\",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   },
+   {
+    "id": "TH_S002186",
+    "text": "น้ำนี้อาจจะร้อนค่ะ",
+    "romanization": "náam níi àat-jà ráawn khâ",
+    "translation": "This water might be hot.",
+    "difficulty": null,
+    "is_target": true,
+    "role": null
+   }
+  ],
   "lessons": [
    "TH_L000109",
    "TH_L000128",
