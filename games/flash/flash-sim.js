@@ -555,19 +555,23 @@
         colour: "#e8e2d0" }, row || {});
       // parts: back-to-back waves of `total` each (Dan: "mega hordes, like 5x 10k")
       const parts = Math.max(1, r.parts || 1);
-      st.wave = { row: r, total: r.total * parts, partSize: r.total, parts, part: 1, spawned: 0, killed: 0, acc: 0, side: (rnd() * 4) | 0, sideT: 0, t: 0, ambush: !!r.ambush };
+      const side0 = (rnd() * 4) | 0;
+      st.wave = { row: r, total: r.total * parts, partSize: r.total, parts, part: 1, spawned: 0, killed: 0, acc: 0, side: side0, nextSide: nextSideFrom(side0), sideT: 0,
+                  sideEvery: r.side_every || 2.2, pause: 0, t: 0, ambush: !!r.ambush };
       // an ambush has no warning (Dan: "shock hordes, like 10k block.. no warning"): a ring
       // closes in around Flash at once, and the banner only comes when it's already there
       if (r.ambush) {
-        const n = Math.min(st.wave.total, Math.round((r.burst || r.max_alive) * aliveScale()));
+        const n = Math.min(st.wave.total, aliveCap, Math.round((r.burst || r.max_alive) * aliveScale()));
         for (let i = 0; i < n; i++) spawnFodder(0, true);
         ev({ t: "ambush", name: r.name, total: st.wave.total, banner: r.banner || `😱 AMBUSH! ${st.wave.total.toLocaleString()} skeletons` });
       } else ev({ t: "mega_start", name: r.name, total: st.wave.total, parts, banner: r.banner || `💀 ${r.name}! ${st.wave.total.toLocaleString()} skeletons` });
     }
     // how many skeletons this device keeps on screen at once, as a share of the
     // data's max_alive (the game sets it from ⚙ Effects quality)
-    let aliveK = 1;
+    let aliveK = 1, aliveCap = Infinity;
     const aliveScale = () => aliveK;
+    // the side the next front comes from, picked ahead so the game can warn about it
+    const nextSideFrom = s0 => (s0 + 1 + ((rnd() * 3) | 0)) % 4;
     function spawnFodder(side, ring) {
       const w = st.wave, r = w.row;
       const base = (D.base.skeleton_basic && D.base.skeleton_basic.stats) || { max_hp: 40, damage: 5, attack_speed: 1, movement_speed: 60, attack_range: 60 };
@@ -596,12 +600,23 @@
     function updateWave(dt) {
       const w = st.wave, r = w.row;
       w.t += dt; w.sideT += dt;
-      if (w.sideT > 2.2) { w.sideT = 0; w.side = (w.side + 1 + ((rnd() * 2) | 0)) % 4; }
+      // a breather between the waves of a set (part_gap), then the next one; the
+      // front stays put meanwhile, on the side the countdown points at
+      if (w.pause > 0) {
+        w.sideT = 0;
+        w.pause -= dt;
+        if (w.pause <= 0) { w.pause = 0; w.part++; w.sideT = 0; ev({ t: "mega_part", name: r.name, part: w.part, parts: w.parts, total: w.partSize, side: w.side }); }
+        return;
+      }
+      if (w.sideT > w.sideEvery) { w.sideT = 0; w.side = w.nextSide; w.nextSide = nextSideFrom(w.side); }
       if (w.spawned < w.total) {
+        // the next wave of a back-to-back set: straight on, or after a breather
+        if (w.parts > 1 && w.spawned >= w.part * w.partSize && w.part < w.parts) {
+          if (r.part_gap > 0) { w.pause = r.part_gap; w.side = w.nextSide; w.nextSide = nextSideFrom(w.side); ev({ t: "mega_gap", name: r.name, part: w.part + 1, parts: w.parts, gap: r.part_gap, side: w.side }); return; }
+          w.part++; ev({ t: "mega_part", name: r.name, part: w.part, parts: w.parts, total: w.partSize, side: w.side });
+        }
         w.acc += dt * r.spawn_per_second;
-        const room = Math.round(r.max_alive * aliveScale()) - st.enemies.length;
-        // the next wave of a back-to-back set
-        if (w.parts > 1 && w.spawned >= w.part * w.partSize && w.part < w.parts) { w.part++; ev({ t: "mega_part", name: r.name, part: w.part, parts: w.parts, total: w.partSize }); }
+        const room = Math.min(aliveCap, Math.round(r.max_alive * aliveScale())) - st.enemies.length;
         let n = Math.min(Math.floor(w.acc), room, w.total - w.spawned);
         if (n > 0) { w.acc -= n; while (n-- > 0) spawnFodder(rnd() < 0.8 ? w.side : (rnd() * 4) | 0); }
         if (w.acc > r.spawn_per_second) w.acc = r.spawn_per_second;    // don't bank forever while the screen is full
@@ -1678,7 +1693,8 @@
       },
       // test bench: a wave row by id, now
       waveNow(id) { const r = D.waves.find(w => w.id === id); if (!r || st.phase !== "fight" || st.wave) return false; st.megaUsed = true; startWave(r); return true; },
-      setAliveScale(k) { aliveK = Math.max(0.1, Math.min(3, +k || 1)); },
+      // k: a share of each wave's max_alive; cap: never more than this on screen (from Dan's PC: smooth up to ~4,300)
+      setAliveScale(k, cap) { aliveK = Math.max(0.1, Math.min(3, +k || 1)); aliveCap = cap > 0 ? cap : Infinity; },
       ambushNow(total) { if (st.phase !== "fight" || st.wave) return false; st.megaUsed = true; startWave(Object.assign({}, D.waves.find(w => w.ambush) || { hp_mult: 0.3, damage_mult: 0.35, speed_mult: 1.1, max_alive: 3000, spawn_per_second: 400 }, { ambush: true, total: total || 3000, name: "Ambush", banner: null })); return true; },
       megaWave(total) { if (st.phase === "fight" && !st.wave) { st.megaUsed = true; st.enemies = []; startWave(Object.assign({}, waveFor(999) || {}, { total, parts: 1, name: total >= 10000 ? "Skeleton apocalypse" : "Mega horde", banner: null })); } },
       drain() { const e = st.events; st.events = []; return e; },

@@ -194,9 +194,10 @@
     // moves with the frame rate.
     const QUAL = {
       // casts: spell effects drawn a second · allies: summons drawn · detail: zones with all their arcs and lines
-      high: { label: "High", alive: 3, fx: 600, texts: 6, bones: 120, lod: 4000, casts: 99, allies: 60, detail: true },
-      medium: { label: "Medium", alive: 1.6, fx: 320, texts: 4, bones: 60, lod: 1500, casts: 6, allies: 24, detail: true },
-      low: { label: "Low", alive: 0.7, fx: 120, texts: 2, bones: 15, lod: 500, casts: 2, allies: 8, detail: false },
+      // cap: never more skeletons on screen than this (Dan's PC, 9 Nov: smooth at 55+ fps up to ~4,300)
+      high: { label: "High", alive: 3, cap: 4000, fx: 600, texts: 6, bones: 120, lod: 4000, casts: 99, allies: 60, detail: true },
+      medium: { label: "Medium", alive: 1.6, cap: 2200, fx: 320, texts: 4, bones: 60, lod: 1500, casts: 6, allies: 24, detail: true },
+      low: { label: "Low", alive: 0.7, cap: 900, fx: 120, texts: 2, bones: 15, lod: 500, casts: 2, allies: 8, detail: false },
     };
     // Dan (9 Nov): "limit spell effects being displayed, if fps drops": the quality's
     // spell budget, and Low's at once whenever the frame rate is under 30 (the
@@ -238,6 +239,11 @@
     // Dan: "mega bosses need to show hp": a big bar across the top of the arena,
     // for the boss and the two biggest elites on screen
     const bigBars = h("div", "ftc-bigbars");
+    // Dan (9 Nov): "warnings about impending skellies from whatever side of the screen,
+    // with like a red ... warning, like there's more to come": the side the horde is
+    // coming from glows; the side it comes from next pulses (slowly: once a second, not
+    // a strobe), with how many are still to come
+    const edges = h("div", "ftc-edges", ["t", "r", "b", "l"].map(k => `<div class="ftc-edge ${k}"><span></span></div>`).join(""));
     const buffsEl = h("div", "ftc-buffs"), warnEl = h("div", "ftc-warn"), floatEl = h("div", "ftc-float"), bottom = h("div", "ftc-bottom");
     const bannerEl = h("div", "ftc-banner"), comboEl = h("div", "ftc-combo");
     const vignette = h("div", "ftc-vignette"), dangerEl = h("div", "ftc-danger", "❤️ Flash is in trouble! Answer a quiz to heal him");
@@ -245,7 +251,7 @@
     hud.append(top, bars, tally, bigBars, ladderEl, buffsEl, warnEl, learnEl, masterEl, bottom);
     // the game's side of the screen; the study panel (the word card) sits beside it
     const arena = h("div", "ftc-arena"); arenaEl = arena;
-    arena.append(canvasBox, vignette, hud, floatEl, comboEl, bannerEl, dangerEl, overlay);
+    arena.append(canvasBox, vignette, edges, hud, floatEl, comboEl, bannerEl, dangerEl, overlay);
     root.append(arena);
     let bannerT = null, lastWave = null;
     function banner(text, sub) {
@@ -452,6 +458,8 @@
           banner(e.banner || "😱 AMBUSH!", `${e.total.toLocaleString()} skeletons · they're all around you!`);
           SFX.play("level");
           if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(450, 0.01); }
+        } else if (e.t === "mega_gap") {
+          if (A("banners")) { use("banners"); banner(`Breathe! Wave ${e.part} of ${e.parts} in ${e.gap}s`, `☠ coming from ${SIDE_NAME[e.side] || "somewhere"}`); }
         } else if (e.t === "mega_part") {
           if (A("banners")) { use("banners"); banner(`💀 Wave ${e.part} of ${e.parts}`, `${e.total.toLocaleString()} more · keep going!`); }
           if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(250, 0.005); }
@@ -808,7 +816,7 @@
       else if (fps > 57) { qLow = 0; if (++qHigh >= 6 && i < QORDER.length - 1) { qAuto = QORDER[i + 1]; qHigh = 0; applyQuality(); } }
       else qLow = qHigh = 0;
     }
-    function applyQuality() { sim.setAliveScale(Q().alive); }
+    function applyQuality() { sim.setAliveScale(Q().alive, Q().cap); }
     function sceneUpdate(time, delta) {
       const dt = Math.min(delta / 1000, 0.1);
       slowF += (slowTo - slowF) * Math.min(1, dt * 5);
@@ -1485,7 +1493,7 @@
       clearTimeout(sideTip._t); sideTip._t = setTimeout(() => sideTip.classList.remove("show"), 12000);
     }
     let infoW = null;
-    let cTyped = null;                     // ⌨ Type first: what was typed (null = not yet, " " = skipped)
+    let cTyped = null, cHeld = false;                     // ⌨ Type first: what was typed (null = not yet, " " = skipped)
     let cq = null, cState = "", cShown = 0, cNextAt = 0, cTimer = null, cStreak = 0, levelSeen = {};
     let cRun = { right: 0, wrong: 0, up: {}, best: 0 };
     const nowPic = {};                    // a picture from the reader's device, only while the lesson page is open
@@ -1597,7 +1605,8 @@
       const i = w.th && w.th.length > 1 ? x.th.indexOf(w.th) : -1;
       return i < 0 ? esc(x.th) : esc(x.th.slice(0, i)) + `<mark>${esc(w.th)}</mark>` + esc(x.th.slice(i + w.th.length));
     }
-    const sentSlide = (w, x) => `<div class="ftc-ss-th" lang="th">${markWord(w, x)} <button class="ftc-wc-say ftc-ss-say" title="Hear the sentence">🔊</button></div>${x.rom ? `<div class="ftc-ss-rom">${esc(x.rom)}</div>` : ""}${x.en ? `<div class="ftc-ss-en">${esc(x.en)}</div>` : ""}`;
+    // no recording and no Thai voice on this device: say so on the button, rather than a silent 🔊
+    const sentSlide = (w, x) => `<div class="ftc-ss-th" lang="th">${markWord(w, x)} ${x.audio || VOICE.thaiVoice() ? `<button class="ftc-wc-say ftc-ss-say" title="Hear the sentence${x.audio ? "" : " (the device's Thai voice: no recording yet)"}">🔊</button>` : `<button class="ftc-wc-say ftc-ss-say off" title="No recording for this sentence yet, and this device has no Thai voice">🔇</button>`}</div>${x.rom ? `<div class="ftc-ss-rom">${esc(x.rom)}</div>` : ""}${x.en ? `<div class="ftc-ss-en">${esc(x.en)}</div>` : ""}`;
     function wireSlider(box, w) {
       const el = box && box.querySelector(".ftc-ss"); if (!el) return;
       const ss = (w.sents || []).filter(x => x && x.th).slice(0, 4);
@@ -1605,7 +1614,10 @@
         i = (i + ss.length) % ss.length; el.dataset.ss = i;
         el.querySelector(".ftc-ss-body").innerHTML = sentSlide(w, ss[i]);
         const c = el.querySelector(".ftc-ss-nav i"); if (c) c.textContent = `${i + 1} / ${ss.length}`;
-        const b = el.querySelector(".ftc-ss-say"); if (b) b.onclick = e => { e.stopPropagation(); const x = ss[+el.dataset.ss]; if (x.audio) say(x.audio, x.th, 1); else speak(x.th, 1); };
+        const b = el.querySelector(".ftc-ss-say"); if (b) b.onclick = e => { e.stopPropagation(); const x = ss[+el.dataset.ss];
+          if (x.audio) say(x.audio, x.th, 1);
+          else if (VOICE.thaiVoice()) speak(x.th, 1);
+          else floatText("🔇 No recording for this sentence yet (and no Thai voice on this device)", true, true); };
       };
       el.querySelectorAll("[data-ssd]").forEach(b => b.onclick = e => { e.stopPropagation(); show(+el.dataset.ss + +b.dataset.ssd); });
       let x0 = null;
@@ -1637,7 +1649,7 @@
     }
     const q0label = (w, current) => { const lab = LE ? LE.label(w.id) : "new"; return `${current ? "New word" : "Last word"} · <span class="lab">${LABEL_TXT[lab] || lab}</span>`; };
     function cardNext() {
-      clearTimeout(cTimer); cTimer = null; cq = null; cState = "";
+      clearTimeout(cTimer); cTimer = null; cq = null; cState = ""; cHeld = false;
       if (!cardLive()) { cardHide(); return; }
       const q = LE.next();
       if (!q) { cardHide(); cNextAt = performance.now() + 2000; return; }
@@ -1669,8 +1681,32 @@
       let html = "";
       if (toks.length && toks.some(t => t[1] === w.id)) html = toks.map(t => t[1] === w.id ? mark(t[0]) : esc(t[0])).join("");
       else { const i = x.th.indexOf(w.th); html = i < 0 ? esc(x.th) : esc(x.th.slice(0, i)) + mark(w.th) + esc(x.th.slice(i + w.th.length)); }
-      return `<div class="ftc-sent" lang="th">${html}</div>`;
+      // once answered (Dan, 9 Nov): a 🔊 to hear the whole sentence again, with its romanization
+      // under it; 🔇 when there's no recording and no Thai voice on this device
+      if (!show) return `<div class="ftc-sent" lang="th">${html}</div>`;
+      const can = x.audio || VOICE.thaiVoice();
+      return `<div class="ftc-sent" lang="th">${html} <button class="ftc-wc-say ftc-sent-say${can ? "" : " off"}" data-sentsay title="${can ? "Hear the sentence" : "No recording for this sentence yet, and this device has no Thai voice"}">${can ? "🔊" : "🔇"}</button></div>`
+        + (x.rom ? `<div class="ftc-sent-more"><i>${esc(x.rom)}</i></div>` : "");          // (the meaning is already on the card, under 💬)
     }
+    // the 🔊 on an answered sentence
+    function wireSentSay(q) {
+      const b = cardEl.querySelector("[data-sentsay]"); if (!b) return;
+      b.onclick = e => { e.stopPropagation(); const x = q.sentence;
+        holdCard();
+        if (x.audio || VOICE.thaiVoice()) saySentence(q);
+        else floatText("🔇 No recording for this sentence yet (and no Thai voice on this device)", true, true); };
+    }
+    // listening again: the card waits for "Next ▸" (or Space) instead of moving on by itself
+    function holdCard() {
+      if (cState !== "done" || !cTimer) return;
+      clearTimeout(cTimer); cTimer = null; cHeld = true;
+      if (!cardEl.querySelector("[data-next]")) {
+        const nx = h("button", "ftc-btn primary ftc-wc-next", "Next ▸ <small>Space</small>"); nx.dataset.next = "1";
+        nx.onclick = e => { e.stopPropagation(); releaseCard(); };
+        cardEl.append(nx);
+      }
+    }
+    function releaseCard() { if (!cHeld) return; cHeld = false; cq = null; cState = ""; cardNext(); }
     function renderSpecial(q) {
       const w = q.word, x = q.sentence;
       const head = `<div class="ftc-wc-tag"><b>${SPECIAL[q.dir]}</b>${q.review ? `<span class="ftc-wc-rev">🔁 review</span>` : ""}${cStreak >= 2 ? `<span class="ftc-wc-streak">🔥 ${cStreak}</span>` : ""}<span class="ftc-wc-dir">${SDIR[q.dir]}</span></div>`;
@@ -1772,7 +1808,7 @@
       if (!cq || cState !== "think") return;
       const q = cq, w = q.word; cState = "grade";
       const ans = cardEl.querySelector(".ftc-wc-ans");
-      if (q.dir === "cx") { const p = cardEl.querySelector(".ftc-sent"); if (p) p.outerHTML = sentenceHtml(q, true); ans.innerHTML = thaiHtml(w, false, true, true) + ` = <b>${esc(short(w.en, 40))}</b>`; saySentence(q); }
+      if (q.dir === "cx") { const p = cardEl.querySelector(".ftc-sent"); if (p) p.outerHTML = sentenceHtml(q, true); wireSentSay(q); ans.innerHTML = thaiHtml(w, false, true, true) + ` = <b>${esc(short(w.en, 40))}</b>`; saySentence(q); }
       else if (q.dir === "sm") ans.innerHTML = `<span class="ftc-wc-en">${esc(q.sentence.en)}</span>`;
       else ans.innerHTML = q.dir === "en" ? thaiHtml(w, true, true, true) : `<span class="ftc-wc-en">${esc(short(w.en, 40))}</span>${q.dir === "au" ? thaiHtml(w, false, true, true) : ""}`;
       ans.classList.add("show");
@@ -1809,7 +1845,7 @@
       if (q.dir === "en" && q.kind !== "recall") sayWord(w, true);
       if (spec && q.kind === "pick") {
         // the whole sentence (or the tone pair), shown and heard, right or wrong
-        if (q.dir === "cx") { const p = cardEl.querySelector(".ftc-sent"); if (p) p.outerHTML = sentenceHtml(q, true); saySentence(q); }
+        if (q.dir === "cx") { const p = cardEl.querySelector(".ftc-sent"); if (p) p.outerHTML = sentenceHtml(q, true); wireSentSay(q); saySentence(q); }
         if (q.dir === "sm") saySentence(q);
         if (q.dir === "tp") {
           sayWord(w, false);
@@ -1860,7 +1896,7 @@
       if (opts.onWord) try { opts.onWord({ result: right ? "match" : "miss", id: w.id, helped: meet }); } catch (e) {}
       noteDay(right && !meet); checkLevel(); showWordInfo(w); drawSide(true);
       // a wrong answer with a memory aid to read gets a little longer
-      const wait = meet ? CM.next_after_meet : spec && right ? CM.next_after_sentence : right ? CM.next_after_right + 0.2 : CM.next_after_wrong + (w.aid && !spec ? 1.2 : 0) + (spec ? 0.8 : 0) + (q.dir === "tp" ? 1.5 : 0);
+      const wait = meet ? CM.next_after_meet : spec && right ? CM.next_after_sentence + (q.dir === "cx" && q.sentence ? Math.min(2, q.sentence.th.length * 0.03) : 0) : right ? CM.next_after_right + 0.2 : CM.next_after_wrong + (w.aid && !spec ? 1.2 : 0) + (spec ? 0.8 : 0) + (q.dir === "tp" ? 1.5 : 0);
       cTimer = setTimeout(() => { cq = null; cState = ""; cardNext(); }, wait * 1000);
     }
     const LABELS_UP = { recognises: "👀 Recognised:", recalls: "🧠 Recalled:", learned: "⭐ Learned:", longterm: "🏆 Long-term:" };
@@ -1921,6 +1957,7 @@
     function cardKey(e) {
       if (!cq || !cardEl.classList.contains("show")) return false;
       if (e.key === " " || e.key === "Enter") {
+        if (cState === "done" && cHeld) { releaseCard(); return true; }
         if (cState === "think") { cardReveal(); return true; }
         if (cState === "ask" && cq.kind === "meet") { cardPick(0); return true; }
         return false;
@@ -2272,7 +2309,9 @@
       timerEl.textContent = st.phase !== "fight" || st.practice ? "" : wv ? `💀 ${(wv.total - wv.killed).toLocaleString()} left` : fmtT(Math.max(0, sim.S.roundLen - st.roundT));
       waveBar.style.display = wv ? "" : "none";
       if (wv) { waveBar.querySelector("i").style.width = `${wv.killed / wv.total * 100}%`;
-                waveBar.querySelector("span").textContent = `${wv.row.name} · ${wv.killed.toLocaleString()} / ${wv.total.toLocaleString()}`; }
+                const left = wv.total - wv.spawned;
+                waveBar.querySelector("span").textContent = `${wv.row.name}${wv.parts > 1 ? ` · wave ${wv.part}/${wv.parts}` : ""} · ${wv.killed.toLocaleString()} / ${wv.total.toLocaleString()}${left > 0 ? ` · ☠ ${fmtN(left)} to come` : ""}`; }
+      drawEdges(wv);
       const hpFrac = f ? Math.max(0, f.hp / f.maxHp()) : 1;
       const alarm = A("danger_alarm") && st.phase === "fight" && !st.god;
       vignette.style.opacity = alarm && hpFrac < 0.5 ? String(Math.min(1, (0.5 - hpFrac) * 2.4)) : "0";
@@ -2359,6 +2398,20 @@
     const KILL_MARKS = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1e6, Infinity];
     let dpsLog = [], dpsBest = 0, killMark = 0;
     function resetRunHud() { dpsLog = []; dpsBest = 0; killMark = 0; while (KILL_MARKS[killMark] <= st.kills) killMark++; }
+    const SIDE = ["t", "r", "b", "l"], SIDE_NAME = ["the top", "the right", "the bottom", "the left"];
+    function drawEdges(wv) {
+      const on = wv && st.phase === "fight" && !wv.ambush && wv.spawned < wv.total;
+      edges.classList.toggle("show", !!on);
+      if (!on) return;
+      const soon = wv.pause > 0 || wv.sideEvery - wv.sideT < 1.6;          // the next front is about to start
+      SIDE.forEach((k, i) => {
+        const el = edges.children[i];
+        const now = i === wv.side && !(wv.pause > 0), next = !(wv.pause > 0) && soon && i === wv.nextSide && wv.nextSide !== wv.side;
+        el.classList.toggle("now", now); el.classList.toggle("next", next || (wv.pause > 0 && i === wv.side));
+        const label = wv.pause > 0 && i === wv.side ? `⚠ Wave ${wv.part + 1} in ${Math.ceil(wv.pause)}…` : next ? `⚠ More from ${SIDE_NAME[i]}` : "";
+        const sp = el.firstChild; if (sp.textContent !== label) sp.textContent = label;
+      });
+    }
     function drawBigBars() {
       const list = [];
       if (st.boss && st.boss.alive) list.push(st.boss);
@@ -2967,6 +3020,8 @@
       setSpeed: n => { speed = Math.max(0.25, Math.min(8, n)); },
       spawn: (n, elite, defId) => sim.spawn(n, elite, defId),
       megaWave: n => sim.megaWave(n),
+      waveNow: id => sim.waveNow(id),
+      onScreenCap: () => Q().cap,
       stats: () => ({ fps: game.loop.actualFps, enemies: st.enemies.length, projectiles: st.proj.length + st.eproj.length, fx: fx.length,
                       simMs: perf.sim, drawMs: perf.draw, intensity: st.intensity,
                       hp: st.flash ? st.flash.hp / st.flash.maxHp() : 1, surge: !!st.surge }),

@@ -116,5 +116,27 @@
     "colour": "#c8e8ff",
     "banner": "🌊 BONE TSUNAMI! 5 waves × 10,000",
     "notes": "Dan: 'mega hordes, like 5x 10k'. Back to back, announced wave by wave"
+  },
+  {
+    "id": "skeleton_armageddon",
+    "name": "Skeleton Armageddon",
+    "parts": 10,
+    "part_gap": 6,
+    "side_every": 5,
+    "from_round": 25,
+    "every_rounds": 10,
+    "total": 10000,
+    "max_alive": 2000,
+    "spawn_per_second": 350,
+    "hp_mult": 0.22,
+    "damage_mult": 0.3,
+    "speed_mult": 1.1,
+    "xp_each": 0.25,
+    "gold_chance": 0.05,
+    "chain_chance": 0.4,
+    "chain_radius": 44,
+    "colour": "#e0d0ff",
+    "banner": "☠️☠️ SKELETON ARMAGEDDON! 100,000 skeletons",
+    "notes": "Dan: 'I think we can try a 100k horde, but sorta spread it out'. 10 waves of 10,000, a 6 s breather between"
   }
 ]
