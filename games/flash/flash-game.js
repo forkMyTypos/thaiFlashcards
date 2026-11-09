@@ -193,10 +193,22 @@
     // lunging and flashing one by one. Auto starts at Medium (Low on a phone) and
     // moves with the frame rate.
     const QUAL = {
-      high: { label: "High", alive: 3, fx: 600, texts: 6, bones: 120, lod: 4000 },
-      medium: { label: "Medium", alive: 1.6, fx: 320, texts: 4, bones: 60, lod: 1500 },
-      low: { label: "Low", alive: 0.7, fx: 120, texts: 2, bones: 15, lod: 500 },
+      // casts: spell effects drawn a second · allies: summons drawn · detail: zones with all their arcs and lines
+      high: { label: "High", alive: 3, fx: 600, texts: 6, bones: 120, lod: 4000, casts: 99, allies: 60, detail: true },
+      medium: { label: "Medium", alive: 1.6, fx: 320, texts: 4, bones: 60, lod: 1500, casts: 6, allies: 24, detail: true },
+      low: { label: "Low", alive: 0.7, fx: 120, texts: 2, bones: 15, lod: 500, casts: 2, allies: 8, detail: false },
     };
+    // Dan (9 Nov): "limit spell effects being displayed, if fps drops": the quality's
+    // spell budget, and Low's at once whenever the frame rate is under 30 (the
+    // spells still hit just as hard; only what's drawn is cut)
+    const SQ = () => (game && game.loop && game.loop.actualFps && game.loop.actualFps < 30 && st.phase === "fight") ? QUAL.low : Q();
+    let castTokens = 3, castAt = 0;
+    function castOk() {
+      const now = performance.now() / 1000, q = SQ();
+      castTokens = Math.min(q.casts, castTokens + (now - castAt) * q.casts); castAt = now;
+      if (castTokens < 1) return false;
+      castTokens -= 1; return true;
+    }
     const QORDER = ["low", "medium", "high"];
     const phoneish = () => window.matchMedia && matchMedia("(pointer: coarse)").matches && Math.min(screen.width, screen.height) < 700;
     let qAuto = phoneish() ? "low" : "medium";
@@ -462,7 +474,7 @@
           if (A("flash_hurt")) use("flash_hurt");
         } else if (e.t === "cast") {
           SFX.play("cast");
-          if (A("spell_fx")) { use("spell_fx"); spellFx(e); }
+          if (A("spell_fx") && castOk()) { use("spell_fx"); spellFx(e); }
         } else if (e.t === "boss") {
           SFX.play("boss");
           if (A("banners")) { use("banners"); banner(`👑 ${e.name} approaches!`, e.encounter || "A boss fight: the round won't end until it falls"); }
@@ -586,10 +598,11 @@
     }
     // zones, telegraphs, the shield and summons are drawn every frame from the game state
     function drawSpells(s, dt) {
-      const g = s.zonesG, now = performance.now() / 1000;
+      const g = s.zonesG, now = performance.now() / 1000, sq = SQ();
       g.clear();
       for (const z of st.zones) {
         const left = Math.min(1, Math.max(0, (z.until - st.t) / 0.4));
+        if (!sq.detail) { g.fillStyle(z.k === "heal" ? 0x5aff9a : z.k === "tornado" ? z.c : 0x7c5cff, 0.12 * left); g.fillCircle(z.x, z.y, z.r || 40); continue; }
         if (z.k === "tornado") {
           for (let i = 0; i < 4; i++) {
             const a = now * 7 + i * 1.57, r = z.r * (0.35 + i * 0.18);
@@ -605,7 +618,7 @@
           g.lineStyle(3, 0x5aff9a, (1 - p) * 0.7 * left); g.strokeCircle(z.x, z.y, 24 + p * 46);
         } else if (z.k === "drain") {
           g.fillStyle(0xa66cff, 0.08 * left); g.fillCircle(z.x, z.y, z.r);
-          for (const h of z.hits || []) { g.lineStyle(2, 0xc8a0ff, 0.6 * left); g.beginPath(); g.moveTo(h.x, h.y); g.lineTo(z.x, z.y); g.strokePath(); }
+          for (const h of (z.hits || []).slice(0, 12)) { g.lineStyle(2, 0xc8a0ff, 0.6 * left); g.beginPath(); g.moveTo(h.x, h.y); g.lineTo(z.x, z.y); g.strokePath(); }
         }
       }
       // boss attacks about to land: fill up, then hit
@@ -623,6 +636,7 @@
       // summons
       let i = 0;
       for (const a of st.allies) {
+        if (i >= sq.allies) break;                 // the rest still fight, unseen
         const key = a.kind === "wolf" ? "ftc-wolf" : a.kind === "ghost_cat" ? "ftc-ghostcat" : "ftc-skel";
         let sp = pools.allies[i];
         if (!sp) sp = pools.allies[i] = s.add.image(0, 0, key).setDepth(4);
