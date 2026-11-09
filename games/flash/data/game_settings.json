@@ -61,8 +61,15 @@
       "reroll_cost": 25,
       "every_levels": 5,
       "pauses_combat": true,
-      "price_scaling_per_stage": 0.02,
-      "unaffordable_visible": true
+      "price_scaling_per_stage": 0.12,
+      "unaffordable_visible": true,
+      "item_power_per_stage": 0.06,
+      "rarity_shift_per_stage": 0.3,
+      "vault_from_stage": 3,
+      "vault_markup": 1.4,
+      "weapon_upgrade_from_stage": 2,
+      "weapon_upgrade_price": 70,
+      "weapon_upgrade_price_per_level": 0.35
     },
     "notes": "price scaling guessed; Merchant's Ring etc. reduce prices"
   },

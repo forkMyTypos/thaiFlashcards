@@ -168,7 +168,7 @@
       t: 0, fightT: 0, roundT: 0, round: 0, stage: 1, level: 1, xp: 0, xpNext: xpNext(1), gold: 0, kills: 0,
       pending: 0, offer: null, flash: null, weapons: [], tail: false, owned: {}, buffs: [],
       enemies: [], proj: [], eproj: [], events: [], spawnAcc: 0, warning: null, streak: 0,
-      runStats: null, nextId: 1, damageDone: 0,
+      runStats: null, nextId: 1, damageDone: 0, dmgBy: {}, rDmgBy: {},
       wave: null, pops: [], combo: 0, lastKillT: -9, comboMax: 0, wavesCleared: 0,
       intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, moveOn: MV.enabled, directorOn: DR.enabled,
       spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
@@ -280,6 +280,8 @@
       }
       dmg = Math.max(S.minDamage, Math.round(dmg * (1 - def)));
       e.hp -= dmg; e.hitT = 0.08; st.damageDone += dmg;
+      // who did it, for the run and this round (the DPS breakdown between rounds)
+      const by = src || "other"; st.dmgBy[by] = (st.dmgBy[by] || 0) + dmg; st.rDmgBy[by] = (st.rDmgBy[by] || 0) + dmg;
       if (tel) { add(tel.dmg_by, src || "other", dmg); acc1.dealt += dmg; if (accR) accR.dealt += dmg; }
       if (kb > 0) {
         const dx = e.x - CX, dy = e.y - CY, d = Math.hypot(dx, dy) || 1;
@@ -706,7 +708,21 @@
                            wind: 0xdff5ec, earth: 0xc8a070, holy: 0xfff0a0, arcane: 0x7cc4ff };
     const spellColour = d => SPELL_COLOUR[d.element] || 0xb59aff;
     const SH = { slots: set("shop", "stock_slots", 5), reroll: set("shop", "reroll_cost", 25),
-                 growth: set("shop", "price_scaling_per_stage", 0.02), potion: set("shop", "potion_heal", 0.4) };
+                 growth: set("shop", "price_scaling_per_stage", 0.02), potion: set("shop", "potion_heal", 0.4),
+                 // Dan (9 Nov): "shop items need to scale ... some levels, we have absolutely
+                 // massive amounts of cash, and nothing really special to buy"
+                 power: set("shop", "item_power_per_stage", 0),          // an item bought at stage s is (1 + power*(s-1)) as strong
+                 shift: set("shop", "rarity_shift_per_stage", 0),        // rarer tiers turn up more often stage by stage
+                 vaultFrom: set("shop", "vault_from_stage", 0),          // 💎 one rare-or-better item, from this stage (0 = never)
+                 vaultMarkup: set("shop", "vault_markup", 1.4),
+                 upFrom: set("shop", "weapon_upgrade_from_stage", 0),    // ⬆ upgrade a weapon you own, for gold (0 = never)
+                 upPrice: set("shop", "weapon_upgrade_price", 70),
+                 upGrowth: set("shop", "weapon_upgrade_price_per_level", 0.35) };
+    const TIER = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4, mythical: 5 };
+    const stageK = k => 1 + Math.max(0, st.stage - 1) * k;
+    // an item's numbers, k times as strong (add and add_pct; anything else as it is)
+    const scaleFx = (fx, k) => k === 1 ? fx : (fx || []).map(e => (e.op === "add" || e.op === "add_pct") && typeof e.value === "number"
+      ? Object.assign({}, e, { value: Math.round(e.value * k * 1000) / 1000 }) : e);
     const BS = { first: set("boss", "first_stage", 10), every: set("boss", "every_stages", 10), hp: set("boss", "hp_mult", 1),
                  damage: set("boss", "damage_mult", 1), picks: set("boss", "bonus_picks", 2) };
     const FAVOUR = set("choices", "favour_current_build", 0.5);
@@ -1037,7 +1053,10 @@
       if (k === "item") {
         const pool = D.items.filter(it => it.effects && it.effects.length && (it.rarity || "common") === (row.rarity || "common"));
         const it = pickOne(pool);
-        if (it) o = { kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: it.description || fmtMods(it.effects), effects: it.effects };
+        if (it) {
+          const pw = Math.round(stageK(SH.power) * 100) / 100, fx = scaleFx(it.effects, pw);
+          o = { kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: pw > 1 ? fmtMods(fx) : (it.description || fmtMods(it.effects)), effects: fx, pow: pw };
+        }
       } else if (k === "weapon") {
         if (st.weapons.length < S.slots + (st.tail ? 1 : 0)) {
           const w = pickOne(Object.values(D.weapons).filter(w => !st.owned[w.id] && (w.unlock_stage || 1) <= Math.max(2, st.stage)));
@@ -1053,13 +1072,44 @@
         o = { kind: "potion", id: row.id, name: row.name || "Healing potion", rarity: "common", desc: `Heals ${Math.round(SH.potion * 100)}% of Flash's HP now` };
       }
       if (!o) return null;
-      return Object.assign(o, { row: row.id, price: Math.round((row.price || 50) * (1 + (st.stage - 1) * SH.growth)), tag: "Shop" });
+      return Object.assign(o, { row: row.id, price: Math.round((row.price || 50) * (1 + (st.stage - 1) * SH.growth)), tag: o.pow > 1.05 ? `×${o.pow.toFixed(1)} power` : "Shop" });
+    }
+    // ⬆ a weapon you own, one level, for gold
+    function weaponUpOffer() {
+      const ws = st.weapons.slice(); if (!ws.length) return null;
+      for (let tries = 0; tries < 6; tries++) {
+        const w = pickOne(ws);
+        const ups = D.upgrades.filter(u => u.applies_to === "weapon" && u.effects && u.effects.length).filter(u => {
+          const s0 = (u.effects[0] || {}).stat;
+          if (["projectile_speed", "pierce", "bounces"].includes(s0) && !PROJECTILE(w.def.behaviour)) return false;
+          return !(s0 === "bounces" && w.def.behaviour !== "bouncing_projectile");
+        });
+        const u = pickOne(ups); if (!u) continue;
+        return { kind: "wup", id: u.id, wuid: w.uid, wid: w.id, name: `${w.def.name} · ${u.name}`, rarity: u.rarity || "uncommon", desc: fmtMods(u.effects),
+                 price: Math.round(SH.upPrice * (1 + SH.upGrowth * (w.level - 1)) * stageK(SH.growth)), tag: `⬆ Lv ${w.level} → ${w.level + 1}`, row: "weapon_upgrade" };
+      }
+      return null;
+    }
+    // 💎 the vault: one rare-or-better item, at a premium
+    function vaultOffer() {
+      const best = D.items.filter(it => it.effects && it.effects.length && (TIER[it.rarity] || 0) >= 2);
+      if (!best.length) return null;
+      const top = best.filter(it => (TIER[it.rarity] || 0) >= 3);
+      const it = top.length && rnd() < 0.35 + 0.05 * st.stage ? pickOne(top) : pickOne(best);
+      const row = SHOP.find(r => r.kind === "item" && r.rarity === it.rarity) || { price: 250 };
+      const pw = Math.round(stageK(SH.power) * 100) / 100, fx = scaleFx(it.effects, pw);
+      return { kind: "item", id: it.id, name: it.name, rarity: it.rarity, desc: fmtMods(fx), effects: fx, pow: pw, row: "vault",
+               price: Math.round((row.price || 250) * SH.vaultMarkup * stageK(SH.growth)), tag: "💎 Vault" + (pw > 1.05 ? ` · ×${pw.toFixed(1)}` : "") };
     }
     function makeShop(rerolls) {
       const rows = SHOP.filter(r => r.kind !== "reroll"), out = [];
-      for (let tries = 0; rows.length && out.length < SH.slots && tries < 60; tries++) {
-        const row = pickWeighted(rows, r => r.kind === "item" ? rarityW(r.rarity) * 4 : r.kind === "consumable" ? 0.5 : 0.7);
-        const o = shopOffer(row);
+      if (SH.vaultFrom && st.stage >= SH.vaultFrom) { const v = vaultOffer(); if (v) out.push(v); }
+      if (SH.upFrom && st.stage >= SH.upFrom) { const u = weaponUpOffer(); if (u) out.push(u); }
+      // rarer tiers more often as the stages go up
+      const w = r => r.kind === "item" ? rarityW(r.rarity) * (1 + SH.shift * (TIER[r.rarity] || 0) * Math.max(0, st.stage - 1)) * 4 : r.kind === "consumable" ? 0.5 : 0.7;
+      const want = SH.slots + out.length;           // the vault and the upgrade come on top of the usual slots
+      for (let tries = 0; rows.length && out.length < want && tries < 60; tries++) {
+        const o = shopOffer(pickWeighted(rows, w));
         if (o && !out.some(x => x.kind === o.kind && x.id === o.id)) out.push(o);
       }
       st.shop = { items: out, rerolls: rerolls || 0 };
@@ -1088,6 +1138,7 @@
     function logOffer(o) {
       if (!st.log || o.kind === "potion") return;
       const l = { k: o.kind, id: o.id };
+      if (o.pow && o.pow !== 1) l.p = o.pow;
       if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid); l.w = o.wid || (w && w.id); }
       if (o.kind === "sup") { const sp = st.spells.find(x => x.uid === o.suid); l.s = o.sid || (sp && sp.id); }
       st.log.push(l);
@@ -1246,7 +1297,7 @@
       Object.assign(st, { phase: "fight", paused: false, t: 0, fightT: 0, roundT: 0, round: 1, stage: 1, level: 1,
         xp: 0, xpNext: xpNext(1), gold: 0, kills: 0, pending: 0, offer: null, weapons: [], owned: {}, tail: false,
         buffs: [], enemies: [], proj: [], eproj: [], spawnAcc: 0, warning: null, streak: 0, runStats: null,
-        damageDone: 0, picked: [], wave: null, pops: [], combo: 0, lastKillT: -9, comboMax: 0, wavesCleared: 0,
+        damageDone: 0, dmgBy: {}, rDmgBy: {}, picked: [], wave: null, pops: [], combo: 0, lastKillT: -9, comboMax: 0, wavesCleared: 0,
         intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, lastHitBy: null,
         stressUsed: !!st.god, megaUsed: false,
         spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
@@ -1261,7 +1312,7 @@
     // ---- saving a run: only between rounds, when the arena is empty. What is
     // kept is the run's recipe (the starting weapon and every pick, upgrade
     // and purchase, in order) and its numbers; restoring replays the recipe.
-    const RUN_KEEP = ["round", "stage", "level", "xp", "xpNext", "gold", "kills", "pending", "damageDone", "comboMax",
+    const RUN_KEEP = ["round", "stage", "level", "xp", "xpNext", "gold", "kills", "pending", "damageDone", "dmgBy", "comboMax",
                       "wavesCleared", "fightT", "t", "bossesKilled", "mode"];
     function exportRun() {
       if (st.phase !== "break" || st.practice || !st.flash || !st.log) return null;
@@ -1283,8 +1334,9 @@
         else if (l.k === "sup") { const sp = st.spellOwned[l.s], u = D.upgrades.find(x => x.id === l.id); if (!sp || !u) continue; sp.mods.push(...u.effects); sp.level++; }
         else if (l.k === "tail") st.tail = true;
         else {
-          const e = l.k === "stat" ? eff(D.upgrades, l.id) : l.k === "item" ? eff(D.items, l.id) : l.k === "passive" ? eff(D.passives, l.id) : null;
+          let e = l.k === "stat" ? eff(D.upgrades, l.id) : l.k === "item" ? eff(D.items, l.id) : l.k === "passive" ? eff(D.passives, l.id) : null;
           if (!e) continue;
+          if (l.p) e = scaleFx(e, l.p);
           changeMax(() => st.flash.stats.add(e, "perm"));
         }
         log.push(l);
@@ -1312,7 +1364,7 @@
     }
     function nextRound() {
       if (st.phase !== "break" || st.pending > 0) return;
-      st.round++; st.roundT = 0; st.phase = "fight"; st.spawnAcc = 0; st.minHpRound = 1; st.shop = null;
+      st.round++; st.roundT = 0; st.phase = "fight"; st.spawnAcc = 0; st.minHpRound = 1; st.shop = null; st.rDmgBy = {};
       st.intensity = 1 + (st.intensity - 1) * 0.5;          // a breather at the start of each round
       ev({ t: "round_start", round: st.round });
       const mw = waveFor(st.round);

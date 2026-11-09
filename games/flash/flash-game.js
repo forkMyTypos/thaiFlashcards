@@ -187,6 +187,22 @@
     if (prefs.numbers === false) prefs.anim.damage_numbers = false;     // older settings
     if (prefs.shake === false) prefs.anim.screen_shake = false;
     const A = id => { const v = prefs.anim[id]; return v === undefined ? ANIM_DEF[id] : !!v; };
+    // ⚙ Effects quality (Dan: "slowdown in late game.. limit showing spell effects?"):
+    // how many skeletons on screen at once (a share of each wave's max_alive), how
+    // many effects and numbers, and past how many skeletons they stop waddling,
+    // lunging and flashing one by one. Auto starts at Medium (Low on a phone) and
+    // moves with the frame rate.
+    const QUAL = {
+      high: { label: "High", alive: 3, fx: 600, texts: 6, bones: 120, lod: 4000 },
+      medium: { label: "Medium", alive: 1.6, fx: 320, texts: 4, bones: 60, lod: 1500 },
+      low: { label: "Low", alive: 0.7, fx: 120, texts: 2, bones: 15, lod: 500 },
+    };
+    const QORDER = ["low", "medium", "high"];
+    const phoneish = () => window.matchMedia && matchMedia("(pointer: coarse)").matches && Math.min(screen.width, screen.height) < 700;
+    let qAuto = phoneish() ? "low" : "medium";
+    const qPick = () => prefs.quality && QUAL[prefs.quality] ? prefs.quality : "auto";
+    const qNow = () => qPick() === "auto" ? qAuto : qPick();
+    const Q = () => QUAL[qNow()];
     const usedSec = {}, usedFrame = {}, lastSec = {};
     const use = (id, n) => { usedSec[id] = (usedSec[id] || 0) + (n || 1); };
     const useF = (id, n) => { usedFrame[id] = (usedFrame[id] || 0) + (n || 1); };
@@ -198,16 +214,23 @@
     const top = h("div", "ftc-top"), stageEl = h("span"), timerEl = h("span", "ftc-timer"), goldEl = h("span");
     const pauseBtn = h("button", "ftc-btn", "⏸"); pauseBtn.title = "Pause";
     const eyeBtn = h("button", "ftc-btn ftc-eye", "👁"); eyeBtn.title = "Show answers on every word";
+    // Dan (9 Nov): "kill counter", "dps, high dmg.."
+    const killsEl = h("span", "ftc-kills"), dpsEl = h("span", "ftc-dps");
+    killsEl.title = "Skeletons this run"; dpsEl.title = "Damage per second (the last 5 seconds)";
     top.append(stageEl, timerEl, goldEl, eyeBtn, pauseBtn);
+    const tally = h("div", "ftc-tally"); tally.append(killsEl, dpsEl);
     const bars = h("div", "ftc-bars"), hpBar = h("div", "ftc-bar hp", "<i></i><span></span>"), xpBar = h("div", "ftc-bar xp", "<i></i><span></span>");
     bars.append(hpBar, xpBar);
     const waveBar = h("div", "ftc-bar wave", "<i></i><span></span>"); waveBar.style.display = "none"; bars.append(waveBar);
     const bossBar = h("div", "ftc-bar boss", "<i></i><span></span>"); bossBar.style.display = "none"; bars.append(bossBar);
+    // Dan: "mega bosses need to show hp": a big bar across the top of the arena,
+    // for the boss and the two biggest elites on screen
+    const bigBars = h("div", "ftc-bigbars");
     const buffsEl = h("div", "ftc-buffs"), warnEl = h("div", "ftc-warn"), floatEl = h("div", "ftc-float"), bottom = h("div", "ftc-bottom");
     const bannerEl = h("div", "ftc-banner"), comboEl = h("div", "ftc-combo");
     const vignette = h("div", "ftc-vignette"), dangerEl = h("div", "ftc-danger", "❤️ Flash is in trouble! Answer a quiz to heal him");
     const learnEl = h("div", "ftc-learn"), ladderEl = h("div", "ftc-ladder"), masterEl = h("div", "ftc-learn ftc-master");
-    hud.append(top, bars, ladderEl, buffsEl, warnEl, learnEl, masterEl, bottom);
+    hud.append(top, bars, tally, bigBars, ladderEl, buffsEl, warnEl, learnEl, masterEl, bottom);
     // the game's side of the screen; the study panel (the word card) sits beside it
     const arena = h("div", "ftc-arena"); arenaEl = arena;
     arena.append(canvasBox, vignette, hud, floatEl, comboEl, bannerEl, dangerEl, overlay);
@@ -381,6 +404,7 @@
       this.bossImg = this.add.image(0, 0, "ftc-boss").setDepth(4).setVisible(false);
       this.flash = this.add.image(st.W / 2, FlashSim.H / 2, "ftc-flash").setDepth(5);
       this.swings = this.add.graphics().setDepth(6);
+      this.hpG = this.add.graphics().setDepth(6);          // health bars over elites and the boss
       this.eyes = [0, 1].map(() => this.add.image(0, 0, "ftc-eyebolt").setDepth(5.5).setVisible(false));
       this.game.loop.targetFps = 60;
       // a click on empty ground lets go of a picked gem
@@ -389,15 +413,20 @@
 
     function handleEvents(events) {
       let texts = 0, deaths = 0;
+      const tnow = performance.now();
+      if (bulk.n && tnow - bulk.at > 450) { const n = bulk.n; spawnText(bulk.x / n, bulk.y / n - 24, "+" + fmtN(bulk.v), "#ffb35c", bulk.v >= 1000 ? 22 : 17); bulk = { v: 0, x: 0, y: 0, n: 0, at: tnow }; }
       for (const e of events) {
         if (e.t === "hit") {
           SFX.play("hit");
-          if (A("damage_numbers") && texts < (st.wave ? 3 : 6) && (e.crit || events.length < 60)) { texts++; use("damage_numbers"); spawnText(e.x, e.y - 10, String(e.v), e.crit ? "#ffd23a" : "#ffffff", e.crit ? 18 : 13); }
+          // a few numbers a frame where they hit (crits big and gold, "!"); the
+          // rest add up and show as one number now and then (Dan: "dps, high dmg..")
+          if (A("damage_numbers") && texts < Math.min(Q().texts, st.wave ? 3 : 6) && (e.crit || events.length < 60)) { texts++; use("damage_numbers"); spawnText(e.x, e.y - 10, e.crit ? fmtN(e.v) + "!" : fmtN(e.v), e.crit ? "#ffd23a" : "#ffffff", e.crit ? (e.v >= 100 ? 24 : 20) : 13); }
+          else if (A("damage_numbers")) { bulk.v += e.v; bulk.x += e.x; bulk.y += e.y; bulk.n++; }
           if (A("hit_sparks") && fx.length < 400) { use("hit_sparks"); fx.push({ k: "spark", x: e.x, y: e.y, r: 3, life: 0.15, max: 0.15, c: C.impact }); }
         } else if (e.t === "death") {
           deaths++; if (!e.quiet) SFX.play("kill");
           if (deaths < 30 && !e.quiet && A("death_particles")) { use("death_particles"); for (let i = 0; i < 3; i++) burst(e.x, e.y, e.colour || C.death, 120); }
-          if (A("bone_shards") && deaths < 120) { use("bone_shards"); boneShard(e.x, e.y); if (deaths < 30) boneShard(e.x, e.y); }
+          if (A("bone_shards") && deaths < Q().bones) { use("bone_shards"); boneShard(e.x, e.y); if (deaths < 30) boneShard(e.x, e.y); }
         } else if (e.t === "pop") {
           SFX.play("pop");
           if (A("chain_pops") && fx.length < 450) { use("chain_pops"); fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.22, max: 0.22, c: 0xffe6a0 }); }
@@ -406,7 +435,16 @@
         } else if (e.t === "mega_start") {
           if (A("banners")) { use("banners"); banner(e.banner || `${e.name}!`, `${e.total.toLocaleString()} skeletons · mow them down!`); }
           if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(300, 0.006); }
+        } else if (e.t === "ambush") {
+          // no warning: the banner comes with the ring already there
+          banner(e.banner || "😱 AMBUSH!", `${e.total.toLocaleString()} skeletons · they're all around you!`);
+          SFX.play("level");
+          if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(450, 0.01); }
+        } else if (e.t === "mega_part") {
+          if (A("banners")) { use("banners"); banner(`💀 Wave ${e.part} of ${e.parts}`, `${e.total.toLocaleString()} more · keep going!`); }
+          if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(250, 0.005); }
         } else if (e.t === "mega_end") {
+          if (e.ambush) { floatText(`😮‍💨 Ambush survived! ${e.total.toLocaleString()} skeletons`); continue; }
           lastWave = e;          // shown at the top of the break screen instead of a banner
         } else if (e.t === "explode") {
           SFX.play("explode");
@@ -509,6 +547,7 @@
       fx.push({ k: "bone", x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, rot: Math.random() * 6, vr: (Math.random() - 0.5) * 18,
                 life: 0.6, max: 0.6, c: 0xece4d0 });
     }
+    let bulk = { v: 0, x: 0, y: 0, n: 0, at: 0 };          // hits with no number of their own, added up
     function spawnText(x, y, text, colour, size) {
       if (!scene) return;
       const t = grab(pools.texts, () => scene.add.text(0, 0, "", { fontFamily: "Segoe UI, sans-serif", fontStyle: "bold", stroke: "#000", strokeThickness: 3 }).setDepth(20).setOrigin(0.5));
@@ -641,7 +680,10 @@
       }
       // enemies
       const es = st.enemies, now = performance.now();
-      const lunge = A("lunge"), waddle = A("waddle"), hitFlash = A("hit_flash"), elitePulse = A("elite_pulse");
+      // past the quality's limit the crowd is drawn plainly: no waddle, lunge or
+      // white flash one by one (elites keep theirs), so 10,000 stay smooth
+      const crowd = st.enemies.length > Q().lod;
+      const lunge = A("lunge") && !crowd, waddle = A("waddle") && !crowd, hitFlash = A("hit_flash"), elitePulse = A("elite_pulse");
       let i = 0, ri = 0, nL = 0, nW = 0, nH = 0, nE = 0;
       for (; i < es.length; i++) {
         const e = es[i];
@@ -658,6 +700,7 @@
           const bi = s.bossImg; bi.setVisible(true).setPosition(sp.x, sp.y).setScale(1 + Math.sin(now / 300) * 0.02);
           if (e.hitT > 0 && hitFlash) bi.setTintFill(0xffffff); else bi.clearTint();
           s.swings.lineStyle(3, e.colour, 0.7); s.swings.strokeCircle(e.x, e.y + 6, 40 + Math.sin(now / 200) * 2);
+          drawHp(s.hpG, e.x, e.y - 58, 70, e.hp / e.max, 0xffd23a);
           continue;
         }
         sp.setVisible(true);
@@ -672,6 +715,7 @@
         if (e.elite) {      // rings only for elites, not one per skeleton
           const rg = pools.rings[ri] || (pools.rings[ri] = s.add.image(0, 0, "ftc-ring").setDepth(2)); ri++;
           rg.setVisible(true).setPosition(e.x, e.y).setScale(e.size * (elitePulse ? 0.95 + Math.sin(ph * 0.5) * 0.06 : 1));
+          if (e.hp < e.max) drawHp(s.hpG, e.x, e.y - 20 * e.size - 6, Math.max(26, 26 * e.size), e.hp / e.max, 0xff5a5a);
           if (elitePulse) nE++;
         }
       }
@@ -706,7 +750,7 @@
       }
       for (; i < pools.blades.length; i++) pools.blades[i].setVisible(false);
       // effects
-      s.swings.clear();
+      s.swings.clear(); s.hpG.clear();
       let pi = 0, bi = 0;
       for (let k = fx.length - 1; k >= 0; k--) {
         const f = fx[k]; f.life -= dt;
@@ -739,13 +783,27 @@
       for (const t of pools.texts) if (t.visible) { t.life -= dt; t.y -= 40 * dt; t.setAlpha(Math.max(0, t.life / 0.6)); if (t.life <= 0) t.setVisible(false); }
     }
 
+    // Auto quality: down a step after ~4 s under 42 fps in a fight, up a step after
+    // ~12 s over 57 (never above what was picked)
+    let qLast = 0, qLow = 0, qHigh = 0;
+    function qTick(time) {
+      if (time - qLast < 2000) return; qLast = time;
+      if (qPick() !== "auto" || st.phase !== "fight" || st.paused || document.hidden) { qLow = qHigh = 0; return; }
+      const fps = game.loop.actualFps, i = QORDER.indexOf(qAuto);
+      if (fps < 42) { qHigh = 0; if (++qLow >= 2 && i > 0) { qAuto = QORDER[i - 1]; qLow = 0; applyQuality(); } }
+      else if (fps > 57) { qLow = 0; if (++qHigh >= 6 && i < QORDER.length - 1) { qAuto = QORDER[i + 1]; qHigh = 0; applyQuality(); } }
+      else qLow = qHigh = 0;
+    }
+    function applyQuality() { sim.setAliveScale(Q().alive); }
     function sceneUpdate(time, delta) {
       const dt = Math.min(delta / 1000, 0.1);
       slowF += (slowTo - slowF) * Math.min(1, dt * 5);
       acc += dt * speed * slowF;
       let steps = 0;
       const t0 = performance.now();
-      while (acc >= 1 / 60 && steps < 8 * speed) { sim.step(1 / 60); acc -= 1 / 60; steps++; }
+      // catch up after a slow frame, but never by more than ~12 ms of work: a slow
+      // frame used to queue up to 8 steps, which made the next frame slower still
+      while (acc >= 1 / 60 && steps < 8 * speed) { sim.step(1 / 60); acc -= 1 / 60; steps++; if (performance.now() - t0 > 12 * Math.max(1, speed)) { acc = Math.min(acc, 1 / 60); break; } }
       if (steps >= 8 * speed) acc = 0;
       const t1 = performance.now();
       handleEvents(sim.drain());
@@ -754,6 +812,8 @@
       updateGems(dt); updateCard();
       const t2 = performance.now();
       perf.sim = perf.sim * 0.9 + (t1 - t0) * 0.1; perf.draw = perf.draw * 0.9 + (t2 - t1) * 0.1;
+      if (fx.length > Q().fx) fx.splice(0, fx.length - Q().fx);     // the effects budget: oldest go first
+      qTick(time);
       if (time - lastUi > 100) { lastUi = time; updateHud(); }
     }
 
@@ -810,45 +870,167 @@
       return band;
     }
     const gemBox = g => { const b = gemBand(); return { x0: 30 + g.w / 2, x1: st.W - 30 - g.w / 2, y0: b.top + g.h / 2, y1: FlashSim.H - b.bottom - g.h / 2 }; };
-    // Dan: "whenever anyone clicks the Thai word, I want the sound to play."
-    // The word's own recording when it has one; the browser's Thai voice when
-    // it hasn't (or the file won't play).
-    function speak(th, times) {
-      try {
-        if (!th || !window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
-        speechSynthesis.cancel();
-        const v = speechSynthesis.getVoices().find(x => /^th/i.test(x.lang));
-        for (let i = 0; i < (times || 1); i++) { const u = new SpeechSynthesisUtterance(th); u.lang = "th-TH"; u.rate = 0.9; if (v) u.voice = v; speechSynthesis.speak(u); }
-      } catch (e) {}
-    }
-    // Dan: "Are we preloading audio in our game also, sometimes it seems a bit
-    // slow?" Each recording gets its own audio element, made (and so fetched)
-    // as soon as the level's words arrive, and kept for reuse; one plays at a time.
-    const AUD = new Map();
-    function audioFor(url) {
-      let a = AUD.get(url);
-      if (!a) {
-        a = new Audio(); a.preload = "auto"; a.src = (opts.keptAudio && opts.keptAudio(url)) || url;
-        AUD.set(url, a);
-        if (AUD.size > 120) { const k = AUD.keys().next().value; const o = AUD.get(k); if (o !== curAud) { AUD.delete(k); try { o.src = ""; } catch (e) {} } }
-      } else { AUD.delete(url); AUD.set(url, a); }               // most recently used last
-      return a;
-    }
-    function preloadAudio(list) { for (const w of list || []) if (w && w.audio && !AUD.has(w.audio)) audioFor(w.audio); }
-    let curAud = null;
+    // ------------------------------------------------------------ the voice
+    // Dan: "we need to absolutely guarantee sound with words/sentences works
+    // perfectly." Every word and sentence the card, the gems and the
+    // questions say goes through here. What could go wrong, and what's done:
+    //   - A phone only lets a page make sound from a tap. The card says words by
+    //     itself, from a timer, after the answer: on an iPhone each <audio>
+    //     element played that way was refused, and the fallback voice too.
+    //     So recordings are fetched, decoded and played through Web Audio,
+    //     which the first tap unlocks for the rest of the visit.
+    //   - Web Audio follows an iPhone's silent switch (an <audio> element
+    //     doesn't): on iOS 17+ the page asks for "playback" (navigator.
+    //     audioSession), which plays through it; older iOS uses the element.
+    //   - The sound host may not allow fetching (CORS), or a file may not
+    //     decode: then ONE shared <audio> element, unlocked on the first tap,
+    //     plays it (an element that has played from a tap may play again).
+    //   - A sound asked for before any tap waits for it ("🔊 Tap for sound"),
+    //     rather than being lost.
+    //   - No recording, or one that won't load or start within 4 s: the
+    //     device's Thai voice. With no Thai voice either, the card says so
+    //     once, instead of silence nobody can explain.
+    //   - One thing speaks at a time; repeats ("Say each word") are scheduled
+    //     exactly; a newer request always wins over a slower older one.
+    const VOICE = (() => {
+      const ua = navigator.userAgent || "";
+      const isIOS = /iP(hone|ad|od)/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const useBuf = !!(window.AudioContext || window.webkitAudioContext) && !(isIOS && !("audioSession" in navigator));
+      const SILENT = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+      let ctx = null, gate = false, token = 0, cur = null, pending = null, warnedVoice = false, onState = () => {};
+      const BUF = new Map();                       // url -> Promise<AudioBuffer|null>, most recent last
+      const el = new Audio(); el.preload = "auto"; let elReady = false;
+      const stats = { buffer: 0, element: 0, tts: 0, waited: 0, failed: 0, blocked: 0, loadFail: 0, none: 0 }, failUrls = [];
+      const src = url => (opts.keptAudio && opts.keptAudio(url)) || url;
+      function context() {
+        if (ctx || !useBuf) return ctx;
+        try { const AC = window.AudioContext || window.webkitAudioContext; ctx = new AC(); } catch (e) { ctx = null; }
+        return ctx;
+      }
+      const running = () => !!ctx && ctx.state === "running";
+      function decode(ab) {
+        return new Promise((ok, no) => { try { const p = ctx.decodeAudioData(ab, ok, no); if (p && p.then) p.then(ok, no); } catch (e) { no(e); } });
+      }
+      // fetched once, kept decoded; a copy the browser cached without the CORS
+      // header is refused, so a failed first try goes again with no-store
+      function load(url) {
+        if (!url || !useBuf || !context()) return Promise.resolve(null);
+        let p = BUF.get(url);
+        if (p) { BUF.delete(url); BUF.set(url, p); return p; }
+        const get = mode => fetch(src(url), { mode: "cors", credentials: "omit", cache: mode }).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.arrayBuffer(); });
+        p = get("default").catch(() => get("no-store")).then(decode).catch(e => { stats.loadFail++; if (failUrls.length < 12) failUrls.push(url.split("/").slice(-2).join("/") + " " + ((e && (e.name || e.message)) || "")); return null; });
+        BUF.set(url, p);
+        if (BUF.size > 260) BUF.delete(BUF.keys().next().value);
+        return p;
+      }
+      function stop() {
+        token++;
+        if (cur) { try { cur.stop(); } catch (e) {} cur = null; }
+        try { if (!el.paused) el.pause(); el.onended = null; } catch (e) {}
+        try { if (window.speechSynthesis && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel(); } catch (e) {}
+      }
+      function playBuf(buf, times) {
+        const out = ctx.createGain(); out.connect(ctx.destination);
+        const nodes = []; let t = ctx.currentTime + 0.02;
+        for (let i = 0; i < times; i++) { const s = ctx.createBufferSource(); s.buffer = buf; s.connect(out); s.start(t); nodes.push(s); t += buf.duration + 0.45; }
+        cur = { stop: () => nodes.forEach(n => { try { n.stop(); } catch (e) {} }) };
+        stats.buffer++;
+      }
+      function playEl(url, th, times, my) {
+        let left = times - 1, started = false;
+        try { if (el.getAttribute("src") !== src(url)) el.src = src(url); el.currentTime = 0; } catch (e) {}
+        el.onended = () => { if (my === token && left-- > 0) setTimeout(() => { if (my === token) { try { el.currentTime = 0; el.play().catch(() => {}); } catch (e) {} } }, 450); };
+        const fail = why => { if (my !== token || started) return; stats.failed++; try { el.pause(); } catch (e) {} tts(th, times, my); };
+        el.onplaying = () => { started = true; };
+        el.onerror = () => fail("error");
+        setTimeout(() => { if (!started && my === token && el.paused) fail("slow"); }, 4000);
+        try {
+          const p = el.play();
+          if (p && p.then) p.then(() => { started = true; stats.element++; }, err => {
+            if (my !== token) return;
+            if (err && err.name === "NotAllowedError") { stats.blocked++; pending = { url, th, times, at: Date.now() }; onState("blocked"); started = true; return; }
+            if (!err || err.name !== "AbortError") fail("refused");
+          });
+        } catch (e) { fail("throw"); }
+      }
+      function thaiVoice() { try { return speechSynthesis.getVoices().find(v => /^th(\b|[-_])/i.test(v.lang)) || null; } catch (e) { return null; } }
+      function tts(th, times, my) {
+        if (!th) return;
+        const S = window.speechSynthesis;
+        if (!S || !window.SpeechSynthesisUtterance) { stats.none++; onState("novoice"); return; }
+        const v = thaiVoice();
+        if (!v && S.getVoices().length && !warnedVoice) { warnedVoice = true; onState("novoice"); }
+        stats.tts++;
+        try { S.cancel(); } catch (e) {}
+        // Chrome drops an utterance spoken in the same moment as cancel()
+        setTimeout(() => {
+          if (my !== undefined && my !== token) return;
+          for (let i = 0; i < times; i++) { const u = new SpeechSynthesisUtterance(th); u.lang = "th-TH"; u.rate = 0.9; if (v) u.voice = v; try { S.speak(u); } catch (e) {} }
+        }, 60);
+      }
+      function play(url, th, times) {
+        times = Math.max(1, Math.min(5, times || 1));
+        stop(); const my = token;
+        if (!url) { tts(th, times, my); return; }
+        if (!gate) { pending = { url, th, times, at: Date.now() }; stats.blocked++; onState("blocked"); load(url); return; }
+        if (useBuf && context()) {
+          const p = load(url); let done = false;
+          p.then(buf => {
+            if (done || my !== token) return; done = true;
+            if (buf && running()) playBuf(buf, times); else playEl(url, th, times, my);
+          });
+          // still loading after 1.5 s: don't keep the learner waiting
+          setTimeout(() => { if (!done && my === token) { done = true; stats.waited++; playEl(url, th, times, my); } }, 1500);
+          return;
+        }
+        playEl(url, th, times, my);
+      }
+      // the first tap or key: unlock everything, and say what was waiting
+      function unlock() {
+        const first = !gate; gate = true;
+        try { if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; } catch (e) {}
+        if (context() && ctx.state !== "running") { try { ctx.resume().catch(() => {}); } catch (e) {} }
+        if (!elReady) {
+          elReady = true;
+          try { el.src = SILENT; const p = el.play(); if (p && p.then) p.then(() => { try { el.pause(); } catch (e) {} }, () => { elReady = false; }); } catch (e) { elReady = false; }
+        }
+        // a Thai voice primed in the tap (iOS speaks only after one from a tap)
+        if (first && window.speechSynthesis && isIOS) { try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); } catch (e) {} }
+        onState("ok");
+        if (pending && Date.now() - pending.at < 8000) { const q = pending; pending = null; setTimeout(() => play(q.url, q.th, q.times), 30); }
+        else pending = null;
+      }
+      ["pointerdown", "touchend", "keydown", "click"].forEach(ev => document.addEventListener(ev, unlock, true));
+      // a tab coming back (a phone suspends sound when it's hidden)
+      document.addEventListener("visibilitychange", () => { if (!document.hidden && ctx && ctx.state !== "running" && gate) { try { ctx.resume().catch(() => {}); } catch (e) {} } });
+      try { if (window.speechSynthesis) speechSynthesis.addEventListener("voiceschanged", () => {}); speechSynthesis && speechSynthesis.getVoices(); } catch (e) {}
+      return {
+        play, stop, unlock, tts: (th, times) => { stop(); tts(th, Math.max(1, times || 1), token); },
+        preload(urls) { for (const u of urls) if (u) load(u); },
+        onState(fn) { onState = fn || (() => {}); },
+        // ⚙ Options → Sound check: does each recording of this level load?
+        async check(urls) {
+          const list = [...new Set(urls.filter(Boolean))];
+          if (!useBuf || !context()) return { mode: "element", total: list.length, ok: null, failed: [] };
+          const res = await Promise.all(list.map(u => load(u).then(b => [u, !!b])));
+          return { mode: "buffer", total: list.length, ok: res.filter(r => r[1]).length, failed: res.filter(r => !r[1]).map(r => r[0]) };
+        },
+        thaiVoice: () => !!thaiVoice(),
+        stats: () => Object.assign({ mode: useBuf ? "buffer" : "element", unlocked: gate, ctx: ctx ? ctx.state : "none", cached: BUF.size, failUrls: failUrls.slice() }, stats),
+      };
+    })();
+    function speak(th, times) { VOICE.tts(th, times); }
+    // "🔊 Tap for sound": a word wanted to speak before the page was allowed to
+    const sndHint = h("button", "ftc-sndhint", "🔊 Tap for sound"); sndHint.hidden = true;
+    root.append(sndHint);
+    VOICE.onState(stt => {
+      if (stt === "blocked") sndHint.hidden = false;
+      else if (stt === "ok") sndHint.hidden = true;
+      else if (stt === "novoice") floatText("🔇 No Thai voice on this device: words without a recording stay quiet", true, true);
+    });
+    function preloadAudio(list) { VOICE.preload((list || []).filter(Boolean).map(w => w.audio)); }
     // times: Options > "Say each word" (1-3 times, a short gap between)
-    function say(url, th, times) {
-      times = Math.max(1, times || 1);
-      if (!url) { speak(th, times); return; }
-      try {
-        if (curAud) { curAud.onended = null; curAud.pause(); }
-        const a = audioFor(url); curAud = a;
-        let left = times - 1;
-        a.onended = () => { if (left-- > 0 && curAud === a) setTimeout(() => { if (curAud === a) { a.currentTime = 0; a.play().catch(() => {}); } }, 450); };
-        a.currentTime = 0;
-        const p = a.play(); if (p && p.catch) p.catch(err => { if (!err || err.name !== "AbortError") speak(th, times); });
-      } catch (e) { speak(th, times); }
-    }
+    function say(url, th, times) { VOICE.play(url, th, times); }
     // auto: the card saying a word by itself (repeats as set); a click says it once
     const sayWord = (w, auto) => { if (w) say(w.audio, w.th, auto ? sayTimes : 1); };
     // a word that can join the arena: not already there, and not one whose
@@ -1312,7 +1494,7 @@
       preloadAudio(LE.level().ids.map(id => LE.word(id)));
     }
     // Dan's puns, each in its own spot (and only now and then, so they stay funny)
-    const PUN = { slogan: "Purr-fect your Thai", review: "Paws and Recall", en_ask: "Meow do you say that in Thai?",
+    const PUN = { kills: "That's a lot of bone-afide victories", slogan: "Purr-fect your Thai", review: "Paws and Recall", en_ask: "Meow do you say that in Thai?",
       encourage: ["You've got this in the bag... of cats", "Stay pawsome, keep learning"], progress: "Claw your way to fluency",
       wrong: "Fur-get me not!", streak: "Purr-sistence pays off", achievement: "Pawsitive progress!",
       challenge: ["Thai one on!", "No hiss-takes allowed!"], new_word: "Cat-ch those words!", course: "Whisker your way to fluency",
@@ -1454,8 +1636,13 @@
       else if (q.dir === "sm") saySentence(q);
       if (q.isNew && !cRun.newSaid) { cRun.newSaid = 1; floatText(`✨ ${PUN.new_word}`, false, true); }
       if (q.kind === "meet") showWordInfo(q.word, true);
-      // the next few words' sounds, so they're ready when they come up
+      // the next few words' sounds, so they're ready when they come up; and
+      // everything this question may say (its slow reading, its sentences,
+      // the choices' words for meaning -> Thai, tone partners)
       preloadAudio(LE.level().ids.slice(0, 40).map(id => LE.word(id)));
+      const w = q.word || {};
+      VOICE.preload([w.slow, q.sentence && q.sentence.audio, ...(w.sents || []).map(x => x && x.audio),
+                     ...(q.dir === "en" || q.dir === "tp" ? (q.choices || []).map(c => c && c.audio) : [])]);
     }
     // ---- sentences and tones (flash-learn.js: cx, sm, tp)
     const SPECIAL = { cx: "🧩 Fill the gap", sm: "💬 What does it mean?", tp: "🎧 Which word did you hear?" };
@@ -2137,13 +2324,56 @@
         parts.push(`<span class="ftc-slot spell" title="${esc(sp.def.name)} · level ${sp.level}"><span class="ftc-ico">${icon("spells", sp.id, "🔮")}</span><b>${sp.level}</b><i style="width:${Math.round(k * 100)}%"></i></span>`);
       }
       bottom.innerHTML = st.phase === "start" ? "" : parts.join("");
-      // the boss's health
-      const b = st.boss;
-      bossBar.style.display = b && b.alive ? "" : "none";
-      if (b && b.alive) { bossBar.querySelector("i").style.width = `${Math.max(0, b.hp / b.max) * 100}%`;
-                          bossBar.querySelector("span").textContent = `👑 ${b.boss.name}${b.phases > 1 ? ` · phase ${b.phase}/${b.phases}` : ""}`; }
+      // the boss's health: the big bars across the top (the old thin one stays hidden)
+      bossBar.style.display = "none";
+      drawBigBars();
+      // kills and damage per second
+      const live = st.phase !== "start";
+      killsEl.textContent = live ? `💀 ${fmtN(st.kills)}` : "";
+      if (live && st.phase === "fight" && !st.paused) {
+        dpsLog.push([st.fightT, st.damageDone]);
+        while (dpsLog.length > 2 && st.fightT - dpsLog[0][0] > 5) dpsLog.shift();
+      }
+      const dt = dpsLog.length > 1 ? dpsLog[dpsLog.length - 1][0] - dpsLog[0][0] : 0;
+      const dps = dt > 0.5 ? (dpsLog[dpsLog.length - 1][1] - dpsLog[0][1]) / dt : 0;
+      dpsEl.textContent = live && dps > 0 ? `⚔ ${fmtN(dps)}/s` : "";
+      if (dps > dpsBest) dpsBest = dps;
+      // milestones: "1,000 skellies!"
+      while (live && st.kills >= KILL_MARKS[killMark]) { const n = KILL_MARKS[killMark++]; banner(`💀 ${n.toLocaleString()} skellies!`, PUN.kills || "Bone-anza!"); SFX.play("level"); }
+    }
+    const fmtN = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e4 ? Math.round(n / 1e3) + "k" : n >= 1000 ? (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k" : String(Math.round(n));
+    const KILL_MARKS = [100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1e6, Infinity];
+    let dpsLog = [], dpsBest = 0, killMark = 0;
+    function resetRunHud() { dpsLog = []; dpsBest = 0; killMark = 0; while (KILL_MARKS[killMark] <= st.kills) killMark++; }
+    function drawBigBars() {
+      const list = [];
+      if (st.boss && st.boss.alive) list.push(st.boss);
+      if (st.phase === "fight") {
+        const el = st.enemies.filter(e => e.alive && e.elite && !e.boss && e.max >= 400).sort((a, b) => b.max - a.max).slice(0, list.length ? 1 : 2);
+        list.push(...el);
+      }
+      const key = list.map(e => e.uid || e.id).join(",");
+      if (bigBars.dataset.k !== key) {
+        bigBars.dataset.k = key;
+        bigBars.innerHTML = list.map(e => `<div class="ftc-bb${e.boss ? " boss" : ""}"><div class="ftc-bb-name">${e.boss ? "👑 " + esc(e.boss.name) : "💀 " + esc(e.name || "Elite " + (e.type || "skeleton").replace(/_/g, " "))}<span></span></div><div class="ftc-bb-bar"><b></b><i></i>${e.boss && e.phases > 1 ? Array.from({ length: e.phases - 1 }, (_, k) => `<u style="left:${(k + 1) / e.phases * 100}%"></u>`).join("") : ""}</div></div>`).join("");
+      }
+      list.forEach((e, i) => {
+        const row = bigBars.children[i]; if (!row) return;
+        const k = Math.max(0, e.hp / e.max);
+        row.querySelector("i").style.width = (k * 100) + "%";
+        // the white trail: what was just lost, catching up
+        const tr = row.querySelector("b"), was = +(tr.dataset.k || 1);
+        const nk = Math.max(k, was - 0.012); tr.dataset.k = nk; tr.style.width = (nk * 100) + "%";
+        row.querySelector(".ftc-bb-name span").textContent = `${fmtN(Math.max(0, e.hp))} / ${fmtN(e.max)}${e.boss && e.phases > 1 ? ` · phase ${e.phase}/${e.phases}` : ""}`;
+      });
     }
 
+    // a small health bar over a sprite (elites, the boss)
+    function drawHp(g, x, y, w, k, colour) {
+      k = Math.max(0, Math.min(1, k));
+      g.fillStyle(0x000000, 0.65); g.fillRoundedRect(x - w / 2 - 1, y - 1, w + 2, 6, 3);
+      g.fillStyle(colour, 1); if (k > 0) g.fillRoundedRect(x - w / 2, y, Math.max(2, w * k), 4, 2);
+    }
     // ---------------------------------------------------------- screens
     function hideOverlay() { overlay.classList.remove("show", "ftc-optsov"); overlay.innerHTML = ""; }
     function card(o, onClick) {
@@ -2199,7 +2429,7 @@
       const cards = h("div", "ftc-cards");
       for (const w of sim.startingWeapons())
         cards.append(card({ icon: icon("weapons", w.id, "🗡️"), name: w.name, desc: w.description, rarity: w.rarity, tag: w.behaviour.replace(/_/g, " "),
-          stats: `${w.damage} dmg · ${w.cooldown}s · range ${w.range}` }, () => { cRun = { right: 0, wrong: 0, up: {}, best: 0 }; cStreak = 0; saveSet("run", null); sim.startRun(w.id); }));
+          stats: `${w.damage} dmg · ${w.cooldown}s · range ${w.range}` }, () => { cRun = { right: 0, wrong: 0, up: {}, best: 0 }; cStreak = 0; saveSet("run", null); sim.startRun(w.id); resetRunHud(); }));
       overlay.append(cards);
       const ob = h("button", "ftc-btn", "⚙ Options"), orow = h("div", "ftc-row"); ob.onclick = () => showOptions(); orow.append(ob); overlay.append(orow);
       if (cardOn()) { const pb = h("button", "ftc-btn", `📊 ${PUN.check}`); pb.onclick = () => showProgress(); orow.append(pb); }
@@ -2221,9 +2451,26 @@
       const r = savedRun(); if (!r) return;
       cRun = Object.assign({ right: 0, wrong: 0, up: {}, best: 0 }, r.study || {}); cStreak = 0;
       if (!sim.restoreRun(r)) { saveSet("run", null); floatText("That saved run couldn't be loaded", true); showStart(); return; }
+      resetRunHud();
       SFX.play("round"); floatText(`💾 Welcome back! Round ${st.round} · level ${st.level}`, false, true);
     }
     const ago = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? "just now" : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} day${m < 2880 ? "" : "s"} ago`; };
+    // this round's damage, by who did it (Dan: "dps, high dmg..")
+    const SRC_NAME = { flash_dash: "⚡ Flash dash", explosion: "💥 Explosions", thorns: "🌵 Thorns", chain: "⛓ Chains", other: "Other" };
+    function srcName(id) {
+      const w = sim.D.weapons[id]; if (w) return `${icon("weapons", id, "🗡️")} ${w.name}`;
+      const sp = st.spells.find(x => x.id === id); if (sp) return `${icon("spells", id, "🔮")} ${sp.def.name}`;
+      return SRC_NAME[id] || String(id).replace(/_/g, " ").replace(/^./, c => c.toUpperCase());
+    }
+    function dmgBreakdown() {
+      const rows = Object.entries(st.rDmgBy || {}).filter(r => r[1] > 0).sort((a, b) => b[1] - a[1]);
+      const box = h("div", "ftc-dmg");
+      if (!rows.length) return box;
+      const total = rows.reduce((a, r) => a + r[1], 0), top = rows[0][1];
+      box.innerHTML = `<div class="ftc-dmg-h">⚔ This round's damage <b>${fmtN(total)}</b></div>` + rows.slice(0, 6).map(([id, v]) =>
+        `<div class="ftc-dmg-r"><span>${srcName(id)}</span><i style="width:${Math.max(3, v / top * 100)}%"></i><b>${fmtN(v)} · ${Math.round(v / total * 100)}%</b></div>`).join("");
+      return box;
+    }
     function showBreak() {
       if (st.phase === "break") saveRun();
       overlay.innerHTML = "";
@@ -2231,7 +2478,8 @@
       if (lastWave) overlay.append(h("h2", "ftc-wavewin", `💀 ${esc(lastWave.name)} cleared!`),
         h("p", "", `${lastWave.total.toLocaleString()} skeletons in ${Math.round(lastWave.time)}s · best combo ×${st.comboMax.toLocaleString()}`));
       else overlay.append(h("h2", "", `Round ${st.round} cleared!`));
-      overlay.append(h("p", "", `${st.kills.toLocaleString()} skeletons · Level ${st.level} · 💰 ${st.gold}`));
+      overlay.append(h("p", "", `${st.kills.toLocaleString()} skeletons · Level ${st.level} · 💰 ${st.gold}${dpsBest ? ` · best ⚔ ${fmtN(dpsBest)}/s` : ""}`));
+      overlay.append(dmgBreakdown());
       if (st.offer) {
         overlay.append(h("p", "", `<b>Level up!</b> Pick ${st.pending > 1 ? `(${st.pending} picks)` : "one"}:`));
         const cards = h("div", "ftc-cards");
@@ -2243,7 +2491,7 @@
       } else {
         const next = (data.mega_waves || []).filter(w => st.round + 1 === w.from_round || (w.every_rounds > 0 && st.round + 1 > w.from_round && (st.round + 1 - w.from_round) % w.every_rounds === 0)).sort((a, b) => b.total - a.total)[0];
         if (next) overlay.append(h("p", "ftc-tease", `${icon("mega_waves", next.id, "💀")} Next: <b>${esc(next.name)}</b> · ${next.total.toLocaleString()} skeletons`));
-        const go = h("button", "ftc-btn big", `Start round ${st.round + 1}`); go.onclick = () => { saveRun(); lastWave = null; sim.nextRound(); };
+        const go = h("button", "ftc-btn big", `Start round ${st.round + 1}`); go.onclick = () => { if (autoBuyOn()) autoShop(); saveRun(); lastWave = null; sim.nextRound(); };
         overlay.append(go);
       }
       // the shop: spend gold between rounds
@@ -2253,8 +2501,8 @@
         const grid = h("div", "ftc-shop-grid");
         st.shop.items.forEach((o, i) => {
           const can = !o.sold && st.gold >= o.price;
-          const c = h("button", "ftc-shop-item" + (o.sold ? " sold" : can ? "" : " poor"),
-            `<span class="ftc-cardico">${offerIcon(o)}</span><span class="ftc-name">${esc(o.name)}</span><span class="ftc-desc">${esc(o.desc || "")}</span>
+          const c = h("button", "ftc-shop-item" + (o.sold ? " sold" : can ? "" : " poor") + (o.row === "vault" ? " vault" : o.kind === "wup" ? " wup" : ""),
+            `${o.tag && o.tag !== "Shop" ? `<span class="ftc-shop-tag">${esc(o.tag)}</span>` : ""}<span class="ftc-cardico">${offerIcon(o)}</span><span class="ftc-name">${esc(o.name)}</span><span class="ftc-desc">${esc(o.desc || "")}</span>
              <span class="ftc-price">${o.sold ? "bought ✓" : `💰 ${o.price}`}</span>`);
           c.style.borderColor = rarityColour(o.rarity);
           c.disabled = !can;
@@ -2270,7 +2518,11 @@
       }
       const auto = h("label", "ftc-small", `<input type="checkbox" ${prefs.auto ? "checked" : ""}> Auto-pick, auto-shop & continue (for when you're busy studying)`);
       auto.querySelector("input").onchange = e => { prefs.auto = e.target.checked; savePrefs(); if (prefs.auto) autoBreak(); };
-      overlay.append(auto);
+      // Dan (9 Nov): "autobuy doesn't work" - it only ran with Auto-pick on. Now its own switch:
+      // whatever gold is left when the next round starts is spent
+      const ab = h("label", "ftc-small", `<input type="checkbox" ${autoBuyOn() ? "checked" : ""}> 🛒 Auto-buy: spend spare gold when the round starts`);
+      ab.querySelector("input").onchange = e => { prefs.autobuy = e.target.checked; savePrefs(); };
+      overlay.append(auto, ab);
       overlay.classList.add("show");
       if (prefs.auto) autoBreak();
     }
@@ -2281,19 +2533,27 @@
     // Flash is below 60%, then the best item it can afford (rarest first,
     // then dearest), until the gold runs out.
     const RANK = { common: 1, uncommon: 2, rare: 3, epic: 4, legendary: 5 };
+    const autoBuyOn = () => prefs.autobuy !== false;        // on unless switched off
+    // what's worth gold first: a potion when hurt, the vault, a weapon upgrade,
+    // then the rarest; with lots left over and everything bought, a reroll or two
     function autoShop() {
       if (!st.shop || !st.shop.items) return 0;
-      let n = 0, potion = false;
-      for (let guard = 0; guard < 10; guard++) {
+      let n = 0, potion = false, rerolls = 0;
+      const score = o => o.kind === "potion" ? 100 : o.row === "vault" ? 50 : o.kind === "wup" ? 40 : (RANK[o.rarity] || 1) * 5 + (o.kind === "weapon" || o.kind === "spell" ? 3 : 0);
+      for (let guard = 0; guard < 30; guard++) {
         const f = st.flash, low = !!f && f.hp / f.maxHp() < 0.6;
         const c = st.shop.items.map((o, i) => ({ o, i })).filter(x => !x.o.sold && st.gold >= x.o.price && (x.o.kind !== "potion" || (low && !potion)));
-        if (!c.length) break;
-        c.sort((a, b) => ((b.o.kind === "potion") - (a.o.kind === "potion")) || (RANK[b.o.rarity] || 1) - (RANK[a.o.rarity] || 1) || b.o.price - a.o.price);
+        if (!c.length) {
+          const rp = sim.rerollPrice();
+          if (rerolls < 2 && st.shop.items.every(o => o.sold || o.kind === "potion") && st.gold >= rp * 4) { if (sim.reroll()) { rerolls++; continue; } }
+          break;
+        }
+        c.sort((a, b) => score(b.o) - score(a.o) || b.o.price - a.o.price);
         if (!sim.buy(c[0].i)) break;
         if (c[0].o.kind === "potion") potion = true;
         n++;
       }
-      if (n) { SFX.play("coin"); floatText(`🛒 Auto-bought ${n} thing${n > 1 ? "s" : ""} in the shop`); }
+      if (n) { SFX.play("coin"); floatText(`🛒 Auto-bought ${n} thing${n > 1 ? "s" : ""}${rerolls ? ` (${rerolls} reroll${rerolls > 1 ? "s" : ""})` : ""}`); }
       return n;
     }
     function autoBreak() {
@@ -2441,6 +2701,23 @@
         if (ex) { const im = new Image(), t = box.querySelector(".ftc-pictest"); im.onload = () => t.textContent = " · photos load ✓"; im.onerror = () => t.textContent = ` · photos don't load ✗ (${(nowPic[ex.id] || ex.img).slice(0, 70)})`; im.src = nowPic[ex.id] || ex.img; }
         grid.append(box);
       }
+      // Dan: "absolutely guarantee sound with words/sentences works": check it on this device
+      if (LE && cardOn()) {
+        const ws = LE.level().ids.map(id => LE.word(id)).filter(Boolean);
+        const sents = ws.flatMap(w => (w.sents || []).filter(x => x && x.th)), sRec = sents.filter(x => x.audio);
+        const urls = ws.flatMap(w => [w.audio, w.slow]).concat(sRec.map(x => x.audio)).filter(Boolean);
+        const box = h("div", "ftc-opt", `<label class="t">Sound in this level</label><small class="ftc-sndinfo">${ws.length} words, ${ws.filter(w => w.audio).length} with a recording (${ws.filter(w => w.slow).length} slow) · ${sents.length} sentences, ${sRec.length} recorded · Thai voice for the rest: ${VOICE.thaiVoice() ? "yes ✓" : "<b>none on this device</b>"}<span class="ftc-sndres"> · checking…</span></small><div class="ftc-row"><button class="ftc-btn" data-sndtest>▶ Test a word</button><button class="ftc-btn" data-sndsent>▶ Test a sentence</button></div>`);
+        const out = box.querySelector(".ftc-sndres");
+        VOICE.check(urls).then(r => {
+          if (r.mode === "element") out.textContent = ` · ${r.total} recordings (this device plays them one at a time, as they're asked)`;
+          else out.innerHTML = r.failed.length ? ` · <b>${r.failed.length} of ${r.total} recordings don't load</b> (they fall back to the Thai voice): ${esc(r.failed.slice(0, 3).map(u => u.split("/").pop()).join(", "))}` : ` · all ${r.total} recordings load ✓`;
+        }).catch(() => { out.textContent = " · couldn't check"; });
+        box.querySelector("[data-sndtest]").onclick = () => { const w = ws.find(x => x.audio) || ws[0]; if (w) sayWord(w); };
+        box.querySelector("[data-sndsent]").onclick = () => { const x = sRec[0] || sents[0]; if (x) { if (x.audio) say(x.audio, x.th, 1); else speak(x.th, 1); } };
+        grid.append(box);
+      }
+      grid.append(seg("Effects", [["auto", "Auto"], ["high", "High"], ["medium", "Medium"], ["low", "Low"]], qPick(), v => { prefs.quality = v === "auto" ? null : v; savePrefs(); applyQuality(); showOptions(true); },
+        `How many skeletons on screen at once and how many effects. Auto${qPick() === "auto" ? ` (now ${QUAL[qAuto].label}, ${Math.round(game.loop.actualFps || 0)} fps)` : ""} follows the frame rate.`));
       // game sounds (the same as the 🔊 popover)
       const sb = h("div", "ftc-opt", `<label class="t">Game sounds</label><div class="ftc-row"><input type="range" min="0" max="100" step="5" value="${Math.round(SFX.volume() * 100)}">
         <label class="ftc-small"><input type="checkbox"${SFX.mute() ? " checked" : ""}> Mute</label></div>`);
@@ -2664,6 +2941,7 @@
 
     const telTimer = setInterval(() => { if (st.phase === "fight" && !st.paused && Date.now() - telSent > 20000) sendTel(); }, 5000);
 
+    applyQuality();
     showStart();
     updateHud();
     announce("ready");
@@ -2713,6 +2991,7 @@
       progress: () => showProgress(),
       myWords: () => showWords(),
       share: k => shareCard(k || "run"),
+      voice: () => VOICE.stats(),
       card: () => cq ? { id: cq.id, dir: cq.dir, kind: cq.kind, step: cq.step, state: cState, choices: (cq.choices || []).map(c => c.id) } : null,
       learn: LE,
       wordMode: () => wordMode,
