@@ -1160,5 +1160,19 @@
     "target": "flashcard",
     "icon": "🃏",
     "image": null
+  },
+  {
+    "id": "weapons.bowling_paw",
+    "type": "weapons",
+    "target": "bowling_paw",
+    "icon": "🎳",
+    "image": null
+  },
+  {
+    "id": "spells.nuclear_hairball",
+    "type": "spells",
+    "target": "nuclear_hairball",
+    "icon": "☢️",
+    "image": null
   }
 ]

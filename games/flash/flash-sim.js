@@ -173,6 +173,7 @@
       intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, moveOn: MV.enabled, directorOn: DR.enabled,
       spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
       shop: null, shield: 0, shieldMax: 0, shieldUntil: 0,
+      paws: [], pickups: [], fish: 0, autoEat: false, eatAt: 0, livesUsed: 0, safeUntil: 0,
     };
     const ev = e => { st.events.push(e); };
 
@@ -270,35 +271,43 @@
     }
 
     // ----------------------------------------------------------- damage
-    function hitEnemy(e, base, critC, critD, kb, src) {
+    // el: the hit's element (fire, ice, lightning, nuclear, steam, ...); by
+    // default the element of whatever did it (a spell's element, a weapon's)
+    function hitEnemy(e, base, critC, critD, kb, src, el) {
+      if (!e.alive) return 0;
+      el = el || EL[src] || null;
+      if (el && e.fx) combo(e, el, base, src);              // 🔥 on 🧊 = steam, ⚡ on 🧊 / 🔥 ...
       if (!e.alive) return 0;
       const crit = rnd() < critC;
       let dmg = base * (crit ? critD : 1), def = e.def;
       if (e.fx) {
         if (e.fx.mark > st.t) dmg *= 1 + (e.fx.markB || 0.4);                 // Death Mark
         if (e.fx.curse > st.t) def = Math.max(0, def - (e.fx.curseD || 0.2));  // Bone Curse
+        if ((e.fx.frozen || 0) > st.t) dmg *= 1 + ELS.shatter_bonus;           // frozen skeletons are brittle
       }
       dmg = Math.max(S.minDamage, Math.round(dmg * (1 - def)));
       e.hp -= dmg; e.hitT = 0.08; st.damageDone += dmg;
       // who did it, for the run and this round (the DPS breakdown between rounds)
       const by = src || "other"; st.dmgBy[by] = (st.dmgBy[by] || 0) + dmg; st.rDmgBy[by] = (st.rDmgBy[by] || 0) + dmg;
       if (tel) { add(tel.dmg_by, src || "other", dmg); acc1.dealt += dmg; if (accR) accR.dealt += dmg; }
-      if (kb > 0) {
+      if (kb > 0 && !e.held) {
         const dx = e.x - CX, dy = e.y - CY, d = Math.hypot(dx, dy) || 1;
         const k = kb * 6 / Math.max(0.6, e.size);
         e.kx += dx / d * k; e.ky += dy / d * k;
       }
-      ev({ t: "hit", x: e.x, y: e.y, v: dmg, crit, src });
+      // a big hit on something big (a boss or a big elite) can flash the screen
+      const big = crit && e.max >= 400 && dmg >= e.max * 0.08;
+      ev({ t: "hit", x: e.x, y: e.y, v: dmg, crit, src, el, big });
       const ls = st.flash.stats.get("lifesteal");
       if (ls > 0) st.flash.hp = Math.min(st.flash.maxHp(), st.flash.hp + dmg * ls);
-      if (e.hp <= 0) kill(e, src);
+      if (e.hp <= 0) kill(e, src, el, kb >= 25 || dmg >= e.max * 2.5);
       return dmg;
     }
     function explode(x, y, r, dmg, critC, critD, src, fx, power, c) {
       ev({ t: "explode", x, y, r, c });
       query(x, y, r, e => { hitEnemy(e, dmg, critC, critD, 4, src); if (fx) for (const id of fx) applyStatus(e, id, power, src); });
     }
-    function kill(e, src) {
+    function kill(e, src, el, heavy) {
       if (!e.alive) return;
       e.alive = false; st.kills++;
       if (tel) add(tel.kills_by, src || "other", 1);
@@ -306,15 +315,36 @@
       if (st.combo > st.comboMax) st.comboMax = st.combo;
       if (e.fodder && st.wave) st.wave.killed++;
       if (e.chain > 0 && st.pops.length < 400 && rnd() < e.chain) st.pops.push({ x: e.x, y: e.y, r: e.chainR, dmg: e.max * 1.2 });
-      if (e.fx) {
-        const pl = e.fx.plague, bu = e.fx.burst;
+      const x = e.fx, frozen = !!x && (x.frozen || 0) > st.t, burning = !!x && !!x.burn && x.burn.until > st.t;
+      if (x) {
+        const pl = x.plague, bu = x.burst;
         if (pl && pl.until > st.t) query(e.x, e.y, 75, o => { if (o !== e && !(o.fx && o.fx.poison && o.fx.poison.until > st.t)) {
-          const x = fxOf(o); x.poison = { dps: (e.fx.poison ? e.fx.poison.dps : 5), until: st.t + 4, src: pl.src }; x.plague = Object.assign({}, pl); } });
+          const x2 = fxOf(o); x2.poison = { dps: (x.poison ? x.poison.dps : 5), until: st.t + 4, src: pl.src }; x2.plague = Object.assign({}, pl); } });
         if (bu && bu.until > st.t && st.delayed.length < 200) st.delayed.push({ at: st.t + 0.05, x: e.x, y: e.y, r: bu.r, dmg: bu.dmg, src: bu.src, c: 0xc8a0ff });
+        // 🔥 fire spreads: a burning skeleton that falls sets its neighbours alight
+        if (burning && tok("spread", 1)) spreadFire(e, x.burn, ELS.spread_on_death);
+        // 🧊 a frozen skeleton shatters, and the shards hurt (and chill) the ones close by
+        if (frozen && !e.boss && tok("combo", 1)) {
+          const dmg = e.max * ELS.shatter_damage + 6, sr = ELS.shatter_radius * Math.sqrt(e.size);
+          query(e.x, e.y, sr, o => { if (o !== e && !o.held) { chill(o, 1); hitEnemy(o, dmg, 0, 1, 2, "shatter", "shards"); } });
+        }
       }
+      // how it went: the renderer gives each a funny death of its own
+      const how = e.thrown ? "pins" : e.pinned > st.t ? "pins" : el === "nuclear" ? "launch"
+        : frozen || el === "ice" || el === "shards" || el === "superconduct" ? "shatter"
+        : el === "lightning" ? "zap" : burning || el === "fire" || el === "overload" || el === "steam" || el === "rad" ? "ash"
+        : heavy && rnd() < 0.6 ? "launch" : "pop";
       if (e.boss) bossDown(e);
       const f = st.flash.stats;
-      ev({ t: "death", x: e.x, y: e.y, elite: e.elite, colour: e.colour, size: e.size });
+      // 🐟 a fish, now and then (always from a boss)
+      if (!st.practice && !e.fodder) {
+        const ch = e.boss ? 1 : e.elite ? FI.elite : FI.drop * (1 + (f.get("luck") || 0) / 100);
+        for (let k = e.boss ? FI.boss : 1; k > 0; k--) if (rnd() < ch && st.pickups.length < FI.floor_max)
+          st.pickups.push({ id: st.nextId++, k: "fish", x: e.x + (k - 1) * 18, y: e.y, until: st.t + FI.life, born: st.t });
+      } else if (e.fodder && !st.practice && FI.horde > 0 && rnd() < FI.horde && st.pickups.length < FI.floor_max)
+        st.pickups.push({ id: st.nextId++, k: "fish", x: e.x, y: e.y, until: st.t + FI.life, born: st.t });
+      const dx = e.x - CX, dy = e.y - CY, dd = Math.hypot(dx, dy) || 1;
+      ev({ t: "death", x: e.x, y: e.y, elite: e.elite, colour: e.colour, size: e.size, how, el, type: e.type, dx: dx / dd, dy: dy / dd });
       if (st.practice) return;                       // learning mode: no XP, gold or level-ups
       st.xp += e.xp * f.get("xp_gain") * T.xp;
       st.gold += Math.round(e.gold * f.get("gold_gain"));
@@ -353,6 +383,7 @@
         ev({ t: "stab", x: t.x, y: t.y, w: w.id });
         return true;
       }
+      if (b === "paw_bowl") return grabOne(w, p);
       // projectiles
       const n = Math.round(p.count);
       let aims;
@@ -378,6 +409,69 @@
       }
       ev({ t: "fire", w: w.id });
       return true;
+    }
+
+    // ---- 🐾 paws (Dan: "paws that grab and throw skeletons"): Flash's paw
+    // reaches out, grabs one, winds up and bowls it into the thickest part of
+    // the crowd. Everything it rolls through is hit and sent flying like pins.
+    function grabOne(w, p) {
+      if (st.paws.some(q => q.w === w.uid)) return false;          // one throw at a time per paw
+      const def = w.def;
+      let t = null, bd = 1e12;
+      query(CX, CY, p.range, (e, d2) => { if (!e.boss && !e.held && e.size <= 1.6 && d2 < bd) { bd = d2; t = e; } });
+      if (!t) return false;
+      // which way: the line through the most skeletons
+      const reach = (def.throw_range || 420) * p.range / Math.max(1, def.range || 140);
+      let best = 0, bn = -1;
+      for (let k = 0; k < 16; k++) {
+        const a = k * Math.PI / 8, ca = Math.cos(a), sa = Math.sin(a);
+        let n = 0;
+        for (let s = 1; s <= 5; s++) { const d = s * reach / 5; n += countNear(t.x + ca * d, t.y + sa * d, 34); }
+        if (n > bn) { bn = n; best = a; }
+      }
+      t.held = true; t.attacking = false; t.kx = t.ky = 0;
+      st.paws.push({ w: w.uid, wid: w.id, e: t, phase: "grab", t: def.hold || 0.32, a: best, dmg: p.damage, critC: p.critC, critD: p.critD,
+                     kb: Math.max(p.kb, 30), speed: def.throw_speed || 520, left: reach, hit: new Set([t.id]), pins: 0, sx: t.x, sy: t.y });
+      ev({ t: "paw", k: "grab", id: t.id, x: t.x, y: t.y });
+      return true;
+    }
+    function updatePaws(dt) {
+      if (!st.paws.length) return;
+      for (const q of st.paws) {
+        const e = q.e;
+        if (!e.alive) { q.done = true; continue; }
+        if (q.phase === "grab") {
+          // pulled in beside Flash, on the far side from where it's going (the wind-up)
+          q.t -= dt;
+          const tx = CX - Math.cos(q.a) * 30, ty = CY - Math.sin(q.a) * 30, k = Math.min(1, dt * 12);
+          e.x += (tx - e.x) * k; e.y += (ty - e.y) * k;
+          if (q.t <= 0) { q.phase = "roll"; e.thrown = true; e.spin = 0; ev({ t: "paw", k: "throw", id: e.id, x: e.x, y: e.y, a: q.a }); }
+          continue;
+        }
+        const step = q.speed * dt, ca = Math.cos(q.a), sa = Math.sin(q.a);
+        e.x += ca * step; e.y += sa * step; q.left -= step;
+        query(e.x, e.y, e.r + 6, o => {
+          if (q.hit.has(o.id) || o.held) return;
+          q.hit.add(o.id); q.pins++;
+          o.pinned = st.t + 0.6;                                   // if it dies now, it goes flying like a pin
+          // knocked sideways off the ball's path, and back a little
+          const side = ((o.x - e.x) * -sa + (o.y - e.y) * ca) >= 0 ? 1 : -1, f = q.kb * 7 / Math.max(0.6, o.size);
+          o.kx += (-sa * side * 0.9 + ca * 0.5) * f; o.ky += (ca * side * 0.9 + sa * 0.5) * f;
+          hitEnemy(o, q.dmg, q.critC, q.critD, 0, q.wid);
+        });
+        const out = e.x < -60 || e.x > W + 60 || e.y < -60 || e.y > H + 60;
+        if (q.left <= 0 || out) {
+          if (q.pins >= FEEL.strike) { ev({ t: "strike", x: e.x, y: e.y, n: q.pins }); if (q.pins >= FEEL.strike * 2) ev({ t: "big", k: "strike", x: e.x, y: e.y }); }
+          // the ball is spent: it smashes (the big ones just take a lot of damage)
+          e.held = false; e.thrown = false;
+          if (e.size > 1.25) { hitEnemy(e, q.dmg * 3, 0, 1, 0, q.wid); e.pinned = st.t + 0.3; }
+          else { e.thrown = true; hitEnemy(e, e.hp + 1, 0, 1, 0, q.wid); e.thrown = false; }
+          if (e.alive && out) { e.x = clamp(e.x, -20, W + 20); e.y = clamp(e.y, -20, H + 20); }
+          q.done = true;
+        }
+      }
+      st.paws = st.paws.filter(q => !q.done);
+      for (const q of st.paws) if (!q.e.alive) q.e.held = false;
     }
 
     function updateOrbits(dt) {
@@ -643,7 +737,7 @@
     }
 
     function hurtFlash(dmg, e) {
-      if (st.god || st.practice) return;
+      if (st.god || st.practice || st.t < st.safeUntil) return;
       dmg *= Math.pow(st.intensity, DR.dmgPow);
       if (st.mode === "learn") dmg *= LEARN_DMG;          // 1 (normal) unless set
       const f = st.flash, s = f.stats;
@@ -665,7 +759,49 @@
         const th = s.get("thorns") + d * s.get("thorns_pct");
         if (th > 0) hitEnemy(e, th, 0, 1, 0, "thorns");
       }
-      if (f.hp <= 0) gameOver();
+      if (f.hp <= 0 && !nineLives()) gameOver();
+    }
+    // 😼 Nine Lives (a rare item): once per charm, Flash gets back up instead of falling
+    function livesLeft() { return Math.max(0, Math.floor(st.flash.stats.get("nine_lives") + 1e-6) - st.livesUsed); }
+    function nineLives() {
+      if (livesLeft() <= 0) return false;
+      st.livesUsed++;
+      const f = st.flash; f.hp = f.maxHp() * FEEL.revive_hp; f.hurtT = 0;
+      st.safeUntil = st.t + FEEL.revive_safe;
+      // he springs up and everything close is thrown back
+      query(CX, CY, FEEL.revive_radius, (e, d2) => {
+        hitEnemy(e, FEEL.revive_damage + 4 * st.level, 0, 1, 0, "nine_lives", "holy");
+        if (e.alive && !e.boss) { const d = Math.sqrt(d2) || 1, k = 700 * (1 - d / (FEEL.revive_radius + 40)) / e.size; e.kx += (e.x - CX) / d * k; e.ky += (e.y - CY) / d * k; }
+      });
+      st.eproj = [];
+      if (tel) (tel.revives = tel.revives || []).push(Math.round(st.fightT));
+      ev({ t: "revive", x: CX, y: CY, left: livesLeft(), r: FEEL.revive_radius });
+      ev({ t: "big", k: "revive", x: CX, y: CY });
+      return true;
+    }
+    // ---- 🐟 fish: picked up when Flash is close (if he has room), eaten by a tap, H, or by himself
+    function updatePickups(dt) {
+      if (!st.pickups.length && !(st.autoEat && st.fish)) return;
+      const f = st.flash, mag = FI.magnet * Math.max(1, f.stats.get("pickup_range"));
+      for (const p of st.pickups) {
+        if (st.t > p.until) { p.gone = true; ev({ t: "fish", k: "lost", x: p.x, y: p.y }); continue; }
+        if (st.fish >= FI.carry) continue;                       // his arms are full
+        const dx = CX - p.x, dy = CY - p.y, d = Math.hypot(dx, dy) || 1;
+        if (d < 22) { p.gone = true; st.fish++; ev({ t: "fish", k: "got", x: p.x, y: p.y, n: st.fish }); continue; }
+        if (d < mag) { const v = Math.min(d, (240 + (mag - d) * 4) * dt); p.x += dx / d * v; p.y += dy / d * v; }
+      }
+      st.pickups = st.pickups.filter(p => !p.gone);
+      if (st.autoEat && st.fish > 0 && f.hp / f.maxHp() < FI.auto_below && st.t >= st.eatAt) eatFish(true);
+    }
+    function eatFish(auto) {
+      const f = st.flash;
+      if (!f || st.fish <= 0 || (st.phase !== "fight" && st.phase !== "break") || f.hp >= f.maxHp() - 0.5) return false;
+      if (st.phase === "fight" && st.t < st.eatAt) return false;       // one at a time (eat_gap)
+      st.fish--; st.eatAt = st.t + FI.eat_gap;
+      const was = f.hp; f.hp = Math.min(f.maxHp(), f.hp + f.maxHp() * FI.heal * f.stats.get("healing_power"));
+      if (tel) add(tel.fish = tel.fish || {}, auto ? "auto" : "eaten", 1);
+      ev({ t: "fish", k: "eat", auto: !!auto, heal: Math.round(f.hp - was), n: st.fish });
+      return true;
     }
 
     function updateEnemies(dt) {
@@ -674,6 +810,7 @@
         const e = es[i];
         if (!e.alive) continue;
         if (e.hitT > 0) e.hitT -= dt;
+        if (e.held) { e.attacking = false; continue; }            // in a paw: it can't walk or bite
         if (e.regen > 0 && e.hp < e.max) e.hp = Math.min(e.max, e.hp + e.regen * dt);
         let move = 1;
         if (e.fx) { move = statusTick(e, dt); if (!e.alive) continue; }
@@ -701,10 +838,10 @@
       const big = es.length > 1500, half = (st.frame = (st.frame || 0) + 1) & 1;
       const cap = es.length > 4000 ? 2 : 4;
       for (let i = big ? half : 0; i < es.length; i += big ? 2 : 1) {
-        const e = es[i]; if (!e.alive) continue;
+        const e = es[i]; if (!e.alive || e.held) continue;
         let n = 0, seen = 0;
         query(e.x, e.y, e.r, o => {
-          if (o === e) return;
+          if (o === e || o.held) return;
           if (++seen > 12) return false;
           const dx = e.x - o.x, dy = e.y - o.y, d = Math.hypot(dx, dy) || 0.01, ov = e.r + o.r - d;
           if (ov > 0) { const k = ov * (big ? 0.5 : 0.35) / d; e.x += dx * k; e.y += dy * k; o.x -= dx * k; o.y -= dy * k; if (++n >= cap) return false; }
@@ -762,8 +899,85 @@
                  damage: set("boss", "damage_mult", 1), picks: set("boss", "bonus_picks", 2) };
     const FAVOUR = set("choices", "favour_current_build", 0.5);
 
+    // ---- elements (Round 3 step 3, seed v21: Game settings → elements)
+    // Dan: "elemental weapons (fire, ice, lightning in several colours, nuclear)".
+    //   🔥 fire burns and spreads (to neighbours as it ticks, and when a burning skeleton falls)
+    //   🧊 ice chills (slower), freezes after a few hits, frozen skeletons take extra damage and shatter
+    //   ⚡ lightning chains and stuns
+    //   ☢️ nuclear: a rare, huge blast that leaves a glowing zone
+    // and combos: 🔥 on 🧊 = steam burst, ⚡ on 🧊 = superconduct, ⚡ on 🔥 = overload.
+    // Spreads and combos are rationed per second, so 10,000 burning skeletons stay cheap.
+    const es_ = (k, d) => set("elements", k, d);
+    const ELS = {
+      spread_chance: es_("burn_spread_chance", 0.3), spread_radius: es_("burn_spread_radius", 46), spread_on_death: es_("burn_spread_on_death", 2),
+      spread_power: es_("burn_spread_power", 0.6), spreads_ps: es_("spreads_per_second", 90),
+      chill_slow: es_("chill_slow", 0.4), chill_dur: es_("chill_duration", 2), freeze_hits: es_("freeze_after_hits", 3),
+      shatter_bonus: es_("frozen_damage_bonus", 0.5), shatter_damage: es_("shatter_damage", 0.35), shatter_radius: es_("shatter_radius", 46),
+      steam_damage: es_("steam_damage", 28), steam_radius: es_("steam_radius", 70),
+      super_mult: es_("superconduct_mult", 2.5), overload_damage: es_("overload_damage", 24), overload_radius: es_("overload_radius", 56),
+      combos_ps: es_("combos_per_second", 30), big_combo: es_("big_combo_hits", 8),
+    };
+    // a hit's element, from whatever did it: spells and weapons say theirs in Gamebase
+    const EL = {};
+    for (const s of Object.values(SPELLS)) if (s.element && s.element !== "none") EL[s.id] = s.element;
+    for (const w of Object.values(D.weapons)) if (w.element && w.element !== "none") EL[w.id] = w.element;
+    // per-second rations (token buckets), refilled every step
+    const TOK = { spread: ELS.spreads_ps, combo: ELS.combos_ps };
+    const tokMax = { spread: ELS.spreads_ps, combo: ELS.combos_ps };
+    function tok(k, n) { if (TOK[k] < n) return false; TOK[k] -= n; return true; }
+    function refill(dt) { for (const k in TOK) TOK[k] = Math.min(tokMax[k], TOK[k] + tokMax[k] * dt); }
+    // 🐟 healing fish (seed v21: Game settings → fish). Dan: "carryable heal items (~5)"
+    const fi_ = (k, d) => set("fish", k, d);
+    const FI = { drop: fi_("drop_chance", 0.006), elite: fi_("elite_drop_chance", 0.25), boss: fi_("boss_drops", 2), horde: fi_("horde_drop_chance", 0.0004),
+                 carry: fi_("carry", 5), heal: fi_("heal", 0.25), auto_below: fi_("auto_eat_below", 0.3), life: fi_("floor_seconds", 18),
+                 floor_max: fi_("floor_max", 10), magnet: fi_("magnet_range", 70), eat_gap: fi_("eat_gap", 0.6) };
+    // 🐾 paws, 😼 nine lives, ☢️ the nuke (seed v21: Game settings → feel)
+    const fe_ = (k, d) => set("feel", k, d);
+    const FEEL = { revive_hp: fe_("revive_hp", 0.5), revive_safe: fe_("revive_invulnerable", 2.5), revive_radius: fe_("revive_radius", 280),
+                   revive_damage: fe_("revive_damage", 60), strike: fe_("strike_pins", 5) };
+
     // ---- status effects on skeletons
     const fxOf = e => e.fx || (e.fx = {});
+    // 🧊 chill: slower for a moment; enough cold hits in a row and it freezes
+    function chill(e, hits) {
+      if (!e.alive) return;
+      const x = fxOf(e), cold = (x.chill || 0) > st.t;
+      x.chill = st.t + ELS.chill_dur;
+      x.ice = (cold ? x.ice || 0 : 0) + (hits || 1);
+      if (!e.boss && x.ice >= ELS.freeze_hits) { x.frozen = st.t + 2 * st.flash.stats.get("duration"); x.ice = 0; }
+    }
+    function spreadFire(e, burn, n) {
+      let k = 0;
+      query(e.x, e.y, ELS.spread_radius + e.r, o => {
+        if (o === e || o.held || (o.fx && o.fx.burn && o.fx.burn.until > st.t)) return;
+        applyStatus(o, "burn", Math.max(0.2, burn.dps / ((STATUS.burn || {}).damage_per_second || 5)) * ELS.spread_power, burn.src);
+        if (++k >= n) return false;
+      });
+    }
+    // combos: what a hit's element does to a skeleton already burning or frozen
+    function combo(e, el, base, src) {
+      const x = e.fx, frozen = (x.frozen || 0) > st.t, burning = !!x.burn && x.burn.until > st.t;
+      let k = null;
+      if ((el === "fire" && frozen) || (el === "ice" && burning)) k = "steam";
+      else if (el === "lightning" && frozen) k = "superconduct";
+      else if (el === "lightning" && burning) k = "overload";
+      if (!k || !tok("combo", 1)) return;
+      const pw = Math.max(1, base / 20);
+      let n = 0;
+      if (k === "steam") {             // the ice melts, the fire goes out, and a scalding cloud bursts
+        x.frozen = 0; x.burn = null; x.chill = 0;
+        query(e.x, e.y, ELS.steam_radius, o => { n++; chill(o, 0); hitEnemy(o, ELS.steam_damage * pw, 0, 1, 3, "steam", "steam"); });
+      } else if (k === "superconduct") {   // a frozen skeleton conducts: the bolt hits it far harder and it shatters
+        n = 1; hitEnemy(e, base * ELS.super_mult + e.max * 0.15, 0, 1, 6, src, "superconduct");
+        if (e.alive) x.frozen = 0;
+      } else {                          // fire and lightning: it overloads and goes off
+        query(e.x, e.y, ELS.overload_radius, o => { n++; hitEnemy(o, ELS.overload_damage * pw, 0, 1, 8, "overload", "overload");
+          if (o.alive && o !== e) applyStatus(o, "burn", 0.5, x.burn ? x.burn.src : src); });
+      }
+      ev({ t: "combo", k, x: e.x, y: e.y, n, r: k === "steam" ? ELS.steam_radius : k === "overload" ? ELS.overload_radius : 30 });
+      if (n >= ELS.big_combo) ev({ t: "big", k, x: e.x, y: e.y });
+      if (tel) add(tel.combos = tel.combos || {}, k, 1);
+    }
     function applyStatus(e, id, power, src, extraChance) {
       if (!e.alive || !id) return;
       const row = STATUS[id] || {}, f = st.flash.stats, x = fxOf(e);
@@ -773,7 +987,7 @@
         const dps = (row.damage_per_second || 5) * (power || 1), cur = x[id];
         const grow = cur && cur.until > st.t && row.stacking === "refresh_and_increase";
         x[id] = { dps: grow ? Math.min(dps * 3, cur.dps + dps * 0.5) : Math.max(dps, cur && cur.until > st.t ? cur.dps : 0), until: st.t + dur, src };
-      } else if (id === "freeze") { if (!e.boss && rnd() < chance) x.frozen = st.t + dur; }
+      } else if (id === "freeze") { chill(e, 1); if (!e.boss && rnd() < chance) x.frozen = st.t + dur; }
       else if (id === "shock") { if (rnd() < chance) { if (!e.boss) x.stun = st.t + (row.duration || 0.3); hitEnemy(e, (row.damage || 10) * (power || 1), 0, 1, 0, src); } }
       else if (id === "stun") { if (!e.boss) x.stun = st.t + dur; }
       else if (id === "knockback") { const dx = e.x - CX, dy = e.y - CY, d = Math.hypot(dx, dy) || 1; e.kx += dx / d * 500 / e.size; e.ky += dy / d * 500 / e.size; }
@@ -782,13 +996,19 @@
     // burns and poisons tick twice a second; returns how fast this skeleton can move (0 = frozen)
     function statusTick(e, dt) {
       const x = e.fx;
-      let dot = 0, src = null;
-      for (const k of ["burn", "poison", "bleed"]) { const s = x[k]; if (s && s.until > st.t) { dot += s.dps; src = s.src; } }
+      let dot = 0, src = null, el = null;
+      for (const k of ["burn", "poison", "bleed"]) { const s = x[k]; if (s && s.until > st.t) { dot += s.dps; src = s.src; el = k === "burn" ? "fire" : k === "poison" ? "poison" : null; } }
       if (dot > 0) {
         x.acc = (x.acc || 0) + dot * dt; x.tickT = (x.tickT || 0) + dt;
-        if (x.tickT >= 0.5) { const d = x.acc; x.acc = 0; x.tickT = 0; hitEnemy(e, d, 0, 1, 0, src); }
+        if (x.tickT >= 0.5) {
+          const d = x.acc; x.acc = 0; x.tickT = 0;
+          // a burn tick can catch the skeleton next to it
+          if (x.burn && x.burn.until > st.t && rnd() < ELS.spread_chance && tok("spread", 1)) spreadFire(e, x.burn, 1);
+          hitEnemy(e, d, 0, 1, 0, src, el === "fire" ? "burn" : el);
+        }
       }
       if ((x.frozen || 0) > st.t || (x.stun || 0) > st.t) return 0;
+      if ((x.chill || 0) > st.t) return e.boss ? 1 - ELS.chill_slow * 0.5 : 1 - ELS.chill_slow;
       return 1;
     }
 
@@ -945,6 +1165,19 @@
         ev({ t: "cast", s: src, k: "convert", x: best.x, y: best.y, c: 0x8fe36a });
         return true;
       }
+      if (b === "nuke") {
+        // ☢️ rare and huge: it waits for a real crowd, lobs itself at the thickest
+        // part, and goes off a moment later, leaving a glowing zone
+        const r = p.radius || 260, ts = targets("random", 520, 14), need = d.min_targets || 25;
+        let best = null, bn = 0;
+        for (const t of ts) { const n = countNear(t.x, t.y, r * 0.6); if (n > bn) { bn = n; best = t; } }
+        if (!best || bn < need) return false;
+        const at = st.t + 1.1;
+        st.delayed.push({ at, x: best.x, y: best.y, r, dmg: p.damage, src, nuke: true, power: p.power,
+          zr: (d.zone_radius || 150) * modSum(s.mods, "area").mul * f.stats.get("area"), zdps: (d.zone_dps || 20) * p.power, zdur: (d.zone_duration || 5) * f.stats.get("duration") });
+        ev({ t: "cast", s: src, k: "nuke", x: best.x, y: best.y, r, at, c });
+        return true;
+      }
       return false;
     }
     function castSpells(dt) {
@@ -971,6 +1204,10 @@
             if (z.k === "drain" && dealt > 0) f.hp = Math.min(f.maxHp(), f.hp + dealt * 0.3 * f.stats.get("healing_power"));
           }
         }
+        if (z.k === "rad") {                                   // ☢️ the glow left behind
+          z.tick += dt;
+          if (z.tick >= 0.25) { const dmg = z.dps * z.tick; z.tick = 0; query(z.x, z.y, z.r, e => { hitEnemy(e, dmg, 0, 1, 0, z.src, "rad"); }); }
+        }
         if (z.k === "heal") f.hp = Math.min(f.maxHp(), f.hp + z.hps * dt);
         if (z.k === "slow") query(z.x, z.y, z.r, e => { e.slowMul = Math.min(e.slowMul == null ? 1 : e.slowMul, e.boss ? Math.max(z.mul, 0.7) : z.mul); });
       }
@@ -994,11 +1231,24 @@
       }
       st.allies = st.allies.filter(a => a.until > st.t);
     }
+    function nukeGoesOff(d) {
+      let n = 0;
+      query(d.x, d.y, d.r, (e, d2) => {
+        n++;
+        const k = 1 - Math.sqrt(d2) / (d.r + e.r);           // full damage in the middle, half at the edge
+        hitEnemy(e, d.dmg * (0.5 + 0.5 * Math.max(0, k)), 0, 1, 0, d.src, "nuclear");
+        if (e.alive && !e.boss) { const dx = e.x - d.x, dy = e.y - d.y, dd = Math.hypot(dx, dy) || 1; e.kx += dx / dd * 900 / e.size; e.ky += dy / dd * 900 / e.size; }
+      });
+      st.zones.push({ k: "rad", x: d.x, y: d.y, r: d.zr, dps: d.zdps, until: st.t + d.zdur, src: d.src, c: 0x9dff5a, tick: 0 });
+      ev({ t: "nuke", x: d.x, y: d.y, r: d.r, zr: d.zr, n });
+      ev({ t: "big", k: "nuke", x: d.x, y: d.y });
+    }
     function updateDelayed() {
       if (!st.delayed.length) return;
       const keep = [];
       for (const d of st.delayed) {
         if (st.t < d.at) { keep.push(d); continue; }
+        if (d.nuke) { nukeGoesOff(d); continue; }
         explode(d.x, d.y, d.r, d.dmg, 0, 1, d.src, d.fx, d.power, d.c);
       }
       st.delayed = keep;
@@ -1336,7 +1586,8 @@
         intensity: 1, stressAvg: 0, danger: false, minHpRound: 1, lastHitBy: null,
         stressUsed: !!st.god, megaUsed: false,
         spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
-        bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false, log: [], startWeapon: weaponId || null });
+        bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false, log: [], startWeapon: weaponId || null,
+        paws: [], pickups: [], fish: 0, eatAt: 0, livesUsed: 0, safeUntil: 0 });
       CX = W / 2; CY = H / 2;
       st.flash = newFlash();
       addWeapon(weaponId || Object.values(D.weapons).find(w => w.starting).id);
@@ -1348,7 +1599,7 @@
     // kept is the run's recipe (the starting weapon and every pick, upgrade
     // and purchase, in order) and its numbers; restoring replays the recipe.
     const RUN_KEEP = ["round", "stage", "level", "xp", "xpNext", "gold", "kills", "pending", "damageDone", "dmgBy", "comboMax",
-                      "wavesCleared", "fightT", "t", "bossesKilled", "mode"];
+                      "wavesCleared", "fightT", "t", "bossesKilled", "mode", "fish", "livesUsed"];
     function exportRun() {
       if (st.phase !== "break" || st.practice || !st.flash || !st.log) return null;
       const n = {}; for (const k of RUN_KEEP) n[k] = st[k];
@@ -1392,7 +1643,12 @@
       telRoundEnd(); st.danger = false;
       for (const e of st.enemies) if (e.alive) ev({ t: "death", x: e.x, y: e.y, colour: e.colour, size: e.size, quiet: true });
       st.enemies = []; st.proj = []; st.eproj = [];
-      st.zones = []; st.allies = []; st.delayed = []; st.tele = []; st.boss = null;
+      st.zones = []; st.allies = []; st.delayed = []; st.tele = []; st.boss = null; st.paws = [];
+      // fish left on the floor are scooped up at the end of a round (if there's room)
+      let scooped = 0;
+      for (const p of st.pickups) if (st.fish < FI.carry) { st.fish++; scooped++; }
+      st.pickups = [];
+      if (scooped) ev({ t: "fish", k: "scoop", n: st.fish, got: scooped });
       st.offer = st.pending > 0 ? makeOffer() : null;
       makeShop(0);
       ev({ t: "round_end", round: st.round });
@@ -1431,7 +1687,7 @@
     function startPractice() {
       if (st.phase !== "over" || !st.flash) return false;
       practiceTel = tel; tel = null; accR = null;
-      Object.assign(st, { phase: "fight", paused: false, practice: true, enemies: [], proj: [], eproj: [], zones: [], allies: [],
+      Object.assign(st, { phase: "fight", paused: false, practice: true, enemies: [], proj: [], eproj: [], zones: [], allies: [], paws: [], pickups: [],
         delayed: [], tele: [], pops: [], boss: null, bossQueue: null, wave: null, offer: null, shop: null, pending: 0, buffs: [],
         danger: false, intensity: 1, spawnAcc: PR.every - 1, warning: null, surge: false, combo: 0 });
       const f = st.flash; f.hp = f.maxHp(); f.hurtT = 0;
@@ -1443,7 +1699,7 @@
       st.practice = false; tel = practiceTel; practiceTel = null;
       if (tel && result) (tel.learn = tel.learn || []).push(result);
       for (const e of st.enemies) if (e.alive) ev({ t: "death", x: e.x, y: e.y, colour: e.colour, size: e.size, quiet: true });
-      Object.assign(st, { phase: "over", enemies: [], proj: [], eproj: [], zones: [], allies: [], delayed: [], tele: [] });
+      Object.assign(st, { phase: "over", enemies: [], proj: [], eproj: [], zones: [], allies: [], delayed: [], tele: [], paws: [], pickups: [] });
       ev({ t: "practice", on: false });
       return true;
     }
@@ -1466,6 +1722,7 @@
     function gameOver() {
       if (st.phase === "over") return;
       st.phase = "over"; st.flash.hp = 0;
+      st.paused = false;                       // "paused" only means something in a fight (the bench can end a paused run)
       st.runStats = { round: st.round, stage: st.stage, level: st.level, kills: st.kills, gold: st.gold,
                       time: st.fightT, weapons: st.weapons.map(w => `${w.def.name} Lv${w.level}`), damage: Math.round(st.damageDone),
                       comboMax: st.comboMax, waves: st.wavesCleared };
@@ -1585,6 +1842,7 @@
       if (st.phase !== "fight" || st.paused) return;
       st.t += dt;
       if (!st.practice) { st.fightT += dt; st.roundT += dt; st.stage = 1 + Math.floor(st.fightT / S.stageLen); }
+      refill(dt);
       const f = st.flash;
       buildGrid();
       moveFlash(dt);
@@ -1621,6 +1879,7 @@
         }
       }
       if (!st.noWeapons) updateOrbits(dt);
+      updatePaws(dt);
       if (!st.noWeapons) castSpells(dt);
       updateZones(dt);
       updateAllies(dt);
@@ -1633,6 +1892,7 @@
       if (st.phase !== "fight") return;
       updateProjectiles(dt);
       updateEnemies(dt);
+      updatePickups(dt);
       compact();
       telSample();
       // a round can't end with a boss still standing
@@ -1657,6 +1917,18 @@
         return t;
       },
       setGod(on) { st.god = !!on; if (on) st.stressUsed = true; },
+      eatFish: () => eatFish(false),
+      setAutoEat(on) { st.autoEat = !!on; },
+      livesLeft: () => st.flash ? livesLeft() : 0,
+      fishCarry: () => FI.carry,
+      // test bench: a fish in Flash's arms, a Nine Lives charm
+      giveFish(n) { st.fish = Math.max(0, Math.min(FI.carry, st.fish + (n || 1))); return st.fish; },
+      giveWeapon(id) {
+        if (!D.weapons[id] || st.owned[id] || !st.flash) return false;
+        if (st.weapons.length >= S.slots + (st.tail ? 1 : 0)) { const old = st.weapons.pop(); delete st.owned[old.id]; }
+        addWeapon(id); st.stressUsed = true; return true;
+      },
+      giveLife() { if (!st.flash) return 0; changeMax(() => st.flash.stats.add([{ stat: "nine_lives", op: "add", value: 1 }], "bench")); st.stressUsed = true; return livesLeft(); },
       startPractice, endPractice, grantItem, bonusItem,
       die() { if (st.phase === "fight" && !st.practice) gameOver(); },
       setMode(m) { st.mode = m === "learn" ? "learn" : "test"; if (tel && st.phase === "fight") tel.mode = st.mode; },
@@ -1676,7 +1948,7 @@
       noteStudy(what) { if (tel && tel.study.length < 5000) tel.study.push([Math.round(st.fightT * 10) / 10, String(what), 0]); },
       setMove(on) { st.moveOn = !!on; if (!on && st.flash) { st.flash.x = W / 2; st.flash.y = H / 2; CX = W / 2; CY = H / 2; } },
       setDirector(on) { st.directorOn = !!on; },
-      clearEnemies() { st.enemies = []; st.proj = []; st.eproj = []; },
+      clearEnemies() { st.enemies = []; st.proj = []; st.eproj = []; st.paws = []; },
       // stress test: n skeletons at once from every side, ignoring the on-screen cap
       stressWave(n) {
         if (st.phase !== "fight") return 0;

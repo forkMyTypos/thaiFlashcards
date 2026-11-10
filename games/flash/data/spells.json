@@ -293,5 +293,24 @@
     "targets": 1,
     "duration": 10,
     "notes": "conversion duration guessed"
+  },
+  {
+    "id": "nuclear_hairball",
+    "name": "Nuclear Hairball",
+    "school": "elemental",
+    "element": "nuclear",
+    "behaviour": "nuke",
+    "cooldown": 30.0,
+    "unlock_stage": 4,
+    "damage": 420,
+    "radius": 260,
+    "min_targets": 25,
+    "zone_radius": 150,
+    "zone_dps": 22,
+    "zone_duration": 5,
+    "rarity": "legendary",
+    "targeting": "area",
+    "description": "Rare and ridiculous. Waits for a real crowd, then coughs up a hairball that goes off like the sun and leaves the ground glowing.",
+    "notes": "Round 3 step 3: Dan's 'nuclear'."
   }
 ]

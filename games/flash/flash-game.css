@@ -602,3 +602,44 @@
 .ftc-sent-more i { display: block; font-style: normal; color: #ffd27a; }
 .ftc-sent-more span { display: block; color: #c9c2b8; }
 .ftc-wc-next { display: block; margin: 10px auto 0; } .ftc-wc-next small { opacity: .6; font-weight: 400; margin-left: 4px; }
+
+/* ---- Round 3 step 3 (9 Nov): elements and feel */
+/* a screen flash on big hits: soft, capped by the game (never a strobe), off with ⚙ Screen flashes → Off */
+.ftc-flashfx { position: absolute; inset: 0; pointer-events: none; opacity: 0; z-index: 1; mix-blend-mode: screen; }
+/* 🐟 fish Flash carries, and 😼 nine lives */
+.ftc-fishbtn { pointer-events: auto; font: 700 12.5px/1 system-ui, sans-serif; color: #dff3ff; background: rgba(40, 90, 140, .55); border: 1px solid rgba(124, 200, 255, .6);
+  border-radius: 999px; padding: 3px 9px; cursor: pointer; text-shadow: 0 1px 2px #000; margin-right: auto; }
+.ftc-fishbtn:hover { border-color: #9fd8ff; }
+.ftc-fishbtn.empty { opacity: .5; }
+.ftc-fishbtn.got { animation: ftc-fishpop .35s ease-out; }
+.ftc-fishbtn.hungry { background: rgba(40, 140, 90, .75); border-color: #7dffb0; box-shadow: 0 0 10px rgba(125, 255, 176, .55); }
+@keyframes ftc-fishpop { 0% { transform: scale(1); } 40% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.ftc-lives { font-weight: 700; color: #ffe08a; white-space: nowrap; }
+.ftc-lives:empty { display: none; }
+/* the kitty death */
+.ftc-nap { position: absolute; left: 0; right: 0; bottom: 18%; text-align: center; z-index: 4; display: none; cursor: pointer; }
+.ftc-nap.show { display: block; inset: 0; padding-top: 70vh; }
+.ftc-nap span { font: 600 13px/1 system-ui, sans-serif; color: #cfe0ff; background: rgba(10, 14, 30, .55); border-radius: 999px; padding: 6px 12px; }
+.ftc.ftc-napping .ftc-hud, .ftc.ftc-napping .ftc-danger, .ftc.ftc-napping .ftc-vignette { opacity: 0 !important; transition: opacity .6s; }
+.ftc.ftc-napping .ftc-canvas { filter: saturate(.75) brightness(.85); transition: filter 1.2s; }
+.ftc-naph { color: #ffd9a0 !important; }
+.ftc-napsub { margin-top: -4px; }
+.ftc-napwords { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px auto 14px; max-width: 560px; }
+.ftc-napw { display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 84px; padding: 8px 10px; border-radius: 12px; cursor: pointer;
+  background: linear-gradient(180deg, rgba(255, 217, 160, .14), rgba(255, 217, 160, .05)); border: 1px solid rgba(255, 217, 160, .45); color: #fff;
+  animation: ftc-napin .5s ease-out both; }
+.ftc-napw b { font-size: 20px; font-weight: 700; }
+.ftc-napw i { font-style: normal; font-size: 12px; color: #ffd27a; }
+.ftc-napw small { font-size: 12px; color: #c9c2b8; }
+.ftc-napw:hover { border-color: #ffd9a0; }
+@keyframes ftc-napin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ftc-napw, .ftc-fishbtn.got { animation: none; } }
+
+/* ---- 📣 Share my journey (10 Nov): posts ready for x.com */
+.ftc-jtiles { margin-bottom: 10px; }
+.ftc-share-ta { width: min(560px, 94%); margin: 8px auto 2px; display: block; resize: vertical; font: 14px/1.45 system-ui, "Leelawadee UI", "Noto Sans Thai", sans-serif;
+  color: #e6f3ff; background: rgba(255, 255, 255, .06); border: 1px solid rgba(156, 200, 255, .35); border-radius: 12px; padding: 10px 12px; user-select: text; }
+.ftc-share-ta:focus { outline: none; border-color: #9cc8ff; }
+.ftc-share-cnt b.ok { color: #7dffb0; } .ftc-share-cnt b.over { color: #ffb347; }
+.ftc-share-seg { flex: none; width: min(560px, 94%); margin: 4px auto; }
+.ftc-share-ta, .ftc-jtiles, .ftc-share-img { flex: none; }

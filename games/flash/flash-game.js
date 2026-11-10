@@ -181,6 +181,11 @@
       ["study_bolts", "Study bolts", "A blue bolt strikes Flash for every study reward, and lightning flashes in his eyes", "event", true],
       ["flash_dash", "Flash dash", "Blue shockwave when the quiz streak reaches 5, 10, 15 …", "event", true],
       ["word_gems", "Word gems", "Thai / English word pairs to match in the arena (pairs spawned per second)", "event", true],
+      // Round 3 step 3 (9 Nov): elements and feel
+      ["elements", "Element effects", "Flames on burning skeletons, ice on frozen ones, steam / overload / superconduct bursts, the nuke", "event", true],
+      ["funny_deaths", "Funny deaths", "Ash, shatter, zapped dance, bowling pins, launched with a twinkle, rolling skulls, popping helmets", "event", true],
+      ["paws", "Paws", "Flash's paw grabbing a skeleton and bowling it", "event", true],
+      ["kitty_death", "Kitty death", "Slow motion and Flash curling up for a nap when he falls (tap to skip)", "event", true],
     ];
     const ANIM_DEF = {}; for (const a of ANIMS) ANIM_DEF[a[0]] = a[4];
     prefs.anim = prefs.anim || {};
@@ -220,6 +225,34 @@
     const use = (id, n) => { usedSec[id] = (usedSec[id] || 0) + (n || 1); };
     const useF = (id, n) => { usedFrame[id] = (usedFrame[id] || 0) + (n || 1); };
     const secTimer = setInterval(() => { for (const k of Object.keys(lastSec)) lastSec[k] = 0; Object.assign(lastSec, usedSec); for (const k in usedSec) usedSec[k] = 0; }, 1000);
+    // ⚙ Motion: Reduced (from the device's "reduce motion" until changed) means no
+    // screen shake, no camera zoom and no screen flashes unless they're switched on
+    const sysReduce = () => { try { return !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (e) { return false; } };
+    const reducedMotion = () => prefs.motion === "reduced" || (prefs.motion !== "full" && sysReduce());
+    // ⚙ Screen flashes on big hits (Dan: "flashes on big hits, with reduce flashing and a cap"):
+    //   full  up to ~1.4 a second, gentle (at most 32% opacity), never red
+    //   soft  up to ~0.7 a second, fainter
+    //   off   none (the default with reduce motion)
+    // Well under 3 a second (the seizure-safety line), and never a strobe.
+    const flashMode = () => prefs.flashes === "full" || prefs.flashes === "soft" || prefs.flashes === "off" ? prefs.flashes : reducedMotion() ? "off" : "full";
+    const FLASH = { full: { gap: 700, peak: 0.32 }, soft: { gap: 1400, peak: 0.14 } };
+    let flashAt = -1e9; const flashLog = [];
+    function screenFlash(colour, strength) {
+      const m = flashMode(); if (m === "off" || !flashFxEl) return false;
+      const now = performance.now(), c = FLASH[m];
+      if (now - flashAt < c.gap) return false;
+      flashAt = now; flashLog.push(now); if (flashLog.length > 50) flashLog.shift();
+      flashFxEl.style.transition = "none";
+      flashFxEl.style.background = "#" + (colour >>> 0).toString(16).padStart(6, "0");
+      flashFxEl.style.opacity = String(c.peak * Math.max(0.2, Math.min(1, strength || 1)));
+      void flashFxEl.offsetWidth;
+      flashFxEl.style.transition = "opacity 420ms ease-out";
+      flashFxEl.style.opacity = "0";
+      return true;
+    }
+    let flashFxEl = null;
+    // every camera shake goes through here: off with ⚙ Motion → Reduced
+    function shake(ms, k) { if (!scene || reducedMotion() || !A("screen_shake")) return; use("screen_shake"); scene.cameras.main.shake(ms, k); }
 
     // ------------------------------------------------------------- DOM
     el.innerHTML = "";
@@ -231,7 +264,12 @@
     const killsEl = h("span", "ftc-kills"), dpsEl = h("span", "ftc-dps");
     killsEl.title = "Skeletons this run"; dpsEl.title = "Damage per second (the last 5 seconds)";
     top.append(stageEl, timerEl, goldEl, eyeBtn, pauseBtn);
-    const tally = h("div", "ftc-tally"); tally.append(killsEl, dpsEl);
+    const tally = h("div", "ftc-tally");
+    // 🐟 fish Flash carries (tap or H to eat one) and 😼 nine lives left
+    const fishBtn = h("button", "ftc-fishbtn", "🐟 0"); fishBtn.title = "Eat a fish (H): heals Flash";
+    const livesEl = h("span", "ftc-lives"); livesEl.title = "Nine Lives: Flash gets back up this many more times";
+    fishBtn.onclick = e => { e.stopPropagation(); eatFish(); };
+    tally.append(fishBtn, livesEl, killsEl, dpsEl);
     const bars = h("div", "ftc-bars"), hpBar = h("div", "ftc-bar hp", "<i></i><span></span>"), xpBar = h("div", "ftc-bar xp", "<i></i><span></span>");
     bars.append(hpBar, xpBar);
     const waveBar = h("div", "ftc-bar wave", "<i></i><span></span>"); waveBar.style.display = "none"; bars.append(waveBar);
@@ -251,7 +289,9 @@
     hud.append(top, bars, tally, bigBars, ladderEl, buffsEl, warnEl, learnEl, masterEl, bottom);
     // the game's side of the screen; the study panel (the word card) sits beside it
     const arena = h("div", "ftc-arena"); arenaEl = arena;
-    arena.append(canvasBox, vignette, edges, hud, floatEl, comboEl, bannerEl, dangerEl, overlay);
+    flashFxEl = h("div", "ftc-flashfx");
+    const napEl = h("div", "ftc-nap");                         // the kitty death's "tap to skip"
+    arena.append(canvasBox, flashFxEl, vignette, edges, hud, floatEl, comboEl, bannerEl, dangerEl, napEl, overlay);
     root.append(arena);
     let bannerT = null, lastWave = null;
     function banner(text, sub) {
@@ -320,8 +360,22 @@
         coin: t => notes([988, 1319], t, 0.06, 0.14, "square", 0.08),
         round: t => notes([523, 784], t, 0.12, 0.25, "triangle", 0.16),
         over: t => notes([523, 440, 349, 262], t, 0.16, 0.3, "triangle", 0.18),
+        // Round 3 step 3
+        nap: t => notes([659, 523, 440, 392, 330], t, 0.28, 0.6, "sine", 0.14),
+        strike: t => { for (let i = 0; i < 6; i++) hiss(t + i * 0.035, 0.07, 0.16, 1800 + Math.random() * 2400, 3); tone(140, t, 0.2, "triangle", 0.2, 70); },
+        grab: t => tone(300, t, 0.09, "triangle", 0.12, 520),
+        throw: t => hiss(t, 0.22, 0.14, 600, 0.7),
+        fish: t => notes([1175, 1568], t, 0.05, 0.12, "sine", 0.12),
+        eat: t => { tone(420, t, 0.08, "square", 0.08, 300); tone(470, t + 0.11, 0.08, "square", 0.08, 330); notes([784, 1046], t + 0.24, 0.07, 0.2, "triangle", 0.15); },
+        revive: t => notes([392, 523, 659, 784, 1046, 1318], t, 0.07, 0.35, "triangle", 0.2),
+        nuke: t => { hiss(t, 1.4, 0.5, 300, 0.5, "lowpass"); tone(60, t, 1.2, "sine", 0.45, 28); tone(120, t, 0.6, "sawtooth", 0.08, 40); },
+        steam: t => hiss(t, 0.35, 0.12, 3600, 0.8, "highpass"),
+        zap: t => { tone(1400, t, 0.08, "sawtooth", 0.05, 600); hiss(t, 0.06, 0.06, 5200, 2); },
+        overload: t => { hiss(t, 0.2, 0.2, 900, 0.8); tone(200, t, 0.15, "square", 0.08, 90); },
+        shatter: t => { for (let i = 0; i < 3; i++) tone(2600 + Math.random() * 1600, t + i * 0.025, 0.06, "sine", 0.05); },
       };
-      const GAP = { hit: 0.07, kill: 0.06, pop: 0.05, swing: 0.1, hurt: 0.2, cast: 0.12, explode: 0.12, reward: 0.15, danger: 1 };
+      const GAP = { hit: 0.07, kill: 0.06, pop: 0.05, swing: 0.1, hurt: 0.2, cast: 0.12, explode: 0.12, reward: 0.15, danger: 1,
+                    strike: 0.3, grab: 0.25, throw: 0.25, fish: 0.12, steam: 0.18, zap: 0.12, overload: 0.15, shatter: 0.1, nuke: 0.8 };
       return {
         play(id) {
           if (muted || vol <= 0 || !ctx || ctx.state !== "running" || !SOUNDS[id]) return;
@@ -354,7 +408,7 @@
 
     // ----------------------------------------------------------- Phaser
     let scene = null;
-    const pools = { enemies: [], rings: [], proj: [], eproj: [], blades: [], parts: [], bones: [], texts: [], allies: [] };
+    const pools = { enemies: [], rings: [], proj: [], eproj: [], blades: [], parts: [], bones: [], texts: [], allies: [], corpses: [], fish: [], paws: [] };
     let kick = 0;
     const fx = [];           // {kind, x, y, r, life, max, colour}
     let acc = 0, speed = 1, lastUi = 0, slowF = 1, slowTo = 1, dashT = 0, eyesT = 0;
@@ -409,6 +463,31 @@
       g.fillStyle(0xdfe6ee); g.fillTriangle(0, 4, 16, 0, 16, 8); g.generateTexture("ftc-blade", 16, 8); g.clear();
       g.fillStyle(0xffffff); g.fillRect(2, 2, 8, 2); g.fillCircle(2, 2, 2); g.fillCircle(2, 4, 2); g.fillCircle(10, 2, 2); g.fillCircle(10, 4, 2);
       g.generateTexture("ftc-bone", 13, 7); g.clear();
+      // 🐾 Flash's paw (orange, pink beans)
+      g.fillStyle(0xff9f5a); g.fillEllipse(15, 19, 20, 16); g.fillCircle(6, 9, 5); g.fillCircle(12, 5, 5); g.fillCircle(19, 5, 5); g.fillCircle(25, 9, 5);
+      g.fillStyle(0xff8fa6); g.fillEllipse(15, 20, 11, 8); g.fillCircle(6, 9, 2.4); g.fillCircle(12, 5, 2.4); g.fillCircle(19, 5, 2.4); g.fillCircle(25, 9, 2.4);
+      g.generateTexture("ftc-paw", 31, 28); g.clear();
+      // 🐟 a fish
+      g.fillStyle(0x3f8fd8); g.fillTriangle(0, 2, 0, 14, 8, 8);
+      g.fillStyle(0x7cc8ff); g.fillEllipse(17, 8, 20, 12); g.fillStyle(0xdff3ff); g.fillEllipse(18, 10, 13, 5);
+      g.fillStyle(0x10202c); g.fillCircle(23, 6, 1.6);
+      g.generateTexture("ftc-fish", 28, 16); g.clear();
+      // Flash curled up for a nap: body, tail wrapped round, closed eyes
+      g.fillStyle(0xff9f5a); g.fillEllipse(32, 30, 40, 26);
+      g.lineStyle(7, 0xe8823e); g.beginPath(); g.arc(30, 30, 19, 0.2, 2.6); g.strokePath();
+      g.fillStyle(0xff9f5a); g.fillTriangle(9, 16, 13, 4, 19, 14); g.fillTriangle(27, 14, 31, 3, 34, 15); g.fillCircle(20, 22, 13);
+      g.lineStyle(2, 0x3a1a10); g.beginPath(); g.arc(15, 22, 3, 0.2, 2.9); g.strokePath(); g.beginPath(); g.arc(25, 22, 3, 0.2, 2.9); g.strokePath();
+      g.fillStyle(0xff6a7a); g.fillTriangle(18, 27, 22, 27, 20, 29);
+      g.generateTexture("ftc-flash-curl", 56, 46); g.clear();
+      // a helmet that pops off, an ice shard, a twinkle, the hairball
+      g.fillStyle(0x9aa4b2); g.fillEllipse(9, 8, 16, 14); g.fillStyle(0x6a7380); g.fillRect(0, 8, 18, 3);
+      g.generateTexture("ftc-helmet", 18, 11); g.clear();
+      g.fillStyle(0xffffff); g.fillTriangle(0, 10, 4, 0, 8, 10); g.generateTexture("ftc-shard", 8, 10); g.clear();
+      g.fillStyle(0xffffff); g.fillTriangle(8, 0, 6, 8, 10, 8); g.fillTriangle(8, 16, 6, 8, 10, 8); g.fillTriangle(0, 8, 8, 6, 8, 10); g.fillTriangle(16, 8, 8, 6, 8, 10);
+      g.fillCircle(8, 8, 2.2); g.generateTexture("ftc-star", 16, 16); g.clear();
+      g.fillStyle(0x7f8a6a); g.fillCircle(11, 11, 9); g.fillStyle(0xb6ff5a, 0.9); g.fillCircle(11, 11, 4);
+      for (let i = 0; i < 10; i++) { const a = i * 0.628; g.fillStyle(0x9aa38a); g.fillCircle(11 + Math.cos(a) * 9, 11 + Math.sin(a) * 9, 2.2); }
+      g.generateTexture("ftc-hairball", 22, 22); g.clear();
       g.destroy();
     }
     const grab = (arr, factory) => { for (const o of arr) if (!o.visible) { o.setVisible(true); return o; } const o = factory(); arr.push(o); return o; };
@@ -422,6 +501,8 @@
       this.bossImg = this.add.image(0, 0, "ftc-boss").setDepth(4).setVisible(false);
       this.flash = this.add.image(st.W / 2, FlashSim.H / 2, "ftc-flash").setDepth(5);
       this.swings = this.add.graphics().setDepth(6);
+      // lightning and the nuke's core glow, added on top of what's under them (so they shine)
+      this.glowG = this.add.graphics().setDepth(6.2).setBlendMode(Phaser.BlendModes.ADD);
       this.hpG = this.add.graphics().setDepth(6);          // health bars over elites and the boss
       this.eyes = [0, 1].map(() => this.add.image(0, 0, "ftc-eyebolt").setDepth(5.5).setVisible(false));
       this.game.loop.targetFps = 60;
@@ -438,13 +519,22 @@
           SFX.play("hit");
           // a few numbers a frame where they hit (crits big and gold, "!"); the
           // rest add up and show as one number now and then (Dan: "dps, high dmg..")
-          if (A("damage_numbers") && texts < Math.min(Q().texts, st.wave ? 3 : 6) && (e.crit || events.length < 60)) { texts++; use("damage_numbers"); spawnText(e.x, e.y - 10, e.crit ? fmtN(e.v) + "!" : fmtN(e.v), e.crit ? "#ffd23a" : "#ffffff", e.crit ? (e.v >= 100 ? 24 : 20) : 13); }
+          // numbers coloured by element (crits stay big and gold)
+          if (A("damage_numbers") && texts < Math.min(Q().texts, st.wave ? 3 : 6) && (e.crit || events.length < 60)) { texts++; use("damage_numbers"); spawnText(e.x, e.y - 10, e.crit ? fmtN(e.v) + "!" : fmtN(e.v), e.crit ? "#ffd23a" : EL_TXT[e.el] || "#ffffff", e.crit ? (e.v >= 100 ? 24 : 20) : e.el && EL_TXT[e.el] ? 14 : 13); }
+          if (e.big) screenFlash(0xfff4d6, 0.6);
           else if (A("damage_numbers")) { bulk.v += e.v; bulk.x += e.x; bulk.y += e.y; bulk.n++; }
           if (A("hit_sparks") && fx.length < 400) { use("hit_sparks"); fx.push({ k: "spark", x: e.x, y: e.y, r: 3, life: 0.15, max: 0.15, c: C.impact }); }
         } else if (e.t === "death") {
           deaths++; if (!e.quiet) SFX.play("kill");
+          // a funny death of its own, by what did it (within the quality's budget)
+          if (!e.quiet && e.how && e.how !== "pop" && A("funny_deaths") && deaths < Q().bones && fx.length < Q().fx) { use("funny_deaths"); deathFx(e); continue; }
           if (deaths < 30 && !e.quiet && A("death_particles")) { use("death_particles"); for (let i = 0; i < 3; i++) burst(e.x, e.y, e.colour || C.death, 120); }
           if (A("bone_shards") && deaths < Q().bones) { use("bone_shards"); boneShard(e.x, e.y); if (deaths < 30) boneShard(e.x, e.y); }
+          // skulls roll, helmets pop
+          if (!e.quiet && A("funny_deaths") && deaths < Q().bones / 3 && fx.length < Q().fx) {
+            if (e.type === "skeleton_armoured" || (e.elite && Math.random() < 0.5)) corpse("fly", e.x, e.y - 8, "ftc-helmet", 0xffffff, { vx: (Math.random() - 0.5) * 120, vy: -260 - Math.random() * 80, vr: (Math.random() - 0.5) * 14, life: 0.9, g: 700 });
+            else if (Math.random() < 0.18) corpse("roll", e.x, e.y + 4, "ftc-skel", e.colour || 0xe8e2d0, { vx: (Math.random() < 0.5 ? -1 : 1) * (90 + Math.random() * 80), life: 1.1, sx: 0.6 });
+          }
         } else if (e.t === "pop") {
           SFX.play("pop");
           if (A("chain_pops") && fx.length < 450) { use("chain_pops"); fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.22, max: 0.22, c: 0xffe6a0 }); }
@@ -452,17 +542,17 @@
           if (A("flash_squash")) { kick = 0.08; use("flash_squash"); }
         } else if (e.t === "mega_start") {
           if (A("banners")) { use("banners"); banner(e.banner || `${e.name}!`, `${e.total.toLocaleString()} skeletons · mow them down!`); }
-          if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(300, 0.006); }
+          shake(300, 0.006);
         } else if (e.t === "ambush") {
           // no warning: the banner comes with the ring already there
           banner(e.banner || "😱 AMBUSH!", `${e.total.toLocaleString()} skeletons · they're all around you!`);
           SFX.play("level");
-          if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(450, 0.01); }
+          shake(450, 0.01);
         } else if (e.t === "mega_gap") {
           if (A("banners")) { use("banners"); banner(`Breathe! Wave ${e.part} of ${e.parts} in ${e.gap}s`, `☠ coming from ${SIDE_NAME[e.side] || "somewhere"}`); }
         } else if (e.t === "mega_part") {
           if (A("banners")) { use("banners"); banner(`💀 Wave ${e.part} of ${e.parts}`, `${e.total.toLocaleString()} more · keep going!`); }
-          if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(250, 0.005); }
+          shake(250, 0.005);
         } else if (e.t === "mega_end") {
           if (e.ambush) { floatText(`😮‍💨 Ambush survived! ${e.total.toLocaleString()} skeletons`); continue; }
           lastWave = e;          // shown at the top of the break screen instead of a banner
@@ -478,7 +568,7 @@
           if (A("hit_sparks")) { use("hit_sparks"); fx.push({ k: "spark", x: e.x, y: e.y, r: 7, life: 0.12, max: 0.12, c: 0xffffff }); }
         } else if (e.t === "hurt") {
           SFX.play("hurt");
-          if (scene && A("screen_shake")) { use("screen_shake"); scene.cameras.main.shake(70, 0.0025); }
+          shake(70, 0.0025);
           if (A("flash_hurt")) use("flash_hurt");
         } else if (e.t === "cast") {
           SFX.play("cast");
@@ -486,14 +576,14 @@
         } else if (e.t === "boss") {
           SFX.play("boss");
           if (A("banners")) { use("banners"); banner(`👑 ${e.name} approaches!`, e.encounter || "A boss fight: the round won't end until it falls"); }
-          if (scene && A("screen_shake")) scene.cameras.main.shake(400, 0.008);
+          shake(400, 0.008);
         } else if (e.t === "boss_phase") {
           if (A("banners")) { use("banners"); banner(`${e.name} is furious!`, `Phase ${e.phase}`); }
         } else if (e.t === "boss_down") {
           SFX.play("boss_down");
           if (A("banners")) { use("banners"); banner(`👑 ${e.name} defeated!`, `+${e.picks} free picks`); }
           for (let i = 0; i < 40; i++) burst(e.x, e.y, i % 2 ? 0xffd23a : 0xffffff, 520);
-          if (scene && A("screen_shake")) scene.cameras.main.shake(300, 0.01);
+          shake(300, 0.01);
         } else if (e.t === "shield_hit") {
           if (st.flash) fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 34, life: 0.2, max: 0.2, c: 0x9cc8ff });
         } else if (e.t === "dash") {
@@ -505,10 +595,46 @@
             for (let i = 0; i < 10; i++) { const a = i / 10 * 6.283 + Math.random() * 0.3;
               fx.push({ k: "zap", pts: zigzag(e.x, e.y, e.x + Math.cos(a) * e.r, e.y + Math.sin(a) * e.r, 22), life: 0.3, max: 0.3 }); }
             for (let i = 0; i < 26; i++) burst(e.x, e.y, i % 2 ? BLUE : BLUE_HI, 420);
-            if (scene && A("screen_shake")) scene.cameras.main.shake(140, 0.006);
+            shake(140, 0.006);
             floatText(`⚡ FLASH! ×${e.streak} in a row`, false, true);
             dashT = 0.35;
           }
+        } else if (e.t === "combo") {
+          // 🔥🧊 steam, ⚡🧊 superconduct, ⚡🔥 overload
+          SFX.play(e.k === "steam" ? "steam" : e.k === "overload" ? "overload" : "shatter");
+          if (A("elements") && fx.length < Q().fx) { use("elements"); comboFx(e); }
+        } else if (e.t === "big") {
+          // the screen flashes on big hits (capped, gentle, can be turned off)
+          const col = { nuke: 0xfff6c8, strike: 0xffffff, revive: 0xffe08a, steam: 0xeef6fa, overload: 0xffc070, superconduct: 0xbfefff }[e.k] || 0xffffff;
+          screenFlash(col, e.k === "nuke" || e.k === "revive" ? 1 : 0.55);
+        } else if (e.t === "nuke") {
+          SFX.play("nuke");
+          if (A("elements")) { use("elements"); nukeFx(e); }
+          shake(700, 0.016);
+          if (A("banners")) banner("☢️ NUCLEAR HAIRBALL!", `${e.n.toLocaleString()} skeletons caught in it`);
+        } else if (e.t === "paw") {
+          SFX.play(e.k === "grab" ? "grab" : "throw");
+          if (e.k === "throw" && A("paws")) { use("paws"); for (let i = 0; i < 5; i++) burst(e.x, e.y, 0xff9f5a, 160); }
+        } else if (e.t === "strike") {
+          SFX.play("strike");
+          if (A("paws")) { use("paws"); spawnText(e.x, e.y - 30, e.n >= 10 ? `🎳 STRIKE ×${e.n}!!` : `🎳 STRIKE! ×${e.n}`, "#ffe7a8", e.n >= 10 ? 26 : 21); }
+          if (e.n >= 10) shake(160, 0.006);
+        } else if (e.t === "fish") {
+          if (e.k === "got") { SFX.play("fish"); spawnText(e.x, e.y - 16, "+🐟", "#9fd8ff", 16); }
+          else if (e.k === "eat") {
+            SFX.play("eat");
+            if (st.flash) { fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 46, life: 0.5, max: 0.5, c: C.healing }); for (let i = 0; i < 10; i++) burst(st.flash.x, st.flash.y, C.healing, 180);
+              spawnText(st.flash.x, st.flash.y - 40, `🐟 +${e.heal}`, "#7dffb0", 18); }
+            if (e.auto) floatText(`🐟 Flash ate a fish (${e.n} left)`);
+          } else if (e.k === "scoop") floatText(`🐟 Scooped up ${e.got} fish (${e.n} in his arms)`);
+          updateFish();
+        } else if (e.t === "revive") {
+          // 😼 Nine Lives: he gets back up
+          SFX.play("revive");
+          if (A("banners")) banner("😼 Nine lives!", e.left > 0 ? `Flash is back up · ${e.left} more` : "Flash is back up · that was the last one");
+          for (let i = 0; i < 3; i++) fx.push({ k: "ring", x: e.x, y: e.y, r: e.r * (0.4 + i * 0.3), life: 0.5 + i * 0.12, max: 0.5 + i * 0.12, c: i ? 0xffd23a : 0xffffff });
+          for (let i = 0; i < 30; i++) burst(e.x, e.y, i % 2 ? 0xffd23a : 0xfff4c0, 460);
+          shake(250, 0.01);
         } else if (e.t === "levelup") {
           SFX.play("levelup");
           if (A("level_up_ring")) { use("level_up_ring"); floatText(`LEVEL ${e.level}!`); fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 90, life: 0.5, max: 0.5, c: 0x7cc4ff }); }
@@ -534,12 +660,14 @@
           saveSet("run", null);                    // a run that's over can't be continued
           const best = SAVE.get().best || {};
           if ((st.round || 0) > (best[mode] || 0)) { best[mode] = st.round; saveSet("best", best); }
-          SFX.play("over");
-          clearGems(); closeQuestion(); showOver(); announce("died"); sendTel();
+          clearGems(); closeQuestion(); announce("died"); sendTel();
+          // a beautiful kitty death: slow motion, Flash curls up for a nap, then the run's words
+          if (A("kitty_death") && !st.practice && st.flash) startNap(); else { SFX.play("over"); showOver(); }
         }
-        else if (e.t === "practice") { if (e.on) hideOverlay(); }
+        else if (e.t === "practice") { if (e.on) { endNap(true); hideOverlay(); } }
         else if (e.t === "start" || e.t === "round_start") {
           if (e.t === "start") {
+            endNap(true);
             if (learn) { endLearnGems(); learn = null; }
             clearGems(); rescueChain = 0; runWords = {};
             // a bonus item earned in learning mode (one per run)
@@ -567,6 +695,119 @@
       fx.push({ k: "bone", x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, rot: Math.random() * 6, vr: (Math.random() - 0.5) * 18,
                 life: 0.6, max: 0.6, c: 0xece4d0 });
     }
+    // ---- Round 3 step 3: elements, funny deaths, paws, fish, the kitty death
+    // damage numbers by element (Dan: "colours by element come with Step 3")
+    const EL_TXT = { fire: "#ffa04a", burn: "#ff8a3a", ice: "#a8ecff", shards: "#cdf6ff", lightning: "#d9c8ff", superconduct: "#7fe0ff",
+                     overload: "#ffbe5c", steam: "#eef6fa", nuclear: "#c8ff5a", rad: "#9dff5a", poison: "#9fe36a", dark: "#c8a0ff",
+                     holy: "#fff0a0", arcane: "#8fc8ff", earth: "#d8b080", wind: "#dff5ec" };
+    // ⚡ lightning in several colours, thick and glowing (Dan: "chain lightning kinda difficult to see")
+    const BOLT_COLOURS = [0x8fd0ff, 0xd8b8ff, 0xfff27a, 0x7affd4, 0xff9ce8];
+    let boltI = 0;
+    function corpse(mode, x, y, tex, c, o) {
+      o = o || {};
+      const life = o.life || 0.6;
+      fx.push(Object.assign({ k: "corpse", mode, x, y, tex, c, vx: 0, vy: 0, rot: 0, vr: 0, sx: 1, sy: 1, g: 0, life, max: life }, o));
+    }
+    function deathFx(e) {
+      const sz = e.size || 1, c = e.colour || 0xe8e2d0, rm = reducedMotion();
+      if (e.how === "ash") {
+        // 🔥 crumbles to ash (green when it was the nuke's glow)
+        const ash = e.el === "rad" || e.el === "nuclear" ? 0x6a9a4a : 0x4a4440;
+        corpse("ash", e.x, e.y, "ftc-skel", ash, { sx: sz, sy: sz, life: 0.55 });
+        for (let i = 0; i < 4; i++) fx.push({ k: "part", rise: true, x: e.x + (Math.random() - 0.5) * 14, y: e.y, vx: (Math.random() - 0.5) * 20, vy: -30 - Math.random() * 40, r: 2.5, life: 0.7, max: 0.7, c: i ? 0x7a726a : 0xff8a3a });
+      } else if (e.how === "shatter") {
+        // 🧊 shatters into ice
+        SFX.play("shatter");
+        for (let i = 0; i < 7; i++) { const a = Math.random() * 6.283, sp = 120 + Math.random() * 160;
+          corpse("fly", e.x, e.y, "ftc-shard", i % 3 ? 0xbfefff : 0xffffff, { vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60, vr: (Math.random() - 0.5) * 20, rot: a, g: 380, life: 0.55, sx: 0.8 + Math.random() * 0.6 }); }
+        fx.push({ k: "ring", x: e.x, y: e.y, r: 18 * sz, life: 0.2, max: 0.2, c: 0xe8fbff });
+      } else if (e.how === "zap") {
+        // ⚡ the zapped dance: it jitters, lit up like an x-ray, then drops
+        SFX.play("zap");
+        corpse("zap", e.x, e.y, "ftc-skel", c, { sx: sz, sy: sz, life: rm ? 0.3 : 0.6 });
+      } else if (e.how === "pins") {
+        // 🎳 knocked flying like a bowling pin
+        const dir = Math.random() < 0.5 ? -1 : 1;
+        corpse("fly", e.x, e.y, "ftc-skel", c, { vx: (e.dx || 0) * 160 + dir * (120 + Math.random() * 120), vy: -280 - Math.random() * 160, vr: dir * (14 + Math.random() * 10), g: 900, sx: sz, sy: sz, life: 0.85 });
+        boneShard(e.x, e.y);
+      } else if (e.how === "launch") {
+        // launched off into the distance... with a twinkle
+        const tx = (e.dx || 0) * 220 + (Math.random() - 0.5) * 80, ty = -420 - Math.random() * 140, life = 0.8;
+        corpse("launch", e.x, e.y, "ftc-skel", c, { vx: tx / life, vy: ty / life, vr: 16, sx: sz, sy: sz, life });
+        corpse("twinkle", e.x + tx, e.y + ty, "ftc-star", 0xffffff, { wait: life, life: 0.45, sx: 1.4 });
+      }
+    }
+    function comboFx(e) {
+      if (e.k === "steam") {
+        for (let i = 0; i < 6; i++) { const a = Math.random() * 6.283, d = Math.random() * e.r * 0.5;
+          fx.push({ k: "puff", x: e.x + Math.cos(a) * d, y: e.y + Math.sin(a) * d, r: e.r * (0.35 + Math.random() * 0.3), life: 0.7, max: 0.7, c: 0xeef6fa }); }
+        maybeLabel("steam", e.x, e.y, "💨 Steam burst!", "#eef6fa");
+      } else if (e.k === "overload") {
+        fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.3, max: 0.3, c: 0xffa040 });
+        for (let i = 0; i < 10; i++) burst(e.x, e.y, i % 2 ? 0xffd27a : 0xd8b8ff, 260);
+        maybeLabel("overload", e.x, e.y, "⚡🔥 Overload!", "#ffbe5c");
+      } else {
+        fx.push({ k: "ring", x: e.x, y: e.y, r: 36, life: 0.3, max: 0.3, c: 0x7fe0ff });
+        for (let i = 0; i < 4; i++) { const a = i * 1.571 + Math.random() * 0.4; fx.push({ k: "bolt", pts: zigzag(e.x, e.y, e.x + Math.cos(a) * 40, e.y + Math.sin(a) * 40, 10), br: [], life: 0.25, max: 0.25, c: 0x7fe0ff }); }
+        maybeLabel("superconduct", e.x, e.y, "⚡🧊 Superconduct!", "#7fe0ff");
+      }
+    }
+    const labelAt = {};
+    function maybeLabel(k, x, y, text, colour) {
+      const now = performance.now(); if (now - (labelAt[k] || 0) < 1800) return; labelAt[k] = now;
+      spawnText(x, y - 28, text, colour, 15);
+    }
+    function nukeFx(e) {
+      fx.push({ k: "glow", x: e.x, y: e.y, r: e.r * 0.8, life: 0.7, max: 0.7, c: 0xfff6c8 });
+      for (let i = 0; i < 4; i++) fx.push({ k: "ring", x: e.x, y: e.y, r: e.r * (0.5 + i * 0.25), life: 0.6 + i * 0.15, max: 0.6 + i * 0.15, c: [0xffffff, 0xfff27a, 0xffa040, 0x9dff5a][i] });
+      for (let i = 0; i < 46; i++) burst(e.x, e.y, [0xfff27a, 0xffa040, 0x9dff5a, 0xffffff][i % 4], 700);
+    }
+    // 🐟 eat one (the button, H, or the bench)
+    function eatFish() {
+      if (sim.eatFish()) return true;
+      const f = st.flash;
+      if (f && st.fish > 0 && f.hp >= f.maxHp() - 0.5) floatText("🐟 Flash is full: save it for later");
+      else if (!st.fish && (st.phase === "fight" || st.phase === "break")) floatText("🐟 No fish yet: skeletons drop them now and then");
+      return false;
+    }
+    let fishShown = -1, livesShown = -1;
+    function updateFish() {
+      const live = st.phase === "fight" || st.phase === "break";
+      const n = live ? st.fish || 0 : 0;
+      fishBtn.style.display = live ? "" : "none";
+      if (n !== fishShown) {
+        fishShown = n; fishBtn.textContent = `🐟 ${n}`;
+        fishBtn.classList.remove("got"); void fishBtn.offsetWidth; if (n > 0) fishBtn.classList.add("got");
+      }
+      fishBtn.classList.toggle("empty", !n);
+      const f = st.flash, low = live && f && f.hp / f.maxHp() < 0.35 && n > 0;
+      fishBtn.classList.toggle("hungry", !!low);
+      const lv = live && st.flash ? sim.livesLeft() : 0;
+      if (lv !== livesShown) { livesShown = lv; livesEl.textContent = lv ? `😼 ×${lv}` : ""; }
+    }
+    // ---- the kitty death (Dan: "a beautiful kitty death"): slow motion, the
+    // camera drifts in, Flash curls up for a nap, then the run's words
+    let nap = null;
+    function startNap() {
+      const f = st.flash, rm = reducedMotion();
+      nap = { t: 0, dur: rm ? 1.8 : 3.6, x: f.x, y: f.y, z: 0, rm };
+      SFX.play("nap");
+      napEl.innerHTML = "<span>💤 tap to skip</span>"; napEl.classList.add("show");
+      napEl.onclick = () => finishNap();
+      if (!rm && scene) { const cam = scene.cameras.main; cam.pan(f.x, f.y, 1400, "Sine.easeInOut"); cam.zoomTo(1.7, 1600, "Sine.easeInOut"); }
+      root.classList.add("ftc-napping");
+    }
+    function finishNap() {
+      if (!nap) return;
+      nap.done = true;
+      napEl.classList.remove("show"); napEl.onclick = null;
+      if (st.phase === "over" && !optsOpen) showOver();
+    }
+    function endNap(resetCam) {
+      nap = null; napEl.classList.remove("show"); napEl.onclick = null; root.classList.remove("ftc-napping");
+      if (resetCam && scene) { const cam = scene.cameras.main; cam.resetFX(); cam.setZoom(1); cam.centerOn(st.W / 2, FlashSim.H / 2); }
+      if (scene) scene.flash.setTexture("ftc-flash");
+    }
     let bulk = { v: 0, x: 0, y: 0, n: 0, at: 0 };          // hits with no number of their own, added up
     function spawnText(x, y, text, colour, size) {
       if (!scene) return;
@@ -587,12 +828,26 @@
         if (sp) spawnText(f.x, f.y - 46, `${icon("spells", sp.id, "")} ${sp.name}`.trim(), "#" + c.toString(16).padStart(6, "0"), 14);
       }
       if (e.k === "chain") {
-        for (let i = 1; i < e.pts.length; i++) fx.push({ k: "zap", pts: zigzag(e.pts[i - 1].x, e.pts[i - 1].y, e.pts[i].x, e.pts[i].y, 18), life: 0.28, max: 0.28, c });
+        // thick and glowing, a different colour each cast, with little forks, and a flare on each skeleton it jumps to
+        const bc = A("elements") ? BOLT_COLOURS[boltI++ % BOLT_COLOURS.length] : c;
+        for (let i = 1; i < e.pts.length; i++) {
+          const a = e.pts[i - 1], b = e.pts[i], pts = zigzag(a.x, a.y, b.x, b.y, 16), br = [];
+          if (A("elements") && pts.length > 3) { const k = 1 + ((Math.random() * (pts.length - 2)) | 0), p = pts[k], ang = Math.atan2(b.y - a.y, b.x - a.x) + (Math.random() < 0.5 ? -0.8 : 0.8);
+            br.push(zigzag(p.x, p.y, p.x + Math.cos(ang) * 34, p.y + Math.sin(ang) * 34, 9)); }
+          fx.push({ k: "bolt", pts, br, life: 0.42, max: 0.42, c: bc });
+          fx.push({ k: "spark", glow: true, x: b.x, y: b.y, r: 11, life: 0.3, max: 0.3, c: bc });
+        }
       } else if (e.k === "nova" || e.k === "quake" || e.k === "holy" || e.k === "souls" || e.k === "slow") {
         fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.5, max: 0.5, c });
         fx.push({ k: "ring", x: e.x, y: e.y, r: e.r * 0.7, life: 0.4, max: 0.4, c: 0xffffff });
         for (let i = 0; i < 22; i++) { const a = Math.random() * 6.283, d = Math.random() * e.r; burst(e.x + Math.cos(a) * d, e.y + Math.sin(a) * d, c, 120); }
-        if (e.k === "quake" && scene && A("screen_shake")) scene.cameras.main.shake(260, 0.008);
+        if (e.k === "quake") shake(260, 0.008);
+      } else if (e.k === "nuke") {
+        // ☢️ the hairball, lobbed: a warning circle where it will land
+        const life = Math.max(0.3, e.at - st.t);
+        fx.push({ k: "warn", x: e.x, y: e.y, r: e.r, life, max: life, c: 0x9dff5a });
+        if (f) corpse("lob", f.x, f.y, "ftc-hairball", 0xffffff, { tx: e.x, ty: e.y, x0: f.x, y0: f.y, life, sx: 1.3 });
+        if (A("banners")) floatText("☢️ Nuclear Hairball incoming!");
       } else if (e.k === "meteors") {
         const now = st.t;
         for (const d of e.drops) fx.push({ k: "warn", x: d.x, y: d.y, r: e.r, life: Math.max(0.2, d.at - now), max: Math.max(0.2, d.at - now), c });
@@ -610,7 +865,7 @@
       g.clear();
       for (const z of st.zones) {
         const left = Math.min(1, Math.max(0, (z.until - st.t) / 0.4));
-        if (!sq.detail) { g.fillStyle(z.k === "heal" ? 0x5aff9a : z.k === "tornado" ? z.c : 0x7c5cff, 0.12 * left); g.fillCircle(z.x, z.y, z.r || 40); continue; }
+        if (!sq.detail) { g.fillStyle(z.k === "heal" ? 0x5aff9a : z.k === "tornado" || z.k === "rad" ? z.c : 0x7c5cff, 0.12 * left); g.fillCircle(z.x, z.y, z.r || 40); continue; }
         if (z.k === "tornado") {
           for (let i = 0; i < 4; i++) {
             const a = now * 7 + i * 1.57, r = z.r * (0.35 + i * 0.18);
@@ -624,6 +879,13 @@
         } else if (z.k === "heal") {
           const p = (now * 1.6) % 1;
           g.lineStyle(3, 0x5aff9a, (1 - p) * 0.7 * left); g.strokeCircle(z.x, z.y, 24 + p * 46);
+        } else if (z.k === "rad") {
+          // ☢️ the glow left by a Nuclear Hairball: pulses slowly, motes rise
+          const p2 = 0.5 + 0.5 * Math.sin(now * 3);
+          g.fillStyle(0x9dff5a, (0.10 + 0.06 * p2) * left); g.fillCircle(z.x, z.y, z.r);
+          g.lineStyle(3, 0xc8ff5a, (0.35 + 0.25 * p2) * left); g.strokeCircle(z.x, z.y, z.r);
+          if (A("elements") && Math.random() < 0.5 && fx.length < Q().fx) { const a = Math.random() * 6.283, d = Math.random() * z.r;
+            fx.push({ k: "part", rise: true, x: z.x + Math.cos(a) * d, y: z.y + Math.sin(a) * d, vx: 0, vy: -40, r: 2.2, life: 0.8, max: 0.8, c: 0xb6ff5a }); }
         } else if (z.k === "drain") {
           g.fillStyle(0xa66cff, 0.08 * left); g.fillCircle(z.x, z.y, z.r);
           for (const h of (z.hits || []).slice(0, 12)) { g.lineStyle(2, 0xc8a0ff, 0.6 * left); g.beginPath(); g.moveTo(h.x, h.y); g.lineTo(z.x, z.y); g.strokePath(); }
@@ -671,6 +933,9 @@
 
     function draw(dt) {
       const s = scene; if (!s) return;
+      // cleared first: the skeleton loop draws boss rings, elite health bars, Death Mark
+      // reticles and ice blocks on these (they were cleared after it, so never showed)
+      s.swings.clear(); s.hpG.clear(); s.glowG.clear();
       const W2 = st.flash ? st.flash.x : st.W / 2, H2 = st.flash ? st.flash.y : FlashSim.H / 2;
       // Flash
       for (const k in usedFrame) usedFrame[k] = 0;
@@ -683,6 +948,16 @@
       if (lean) useF("flash_lean");
       s.flash.setPosition(W2, H2).setRotation(lean)
         .setScale((1 + bob + kick * 1.2) * (A("flash_lean") && f0 && f0.face < 0 ? -1 : 1), 1 + bob - kick * 1.5);
+      // 😼 just revived: golden for a moment, can't be hurt
+      if (f0 && st.safeUntil > st.t && st.phase === "fight") s.flash.setTint(Math.sin(performance.now() / 120) > 0 ? 0xffe08a : 0xfff4c0);
+      // the kitty death: he tips over, then curls up and breathes slowly
+      if (nap && st.phase === "over") {
+        const k = nap.t / nap.dur, tip = Math.min(1, nap.t / 0.9);
+        if (k < 0.3 && !nap.rm) { s.flash.setTexture("ftc-flash").setVisible(true).setTint(0xffd0b0).setRotation(tip * 1.3).setScale(1 - tip * 0.1).setPosition(nap.x, nap.y + tip * 4); }
+        else { if (s.flash.texture.key !== "ftc-flash-curl") s.flash.setTexture("ftc-flash-curl");
+          const br = 1 + Math.sin(performance.now() / 700) * 0.035;
+          s.flash.setVisible(true).clearTint().setRotation(0).setPosition(nap.x, nap.y + 4).setScale(1.05 * br, 1.05 / br); }
+      }
       // power-up: a lightning bolt over each eye, flickering, for a moment (longer after a Flash dash)
       eyesT = Math.max(eyesT - dt, dashT > 0 ? 0.35 : 0);
       const showEyes = eyesT > 0 && st.phase !== "start";
@@ -706,7 +981,9 @@
       // white flash one by one (elites keep theirs), so 10,000 stay smooth
       const crowd = st.enemies.length > Q().lod;
       const lunge = A("lunge") && !crowd, waddle = A("waddle") && !crowd, hitFlash = A("hit_flash"), elitePulse = A("elite_pulse");
-      let i = 0, ri = 0, nL = 0, nW = 0, nH = 0, nE = 0;
+      let i = 0, ri = 0, nL = 0, nW = 0, nH = 0, nE = 0, nPaw = 0, nFl = 0, nIce = 0;
+      const napFade = nap ? Math.max(0.12, 1 - nap.t / 1.5 * 0.88) : 1;
+      const elOn = A("elements") && !crowd, flameMax = Q().texts * 8, iceMax = Q().texts * 12;
       for (; i < es.length; i++) {
         const e = es[i];
         const sp = pools.enemies[i] || (pools.enemies[i] = s.add.image(0, 0, "ftc-skel").setDepth(3));
@@ -717,6 +994,9 @@
         } else if (!e.attacking && waddle) { // waddle
           sp.setPosition(e.x, e.y + Math.abs(Math.sin(ph)) * -2).setRotation(Math.sin(ph) * 0.16).setScale(e.size); nW++;
         } else sp.setPosition(e.x, e.y).setRotation(0).setScale(e.size);
+        // 🐾 in a paw: it wriggles; rolling: it spins
+        if (e.held) { sp.setRotation(e.thrown ? now / 45 : Math.sin(now / 40) * 0.5).setScale(e.size * 1.12); nPaw++; }
+        sp.setAlpha(napFade);
         if (e.boss) {                         // the boss is its own big sprite
           sp.setVisible(false);
           const bi = s.bossImg; bi.setVisible(true).setPosition(sp.x, sp.y).setScale(1 + Math.sin(now / 300) * 0.02);
@@ -729,9 +1009,17 @@
         const x = e.fx, tnow = st.t;
         if (e.hitT > 0 && hitFlash) { sp.setTintFill(0xffffff); nH++; }
         else if (x && A("status_tints")) {
-          const tint = (x.frozen || 0) > tnow ? 0xbfefff : (x.stun || 0) > tnow ? 0xffffa0 : x.burn && x.burn.until > tnow ? 0xff9a50
-            : x.poison && x.poison.until > tnow ? 0x9fe36a : (x.curse || 0) > tnow ? 0xc08aff : e.colour;
+          const frozen = (x.frozen || 0) > tnow, burning = x.burn && x.burn.until > tnow;
+          const tint = frozen ? 0xbfefff : (x.stun || 0) > tnow ? 0xffffa0 : burning ? 0xff9a50
+            : x.poison && x.poison.until > tnow ? 0x9fe36a : (x.curse || 0) > tnow ? 0xc08aff : (x.chill || 0) > tnow ? 0xd6f2ff : e.colour;
           sp.setTint(tint);
+          // 🔥 burning ones give off flames, 🧊 frozen ones sit in a block of ice (a budget a frame)
+          if (elOn && burning && nFl < flameMax && Math.random() < 0.35 && fx.length < Q().fx) { nFl++;
+            fx.push({ k: "part", rise: true, x: e.x + (Math.random() - 0.5) * 12 * e.size, y: e.y - 6, vx: (Math.random() - 0.5) * 16, vy: -50 - Math.random() * 40, r: 2.2 + Math.random() * 2, life: 0.45, max: 0.45, c: Math.random() < 0.5 ? 0xffb347 : 0xff6a2a }); }
+          if (elOn && frozen && nIce < iceMax) { nIce++; const r = 13 * e.size;
+            s.swings.fillStyle(0xbfefff, 0.22); s.swings.fillRect(e.x - r, e.y - r, r * 2, r * 2);
+            s.swings.lineStyle(1.5, 0xf0fdff, 0.85); s.swings.strokeRect(e.x - r, e.y - r, r * 2, r * 2);
+            s.swings.lineBetween(e.x - r + 3, e.y - r + 3, e.x - r + 9, e.y - r + 3); }
           if ((x.mark || 0) > tnow) { s.swings.lineStyle(2, 0xff4a6a, 0.9); s.swings.strokeCircle(e.x, e.y, 16 * e.size); s.swings.lineBetween(e.x - 22, e.y, e.x - 10, e.y); s.swings.lineBetween(e.x + 10, e.y, e.x + 22, e.y); }
         } else sp.setTint(e.colour);
         if (e.elite) {      // rings only for elites, not one per skeleton
@@ -744,7 +1032,32 @@
       for (; i < pools.enemies.length; i++) pools.enemies[i].setVisible(false);
       if (!st.boss || !st.boss.alive) s.bossImg.setVisible(false);
       for (; ri < pools.rings.length; ri++) pools.rings[ri].setVisible(false);
-      useF("lunge", nL); useF("waddle", nW); useF("hit_flash", nH); useF("elite_pulse", nE);
+      useF("lunge", nL); useF("waddle", nW); useF("hit_flash", nH); useF("elite_pulse", nE); useF("paws", nPaw); useF("elements", nFl + nIce);
+      // 🐾 the paw reaching out to whatever it has grabbed
+      let pi0 = 0;
+      if (A("paws") && st.phase === "fight") for (const q of st.paws) {
+        const e = q.e; if (!e || !e.alive) continue;
+        const pw = pools.paws[pi0] || (pools.paws[pi0] = s.add.image(0, 0, "ftc-paw").setDepth(5.6)); pi0++;
+        if (q.phase === "grab") {
+          s.swings.lineStyle(9, 0xe8823e, 0.95); s.swings.lineBetween(W2, H2, e.x, e.y);
+          s.swings.lineStyle(5, 0xff9f5a, 1); s.swings.lineBetween(W2, H2, e.x, e.y);
+          pw.setVisible(true).setPosition(e.x, e.y - 4).setRotation(Math.atan2(e.y - H2, e.x - W2) + 1.57).setScale(1.4);
+        } else {
+          pw.setVisible(false);
+          // a streak behind the ball
+          s.swings.lineStyle(16, 0xffd27a, 0.18); s.swings.lineBetween(e.x - Math.cos(q.a) * 70, e.y - Math.sin(q.a) * 70, e.x, e.y);
+          s.swings.lineStyle(6, 0xffffff, 0.35); s.swings.lineBetween(e.x - Math.cos(q.a) * 40, e.y - Math.sin(q.a) * 40, e.x, e.y);
+        }
+      }
+      for (; pi0 < pools.paws.length; pi0++) pools.paws[pi0].setVisible(false);
+      // 🐟 fish on the floor (blinking slowly when they're about to go)
+      let fi0 = 0;
+      for (const p of st.pickups) {
+        const sp = pools.fish[fi0] || (pools.fish[fi0] = s.add.image(0, 0, "ftc-fish").setDepth(2.5)); fi0++;
+        const left = p.until - st.t, blink = left < 4 && Math.floor(left * 2) % 2 === 0;
+        sp.setVisible(st.phase === "fight").setPosition(p.x, p.y + Math.sin(now / 260 + p.id) * 3).setRotation(Math.sin(now / 400 + p.id) * 0.25).setAlpha(blink ? 0.45 : 1);
+      }
+      for (; fi0 < pools.fish.length; fi0++) pools.fish[fi0].setVisible(false);
       // projectiles
       i = 0;
       for (const p of st.proj) {
@@ -772,15 +1085,19 @@
       }
       for (; i < pools.blades.length; i++) pools.blades[i].setVisible(false);
       // effects
-      s.swings.clear(); s.hpG.clear();
-      let pi = 0, bi = 0;
+      // (s.swings and s.hpG are cleared at the top of draw(), before the skeletons draw their marks and bars)
+      let pi = 0, bi = 0, ci = 0;
+      const odt = dt;
+      dt = nap ? dt * 0.3 : dt;                  // the kitty death: everything still moving goes slow-motion
       for (let k = fx.length - 1; k >= 0; k--) {
-        const f = fx[k]; f.life -= dt;
+        const f = fx[k];
+        if (f.wait > 0) { f.wait -= dt; continue; }
+        f.life -= dt;
         if (f.life <= 0) { fx.splice(k, 1); continue; }
         const a = f.life / f.max;
         if (f.k === "ring") { s.swings.lineStyle(3, f.c, a); s.swings.strokeCircle(f.x, f.y, f.r * (1.15 - a * 0.6)); }
         else if (f.k === "arc") { s.swings.lineStyle(5, f.c, a * 0.8); s.swings.beginPath(); s.swings.arc(f.x, f.y, f.r * 0.8, f.a - 1.1, f.a + 1.1); s.swings.strokePath(); }
-        else if (f.k === "spark") { s.swings.fillStyle(f.c, a); s.swings.fillCircle(f.x, f.y, f.r * (1.5 - a * 0.5)); }
+        else if (f.k === "spark") { const g2 = f.glow ? s.glowG : s.swings; g2.fillStyle(f.c, a); g2.fillCircle(f.x, f.y, f.r * (1.5 - a * 0.5)); }
         else if (f.k === "warn") {
           s.swings.lineStyle(2, f.c, 0.9); s.swings.strokeCircle(f.x, f.y, f.r);
           s.swings.fillStyle(f.c, 0.25 * (1 - a)); s.swings.fillCircle(f.x, f.y, f.r * (1 - a));
@@ -795,14 +1112,63 @@
           sp.setVisible(true).setPosition(f.x, f.y).setRotation(f.rot).setTint(f.c).setAlpha(Math.min(1, a * 1.6)); bi++;
         }
         else if (f.k === "part") {
-          f.x += f.vx * dt; f.y += f.vy * dt; f.vx *= 0.92; f.vy *= 0.92;
+          f.x += f.vx * dt; f.y += f.vy * dt;
+          if (!f.rise) { f.vx *= 0.92; f.vy *= 0.92; }
           const sp = pools.parts[pi] || (pools.parts[pi] = s.add.image(0, 0, "ftc-dot").setDepth(7));
-          sp.setVisible(true).setPosition(f.x, f.y).setTint(f.c).setAlpha(a).setScale(f.r / 5); pi++;
+          sp.setVisible(true).setPosition(f.x, f.y).setTint(f.c).setAlpha(a).setScale(f.rise ? f.r / 5 * (0.4 + a * 0.6) : f.r / 5); pi++;
+        }
+        else if (f.k === "bolt") {
+          // ⚡ thick and glowing: a wide soft glow, a coloured body, a white-hot core, flickering
+          // full brightness for most of its life, then a quick fade; a gentle flicker (not a strobe)
+          const fl = Math.min(1, a * 2.4) * (0.8 + Math.random() * 0.2), lite = !Q().detail, g2 = s.glowG;
+          if (!lite) { g2.lineStyle(24, f.c, fl * 0.22); g2.strokePoints(f.pts, false); }
+          g2.lineStyle(12, f.c, fl * 0.55); g2.strokePoints(f.pts, false);
+          g2.lineStyle(5, 0xffffff, fl); g2.strokePoints(f.pts, false);
+          for (const b of f.br || []) { g2.lineStyle(6, f.c, fl * 0.6); g2.strokePoints(b, false); g2.lineStyle(2, 0xffffff, fl); g2.strokePoints(b, false); }
+        }
+        else if (f.k === "puff") {               // steam
+          s.swings.fillStyle(f.c, a * 0.32); s.swings.fillCircle(f.x, f.y - (1 - a) * 18, f.r * (0.6 + (1 - a) * 0.8));
+        }
+        else if (f.k === "glow") {               // the nuke's core
+          s.glowG.fillStyle(0xfff27a, a * 0.35); s.glowG.fillCircle(f.x, f.y, f.r * (0.5 + (1 - a) * 1.1));
+          s.glowG.fillStyle(0xffffff, a * 0.6); s.glowG.fillCircle(f.x, f.y, f.r * (0.3 + (1 - a) * 0.9));
+        }
+        else if (f.k === "corpse") {
+          const sp = pools.corpses[ci] || (pools.corpses[ci] = s.add.image(0, 0, f.tex).setDepth(6.5)); ci++;
+          if (sp.texture.key !== f.tex) sp.setTexture(f.tex);
+          let x = f.x, y = f.y, sx = f.sx, sy = f.sy || f.sx, al = Math.min(1, a * 1.8), rot = f.rot, tint = f.c;
+          if (f.mode === "ash") { sy = f.sy * a; y = f.y + (1 - a) * 9 * f.sy; sx = f.sx * (1 + (1 - a) * 0.3); al = Math.min(1, a * 2); }
+          else if (f.mode === "zap") {
+            const on = Math.floor(f.life * 14) % 2 === 0;
+            if (!reducedMotion()) { x = f.x + (Math.random() - 0.5) * 5; rot = (Math.random() - 0.5) * 0.5; }
+            tint = on ? 0xffffff : 0x8fd0ff; sx = f.sx * (on ? 1.08 : 0.96);
+            if (f.life < 0.12 && !f.popped) { f.popped = true; for (let i = 0; i < 4; i++) burst(f.x, f.y, 0x8fd0ff, 140); boneShard(f.x, f.y); }
+          }
+          else if (f.mode === "fly") { f.x += f.vx * dt; f.y += f.vy * dt; f.vy += (f.g || 0) * dt; f.rot += f.vr * dt; x = f.x; y = f.y; rot = f.rot; }
+          else if (f.mode === "roll") { f.x += f.vx * dt; f.vx *= Math.pow(0.35, dt); f.rot += f.vx / 9 * dt; x = f.x; rot = f.rot; }
+          else if (f.mode === "launch") { f.x += f.vx * dt; f.y += f.vy * dt; f.rot += f.vr * dt; x = f.x; y = f.y; rot = f.rot; sx = f.sx * (0.15 + 0.85 * a); sy = sx; al = 1; }
+          else if (f.mode === "twinkle") { const k2 = Math.sin((1 - a) * Math.PI); sx = f.sx * k2; sy = sx; rot = (1 - a) * 2; al = k2; tint = 0xffffff; }
+          else if (f.mode === "lob") { const k2 = 1 - a; x = f.x0 + (f.tx - f.x0) * k2; y = f.y0 + (f.ty - f.y0) * k2 - Math.sin(k2 * Math.PI) * 160; rot = k2 * 9; al = 1; }
+          sp.setVisible(true).setPosition(x, y).setRotation(rot).setScale(sx, sy).setTint(tint).setAlpha(al);
         }
       }
       for (; pi < pools.parts.length; pi++) pools.parts[pi].setVisible(false);
       for (; bi < pools.bones.length; bi++) pools.bones[bi].setVisible(false);
+      for (; ci < pools.corpses.length; ci++) pools.corpses[ci].setVisible(false);
       for (const t of pools.texts) if (t.visible) { t.life -= dt; t.y -= 40 * dt; t.setAlpha(Math.max(0, t.life / 0.6)); if (t.life <= 0) t.setVisible(false); }
+      // the nap: "z"s drift up from Flash
+      if (nap && st.phase === "over") {
+        nap.t += odt; nap.z -= odt;
+        if (nap.t > nap.dur * 0.35 && nap.z <= 0) { nap.z = 0.7; spawnText(nap.x + 14 + Math.random() * 8, nap.y - 24, nap.t % 1.4 < 0.7 ? "z" : "Z", "#cfe0ff", 15 + Math.random() * 6); }
+        // a warm pool of light under him, and soft motes drifting up
+        const glow = Math.min(1, nap.t / 1.2);
+        s.aura.clear();
+        s.aura.fillStyle(0xffd9a0, (0.07 + 0.03 * Math.sin(nap.t * 2)) * glow); s.aura.fillCircle(nap.x, nap.y + 4, 90);
+        s.aura.fillStyle(0xffe8c0, (0.12 + 0.04 * Math.sin(nap.t * 2)) * glow); s.aura.fillCircle(nap.x, nap.y + 4, 48);
+        if (!nap.rm && Math.random() < 0.25 && fx.length < 300) { const a = Math.random() * 6.283, d = 20 + Math.random() * 90;
+          fx.push({ k: "part", rise: true, x: nap.x + Math.cos(a) * d, y: nap.y + Math.sin(a) * d * 0.6, vx: (Math.random() - 0.5) * 30, vy: -60 - Math.random() * 40, r: 1.6 + Math.random() * 1.6, life: 1.6, max: 1.6, c: Math.random() < 0.5 ? 0xffe8c0 : 0xcfe0ff }); }
+        if (nap.t >= nap.dur && !nap.done) finishNap();
+      }
     }
 
     // Auto quality: down a step after ~4 s under 42 fps in a fight, up a step after
@@ -1527,11 +1893,12 @@
     const GOAL = Math.max(1, +(CM.daily_goal || 20));
     const dayKey = t => { const d = new Date(t || Date.now()); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
     const dayLog = () => SAVE.get().days || {};
-    function noteDay(right) {
+    function noteDay(right, meet) {
       const days = dayLog(), k = dayKey(), d = days[k] || (days[k] = { n: 0, right: 0 });
       d.n++; if (right) d.right++;
-      const ks = Object.keys(days).sort(); while (ks.length > 120) delete days[ks.shift()];
+      const ks = Object.keys(days).sort(); while (ks.length > 400) delete days[ks.shift()];
       saveSet("days", days);
+      noteJourney(d, right, meet);
       if (d.n === GOAL) { SFX.play("levelup"); if (A("banners")) banner(`🎯 Daily goal: ${GOAL} answers!`, `${PUN.streak} · ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row`); sim.noteStudy("daily_goal"); }
     }
     // today counts once it has an answer; until then, yesterday's run is still alive
@@ -1540,6 +1907,119 @@
       if (!(days[dayKey(t)] || {}).n) t.setDate(t.getDate() - 1);
       while ((days[dayKey(t)] || {}).n) { n++; t.setDate(t.getDate() - 1); }
       return n;
+    }
+    // ---- every state machine in one read-only report (see STATE-MACHINES.md)
+    function gameState() {
+      const shown = overlay.classList.contains("show");
+      return {
+        phase: st.phase,                                             // start | fight | break | over   (flash-sim.js)
+        mode: st.practice ? "practice" : "run",                      // a real run, or the learning mode after a fall
+        paused: !!st.paused, pausedBy: [...pausedBy],                // why: player and / or menu
+        screen: shown ? uiScreen : "none", menu: optsOpen,           // what the overlay shows; menu = one that closes back
+        card: cq ? (cState || "idle") : "none", cardHeld: !!cHeld,   // the word card: think → ask → grade → done
+        question: !!qOpen,                                           // a pop question is open
+        nap: nap ? (nap.done ? "done" : "playing") : "none",         // the kitty death
+        learning: !!learn,                                           // the learn-by-gems stage
+        round: st.round, wave: st.wave ? "mega" : "normal", boss: !!st.boss, danger: !!st.danger,
+        safe: st.safeUntil > st.t, paws: st.paws.map(q => q.phase), fish: st.fish || 0,
+        words: wordMode, quality: Q().label || prefs.quality || "auto", motion: reducedMotion() ? "reduced" : "full", flashes: flashMode(),
+      };
+    }
+    // combinations that must never happen; empty = healthy
+    function checkState() {
+      const s = gameState(), bad = [], shown = overlay.classList.contains("show");
+      const no = (c, m) => { if (c) bad.push(m); };
+      no(s.paused && s.phase !== "fight", "paused outside a fight");
+      no(s.phase === "fight" && s.paused !== (pausedBy.size > 0) && !(s.paused && !pausedBy.size), "paused, but pausedBy says otherwise");
+      no(s.phase === "fight" && !s.paused && s.menu, "the fight is running under an open menu");
+      no(s.phase === "fight" && !s.paused && shown, "an overlay screen is up while the fight runs");
+      no(s.menu && !shown, "a menu is marked open but nothing is showing");
+      no(shown && uiScreen === "none", "the overlay shows a screen with no name");
+      no(s.menu && !["options", "progress", "words", "share"].includes(uiScreen), "menu open, but the screen is " + uiScreen);
+      no(!s.menu && ["options", "progress", "words", "share"].includes(s.screen), "a menu screen is showing but isn't marked open");
+      no(s.nap === "playing" && shown, "the nap is playing behind a screen");
+      no(s.nap !== "none" && s.phase !== "over", "napping while not over");
+      no(s.question && s.phase !== "fight", "a pop question outside a fight");
+      no(s.phase === "start" && !shown, "the start phase with no start screen");
+      no(s.phase === "break" && !shown, "between rounds with no screen");
+      no(s.phase === "over" && !shown && s.nap !== "playing" && s.mode !== "practice", "game over with no screen");
+      return bad;
+    }
+    const stateLog = []; let stateKey = "";
+    function noteState() {
+      const s = gameState(), k = [s.phase, s.mode, s.paused ? "paused:" + s.pausedBy.join("+") : "", s.screen, s.menu ? "menu" : "", s.nap, s.question ? "question" : ""].filter(Boolean).join(" · ");
+      if (k === stateKey) return;
+      stateLog.push({ at: Math.round(performance.now()), from: stateKey, to: k }); if (stateLog.length > 60) stateLog.shift();
+      stateKey = k;
+    }
+    // ---- the journey (Dan, 10 Nov: "detailed, sharable stats: time spent,
+    // words learned, lessons studied. I need to be able to show my journey of
+    // learning Thai"). Lifetime totals that never get trimmed, kept in the save:
+    //   start     the first day
+    //   secs      time studied (counted while the game is being played or a
+    //             word was answered in the last 45 s, and the tab is showing)
+    //   answers / right
+    //   lessons   { id: { title, first, last, n } }  every lesson answered in
+    // and per day (in "days"): s seconds, les {lesson ids}, met0 / learned0
+    // (the totals when the day began, so "today: +6 words" is honest).
+    const journey = () => { const j = SAVE.get().journey || {}; j.lessons = j.lessons || {}; return j; };
+    let lastActive = 0; const siteLes = {};
+    function noteJourney(d, right, meet) {
+      const j = journey(), now = Date.now();
+      if (!j.start) j.start = now;
+      // meeting a new word isn't a test: it counts as an answer, not towards "% right"
+      j.answers = (j.answers || 0) + 1; if (!meet) { j.tested = (j.tested || 0) + 1; d.t = (d.t || 0) + 1; } if (right) j.right = (j.right || 0) + 1;
+      if (d.met0 == null && LE) { const sm = LE.summary(); d.met0 = Math.max(0, sm.th.met - 1); d.learned0 = sm.th.learned; }
+      const id = lesson && lesson.id;
+      if (id) {
+        const L = j.lessons[id] || (j.lessons[id] = { title: lesson.title || "", first: now, n: 0 });
+        L.n++; L.last = now; if (lesson.title) L.title = lesson.title;
+        (d.les || (d.les = {}))[id] = 1;
+      }
+      lastActive = now; saveSet("journey", j); saveSet("days", Object.assign(dayLog(), { [dayKey()]: d }));
+    }
+    // time studied: one second at a time, only while something is really happening
+    let pendS = 0;
+    function flushStudy() {
+      if (!pendS) return;
+      const days = dayLog(), k = dayKey(), d = days[k] || (days[k] = { n: 0, right: 0 }), j = journey();
+      d.s = (d.s || 0) + pendS; j.secs = (j.secs || 0) + pendS; if (!j.start) j.start = Date.now();
+      pendS = 0; saveSet("days", days); saveSet("journey", j);
+    }
+    const studyTimer = setInterval(() => {
+      if (document.hidden) return;
+      const playing = (st.phase === "fight" && !st.paused) || !!learn;
+      if (!playing && Date.now() - lastActive > 45000) return;
+      if (++pendS >= 15) flushStudy();
+    }, 1000);
+    // someone who was already playing before today: the first day, the answers and a
+    // fair estimate of the time (gaps of under 2 minutes between answers) from what's saved
+    async function backfillJourney() {
+      const j = journey(); if (j.filled || !LE) return;
+      const days = dayLog(), ks = Object.keys(days).sort();
+      let att = []; try { att = (await LE.attempts()) || []; } catch (e) {}
+      att = att.filter(a => a && a.at).sort((a, b) => a.at - b.at);
+      const first = Math.min(att.length ? att[0].at : Infinity, ks.length ? new Date(ks[0] + "T12:00").getTime() : Infinity, j.start || Infinity);
+      if (isFinite(first)) j.start = first;
+      const sumN = ks.reduce((a, k) => a + (days[k].n || 0), 0), sumR = ks.reduce((a, k) => a + (days[k].right || 0), 0);
+      j.answers = Math.max(j.answers || 0, sumN, att.length); j.right = Math.max(j.right || 0, sumR);
+      const tested = att.filter(a => a.kind !== "meet").length; if (!j.tested && tested) { j.tested = tested; j.right = att.filter(a => a.kind !== "meet" && a.right).length; }
+      let est = 0;
+      for (let i = 0; i < att.length; i++) {
+        const gap = i ? att[i].at - att[i - 1].at : 0, add = i && gap < 120000 ? gap / 1000 : 8, k = dayKey(att[i].at);
+        if (days[k]) days[k].est = (days[k].est || 0) + add;
+        est += add;
+      }
+      for (const k of ks) if (days[k].est) { days[k].s = Math.max(days[k].s || 0, Math.round(days[k].est)); delete days[k].est; }
+      if (est > (j.secs || 0)) { j.secs = Math.round(est); j.estimated = true; }
+      j.filled = Date.now();
+      saveSet("days", days); saveSet("journey", j);
+    }
+    const fmtDur = s => { s = Math.round(s || 0); const hh = Math.floor(s / 3600), mm = Math.floor(s % 3600 / 60); return hh ? `${hh}h ${String(mm).padStart(2, "0")}m` : mm ? `${mm} min` : s ? "under a minute" : "0 min"; };
+    function bestDaysInRow() {
+      const ks = Object.keys(dayLog()).filter(k => dayLog()[k].n).sort(); let best = 0, run = 0, prev = 0;
+      for (const k of ks) { const t = new Date(k + "T12:00").getTime(); run = prev && Math.round((t - prev) / 864e5) === 1 ? run + 1 : 1; prev = t; if (run > best) best = run; }
+      return best;
     }
     const LABEL_TXT = { new: "new", met: "met", recognises: "recognises", recalls: "recalls", learned: "learned", longterm: "long-term" };
     const TONE_TXT = { mid: "mid", low: "low", falling: "falling", high: "high", rising: "rising" };
@@ -1894,7 +2374,7 @@
       if (r && r.opened && r.opened.includes("cx")) floatText(`🧩 ${w.th}: now in sentences too`, false, true);
       if (r && r.opened && r.opened.includes("tp")) floatText(`🎧 ${w.th}: can you hear its tone?`, false, true);
       if (opts.onWord) try { opts.onWord({ result: right ? "match" : "miss", id: w.id, helped: meet }); } catch (e) {}
-      noteDay(right && !meet); checkLevel(); showWordInfo(w); drawSide(true);
+      noteDay(right && !meet, meet); checkLevel(); showWordInfo(w); drawSide(true);
       // a wrong answer with a memory aid to read gets a little longer
       const wait = meet ? CM.next_after_meet : spec && right ? CM.next_after_sentence + (q.dir === "cx" && q.sentence ? Math.min(2, q.sentence.th.length * 0.03) : 0) : right ? CM.next_after_right + 0.2 : CM.next_after_wrong + (w.aid && !spec ? 1.2 : 0) + (spec ? 0.8 : 0) + (q.dir === "tp" ? 1.5 : 0);
       cTimer = setTimeout(() => { cq = null; cState = ""; cardNext(); }, wait * 1000);
@@ -2223,6 +2703,8 @@
     window.addEventListener("keydown", e => {
       const tg = e.target; if (tg && /^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName) && tg.type !== "range" && tg.type !== "checkbox") return;
       if (optsOpen && e.key === "Escape") { e.preventDefault(); closeOptions(); return; }
+      // 🐟 H eats a fish
+      if ((e.key === "h" || e.key === "H") && !optsOpen && !e.ctrlKey && !e.metaKey && !e.altKey && (st.phase === "fight" || st.phase === "break")) { e.preventDefault(); eatFish(); return; }
       if (!qOpen && cardKey(e)) { e.preventDefault(); return; }
       if (!qOpen && e.key === "Escape" && deselect()) { e.preventDefault(); return; }
       if (!qOpen || qOpen.done) return;
@@ -2296,6 +2778,7 @@
       sideAt = 0; drawSide(true);
     }
     function updateHud() {
+      noteState();
       const f = st.flash;
       // the word card: docked on the right when there's room, else above the weapon bar
       layoutSide();
@@ -2317,6 +2800,10 @@
       vignette.style.opacity = alarm && hpFrac < 0.5 ? String(Math.min(1, (0.5 - hpFrac) * 2.4)) : "0";
       vignette.classList.toggle("pulse", alarm && hpFrac < 0.3);
       dangerEl.classList.toggle("show", alarm && st.danger);
+      // with fish in his arms, say how to eat one
+      const dTxt = st.fish > 0 && !st.autoEat ? "❤️ Flash is in trouble! Answer a quiz, or tap 🐟 (H) to eat a fish" : "❤️ Flash is in trouble! Answer a quiz to heal him";
+      if (dangerEl.textContent !== dTxt) dangerEl.textContent = dTxt;
+      updateFish();
       if (st.combo >= 25 && st.phase === "fight" && A("combo_meter")) {
         use("combo_meter");
         comboEl.innerHTML = `<b>×${st.combo.toLocaleString()}</b><small>combo</small>`;
@@ -2442,7 +2929,39 @@
       g.fillStyle(colour, 1); if (k > 0) g.fillRoundedRect(x - w / 2, y, Math.max(2, w * k), 4, 2);
     }
     // ---------------------------------------------------------- screens
-    function hideOverlay() { overlay.classList.remove("show", "ftc-optsov"); overlay.innerHTML = ""; }
+    // ---- state machines, made explicit (10 Nov; the full list is in STATE-MACHINES.md)
+    // The game always had these, but as loose flags that had to agree with each other.
+    // Now each has one owner:
+    //   uiScreen   which screen the overlay shows: none | start | break | over | paused |
+    //              options | progress | words | share. Set by the show…() functions only.
+    //   pausedBy   WHY the fight is paused: "player" (⏸, the tab was hidden, the site asked)
+    //              and / or "menu" (a menu is open). The fight runs only when it's empty,
+    //              so closing a menu can't un-pause a game the player paused, and ⏸ can't
+    //              start the fight under an open menu. Only setPause() calls sim.pause().
+    // ftc.state() reports every machine, ftc.check() lists anything that doesn't add up,
+    // and ftc.stateLog() is the last 60 changes: for tests, the bench, and whoever debugs next.
+    let uiScreen = "none";
+    const pausedBy = new Set();
+    function syncPause() {
+      // rounds, restarts and the bench change the sim's pause directly: believe the sim
+      if (st.phase !== "fight" || !st.paused) pausedBy.clear();
+      else if (!pausedBy.size) pausedBy.add("player");
+    }
+    function setPause(why, on) {
+      syncPause();
+      if (st.phase !== "fight") return;
+      if (on) pausedBy.add(why); else pausedBy.delete(why);
+      const want = pausedBy.size > 0;
+      if (st.paused !== want) sim.pause(want);
+    }
+    // closing this menu will carry on the fight (so its button says "Back to the game")
+    const menuResumes = () => pausedBy.has("menu") && pausedBy.size === 1;
+    function openMenu(name) {
+      setPause("menu", true);
+      if (nap && !nap.done) { nap.done = true; napEl.classList.remove("show"); napEl.onclick = null; }   // the nap gives way to a menu
+      optsOpen = true; uiScreen = name; cardHide();
+    }
+    function hideOverlay() { overlay.classList.remove("show", "ftc-optsov"); overlay.innerHTML = ""; uiScreen = "none"; }
     function card(o, onClick) {
       const c = h("div", "ftc-card");
       c.style.borderColor = rarityColour(o.rarity);
@@ -2452,6 +2971,7 @@
       return c;
     }
     function showStart() {
+      uiScreen = "start";
       overlay.innerHTML = "";
       overlay.append(h("h2", "", "🐈 Flash the Cat"));
       const sr = savedRun();
@@ -2500,6 +3020,7 @@
       overlay.append(cards);
       const ob = h("button", "ftc-btn", "⚙ Options"), orow = h("div", "ftc-row"); ob.onclick = () => showOptions(); orow.append(ob); overlay.append(orow);
       if (cardOn()) { const pb = h("button", "ftc-btn", `📊 ${PUN.check}`); pb.onclick = () => showProgress(); orow.append(pb); }
+      if (LE) { const jb = h("button", "ftc-btn", "📣 Share my journey"); jb.title = "Your stats as a post ready to paste into x.com"; jb.onclick = () => shareCard("journey"); orow.append(jb); }
       overlay.classList.add("show");
     }
     // Dan: "do we have a way to save the game state? ... in learning mode, the
@@ -2540,6 +3061,7 @@
     }
     function showBreak() {
       if (st.phase === "break") saveRun();
+      uiScreen = "break";
       overlay.innerHTML = "";
       bannerEl.classList.remove("show");
       if (lastWave) overlay.append(h("h2", "ftc-wavewin", `💀 ${esc(lastWave.name)} cleared!`),
@@ -2634,8 +3156,19 @@
     }
     function showOver() {
       const r = st.runStats || {};
+      uiScreen = "over";
       overlay.innerHTML = "";
-      overlay.append(h("h2", "", "Flash fell! 💀"),
+      // the kitty death's ending: he's curled up for a nap, and here's what you learned together
+      const learned = Object.values(runWords).filter(x => (x.right || 0) + (x.helped || 0) > 0).sort((a, b) => (b.right || 0) - (a.right || 0));
+      overlay.append(h("h2", "ftc-naph", "Flash curled up for a nap 💤"),
+        h("p", "ftc-small ftc-napsub", `He fell in round ${r.round || 1}${st.livesUsed ? ` (after using ${st.livesUsed === 1 ? "one of his nine lives" : st.livesUsed + " of his nine lives"})` : ""}. ${learned.length ? "Look what you learned together:" : "Sweet dreams, little warrior."}`));
+      if (learned.length) {
+        const box = h("div", "ftc-napwords", learned.slice(0, 12).map((x, i) => `<button class="ftc-napw" data-i="${i}" style="animation-delay:${reducedMotion() ? 0 : i * 70}ms"><b lang="th">${esc(x.w.th)}</b>${x.w.rom ? `<i>${esc(x.w.rom)}</i>` : ""}<small>${esc(short(x.w.en, 28))}</small></button>`).join("")
+          + (learned.length > 12 ? `<span class="ftc-small">+${learned.length - 12} more</span>` : ""));
+        box.querySelectorAll(".ftc-napw").forEach(b => b.onclick = () => { const x = learned[+b.dataset.i]; if (x) try { sayWord(x.w); } catch (e) {} });
+        overlay.append(box);
+      }
+      overlay.append(
         h("div", "ftc-statgrid", `<span>Round</span><b>${r.round}</b><span>Stage</span><b>${r.stage}</b><span>Level</span><b>${r.level}</b>
           <span>Skeletons</span><b>${r.kills}</b><span>Gold</span><b>${r.gold}</b><span>Time</span><b>${fmtT(r.time || 0)}</b>
           <span>Damage</span><b>${(r.damage || 0).toLocaleString()}</b><span>Best combo</span><b>×${(r.comboMax || 0).toLocaleString()}</b>
@@ -2660,11 +3193,13 @@
       const waiting = bonusWaiting();
       if (waiting.length) overlay.append(h("p", "ftc-small", `🎁 Waiting for your next run: ${waiting.map(b => esc(b.name || b.id)).join(", ")}`));
       const again = h("button", "ftc-btn big", "Play again"); again.onclick = showStart; row.append(again);
-      if (cardOn()) { const pb = h("button", "ftc-btn", "📊 My progress"); pb.onclick = () => showProgress(); const sb = h("button", "ftc-btn", "📣 Share"); sb.onclick = () => shareCard("run"); row.append(pb, sb); }
+      if (cardOn()) { const pb = h("button", "ftc-btn", "📊 My progress"); pb.onclick = () => showProgress(); row.append(pb); }
+      if (LE) { const sb = h("button", "ftc-btn", "📣 Share my journey"); sb.onclick = () => shareCard("run"); row.append(sb); }
       overlay.append(row);
       overlay.classList.add("show");
     }
     function showPaused() {
+      uiScreen = "paused";
       overlay.innerHTML = "";
       overlay.append(h("h2", "", "Paused"), h("p", "", "While Flash is paused, studying doesn't power him up. Resume to earn rewards again."),
         h("p", "ftc-small", "💾 Your run is saved at the end of every round, and your words after every answer, so you can close the game and carry on later."));
@@ -2673,8 +3208,12 @@
     }
     function togglePause(on) {
       if (st.phase !== "fight") return;
-      sim.pause(on);
-      if (st.paused) { showPaused(); announce("paused"); } else { hideOverlay(); announce("resumed"); }
+      syncPause();
+      const was = st.paused;
+      setPause("player", on === undefined ? !pausedBy.has("player") : !!on);
+      if (st.paused !== was) announce(st.paused ? "paused" : "resumed");      // the site hears about the player's pause only, as before
+      // with a menu open the menu keeps the screen; the player's pause is remembered under it
+      if (!optsOpen) { if (st.paused) showPaused(); else hideOverlay(); }
       updateHud();
     }
     pauseBtn.onclick = () => togglePause();
@@ -2683,7 +3222,7 @@
     // Dan: "full screen will be the default option, but we should have an
     // option screen where the user can go back to split mode". Everything a
     // learner might want to change, in one place; the fight waits while it's open.
-    let optsOpen = false, optsPaused = false;
+    let optsOpen = false;
     const gearBtn = h("button", "ftc-btn ftc-gear", "⚙"); gearBtn.title = "Options";
     top.insertBefore(gearBtn, pauseBtn);
     gearBtn.onclick = e => { e.stopPropagation(); optsOpen ? closeOptions() : showOptions(); };
@@ -2698,8 +3237,7 @@
       return box;
     }
     function showOptions(redraw) {
-      if (!redraw && st.phase === "fight" && !st.paused) { sim.pause(true); optsPaused = true; }
-      optsOpen = true; cardHide();
+      openMenu("options");
       const scroll = redraw ? overlay.scrollTop : 0;
       overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
       overlay.append(h("h2", "", "⚙ Options"));
@@ -2785,6 +3323,15 @@
       }
       grid.append(seg("Effects", [["auto", "Auto"], ["high", "High"], ["medium", "Medium"], ["low", "Low"]], qPick(), v => { prefs.quality = v === "auto" ? null : v; savePrefs(); applyQuality(); showOptions(true); },
         `How many skeletons on screen at once and how many effects. Auto${qPick() === "auto" ? ` (now ${QUAL[qAuto].label}, ${Math.round(game.loop.actualFps || 0)} fps)` : ""} follows the frame rate.`));
+      // Round 3 step 3: screen flashes (seizure-safe), motion, fish
+      grid.append(seg("Screen flashes", [["full", "Full"], ["soft", "Soft"], ["off", "Off (reduce flashing)"]], flashMode(), v => { prefs.flashes = v; savePrefs(); },
+        "A gentle flash on big hits: a nuke, a strike, a boss blow. Never more than about one a second, never a strobe, never red."));
+      grid.append(seg("Motion", [["full", "Full"], ["reduced", "Reduced"]], reducedMotion() ? "reduced" : "full", v => { prefs.motion = v; savePrefs(); },
+        `Reduced: no screen shake, no camera zoom when Flash falls, and no screen flashes unless you switch them on.${sysReduce() ? " Your device asks for reduced motion." : ""}`));
+      const fo = h("div", "ftc-opt", `<label class="t">🐟 Fish</label><label class="ftc-small"><input type="checkbox"${prefs.autoeat ? " checked" : ""}> Auto-eat a fish when Flash drops below ${Math.round((((sim.D.settings.fish || {}).values || {}).auto_eat_below || 0.3) * 100)}% health</label>
+        <small>Skeletons drop fish now and then (elites and bosses more). Flash carries up to ${sim.fishCarry()}; tap 🐟 at the top or press H to eat one.</small>`);
+      fo.querySelector("input").onchange = e => { prefs.autoeat = e.target.checked; savePrefs(); sim.setAutoEat(prefs.autoeat); };
+      grid.append(fo);
       // game sounds (the same as the 🔊 popover)
       const sb = h("div", "ftc-opt", `<label class="t">Game sounds</label><div class="ftc-row"><input type="range" min="0" max="100" step="5" value="${Math.round(SFX.volume() * 100)}">
         <label class="ftc-small"><input type="checkbox"${SFX.mute() ? " checked" : ""}> Mute</label></div>`);
@@ -2805,7 +3352,7 @@
           + rows.map(([d, t]) => `<tr><td>${t}</td>${cols.map(c => `<td>${sm[d][c[0]] || ""}</td>`).join("")}</tr>`).join("") + `</table>
           <small>Each direction is tracked on its own: knowing what a word means and being able to say it are different skills.</small>`));
       }
-      const close = h("button", "ftc-btn big", optsPaused ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
+      const close = h("button", "ftc-btn big", menuResumes() ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
       overlay.append(close);
       overlay.scrollTop = scroll;
     }
@@ -2822,8 +3369,7 @@
     }
     function showProgress() {
       if (!LE) return;
-      if (st.phase === "fight" && !st.paused) { sim.pause(true); optsPaused = true; }
-      optsOpen = true; cardHide();
+      openMenu("progress");
       overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
       const sm = LE.summary(), due = LE.dueSoon(), days = dayLog(), today = days[dayKey()] || { n: 0, right: 0 };
       overlay.append(h("h2", "", "📊 My progress"), h("p", "ftc-slogan", PUN.progress));
@@ -2863,7 +3409,7 @@
       const mw = h("button", "ftc-btn primary", "📚 My words"); mw.onclick = () => showWords();
       const sh = h("button", "ftc-btn", "📣 Share my progress"); sh.onclick = () => shareCard("progress");
       row.append(mw);
-      const close = h("button", "ftc-btn big", optsPaused ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
+      const close = h("button", "ftc-btn big", menuResumes() ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
       row.append(sh, close); overlay.append(row);
       overlay.scrollTop = 0;
     }
@@ -2876,8 +3422,7 @@
     let wordsFilter = "level";
     function showWords() {
       if (!LE) return;
-      if (st.phase === "fight" && !st.paused) { sim.pause(true); optsPaused = true; }
-      optsOpen = true; cardHide();
+      openMenu("words");
       overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
       const all = LE.vocab(), lv = new Set(LE.level().ids);
       const list = all.filter(v => wordsFilter === "all" ? true : wordsFilter === "tricky" ? v.wrong > 0 : wordsFilter === "strong" ? STAGE_N[v.dirs.th || "new"] >= 3 : lv.has(v.id))
@@ -2906,7 +3451,7 @@
       overlay.append(box, h("p", "ftc-small", "The bar is Thai → meaning: 🌱 met · 🐾 recognised with 4 choices · 😸 remembered with none · 🧠 remembered on two different days · 👑 still remembered after a week. The small letters are the other skills. Tap a word to hear it" + (panelOn() ? " and see its card." : ".")));
       const row = h("div", "ftc-row");
       const back = h("button", "ftc-btn", "📊 My progress"); back.onclick = () => showProgress();
-      const close = h("button", "ftc-btn big", optsPaused ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
+      const close = h("button", "ftc-btn big", menuResumes() ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
       row.append(back, close); overlay.append(row);
     }
 
@@ -2955,16 +3500,116 @@
       g.font = `600 32px ${UI}`; g.textAlign = "right"; g.fillText(f.url.replace(/^https?:\/\//, ""), S - 70, S - 50); g.textAlign = "left";
       return c;
     }
-    function shareCard(kind) {
+    // ---- the journey, as posts ready to paste into x.com (Dan, 10 Nov).
+    // Honest numbers: "learned" is the strict one (recalled on two different
+    // days); time is what the game counted (or, before 10 Nov, a fair estimate).
+    async function journeyFacts() {
+      flushStudy();
+      const f = shareFacts(), j = journey(), sm = LE.summary(), days = dayLog(), td = days[dayKey()] || { n: 0, right: 0 };
+      let att = []; try { att = (await LE.attempts()) || []; } catch (e) {}
+      const rv = att.filter(x => x && x.review && x.kind !== "meet"), wk = rv.filter(x => x.at > Date.now() - 7 * 864e5), rvT = rv.filter(x => dayKey(x.at) === dayKey());
+      const start = j.start || Date.now(), d0 = new Date(start); d0.setHours(0, 0, 0, 0);
+      const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+      const ls = Object.values(j.lessons).filter(L => L.title || L.n);
+      return Object.assign(f, {
+        day: Math.round((t0 - d0) / 864e5) + 1, since: new Date(start).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }),
+        daysStudied: Object.keys(days).filter(k => days[k].n || days[k].s > 60).length,
+        secs: j.secs || 0, estimated: !!j.estimated, answers: j.answers || 0, acc: j.tested ? Math.min(100, Math.round((j.right || 0) / j.tested * 100)) : null,
+        recalls: sm.th.recalls, longterm: sm.th.longterm, speak: sm.en ? sm.en.recalls : 0, listen: sm.au ? sm.au.recognises : 0,
+        lessons: ls.length, lessonNames: ls.sort((a, b) => (b.last || 0) - (a.last || 0)).map(L => L.title).filter(Boolean),
+        mastered: Object.keys(SAVE.get().mastered || {}).length,
+        retention: rv.length >= 5 ? Math.round(rv.filter(x => x.right).length / rv.length * 100) : null, reviews: rv.length,
+        retentionWeek: wk.length >= 5 ? Math.round(wk.filter(x => x.right).length / wk.length * 100) : null,
+        newToday: [...new Set(att.filter(x => x && x.kind === "meet" && x.dir === "th" && dayKey(x.at) === dayKey()).map(x => x.id))].map(id => LE.word(id)).filter(Boolean),
+        bestDays: Math.max(bestDaysInRow(), f.days), bestRound: Math.max((SAVE.get().best || {}).test || 0, (SAVE.get().best || {}).learn || 0),
+        today: { n: td.n || 0, acc: td.t ? Math.min(100, Math.round((td.right || 0) / td.t * 100)) : null, secs: td.s || 0,
+                 met: td.met0 == null ? 0 : Math.max(0, sm.th.met - td.met0), learned: td.learned0 == null ? 0 : Math.max(0, sm.th.learned - td.learned0),
+                 lessons: Object.keys(td.les || {}).length, reviews: rvT.length, retention: rvT.length ? Math.round(rvT.filter(x => x.right).length / rvT.length * 100) : null },
+      });
+    }
+    const pl = (n, w, ws) => `${n.toLocaleString()} ${n === 1 ? w : ws || w + "s"}`;
+    // Dan, 10 Nov: "we don't need to worry about hashtags or links. We just need to
+    // document my language learning journey. Time spent, words learned, retention
+    // etc, new words today". So: numbers and words only.
+    function journeyPosts(f) {
+      const wl = ws => ws.map(w => `${w.th} (${short(w.en, 14)})`).join(" · ");
+      const t = f.today, SPC = "\u0001";
+      const words = f.learned ? `⭐ ${pl(f.learned, "word")} learned` : `🌱 ${pl(f.met, "word")} met`;
+      const ret = f.retention != null ? `🧠 ${f.retention}% retention` : "";
+      const short1 = [`Day ${f.day} of learning Thai 🇹🇭`,
+        [words, f.secs >= 60 ? `⏱ ${fmtDur(f.secs)}` : "", ret, f.lessons ? `📚 ${pl(f.lessons, "lesson")}` : "", f.days >= 2 ? `🔥 ${f.days} days in a row` : ""].filter(Boolean).join(" · "),
+        t.n ? "Today: " + [t.met ? `${pl(t.met, "new word")}` : "", t.secs >= 60 ? fmtDur(t.secs) : "", `${pl(t.n, "answer")}${t.acc != null ? ` (${t.acc}% right)` : ""}`].filter(Boolean).join(" · ") : ""].filter(Boolean).join("\n");
+      const L = [`My Thai journey 🇹🇭 Day ${f.day} (since ${f.since})`, SPC,
+        `⏱ Time: ${fmtDur(f.secs)}${f.estimated ? " (about)" : ""} over ${pl(f.daysStudied, "day")}${f.daysStudied > 1 ? ` · ${fmtDur(f.secs / f.daysStudied)} a day` : ""}`,
+        f.learned ? `⭐ Words learned: ${f.learned}` : "",
+        `👀 Recognised: ${f.recognised} · 🌱 met: ${f.met}`,
+        f.longterm ? `👑 Remembered after a week or more: ${f.longterm}` : "",
+        f.speak ? `✍ Can say from the English: ${f.speak}` : "",
+        f.retention != null ? `🧠 Retention: ${f.retention}% of ${pl(f.reviews, "review")}${f.retentionWeek != null ? ` (${f.retentionWeek}% this week)` : ""}` : "🧠 Retention: after my first reviews",
+        f.lessons ? `📚 Lessons studied: ${f.lessons}${f.mastered ? ` · ${f.mastered} mastered` : ""}` : "",
+        f.answers ? `🎯 Answers: ${f.answers.toLocaleString()}${f.acc != null ? ` · ${f.acc}% right` : ""}` : "",
+        `🔥 Days in a row: ${f.days}${f.bestDays > f.days ? ` (best ${f.bestDays})` : ""}`,
+        t.n ? SPC : "", t.n ? `Today: ${[t.met ? pl(t.met, "new word") : "", t.learned ? `+${t.learned} learned` : "", t.secs >= 60 ? fmtDur(t.secs) : "", pl(t.n, "answer") + (t.acc != null ? `, ${t.acc}% right` : "")].filter(Boolean).join(" · ")}` : "",
+        f.newToday.length ? `New today: ${wl(f.newToday.slice(0, 6))}${f.newToday.length > 6 ? ` +${f.newToday.length - 6}` : ""}` : ""];
+      const T = [`Thai, day ${f.day} 🇹🇭 Today:`, SPC,
+        t.secs >= 60 ? `⏱ ${fmtDur(t.secs)} studied` : "",
+        `🌱 ${pl(t.met, "new word")}${t.learned ? ` · ⭐ +${t.learned} learned` : ""}`,
+        `🎯 ${pl(t.n, "answer")}${t.acc != null ? ` · ${t.acc}% right` : ""}`,
+        t.reviews >= 3 ? `🧠 ${t.retention}% remembered on ${pl(t.reviews, "review")}` : "",
+        t.lessons ? `📚 ${pl(t.lessons, "lesson")}${f.lessonNames[0] ? `: ${short(f.lessonNames[0], 40)}` : ""}` : "", f.days >= 2 ? `🔥 ${f.days} days in a row` : "",
+        f.newToday.length ? SPC : "", f.newToday.length ? `New words: ${wl(f.newToday.slice(0, 8))}${f.newToday.length > 8 ? ` +${f.newToday.length - 8}` : ""}` : "", SPC,
+        `So far: ${f.learned ? pl(f.learned, "word") + " learned" : pl(f.met, "word") + " met"}${f.secs >= 60 ? ` · ${fmtDur(f.secs)}` : ""}${f.retention != null ? ` · ${f.retention}% retention` : ""}`];
+      const tidy = a => a.filter(Boolean).map(x => x === SPC ? "" : x).join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      return { short: short1, detailed: tidy(L), today: tidy(T) };
+    }
+    // how x.com counts a post: most letters (Thai too) 1, emoji and CJK 2, a link 23
+    function xLength(text) {
+      let n = 0; const noUrl = text.replace(/(https?:\/\/|\b)[a-z0-9.-]+\.(cards|com|org|net|io|app)(\/\S*)?/gi, () => { n += 23; return ""; });
+      for (const ch of noUrl) { const c = ch.codePointAt(0); n += (c <= 0x10ff || (c >= 0x2000 && c <= 0x200d) || (c >= 0x2010 && c <= 0x201f) || (c >= 0x2032 && c <= 0x2037)) ? 1 : 2; }
+      return n;
+    }
+    let shareStyle = "short";
+    async function shareCard(kind) {
       if (!LE) return;
-      if (st.phase === "fight" && !st.paused) { sim.pause(true); optsPaused = true; }
-      optsOpen = true; cardHide();
-      const f = shareFacts(), c = drawShare(f), text = shareText(f);
+      openMenu("share");
+      const f = await journeyFacts(), c = drawShare(f), posts = journeyPosts(f);
+      let text = posts[shareStyle] || posts.short;
       overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
-      overlay.append(h("h2", "", "📣 Share"), h("p", "ftc-small", "Made in your browser. Nothing is sent anywhere until you share it."));
-      const img = h("img", "ftc-share-img"); img.src = c.toDataURL("image/png"); img.alt = text; overlay.append(img);
-      const tx = h("p", "ftc-share-tx", esc(text)); overlay.append(tx);
-      const row = h("div", "ftc-row"), msg = h("p", "ftc-small", "");
+      overlay.append(h("h2", "", "📣 Share my journey"), h("p", "ftc-small", "Made in your browser. Nothing is sent anywhere until you paste or post it."));
+      // the numbers, at a glance
+      overlay.append(h("div", "ftc-tiles ftc-jtiles", `
+        <div><b>📆 Day ${f.day}</b><span>since ${esc(f.since)}</span><small>${pl(f.daysStudied, "day")} studied</small></div>
+        <div title="recalled on two different days, the latest answer right"><b>⭐ ${f.learned}</b><span>words learned</span><small>${f.recognised} recognised · ${f.met} met</small></div>
+        <div><b>📚 ${f.lessons}</b><span>lesson${f.lessons === 1 ? "" : "s"} studied</span><small>${f.mastered ? f.mastered + " mastered 🏆" : esc(short(f.lessonNames[0] || "", 24)) || "&nbsp;"}</small></div>
+        <div title="${f.estimated ? "Before 10 Nov the game didn't time you: that part is worked out from when you answered" : "Counted while you play or answer, with the tab showing"}"><b>⏱ ${fmtDur(f.secs)}</b><span>studied${f.estimated ? " (about)" : ""}</span><small>${fmtDur(f.today.secs)} today</small></div>
+        <div><b>🎯 ${f.answers.toLocaleString()}</b><span>answers</span><small>${f.acc != null ? f.acc + "% right" : "&nbsp;"}</small></div>
+        <div><b>🔥 ${f.days}</b><span>day${f.days === 1 ? "" : "s"} in a row</span><small>best ${f.bestDays}</small></div>
+        <div title="right answers on reviews: words asked again after days away"><b>🧠 ${f.retention != null ? f.retention + "%" : "—"}</b><span>retention</span><small>${f.retention != null ? pl(f.reviews, "review") : "after your first reviews"}</small></div>
+        <div><b>🌱 ${f.today.met}</b><span>new word${f.today.met === 1 ? "" : "s"} today</span><small>${f.today.learned ? "+" + f.today.learned + " learned today" : esc(f.newToday.slice(0, 3).map(w => w.th).join(" · ")) || "&nbsp;"}</small></div>`));
+      // the post: three styles, editable, counted the way x.com counts
+      const seg = h("div", "ftc-seg ftc-share-seg");
+      for (const [v, t] of [["short", "Short (fits a post)"], ["detailed", "Detailed"], ["today", "Today"]]) {
+        const b = h("button", "ftc-seg-b" + (shareStyle === v ? " on" : ""), t); b.onclick = () => { shareStyle = v; shareCard(kind); }; seg.append(b);
+      }
+      const ta = h("textarea", "ftc-share-ta"); ta.value = text; ta.rows = Math.min(18, text.split("\n").length + 1); ta.spellcheck = false;
+      const cnt = h("p", "ftc-small ftc-share-cnt", "");
+      const count = () => { text = ta.value; const n = xLength(text); cnt.innerHTML = `<b class="${n > 280 ? "over" : "ok"}">${n} / 280</b> ${n > 280 ? "· too long for a standard post: fine with X Premium, or trim it (you can edit the text)" : "· fits in one post · you can edit the text before copying"}`; };
+      ta.oninput = count; count();
+      overlay.append(seg, ta, cnt);
+      const row0 = h("div", "ftc-row"), msg = h("p", "ftc-small", "");
+      const copy = h("button", "ftc-btn primary big", "📋 Copy for X");
+      copy.onclick = async () => {
+        let ok = false;
+        try { await navigator.clipboard.writeText(text); ok = true; } catch (e) { try { ta.focus(); ta.select(); ok = document.execCommand("copy"); } catch (e2) {} }
+        msg.textContent = ok ? "✅ Copied. Paste it into x.com (add the picture below if you like)." : "Couldn't copy by itself: the text is selected, press Ctrl+C.";
+        if (ok) sim.noteStudy("shared_copy_" + shareStyle);
+      };
+      const xb = h("button", "ftc-btn", "𝕏 Open in X");
+      xb.title = "Opens x.com with this text ready to post";
+      xb.onclick = () => { window.open("https://x.com/intent/post?text=" + encodeURIComponent(text), "_blank", "noopener"); sim.noteStudy("shared_x_" + shareStyle); };
+      row0.append(copy, xb); overlay.append(row0, msg);
+      const img = h("img", "ftc-share-img"); img.src = c.toDataURL("image/png"); img.alt = shareText(f); overlay.append(img);
+      const row = h("div", "ftc-row");
       const blob = () => new Promise(r => c.toBlob(r, "image/png"));
       if (navigator.share) {
         const b = h("button", "ftc-btn primary", "📤 Share");
@@ -2978,17 +3623,19 @@
         };
         row.append(b);
       }
-      const cp = h("button", "ftc-btn", "📋 Copy text");
-      cp.onclick = () => { try { navigator.clipboard.writeText(text).then(() => { msg.textContent = "Copied: paste it with the picture."; }, () => { msg.textContent = "Couldn't copy: select the text above instead."; }); } catch (e) {} };
+      const ci = h("button", "ftc-btn", "🖼 Copy picture");
+      ci.onclick = async () => { try { await navigator.clipboard.write([new ClipboardItem({ "image/png": await blob() })]); msg.textContent = "✅ Picture copied: paste it into your post."; } catch (e) { msg.textContent = "This browser can't copy pictures: use Save image."; } };
       const sv = h("button", "ftc-btn", "💾 Save image");
       sv.onclick = async () => { const a = document.createElement("a"); a.href = URL.createObjectURL(await blob()); a.download = "flash-the-cat-" + dayKey() + ".png"; document.body.append(a); a.click(); a.remove(); sim.noteStudy("shared_save"); };
-      const close = h("button", "ftc-btn big", optsPaused ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
-      row.append(cp, sv, close); overlay.append(row, msg);
+      const close = h("button", "ftc-btn big", menuResumes() ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
+      row.append(ci, sv, close); overlay.append(row);
+      overlay.scrollTop = 0;
     }
     function closeOptions() {
       if (!optsOpen) return;
       optsOpen = false; overlay.classList.remove("ftc-optsov");
-      if (optsPaused) { optsPaused = false; hideOverlay(); sim.pause(false); }
+      setPause("menu", false);
+      if (st.phase === "fight" && !st.paused) hideOverlay();
       else if (st.phase === "start") showStart();
       else if (st.phase === "break") showBreak();
       else if (st.phase === "over") showOver();
@@ -3000,7 +3647,19 @@
 
     // ------------------------------------------------------------ rewards
     // nothing counts while paused (Dan: "when the game is paused, flash shouldn't get any xp/bonuses")
-    const onReward = e => { if ((st.phase === "fight" || st.phase === "break") && !st.paused && !st.practice) sim.applyReward(e.detail || {}); };
+    const onReward = e => {
+      // studying on the site counts as time studied, and its lesson as a lesson studied
+      lastActive = Date.now();
+      const lk = lesson && lesson.id ? lesson.id + "|" + dayKey() : "";
+      if (lk && !siteLes[lk]) {
+        siteLes[lk] = 1;
+        const j = journey(), L = j.lessons[lesson.id] || (j.lessons[lesson.id] = { title: lesson.title || "", first: Date.now(), n: 0 });
+        L.last = Date.now(); if (lesson.title) L.title = lesson.title; if (!j.start) j.start = Date.now();
+        const days = dayLog(), d = days[dayKey()] || (days[dayKey()] = { n: 0, right: 0 }); (d.les || (d.les = {}))[lesson.id] = 1;
+        saveSet("journey", j); saveSet("days", days);
+      }
+      if ((st.phase === "fight" || st.phase === "break") && !st.paused && !st.practice) sim.applyReward(e.detail || {});
+    };
     window.addEventListener("inaflash:reward", onReward);
     // pause when the tab is hidden, so the flashcards never fight the game for the CPU
     const onVis = () => { if (document.hidden && st.phase === "fight" && !st.paused) togglePause(true); };
@@ -3009,6 +3668,8 @@
     const telTimer = setInterval(() => { if (st.phase === "fight" && !st.paused && Date.now() - telSent > 20000) sendTel(); }, 5000);
 
     applyQuality();
+    sim.setAutoEat(!!prefs.autoeat);
+    backfillJourney();
     showStart();
     updateHud();
     announce("ready");
@@ -3030,6 +3691,16 @@
       setAnim: (id, on) => { prefs.anim[id] = !!on; savePrefs(); },
       setAllAnims: on => { for (const a of ANIMS) prefs.anim[a[0]] = !!on; savePrefs(); },
       stressWave: n => sim.stressWave(n),
+      // Round 3 step 3
+      state: () => gameState(),
+      check: () => checkState(),
+      stateLog: () => stateLog.slice(),
+      eatFish: () => eatFish(),
+      journey: async () => { const f = await journeyFacts(); return { facts: f, posts: journeyPosts(f), len: Object.fromEntries(Object.entries(journeyPosts(f)).map(([k, v]) => [k, xLength(v)])) }; },
+      share: k => shareCard(k || "progress"),
+      flashes: () => ({ mode: flashMode(), reduced: reducedMotion(), log: flashLog.slice() }),
+      napping: () => nap ? { t: nap.t, dur: nap.dur, done: !!nap.done } : null,
+      skipNap: () => finishNap(),
       setGod: on => sim.setGod(on),
       setWeapons: on => sim.setWeapons(on),
       setMove: on => sim.setMove(on),
@@ -3085,7 +3756,7 @@
       rescue: () => { rescueAt = -1e9; maybeRescue(); },
       sendTelemetry: () => sendTel(),
       destroy() {
-        clearInterval(secTimer); clearInterval(telTimer); sendTel(true); if (ro) ro.disconnect();
+        clearInterval(secTimer); clearInterval(studyTimer); flushStudy(); clearInterval(telTimer); sendTel(true); if (ro) ro.disconnect();
         window.removeEventListener("pagehide", onUnload);
         window.removeEventListener("inaflash:reward", onReward);
         document.removeEventListener("visibilitychange", onVis);

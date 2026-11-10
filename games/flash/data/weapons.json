@@ -417,5 +417,29 @@
       "crushing blow",
       "giant paw"
     ]
+  },
+  {
+    "id": "bowling_paw",
+    "name": "Bowling Paw",
+    "damage": 22,
+    "cooldown": 2.4,
+    "range": 150,
+    "behaviour": "paw_bowl",
+    "targeting": "nearest",
+    "unlock_stage": 1,
+    "starting": true,
+    "rarity": "common",
+    "projectile_count": 1,
+    "pierce": -1,
+    "knockback": 30,
+    "throw_speed": 540,
+    "throw_range": 430,
+    "hold": 0.32,
+    "description": "Flash's paw grabs the nearest skeleton, winds up, and bowls it through the thickest part of the crowd. Strike!",
+    "special_upgrades": [
+      "bigger bowl",
+      "spare (a second throw)",
+      "flaming ball"
+    ]
   }
 ]

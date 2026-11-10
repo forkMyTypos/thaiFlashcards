@@ -105,9 +105,15 @@
     "category": "armour",
     "rarity": "legendary",
     "stacking": "upgradeable",
-    "effects": [],
-    "description": "Survive one fatal hit. Recharges after 60 seconds.",
-    "special": "cheat death, 60s recharge"
+    "effects": [
+      {
+        "stat": "nine_lives",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "description": "Once per run, Flash gets back up at half health when he would fall (and throws everything back).",
+    "special": "nine lives: once per run per pendant"
   },
   {
     "id": "lucky_bell",

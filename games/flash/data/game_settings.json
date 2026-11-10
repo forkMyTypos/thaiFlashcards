@@ -337,5 +337,57 @@
       "review_run": 4
     },
     "notes": "The word card (the default; Options > Words can switch back to the classic gem hunt). Each word climbs, separately for Thai -> meaning, meaning -> Thai and listening: meet (one answer, meet_reps times) -> pick of 2 (pick2_right right) -> pick of 4 (pick4_right right) -> recall (no choices, self-graded). Meaning -> Thai starts at pick of 4 of Thai -> meaning; listening at recall (words with a recording). In a session a word comes back after gaps[n] other questions (wrong_gap after a wrong answer); at most max_new words in their first steps (max_new_good above high_acc right, none below low_acc); a right answer slower than slow_ms doesn't move it up. Between sessions: box_days. Learned = recalled twice at least learned_gap_h hours apart; long-term = box longterm_box (passed the 7-day review). Next level offered at ready_share of the level recognised. A right answer powers Flash like a matched pair (meet_strength for a meeting, recall_strength for a recall); the next card comes next_after_* seconds later."
+  },
+  {
+    "id": "elements",
+    "values": {
+      "burn_spread_chance": 0.3,
+      "burn_spread_radius": 46,
+      "burn_spread_on_death": 2,
+      "burn_spread_power": 0.6,
+      "spreads_per_second": 90,
+      "chill_slow": 0.4,
+      "chill_duration": 2,
+      "freeze_after_hits": 3,
+      "frozen_damage_bonus": 0.5,
+      "shatter_damage": 0.35,
+      "shatter_radius": 46,
+      "steam_damage": 28,
+      "steam_radius": 70,
+      "superconduct_mult": 2.5,
+      "overload_damage": 24,
+      "overload_radius": 56,
+      "combos_per_second": 30,
+      "big_combo_hits": 8
+    },
+    "notes": "Round 3 step 3. Fire: a burn tick can catch a neighbour (burn_spread_chance), a burning skeleton that falls lights burn_spread_on_death more. Ice: each cold hit chills (slower by chill_slow); freeze_after_hits in a row freezes; frozen skeletons take frozen_damage_bonus more damage and shatter, hurting those close by (shatter_damage = share of the shattered one's HP). Combos: fire on frozen (or ice on burning) = steam burst; lightning on frozen = superconduct (x superconduct_mult); lightning on burning = overload. spreads_per_second / combos_per_second ration them so huge hordes stay cheap. A combo hitting big_combo_hits or more can flash the screen."
+  },
+  {
+    "id": "fish",
+    "values": {
+      "drop_chance": 0.006,
+      "elite_drop_chance": 0.25,
+      "boss_drops": 2,
+      "horde_drop_chance": 0.0004,
+      "carry": 5,
+      "heal": 0.25,
+      "auto_eat_below": 0.3,
+      "floor_seconds": 18,
+      "floor_max": 10,
+      "magnet_range": 70,
+      "eat_gap": 0.6
+    },
+    "notes": "Dan: 'carryable heal items (~5)'. A skeleton drops a fish now and then (elites more, a boss always boss_drops); horde_drop_chance is for mega-wave skeletons. Flash carries up to `carry`; each heals `heal` of his max HP. Tap the 🐟 button or press H to eat one; ⚙ Options → Auto-eat eats one below auto_eat_below. Fish still on the floor at the end of a round are scooped up if there's room."
+  },
+  {
+    "id": "feel",
+    "values": {
+      "revive_hp": 0.5,
+      "revive_invulnerable": 2.5,
+      "revive_radius": 280,
+      "revive_damage": 60,
+      "strike_pins": 5
+    },
+    "notes": "😼 Nine Lives: Flash gets back up with revive_hp of his health, can't be hurt for revive_invulnerable seconds, and everything within revive_radius is thrown back (revive_damage + 4 per level). 🎳 A Bowling Paw throw that hits strike_pins or more is a STRIKE."
   }
 ]
