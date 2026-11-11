@@ -2427,6 +2427,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  var TONES=['mid','low','falling','high','rising'];
  var KLABEL={meaning:'What does it mean?',thai:'Which is the Thai?',listen:'Listen — what does it mean?',
   rom:'Which Thai word is this?',tone:'Which tone is it?',gap:'Which word fills the gap?',order:'Try a sentence: put the words in order'};
+ // A grammar lesson names its grammar words (ไม่, ไม่ได้, ไม่ใช่): its quiz asks
+ // which of them fills the gap, on the example sentences as well as the words.
+ var GW=(function(){try{return JSON.parse(document.body.getAttribute('data-grammar')||'[]');}catch(e){return [];}})();
+ KLABEL.ggap='Which word fills the gap?';
+ function gwIn(toks){for(var i=0;i<toks.length;i++)if(GW.indexOf(toks[i])>=0)return toks[i];return null;}
 
  // The text of an element without its tone marks: the marks are drawings,
  // and their <title> ("rising tone") is text that would end up in the answer.
@@ -2467,6 +2472,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   var i;
   for(i=0;i<d.sents.length;i++)if(!d.isS&&d.sents[i].toks.indexOf(d.word)>=0&&d.sents[i].toks.length>=3){k.push('gap');break;}
   for(i=0;i<d.sents.length;i++)if(d.sents[i].toks.length>=3&&d.sents[i].toks.length<=8&&d.sents[i].tr){k.push('order');break;}
+  if(GW.length>=2&&d.isS&&d.sents[0]&&gwIn(d.sents[0].toks))k.push('ggap');
   return k;
  }
  var KWEIGHT={meaning:3,thai:2,listen:2,rom:1,tone:1,gap:2,order:1};
@@ -2477,7 +2483,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   else if(qstyle==='classic'||pos===0)k='meaning';   // a mixed quiz starts gently
   else{
    var bag=[],i,j;
-   for(i=0;i<ok.length;i++)for(j=0;j<(KWEIGHT[ok[i]]||1);j++)bag.push(ok[i]);
+   // on a grammar lesson the gap is the point of the quiz
+   for(i=0;i<ok.length;i++)for(j=0;j<(GW.length&&(ok[i]==='gap'||ok[i]==='ggap')?6:(KWEIGHT[ok[i]]||1));j++)bag.push(ok[i]);
    k=seeded(bag,pos*7+3)[0]||'meaning';
   }
   qkind[pos]=k;return k;
@@ -2579,6 +2586,19 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i]).word;});
    s.opts=ws.concat([meIdx]).map(function(k){return textOpt(k,cdata(cards[k]).word,'f-word qthai',lang);});
    s.typeThai=d.word;s.typeRom=d.rom;s.after=sn;
+  }else if(kind==='ggap'){
+   var sg=d.sents[0],gw=gwIn(sg.toks);
+   s.face=function(el){
+    var h='<div class="qsent" lang="'+lang+'">',done=false;
+    sg.toks.forEach(function(t){h+=(!done&&t===gw)?(done=true,'<span class="qgap">＿＿</span>'):'<span>'+esc(t)+'</span>';});
+    el.innerHTML=h+'</div>'+(sg.tr?'<div class="qtr"></div>':'');
+    if(sg.tr)el.querySelector('.qtr').textContent=sg.tr;
+   };
+   s.right='g:'+gw;
+   s.opts=seeded(GW.filter(function(w){return w!==gw;}),seed).slice(0,wrongs).concat([gw]).map(function(w){
+    return {key:'g:'+w,draw:function(el){var x=document.createElement('span');x.className='f-word qthai';
+     x.setAttribute('lang',lang);x.textContent=w;el.appendChild(x);}};});
+   s.typeThai=gw;s.after=sg;
   }else if(kind==='order'){
    var so=null,j;
    for(j=0;j<d.sents.length;j++)if(d.sents[j].toks.length>=3&&d.sents[j].toks.length<=8&&d.sents[j].tr){so=d.sents[j];break;}
@@ -4726,4 +4746,13 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
               :{kind:'penalty',source:'quiz',streak:0});
    }};
  })();
+})();
+
+// A grammar lesson's "How it works" box: open the first time, and kept the way
+// the reader left it on this lesson.
+(function(){
+ var g=document.getElementById('grammar');if(!g)return;
+ var k='wb.gbox.'+location.pathname;
+ try{if(localStorage.getItem(k)==='0')g.removeAttribute('open');}catch(e){}
+ g.addEventListener('toggle',function(){try{localStorage.setItem(k,g.open?'1':'0');}catch(e){}});
 })();
