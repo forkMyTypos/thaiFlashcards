@@ -1272,5 +1272,40 @@
     "target": "icicle_lance",
     "icon": "🧊",
     "image": null
+  },
+  {
+    "id": "locations.temple",
+    "type": "locations",
+    "target": "temple",
+    "icon": "🛕",
+    "image": null
+  },
+  {
+    "id": "locations.night_market",
+    "type": "locations",
+    "target": "night_market",
+    "icon": "🏮",
+    "image": null
+  },
+  {
+    "id": "locations.beach",
+    "type": "locations",
+    "target": "beach",
+    "icon": "🏖️",
+    "image": null
+  },
+  {
+    "id": "locations.jungle",
+    "type": "locations",
+    "target": "jungle",
+    "icon": "🌴",
+    "image": null
+  },
+  {
+    "id": "locations.rooftops",
+    "type": "locations",
+    "target": "rooftops",
+    "icon": "🌃",
+    "image": null
   }
 ]

@@ -403,5 +403,18 @@
       "arcs_per_second": 40
     },
     "notes": "Round 3 step 4. A weapon with an element (an evolved one) sets alight / chills / arcs on weapon_element_chance of its hits, on top of what tags and items give. An arc hits arc_targets neighbours within arc_radius for arc_damage of the hit; arcs_per_second rations them so huge hordes stay cheap. How offers lean towards the build is in the row `choices` (lean_towards_build per thing already owned with the tag, lean_next_tier when the pick would switch a tier on, lean_evolution for the item an owned weapon needs to evolve)."
+  },
+  {
+    "id": "locations",
+    "values": {
+      "enabled": true,
+      "lessons_per_location": 10,
+      "loop": true,
+      "hazards": true,
+      "hazards_from_round": 2,
+      "hazard_damage": 1,
+      "hazard_enemy_damage": 1
+    },
+    "notes": "Round 3 step 5. The location follows the lesson: lessons 1-10 are the first row of Locations (by `order`), 11-20 the second, and so on (lessons_per_location); after the last one it starts again if loop is on. A run keeps its location until the next round starts. hazards switches every location's hazard off; hazards_from_round keeps the first round(s) calm; hazard_damage / hazard_enemy_damage scale what hazards do to Flash / to skeletons. enabled: false = the old dungeon floor everywhere, no hazards, the usual bosses."
   }
 ]

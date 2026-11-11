@@ -15,7 +15,7 @@
   const TYPES = ["weapons", "stats_base", "enemies", "enemy_equipment", "reward_effects", "game_settings",
                  "enemy_scaling", "spawn_curve", "enemy_mix", "elite_modifiers", "upgrades", "items",
                  "passives", "rarities", "mega_waves", "icons", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock",
-                 "tags", "kits", "evolutions"];
+                 "tags", "kits", "evolutions", "locations"];
   const SHARED = ["environments", "effects"];
 
   const PROJ_COLOUR = { returning_projectile: 0xf3ead2, explosive_projectile: 0xff8a3a, bouncing_projectile: 0x7ee0ff,
@@ -151,9 +151,10 @@
     let LE = null;
     // the question choices from ⚙ Options (like the course's quiz bar), kept in the save
     function qPrefs() { const d = SAVE.get(); return Object.assign({ shuffle: false, reverse: false, style: "mix", type: false, auto: true, wrong: 5,
-                                                                    show: { pic: true, hook: true, tone: true, sents: true } }, d.q || {}, { show: Object.assign({ pic: true, hook: true, tone: true, sents: true }, (d.q || {}).show || {}) }); }
+                                                                    newday: 0, show: { pic: true, hook: true, tone: true, sents: true } }, d.q || {}, { show: Object.assign({ pic: true, hook: true, tone: true, sents: true }, (d.q || {}).show || {}) }); }
     function setQ(k, v) { const d = SAVE.get(); d.q = Object.assign(qPrefs(), { [k]: v }); SAVE.set(d); applyQ(); }
-    function applyQ() { if (!LE) return; const q = qPrefs(); Object.assign(LE.S, { shuffle_new: !!q.shuffle, reverse_now: !!q.reverse, classic: q.style === "classic", max_wrong: Math.max(2, Math.min(5, +q.wrong || 5)) }); }
+    function applyQ() { if (!LE) return; const q = qPrefs(); Object.assign(LE.S, { shuffle_new: !!q.shuffle, reverse_now: !!q.reverse, classic: q.style === "classic", max_wrong: Math.max(2, Math.min(5, +q.wrong || 5)) });
+      if (+q.newday > 0) LE.S.new_per_day = +q.newday; }
     try {
       const st0 = window.FlashLearn && (FlashLearn.dexieStore("ftc-learn") || FlashLearn.lsStore("ftc.learn"));
       if (st0) LE = FlashLearn.create({ store: st0, fallback: FlashLearn.lsStore("ftc.learn"),
@@ -506,12 +507,116 @@
       g.generateTexture("ftc-hairball", 22, 22); g.clear();
       g.destroy();
     }
+    // ---- locations (Round 3 step 5): each one's floor and edge props are drawn once into a
+    // texture the size of the old floor, so a location costs nothing per frame. Only the
+    // lights (torches, lanterns, neon) are sprites: a dozen, flickering gently (steady with
+    // "reduce motion").
+    let shownLoc;                      // the location id on screen (null = the old dungeon floor)
+    const locKey = id => id ? "ftc-floor-" + id : "ftc-floor";
+    function makeFloor(s, L) {
+      const key = locKey(L.id), WW = FlashSim.WMAX, HH = FlashSim.H, f = L.floor || {};
+      const base = hexNum(f.base || "#2a2430"), tile = hexNum(f.tile || "#4a4458"), acc = hexNum(f.accent || "#ffd23a");
+      const lights = [];
+      if (s.textures.exists(key)) return s.textures.get(key).customData.lights || [];
+      const g = s.make.graphics({ x: 0, y: 0, add: false }), R = Math.random;
+      g.fillStyle(base); g.fillRect(0, 0, WW, HH);
+      const pat = f.pattern || "tiles";
+      if (pat === "tiles") {
+        for (let y = 0; y < HH; y += 50) for (let x = (y / 50) % 2 ? -25 : 0; x < WW; x += 50) {
+          g.fillStyle(tile, 0.16 + R() * 0.16); g.fillRect(x + 2, y + 2, 46, 46);
+          if (R() < 0.06) { g.lineStyle(1.5, 0x000000, 0.28); g.beginPath(); g.moveTo(x + 6 + R() * 20, y + 4); g.lineTo(x + 18 + R() * 14, y + 24); g.lineTo(x + 10 + R() * 30, y + 46); g.strokePath(); }
+          if (R() < 0.035) { g.lineStyle(2, acc, 0.35); g.strokeRect(x + 6, y + 6, 38, 38); }
+        }
+      } else if (pat === "planks") {
+        for (let y = 0; y < HH; y += 34) { let x = -R() * 120; while (x < WW) { const w = 120 + R() * 120; g.fillStyle(tile, 0.14 + R() * 0.16); g.fillRect(x + 1, y + 1, w - 2, 32); x += w; } }
+      } else if (pat === "sand") {
+        for (let i = 0; i < 2600; i++) { g.fillStyle(R() < 0.5 ? tile : 0x000000, R() < 0.5 ? 0.22 : 0.07); g.fillCircle(R() * WW, R() * HH, 1 + R() * 2.2); }
+        for (let y = 60; y < HH; y += 46) { g.lineStyle(2, tile, 0.16); g.beginPath(); for (let x = 0; x <= WW; x += 24) { const yy = y + Math.sin(x / 70 + y) * 7; if (x) g.lineTo(x, yy); else g.moveTo(x, yy); } g.strokePath(); }
+        // the sea, along the bottom
+        g.fillStyle(acc, 0.30); g.fillRect(0, HH - 46, WW, 46); g.fillStyle(acc, 0.22); g.fillRect(0, HH - 60, WW, 14);
+        g.lineStyle(3, 0xffffff, 0.35); g.beginPath(); for (let x = 0; x <= WW; x += 20) { const yy = HH - 60 + Math.sin(x / 45) * 5; if (x) g.lineTo(x, yy); else g.moveTo(x, yy); } g.strokePath();
+      } else if (pat === "grass") {
+        for (let i = 0; i < 90; i++) { g.fillStyle(0x000000, 0.10); g.fillEllipse(R() * WW, R() * HH, 60 + R() * 120, 40 + R() * 70); }
+        for (let i = 0; i < 3200; i++) { const x = R() * WW, y = R() * HH; g.lineStyle(1.5, R() < 0.2 ? acc : tile, 0.22 + R() * 0.25); g.beginPath(); g.moveTo(x, y); g.lineTo(x + (R() - 0.5) * 5, y - 4 - R() * 6); g.strokePath(); }
+      } else {       // concrete: big slabs, seams, puddles that catch the lights
+        for (let y = 0; y < HH; y += 100) for (let x = 0; x < WW; x += 100) { g.fillStyle(tile, 0.10 + R() * 0.14); g.fillRect(x + 1.5, y + 1.5, 97, 97); }
+        for (let i = 0; i < 26; i++) { const x = R() * WW, y = R() * HH; g.fillStyle(acc, 0.07); g.fillEllipse(x, y, 50 + R() * 80, 18 + R() * 26); g.fillStyle(0xffffff, 0.04); g.fillEllipse(x - 6, y - 2, 20, 6); }
+        for (let i = 0; i < 500; i++) { g.fillStyle(0x000000, 0.14); g.fillCircle(R() * WW, R() * HH, 1 + R() * 1.6); }
+      }
+      // props: along the top (under the HUD's edge), the bottom and the left, so every column width shows some
+      const props = (L.props || []).filter(Boolean), spots = [];
+      if (props.length) {
+        for (let x = 70; x < WW; x += 150) { spots.push([x + (R() - 0.5) * 30, 150, 0]); spots.push([x + 75 + (R() - 0.5) * 30, HH - (pat === "sand" ? 96 : 44), 2]); }
+        for (let y = 260; y < HH - 140; y += 170) spots.push([20, y + (R() - 0.5) * 30, 3]);
+      }
+      const lightC = hexNum(L.light || f.accent || "#ffd27a");
+      spots.forEach(([x, y, side], i) => {
+        const k = props[i % props.length];
+        g.fillStyle(0x000000, 0.22); g.fillEllipse(x, y + 12, 34, 10);                    // a soft shadow under everything
+        if (k === "torch") { g.fillStyle(0x4a3424); g.fillRect(x - 2.5, y - 10, 5, 24); g.fillStyle(0xff8a2a); g.fillCircle(x, y - 14, 7); g.fillStyle(0xffe08a); g.fillCircle(x, y - 13, 3.5); lights.push([x, y - 14, 1]); }
+        else if (k === "lantern") { g.lineStyle(1.5, 0x000000, 0.5); g.beginPath(); g.moveTo(x, y - 24); g.lineTo(x, y - 12); g.strokePath(); g.fillStyle(0xe23a3a); g.fillRoundedRect(x - 9, y - 12, 18, 20, 7); g.fillStyle(0xf5c542); g.fillRect(x - 6, y - 14, 12, 3); g.fillRect(x - 6, y + 7, 12, 3); lights.push([x, y - 2, 0.9]); }
+        else if (k === "bell") { g.fillStyle(0x5a3d1e); g.fillRect(x - 16, y - 20, 32, 4); g.fillStyle(0xd9a52e); g.fillTriangle(x - 12, y + 8, x + 12, y + 8, x, y - 16); g.fillCircle(x, y - 8, 8); g.fillStyle(0x8a6418); g.fillCircle(x, y + 9, 3); }
+        else if (k === "stall") { g.fillStyle(0x3a2c28); g.fillRect(x - 24, y - 4, 48, 14); for (let j = 0; j < 6; j++) { g.fillStyle(j % 2 ? 0xf2f2f2 : hexNum(f.accent || "#ff5a7a")); g.fillRect(x - 27 + j * 9, y - 18, 9, 12); } lights.push([x, y - 6, 0.7]); }
+        else if (k === "palm") { g.fillStyle(0x6b4a2e); g.fillRect(x - 3, y - 14, 6, 26); g.fillStyle(0x2f8a4a); for (let j = 0; j < 6; j++) { const a = j * 1.05; g.fillEllipse(x + Math.cos(a) * 13, y - 16 + Math.sin(a) * 9, 22, 8); } g.fillStyle(0x3fae5e); g.fillCircle(x, y - 16, 5); }
+        else if (k === "parasol") { for (let j = 0; j < 8; j++) { g.fillStyle(j % 2 ? 0xf2f2f2 : 0xff7a5a); g.slice(x, y, 18, j * 0.785, (j + 1) * 0.785); g.fillPath(); } g.fillStyle(0x444444); g.fillCircle(x, y, 2.5); }
+        else if (k === "vine") { g.lineStyle(3, 0x2f7a3a, 0.9); g.beginPath(); g.moveTo(x - 14, y - 16); for (let j = 1; j <= 6; j++) g.lineTo(x - 14 + j * 5, y - 16 + Math.sin(j * 1.3) * 8 + j * 3); g.strokePath(); g.fillStyle(0x4fb35e); for (let j = 0; j < 4; j++) g.fillEllipse(x - 10 + j * 8, y - 10 + j * 5, 9, 5); }
+        else if (k === "rock") { g.fillStyle(0x6c7078); g.fillEllipse(x, y + 2, 30, 20); g.fillStyle(0x8a8f98); g.fillEllipse(x - 4, y - 2, 16, 9); }
+        else if (k === "neon") { g.lineStyle(3, lightC, 0.95); g.strokeRoundedRect(x - 20, y - 12, 40, 20, 5); g.lineStyle(2, 0xff5ad0, 0.9); g.beginPath(); g.moveTo(x - 12, y - 2); g.lineTo(x - 2, y - 6); g.lineTo(x + 4, y + 2); g.lineTo(x + 13, y - 3); g.strokePath(); lights.push([x, y - 2, 1.1]); }
+        else if (k === "antenna") { g.lineStyle(2.5, 0x9aa4b4, 0.95); g.beginPath(); g.moveTo(x, y + 12); g.lineTo(x, y - 20); g.moveTo(x - 9, y - 12); g.lineTo(x + 9, y - 12); g.moveTo(x - 6, y - 5); g.lineTo(x + 6, y - 5); g.strokePath(); g.fillStyle(0xff3a3a); g.fillCircle(x, y - 21, 2.5); lights.push([x, y - 21, 0.45, 0xff3a3a]); }
+        else if (k === "bones") { g.fillStyle(0xe8e2d0, 0.85); for (let j = 0; j < 5; j++) g.fillRoundedRect(x - 14 + R() * 20, y - 2 + R() * 10, 12, 3.5, 1.5); g.fillCircle(x + 2, y - 3, 5); }
+      });
+      g.generateTexture(key, WW, HH); g.destroy();
+      s.textures.get(key).customData = { lights };
+      return lights;
+    }
+    // put the right floor under the fight: the run's own location while one is going, else the lesson's
+    function showLocation() {
+      if (!scene || !scene.floorImg || !sim.location) return;
+      const inRun = st.phase === "fight" || st.phase === "break";
+      const id = inRun ? (sim.location() || {}).id || null : sim.locationWanted();
+      if (id === shownLoc) return;
+      shownLoc = id;
+      const L = id ? sim.locations().find(l => l.id === id) : null;
+      const lights = L ? makeFloor(scene, L) : [];
+      scene.floorImg.setTexture(locKey(L ? id : null));
+      for (const o of scene.locLights) o.setVisible(false);
+      const c = L ? hexNum(L.light || (L.floor || {}).accent || "#ffd27a") : 0;
+      lights.slice(0, 40).forEach(([x, y, k, own], i) => {
+        const o = scene.locLights[i] || (scene.locLights[i] = scene.add.image(0, 0, "ftc-dot").setDepth(0.5).setBlendMode(Phaser.BlendModes.ADD));
+        o.setPosition(x, y).setScale(7 * k).setTint(own || c).setAlpha(0.2).setVisible(true); o._k = i * 1.7;
+      });
+    }
+    // the location's hazard on its way: a circle that fills up, or a band with the side it comes from
+    function drawHazards(g, now) {
+      const hz = st.haz && st.haz.list; if (!hz || !hz.length) return;
+      for (const h of hz) {
+        const k = Math.max(0, Math.min(1, 1 - (h.at - st.t) / (h.warn || 1.2)));
+        if (h.k === "strike") {
+          g.fillStyle(h.c, 0.10 + 0.24 * k); g.fillCircle(h.x, h.y, h.r * k);
+          g.lineStyle(2.5, h.c, 0.85); g.strokeCircle(h.x, h.y, h.r);
+          g.lineStyle(1.5, 0xffffff, 0.5); g.strokeCircle(h.x, h.y, h.r * 0.3);
+        } else if (st.t < h.at) {
+          g.fillStyle(h.c, 0.06 + 0.12 * k); g.fillRect(0, h.y - h.r, st.W, h.r * 2);
+          g.lineStyle(2, h.c, 0.7); g.strokeRect(-4, h.y - h.r, st.W + 8, h.r * 2);
+          const x0 = h.dir > 0 ? 14 : st.W - 14;                              // chevrons on the side it comes from
+          g.lineStyle(4, 0xffffff, 0.35 + 0.4 * k);
+          for (let i = 0; i < 3; i++) { const x = x0 + h.dir * i * 16; g.beginPath(); g.moveTo(x, h.y - 14); g.lineTo(x + h.dir * 10, h.y); g.lineTo(x, h.y + 14); g.strokePath(); }
+        } else {
+          g.fillStyle(h.c, 0.16); g.fillRect(h.dir > 0 ? h.x - 190 : h.x + 40, h.y - h.r, 150, h.r * 2);
+          g.fillStyle(h.c, 0.42); g.fillRect(h.x - 40, h.y - h.r, 80, h.r * 2);
+          g.lineStyle(4, 0xffffff, 0.6); g.beginPath();
+          for (let y = -h.r; y <= h.r; y += 14) { const x = h.x + h.dir * (36 + Math.sin(y / 18 + now * 9) * 6); if (y === -h.r) g.moveTo(x, h.y + y); else g.lineTo(x, h.y + y); }
+          g.strokePath();
+        }
+      }
+    }
     const grab = (arr, factory) => { for (const o of arr) if (!o.visible) { o.setVisible(true); return o; } const o = factory(); arr.push(o); return o; };
 
     function sceneCreate() {
       scene = this;
       makeTextures(this);
-      this.add.image(0, 0, "ftc-floor").setOrigin(0);
+      this.floorImg = this.add.image(0, 0, "ftc-floor").setOrigin(0);
+      this.locLights = [];
       this.zonesG = this.add.graphics().setDepth(1);       // spell zones, under the horde
       this.aura = this.add.graphics();
       this.bossImg = this.add.image(0, 0, "ftc-boss").setDepth(4).setVisible(false);
@@ -589,6 +694,18 @@
         } else if (e.t === "cast") {
           SFX.play("cast");
           if (A("spell_fx") && castOk()) { use("spell_fx"); spellFx(e); }
+        } else if (e.t === "location") {
+          if (e.id && A("banners")) { use("banners"); banner(`${e.icon} ${e.name}`, e.thai ? `${e.thai} · a new place` : "a new place"); }
+        } else if (e.t === "hazard_warn") {
+          floatText(`${e.icon} ${e.name}!`, true);
+        } else if (e.t === "hazard") {
+          SFX.play("explode");
+          if (e.kind === "strike") {
+            shake(140, 0.004);
+            if (A("explosion_rings")) { use("explosion_rings");
+              fx.push({ k: "ring", x: e.x, y: e.y, r: e.r, life: 0.4, max: 0.4, c: e.c });
+              if (fx.length < Q().fx) for (let i = 0; i < 8; i++) burst(e.x, e.y, e.c, 220); }
+          }
         } else if (e.t === "boss") {
           SFX.play("boss");
           if (A("banners")) { use("banners"); banner(`👑 ${e.name} approaches!`, e.encounter || "A boss fight: the round won't end until it falls"); }
@@ -712,7 +829,9 @@
           }
           hideOverlay(); announce(e.t === "start" ? "started" : "round_start");
           newThisRound = 0;
+          const loc = sim.location && sim.location();
           if (e.t === "round_start" && A("banners")) { use("banners"); banner(`Round ${e.round}`, ""); }
+          else if (e.t === "start" && loc && A("banners")) { use("banners"); banner(`${loc.icon || "📍"} ${loc.name}`, loc.thai || ""); }
         }
       }
     }
@@ -923,6 +1042,9 @@
           for (const h of (z.hits || []).slice(0, 12)) { g.lineStyle(2, 0xc8a0ff, 0.6 * left); g.beginPath(); g.moveTo(h.x, h.y); g.lineTo(z.x, z.y); g.strokePath(); }
         }
       }
+      drawHazards(g, now);
+      // the location's lights flicker (steady with "reduce motion")
+      if (s.locLights && s.locLights.length) { const still = reducedMotion(); for (const o of s.locLights) if (o.visible) o.setAlpha(still ? 0.2 : 0.17 + 0.06 * Math.sin(now * 5 + o._k) + 0.03 * Math.sin(now * 13 + o._k * 2)); }
       // boss attacks about to land: fill up, then hit
       for (const t of st.tele) {
         const tot = 1.15, k = Math.max(0, Math.min(1, 1 - (t.at - st.t) / tot));
@@ -1228,7 +1350,7 @@
       const t1 = performance.now();
       handleEvents(sim.drain());
       draw(dt);
-      if (scene) drawSpells(scene, dt);
+      if (scene) { showLocation(); drawSpells(scene, dt); }
       updateGems(dt); updateCard();
       const t2 = performance.now();
       perf.sim = perf.sim * 0.9 + (t1 - t0) * 0.1; perf.draw = perf.draw * 0.9 + (t2 - t1) * 0.1;
@@ -1931,7 +2053,7 @@
       const ks = Object.keys(days).sort(); while (ks.length > 400) delete days[ks.shift()];
       saveSet("days", days);
       noteJourney(d, right, meet);
-      if (d.n === GOAL) { SFX.play("levelup"); if (A("banners")) banner(`🎯 Daily goal: ${GOAL} answers!`, `${PUN.streak} · ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row`); sim.noteStudy("daily_goal"); }
+      if (d.n === GOAL) { SFX.play("levelup"); if (A("banners")) banner(`💪 ${GOAL} answers today!`, `${PUN.streak} · ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row`); sim.noteStudy("daily_goal"); }
     }
     // today counts once it has an answer; until then, yesterday's run is still alive
     function daysInRow() {
@@ -2164,6 +2286,7 @@
       clearTimeout(cTimer); cTimer = null; cq = null; cState = ""; cHeld = false;
       if (!cardLive()) { cardHide(); return; }
       const q = LE.next();
+      if (!q && reviewHard) { endHard(); return cardNext(); }      // the hard words are done for now: back to what was on
       if (!q) { cardHide(); cNextAt = performance.now() + 2000; return; }
       cq = q; cShown = performance.now(); cState = q.kind === "recall" ? "think" : "ask"; cTyped = null;
       renderCard();
@@ -2412,22 +2535,95 @@
       cTimer = setTimeout(() => { cq = null; cState = ""; cardNext(); }, wait * 1000);
     }
     const LABELS_UP = { recognises: "👀 Recognised:", recalls: "🧠 Recalled:", learned: "⭐ Learned:", longterm: "🏆 Long-term:" };
-    // the top of the study panel: the level, how far along it is, the streak
+    // ---- the top of the study panel (11 Nov, Dan: "too many icons, and they don't seem to
+    // do anything ... a simple system"). What's there now: the lesson (a drop-down when the
+    // host gives the list), today's new words against the number the learner chose, days in
+    // a row, the two word lists (learning now / learnt) and a review (everything / hard words).
+    const NEW_CHOICES = [5, 10, 15, 20, 30];
+    let levelList = null, levelsAsked = false, goalOpen = false, revOpen = false;
+    let reviewHard = null;                 // a "hard words only" review: { n, back }
+    function askLevels() {
+      if (levelsAsked || !opts.levels) return; levelsAsked = true;
+      Promise.resolve().then(() => opts.levels()).then(l => { levelList = Array.isArray(l) ? l.filter(x => x && x.id && x.title) : []; syncLocation(); drawSide(true); }).catch(() => { levelList = []; });
+    }
+    // the lesson's place in the course (1, 2, 3 ...), when the host's list has it
+    const lessonNumber = () => { const i = levelList && lesson ? levelList.findIndex(l => l.id === lesson.id) : -1; return i < 0 ? 0 : i + 1; };
+    // Round 3 step 5: the location follows the lesson (a new one every 10). A run that's
+    // going moves there when its next round starts.
+    function syncLocation() {
+      if (!sim.locationFor) return;
+      const L = sim.locationFor(lessonNumber() || 1), was = sim.locationWanted();
+      sim.setLocation(L ? L.id : null);
+      if ((L ? L.id : null) !== was && st.phase !== "fight" && st.phase !== "break") { showLocation(); if (st.phase === "start" && !optsOpen && uiScreen === "start") showStart(); }
+    }
+    const newGoal = () => Math.max(1, +(LE.S.new_per_day || 20));
+    const hardIds = () => LE.hardest(30).filter(x => x.wrong > 0).map(x => x.id);
+    function endHard(quiet) {
+      if (!reviewHard) return;
+      LE.setOnly(null); LE.setFocus(reviewHard.back); reviewHard = null;
+      if (!quiet) floatText("🔁 Hard words done: back to your words", false, true);
+      drawSide(true);
+    }
+    // "all": everything met so far, no new words (the same switch as the start screen's
+    // review mode). "hard": only the words that have gone wrong. "new": new words + review.
+    function startReview(kind) {
+      if (!LE) return;
+      endHard(true);
+      if (kind === "hard") {
+        const ids = hardIds();
+        if (!ids.length) { floatText("No hard words yet: nothing has gone wrong 😸"); revOpen = false; drawSide(true); return; }
+        reviewHard = { n: ids.length, back: LE.focus() }; LE.setOnly(ids); LE.setFocus("review"); LE.practise(ids);
+      } else { const f = kind === "all" ? "review" : "new"; LE.setFocus(f); saveSet("focus", f); }
+      revOpen = false;
+      if (cardLive() && cState !== "done") cardNext();
+      if (st.phase === "start" && !optsOpen && uiScreen === "start") showStart();
+      drawSide(true);
+    }
+    sideHead.addEventListener("click", e => {
+      const b = e.target.closest ? e.target.closest("button") : null; if (!b || !sideHead.contains(b)) return;
+      const d = b.dataset;
+      if (d.prog !== undefined) showProgress();
+      else if (d.words) { wordsFilter = d.words; showWords(); }
+      else if (d.goal !== undefined) { goalOpen = !goalOpen; revOpen = false; drawSide(true); }
+      else if (d.newday) { setQ("newday", +d.newday); goalOpen = false; floatText(`🎯 ${d.newday} new words a day`, false, true); drawSide(true); }
+      else if (d.rev !== undefined) { revOpen = !revOpen; goalOpen = false; drawSide(true); }
+      else if (d.review) startReview(d.review);
+    });
+    sideHead.addEventListener("change", e => {
+      const t = e.target; if (!t || t.dataset.level === undefined) return;
+      const id = t.value; t.blur();
+      if (id && opts.goLevel && (!lesson || id !== lesson.id)) { endHard(true); try { opts.goLevel(id); } catch (err) {} }
+    });
     let sideAt = 0;
     function drawSide(now) {
       if (!panelOn() && !stackOn()) return;
       const t = performance.now(); if (!now && t - sideAt < 400) return; sideAt = t;
+      askLevels();
+      // a drop-down that's open would close if the bar were redrawn under it
+      const ae = document.activeElement; if (ae && ae.tagName === "SELECT" && sideHead.contains(ae)) return;
       const p = LE.levelProgress(), sm = LE.summary(), k = p.total ? p.recognises / p.total : 0;
-      const today = Math.min(GOAL, (dayLog()[dayKey()] || {}).n || 0), td = LE.todo();
-      const todo = `<div class="ftc-todo" title="Flash's to-do list"><b>😼 Flash's to-do</b>${td.due ? `<span>🔁 ${td.due} to review</span>` : ""}${td.ready ? `<span>⬆ ${td.ready} ready for a harder test</span>` : ""}${td.forgot ? `<span>🩹 ${td.forgot} slipping</span>` : ""}${td.fresh ? `<span>🌱 ${td.fresh} new</span>` : ""}${!td.due && !td.ready && !td.forgot && !td.fresh ? "<span>all caught up 😸</span>" : ""}</div>`;
-      const html = stackOn() ? `<div class="ftc-side-mini"><b>📘 ${esc(short(levelTitle(), 26))}</b><span>👀 ${p.recognises}/${p.total}</span><span>🔥 ${cStreak}</span><span>🎯 ${today}/${GOAL}</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>`
-        : `<div class="ftc-side-lv"><span>📘 Level · ${PUN.course}</span><b>${esc(levelTitle())}</b></div>
+      const goal = newGoal(), met = LE.newToday ? LE.newToday() : 0, days = daysInRow();
+      const learnt = sm.th.learned, nowN = Math.max(0, sm.th.met - learnt), asked = +qPrefs().newday > 0;
+      const rev = reviewHard ? "hard" : LE.focus() === "review" ? "all" : "";
+      const sel = levelList && levelList.length && opts.goLevel ? (() => {
+        const cur = lesson && lesson.id, groups = {}, mast = SAVE.get().mastered || {};
+        for (const l of levelList) (groups[l.catName || l.cat || "Lessons"] = groups[l.catName || l.cat || "Lessons"] || []).push(l);
+        const og = Object.entries(groups), opt = l => `<option value="${esc(l.id)}"${l.id === cur ? " selected" : ""}>${esc(l.title)}${mast[l.id] ? " 🏆" : ""}</option>`;
+        return `<select class="ftc-side-sel" data-level title="Switch lesson: the game carries on">${cur && !levelList.some(l => l.id === cur) ? `<option selected>${esc(levelTitle())}</option>` : ""}${og.length > 1 ? og.map(([g, ls]) => `<optgroup label="${esc(g)}">${ls.map(opt).join("")}</optgroup>`).join("") : levelList.map(opt).join("")}</select>`;
+      })() : "";
+      const goalBtn = `<button class="ftc-side-chip" data-goal title="New words met today, out of the number you chose. Tap to change it">🎯 ${Math.min(met, 999)}/${goal} new today</button>`;
+      const daysChip = `<span class="ftc-side-chip" title="days in a row with at least one answer">📅 ${days} day${days === 1 ? "" : "s"} in a row</span>`;
+      const pickGoal = goalOpen || (!asked && !stackOn()) ? `<div class="ftc-side-pick"><span>${asked ? "New words a day" : "How many new words a day?"}</span>${NEW_CHOICES.map(n => `<button data-newday="${n}"${asked && n === goal ? ' class="on"' : ""}>${n}</button>`).join("")}</div>` : "";
+      const hardN = revOpen ? hardIds().length : 0;
+      const pickRev = revOpen ? `<div class="ftc-side-pick"><span>Review</span><button data-review="all"${rev === "all" ? ' class="on"' : ""} title="Every word you've met, the ones due first. No new words">Everything (${sm.th.met})</button><button data-review="hard"${rev === "hard" ? ' class="on"' : ""} title="Only the words you've got wrong">Hard words only (${hardN})</button>${rev ? `<button data-review="new" title="New words, with the reviews that are due">Back to new words</button>` : ""}</div>`
+        : rev ? `<div class="ftc-side-pick on"><span>🔁 Reviewing: ${rev === "hard" ? `hard words (${reviewHard.n})` : "everything, no new words"}</span><button data-review="new">Back to new words</button></div>` : "";
+      const html = stackOn() ? `<div class="ftc-side-mini"><b>${esc(short(levelTitle(), 26))}</b>${goalBtn}<span>📅 ${days}</span><button class="ftc-btn" data-words="now" title="The words you're learning now, and the ones you've learnt">Words</button><button class="ftc-btn" data-rev title="Start a review">🔁</button></div>${pickGoal}${pickRev}`
+        : `<div class="ftc-side-lv"><span>Lesson</span>${sel || `<b>${esc(levelTitle())}</b>`}</div>
         <div class="ftc-side-bar" title="${p.recognises} of ${p.total} recognised · next level at ${Math.round(LE.S.ready_share * 100)}%"><i style="width:${Math.round(k * 100)}%"></i><em style="left:${Math.round(LE.S.ready_share * 100)}%"></em></div>
-        <div class="ftc-side-n"><span title="seen at least once">✨ ${p.met}/${p.total} met</span><span title="right with 4 choices">👀 ${p.recognises}</span><span title="remembered with no choices">🧠 ${p.recalls}</span>${p.learned ? `<span title="recalled on two different days">⭐ ${p.learned}</span>` : ""}${sm.due ? `<span title="words from earlier sessions due for review">🔁 ${sm.due}</span>` : ""}</div>
-        <div class="ftc-side-day"><span title="answers today (the daily goal)">🎯 ${today}/${GOAL} today</span><span title="days in a row with at least one answer">📅 ${daysInRow()} day${daysInRow() === 1 ? "" : "s"} in a row</span><button class="ftc-btn" data-prog title="${PUN.check}">📊</button></div>
-        ${todo}
+        <div class="ftc-side-day">${goalBtn}${daysChip}</div>${pickGoal}
+        <div class="ftc-side-acts"><button class="ftc-btn" data-words="now" title="Words you've met and are still learning">Learning now <b>${nowN}</b></button><button class="ftc-btn" data-words="learnt" title="Words you've remembered on two different days">Learnt <b>${learnt}</b></button><button class="ftc-btn${rev ? " on" : ""}" data-rev title="Start a review: everything, or only the hard words">🔁 Review</button><button class="ftc-btn" data-prog title="${PUN.check}">Progress</button></div>${pickRev}
         <div class="ftc-side-streak${cStreak >= STREAK_EVERY ? " hot" : ""}">🔥 <b>${cStreak}</b> in a row<small>${cStreak % STREAK_EVERY === 0 && cStreak ? "Flash dash!" : `${STREAK_EVERY - (cStreak % STREAK_EVERY)} more for a Flash dash`} · best ${cRun.best}</small></div>`;
-      if (sideHead._h !== html) { sideHead._h = html; sideHead.innerHTML = html; const pb = sideHead.querySelector("[data-prog]"); if (pb) pb.onclick = () => showProgress(); }
+      if (sideHead._h !== html) { sideHead._h = html; sideHead.innerHTML = html; }
       const live = cardLive();
       const idle = live ? "" : st.phase === "start" ? "Pick a weapon to start: the words come here." : st.paused || optsOpen ? "⏸ Paused" :
         qOpen ? "❤️ Answer the Save Flash question" : st.phase === "break" ? "Between rounds. Tick <b>Auto-pick</b> to keep answering here." : st.phase === "over" ? "Flash fell. Play again to keep studying." : "";
@@ -2932,7 +3128,7 @@
         const el = edges.children[i];
         const now = i === wv.side && !(wv.pause > 0), next = !(wv.pause > 0) && soon && i === wv.nextSide && wv.nextSide !== wv.side;
         el.classList.toggle("now", now); el.classList.toggle("next", next || (wv.pause > 0 && i === wv.side));
-        const label = wv.pause > 0 && i === wv.side ? `⚠ Wave ${wv.part + 1} in ${Math.ceil(wv.pause)}…` : next ? `⚠ More from ${SIDE_NAME[i]}` : "";
+        const label = wv.pause > 0 && i === wv.side ? `⚠ Wave ${wv.part + 1} in ${Math.ceil(wv.pause)}…` : "";      // 11 Nov, Dan: no "More from the right" text, the red glow says it
         const sp = el.firstChild; if (sp.textContent !== label) sp.textContent = label;
       });
     }
@@ -3023,6 +3219,8 @@
         const p = LE.levelProgress(), sm = LE.summary();
         overlay.append(h("p", "ftc-slogan", `${PUN.slogan} ⚡`));
         overlay.append(h("p", "ftc-lvline", `📘 Level: <b>${esc(lesson && lesson.title ? lesson.title : "these words")}</b>${p.total ? ` · 👀 ${p.recognises}/${p.total} recognised` : ""}${sm.due ? ` · 🔁 ${sm.due} to review` : ""}`));
+        const loc0 = sim.locationWanted && sim.locationWanted(), locR = loc0 ? sim.locations().find(l => l.id === loc0) : null;
+        if (locR) overlay.append(h("p", "ftc-small ftc-locline", `${esc(locR.icon || "📍")} <b>${esc(locR.name)}</b>${locR.thai ? ` · <span lang="th">${esc(locR.thai)}</span>` : ""}${locR.hazard ? ` · watch out for ${esc(locR.hazard.icon || "")} ${esc(String(locR.hazard.name || "").toLowerCase())}` : ""}`));
         if (sm.due) overlay.append(h("p", "ftc-small", `🔁 ${PUN.revise}`));
         const td = LE.todo();
         if (td.due + td.ready + td.forgot) overlay.append(h("p", "ftc-small ftc-todo-line", `😼 Flash's to-do: ${[td.due ? `${td.due} to review` : "", td.ready ? `${td.ready} ready for a harder test` : "", td.forgot ? `${td.forgot} slipping` : "", td.fresh ? `${td.fresh} new in this level` : ""].filter(Boolean).join(" · ")}`));
@@ -3499,25 +3697,26 @@
     // discovered, getting familiar, recognised, remembered, truly mastered."
     const STAGE = { met: ["🌱", "just met"], recognises: ["🐾", "getting familiar"], recalls: ["😸", "remembered"], learned: ["🧠", "learned"], longterm: ["👑", "mastered"] };
     const STAGE_N = { new: 0, met: 1, recognises: 2, recalls: 3, learned: 4, longterm: 5 };
-    let wordsFilter = "level";
+    let wordsFilter = "now";
     function showWords() {
       if (!LE) return;
       openMenu("words");
       overlay.innerHTML = ""; overlay.classList.add("show", "ftc-optsov");
       const all = LE.vocab(), lv = new Set(LE.level().ids);
-      const list = all.filter(v => wordsFilter === "all" ? true : wordsFilter === "tricky" ? v.wrong > 0 : wordsFilter === "strong" ? STAGE_N[v.dirs.th || "new"] >= 3 : lv.has(v.id))
+      const sn0 = v => STAGE_N[v.dirs.th || "met"] || 1;
+      const list = all.filter(v => wordsFilter === "all" ? true : wordsFilter === "tricky" ? v.wrong > 0 : wordsFilter === "learnt" ? sn0(v) >= 4 : wordsFilter === "level" ? lv.has(v.id) : sn0(v) < 4)
         .sort((a, b) => wordsFilter === "tricky" ? (b.wrong - b.right * 0.25) - (a.wrong - a.right * 0.25) : STAGE_N[a.dirs.th || "new"] - STAGE_N[b.dirs.th || "new"] || b.last - a.last);
       const counts = {}; for (const v of all) { const k = v.dirs.th || "met"; counts[k] = (counts[k] || 0) + 1; }
       overlay.append(h("h2", "", "📚 My words"), h("p", "ftc-slogan", PUN.progress),
         h("div", "ftc-stagekey", Object.entries(STAGE).map(([k, [ic, t]]) => `<span>${ic} ${t} <b>${counts[k] || 0}</b></span>`).join("")));
       const seg = h("div", "ftc-seg");
-      for (const [v, t] of [["level", "This level"], ["all", `All (${all.length})`], ["tricky", "Trickiest"], ["strong", "Remembered"]]) {
+      for (const [v, t] of [["now", `Learning now (${all.filter(x => sn0(x) < 4).length})`], ["learnt", `Learnt (${all.filter(x => sn0(x) >= 4).length})`], ["tricky", "Hard words"], ["level", "This lesson"], ["all", `All (${all.length})`]]) {
         const b = h("button", "ftc-seg-b" + (wordsFilter === v ? " on" : ""), t); b.onclick = () => { wordsFilter = v; showWords(); }; seg.append(b);
       }
       overlay.append(h("div", "ftc-opt", ""), seg);
       const DIRL = [["th", "Thai → meaning"], ["en", "meaning → Thai"], ["au", "listening"], ["cx", "in a sentence"], ["sm", "sentence meaning"], ["tp", "tone"]];
       const box = h("div", "ftc-vocab");
-      if (!list.length) box.append(h("p", "ftc-small", wordsFilter === "level" ? "No words from this level yet: start a run and they'll appear here." : "Nothing here yet."));
+      if (!list.length) box.append(h("p", "ftc-small", wordsFilter === "level" ? "No words from this lesson yet: start a run and they'll appear here." : wordsFilter === "learnt" ? "Nothing here yet. A word is learnt once you've remembered it on two different days." : wordsFilter === "tricky" ? "No hard words: nothing has gone wrong yet 😸" : "Nothing here yet."));
       for (const v of list.slice(0, 300)) {
         const w = v.word, sn = STAGE_N[v.dirs.th || "met"] || 1, ic = (STAGE[v.dirs.th] || STAGE.met)[0];
         const row = h("button", "ftc-vrow", `<span class="ftc-vpic">${picHtml(w)}</span>
@@ -3532,6 +3731,7 @@
       const row = h("div", "ftc-row");
       const back = h("button", "ftc-btn", "📊 My progress"); back.onclick = () => showProgress();
       const close = h("button", "ftc-btn big", menuResumes() ? "▶ Back to the game" : "Done"); close.onclick = () => closeOptions();
+      if (wordsFilter === "tricky" && list.length) { const rv = h("button", "ftc-btn primary", "🔁 Review these"); rv.onclick = () => { closeOptions(); startReview("hard"); }; row.append(rv); }
       row.append(back, close); overlay.append(row);
     }
 
@@ -3782,6 +3982,8 @@
       napping: () => nap ? { t: nap.t, dur: nap.dur, done: !!nap.done } : null,
       skipNap: () => finishNap(),
       setGod: on => sim.setGod(on),
+      // Round 3 step 5: the location on screen (its floor texture and how many lights are lit), for the tests
+      floor: () => ({ id: shownLoc || null, texture: scene && scene.floorImg ? scene.floorImg.texture.key : null, lights: scene ? scene.locLights.filter(o => o.visible).length : 0 }),
       setWeapons: on => sim.setWeapons(on),
       setMove: on => sim.setMove(on),
       setDirector: on => sim.setDirector(on),
@@ -3796,7 +3998,7 @@
         syncLevel();
       },
       // the lesson on the page: { id, title, next: { title } | null }
-      setLesson: l => { const was = lesson && lesson.id; lesson = l && l.id ? l : null; if ((lesson && lesson.id) !== was) { masterEl.classList.remove("show"); syncLevel(); if (st.phase === "start" && !optsOpen) showStart(); } },
+      setLesson: l => { const was = lesson && lesson.id; lesson = l && l.id ? l : null; if ((lesson && lesson.id) !== was) { masterEl.classList.remove("show"); endHard(true); syncLevel(); syncLocation(); if (st.phase === "start" && !optsOpen) showStart(); } },
       wordSettings: () => Object.assign({}, WD, { game_mode: mode, learn_shows: MS.learn_shows, learn_relearn_shows: MS.learn_relearn_shows, learned_after: MS.learned_after }),
       mode: () => mode,
       setMode: m => { setMode(m); if (st.phase === "start") showStart(); },

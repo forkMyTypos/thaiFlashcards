@@ -65,7 +65,7 @@
   const DATA_TYPES = ["weapons", "stats_base", "enemies", "enemy_equipment", "reward_effects", "game_settings",
                       "enemy_scaling", "spawn_curve", "enemy_mix", "elite_modifiers", "upgrades", "items",
                       "passives", "rarities", "mega_waves", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock",
-                      "tags", "kits", "evolutions"];
+                      "tags", "kits", "evolutions", "locations"];
   // A short fingerprint of the game data, so balance charts can separate runs
   // played before and after a change.
   function dataHash(data) {
@@ -597,10 +597,10 @@
     function spawnEnemy(forceElite, defId, at) {
       if (st.enemies.length >= S.maxCap) return null;
       const { pool, elite } = mixFor(st.stage);
-      let def = (defId && D.enemies.find(x => x.id === defId)) || pickWeighted(pool, e => e.spawn_weight || 1);
+      let def = (defId && D.enemies.find(x => x.id === defId)) || pickWeighted(pool, locWeight);
       if (def && !defId && RG.share < 1 && /ranged|caster/.test(def.role || "")) {
         let n = 0; for (const o of st.enemies) if (o.alive && o.ranged) n++;
-        if (n >= Math.max(2, RG.share * st.enemies.length)) { const melee = pool.filter(e => !/ranged|caster/.test(e.role || "")); if (melee.length) def = pickWeighted(melee, e => e.spawn_weight || 1); }
+        if (n >= Math.max(2, RG.share * locRanged() * st.enemies.length)) { const melee = pool.filter(e => !/ranged|caster/.test(e.role || "")); if (melee.length) def = pickWeighted(melee, locWeight); }
       }
       if (!def) return null;
       const base = (D.base[def.base] && D.base[def.base].stats) || { max_hp: 40, damage: 5, attack_speed: 1, movement_speed: 60, attack_range: 60 };
@@ -1366,6 +1366,107 @@
       st.delayed = keep;
     }
 
+    // ------------------------------------------------------------------
+    // Locations (Round 3 step 5, 11 Nov): where Flash fights. A row of
+    // `locations` sets the floor (the renderer's business), the skeleton mix,
+    // the boss and one hazard. With no location nothing here does anything,
+    // and no random number is drawn, so a run without one plays as before.
+    const hexN = (v, d) => typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v) ? parseInt(v.slice(1), 16) : d;
+    const LOCS = (data.locations || []).filter(l => l && l.id).sort((a, b) => (a.order || 0) - (b.order || 0));
+    const LOCBY = byId(LOCS);
+    const LC = { on: set("locations", "enabled", true), per: Math.max(1, set("locations", "lessons_per_location", 10)),
+                 loop: set("locations", "loop", true), haz: set("locations", "hazards", true),
+                 from: set("locations", "hazards_from_round", 2), dmg: set("locations", "hazard_damage", 1),
+                 edmg: set("locations", "hazard_enemy_damage", 1) };
+    let locWant = null;                       // where the next run (or the next round of this one) will be
+    const locRow = () => (LC.on && st.loc && LOCBY[st.loc]) || null;
+    // lesson number (1, 2, 3 ...) -> its location row
+    function locationFor(n) {
+      if (!LC.on || !LOCS.length) return null;
+      let i = Math.floor((Math.max(1, n | 0) - 1) / LC.per);
+      i = LC.loop ? i % LOCS.length : Math.min(i, LOCS.length - 1);
+      return LOCS[i];
+    }
+    function enterLocation(id, quiet) {
+      const was = st.loc; st.loc = LC.on && id && LOCBY[id] ? id : null;
+      st.haz = { next: 0, list: [], id: 0 };
+      if (tel) tel.location = st.loc;
+      if (st.loc !== was && !quiet) { const L = locRow(); ev({ t: "location", id: st.loc, name: L ? L.name : "", icon: L ? L.icon || "" : "", thai: L ? L.thai || "" : "" }); }
+    }
+    // the mix: a location makes some skeletons commoner or rarer among those the stage allows
+    const locWeight = e => { const L = locRow(), k = L && L.mix ? L.mix[e.id] : null; return (e.spawn_weight || 1) * (k == null ? 1 : Math.max(0, k)); };
+
+    // archers and mages are capped at a share of the crowd: a location can raise or lower that cap
+    const locRanged = () => { const L = locRow(); return L && L.ranged > 0 ? L.ranged : 1; };
+    // ---- hazards: one per location, every `every` seconds, always with a warning.
+    // st.haz.list holds the ones on their way (the renderer draws them, Flash steps out of them).
+    function startHazard(hz) {
+      const H0 = st.haz, f = st.flash, warn = hz.warn || 1.3, c = hexN(hz.colour, 0xffb03a);
+      if (hz.kind === "sweep") {
+        const dir = rnd() < 0.5 ? 1 : -1, r = hz.radius || 100;
+        const y = clamp(f.y + (rnd() - 0.5) * r, B.y0 + r * 0.5, B.y1 - r * 0.5);
+        H0.list.push({ id: ++H0.id, k: "sweep", hz, dir, y, r, x: dir > 0 ? -40 : W + 40, at: st.t + warn, warn, c, hitF: false });
+        ev({ t: "hazard_warn", kind: "sweep", name: hz.name, icon: hz.icon || "⚠", side: dir > 0 ? 3 : 1 });
+      } else {
+        const n = Math.max(1, hz.count || 1), r = hz.radius || 60;
+        for (let i = 0; i < n; i++) {       // the first lands where Flash is standing, the rest around him
+          const x = i === 0 ? f.x : clamp(f.x + (rnd() - 0.5) * 640, B.x0, B.x1), y = i === 0 ? f.y : clamp(f.y + (rnd() - 0.5) * 640, B.y0, B.y1);
+          H0.list.push({ id: ++H0.id, k: "strike", hz, x, y, r, at: st.t + warn + i * 0.18, warn, c });
+        }
+        ev({ t: "hazard_warn", kind: "strike", name: hz.name, icon: hz.icon || "⚠" });
+      }
+    }
+    function hazardHurt(hz) {
+      const d = st.flash.maxHp() * (hz.flash_damage || 0) * LC.dmg;
+      // a share of his health whatever the director is doing (hurtFlash scales by intensity)
+      if (d > 0) hurtFlash(d / Math.pow(st.intensity, DR.dmgPow), { type: "hazard", elite: false, alive: false });
+    }
+    function hazardEnemy(e, hz, el) {
+      if (e.held) return;
+      const d = e.max * (hz.enemy_damage || 0) * LC.edmg * (e.boss ? 0.1 : 1);
+      if (d > 0) hitEnemy(e, d, 0, 1, 0, "hazard", el);
+      if (!e.alive) return;
+      if (el === "fire") applyStatus(e, "burn", 1, "hazard"); else if (el === "ice") chill(e, 1);
+    }
+    function updateHazards(dt) {
+      const H0 = st.haz; if (!H0) return;
+      const L = locRow(), hz = L && L.hazard;
+      if (hz && LC.haz && !st.practice && st.round >= LC.from) {
+        if (!H0.next) H0.next = st.t + Math.max(6, hz.every * (0.5 + rnd() * 0.5));
+        else if (st.t >= H0.next) { H0.next = st.t + hz.every * (0.75 + rnd() * 0.5); startHazard(hz); }
+      }
+      if (!H0.list.length) return;
+      const keep = [];
+      for (const h of H0.list) {
+        if (st.t < h.at) { keep.push(h); continue; }
+        const z = h.hz, el = z.element && z.element !== "none" ? z.element : null;
+        if (h.k === "strike") {
+          ev({ t: "hazard", kind: "strike", x: h.x, y: h.y, r: h.r, c: h.c, el, icon: z.icon || "" });
+          if (Math.hypot(CX - h.x, CY - h.y) < h.r + st.flash.r * 0.5) hazardHurt(z);
+          if (st.phase !== "fight") return;
+          query(h.x, h.y, h.r, e => { hazardEnemy(e, z, el); });
+          if (z.slow > 0 && z.linger > 0) st.zones.push({ k: "slow", x: h.x, y: h.y, r: h.r, mul: 1 - z.slow, until: st.t + z.linger, src: "hazard", c: h.c });
+          continue;
+        }
+        // a sweep: the front moves across; what it meets is hit once and carried along
+        if (!h.going) { h.going = true; ev({ t: "hazard", kind: "sweep", y: h.y, r: h.r, dir: h.dir, c: h.c, el, icon: z.icon || "" }); }
+        h.x += h.dir * (z.speed || 400) * dt;
+        const f = st.flash, push = z.push || 0;
+        if (!h.hitF && Math.abs(f.x - h.x) < 40 && Math.abs(f.y - h.y) < h.r) {
+          h.hitF = true; f.vx += h.dir * push * 2; hazardHurt(z);
+          if (st.phase !== "fight") return;
+        }
+        query(h.x, h.y, Math.hypot(40, h.r) + 4, e => {
+          if (e.hz === h.id || Math.abs(e.x - h.x) > 40 || Math.abs(e.y - h.y) > h.r) return;
+          e.hz = h.id;
+          if (!e.boss && !e.held) e.kx += h.dir * push * 6 / Math.max(0.6, e.size);
+          hazardEnemy(e, z, el);
+        });
+        if (h.dir > 0 ? h.x < W + 60 : h.x > -60) keep.push(h);
+      }
+      H0.list = keep;
+    }
+
     // ---- bosses (boss_schedule: every 10 stages from stage 10)
     const BOSS_COLOUR = { skeleton_king: 0xffd23a, bone_dragon: 0xff7a4a, lich: 0xb59aff, bone_golem: 0xb8c4d0 };
     function bossRowFor(stage) {
@@ -1374,12 +1475,15 @@
     }
     function spawnBoss(row) {
       st.bossDone[st.stage] = true;
-      const pool = (row.boss_pool || []).filter(id => BOSSES[id]);
-      const def = BOSSES[pickOne(pool.length ? pool : Object.keys(BOSSES))]; if (!def) return;
+      // a location has its own boss (under its own name); the bench's "boss now" with an id overrides it
+      const L = locRow(), lb = L && !row.forced && L.boss && BOSSES[L.boss] ? L.boss : null;
+      const pool = lb ? [lb] : (row.boss_pool || []).filter(id => BOSSES[id]);
+      let def = BOSSES[pickOne(pool.length ? pool : Object.keys(BOSSES))]; if (!def) return;
+      if (lb && L.boss_name) def = Object.assign({}, def, { name: L.boss_name });
       const base = (D.base[def.base] && D.base[def.base].stats) || { max_hp: 40, damage: 5, attack_speed: 1, movement_speed: 60, attack_range: 60 };
       const hpMul = lerpStage(D.scaling, "hp_mult", st.stage) * T.enemy_hp * BS.hp;
       const dmgMul = lerpStage(D.scaling, "damage_mult", st.stage) * T.enemy_damage * BS.damage;
-      const max = Math.max(50, (base.max_hp || 40) * (def.hp_multiplier || 60) * hpMul);
+      const max = Math.max(50, (base.max_hp || 40) * (def.hp_multiplier || 60) * hpMul * (lb ? L.boss_hp || 1 : 1));
       const e = {
         id: st.nextId++, type: def.id, role: "boss", ranged: false, x: W / 2, y: -50, kx: 0, ky: 0, alive: true, elite: false,
         boss: def, size: 3, r: 30, max, hp: max, dmg: (base.damage || 5) * dmgMul * 3, atkSpd: 0.7, range: 60,
@@ -1718,6 +1822,7 @@
         bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false, log: [], startWeapon: weaponId || null,
         paws: [], pickups: [], fish: 0, eatAt: 0, livesUsed: 0, safeUntil: 0,
         items: {}, taken: {}, kit: null, build: { counts: {}, tiers: {} } });
+      enterLocation(locWant, true);
       for (const k in ELX) delete ELX[k];
       CX = W / 2; CY = H / 2;
       st.flash = newFlash();
@@ -1735,7 +1840,7 @@
       } else addWeapon(weaponId || Object.values(D.weapons).find(w => w.starting).id);
       recalcBuild(true);
       telStart(st.weapons[0].id);
-      if (tel) tel.kit = st.kit;
+      if (tel) { tel.kit = st.kit; tel.location = st.loc; }
       for (let i = 0; i < S.initial; i++) spawnEnemy();
       ev({ t: "start" });
     }
@@ -1748,10 +1853,11 @@
       if (st.phase !== "break" || st.practice || !st.flash || !st.log) return null;
       const n = {}; for (const k of RUN_KEEP) n[k] = st[k];
       n.bossDone = Object.assign({}, st.bossDone); n.hp = st.flash.hp / st.flash.maxHp(); n.picked = (st.picked || []).slice(-60);
-      return { v: 1, start: st.startWeapon || (st.weapons[0] && st.weapons[0].id), kit: st.kit || null, log: st.log.slice(), n, data: DATA_HASH, at: Date.now() };
+      return { v: 1, start: st.startWeapon || (st.weapons[0] && st.weapons[0].id), kit: st.kit || null, loc: st.loc || null, log: st.log.slice(), n, data: DATA_HASH, at: Date.now() };
     }
     function restoreRun(s) {
       if (!s || !s.start || !D.weapons[s.start] || !Array.isArray(s.log) || !s.n) return false;
+      if (s.loc !== undefined) locWant = s.loc && LOCBY[s.loc] ? s.loc : null;      // a saved run comes back where it was
       startRun(s.start, s.kit);
       st.enemies = []; st.events = [];
       const log = st.log = [];
@@ -1791,6 +1897,7 @@
       for (const e of st.enemies) if (e.alive) ev({ t: "death", x: e.x, y: e.y, colour: e.colour, size: e.size, quiet: true });
       st.enemies = []; st.proj = []; st.eproj = [];
       st.zones = []; st.allies = []; st.delayed = []; st.tele = []; st.boss = null; st.paws = [];
+      if (st.haz) st.haz.list = [];
       // fish left on the floor are scooped up at the end of a round (if there's room)
       let scooped = 0;
       for (const p of st.pickups) if (st.fish < FI.carry) { st.fish++; scooped++; }
@@ -1804,6 +1911,9 @@
       if (st.phase !== "break" || st.pending > 0) return;
       st.round++; st.roundT = 0; st.phase = "fight"; st.spawnAcc = 0; st.minHpRound = 1; st.shop = null; st.rDmgBy = {};
       st.intensity = 1 + (st.intensity - 1) * 0.5;          // a breather at the start of each round
+      // the lesson moved on to another location while this run was going: the new round is there
+      if (locWant !== (st.loc || null)) enterLocation(locWant);
+      if (st.haz) { st.haz.next = 0; st.haz.list = []; }
       ev({ t: "round_start", round: st.round });
       const mw = waveFor(st.round);
       if (mw) startWave(mw);
@@ -1943,6 +2053,10 @@
           const dd = Math.hypot(px - t.x, py - t.y);
           if (dd < t.r + 14) sc += 5 + 4 * (1 - dd / (t.r + 14));
         }
+        if (st.haz) for (const h of st.haz.list) {       // the location's hazard is about to land here: step out of it
+          if (h.k === "strike") { const dd = Math.hypot(px - h.x, py - h.y); if (dd < h.r + 14) sc += 4 + 3 * (1 - dd / (h.r + 14)); }
+          else if (Math.abs(py - h.y) < h.r + 12 && (h.dir > 0 ? px > h.x - 40 : px < h.x + 40)) sc += 3 + 2 * (1 - Math.abs(py - h.y) / (h.r + 12));
+        }
         if (near.length) sc += Math.abs(nd - prefRange) / Math.max(60, prefRange) * 0.5;
         else if (hunt) sc += Math.hypot(hunt.x - px, hunt.y - py) / 400;
         else sc += Math.hypot((B.x0 + B.x1) / 2 - px, (B.y0 + B.y1) / 2 - py) / 600;      // calm: drift home
@@ -2037,6 +2151,8 @@
       if (st.boss) updateBoss(dt);
       updateTele();
       if (st.phase !== "fight") return;
+      updateHazards(dt);
+      if (st.phase !== "fight") return;
       updateProjectiles(dt);
       updateEnemies(dt);
       updatePickups(dt);
@@ -2053,7 +2169,7 @@
       spellIds: () => Object.keys(SPELLS),
       // test bench: bring the next boss now
       bossNow(id) { if (st.phase !== "fight" || st.boss) return false; buildGrid();
-        spawnBoss(id && BOSSES[id] ? { boss_pool: [id] } : (BOSS_SCHED[0] || { boss_pool: Object.keys(BOSSES) })); st.bossDone[st.stage] = false; st.stressUsed = true; return true; },
+        spawnBoss(id && BOSSES[id] ? { boss_pool: [id], forced: true } : (BOSS_SCHED[0] || { boss_pool: Object.keys(BOSSES) })); st.bossDone[st.stage] = false; st.stressUsed = true; return true; },
       pause(on) { st.paused = on === undefined ? !st.paused : !!on; },
       spawn(n, elite, defId) { buildGrid(); for (let i = 0; i < n; i++) spawnEnemy(elite, defId); },
       telemetry() {     // a snapshot safe to send (adds the current state of an unfinished round)
@@ -2075,6 +2191,13 @@
         if (st.weapons.length >= S.slots + (st.tail ? 1 : 0)) { const old = st.weapons.pop(); delete st.owned[old.id]; }
         addWeapon(id); recalcBuild(); st.stressUsed = true; return true;
       },
+      // ---- locations: the rows in order, the one for a lesson number, the one this run is in.
+      // setLocation says where the next run will be (a run already going moves there when its next round starts)
+      locations: () => LOCS.slice(), locationFor, location: () => locRow(), locationWanted: () => locWant,
+      setLocation(id) { locWant = LC.on && id && LOCBY[id] ? id : null; return locWant; },
+      // test bench: go there now; bring the hazard now
+      goLocation(id) { locWant = LC.on && id && LOCBY[id] ? id : null; if (st.flash) { enterLocation(locWant); st.stressUsed = true; } return locWant; },
+      hazardNow() { const L = locRow(); if (!L || !L.hazard || st.phase !== "fight" || !st.haz) return false; startHazard(L.hazard); st.stressUsed = true; return true; },
       // ---- the build (tags, evolutions, kits)
       kits: () => D.kits.filter(k => (k.weapons || []).some(id => D.weapons[id])),
       // every tag Flash has anything of (or all of them), with its tiers: for the HUD and the break screen

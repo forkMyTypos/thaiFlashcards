@@ -686,3 +686,27 @@
   .ftc-build-r { grid-template-columns: minmax(84px, auto) 30px 42px; }
   .ftc-build-r .d { grid-column: 1 / -1; }
 }
+
+/* ---- the study panel's top bar, simplified (11 Nov): lesson drop-down, today's new words, the word lists, review */
+.ftc-side-sel { width: 100%; min-width: 0; margin-top: 2px; padding: 6px 28px 6px 10px; border-radius: 9px; border: 1px solid rgba(156,200,255,.35);
+  background: rgba(59,130,246,.12); color: #e6f3ff; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; text-overflow: ellipsis; }
+.ftc-side-sel:hover, .ftc-side-sel:focus { border-color: #9cc8ff; outline: none; }
+.ftc-side-sel option, .ftc-side-sel optgroup { background: #1b1826; color: #e6f3ff; font-weight: 400; }
+.ftc-side-chip { padding: 3px 10px; border-radius: 999px; background: rgba(92,240,160,.1); border: 1px solid rgba(92,240,160,.35); color: inherit; font: inherit; font-size: 12px; white-space: nowrap; }
+button.ftc-side-chip { cursor: pointer; }
+button.ftc-side-chip:hover { background: rgba(92,240,160,.22); }
+.ftc-side-acts { display: flex; flex-wrap: wrap; gap: 6px; }
+.ftc-side-acts .ftc-btn { padding: 5px 10px; font-size: 13px; }
+.ftc-side-acts .ftc-btn b { margin-left: 4px; color: #9cc8ff; }
+.ftc-side-acts .ftc-btn.on { border-color: #5cf0a0; }
+.ftc-side-acts .ftc-btn[data-prog] { margin-left: auto; opacity: .8; }
+.ftc-side-pick { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; font-size: 12px; padding: 6px 8px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
+.ftc-side-pick.on { border-color: rgba(92,240,160,.45); background: rgba(92,240,160,.08); }
+.ftc-side-pick span { margin-right: 4px; color: #cfc8dc; }
+.ftc-side-pick button { padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(156,200,255,.35); background: rgba(59,130,246,.12); color: #e6f3ff; font: inherit; font-size: 12px; cursor: pointer; }
+.ftc-side-pick button:hover { background: rgba(59,130,246,.3); }
+.ftc-side-pick button.on { background: #3b82f6; border-color: #9cc8ff; }
+.ftc-side-mini .ftc-side-chip { padding: 1px 7px; }
+.ftc-side-mini .ftc-btn + .ftc-btn { margin-left: 0; }
+.ftc-locline b { color: #ffd27a; }
+@media (pointer: coarse) { .ftc-side-pick button, .ftc-side-acts .ftc-btn, button.ftc-side-chip { min-height: 32px; } }

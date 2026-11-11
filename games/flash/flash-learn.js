@@ -176,6 +176,7 @@
     let store = o.store || memStore();
     const items = {}, words = {};
     let level = { id: "", title: "", ids: [] }, pool = [];        // pool: other words, for wrong answers
+    let only = null;            // a review of just these word ids (null = every word)
     let n = 0, lastId = null, focus = "new", lastSpecial = -99, revRun = 0;                         // focus: "new" (new words + review) | "review"
     const recent = [];                                               // right/wrong of recent choice/recall answers
     const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow", "born", "v", "stab", "diff", "lastRev"];
@@ -277,7 +278,7 @@
     }
     // is this answer a review for FSRS (the word has a schedule and its last review was a while ago)?
     const crossDay = (it, t) => !!(S.fsrs && it.stab && t - (it.lastRev || 0) >= S.review_min_h * HOUR);
-    const usable = it => it && words[it.id] && it.skipAt !== n && (!S.classic || it.dir === "th") && (it.dir !== "au" || words[it.id].audio)
+    const usable = it => it && words[it.id] && (!only || only.has(it.id)) && it.skipAt !== n && (!S.classic || it.dir === "th") && (it.dir !== "au" || words[it.id].audio)
       && (it.dir !== "tp" || (words[it.id].audio && (words[it.id].pairs || []).length))
       && (it.dir !== "cx" || !!clozeSents(words[it.id]).length)
       && (it.dir !== "sm" || !!readable(words[it.id]).length);
@@ -542,6 +543,11 @@
       // other words the learner has seen on the course (wrong answers, nothing more)
       setPool(list) { pool = (list || []).filter(w => w && w.id && w.th && w.en); },
       setFocus(f) { focus = f === "review" ? "review" : "new"; },
+      // a review of just these words (the hard ones, say); null or nothing = every word again
+      setOnly(ids) { only = ids && ids.length ? new Set(ids) : null; },
+      only: () => only ? [...only] : null,
+      // new words met today, and how many a day at most (S.new_per_day)
+      newToday,
       // ↺ this level's words from the start (every direction), as if never met
       resetLevel() {
         const ks = [];
