@@ -5,11 +5,24 @@
     "kind": "weapon",
     "from": "bone_boomerang",
     "requires": [
-      "weapon_projectile_count",
       "explosive_trinket"
     ],
-    "description": "Splits into multiple returning boomerangs that cause bone explosions.",
-    "notes": "requirements guessed"
+    "min_level": 4,
+    "icon": "🦴",
+    "description": "Three boomerangs at once, and every one of them goes off like a firework.",
+    "mult": {
+      "damage": 1.15
+    },
+    "add": {
+      "projectile_count": 2
+    },
+    "set": {
+      "explode_chance": 0.6
+    },
+    "tags": [
+      "bolts",
+      "boom"
+    ]
   },
   {
     "id": "storm_crossbow",
@@ -17,11 +30,25 @@
     "kind": "weapon",
     "from": "crossbow",
     "requires": [
-      "chain_lightning",
-      "weapon_attack_speed"
+      "rapid_gear"
     ],
-    "description": "Bolts become lightning.",
-    "notes": "requirements and effect guessed"
+    "min_level": 4,
+    "icon": "🌩️",
+    "description": "The bolts are lightning now: faster, two at a time, and they arc.",
+    "element": "lightning",
+    "mult": {
+      "damage": 1.2,
+      "cooldown": 0.8,
+      "projectile_speed": 1.3
+    },
+    "add": {
+      "projectile_count": 1,
+      "pierce": 1
+    },
+    "tags": [
+      "bolts",
+      "storm"
+    ]
   },
   {
     "id": "world_splitter",
@@ -29,11 +56,23 @@
     "kind": "weapon",
     "from": "great_sword",
     "requires": [
-      "weapon_area",
       "heavyweight_charm"
     ],
-    "description": "A sweep that splits the arena.",
-    "notes": "requirements and effect guessed"
+    "min_level": 4,
+    "icon": "⚔️",
+    "description": "A sweep nearly all the way round that sends everything flying.",
+    "mult": {
+      "damage": 1.3,
+      "range": 1.35,
+      "knockback": 1.8
+    },
+    "set": {
+      "arc": 2.6
+    },
+    "tags": [
+      "paws",
+      "boom"
+    ]
   },
   {
     "id": "doom_cannon",
@@ -41,11 +80,20 @@
     "kind": "weapon",
     "from": "pocket_cannon",
     "requires": [
-      "explosive_trinket",
-      "big_boom"
+      "power_crystal"
     ],
-    "description": "Nuclear-sized cannonballs.",
-    "notes": "requirements and effect guessed"
+    "min_level": 4,
+    "icon": "☄️",
+    "description": "Cannonballs the size of Flash. They burn what they don't flatten.",
+    "element": "fire",
+    "mult": {
+      "damage": 1.3,
+      "radius": 1.6
+    },
+    "tags": [
+      "boom",
+      "fire"
+    ]
   },
   {
     "id": "phantom_blades",
@@ -53,11 +101,22 @@
     "kind": "weapon",
     "from": "twin_daggers",
     "requires": [
-      "shadow_cloak",
-      "weapon_attack_speed"
+      "shadow_cloak"
     ],
-    "description": "Shadow clones join the stabbing.",
-    "notes": "requirements guessed"
+    "min_level": 4,
+    "icon": "🌑",
+    "description": "Shadow clones join the stabbing: three skeletons at a time.",
+    "mult": {
+      "damage": 1.12,
+      "cooldown": 0.85
+    },
+    "set": {
+      "hits": 3
+    },
+    "tags": [
+      "paws",
+      "magic"
+    ]
   },
   {
     "id": "firestorm",
@@ -90,5 +149,72 @@
     ],
     "description": "A growing army of summoned creatures.",
     "notes": "requirements guessed"
+  },
+  {
+    "id": "meteor_paw",
+    "name": "Meteor Paw",
+    "kind": "weapon",
+    "from": "bowling_paw",
+    "requires": [
+      "ember_collar"
+    ],
+    "min_level": 4,
+    "icon": "🌠",
+    "description": "The skeleton Flash bowls is on fire, and so is everything it rolls through.",
+    "element": "fire",
+    "mult": {
+      "damage": 1.25,
+      "throw_range": 1.3,
+      "cooldown": 0.85
+    },
+    "tags": [
+      "paws",
+      "fire"
+    ]
+  },
+  {
+    "id": "frost_halo",
+    "name": "Frost Halo",
+    "kind": "weapon",
+    "from": "whirling_blades",
+    "requires": [
+      "frost_bell"
+    ],
+    "min_level": 4,
+    "icon": "❄️",
+    "description": "The blades are ice. Whatever they touch slows down, then stops.",
+    "element": "ice",
+    "mult": {
+      "damage": 1.18,
+      "range": 1.2
+    },
+    "tags": [
+      "paws",
+      "ice"
+    ]
+  },
+  {
+    "id": "icicle_lance",
+    "name": "Icicle Lance",
+    "kind": "weapon",
+    "from": "spear",
+    "requires": [
+      "snow_globe"
+    ],
+    "min_level": 4,
+    "icon": "🧊",
+    "description": "A lance of ice that goes through the whole line and freezes it.",
+    "element": "ice",
+    "mult": {
+      "damage": 1.25,
+      "projectile_speed": 1.25
+    },
+    "add": {
+      "pierce": 3
+    },
+    "tags": [
+      "bolts",
+      "ice"
+    ]
   }
 ]

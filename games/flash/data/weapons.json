@@ -19,7 +19,10 @@
       "explosive return"
     ],
     "projectile_speed": 350,
-    "hits_on_return": true
+    "hits_on_return": true,
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "crossbow",
@@ -41,7 +44,10 @@
       "piercing bolts",
       "ricochet"
     ],
-    "projectile_speed": 550
+    "projectile_speed": 550,
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "great_sword",
@@ -63,7 +69,10 @@
       "shockwave",
       "execute"
     ],
-    "knockback": 15
+    "knockback": 15,
+    "tags": [
+      "paws"
+    ]
   },
   {
     "id": "pocket_cannon",
@@ -86,7 +95,10 @@
       "nuclear blast"
     ],
     "projectile_speed": 300,
-    "radius": 60
+    "radius": 60,
+    "tags": [
+      "boom"
+    ]
   },
   {
     "id": "twin_daggers",
@@ -107,6 +119,9 @@
       "extra strikes",
       "bleed",
       "shadow clones"
+    ],
+    "tags": [
+      "paws"
     ]
   },
   {
@@ -128,7 +143,11 @@
       "split axes",
       "spinning axes"
     ],
-    "projectile_speed": 400
+    "projectile_speed": 400,
+    "tags": [
+      "bolts",
+      "paws"
+    ]
   },
   {
     "id": "whirling_blades",
@@ -148,6 +167,9 @@
       "more blades",
       "wider orbit",
       "elemental blades"
+    ],
+    "tags": [
+      "paws"
     ]
   },
   {
@@ -169,7 +191,11 @@
       "stun",
       "armour breaking"
     ],
-    "knockback": 40
+    "knockback": 40,
+    "tags": [
+      "paws",
+      "boom"
+    ]
   },
   {
     "id": "ricochet_disc",
@@ -191,7 +217,10 @@
       "explosive impact"
     ],
     "projectile_speed": 450,
-    "bounces": 3
+    "bounces": 3,
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "spear",
@@ -211,6 +240,9 @@
       "longer reach",
       "multiple targets",
       "piercing charge"
+    ],
+    "tags": [
+      "bolts"
     ]
   },
   {
@@ -232,7 +264,10 @@
       "explosive rounds",
       "chain kills"
     ],
-    "projectile_speed": 1200
+    "projectile_speed": 1200,
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "bone_saw",
@@ -252,6 +287,9 @@
       "longer reach",
       "continuous damage",
       "bleeding"
+    ],
+    "tags": [
+      "paws"
     ]
   },
   {
@@ -272,6 +310,9 @@
       "more chains",
       "larger swing",
       "stun"
+    ],
+    "tags": [
+      "paws"
     ]
   },
   {
@@ -293,7 +334,11 @@
       "extra barrels",
       "rapid reload"
     ],
-    "projectile_speed": 500
+    "projectile_speed": 500,
+    "tags": [
+      "boom",
+      "bolts"
+    ]
   },
   {
     "id": "razor_feathers",
@@ -313,6 +358,9 @@
       "more feathers",
       "homing",
       "poison"
+    ],
+    "tags": [
+      "bolts"
     ]
   },
   {
@@ -334,7 +382,11 @@
       "earthquake",
       "meteor strike"
     ],
-    "radius": 120
+    "radius": 120,
+    "tags": [
+      "boom",
+      "paws"
+    ]
   },
   {
     "id": "blade_storm",
@@ -354,6 +406,9 @@
       "more blades",
       "faster rotation",
       "larger radius"
+    ],
+    "tags": [
+      "paws"
     ]
   },
   {
@@ -375,7 +430,10 @@
       "overheating bonus",
       "explosive ammunition"
     ],
-    "projectile_speed": 700
+    "projectile_speed": 700,
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "flying_fish",
@@ -396,7 +454,11 @@
       "splitting fish",
       "electric fish"
     ],
-    "bounces": 4
+    "bounces": 4,
+    "tags": [
+      "bolts",
+      "lucky"
+    ]
   },
   {
     "id": "iron_paw",
@@ -416,6 +478,10 @@
       "combo strikes",
       "crushing blow",
       "giant paw"
+    ],
+    "tags": [
+      "paws",
+      "tough"
     ]
   },
   {
@@ -440,6 +506,9 @@
       "bigger bowl",
       "spare (a second throw)",
       "flaming ball"
+    ],
+    "tags": [
+      "paws"
     ]
   }
 ]

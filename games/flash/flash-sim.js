@@ -21,7 +21,7 @@
   // For Flash these stats are bonuses around 1.0 (0.25 = +25%), not raw values.
   const BONUS = new Set(["damage", "weapon_damage", "spell_damage", "area", "duration", "projectile_speed",
     "pickup_range", "xp_gain", "gold_gain", "knockback", "rare_loot", "item_drop_chance", "weapon_range",
-    "healing_power"]);
+    "healing_power", "burn_power"]);
 
   const ENEMY_COLOURS = { melee: 0xe8e2d0, ranged: 0xc8d68a, tank: 0x9fb0c8, caster: 0xb59aff, support: 0x9affd0,
                           boss: 0xff6a6a };
@@ -64,7 +64,8 @@
   // Shared library for looks). A bot runner loads exactly these.
   const DATA_TYPES = ["weapons", "stats_base", "enemies", "enemy_equipment", "reward_effects", "game_settings",
                       "enemy_scaling", "spawn_curve", "enemy_mix", "elite_modifiers", "upgrades", "items",
-                      "passives", "rarities", "mega_waves", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock"];
+                      "passives", "rarities", "mega_waves", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock",
+                      "tags", "kits", "evolutions"];
   // A short fingerprint of the game data, so balance charts can separate runs
   // played before and after a change.
   function dataHash(data) {
@@ -89,6 +90,7 @@
       spawn: (data.spawn_curve || []).slice().sort((a, b) => a.stage - b.stage), mix: data.enemy_mix || [],
       elites: data.elite_modifiers || [], rarity: byId(data.rarities), settings: byId(data.game_settings),
       waves: data.mega_waves || [],
+      tags: data.tags || [], kits: data.kits || [], evos: (data.evolutions || []).filter(e => e.kind === "weapon" && e.min_level),
     };
     const set = (id, key, d) => { const r = D.settings[id]; return r && r.values && r.values[key] !== undefined ? r.values[key] : d; };
     const T = {   // global tuning knobs (game_settings row "tuning")
@@ -174,6 +176,7 @@
       spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
       shop: null, shield: 0, shieldMax: 0, shieldUntil: 0,
       paws: [], pickups: [], fish: 0, autoEat: false, eatAt: 0, livesUsed: 0, safeUntil: 0,
+      items: {}, taken: {}, kit: null, build: { counts: {}, tiers: {} },
     };
     const ev = e => { st.events.push(e); };
 
@@ -244,7 +247,7 @@
         critC: f.get("crit_chance") + cc.A, critD: f.get("crit_damage") + cd.A,
         kb: ((def.knockback || 0) + kb.A) * kb.mul * f.get("knockback"),
         radius: (def.radius || 0) * ar.mul * f.get("area"),
-        explodeChance: f.get("explode_chance"),
+        explodeChance: f.get("explode_chance") + (def.explode_chance || 0),
       };
     }
 
@@ -275,7 +278,7 @@
     // default the element of whatever did it (a spell's element, a weapon's)
     function hitEnemy(e, base, critC, critD, kb, src, el) {
       if (!e.alive) return 0;
-      el = el || EL[src] || null;
+      el = el || ELX[src] || EL[src] || null;
       if (el && e.fx) combo(e, el, base, src);              // 🔥 on 🧊 = steam, ⚡ on 🧊 / 🔥 ...
       if (!e.alive) return 0;
       const crit = rnd() < critC;
@@ -283,7 +286,7 @@
       if (e.fx) {
         if (e.fx.mark > st.t) dmg *= 1 + (e.fx.markB || 0.4);                 // Death Mark
         if (e.fx.curse > st.t) def = Math.max(0, def - (e.fx.curseD || 0.2));  // Bone Curse
-        if ((e.fx.frozen || 0) > st.t) dmg *= 1 + ELS.shatter_bonus;           // frozen skeletons are brittle
+        if ((e.fx.frozen || 0) > st.t) dmg *= 1 + ELS.shatter_bonus + st.flash.stats.get("frozen_bonus");   // frozen skeletons are brittle
       }
       dmg = Math.max(S.minDamage, Math.round(dmg * (1 - def)));
       e.hp -= dmg; e.hitT = 0.08; st.damageDone += dmg;
@@ -300,6 +303,7 @@
       ev({ t: "hit", x: e.x, y: e.y, v: dmg, crit, src, el, big });
       const ls = st.flash.stats.get("lifesteal");
       if (ls > 0) st.flash.hp = Math.min(st.flash.maxHp(), st.flash.hp + dmg * ls);
+      if (!inTick && D.weapons[src]) weaponProcs(e, base, src, el, e.hp <= 0);
       if (e.hp <= 0) kill(e, src, el, kb >= 25 || dmg >= e.max * 2.5);
       return dmg;
     }
@@ -366,9 +370,9 @@
         if (b === "melee_arc") {
           query(CX, CY, p.range, e => {
             let da = Math.abs(Math.atan2(e.y - CY, e.x - CX) - ang); if (da > Math.PI) da = 2 * Math.PI - da;
-            if (da < 1.1) hitEnemy(e, p.damage, p.critC, p.critD, p.kb, w.id);
+            if (da < (def.arc || 1.1)) hitEnemy(e, p.damage, p.critC, p.critD, p.kb, w.id);
           });
-          ev({ t: "swing", a: ang, r: p.range, w: w.id, x: CX, y: CY });
+          ev({ t: "swing", a: ang, r: p.range, w: w.id, x: CX, y: CY, arc: def.arc || 0 });
         } else {
           const r = p.radius || 110;
           explode(t.x, t.y, r, p.damage, p.critC, p.critD, w.id);
@@ -376,11 +380,13 @@
         return true;
       }
       if (b === "melee_rapid" || b === "continuous" || b === "melee_heavy") {
-        const [t] = targets(mode, p.range, 1);
+        const ts = targets(mode, p.range, Math.max(1, def.hits || 1)), t = ts[0];
         if (!t) return false;
-        hitEnemy(t, p.damage, p.critC, p.critD, b === "melee_heavy" ? Math.max(p.kb, 20) : p.kb, w.id);
+        for (const o of ts) {
+          hitEnemy(o, p.damage, p.critC, p.critD, b === "melee_heavy" ? Math.max(p.kb, 20) : p.kb, w.id);
+          ev({ t: "stab", x: o.x, y: o.y, w: w.id });
+        }
         if (b === "melee_heavy") query(t.x, t.y, 34, e => { if (e !== t) hitEnemy(e, p.damage * 0.5, 0, 1, p.kb, w.id); });
-        ev({ t: "stab", x: t.x, y: t.y, w: w.id });
         return true;
       }
       if (b === "paw_bowl") return grabOne(w, p);
@@ -936,6 +942,112 @@
     const FEEL = { revive_hp: fe_("revive_hp", 0.5), revive_safe: fe_("revive_invulnerable", 2.5), revive_radius: fe_("revive_radius", 280),
                    revive_damage: fe_("revive_damage", 60), strike: fe_("strike_pins", 5) };
 
+    // ---- the build (Round 3 step 4, seed v22: data types tags, kits, evolutions)
+    // "Choices that mean something": every weapon, spell and item carries a
+    // tag or two (fire, ice, storm, paws ...). Each different thing Flash owns
+    // counts once per tag (a kit counts once too); 2 / 4 / 6 of a tag switch
+    // its tiers on, and a tier is a list of stat effects like an item's.
+    // A weapon at a certain level plus a certain item can evolve. Offers and
+    // the shop lean towards what the build already has.
+    const bu_ = (k, d) => set("build", k, d);
+    const BU = { elChance: bu_("weapon_element_chance", 0.35), arcDmg: bu_("arc_damage", 0.5), arcR: bu_("arc_radius", 90),
+                 arcN: bu_("arc_targets", 2), arcsPs: bu_("arcs_per_second", 40),
+                 lean: set("choices", "lean_towards_build", 0), leanNext: set("choices", "lean_next_tier", 1),
+                 leanEvo: set("choices", "lean_evolution", 1) };
+    TOK.arc = tokMax.arc = BU.arcsPs;
+    const TAG = byId(D.tags), KITS = byId(D.kits);
+    const ELX = {};                         // this run's evolved weapons: weapon id -> element
+    let inTick = false;                     // a burn / poison tick is not a weapon hit
+    const itemById = byId(D.items);
+    const evoFor = w => w.evo ? null : D.evos.find(r => r.from === w.id) || null;
+    const owns = id => !!(st.items[id] || st.spellOwned[id] || st.taken[id] || st.owned[id]);
+    const evoReady = w => { const r = evoFor(w); return r && w.level >= (r.min_level || 1) && (r.requires || []).every(owns) ? r : null; };
+    const tagsOfWeapon = w => (w.evoRow && w.evoRow.tags) || w.def.tags || [];
+    // what a weapon hit does on top of its damage: set alight, chill, arc
+    // (dead: this hit finished it, so there's nothing to burn or chill, but it can still arc)
+    function weaponProcs(e, base, src, el, dead) {
+      const f = st.flash.stats;
+      const ig = dead ? 0 : f.get("ignite_chance") + (el === "fire" ? BU.elChance : 0),
+            ch = dead ? 0 : f.get("chill_chance") + (el === "ice" ? BU.elChance : 0),
+            sh = f.get("shock_chance") + (el === "lightning" ? BU.elChance : 0);
+      if (ig > 0 && rnd() < ig) applyStatus(e, "burn", Math.max(0.5, base / 20), src);
+      if (ch > 0 && rnd() < ch) chill(e, 1);
+      if (sh > 0 && rnd() < sh && tok("arc", 1)) {
+        let k = 0; const pts = [{ x: e.x, y: e.y }];
+        query(e.x, e.y, BU.arcR, o => {
+          if (o === e || !o.alive) return;
+          pts.push({ x: o.x, y: o.y });
+          hitEnemy(o, base * BU.arcDmg, 0, 1, 0, "arc", "lightning");
+          if (++k >= BU.arcN) return false;
+        });
+        if (k) ev({ t: "arc", pts });
+      }
+    }
+    // count the tags and switch the tiers on or off. quiet: no "tier up" events (a restored run)
+    function recalcBuild(quiet) {
+      const c = {}, bump = tags => { for (const t of tags || []) if (TAG[t]) c[t] = (c[t] || 0) + 1; };
+      for (const w of st.weapons) bump(tagsOfWeapon(w));
+      for (const s of st.spells) bump(s.def.tags);
+      for (const id in st.items) bump((itemById[id] || {}).tags);
+      if (st.kit && KITS[st.kit]) bump(KITS[st.kit].tags);
+      const was = st.build.tiers, tiers = {};
+      changeMax(() => {
+        for (const row of D.tags) {
+          const n = c[row.id] || 0, src = "tag:" + row.id;
+          let tier = 0; for (const t of row.tiers || []) if (n >= t.count) tier++;
+          tiers[row.id] = tier;
+          if (tier === (was[row.id] || 0)) continue;
+          st.flash.stats.remove(src);
+          for (let i = 0; i < tier; i++) st.flash.stats.add(row.tiers[i].effects, src);
+          if (!quiet && tier > (was[row.id] || 0)) {
+            const t = row.tiers[tier - 1];
+            ev({ t: "tag", id: row.id, tier, n, icon: row.icon, name: row.name, tname: t.name, desc: t.description || fmtMods(t.effects) });
+            if (tel) (tel.tags = tel.tags || []).push({ round: st.round, tag: row.id, tier });
+          }
+        }
+      });
+      st.build = { counts: c, tiers };
+    }
+    // would taking this add a tag (a thing Flash doesn't own yet)?
+    const addsTags = o => o.kind === "weapon" || o.kind === "spell" || o.kind === "evolve" || (o.kind === "item" && !st.items[o.id]);
+    // how much more often an offer comes up because of the build
+    function leanK(o) {
+      let k = 1;
+      if (BU.lean > 0 && o.tags && addsTags(o)) for (const t of o.tags) {
+        const row = TAG[t]; if (!row) continue;
+        const n = st.build.counts[t] || 0;
+        k += BU.lean * Math.min(n, 6);
+        if (n > 0 && (row.tiers || []).some(x => x.count === n + 1)) k *= BU.leanNext;     // one more switches a tier on
+      }
+      if (BU.leanEvo > 1) {
+        // the thing an owned weapon needs to evolve, or the level it's short of
+        if ((o.kind === "item" || o.kind === "spell") && !owns(o.id) && st.weapons.some(w => { const r = evoFor(w); return r && (r.requires || []).includes(o.id); })) k *= BU.leanEvo;
+        else if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid), r = w && evoFor(w);
+          if (r && w.level < (r.min_level || 1) && (r.requires || []).every(owns)) k *= BU.leanEvo; }
+      }
+      return k;
+    }
+    // "✨ Storm Crossbow" on the card of the item that would get a weapon there
+    function evoHint(o) {
+      if (o.kind !== "item" && o.kind !== "spell") return null;
+      for (const w of st.weapons) { const r = evoFor(w); if (r && (r.requires || []).includes(o.id) && !owns(o.id)) return { weapon: w.def.name, into: r.name, icon: r.icon || "✨", level: w.level, min: r.min_level || 1 }; }
+      return null;
+    }
+    const withBuild = o => { const h = evoHint(o); if (h) o.evo = h; return o; };
+    function evolveOffer(w, r) {
+      return { kind: "evolve", id: r.id, wuid: w.uid, wid: w.id, name: r.name, rarity: "legendary", icon: r.icon || "✨",
+               desc: r.description || "", tag: `✨ Evolve ${w.def.name}`, tags: r.tags || w.def.tags || [] };
+    }
+    function evolveWeapon(w, r) {
+      const def = Object.assign({}, w.def), base = { projectile_speed: 450, throw_range: 420, radius: 60, knockback: 10 };
+      for (const [k, v] of Object.entries(r.mult || {})) def[k] = Math.round((def[k] == null ? base[k] || 0 : def[k]) * v * 100) / 100;
+      for (const [k, v] of Object.entries(r.add || {})) def[k] = (def[k] < 0 ? def[k] : (def[k] || (k === "projectile_count" ? 1 : 0)) + v);
+      Object.assign(def, r.set || {}, { name: r.name, description: r.description || def.description, evolved_from: w.def.name });
+      if (r.element && r.element !== "none") { def.element = r.element; ELX[w.id] = r.element; }
+      if (r.tags) def.tags = r.tags;
+      w.def = def; w.evo = r.id; w.evoRow = r;
+    }
+
     // ---- status effects on skeletons
     const fxOf = e => e.fx || (e.fx = {});
     // 🧊 chill: slower for a moment; enough cold hits in a row and it freezes
@@ -984,7 +1096,7 @@
       const dur = (row.duration || 3) * f.get("duration");
       const chance = (row.chance == null ? 1 : row.chance) + f.get("effect_chance") + (extraChance || 0);
       if (id === "burn" || id === "poison" || id === "bleed") {
-        const dps = (row.damage_per_second || 5) * (power || 1), cur = x[id];
+        const dps = (row.damage_per_second || 5) * (power || 1) * (id === "burn" ? f.get("burn_power") : 1), cur = x[id];
         const grow = cur && cur.until > st.t && row.stacking === "refresh_and_increase";
         x[id] = { dps: grow ? Math.min(dps * 3, cur.dps + dps * 0.5) : Math.max(dps, cur && cur.until > st.t ? cur.dps : 0), until: st.t + dur, src };
       } else if (id === "freeze") { chill(e, 1); if (!e.boss && rnd() < chance) x.frozen = st.t + dur; }
@@ -1004,7 +1116,7 @@
           const d = x.acc; x.acc = 0; x.tickT = 0;
           // a burn tick can catch the skeleton next to it
           if (x.burn && x.burn.until > st.t && rnd() < ELS.spread_chance && tok("spread", 1)) spreadFire(e, x.burn, 1);
-          hitEnemy(e, d, 0, 1, 0, src, el === "fire" ? "burn" : el);
+          inTick = true; hitEnemy(e, d, 0, 1, 0, src, el === "fire" ? "burn" : el); inTick = false;
         }
       }
       if ((x.frozen || 0) > st.t || (x.stun || 0) > st.t) return 0;
@@ -1331,24 +1443,26 @@
 
     // ---- the shop, in the break between rounds
     function spellOffer(sp) {
-      return { kind: "spell", id: sp.id, name: sp.name, rarity: sp.rarity || "uncommon", desc: sp.description || "", tag: "New spell" };
+      return withBuild({ kind: "spell", id: sp.id, name: sp.name, rarity: sp.rarity || "uncommon", desc: sp.description || "", tag: "New spell", tags: sp.tags });
     }
     function shopOffer(row) {
       const k = row.kind; let o = null;
       if (k === "item") {
         const pool = D.items.filter(it => it.effects && it.effects.length && (it.rarity || "common") === (row.rarity || "common"));
-        const it = pickOne(pool);
+        const it = pool.length ? pickWeighted(pool, it => leanK({ kind: "item", id: it.id, tags: it.tags })) : null;
         if (it) {
           const pw = Math.round(stageK(SH.power) * 100) / 100, fx = scaleFx(it.effects, pw);
-          o = { kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: pw > 1 ? fmtMods(fx) : (it.description || fmtMods(it.effects)), effects: fx, pow: pw };
+          o = withBuild({ kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: pw > 1 ? fmtMods(fx) : (it.description || fmtMods(it.effects)), effects: fx, pow: pw, tags: it.tags });
         }
       } else if (k === "weapon") {
         if (st.weapons.length < S.slots + (st.tail ? 1 : 0)) {
-          const w = pickOne(Object.values(D.weapons).filter(w => !st.owned[w.id] && (w.unlock_stage || 1) <= Math.max(2, st.stage)));
-          if (w) o = { kind: "weapon", id: w.id, name: w.name, rarity: w.rarity || "common", desc: w.description || "" };
+          const ws = Object.values(D.weapons).filter(w => !st.owned[w.id] && (w.unlock_stage || 1) <= Math.max(2, st.stage));
+          const w = ws.length ? pickWeighted(ws, w => leanK({ kind: "weapon", id: w.id, tags: w.tags })) : null;
+          if (w) o = { kind: "weapon", id: w.id, name: w.name, rarity: w.rarity || "common", desc: w.description || "", tags: w.tags };
         }
       } else if (k === "spell") {
-        const sp = pickOne(Object.values(SPELLS).filter(s => !st.spellOwned[s.id] && (s.unlock_stage || 1) <= Math.max(1, st.stage)));
+        const sps = Object.values(SPELLS).filter(s => !st.spellOwned[s.id] && (s.unlock_stage || 1) <= Math.max(1, st.stage));
+        const sp = sps.length ? pickWeighted(sps, s => leanK({ kind: "spell", id: s.id, tags: s.tags })) : null;
         if (sp) o = spellOffer(sp);
       } else if (k === "upgrade") {
         const u = pickOne(D.upgrades.filter(u => u.applies_to === "global" && u.effects && u.effects.length));
@@ -1380,11 +1494,12 @@
       const best = D.items.filter(it => it.effects && it.effects.length && (TIER[it.rarity] || 0) >= 2);
       if (!best.length) return null;
       const top = best.filter(it => (TIER[it.rarity] || 0) >= 3);
-      const it = top.length && rnd() < 0.35 + 0.05 * st.stage ? pickOne(top) : pickOne(best);
+      const lw = it => leanK({ kind: "item", id: it.id, tags: it.tags });
+      const it = top.length && rnd() < 0.35 + 0.05 * st.stage ? pickWeighted(top, lw) : pickWeighted(best, lw);
       const row = SHOP.find(r => r.kind === "item" && r.rarity === it.rarity) || { price: 250 };
       const pw = Math.round(stageK(SH.power) * 100) / 100, fx = scaleFx(it.effects, pw);
-      return { kind: "item", id: it.id, name: it.name, rarity: it.rarity, desc: fmtMods(fx), effects: fx, pow: pw, row: "vault",
-               price: Math.round((row.price || 250) * SH.vaultMarkup * stageK(SH.growth)), tag: "💎 Vault" + (pw > 1.05 ? ` · ×${pw.toFixed(1)}` : "") };
+      return withBuild({ kind: "item", id: it.id, name: it.name, rarity: it.rarity, desc: fmtMods(fx), effects: fx, pow: pw, row: "vault", tags: it.tags,
+               price: Math.round((row.price || 250) * SH.vaultMarkup * stageK(SH.growth)), tag: "💎 Vault" + (pw > 1.05 ? ` · ×${pw.toFixed(1)}` : "") });
     }
     function makeShop(rerolls) {
       const rows = SHOP.filter(r => r.kind !== "reroll"), out = [];
@@ -1435,8 +1550,15 @@
       else if (o.kind === "wup") { const w = st.weapons.find(x => x.uid === o.wuid); const u = D.upgrades.find(x => x.id === o.id); if (w && u) { w.mods.push(...u.effects); w.level++; } }
       else if (o.kind === "sup") { const s = st.spells.find(x => x.uid === o.suid); const u = D.upgrades.find(x => x.id === o.id); if (s && u) { s.mods.push(...u.effects); s.level++; } }
       else if (o.kind === "tail") st.tail = true;
+      else if (o.kind === "evolve") { const w = st.weapons.find(x => x.uid === o.wuid) || st.owned[o.wid], r = w && evoFor(w);
+        if (w && r && r.id === o.id) { const from = w.def.name; evolveWeapon(w, r); ev({ t: "evolved", id: r.id, wid: w.id, name: r.name, from, icon: r.icon || "✨", el: r.element || null });
+          if (tel) (tel.evolved = tel.evolved || []).push({ round: st.round, id: r.id }); } }
       else if (o.kind === "potion") { const f = st.flash; f.hp = Math.min(f.maxHp(), f.hp + f.maxHp() * SH.potion); }
-      else if (o.effects) changeMax(() => st.flash.stats.add(o.effects, "perm"));
+      else if (o.effects) {
+        changeMax(() => st.flash.stats.add(o.effects, "perm"));
+        if (o.kind === "item") st.items[o.id] = (st.items[o.id] || 0) + 1; else if (o.id) st.taken[o.id] = (st.taken[o.id] || 0) + 1;
+      }
+      if (o.kind !== "potion") recalcBuild();
     }
 
     // ------------------------------------------------------------ rewards
@@ -1517,7 +1639,7 @@
       const available = Object.values(D.weapons).filter(w => (w.unlock_stage || 1) <= 2 || w.starting);
       if (st.weapons.length < slots)
         for (const w of available) if (!st.owned[w.id]) pool.push({ kind: "weapon", id: w.id, name: w.name, rarity: w.rarity || "common",
-          desc: w.description || "", tag: "New weapon" });
+          desc: w.description || "", tag: "New weapon", tags: w.tags });
       for (const w of st.weapons) {
         for (const u of D.upgrades.filter(u => u.applies_to === "weapon")) {
           const st_ = (u.effects[0] || {}).stat;
@@ -1545,18 +1667,25 @@
             desc: fmtMods(u.effects), tag: `Lv ${s.level} → ${s.level + 1}` });
         }
       }
-      for (const it of D.items) if (it.effects && it.effects.length) pool.push({ kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: it.description || fmtMods(it.effects), tag: "Item", effects: it.effects });
+      for (const it of D.items) if (it.effects && it.effects.length) pool.push(withBuild({ kind: "item", id: it.id, name: it.name, rarity: it.rarity || "common", desc: it.description || fmtMods(it.effects), tag: "Item", effects: it.effects, tags: it.tags }));
       for (const p of D.passives) if (p.trigger === "always" && p.effects && p.effects.length) pool.push({ kind: "passive", id: p.id, name: p.name, rarity: p.rarity || "uncommon", desc: p.description || fmtMods(p.effects), tag: "Passive", effects: p.effects });
       const out = [], used = new Set();
+      // leaning towards the build changes WHICH item, weapon or spell comes up, not how many of
+      // them do: each kind's lean is divided by that kind's average, so the mix of kinds stays put
+      const lk = new Map(), ls = {}, ln = {};
+      for (const o of pool) { const k = leanK(o); lk.set(o, k); ls[o.kind] = (ls[o.kind] || 0) + k; ln[o.kind] = (ln[o.kind] || 0) + 1; }
+      const lean = o => lk.get(o) * ln[o.kind] / ls[o.kind];
       for (let i = 0; i < S.choices && pool.length; i++) {
         let pick, tries = 0;
         // favour_current_build: upgrades to what Flash already has come up more often
         do { pick = pickWeighted(pool, o => rarityW(o.rarity) * (o.kind === "weapon" ? 1.6 : o.kind === "spell" ? 1.3
-               : o.kind === "wup" || o.kind === "sup" ? 1.2 * (1 + FAVOUR) : 1)); tries++; }
+               : o.kind === "wup" || o.kind === "sup" ? 1.2 * (1 + FAVOUR) : 1) * lean(o)); tries++; }
         while (used.has(pick.kind + pick.id + (pick.wuid || "")) && tries < 30);
         used.add(pick.kind + pick.id + (pick.wuid || ""));
         out.push(pick);
       }
+      // ✨ a weapon that can evolve: the evolution is always one of the choices
+      for (const w of st.weapons) { const r = evoReady(w); if (r && out.length) { out[0] = evolveOffer(w, r); break; } }
       return out;
     }
     const offerKey = o => o.kind === "wup" ? `wup:${o.wid}:${o.id}` : o.kind === "sup" ? `sup:${o.sid}:${o.id}` : `${o.kind}:${o.id}`;
@@ -1578,7 +1707,7 @@
     }
 
     // -------------------------------------------------------------- flow
-    function startRun(weaponId) {
+    function startRun(weaponId, kitId) {
       Object.assign(st, { phase: "fight", paused: false, t: 0, fightT: 0, roundT: 0, round: 1, stage: 1, level: 1,
         xp: 0, xpNext: xpNext(1), gold: 0, kills: 0, pending: 0, offer: null, weapons: [], owned: {}, tail: false,
         buffs: [], enemies: [], proj: [], eproj: [], spawnAcc: 0, warning: null, streak: 0, runStats: null,
@@ -1587,11 +1716,26 @@
         stressUsed: !!st.god, megaUsed: false,
         spells: [], spellOwned: {}, zones: [], allies: [], delayed: [], tele: [], boss: null, bossDone: {}, bossesKilled: 0,
         bossQueue: null, shop: null, shield: 0, shieldMax: 0, shieldUntil: 0, practice: false, log: [], startWeapon: weaponId || null,
-        paws: [], pickups: [], fish: 0, eatAt: 0, livesUsed: 0, safeUntil: 0 });
+        paws: [], pickups: [], fish: 0, eatAt: 0, livesUsed: 0, safeUntil: 0,
+        items: {}, taken: {}, kit: null, build: { counts: {}, tiers: {} } });
+      for (const k in ELX) delete ELX[k];
       CX = W / 2; CY = H / 2;
       st.flash = newFlash();
-      addWeapon(weaponId || Object.values(D.weapons).find(w => w.starting).id);
+      // a starting kit: its weapons, spells and items, a tag and a small perk. It isn't
+      // in the run's log (a saved run remembers the kit and starts from it again)
+      const kit = kitId && KITS[kitId] && (KITS[kitId].weapons || []).some(id => D.weapons[id]) ? KITS[kitId] : null;
+      if (kit) {
+        st.kit = kit.id;
+        for (const id of kit.weapons) if (D.weapons[id] && !st.owned[id] && st.weapons.length < S.slots) addWeapon(id);
+        for (const id of kit.spells || []) addSpell(id);
+        for (const id of kit.items || []) { const it = itemById[id]; if (it && it.effects) { st.flash.stats.add(it.effects, "perm"); st.items[id] = (st.items[id] || 0) + 1; } }
+        if (kit.effects && kit.effects.length) st.flash.stats.add(kit.effects, "kit");
+        st.flash.hp = st.flash.maxHp();
+        st.startWeapon = st.weapons[0].id;
+      } else addWeapon(weaponId || Object.values(D.weapons).find(w => w.starting).id);
+      recalcBuild(true);
       telStart(st.weapons[0].id);
+      if (tel) tel.kit = st.kit;
       for (let i = 0; i < S.initial; i++) spawnEnemy();
       ev({ t: "start" });
     }
@@ -1604,11 +1748,11 @@
       if (st.phase !== "break" || st.practice || !st.flash || !st.log) return null;
       const n = {}; for (const k of RUN_KEEP) n[k] = st[k];
       n.bossDone = Object.assign({}, st.bossDone); n.hp = st.flash.hp / st.flash.maxHp(); n.picked = (st.picked || []).slice(-60);
-      return { v: 1, start: st.startWeapon || (st.weapons[0] && st.weapons[0].id), log: st.log.slice(), n, data: DATA_HASH, at: Date.now() };
+      return { v: 1, start: st.startWeapon || (st.weapons[0] && st.weapons[0].id), kit: st.kit || null, log: st.log.slice(), n, data: DATA_HASH, at: Date.now() };
     }
     function restoreRun(s) {
       if (!s || !s.start || !D.weapons[s.start] || !Array.isArray(s.log) || !s.n) return false;
-      startRun(s.start);
+      startRun(s.start, s.kit);
       st.enemies = []; st.events = [];
       const log = st.log = [];
       const eff = (list, id) => { const x = (list || []).find(r => r.id === id); return x && x.effects && x.effects.length ? x.effects : null; };
@@ -1619,14 +1763,17 @@
         else if (l.k === "wup") { const w = st.owned[l.w], u = D.upgrades.find(x => x.id === l.id); if (!w || !u) continue; w.mods.push(...u.effects); w.level++; }
         else if (l.k === "sup") { const sp = st.spellOwned[l.s], u = D.upgrades.find(x => x.id === l.id); if (!sp || !u) continue; sp.mods.push(...u.effects); sp.level++; }
         else if (l.k === "tail") st.tail = true;
+        else if (l.k === "evolve") { const r = D.evos.find(x => x.id === l.id), w = r && st.owned[r.from]; if (!w || w.evo) continue; evolveWeapon(w, r); }
         else {
           let e = l.k === "stat" ? eff(D.upgrades, l.id) : l.k === "item" ? eff(D.items, l.id) : l.k === "passive" ? eff(D.passives, l.id) : null;
           if (!e) continue;
           if (l.p) e = scaleFx(e, l.p);
           changeMax(() => st.flash.stats.add(e, "perm"));
+          if (l.k === "item") st.items[l.id] = (st.items[l.id] || 0) + 1; else st.taken[l.id] = (st.taken[l.id] || 0) + 1;
         }
         log.push(l);
       }
+      recalcBuild(true);
       for (const k of RUN_KEEP) if (s.n[k] !== undefined) st[k] = s.n[k];
       st.bossDone = Object.assign({}, s.n.bossDone || {}); st.picked = (s.n.picked || []).slice();
       st.flash.hp = st.flash.maxHp() * Math.max(0.05, Math.min(1, +s.n.hp || 1));
@@ -1902,7 +2049,7 @@
 
     return {
       st, D, S, T, step, startRun, choose, skip, nextRound, applyReward, wp, xpNext, spp, buy, reroll, rerollPrice,
-      addSpell(id) { return !!addSpell(id); },
+      addSpell(id) { const ok = !!addSpell(id); if (ok) recalcBuild(); return ok; },
       spellIds: () => Object.keys(SPELLS),
       // test bench: bring the next boss now
       bossNow(id) { if (st.phase !== "fight" || st.boss) return false; buildGrid();
@@ -1926,8 +2073,28 @@
       giveWeapon(id) {
         if (!D.weapons[id] || st.owned[id] || !st.flash) return false;
         if (st.weapons.length >= S.slots + (st.tail ? 1 : 0)) { const old = st.weapons.pop(); delete st.owned[old.id]; }
-        addWeapon(id); st.stressUsed = true; return true;
+        addWeapon(id); recalcBuild(); st.stressUsed = true; return true;
       },
+      // ---- the build (tags, evolutions, kits)
+      kits: () => D.kits.filter(k => (k.weapons || []).some(id => D.weapons[id])),
+      // every tag Flash has anything of (or all of them), with its tiers: for the HUD and the break screen
+      build(all) {
+        return D.tags.map(row => { const n = st.build.counts[row.id] || 0, tier = st.build.tiers[row.id] || 0, nx = (row.tiers || [])[tier];
+          return { id: row.id, name: row.name, icon: row.icon, colour: row.colour, description: row.description, n, tier, next: nx ? nx.count : null,
+                   tiers: (row.tiers || []).map((t, i) => ({ count: t.count, name: t.name, desc: t.description || fmtMods(t.effects), on: i < tier })) }; })
+          .filter(b => all || b.n > 0);
+      },
+      tagRow: id => TAG[id] || null,
+      // each weapon that can still evolve: what it needs and what it has
+      evolutions() {
+        return st.weapons.map(w => { const r = evoFor(w); if (!r) return null;
+          return { wid: w.id, weapon: w.def.name, level: w.level, min: r.min_level || 1, id: r.id, name: r.name, icon: r.icon || "✨",
+                   needs: (r.requires || []).map(id => ({ id, name: (itemById[id] || SPELLS[id] || D.upgrades.find(u => u.id === id) || { name: id }).name, have: owns(id) })),
+                   ready: !!evoReady(w) }; }).filter(Boolean);
+      },
+      // test bench: an item, as if bought; the next evolution, ready or not
+      giveItem(id) { const it = itemById[id]; if (!it || !it.effects || !st.flash) return false; applyOffer({ kind: "item", id, name: it.name, effects: it.effects, tags: it.tags }); st.stressUsed = true; return true; },
+      evolveNow(wid) { const w = wid ? st.owned[wid] : st.weapons.find(x => evoFor(x)), r = w && evoFor(w); if (!r) return false; applyOffer(evolveOffer(w, r)); st.stressUsed = true; return r.id; },
       giveLife() { if (!st.flash) return 0; changeMax(() => st.flash.stats.add([{ stat: "nine_lives", op: "add", value: 1 }], "bench")); st.stressUsed = true; return livesLeft(); },
       startPractice, endPractice, grantItem, bonusItem,
       die() { if (st.phase === "fight" && !st.practice) gameOver(); },

@@ -1,0 +1,492 @@
+[
+  {
+    "id": "fire",
+    "name": "Fire",
+    "icon": "🔥",
+    "colour": "#ff7a2a",
+    "description": "Set them alight and let it spread.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Warm paws",
+        "description": "Weapon hits have a 6% chance to set skeletons alight",
+        "effects": [
+          {
+            "stat": "ignite_chance",
+            "op": "add",
+            "value": 0.06
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Wildfire",
+        "description": "Burns hurt 30% more, +6% chance to set alight",
+        "effects": [
+          {
+            "stat": "burn_power",
+            "op": "add_pct",
+            "value": 0.3
+          },
+          {
+            "stat": "ignite_chance",
+            "op": "add",
+            "value": 0.06
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Inferno",
+        "description": "Burns hurt 60% more again, +9% damage",
+        "effects": [
+          {
+            "stat": "burn_power",
+            "op": "add_pct",
+            "value": 0.6
+          },
+          {
+            "stat": "damage",
+            "op": "add_pct",
+            "value": 0.09
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ice",
+    "name": "Ice",
+    "icon": "🧊",
+    "colour": "#9fdcff",
+    "description": "Chill, freeze, shatter.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Cold nose",
+        "description": "Weapon hits have a 7% chance to chill (three cold hits freeze)",
+        "effects": [
+          {
+            "stat": "chill_chance",
+            "op": "add",
+            "value": 0.07
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Deep freeze",
+        "description": "Frozen skeletons take 25% more damage, +5% chance to chill",
+        "effects": [
+          {
+            "stat": "frozen_bonus",
+            "op": "add",
+            "value": 0.25
+          },
+          {
+            "stat": "chill_chance",
+            "op": "add",
+            "value": 0.05
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Absolute zero",
+        "description": "+6% chance to chill, frozen skeletons take 35% more again",
+        "effects": [
+          {
+            "stat": "chill_chance",
+            "op": "add",
+            "value": 0.06
+          },
+          {
+            "stat": "frozen_bonus",
+            "op": "add",
+            "value": 0.35
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "storm",
+    "name": "Storm",
+    "icon": "⚡",
+    "colour": "#d8c8ff",
+    "description": "Fast paws, and hits that arc to the next skeleton.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Static",
+        "description": "+5% attack speed, weapon hits have a 4% chance to arc to two neighbours",
+        "effects": [
+          {
+            "stat": "attack_speed",
+            "op": "add_pct",
+            "value": 0.05
+          },
+          {
+            "stat": "shock_chance",
+            "op": "add",
+            "value": 0.04
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Thunderpaws",
+        "description": "+5% chance to arc, +3% crit chance",
+        "effects": [
+          {
+            "stat": "shock_chance",
+            "op": "add",
+            "value": 0.05
+          },
+          {
+            "stat": "crit_chance",
+            "op": "add",
+            "value": 0.03
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Tempest",
+        "description": "+6% chance to arc, +9% attack speed",
+        "effects": [
+          {
+            "stat": "shock_chance",
+            "op": "add",
+            "value": 0.06
+          },
+          {
+            "stat": "attack_speed",
+            "op": "add_pct",
+            "value": 0.09
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paws",
+    "name": "Brawler",
+    "icon": "🐾",
+    "colour": "#ffb37a",
+    "description": "Claws, blades and anything swung up close.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Scrapper",
+        "description": "+12% knockback, +15 max HP",
+        "effects": [
+          {
+            "stat": "knockback",
+            "op": "add_pct",
+            "value": 0.12
+          },
+          {
+            "stat": "max_hp",
+            "op": "add",
+            "value": 15
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Alley cat",
+        "description": "+9% weapon damage, heal 1% of damage dealt",
+        "effects": [
+          {
+            "stat": "weapon_damage",
+            "op": "add_pct",
+            "value": 0.09
+          },
+          {
+            "stat": "lifesteal",
+            "op": "add",
+            "value": 0.01
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "King of the alley",
+        "description": "+18% weapon damage, +30 max HP",
+        "effects": [
+          {
+            "stat": "weapon_damage",
+            "op": "add_pct",
+            "value": 0.18
+          },
+          {
+            "stat": "max_hp",
+            "op": "add",
+            "value": 30
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bolts",
+    "name": "Sharpshooter",
+    "icon": "🎯",
+    "colour": "#ffe08a",
+    "description": "Anything thrown or shot.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Steady aim",
+        "description": "+9% projectile speed, +2.5% crit chance",
+        "effects": [
+          {
+            "stat": "projectile_speed",
+            "op": "add_pct",
+            "value": 0.09
+          },
+          {
+            "stat": "crit_chance",
+            "op": "add",
+            "value": 0.025
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Straight through",
+        "description": "+1 pierce",
+        "effects": [
+          {
+            "stat": "pierce",
+            "op": "add",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Volley",
+        "description": "+1 projectile, +25% crit damage",
+        "effects": [
+          {
+            "stat": "projectile_count",
+            "op": "add",
+            "value": 1
+          },
+          {
+            "stat": "crit_damage",
+            "op": "add",
+            "value": 0.25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "boom",
+    "name": "Boom",
+    "icon": "💥",
+    "colour": "#ff9f5a",
+    "description": "Explosions, and bigger ones.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Short fuse",
+        "description": "+7% area",
+        "effects": [
+          {
+            "stat": "area",
+            "op": "add_pct",
+            "value": 0.07
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Chain reaction",
+        "description": "Hits have a 5% chance to explode",
+        "effects": [
+          {
+            "stat": "explode_chance",
+            "op": "add",
+            "value": 0.05
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Kaboom",
+        "description": "+12% area, +5% chance to explode",
+        "effects": [
+          {
+            "stat": "area",
+            "op": "add_pct",
+            "value": 0.12
+          },
+          {
+            "stat": "explode_chance",
+            "op": "add",
+            "value": 0.05
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tough",
+    "name": "Tough",
+    "icon": "🛡️",
+    "colour": "#9fb0c8",
+    "description": "Armour, charms and anything that keeps Flash on his paws.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Thick fur",
+        "description": "+3% defence",
+        "effects": [
+          {
+            "stat": "defence",
+            "op": "add",
+            "value": 0.03
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Nine-ish lives",
+        "description": "+12% max HP",
+        "effects": [
+          {
+            "stat": "max_hp",
+            "op": "add_pct",
+            "value": 0.12
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Unbothered",
+        "description": "+2 HP a second, +5% defence",
+        "effects": [
+          {
+            "stat": "hp_regen",
+            "op": "add",
+            "value": 2
+          },
+          {
+            "stat": "defence",
+            "op": "add",
+            "value": 0.05
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lucky",
+    "name": "Lucky",
+    "icon": "🍀",
+    "colour": "#8fe36a",
+    "description": "Gold, XP and good fortune.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Lucky paw",
+        "description": "+9% gold",
+        "effects": [
+          {
+            "stat": "gold_gain",
+            "op": "add_pct",
+            "value": 0.09
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Fat cat",
+        "description": "+7% XP, +9 luck",
+        "effects": [
+          {
+            "stat": "xp_gain",
+            "op": "add_pct",
+            "value": 0.07
+          },
+          {
+            "stat": "luck",
+            "op": "add",
+            "value": 9
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Jackpot",
+        "description": "+15% gold, +7% XP",
+        "effects": [
+          {
+            "stat": "gold_gain",
+            "op": "add_pct",
+            "value": 0.15
+          },
+          {
+            "stat": "xp_gain",
+            "op": "add_pct",
+            "value": 0.07
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "magic",
+    "name": "Magic",
+    "icon": "✨",
+    "colour": "#b59aff",
+    "description": "Spells that aren't fire, ice or storm.",
+    "tiers": [
+      {
+        "count": 2,
+        "name": "Apprentice",
+        "description": "+9% spell damage",
+        "effects": [
+          {
+            "stat": "spell_damage",
+            "op": "add_pct",
+            "value": 0.09
+          }
+        ]
+      },
+      {
+        "count": 4,
+        "name": "Familiar",
+        "description": "-5% cooldowns",
+        "effects": [
+          {
+            "stat": "cooldown_reduction",
+            "op": "add",
+            "value": 0.05
+          }
+        ]
+      },
+      {
+        "count": 6,
+        "name": "Archmeowge",
+        "description": "+18% spell damage, +12% duration",
+        "effects": [
+          {
+            "stat": "spell_damage",
+            "op": "add_pct",
+            "value": 0.18
+          },
+          {
+            "stat": "duration",
+            "op": "add_pct",
+            "value": 0.12
+          }
+        ]
+      }
+    ]
+  }
+]

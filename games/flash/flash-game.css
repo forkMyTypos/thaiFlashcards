@@ -643,3 +643,46 @@
 .ftc-share-cnt b.ok { color: #7dffb0; } .ftc-share-cnt b.over { color: #ffb347; }
 .ftc-share-seg { flex: none; width: min(560px, 94%); margin: 4px auto; }
 .ftc-share-ta, .ftc-jtiles, .ftc-share-img { flex: none; }
+
+/* ---- the build (Round 3 step 4): tag chips, the build panel, kits, evolutions ---- */
+.ftc-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; clear: both; }
+.ftc-chip { --c: #b59aff; display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; line-height: 1.5; padding: 0 7px; border-radius: 999px;
+  color: #f3eefc; background: color-mix(in srgb, var(--c) 18%, #1b1622); border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); white-space: nowrap; }
+.ftc-chip b { font-weight: 700; color: var(--c); }
+.ftc-chip.up { --c: #ffd23a; color: #ffe7a8; font-weight: 700; }
+.ftc-chip.evo { --c: #ffd23a; color: #ffe7a8; white-space: normal; }
+.ftc-shop-item .ftc-chips { margin-top: 3px; }
+.ftc-shop-item .ftc-chip { font-size: 9.5px; padding: 0 5px; }
+.ftc-card.evolve { background: linear-gradient(160deg, rgba(255,210,58,.16), rgba(166,108,255,.14)); box-shadow: 0 0 0 1px rgba(255,210,58,.55), 0 0 18px rgba(255,210,58,.2); }
+.ftc-kits { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; max-width: 460px; margin-left: auto; margin-right: auto; align-items: stretch; }
+.ftc-kits .ftc-card { width: auto; max-width: none; margin: 0; padding: 8px 9px; }
+.ftc-kits .ftc-card .ftc-desc { font-size: 11px; }
+.ftc-kits .ftc-card .ftc-stats { font-size: 10.5px; }
+.ftc-kit-h { grid-column: 1 / -1; text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #a9b3cf; margin-top: 4px; }
+.ftc-classic { width: 100%; max-width: 360px; margin: 2px auto 6px; }
+.ftc-classic > summary { cursor: pointer; font-size: 12px; color: #a9b3cf; padding: 6px 2px; list-style-position: inside; }
+.ftc-classic[open] > summary { margin-bottom: 6px; }
+.ftc-build { flex: none; width: 100%; max-width: 460px; margin: 0 auto 10px; text-align: left; font-size: 12.5px; }
+.ftc-build:empty { display: none; }
+.ftc-build-h { color: #c9c2b8; margin-bottom: 4px; font-size: 13px; }
+.ftc-build-r { --c: #b59aff; display: grid; grid-template-columns: minmax(96px, auto) 34px 46px 1fr; align-items: center; gap: 6px; padding: 3px 8px; margin-bottom: 3px;
+  border-radius: 6px; background: rgba(255,255,255,.04); border-left: 3px solid var(--c); }
+.ftc-build-r .t { font-weight: 700; white-space: nowrap; }
+.ftc-build-r .n { color: var(--c); font-weight: 700; font-variant-numeric: tabular-nums; }
+.ftc-build-r .p { display: inline-flex; gap: 3px; }
+.ftc-build-r .p i { width: 10px; height: 10px; border-radius: 3px; border: 1px solid color-mix(in srgb, var(--c) 60%, transparent); }
+.ftc-build-r .p i.on { background: var(--c); box-shadow: 0 0 6px color-mix(in srgb, var(--c) 60%, transparent); }
+.ftc-build-r .d { color: #e9e2f5; min-width: 0; }
+.ftc-build-r .d b { color: #ffe7a8; }
+.ftc-build-r .d small { color: #9b93a8; font-size: 11px; }
+.ftc-build-e { padding: 4px 8px; margin-top: 4px; border-radius: 6px; background: rgba(255,210,58,.06); border: 1px dashed rgba(255,210,58,.35); color: #c9c2b8; }
+.ftc-build-e b { color: #ffe7a8; }
+.ftc-build-e span { white-space: nowrap; }
+.ftc-build-e span.ok { color: #7dffb0; }
+.ftc-build-e.ready { border-style: solid; background: rgba(255,210,58,.14); }
+.ftc-slot.tagc { --c: #b59aff; padding: 2px 6px; flex: none; border-color: color-mix(in srgb, var(--c) 60%, transparent); }
+.ftc-slot.tagc b { color: var(--c); margin-left: 2px; font-size: 10px; letter-spacing: 1px; }
+@media (max-width: 420px) {
+  .ftc-build-r { grid-template-columns: minmax(84px, auto) 30px 42px; }
+  .ftc-build-r .d { grid-column: 1 / -1; }
+}

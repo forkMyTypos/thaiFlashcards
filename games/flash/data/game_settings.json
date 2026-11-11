@@ -80,7 +80,10 @@
       "reroll_allowed": true,
       "skip_allowed": true,
       "skip_gold": 10,
-      "favour_current_build": 0.5
+      "favour_current_build": 0.5,
+      "lean_towards_build": 0.35,
+      "lean_next_tier": 1.5,
+      "lean_evolution": 2
     },
     "notes": "skip gold and build weighting guessed"
   },
@@ -389,5 +392,16 @@
       "strike_pins": 5
     },
     "notes": "😼 Nine Lives: Flash gets back up with revive_hp of his health, can't be hurt for revive_invulnerable seconds, and everything within revive_radius is thrown back (revive_damage + 4 per level). 🎳 A Bowling Paw throw that hits strike_pins or more is a STRIKE."
+  },
+  {
+    "id": "build",
+    "values": {
+      "weapon_element_chance": 0.35,
+      "arc_damage": 0.5,
+      "arc_radius": 90,
+      "arc_targets": 2,
+      "arcs_per_second": 40
+    },
+    "notes": "Round 3 step 4. A weapon with an element (an evolved one) sets alight / chills / arcs on weapon_element_chance of its hits, on top of what tags and items give. An arc hits arc_targets neighbours within arc_radius for arc_damage of the hit; arcs_per_second rations them so huge hordes stay cheap. How offers lean towards the build is in the row `choices` (lean_towards_build per thing already owned with the tag, lean_next_tier when the pick would switch a tier on, lean_evolution for the item an owned weapon needs to evolve)."
   }
 ]

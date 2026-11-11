@@ -14,7 +14,10 @@
     "applies_effects": [
       "burn"
     ],
-    "targeting": "smart"
+    "targeting": "smart",
+    "tags": [
+      "fire"
+    ]
   },
   {
     "id": "chain_lightning",
@@ -35,6 +38,9 @@
       "L4 faster cooldown",
       "L5 can critically strike",
       "L6 jumps to 5"
+    ],
+    "tags": [
+      "storm"
     ]
   },
   {
@@ -52,7 +58,10 @@
     "applies_effects": [
       "freeze"
     ],
-    "targeting": "spread"
+    "targeting": "spread",
+    "tags": [
+      "ice"
+    ]
   },
   {
     "id": "frost_nova",
@@ -69,7 +78,10 @@
       "freeze"
     ],
     "targeting": "area",
-    "min_targets": 5
+    "min_targets": 5,
+    "tags": [
+      "ice"
+    ]
   },
   {
     "id": "meteor_shower",
@@ -86,7 +98,11 @@
     "applies_effects": [
       "burn"
     ],
-    "targeting": "area"
+    "targeting": "area",
+    "tags": [
+      "fire",
+      "boom"
+    ]
   },
   {
     "id": "tornado",
@@ -99,7 +115,10 @@
     "description": "Pulls skeletons together and damages them.",
     "damage_per_second": 8,
     "duration": 4,
-    "radius": 90
+    "radius": 90,
+    "tags": [
+      "storm"
+    ]
   },
   {
     "id": "earthquake",
@@ -114,6 +133,9 @@
     "radius": 180,
     "applies_effects": [
       "knockback"
+    ],
+    "tags": [
+      "boom"
     ]
   },
   {
@@ -127,7 +149,10 @@
     "description": "Fast dark homing projectile.",
     "damage": 30,
     "range": 450,
-    "targeting": "homing"
+    "targeting": "homing",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "soul_drain",
@@ -140,7 +165,10 @@
     "description": "Drains health from nearby enemies and gives it to Flash.",
     "damage_per_second": 12,
     "duration": 3,
-    "radius": 120
+    "radius": 120,
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "death_mark",
@@ -154,7 +182,10 @@
     "damage_taken_bonus": 0.4,
     "duration": 6,
     "targeting": "strongest",
-    "notes": "unlock stage guessed (not in plan)"
+    "notes": "unlock stage guessed (not in plan)",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "plague",
@@ -170,6 +201,9 @@
     "applies_effects": [
       "poison",
       "plague_spread"
+    ],
+    "tags": [
+      "magic"
     ]
   },
   {
@@ -184,7 +218,10 @@
     "damage": 20,
     "defence_reduction": 0.2,
     "duration": 5,
-    "notes": "unlock stage and defence reduction guessed"
+    "notes": "unlock stage and defence reduction guessed",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "soul_explosion",
@@ -199,6 +236,10 @@
     "radius": 100,
     "applies_effects": [
       "soul_explosion"
+    ],
+    "tags": [
+      "magic",
+      "boom"
     ]
   },
   {
@@ -211,7 +252,11 @@
     "unlock_stage": 2,
     "description": "Temporary barrier that absorbs 40 damage.",
     "shield": 40,
-    "duration": 6
+    "duration": 6,
+    "tags": [
+      "magic",
+      "tough"
+    ]
   },
   {
     "id": "healing_aura",
@@ -224,7 +269,11 @@
     "description": "Heals 5 HP per second for 3 seconds.",
     "heal_per_second": 5,
     "duration": 3,
-    "notes": "unlock stage guessed"
+    "notes": "unlock stage guessed",
+    "tags": [
+      "magic",
+      "tough"
+    ]
   },
   {
     "id": "holy_light",
@@ -238,7 +287,11 @@
     "damage": 35,
     "heal": 15,
     "radius": 130,
-    "notes": "unlock stage and heal amount guessed"
+    "notes": "unlock stage and heal amount guessed",
+    "tags": [
+      "magic",
+      "tough"
+    ]
   },
   {
     "id": "time_warp",
@@ -251,7 +304,11 @@
     "description": "Slows nearby enemies by 40% for 3 seconds.",
     "slow": 0.4,
     "duration": 3,
-    "radius": 200
+    "radius": 200,
+    "tags": [
+      "magic",
+      "ice"
+    ]
   },
   {
     "id": "spirit_wolves",
@@ -265,7 +322,11 @@
     "damage": 15,
     "summons": 2,
     "summon_duration": 8,
-    "notes": "summon duration/HP guessed"
+    "notes": "summon duration/HP guessed",
+    "tags": [
+      "magic",
+      "paws"
+    ]
   },
   {
     "id": "ghost_cats",
@@ -279,7 +340,11 @@
     "damage": 20,
     "summons": 2,
     "summon_duration": 8,
-    "notes": "summon duration/HP guessed"
+    "notes": "summon duration/HP guessed",
+    "tags": [
+      "magic",
+      "paws"
+    ]
   },
   {
     "id": "skeleton_conversion",
@@ -292,7 +357,10 @@
     "description": "Temporarily turns an enemy into an ally.",
     "targets": 1,
     "duration": 10,
-    "notes": "conversion duration guessed"
+    "notes": "conversion duration guessed",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "nuclear_hairball",
@@ -311,6 +379,10 @@
     "rarity": "legendary",
     "targeting": "area",
     "description": "Rare and ridiculous. Waits for a real crowd, then coughs up a hairball that goes off like the sun and leaves the ground glowing.",
-    "notes": "Round 3 step 3: Dan's 'nuclear'."
+    "notes": "Round 3 step 3: Dan's 'nuclear'.",
+    "tags": [
+      "fire",
+      "boom"
+    ]
   }
 ]

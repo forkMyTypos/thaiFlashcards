@@ -1,0 +1,332 @@
+[
+  {
+    "id": "warrior",
+    "name": "Warrior",
+    "icon": "⚔️",
+    "group": "Fighters",
+    "weapons": [
+      "great_sword"
+    ],
+    "spells": [],
+    "items": [],
+    "tags": [
+      "paws"
+    ],
+    "effects": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 40
+      },
+      {
+        "stat": "knockback",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "description": "Great Sword, +40 max HP and +20% knockback. Nothing clever: a big sweep and a thick skin."
+  },
+  {
+    "id": "paladin",
+    "name": "Paladin",
+    "icon": "🛡️",
+    "group": "Fighters",
+    "weapons": [
+      "spear"
+    ],
+    "spells": [
+      "magic_shield"
+    ],
+    "items": [],
+    "tags": [
+      "tough"
+    ],
+    "effects": [
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "Spear and Magic Shield, +5% defence. Hard to hurt, and the shield soaks up what gets through."
+  },
+  {
+    "id": "berserker",
+    "name": "Berserker",
+    "icon": "🪓",
+    "group": "Fighters",
+    "weapons": [
+      "throwing_axe"
+    ],
+    "spells": [],
+    "items": [],
+    "tags": [
+      "paws"
+    ],
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.15
+      },
+      {
+        "stat": "lifesteal",
+        "op": "add",
+        "value": 0.015
+      }
+    ],
+    "description": "Throwing Axe, +15% attack speed, and he heals 1.5% of the damage he deals. No spells, no armour."
+  },
+  {
+    "id": "brawler",
+    "name": "Brawler",
+    "icon": "🐾",
+    "group": "Fighters",
+    "weapons": [
+      "bowling_paw",
+      "great_sword"
+    ],
+    "spells": [],
+    "items": [],
+    "tags": [
+      "paws"
+    ],
+    "effects": [
+      {
+        "stat": "max_hp",
+        "op": "add",
+        "value": 30
+      }
+    ],
+    "description": "Bowling Paw and Great Sword, and +30 max HP. No spells: just paws."
+  },
+  {
+    "id": "rogue",
+    "name": "Rogue",
+    "icon": "🗡️",
+    "group": "Rogues and rangers",
+    "weapons": [
+      "twin_daggers"
+    ],
+    "spells": [
+      "shadow_bolt"
+    ],
+    "items": [],
+    "tags": [
+      "paws"
+    ],
+    "effects": [
+      {
+        "stat": "crit_chance",
+        "op": "add",
+        "value": 0.08
+      },
+      {
+        "stat": "dodge",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "Twin Daggers and Shadow Bolt, +8% crit chance and +5% dodge. Fast, fragile, lucky."
+  },
+  {
+    "id": "ranger",
+    "name": "Ranger",
+    "icon": "🏹",
+    "group": "Rogues and rangers",
+    "weapons": [
+      "crossbow"
+    ],
+    "spells": [],
+    "items": [],
+    "tags": [
+      "bolts"
+    ],
+    "effects": [
+      {
+        "stat": "pierce",
+        "op": "add",
+        "value": 1
+      },
+      {
+        "stat": "attack_range",
+        "op": "add_pct",
+        "value": 0.15
+      }
+    ],
+    "description": "Crossbow with +1 pierce and +15% range. Every bolt goes through the first skeleton and into the next."
+  },
+  {
+    "id": "bard",
+    "name": "Bard",
+    "icon": "🎵",
+    "group": "Rogues and rangers",
+    "weapons": [
+      "ricochet_disc"
+    ],
+    "spells": [
+      "bone_curse"
+    ],
+    "items": [],
+    "tags": [
+      "lucky"
+    ],
+    "effects": [
+      {
+        "stat": "gold_gain",
+        "op": "add_pct",
+        "value": 0.1
+      },
+      {
+        "stat": "xp_gain",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "Ricochet Disc and Bone Curse, +10% gold and +10% XP. Not the strongest, but he gets rich and levels fast."
+  },
+  {
+    "id": "fire_cat",
+    "name": "Fire Cat",
+    "icon": "🔥",
+    "group": "Casters",
+    "weapons": [
+      "pocket_cannon"
+    ],
+    "spells": [
+      "fireball"
+    ],
+    "items": [],
+    "tags": [
+      "fire"
+    ],
+    "effects": [
+      {
+        "stat": "ignite_chance",
+        "op": "add",
+        "value": 0.08
+      }
+    ],
+    "description": "Pocket Cannon and Fireball. His hits can set skeletons alight; fire spreads on its own."
+  },
+  {
+    "id": "ice_cat",
+    "name": "Ice Cat",
+    "icon": "🧊",
+    "group": "Casters",
+    "weapons": [
+      "crossbow"
+    ],
+    "spells": [
+      "frost_nova"
+    ],
+    "items": [],
+    "tags": [
+      "ice"
+    ],
+    "effects": [
+      {
+        "stat": "chill_chance",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "description": "Crossbow and Frost Nova. His hits can chill; three cold hits freeze, and frozen skeletons shatter."
+  },
+  {
+    "id": "storm_cat",
+    "name": "Storm Cat",
+    "icon": "⚡",
+    "group": "Casters",
+    "weapons": [
+      "twin_daggers"
+    ],
+    "spells": [
+      "chain_lightning"
+    ],
+    "items": [],
+    "tags": [
+      "storm"
+    ],
+    "effects": [
+      {
+        "stat": "shock_chance",
+        "op": "add",
+        "value": 0.06
+      }
+    ],
+    "description": "Twin Daggers and Chain Lightning. Fast paws, and hits that arc to the next skeleton."
+  },
+  {
+    "id": "necromancer",
+    "name": "Necromancer",
+    "icon": "💀",
+    "group": "Casters",
+    "weapons": [
+      "bone_boomerang"
+    ],
+    "spells": [
+      "soul_drain"
+    ],
+    "items": [],
+    "tags": [
+      "magic"
+    ],
+    "effects": [
+      {
+        "stat": "spell_damage",
+        "op": "add_pct",
+        "value": 0.1
+      }
+    ],
+    "description": "Bone Boomerang and Soul Drain, +10% spell damage. He takes their health and keeps it."
+  },
+  {
+    "id": "cleric",
+    "name": "Cleric",
+    "icon": "✨",
+    "group": "Faith and nature",
+    "weapons": [
+      "skull_crusher"
+    ],
+    "spells": [
+      "holy_light"
+    ],
+    "items": [],
+    "tags": [
+      "tough"
+    ],
+    "effects": [
+      {
+        "stat": "hp_regen",
+        "op": "add",
+        "value": 1
+      }
+    ],
+    "description": "Skull Crusher and Holy Light, +1 HP a second. A mace for them, a light that heals him."
+  },
+  {
+    "id": "druid",
+    "name": "Druid",
+    "icon": "🌿",
+    "group": "Faith and nature",
+    "weapons": [
+      "whirling_blades"
+    ],
+    "spells": [
+      "spirit_wolves"
+    ],
+    "items": [],
+    "tags": [
+      "magic"
+    ],
+    "effects": [
+      {
+        "stat": "duration",
+        "op": "add_pct",
+        "value": 0.2
+      }
+    ],
+    "description": "Whirling Blades and Spirit Wolves, +20% duration. The wolves do half the work."
+  }
+]

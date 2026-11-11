@@ -14,7 +14,8 @@
   "use strict";
   const TYPES = ["weapons", "stats_base", "enemies", "enemy_equipment", "reward_effects", "game_settings",
                  "enemy_scaling", "spawn_curve", "enemy_mix", "elite_modifiers", "upgrades", "items",
-                 "passives", "rarities", "mega_waves", "icons", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock"];
+                 "passives", "rarities", "mega_waves", "icons", "spells", "status_effects", "bosses", "boss_schedule", "shop_stock",
+                 "tags", "kits", "evolutions"];
   const SHARED = ["environments", "effects"];
 
   const PROJ_COLOUR = { returning_projectile: 0xf3ead2, explosive_projectile: 0xff8a3a, bouncing_projectile: 0x7ee0ff,
@@ -80,7 +81,22 @@
     const ICON = {};
     for (const r of data.icons || []) ICON[r.type + "." + r.target] = r.icon;
     const icon = (type, id, d) => ICON[type + "." + id] || d || "";
-    const offerIcon = o => o.kind === "weapon" ? icon("weapons", o.id, "🗡️")
+    const weaponIcon = w => (w.evo && icon("evolutions", w.evo, "")) || icon("weapons", w.id, "🗡️");
+    // ---- the build (Round 3 step 4): tag chips on cards, what a pick would do, the recipe an item completes
+    const tagChip = (id, extra) => { const r = sim.tagRow(id); return r ? `<span class="ftc-chip" style="--c:${r.colour || "#b59aff"}" title="${esc(r.name)}: ${esc(r.description || "")}">${r.icon} ${esc(r.name)}${extra || ""}</span>` : ""; };
+    function buildLine(o) {
+      const out = [], counts = st.build ? st.build.counts : {};
+      // an item Flash already has adds no tag again: its chips are plain
+      const adds = o.kind === "weapon" || o.kind === "spell" || o.kind === "kit" || (o.kind === "item" && !(st.items || {})[o.id]);
+      for (const id of o.tags || []) {
+        const r = sim.tagRow(id); if (!r) continue;
+        const n = counts[id] || 0, hit = adds && o.kind !== "kit" ? (r.tiers || []).find(t => t.count === n + 1) : null;
+        out.push(tagChip(id, adds && o.kind !== "kit" && o.kind !== "evolve" ? ` <b>${n}→${n + 1}</b>` : "") + (hit ? `<span class="ftc-chip up" title="${esc(hit.description || "")}">▲ ${esc(hit.name)}</span>` : ""));
+      }
+      if (o.evo) out.push(`<span class="ftc-chip evo" title="${esc(o.evo.weapon)} at level ${o.evo.min} + this = ${esc(o.evo.into)}">${o.evo.icon} ${esc(o.evo.weapon)} → ${esc(o.evo.into)}${o.evo.level < o.evo.min ? ` (Lv ${o.evo.level}/${o.evo.min})` : ""}</span>`);
+      return out.length ? `<div class="ftc-chips">${out.join("")}</div>` : "";
+    }
+    const offerIcon = o => o.kind === "evolve" ? (o.icon || "✨") : o.kind === "weapon" ? icon("weapons", o.id, "🗡️")
       : o.kind === "wup" ? icon("upgrades", o.id, "⬆️") : o.kind === "item" ? icon("items", o.id, "🎒")
       : o.kind === "passive" ? icon("passives", o.id, "✨") : o.kind === "tail" ? "🐈"
       : o.kind === "spell" ? icon("spells", o.id, "🔮") : o.kind === "sup" ? icon("spells", o.sid, "🔮")
@@ -563,7 +579,7 @@
             for (let i = 0; i < 6; i++) burst(e.x, e.y, e.c || C.explosion, 200); }
         } else if (e.t === "swing") {
           SFX.play("swing");
-          if (A("swing_arcs")) { use("swing_arcs"); fx.push({ k: "arc", x: e.x, y: e.y, a: e.a, r: e.r, life: 0.16, max: 0.16, c: 0xffffff }); }
+          if (A("swing_arcs")) { use("swing_arcs"); fx.push({ k: "arc", x: e.x, y: e.y, a: e.a, r: e.r, w: e.arc || 1.1, life: e.arc ? 0.22 : 0.16, max: e.arc ? 0.22 : 0.16, c: e.arc ? 0xffe7a8 : 0xffffff }); }
         } else if (e.t === "stab") {
           if (A("hit_sparks")) { use("hit_sparks"); fx.push({ k: "spark", x: e.x, y: e.y, r: 7, life: 0.12, max: 0.12, c: 0xffffff }); }
         } else if (e.t === "hurt") {
@@ -635,6 +651,22 @@
           for (let i = 0; i < 3; i++) fx.push({ k: "ring", x: e.x, y: e.y, r: e.r * (0.4 + i * 0.3), life: 0.5 + i * 0.12, max: 0.5 + i * 0.12, c: i ? 0xffd23a : 0xffffff });
           for (let i = 0; i < 30; i++) burst(e.x, e.y, i % 2 ? 0xffd23a : 0xfff4c0, 460);
           shake(250, 0.01);
+        } else if (e.t === "tag") {
+          // a tag's tier switched on
+          SFX.play("levelup");
+          if (A("banners")) { use("banners"); banner(`${e.icon} ${e.name} ${"I".repeat(e.tier)}: ${e.tname}`, e.desc); }
+          else floatText(`${e.icon} ${e.name} ${"I".repeat(e.tier)}: ${e.tname}`);
+        } else if (e.t === "evolved") {
+          SFX.play("boss_down");
+          if (A("banners")) { use("banners"); banner(`${e.icon} ${e.name}!`, `${e.from} evolved`); } else floatText(`${e.icon} ${e.from} evolved: ${e.name}!`);
+          if (st.flash && st.phase === "fight") { for (let i = 0; i < 3; i++) fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 60 + i * 50, life: 0.5 + i * 0.12, max: 0.5 + i * 0.12, c: i ? 0xffd23a : 0xffffff });
+            for (let i = 0; i < 24; i++) burst(st.flash.x, st.flash.y, i % 2 ? 0xffd23a : 0xfff4c0, 380); }
+        } else if (e.t === "arc") {
+          // ⚡ a weapon hit arcing to the skeletons next to it (within the spell-effects budget)
+          if (A("elements") && fx.length < Q().fx && castOk()) { use("elements");
+            for (let i = 1; i < e.pts.length; i++) { const a = e.pts[0], b = e.pts[i];
+              fx.push({ k: "bolt", pts: zigzag(a.x, a.y, b.x, b.y, 12), br: [], life: 0.22, max: 0.22, c: 0xd8c8ff });
+              fx.push({ k: "spark", glow: true, x: b.x, y: b.y, r: 7, life: 0.18, max: 0.18, c: 0xd8c8ff }); } }
         } else if (e.t === "levelup") {
           SFX.play("levelup");
           if (A("level_up_ring")) { use("level_up_ring"); floatText(`LEVEL ${e.level}!`); fx.push({ k: "ring", x: st.flash.x, y: st.flash.y, r: 90, life: 0.5, max: 0.5, c: 0x7cc4ff }); }
@@ -1096,7 +1128,7 @@
         if (f.life <= 0) { fx.splice(k, 1); continue; }
         const a = f.life / f.max;
         if (f.k === "ring") { s.swings.lineStyle(3, f.c, a); s.swings.strokeCircle(f.x, f.y, f.r * (1.15 - a * 0.6)); }
-        else if (f.k === "arc") { s.swings.lineStyle(5, f.c, a * 0.8); s.swings.beginPath(); s.swings.arc(f.x, f.y, f.r * 0.8, f.a - 1.1, f.a + 1.1); s.swings.strokePath(); }
+        else if (f.k === "arc") { s.swings.lineStyle(5, f.c, a * 0.8); s.swings.beginPath(); s.swings.arc(f.x, f.y, f.r * 0.8, f.a - (f.w || 1.1), f.a + (f.w || 1.1)); s.swings.strokePath(); }
         else if (f.k === "spark") { const g2 = f.glow ? s.glowG : s.swings; g2.fillStyle(f.c, a); g2.fillCircle(f.x, f.y, f.r * (1.5 - a * 0.5)); }
         else if (f.k === "warn") {
           s.swings.lineStyle(2, f.c, 0.9); s.swings.strokeCircle(f.x, f.y, f.r);
@@ -2854,7 +2886,7 @@
       const slots = sim.S.slots + (st.tail ? 1 : 0), parts = [];
       for (let i = 0; i < slots; i++) {
         const w = st.weapons[i];
-        parts.push(w ? `<span class="ftc-slot${i >= sim.S.slots ? " tail" : ""}" title="${esc(w.def.name)}"><span class="ftc-ico">${icon("weapons", w.id, "🗡️")}</span><span class="nm"> ${esc(w.def.name)}</span> <b>${w.level}</b></span>`
+        parts.push(w ? `<span class="ftc-slot${i >= sim.S.slots ? " tail" : ""}" title="${esc(w.def.name)}"><span class="ftc-ico">${weaponIcon(w)}</span><span class="nm"> ${esc(w.def.name)}</span> <b>${w.level}</b></span>`
                      : `<span class="ftc-slot empty${i >= sim.S.slots ? " tail" : ""}">${i >= sim.S.slots ? "tail" : "empty"}</span>`);
       }
       if (!st.tail) parts.push(`<span class="ftc-slot empty tail">🔒 tail</span>`);
@@ -2862,6 +2894,11 @@
       for (const sp of st.spells) {
         const cd = sim.spp(sp).cooldown, k = Math.max(0, Math.min(1, 1 - sp.cd / cd));
         parts.push(`<span class="ftc-slot spell" title="${esc(sp.def.name)} · level ${sp.level}"><span class="ftc-ico">${icon("spells", sp.id, "🔮")}</span><b>${sp.level}</b><i style="width:${Math.round(k * 100)}%"></i></span>`);
+      }
+      // tags with a tier on: a small chip each (the break screen has the whole build)
+      if (sim.build) for (const b of sim.build()) if (b.tier > 0) {
+        const on = b.tiers[b.tier - 1];
+        parts.push(`<span class="ftc-slot tagc" style="--c:${b.colour || "#b59aff"}" title="${esc(b.name)} ${b.n}: ${esc(on.name)} · ${esc(on.desc)}">${b.icon}<b>${"I".repeat(b.tier)}</b></span>`);
       }
       bottom.innerHTML = st.phase === "start" ? "" : parts.join("");
       // the boss's health: the big bars across the top (the old thin one stays hidden)
@@ -2966,7 +3003,8 @@
       const c = h("div", "ftc-card");
       c.style.borderColor = rarityColour(o.rarity);
       c.innerHTML = `${o.icon ? `<span class="ftc-cardico">${o.icon}</span>` : ""}<span class="ftc-tag" style="color:${rarityColour(o.rarity)}">${esc(o.tag || o.rarity || "")}</span>
-        <div class="ftc-name">${esc(o.name)}</div><div class="ftc-desc">${esc(o.desc || "")}</div>${o.stats ? `<div class="ftc-stats">${esc(o.stats)}</div>` : ""}`;
+        <div class="ftc-name">${esc(o.name)}</div><div class="ftc-desc">${esc(o.desc || "")}</div>${o.stats ? `<div class="ftc-stats">${esc(o.stats)}</div>` : ""}${buildLine(o)}`;
+      if (o.kind === "evolve") c.classList.add("evolve");
       c.onclick = onClick;
       return c;
     }
@@ -2977,7 +3015,7 @@
       const sr = savedRun();
       if (sr) {
         const box = h("div", "ftc-learn-offer ftc-saved", `<b>💾 Your saved run</b><span>Round ${sr.n.round} · level ${sr.n.level} · 💰 ${sr.n.gold}${sr.show && sr.show.weapons ? ` · ${esc(sr.show.weapons.join(", "))}` : ""}</span>
-          <small>Saved at the end of round ${sr.n.round}, ${ago(sr.at || Date.now())}${sr.show && sr.show.lesson ? ` · ${esc(sr.show.lesson)}` : ""}. Picking a weapon below starts a new run instead.</small>`);
+          <small>Saved at the end of round ${sr.n.round}, ${ago(sr.at || Date.now())}${sr.show && sr.show.lesson ? ` · ${esc(sr.show.lesson)}` : ""}. Picking a class below starts a new run instead.</small>`);
         const row = h("div", "ftc-row"), go = h("button", "ftc-btn big primary", `▶ Continue round ${sr.n.round + 1}`);
         go.onclick = () => continueRun(); row.append(go); box.append(row); overlay.append(box);
       }
@@ -3010,14 +3048,35 @@
         overlay.append(sa);
       }
       const best = SAVE.get().best || {};
-      overlay.append(h("p", "", `Pick a starting weapon. Study to keep Flash alive!${best[mode] ? ` <span class="ftc-small">Best (${mode === "learn" ? "Learn" : "Test"}): round ${best[mode]}</span>` : ""}`));
+      const kits = sim.kits ? sim.kits() : [];
+      overlay.append(h("p", "", `${kits.length ? "Pick a class" : "Pick a starting weapon"}. Study to keep Flash alive!${best[mode] ? ` <span class="ftc-small">Best (${mode === "learn" ? "Learn" : "Test"}): round ${best[mode]}</span>` : ""}`));
       const waiting = bonusWaiting();
       if (waiting.length) overlay.append(h("p", "ftc-learn-prize", `🎁 Study bonus for this run: <b>${icon("items", waiting[0].id, "🎁")} ${esc(waiting[0].name || waiting[0].id)}</b>`));
+      const begin = (wid, kid) => { cRun = { right: 0, wrong: 0, up: {}, best: 0 }; cStreak = 0; saveSet("run", null); sim.startRun(wid, kid); resetRunHud(); };
+      // classes (data type: kits): a weapon, usually a spell, a tag and a perk that point at a build
+      if (kits.length) {
+        const kc = h("div", "ftc-cards ftc-kits"); let grp = null;
+        for (const k of kits) {
+          if ((k.group || "") !== grp && (grp = k.group || "")) kc.append(h("div", "ftc-kit-h", esc(grp)));
+          const has = [...(k.weapons || []).map(id => sim.D.weapons[id] ? `${icon("weapons", id, "🗡️")} ${sim.D.weapons[id].name}` : ""),
+                       ...(k.spells || []).map(id => { const sp = (data.spells || []).find(x => x.id === id); return sp ? `${icon("spells", id, "🔮")} ${sp.name}` : ""; }),
+                       ...(k.items || []).map(id => { const it = (data.items || []).find(x => x.id === id); return it ? `${icon("items", id, "🎒")} ${it.name}` : ""; })].filter(Boolean);
+          const c = card({ kind: "kit", icon: k.icon || "🐈", name: k.name, desc: k.description, rarity: "rare", tag: "Class", stats: has.join(" · "), tags: k.tags }, () => begin(null, k.id));
+          c.dataset.kit = k.id; kc.append(c);
+        }
+        overlay.append(kc);
+      }
       const cards = h("div", "ftc-cards");
       for (const w of sim.startingWeapons())
         cards.append(card({ icon: icon("weapons", w.id, "🗡️"), name: w.name, desc: w.description, rarity: w.rarity, tag: w.behaviour.replace(/_/g, " "),
-          stats: `${w.damage} dmg · ${w.cooldown}s · range ${w.range}` }, () => { cRun = { right: 0, wrong: 0, up: {}, best: 0 }; cStreak = 0; saveSet("run", null); sim.startRun(w.id); resetRunHud(); }));
-      overlay.append(cards);
+          stats: `${w.damage} dmg · ${w.cooldown}s · range ${w.range}`, kind: "kit", tags: w.tags }, () => begin(w.id)));
+      if (kits.length) {
+        // one weapon and nothing else: the old way to start, still there for whoever wants it harder
+        const det = h("details", "ftc-classic"); det.open = !!prefs.classicOpen;
+        det.append(h("summary", "", "…or no class: just one weapon (harder)"), cards);
+        det.ontoggle = () => { prefs.classicOpen = det.open; savePrefs(); };
+        overlay.append(det);
+      } else overlay.append(cards);
       const ob = h("button", "ftc-btn", "⚙ Options"), orow = h("div", "ftc-row"); ob.onclick = () => showOptions(); orow.append(ob); overlay.append(orow);
       if (cardOn()) { const pb = h("button", "ftc-btn", `📊 ${PUN.check}`); pb.onclick = () => showProgress(); orow.append(pb); }
       if (LE) { const jb = h("button", "ftc-btn", "📣 Share my journey"); jb.title = "Your stats as a post ready to paste into x.com"; jb.onclick = () => shareCard("journey"); orow.append(jb); }
@@ -3044,8 +3103,9 @@
     }
     const ago = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? "just now" : m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} day${m < 2880 ? "" : "s"} ago`; };
     // this round's damage, by who did it (Dan: "dps, high dmg..")
-    const SRC_NAME = { flash_dash: "⚡ Flash dash", explosion: "💥 Explosions", thorns: "🌵 Thorns", chain: "⛓ Chains", other: "Other" };
+    const SRC_NAME = { arc: "⚡ Arcs", flash_dash: "⚡ Flash dash", explosion: "💥 Explosions", thorns: "🌵 Thorns", chain: "⛓ Chains", other: "Other" };
     function srcName(id) {
+      const ow = st.owned && st.owned[id]; if (ow) return `${weaponIcon(ow)} ${ow.def.name}`;
       const w = sim.D.weapons[id]; if (w) return `${icon("weapons", id, "🗡️")} ${w.name}`;
       const sp = st.spells.find(x => x.id === id); if (sp) return `${icon("spells", id, "🔮")} ${sp.def.name}`;
       return SRC_NAME[id] || String(id).replace(/_/g, " ").replace(/^./, c => c.toUpperCase());
@@ -3059,6 +3119,25 @@
         `<div class="ftc-dmg-r"><span>${srcName(id)}</span><i style="width:${Math.max(3, v / top * 100)}%"></i><b>${fmtN(v)} · ${Math.round(v / total * 100)}%</b></div>`).join("");
       return box;
     }
+    // 🧬 the build so far: each tag, how many, which tiers are on and what the next one gives;
+    // and for each weapon that can evolve, what it still needs
+    function buildPanel() {
+      const box = h("div", "ftc-build");
+      if (!sim.build) return box;
+      const tags = sim.build().sort((a, b) => b.n - a.n), evos = sim.evolutions();
+      if (!tags.length && !evos.length) return box;
+      const kit = st.kit && sim.kits().find(k => k.id === st.kit);
+      let html = `<div class="ftc-build-h">🧬 Your build${kit ? ` · ${kit.icon || ""} ${esc(kit.name)}` : ""}</div>`;
+      html += tags.map(b => {
+        const pips = b.tiers.map(t => `<i class="${t.on ? "on" : ""}" title="${t.count}: ${esc(t.name)} · ${esc(t.desc)}"></i>`).join("");
+        const on = b.tiers.filter(t => t.on).pop(), nx = b.tiers.find(t => !t.on);
+        return `<div class="ftc-build-r" style="--c:${b.colour || "#b59aff"}" data-tag="${b.id}"><span class="t">${b.icon} ${esc(b.name)}</span><span class="n">${b.n}${b.next ? "/" + b.next : ""}</span><span class="p">${pips}</span>
+          <span class="d">${on ? `<b>${esc(on.name)}</b>` : ""}${on && nx ? " · " : ""}${nx ? `<small>at ${nx.count}: ${esc(nx.desc)}</small>` : on ? ` <small>${esc(on.desc)}</small>` : ""}</span></div>`;
+      }).join("");
+      html += evos.map(e => `<div class="ftc-build-e${e.ready ? " ready" : ""}" data-evo="${e.id}">${e.icon} <b>${esc(e.name)}</b> = ${esc(e.weapon)} <span class="${e.level >= e.min ? "ok" : ""}">Lv ${e.level}/${e.min}</span> + ${e.needs.map(n => `<span class="${n.have ? "ok" : ""}">${icon("items", n.id, "") || icon("spells", n.id, "")} ${esc(n.name)}${n.have ? " ✓" : ""}</span>`).join(" + ")}${e.ready ? " · <b>ready ✨</b>" : ""}</div>`).join("");
+      box.innerHTML = html;
+      return box;
+    }
     function showBreak() {
       if (st.phase === "break") saveRun();
       uiScreen = "break";
@@ -3069,6 +3148,7 @@
       else overlay.append(h("h2", "", `Round ${st.round} cleared!`));
       overlay.append(h("p", "", `${st.kills.toLocaleString()} skeletons · Level ${st.level} · 💰 ${st.gold}${dpsBest ? ` · best ⚔ ${fmtN(dpsBest)}/s` : ""}`));
       overlay.append(dmgBreakdown());
+      overlay.append(buildPanel());
       if (st.offer) {
         overlay.append(h("p", "", `<b>Level up!</b> Pick ${st.pending > 1 ? `(${st.pending} picks)` : "one"}:`));
         const cards = h("div", "ftc-cards");
@@ -3091,7 +3171,7 @@
         st.shop.items.forEach((o, i) => {
           const can = !o.sold && st.gold >= o.price;
           const c = h("button", "ftc-shop-item" + (o.sold ? " sold" : can ? "" : " poor") + (o.row === "vault" ? " vault" : o.kind === "wup" ? " wup" : ""),
-            `${o.tag && o.tag !== "Shop" ? `<span class="ftc-shop-tag">${esc(o.tag)}</span>` : ""}<span class="ftc-cardico">${offerIcon(o)}</span><span class="ftc-name">${esc(o.name)}</span><span class="ftc-desc">${esc(o.desc || "")}</span>
+            `${o.tag && o.tag !== "Shop" ? `<span class="ftc-shop-tag">${esc(o.tag)}</span>` : ""}<span class="ftc-cardico">${offerIcon(o)}</span><span class="ftc-name">${esc(o.name)}</span><span class="ftc-desc">${esc(o.desc || "")}</span>${buildLine(o)}
              <span class="ftc-price">${o.sold ? "bought ✓" : `💰 ${o.price}`}</span>`);
           c.style.borderColor = rarityColour(o.rarity);
           c.disabled = !can;

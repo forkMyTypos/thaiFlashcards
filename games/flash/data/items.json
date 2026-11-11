@@ -12,7 +12,10 @@
         "value": 0.05
       }
     ],
-    "description": "+5% defence"
+    "description": "+5% defence",
+    "tags": [
+      "tough"
+    ]
   },
   {
     "id": "bone_armour",
@@ -27,7 +30,10 @@
         "value": 30
       }
     ],
-    "description": "+30 maximum HP"
+    "description": "+30 maximum HP",
+    "tags": [
+      "tough"
+    ]
   },
   {
     "id": "spiked_vest",
@@ -42,7 +48,11 @@
         "value": 5
       }
     ],
-    "description": "Reflect 5 damage when hit. 10 of them = skeletons regret touching Flash."
+    "description": "Reflect 5 damage when hit. 10 of them = skeletons regret touching Flash.",
+    "tags": [
+      "tough",
+      "paws"
+    ]
   },
   {
     "id": "lucky_helmet",
@@ -57,7 +67,11 @@
         "value": 0.05
       }
     ],
-    "description": "5% chance to ignore damage"
+    "description": "5% chance to ignore damage",
+    "tags": [
+      "tough",
+      "lucky"
+    ]
   },
   {
     "id": "shadow_cloak",
@@ -72,7 +86,10 @@
         "value": 0.03
       }
     ],
-    "description": "+3% dodge"
+    "description": "+3% dodge",
+    "tags": [
+      "tough"
+    ]
   },
   {
     "id": "golden_shield",
@@ -82,7 +99,10 @@
     "stacking": "upgradeable",
     "effects": [],
     "description": "Absorbs 10 damage every 8 seconds",
-    "special": "shield 10 every 8s"
+    "special": "shield 10 every 8s",
+    "tags": [
+      "tough"
+    ]
   },
   {
     "id": "reinforced_boots",
@@ -97,7 +117,10 @@
         "value": 0.05
       }
     ],
-    "description": "+5% resistance to knockback"
+    "description": "+5% resistance to knockback",
+    "tags": [
+      "tough"
+    ]
   },
   {
     "id": "nine_lives_pendant",
@@ -113,7 +136,11 @@
       }
     ],
     "description": "Once per run, Flash gets back up at half health when he would fall (and throws everything back).",
-    "special": "nine lives: once per run per pendant"
+    "special": "nine lives: once per run per pendant",
+    "tags": [
+      "tough",
+      "lucky"
+    ]
   },
   {
     "id": "lucky_bell",
@@ -128,7 +155,10 @@
         "value": 5
       }
     ],
-    "description": "+5 luck. 20 of them = ridiculous luck."
+    "description": "+5 luck. 20 of them = ridiculous luck.",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "magnetic_collar",
@@ -143,7 +173,10 @@
         "value": 0.25
       }
     ],
-    "description": "+25% pickup range"
+    "description": "+25% pickup range",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "golden_fish",
@@ -158,7 +191,10 @@
         "value": 0.1
       }
     ],
-    "description": "+10% gold"
+    "description": "+10% gold",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "catnip_pouch",
@@ -173,7 +209,10 @@
         "value": 0.05
       }
     ],
-    "description": "5% chance enemies become confused and attack each other"
+    "description": "5% chance enemies become confused and attack each other",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "pocket_watch",
@@ -188,7 +227,10 @@
         "value": 0.05
       }
     ],
-    "description": "+5% cooldown reduction"
+    "description": "+5% cooldown reduction",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "hunters_charm",
@@ -203,7 +245,10 @@
         "value": 0.05
       }
     ],
-    "description": "+5% critical chance"
+    "description": "+5% critical chance",
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "experience_amulet",
@@ -218,7 +263,10 @@
         "value": 0.1
       }
     ],
-    "description": "+10% XP gained"
+    "description": "+10% XP gained",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "treasure_map",
@@ -233,7 +281,10 @@
         "value": 0.1
       }
     ],
-    "description": "+10% rare loot chance"
+    "description": "+10% rare loot chance",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "silver_whiskers",
@@ -248,7 +299,10 @@
         "value": 0.15
       }
     ],
-    "description": "+15% pickup range"
+    "description": "+15% pickup range",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "merchants_ring",
@@ -263,7 +317,10 @@
         "value": 0.05
       }
     ],
-    "description": "-5% shop prices"
+    "description": "-5% shop prices",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "sharpening_stone",
@@ -278,7 +335,10 @@
         "value": 0.1
       }
     ],
-    "description": "+10% weapon damage"
+    "description": "+10% weapon damage",
+    "tags": [
+      "paws"
+    ]
   },
   {
     "id": "berserker_band",
@@ -293,7 +353,10 @@
         "value": 0.08
       }
     ],
-    "description": "+8% attack speed"
+    "description": "+8% attack speed",
+    "tags": [
+      "paws"
+    ]
   },
   {
     "id": "critical_lens",
@@ -308,7 +371,10 @@
         "value": 0.2
       }
     ],
-    "description": "+20% critical damage"
+    "description": "+20% critical damage",
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "heavyweight_charm",
@@ -323,7 +389,11 @@
         "value": 0.2
       }
     ],
-    "description": "+20% knockback"
+    "description": "+20% knockback",
+    "tags": [
+      "paws",
+      "boom"
+    ]
   },
   {
     "id": "rangefinder",
@@ -338,7 +408,10 @@
         "value": 0.1
       }
     ],
-    "description": "+10% weapon range"
+    "description": "+10% weapon range",
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "explosive_trinket",
@@ -353,7 +426,11 @@
         "value": 0.05
       }
     ],
-    "description": "5% chance attacks explode. 15 of them = the screen is a safety hazard."
+    "description": "5% chance attacks explode. 15 of them = the screen is a safety hazard.",
+    "tags": [
+      "boom",
+      "fire"
+    ]
   },
   {
     "id": "piercing_fang",
@@ -368,7 +445,10 @@
         "value": 1
       }
     ],
-    "description": "+1 projectile pierce"
+    "description": "+1 projectile pierce",
+    "tags": [
+      "bolts"
+    ]
   },
   {
     "id": "rapid_gear",
@@ -383,7 +463,11 @@
         "value": 0.15
       }
     ],
-    "description": "+15% projectile speed"
+    "description": "+15% projectile speed",
+    "tags": [
+      "bolts",
+      "storm"
+    ]
   },
   {
     "id": "chaos_orb",
@@ -398,7 +482,10 @@
         "value": 0.05
       }
     ],
-    "description": "5% chance to trigger a random effect"
+    "description": "5% chance to trigger a random effect",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "power_crystal",
@@ -413,7 +500,10 @@
         "value": 0.1
       }
     ],
-    "description": "+10% spell damage"
+    "description": "+10% spell damage",
+    "tags": [
+      "magic"
+    ]
   },
   {
     "id": "vampire_fang",
@@ -428,7 +518,10 @@
         "value": 0.02
       }
     ],
-    "description": "2% lifesteal. 10 of them = a tiny furry vampire."
+    "description": "2% lifesteal. 10 of them = a tiny furry vampire.",
+    "tags": [
+      "paws"
+    ]
   },
   {
     "id": "golden_cat_statue",
@@ -448,7 +541,10 @@
         "value": 0.05
       }
     ],
-    "description": "+5% damage and +5% XP"
+    "description": "+5% damage and +5% XP",
+    "tags": [
+      "lucky"
+    ]
   },
   {
     "id": "thunder_collar",
@@ -468,7 +564,10 @@
         "value": 0.08
       }
     ],
-    "description": "+20% attack speed, +8% crit chance"
+    "description": "+20% attack speed, +8% crit chance",
+    "tags": [
+      "storm"
+    ]
   },
   {
     "id": "dragon_whisker",
@@ -488,7 +587,10 @@
         "value": 0.15
       }
     ],
-    "description": "+25% damage, +15% area"
+    "description": "+25% damage, +15% area",
+    "tags": [
+      "fire"
+    ]
   },
   {
     "id": "moonlit_bell",
@@ -508,7 +610,11 @@
         "value": 0.25
       }
     ],
-    "description": "+12% cooldown reduction, +25% spell damage"
+    "description": "+12% cooldown reduction, +25% spell damage",
+    "tags": [
+      "magic",
+      "ice"
+    ]
   },
   {
     "id": "iron_fur",
@@ -528,7 +634,10 @@
         "value": 0.12
       }
     ],
-    "description": "+30% max HP, +12% defence"
+    "description": "+30% max HP, +12% defence",
+    "tags": [
+      "tough"
+    ]
   },
   {
     "id": "crown_of_whiskers",
@@ -553,7 +662,11 @@
         "value": 0.5
       }
     ],
-    "description": "+40% damage, +20% attack speed, +50% crit damage"
+    "description": "+40% damage, +20% attack speed, +50% crit damage",
+    "tags": [
+      "paws",
+      "lucky"
+    ]
   },
   {
     "id": "comet_tail",
@@ -578,6 +691,123 @@
         "value": 0.2
       }
     ],
-    "description": "+1 projectile, +30% projectile speed, +20% area"
+    "description": "+1 projectile, +30% projectile speed, +20% area",
+    "tags": [
+      "bolts",
+      "fire"
+    ]
+  },
+  {
+    "id": "ember_collar",
+    "name": "Ember Collar",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "ignite_chance",
+        "op": "add",
+        "value": 0.08
+      }
+    ],
+    "description": "Weapon hits have an 8% chance to set skeletons alight",
+    "tags": [
+      "fire"
+    ]
+  },
+  {
+    "id": "chilli_treat",
+    "name": "Chilli Treat",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "burn_power",
+        "op": "add_pct",
+        "value": 0.3
+      }
+    ],
+    "description": "Burns hurt 30% more",
+    "tags": [
+      "fire"
+    ]
+  },
+  {
+    "id": "frost_bell",
+    "name": "Frost Bell",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "chill_chance",
+        "op": "add",
+        "value": 0.1
+      }
+    ],
+    "description": "Weapon hits have a 10% chance to chill",
+    "tags": [
+      "ice"
+    ]
+  },
+  {
+    "id": "snow_globe",
+    "name": "Snow Globe",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "frozen_bonus",
+        "op": "add",
+        "value": 0.25
+      }
+    ],
+    "description": "Frozen skeletons take 25% more damage",
+    "tags": [
+      "ice"
+    ]
+  },
+  {
+    "id": "static_fur",
+    "name": "Static Fur",
+    "category": "accessory",
+    "rarity": "common",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "shock_chance",
+        "op": "add",
+        "value": 0.06
+      }
+    ],
+    "description": "Weapon hits have a 6% chance to arc to two neighbours",
+    "tags": [
+      "storm"
+    ]
+  },
+  {
+    "id": "lightning_rod",
+    "name": "Lightning Rod",
+    "category": "accessory",
+    "rarity": "uncommon",
+    "stacking": "stackable",
+    "effects": [
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.08
+      },
+      {
+        "stat": "shock_chance",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "+8% attack speed, +5% chance to arc",
+    "tags": [
+      "storm"
+    ]
   }
 ]
