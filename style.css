@@ -1794,6 +1794,43 @@ body.mode-card .info .probbtn,body.mode-quiz .info .probbtn{display:none}
 .sheet-body .bkhow{font-size:0.8125rem;color:var(--text2);display:flex;gap:6px;align-items:center}
 .sheet-body .bkmsg[hidden]{display:none}
 .sheet-body .bkmsg{color:var(--ok)}
+/* a grammar lesson: the "How it works" box, and its grammar words picked out of every example */
+.gbox{margin:38px 0 16px;border:1px solid var(--edge);border-left:3px solid var(--accent);border-radius:10px;background:var(--s2);padding:0 14px}
+.gbox summary{cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:10px 0;list-style:none}
+.gbox summary::-webkit-details-marker{display:none}
+.gbox summary::before{content:"\25B8";color:var(--accent);font-size:0.8rem}
+.gbox[open] summary::before{content:"\25BE"}
+.gbox .gk{font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--accent2)}
+.gbox .gpat{font-size:0.9375rem;color:var(--bright);font-weight:600}
+.gbox .gbody{padding:0 0 12px;font-size:0.9375rem;color:var(--text2);line-height:1.65}
+.gbox .gbody p{margin:0 0 9px}
+.gbox .gmis{border-top:1px dashed var(--edge);padding-top:9px}
+.gbox .gmis b{color:var(--bright)}
+.gbox .gnote{font-size:0.75rem;color:var(--dim);margin:0}
+body.mode-card .gbox,body.mode-quiz .gbox{display:none}
+.tw.gt{background:var(--accentbg);border-radius:4px;box-shadow:0 0 0 2px var(--accentbg),inset 0 -2px 0 var(--accent)}
+/* the alphabet page */
+.abc .ab-how{font-size:0.875rem}
+.abc .ab-jump{font-size:0.8125rem;color:var(--dim);margin:-4px 0 6px}
+.abc .ab-jump a{color:var(--accent2);text-decoration:none}
+.abc .ab-c{font-size:0.75rem;color:var(--faint);margin-left:6px;letter-spacing:0}
+.ab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-bottom:8px}
+.ab-t{background:var(--s3);border:1px solid var(--edge);border-radius:11px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.ab-t.obs{opacity:.55}
+.ab-x{font-size:2.6rem;line-height:1.15;color:var(--bright);font-weight:500}
+.ab-n{font-size:1rem;color:var(--text)}
+.ab-g{font-size:0.75rem;color:var(--muted)}
+.ab-s{font-size:0.8125rem;color:var(--text2);margin-top:2px}
+.ab-s b{color:var(--accent2);font-weight:600}
+.ab-note{font-size:0.6875rem;color:var(--dim);line-height:1.35}
+.ab-e{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);min-width:0}
+.ab-e img{width:40px;height:40px;object-fit:cover;border-radius:6px;flex:none}
+.ab-e .play{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--edge);background:var(--s2);color:var(--accent2);cursor:pointer;font-size:0.7rem}
+.ab-ew{display:flex;flex-direction:column;min-width:0;font-size:1rem;line-height:1.25}
+.ab-ew a{color:var(--text);text-decoration:none}
+.ab-ew a:hover{color:var(--accent2)}
+.ab-er{font-size:0.75rem}
+.ab-em{font-size:0.6875rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ---------------------------------------------------------------- game mode
    🎮 beside the study modes opens game mode (Flash the Cat in a column, the
