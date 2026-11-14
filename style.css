@@ -1892,3 +1892,74 @@ body.game-needquiz.mode-quiz .slider .md[data-mode="quiz"]{animation:none}
 .wbauto select{background:var(--s1,#1a1d29);color:var(--text);border:1px solid var(--line,#333);border-radius:8px;padding:2px 4px;font:inherit}
 .wbauto-n{color:var(--dim,#9aa);font-variant-numeric:tabular-nums}
 body.has-wbauto .wbpop{bottom:62px}
+
+/* ---- the main use of a word with several meanings (app/main_use.py) ----
+   The main use sits where the meaning sits; the other meanings follow it,
+   quieter, and then the one sentence chosen to show it. */
+.info .also,.lmain .also{font-size:0.8438rem;color:var(--muted);margin-top:4px;line-height:1.45}
+.info .also b,.lmain .also b{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-right:6px}
+.info .mu,.lmain .mu{margin-top:14px;padding:12px 14px;border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:10px;background:var(--s2,transparent)}
+.info .mu .muk,.lmain .mu .muk{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-bottom:6px}
+.info .mu .sx,.lmain .mu .sx{font-size:1.25rem;color:var(--text);line-height:1.5}
+.info .mu .sr,.lmain .mu .sr{font-size:1.0625rem;color:var(--accent2);margin-top:2px;line-height:1.4}
+.info .mu .st,.lmain .mu .st{font-size:0.9062rem;color:var(--muted);margin-top:2px}
+.info .mu .splay,.lmain .mu .splay{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.info .mu .splay button,.lmain .mu .splay button{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);padding:5px 11px;border-radius:8px;font-size:0.8125rem;cursor:pointer}
+.info .mu .splay button:hover,.lmain .mu .splay button:hover{border-color:var(--accent);color:var(--bright)}
+body.hide-mean .info .also,body.hide-mean .info .mu .st{display:none}
+body.hide-sound .info .mu .splay{display:none}
+body.hide-rom .info .mu .sr{display:none}
+
+/* ---- mouth and tongue (app/mouth.py, mouth.js) ---- */
+.mouthsvg{display:block;width:100%;height:auto}
+.mouthsvg path,.mouthsvg circle{vector-effect:non-scaling-stroke}
+.mouthsvg .mf{fill:none;stroke:var(--mo-line,#c9ced8);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mouthsvg .mlip{fill:var(--mo-skin,#d98f7e);stroke:var(--mo-lip-edge,#a8604f);stroke-width:1.5;stroke-linejoin:round}
+.mouthsvg .mn{fill:var(--mo-nose,rgba(120,160,230,.10))}
+.mouthsvg .mp{fill:none;stroke:var(--mo-roof,#9aa3b5);stroke-width:5;stroke-linecap:round}
+.mouthsvg .mvel{stroke:var(--mo-velum,#b48ead)}
+.mouthsvg .mtooth{fill:var(--mo-tooth,#f2f0ea);stroke:var(--mo-line,#c9ced8);stroke-width:1}
+.mouthsvg .mt{fill:var(--mo-tongue,#e0707e);stroke:var(--mo-tongue-edge,#b84a5a);stroke-width:1.5}
+.mouthsvg .mg{fill:none;stroke:var(--mo-tongue,#e0707e);stroke-width:1.5;stroke-dasharray:4 3;opacity:.8}
+.mouthsvg .mc{fill:var(--mo-hit,rgba(255,196,0,.35));stroke:var(--mo-hit-edge,#ffc400);stroke-width:2}
+.mouthsvg .mc.near{fill:none;stroke-dasharray:3 2}
+.mouthsvg .ma{fill:none;stroke:var(--mo-air,#5fb3ff);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mouthsvg .mnose{stroke-dasharray:5 4}
+.mouthsvg .mhiss{stroke-dasharray:2 3}
+.mouthsvg .mflow{opacity:.55}
+.mouthsvg .mglide{stroke:var(--mo-tongue-edge,#b84a5a)}
+.mouthsvg .mhold{fill:none;stroke:var(--mo-hit-edge,#ffc400);stroke-width:3;stroke-linecap:round}
+.mouthsvg .mlx{fill:none;stroke:var(--mo-line,#c9ced8);stroke-width:2;stroke-linecap:round}
+.mouthsvg .mv{fill:none;stroke:var(--mo-air,#5fb3ff);stroke-width:2;stroke-linecap:round}
+html.light-pre body,body.light{--mo-line:#55606f;--mo-roof:#7d8797;--mo-tooth:#fff;--mo-nose:rgba(60,110,200,.10);
+  --mo-hit:rgba(230,160,0,.30);--mo-hit-edge:#c98a00;--mo-air:#1f6fd0}
+.mouthbox{margin-top:10px}
+.mouthbtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);padding:5px 11px;
+  border-radius:8px;font-size:0.8125rem;cursor:pointer}
+.mouthbtn:hover,.mouthbtn[aria-expanded="true"]{border-color:var(--accent);color:var(--bright)}
+.mouthbox.loading .mouthbtn{opacity:.6;cursor:progress}
+.mouthpanel{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:12px;
+  display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 16px;align-items:start;max-width:620px}
+.mouthpanel[hidden]{display:none}
+.mouthpanel.mfail{display:block;color:var(--muted);font-size:.875rem}
+.mouthchips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.mouthchips .mchip{background:var(--s2,transparent);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;padding:2px 9px;font-size:.9375rem;cursor:pointer;min-width:30px}
+.mouthchips .mchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.mouthchips .msep{color:var(--dim);padding:0 2px}
+.mouthfig{grid-row:2/4}
+.mouthtxt .mname{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.mouthtxt .mname b{font-size:1.375rem;color:var(--bright)}
+.mouthtxt .mthai{font-size:1.0625rem;color:var(--text)}
+.mouthtxt .mtags{font-size:.6875rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-weight:700}
+.mouthtxt .mtip{margin-top:6px;color:var(--text2);font-size:.9375rem;line-height:1.45}
+.mouthnav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mouthnav button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);border-radius:8px;
+  padding:4px 11px;font-size:.875rem;cursor:pointer}
+.mouthnav .mprev,.mouthnav .mnext{font-size:1.125rem;line-height:1;padding:3px 12px}
+.mouthnav .mcount{font-size:.8125rem;color:var(--muted);min-width:42px;text-align:center}
+@media (max-width:560px){.mouthpanel{grid-template-columns:1fr}.mouthfig{grid-row:auto;max-width:260px}}
