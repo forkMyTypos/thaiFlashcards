@@ -14,6 +14,10 @@
   "use strict";
   var me = document.currentScript && document.currentScript.src;
   var BASE = me ? me.replace(/mouth\.js(\?.*)?$/, "") : "";
+  // The drawings' version, filled in when the site is built (app/course.py).
+  // It lives here and not in the pages, so redrawing a mouth sends mouth.js
+  // and mouth.json — not every word page on the site.
+  var DATA_V = "?v=54be160e";
   var KEY = "wb.mouth.open";
   var data = null, loading = null;
 
@@ -22,7 +26,7 @@
 
   function load() {
     if (data) return Promise.resolve(data);
-    if (!loading) loading = fetch(BASE + "mouth.json").then(function (r) {
+    if (!loading) loading = fetch(BASE + "mouth.json" + DATA_V).then(function (r) {
       if (!r.ok) throw new Error("mouth.json " + r.status);
       return r.json();
     }).then(function (j) { data = j.sounds; return data; });
