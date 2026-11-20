@@ -1480,7 +1480,11 @@ body.hide-tone .tw .tm{display:none}
 #next.tonext{background:var(--accent);color:#fff;border-color:var(--accent)}
 .qnextlesson{display:inline-block;margin-left:8px;padding:8px 14px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
 /* The lesson's introduction: readable text for the reader and the search engine. */
-.aboutlesson{display:none;max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
+/* Dan: "is our about lesson text in a good place for seo?" It was not: it was
+   display:none, and a search engine discounts text nobody can see. Now it sits
+   under the word in Read it, and steps aside in the flashcard and quiz modes. */
+body.mode-card .aboutlesson,body.mode-quiz .aboutlesson{display:none}
+.aboutlesson{max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
 .aboutlesson h2{font-size:1rem;color:var(--text);margin:0 0 8px}
 .aboutlesson p{margin:0 0 10px}
 .aboutlesson .aboutlinks a{color:var(--accent2);text-decoration:none}
@@ -1516,6 +1520,8 @@ html.light-pre body,body.light{--tone-mid:#4f6475;--tone-low:#1f62d0;--tone-fall
 /* "about" — a small link beside the lesson's title; the text opens in a pop-up */
 .slider .name{display:flex;align-items:baseline;gap:10px}
 .slider .name .nt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* the lesson's title is the page's main heading, but looks like the rest of the bar */
+.slider .name .lt{display:inline;font:inherit;color:inherit;margin:0;padding:0}
 .slider .name .aboutlink{flex:none;font-size:0.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent2);text-decoration:none;border:1px solid var(--edge);border-radius:999px;padding:1px 8px}
 .slider .name .aboutlink:hover{border-color:var(--accent);color:var(--bright)}
 .aboutpop{position:fixed;z-index:60;width:min(460px,92vw);max-height:70vh;overflow:auto;padding:14px 16px;border:1px solid var(--edge);border-radius:12px;background:var(--s1,var(--s2));box-shadow:0 10px 30px rgba(0,0,0,.4);color:var(--text2);font-size:0.875rem;line-height:1.6}
@@ -1700,6 +1706,11 @@ body.mode-card .left .picedit,body.mode-quiz .left .picedit{display:none}
 .qsent{font-size:1.6rem;line-height:1.6;display:flex;flex-wrap:wrap;gap:2px 4px;justify-content:center}
 .qsent .qgap{display:inline-block;min-width:3.2em;border-bottom:3px solid var(--accent);color:transparent}
 .qtr{font-size:0.9375rem;color:var(--muted);text-align:center;margin-top:8px}
+/* fill the gap: the sentence's romanization, the same word blanked, and each
+   choice's romanization under its Thai */
+.qsrom{font-size:1rem;color:var(--accent2);text-align:center;margin-top:6px;line-height:1.6}
+.qsrom .qgap{display:inline-block;min-width:3em;border-bottom:2px solid var(--accent);color:transparent;margin:0 3px}
+.qopt .qtext .qorom{font-size:0.875rem;color:var(--accent2);font-weight:500}
 .qtr.qbigtr{font-size:1.25rem;color:var(--text)}
 /* typing first */
 .qtyp{display:flex;flex-direction:column;gap:8px;margin:2px 0 8px}

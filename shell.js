@@ -2452,14 +2452,14 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   var tn=card.querySelector('.tone .tname');d.tone=tn?qtxt(tn).toLowerCase():'';
   if(isS){
    var tk=[].map.call(card.querySelectorAll('.th .tw'),qtxt).filter(Boolean);
-   if(tk.length)d.sents.push({toks:tk,text:d.word,tr:d.mean,snd:d.snd});
+   if(tk.length)d.sents.push({toks:tk,text:d.word,tr:d.mean,snd:d.snd,rom:d.rom});
   }
   card.querySelectorAll('.sents .sent').forEach(function(s){
    var st=s.querySelector('.stext:not([hidden])');if(!st)return;
    var sx=st.querySelector('.sx');if(!sx)return;
    var toks=[].map.call(sx.querySelectorAll('.tw'),qtxt).filter(Boolean);
-   var tr=st.querySelector('.st'),pl=st.querySelector('[data-play]');
-   d.sents.push({toks:toks,text:qtxt(sx),tr:tr?qtxt(tr):'',snd:pl?pl.dataset.play:null});
+   var tr=st.querySelector('.st'),pl=st.querySelector('[data-play]'),sr=st.querySelector('.sr');
+   d.sents.push({toks:toks,text:qtxt(sx),tr:tr?qtxt(tr):'',snd:pl?pl.dataset.play:null,rom:sr?qtxt(sr):''});
   });
   card._qd=d;return d;
  }
@@ -2541,6 +2541,39 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   if(slow)h+='<button type="button" class="qplay" data-play="'+esc(slow)+'" aria-label="Play it slowly">🐢 Slowly</button>';
   return h?'<div class="qplays">'+h+'</div>':'';
  }
+ // Fill the gap, for a reader who can't read Thai yet. Dan: "with the missing
+ // words in the sentences, we need the romanization of the words. We can't
+ // read Thai atm." Each choice gets its romanization under the Thai, and the
+ // sentence its romanization with the same word blanked out - only when that
+ // word can be found in it; otherwise the line would give the answer away.
+ // Both follow the Show choice: no romanization there, none here.
+ function romShown(){var a=(sides&&sides.front||[]).concat(sides&&sides.back||[]);return a.indexOf('rom')>=0;}
+ function romFirst(r){return String(r||'').split(/\s*[\/;]\s*/)[0].trim();}
+ function romGapLine(srom,wrom){
+  srom=String(srom||'').normalize('NFC');wrom=romFirst(wrom).normalize('NFC');
+  if(!srom||!wrom)return null;
+  var parts=wrom.split(/[-\s]+/).filter(Boolean).map(function(x){return x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');});
+  if(!parts.length)return null;
+  // a whole word first (spaces or punctuation round it); only then one joined
+  // to its neighbours by hyphens, so กับ (gàp) is not found inside กับข้าว (gàp-khâao)
+  var m=null;
+  ['[\\s.,!?…"“”\'‘’()]','[\\s\\-.,!?…"“”\'‘’()]'].some(function(edge){
+   m=new RegExp('(^|'+edge+')('+parts.join('[-\\s]+')+')(?=$|'+edge+')','i').exec(srom);return !!m;});
+  if(!m)return null;
+  var at=m.index+m[1].length;
+  return {before:srom.slice(0,at),after:srom.slice(at+m[2].length)};
+ }
+ function romGapHtml(srom,wrom){
+  if(!romShown())return '';
+  var g=romGapLine(srom,wrom);
+  return g?'<div class="qsrom">'+esc(g.before)+'<span class="qgap">＿＿</span>'+esc(g.after)+'</div>':'';
+ }
+ function thaiRomOpt(key,word,rom,lang){return {key:key,draw:function(el){
+  var x=document.createElement('span');x.className='f-word qthai';if(lang)x.setAttribute('lang',lang);
+  x.textContent=word;el.appendChild(x);
+  if(rom&&romShown()){var r=document.createElement('span');r.className='f-rom qorom';r.textContent=romFirst(rom);el.appendChild(r);}
+ }};}
+ function romOfWord(w){for(var i=0;i<cards.length;i++){var c=cdata(cards[i]);if(c.word===w)return c.rom;}return '';}
  function specFor(kind,card,meIdx){
   var d=cdata(card),seed=at+1,s={kind:kind,opts:[],right:'c'+meIdx},ws;
   var cardOpt=function(k,side){return {key:'c'+k,draw:function(el){faceInto(el,cards[k],side);}};};
@@ -2580,24 +2613,23 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    s.face=function(el){
     var h='<div class="qsent" lang="'+lang+'">',done=false;
     sn.toks.forEach(function(t){h+=(!done&&t===d.word)?(done=true,'<span class="qgap">＿＿</span>'):'<span>'+esc(t)+'</span>';});
-    el.innerHTML=h+'</div>'+(sn.tr?'<div class="qtr"></div>':'');
+    el.innerHTML=h+'</div>'+romGapHtml(sn.rom,d.rom)+(sn.tr?'<div class="qtr"></div>':'');
     if(sn.tr)el.querySelector('.qtr').textContent=sn.tr;
    };
    ws=others(meIdx,wrongs,seed,function(i){return cdata(cards[i]).word;});
-   s.opts=ws.concat([meIdx]).map(function(k){return textOpt(k,cdata(cards[k]).word,'f-word qthai',lang);});
+   s.opts=ws.concat([meIdx]).map(function(k){var c=cdata(cards[k]);return thaiRomOpt('c'+k,c.word,c.rom,lang);});
    s.typeThai=d.word;s.typeRom=d.rom;s.after=sn;
   }else if(kind==='ggap'){
    var sg=d.sents[0],gw=gwIn(sg.toks);
    s.face=function(el){
     var h='<div class="qsent" lang="'+lang+'">',done=false;
     sg.toks.forEach(function(t){h+=(!done&&t===gw)?(done=true,'<span class="qgap">＿＿</span>'):'<span>'+esc(t)+'</span>';});
-    el.innerHTML=h+'</div>'+(sg.tr?'<div class="qtr"></div>':'');
+    el.innerHTML=h+'</div>'+romGapHtml(sg.rom,romOfWord(gw))+(sg.tr?'<div class="qtr"></div>':'');
     if(sg.tr)el.querySelector('.qtr').textContent=sg.tr;
    };
    s.right='g:'+gw;
    s.opts=seeded(GW.filter(function(w){return w!==gw;}),seed).slice(0,wrongs).concat([gw]).map(function(w){
-    return {key:'g:'+w,draw:function(el){var x=document.createElement('span');x.className='f-word qthai';
-     x.setAttribute('lang',lang);x.textContent=w;el.appendChild(x);}};});
+    return thaiRomOpt('g:'+w,w,romOfWord(w),lang);});
    s.typeThai=gw;s.after=sg;
   }else if(kind==='order'){
    var so=null,j;
