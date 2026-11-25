@@ -1,17 +1,18 @@
 # Learn Thai with Flashcards
 
-> A free Thai vocabulary course with 463 lessons, 4,778 words and 2,622 example sentences. Words are shown in Thai script with romanization and an English meaning, many have audio, and each lesson can be studied as flashcards or a quiz. No sign-up.
+> A free Thai vocabulary course with 484 lessons, 4,858 words and 2,622 example sentences. Words are shown in Thai script with romanization and an English meaning, many have audio, and each lesson can be studied as flashcards or a quiz. No sign-up.
 
 ## Start here
 
 - [How the course works](https://thai.inaflash.cards/start/): what it is, how a lesson works, where to begin
-- [Questions and connections](https://thai.inaflash.cards/01-questions-and-connections/): the first lesson
+- [Introducing yourself](https://thai.inaflash.cards/465-introducing-yourself/): the first lesson
 - [All lessons](https://thai.inaflash.cards/lessons/): every lesson, searchable
 
 ## Topics
 
+- [Crash Course](https://thai.inaflash.cards/c-crash-course/): 17 lessons · 340 words
 - [Support Words](https://thai.inaflash.cards/c-support-words/): 4 lessons · 55 words
-- [Beginner Core Vocabulary — Everyday nouns](https://thai.inaflash.cards/c-beginner-core-vocabulary-everyday-nouns/): 1 lesson · 8 words
+- [Beginner Core Vocabulary — Everyday nouns](https://thai.inaflash.cards/c-beginner-core-vocabulary-everyday-nouns/): 4 lessons · 31 words
 - [Beginner](https://thai.inaflash.cards/c-beginner/): Everyday vocabulary, one topic at a time.
 - [Video lessons](https://thai.inaflash.cards/c-video-lessons/): Words taken from real videos, timed to the second they are said.
 - [Top Words](https://thai.inaflash.cards/c-top-words/): 1 lesson · 30 words
