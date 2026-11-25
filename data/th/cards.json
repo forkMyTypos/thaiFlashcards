@@ -233,6 +233,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000001"
   ],
   "images": [
@@ -479,8 +480,10 @@
   "lessons": [
    "TH_L000433",
    "TH_L000007",
+   "TH_L000463",
    "TH_L000018",
-   "TH_L000001"
+   "TH_L000001",
+   "TH_L000479"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000006.jpg"
@@ -644,7 +647,8 @@
    "TH_L000003",
    "TH_L000018",
    "TH_L000001",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000008.jpg"
@@ -724,6 +728,7 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000001",
    "TH_L000353"
   ],
@@ -970,7 +975,8 @@
    "TH_L000018",
    "TH_L000001",
    "TH_L000182",
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000012.jpg"
@@ -1051,7 +1057,8 @@
   "lessons": [
    "TH_L000003",
    "TH_L000018",
-   "TH_L000001"
+   "TH_L000001",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000013.jpg"
@@ -1246,6 +1253,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000001"
   ],
   "images": [
@@ -1555,6 +1563,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000001"
   ],
   "images": [
@@ -1702,6 +1711,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000001"
   ],
   "images": [
@@ -1885,6 +1895,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000001"
   ],
   "images": [
@@ -1965,6 +1976,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000001"
   ],
   "images": [
@@ -2044,7 +2056,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000031.jpg"
@@ -2124,7 +2137,8 @@
   ],
   "lessons": [
    "TH_L000004",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000465"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000032.jpg"
@@ -2203,7 +2217,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000033.jpg"
@@ -2282,7 +2297,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000034.jpg"
@@ -2361,7 +2377,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -2439,6 +2456,7 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000043",
    "TH_L000018",
    "TH_L000461"
@@ -2522,7 +2540,8 @@
   "lessons": [
    "TH_L000014",
    "TH_L000018",
-   "TH_L000459"
+   "TH_L000459",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000037.jpg"
@@ -2601,7 +2620,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -2793,7 +2813,8 @@
   "lessons": [
    "TH_L000005",
    "TH_L000018",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000471"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000041.jpg"
@@ -2906,7 +2927,9 @@
   ],
   "lessons": [
    "TH_L000006",
-   "TH_L000459"
+   "TH_L000463",
+   "TH_L000459",
+   "TH_L000482"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000043.jpg"
@@ -2987,7 +3010,9 @@
   "lessons": [
    "TH_L000433",
    "TH_L000007",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -3064,7 +3089,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -3141,7 +3167,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -3360,7 +3387,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -3439,7 +3467,8 @@
   "lessons": [
    "TH_L000002",
    "TH_L000018",
-   "TH_L000459"
+   "TH_L000459",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000051.jpg"
@@ -3520,7 +3549,9 @@
   "lessons": [
    "TH_L000433",
    "TH_L000007",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -3792,7 +3823,8 @@
   "lessons": [
    "TH_L000005",
    "TH_L000018",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000471"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000056.jpg"
@@ -3901,10 +3933,12 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000042",
    "TH_L000018",
    "TH_L000292",
-   "TH_L000461"
+   "TH_L000461",
+   "TH_L000478"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000058.jpg"
@@ -4017,7 +4051,8 @@
   "lessons": [
    "TH_L000005",
    "TH_L000018",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000465"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000060.jpg"
@@ -4209,7 +4244,9 @@
   ],
   "lessons": [
    "TH_L000007",
-   "TH_L000461"
+   "TH_L000463",
+   "TH_L000461",
+   "TH_L000478"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000063.jpg"
@@ -4502,7 +4539,9 @@
   ],
   "lessons": [
    "TH_L000006",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -4616,7 +4655,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000365"
+   "TH_L000365",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -4794,7 +4834,8 @@
   "lessons": [
    "TH_L000022",
    "TH_L000056",
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000470"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000074.jpg"
@@ -5579,7 +5620,8 @@
   ],
   "lessons": [
    "TH_L000014",
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000092.jpg"
@@ -5658,7 +5700,9 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -5826,7 +5870,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -5903,7 +5948,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -5981,10 +6027,12 @@
   ],
   "lessons": [
    "TH_L000009",
+   "TH_L000463",
    "TH_L000041",
    "TH_L000043",
    "TH_L000018",
-   "TH_L000461"
+   "TH_L000461",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000099.jpg"
@@ -6183,7 +6231,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -6439,7 +6488,8 @@
    "TH_L000056",
    "TH_L000213",
    "TH_L000257",
-   "TH_L000370"
+   "TH_L000370",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -6517,7 +6567,8 @@
   ],
   "lessons": [
    "TH_L000018",
-   "TH_L000459"
+   "TH_L000459",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000113.jpg"
@@ -6699,7 +6750,8 @@
    "TH_L000018",
    "TH_L000055",
    "TH_L000367",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000117.jpg"
@@ -6917,7 +6969,9 @@
   ],
   "lessons": [
    "TH_L000008",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -7009,7 +7063,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000470"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000124.mp3",
@@ -7115,6 +7171,7 @@
   ],
   "lessons": [
    "TH_L000013",
+   "TH_L000465",
    "TH_L000484"
   ],
   "images": [
@@ -7319,6 +7376,7 @@
   "lessons": [
    "TH_L000433",
    "TH_L000007",
+   "TH_L000463",
    "TH_L000036",
    "TH_L000018",
    "TH_L000255"
@@ -7538,7 +7596,8 @@
    }
   ],
   "lessons": [
-   "TH_L000013"
+   "TH_L000013",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -7709,6 +7768,7 @@
    "TH_L000005",
    "TH_L000458",
    "TH_L000018",
+   "TH_L000465",
    "TH_L000484"
   ],
   "images": [
@@ -7741,7 +7801,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000465"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000140.mp3",
@@ -7818,7 +7880,9 @@
   ],
   "lessons": [
    "TH_L000006",
-   "TH_L000028"
+   "TH_L000463",
+   "TH_L000028",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -7895,7 +7959,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -7974,7 +8039,8 @@
   "lessons": [
    "TH_L000005",
    "TH_L000018",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000478"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000143.jpg"
@@ -8054,7 +8120,9 @@
   ],
   "lessons": [
    "TH_L000006",
-   "TH_L000028"
+   "TH_L000463",
+   "TH_L000028",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -8132,7 +8200,9 @@
   ],
   "lessons": [
    "TH_L000007",
-   "TH_L000461"
+   "TH_L000463",
+   "TH_L000461",
+   "TH_L000478"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000145.jpg"
@@ -8300,7 +8370,9 @@
   "lessons": [
    "TH_L000003",
    "TH_L000022",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000470",
+   "TH_L000485"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000149.jpg"
@@ -8579,7 +8651,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -8834,7 +8907,8 @@
   ],
   "lessons": [
    "TH_L000003",
-   "TH_L000022"
+   "TH_L000022",
+   "TH_L000470"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000162.jpg"
@@ -8900,7 +8974,8 @@
    "TH_L000018",
    "TH_L000087",
    "TH_L000094",
-   "TH_L000401"
+   "TH_L000401",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -9061,7 +9136,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -9141,7 +9217,9 @@
    "TH_L000002",
    "TH_L000018",
    "TH_L000054",
-   "TH_L000056"
+   "TH_L000056",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000167.jpg"
@@ -9234,7 +9312,8 @@
   "lessons": [
    "TH_L000041",
    "TH_L000209",
-   "TH_L000263"
+   "TH_L000263",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -9340,7 +9419,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -9488,7 +9568,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000465"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000177.mp3",
@@ -9564,7 +9646,8 @@
    }
   ],
   "lessons": [
-   "TH_L000008"
+   "TH_L000008",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -9855,6 +9938,7 @@
   "lessons": [
    "TH_L000005",
    "TH_L000029",
+   "TH_L000472",
    "TH_L000484"
   ],
   "images": [
@@ -10043,7 +10127,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000017",
-   "TH_L000036"
+   "TH_L000036",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -10120,7 +10205,8 @@
    }
   ],
   "lessons": [
-   "TH_L000012"
+   "TH_L000012",
+   "TH_L000485"
   ],
   "images": [],
   "audio": {
@@ -10348,7 +10434,8 @@
    "TH_L000019",
    "TH_L000018",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000197.jpg"
@@ -10471,7 +10558,8 @@
    "TH_L000015",
    "TH_L000258",
    "TH_L000377",
-   "TH_L000408"
+   "TH_L000408",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -10638,6 +10726,7 @@
   ],
   "lessons": [
    "TH_L000008",
+   "TH_L000463",
    "TH_L000018"
   ],
   "images": [
@@ -10703,7 +10792,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000017",
-   "TH_L000032"
+   "TH_L000032",
+   "TH_L000480"
   ],
   "images": [],
   "audio": {
@@ -11023,7 +11113,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -11369,7 +11460,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -11765,7 +11857,8 @@
    "TH_L000055",
    "TH_L000087",
    "TH_L000094",
-   "TH_L000401"
+   "TH_L000401",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -11903,7 +11996,8 @@
    }
   ],
   "lessons": [
-   "TH_L000009"
+   "TH_L000009",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -12304,6 +12398,7 @@
    "TH_L000458",
    "TH_L000018",
    "TH_L000363",
+   "TH_L000473",
    "TH_L000484"
   ],
   "images": [
@@ -12444,7 +12539,9 @@
   ],
   "lessons": [
    "TH_L000006",
-   "TH_L000041"
+   "TH_L000463",
+   "TH_L000041",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -12523,7 +12620,9 @@
   "lessons": [
    "TH_L000002",
    "TH_L000018",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000252.jpg"
@@ -12907,7 +13006,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000056",
-   "TH_L000087"
+   "TH_L000087",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -13133,7 +13233,8 @@
   "lessons": [
    "TH_L000017",
    "TH_L000018",
-   "TH_L000102"
+   "TH_L000102",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -13651,9 +13752,11 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000022",
    "TH_L000018",
-   "TH_L000398"
+   "TH_L000398",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -13730,7 +13833,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -13791,7 +13895,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000016",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -13928,7 +14033,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -14328,7 +14434,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -14468,6 +14575,7 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000018"
   ],
   "images": [],
@@ -15008,7 +15116,8 @@
    "TH_L000018",
    "TH_L000297",
    "TH_L000420",
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000317.jpg"
@@ -15693,6 +15802,7 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000461"
   ],
   "images": [
@@ -15954,7 +16064,8 @@
    "TH_L000458",
    "TH_L000025",
    "TH_L000261",
-   "TH_L000377"
+   "TH_L000377",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -16366,7 +16477,9 @@
    }
   ],
   "lessons": [
-   "TH_L000013"
+   "TH_L000013",
+   "TH_L000471",
+   "TH_L000488"
   ],
   "images": [],
   "audio": {
@@ -16855,7 +16968,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000040"
+   "TH_L000040",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -16991,6 +17105,7 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000018",
    "TH_L000308"
   ],
@@ -17068,7 +17183,8 @@
    "TH_L000027",
    "TH_L000018",
    "TH_L000096",
-   "TH_L000201"
+   "TH_L000201",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -18138,7 +18254,9 @@
   ],
   "lessons": [
    "TH_L000008",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -18168,7 +18286,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000407.mp3",
@@ -18305,7 +18425,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -18564,7 +18685,8 @@
   "lessons": [
    "TH_L000002",
    "TH_L000037",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000417.jpg"
@@ -19027,7 +19149,9 @@
   "lessons": [
    "TH_L000216",
    "TH_L000380",
-   "TH_L000410"
+   "TH_L000410",
+   "TH_L000479",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -19369,7 +19493,8 @@
    "TH_L000032",
    "TH_L000208",
    "TH_L000216",
-   "TH_L000386"
+   "TH_L000386",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -19565,6 +19690,7 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000308"
   ],
   "images": [],
@@ -19774,7 +19900,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000032"
+   "TH_L000032",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -19852,8 +19979,10 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000022",
-   "TH_L000398"
+   "TH_L000398",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -19992,7 +20121,8 @@
   "lessons": [
    "TH_L000013",
    "TH_L000018",
-   "TH_L000363"
+   "TH_L000363",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -20608,7 +20738,8 @@
    "TH_L000038",
    "TH_L000018",
    "TH_L000099",
-   "TH_L000219"
+   "TH_L000219",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000472.jpg"
@@ -20642,7 +20773,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000041",
-   "TH_L000395"
+   "TH_L000395",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -20719,7 +20851,9 @@
    }
   ],
   "lessons": [
-   "TH_L000009"
+   "TH_L000009",
+   "TH_L000463",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -20915,6 +21049,7 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000042",
    "TH_L000018",
    "TH_L000112",
@@ -20998,7 +21133,9 @@
   ],
   "lessons": [
    "TH_L000433",
-   "TH_L000007"
+   "TH_L000007",
+   "TH_L000463",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -21208,7 +21345,8 @@
    "TH_L000029",
    "TH_L000087",
    "TH_L000094",
-   "TH_L000401"
+   "TH_L000401",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -21669,7 +21807,8 @@
    "TH_L000018",
    "TH_L000096",
    "TH_L000206",
-   "TH_L000265"
+   "TH_L000265",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -21747,6 +21886,7 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000100",
    "TH_L000318"
   ],
@@ -21828,7 +21968,10 @@
    "TH_L000012",
    "TH_L000032",
    "TH_L000216",
-   "TH_L000380"
+   "TH_L000380",
+   "TH_L000476",
+   "TH_L000480",
+   "TH_L000485"
   ],
   "images": [],
   "audio": {
@@ -22539,7 +22682,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000470"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000519.mp3",
@@ -22818,7 +22963,8 @@
    }
   ],
   "lessons": [
-   "TH_L000009"
+   "TH_L000009",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -23248,7 +23394,8 @@
   ],
   "lessons": [
    "TH_L000013",
-   "TH_L000028"
+   "TH_L000028",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -23531,6 +23678,7 @@
   ],
   "lessons": [
    "TH_L000008",
+   "TH_L000463",
    "TH_L000018",
    "TH_L000088"
   ],
@@ -23667,7 +23815,8 @@
    }
   ],
   "lessons": [
-   "TH_L000008"
+   "TH_L000008",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -23759,7 +23908,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000032",
-   "TH_L000389"
+   "TH_L000389",
+   "TH_L000480"
   ],
   "images": [],
   "audio": {
@@ -23955,7 +24105,9 @@
   ],
   "lessons": [
    "TH_L000008",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -24245,6 +24397,7 @@
    "TH_L000257",
    "TH_L000373",
    "TH_L000399",
+   "TH_L000470",
    "TH_L000484"
   ],
   "images": [
@@ -24469,7 +24622,8 @@
    "TH_L000291",
    "TH_L000415",
    "TH_L000425",
-   "TH_L000459"
+   "TH_L000459",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000569.jpg"
@@ -25137,7 +25291,8 @@
    "TH_L000010",
    "TH_L000033",
    "TH_L000094",
-   "TH_L000400"
+   "TH_L000400",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -25202,7 +25357,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000587.mp3",
@@ -25399,6 +25556,7 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000018",
    "TH_L000322"
   ],
@@ -25652,7 +25810,8 @@
   ],
   "lessons": [
    "TH_L000004",
-   "TH_L000100"
+   "TH_L000100",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -25831,7 +25990,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000025",
-   "TH_L000407"
+   "TH_L000407",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -26176,7 +26336,8 @@
   "lessons": [
    "TH_L000029",
    "TH_L000070",
-   "TH_L000404"
+   "TH_L000404",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -26399,7 +26560,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000377"
+   "TH_L000377",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -26563,7 +26725,8 @@
    }
   ],
   "lessons": [
-   "TH_L000006"
+   "TH_L000006",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -26669,7 +26832,8 @@
    }
   ],
   "lessons": [
-   "TH_L000007"
+   "TH_L000007",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -27044,7 +27208,8 @@
   "lessons": [
    "TH_L000019",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000639.jpg"
@@ -27305,8 +27470,10 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000018",
-   "TH_L000289"
+   "TH_L000289",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -27394,7 +27561,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000649.mp3",
@@ -27471,7 +27640,8 @@
   ],
   "lessons": [
    "TH_L000005",
-   "TH_L000458"
+   "TH_L000458",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -28178,7 +28348,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000377"
+   "TH_L000377",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -28255,7 +28426,9 @@
    }
   ],
   "lessons": [
-   "TH_L000007"
+   "TH_L000007",
+   "TH_L000463",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -28677,7 +28850,9 @@
   ],
   "lessons": [
    "TH_L000008",
-   "TH_L000109"
+   "TH_L000463",
+   "TH_L000109",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -28785,7 +28960,8 @@
   "lessons": [
    "TH_L000014",
    "TH_L000018",
-   "TH_L000425"
+   "TH_L000425",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -29144,7 +29320,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -29577,7 +29754,8 @@
    }
   ],
   "lessons": [
-   "TH_L000008"
+   "TH_L000008",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -29742,6 +29920,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000018"
   ],
   "images": [],
@@ -29833,7 +30012,8 @@
   "lessons": [
    "TH_L000016",
    "TH_L000041",
-   "TH_L000106"
+   "TH_L000106",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -29911,7 +30091,8 @@
   ],
   "lessons": [
    "TH_L000014",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -30078,7 +30259,9 @@
    "TH_L000003",
    "TH_L000018",
    "TH_L000055",
-   "TH_L000102"
+   "TH_L000102",
+   "TH_L000470",
+   "TH_L000475"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000726.jpg"
@@ -30274,7 +30457,9 @@
   ],
   "lessons": [
    "TH_L000006",
-   "TH_L000410"
+   "TH_L000463",
+   "TH_L000410",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -30439,6 +30624,7 @@
   ],
   "lessons": [
    "TH_L000008",
+   "TH_L000463",
    "TH_L000123",
    "TH_L000459"
   ],
@@ -30968,7 +31154,8 @@
    "TH_L000019",
    "TH_L000458",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_000746.jpg"
@@ -31138,6 +31325,7 @@
   "lessons": [
    "TH_L000003",
    "TH_L000398",
+   "TH_L000470",
    "TH_L000484"
   ],
   "images": [
@@ -31387,6 +31575,7 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000370"
   ],
   "images": [],
@@ -32423,7 +32612,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000016"
+   "TH_L000016",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -32768,7 +32958,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000017",
-   "TH_L000410"
+   "TH_L000410",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -33392,8 +33583,10 @@
   ],
   "lessons": [
    "TH_L000008",
+   "TH_L000463",
    "TH_L000088",
-   "TH_L000294"
+   "TH_L000294",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -33589,8 +33782,10 @@
   ],
   "lessons": [
    "TH_L000007",
+   "TH_L000463",
    "TH_L000101",
-   "TH_L000296"
+   "TH_L000296",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -33697,6 +33892,7 @@
   ],
   "lessons": [
    "TH_L000009",
+   "TH_L000463",
    "TH_L000018",
    "TH_L000116",
    "TH_L000461"
@@ -33808,9 +34004,11 @@
   ],
   "lessons": [
    "TH_L000009",
+   "TH_L000463",
    "TH_L000018",
    "TH_L000097",
-   "TH_L000287"
+   "TH_L000287",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -34370,7 +34568,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000476"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_000844.mp3",
@@ -34550,7 +34750,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000028",
-   "TH_L000372"
+   "TH_L000372",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -35016,7 +35217,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -35600,7 +35802,9 @@
    }
   ],
   "lessons": [
-   "TH_L000007"
+   "TH_L000007",
+   "TH_L000463",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -36232,7 +36436,9 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -36407,7 +36613,8 @@
   ],
   "lessons": [
    "TH_L000012",
-   "TH_L000347"
+   "TH_L000347",
+   "TH_L000485"
   ],
   "images": [],
   "audio": {
@@ -37844,7 +38051,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000380"
+   "TH_L000380",
+   "TH_L000480"
   ],
   "images": [],
   "audio": {
@@ -37981,7 +38189,8 @@
    }
   ],
   "lessons": [
-   "TH_L000008"
+   "TH_L000008",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -38677,9 +38886,11 @@
   ],
   "lessons": [
    "TH_L000008",
+   "TH_L000463",
    "TH_L000018",
    "TH_L000363",
-   "TH_L000412"
+   "TH_L000412",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -38818,7 +39029,8 @@
    "TH_L000458",
    "TH_L000018",
    "TH_L000096",
-   "TH_L000237"
+   "TH_L000237",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -39026,7 +39238,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000363",
-   "TH_L000403"
+   "TH_L000403",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -39459,7 +39672,8 @@
    "TH_L000018",
    "TH_L000055",
    "TH_L000056",
-   "TH_L000085"
+   "TH_L000085",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001001.jpg"
@@ -39539,7 +39753,8 @@
   ],
   "lessons": [
    "TH_L000002",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001143.jpg"
@@ -39623,7 +39838,8 @@
    "TH_L000018",
    "TH_L000050",
    "TH_L000094",
-   "TH_L000375"
+   "TH_L000375",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001079.jpg"
@@ -39705,7 +39921,8 @@
    "TH_L000002",
    "TH_L000018",
    "TH_L000291",
-   "TH_L000462"
+   "TH_L000462",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001178.jpg"
@@ -39788,7 +40005,9 @@
    "TH_L000018",
    "TH_L000045",
    "TH_L000056",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001069.jpg"
@@ -39872,7 +40091,8 @@
    "TH_L000050",
    "TH_L000054",
    "TH_L000091",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000481"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001038.jpg"
@@ -40125,7 +40345,8 @@
    "TH_L000091",
    "TH_L000094",
    "TH_L000224",
-   "TH_L000375"
+   "TH_L000375",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001112.jpg"
@@ -40209,7 +40430,8 @@
    "TH_L000086",
    "TH_L000094",
    "TH_L000282",
-   "TH_L000375"
+   "TH_L000375",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001064.jpg"
@@ -40292,7 +40514,8 @@
    "TH_L000048",
    "TH_L000064",
    "TH_L000068",
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001052.jpg"
@@ -40372,10 +40595,12 @@
   ],
   "lessons": [
    "TH_L000006",
+   "TH_L000463",
    "TH_L000031",
    "TH_L000034",
    "TH_L000055",
-   "TH_L000401"
+   "TH_L000401",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -40455,7 +40680,9 @@
    "TH_L000002",
    "TH_L000048",
    "TH_L000068",
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001177.jpg"
@@ -40536,7 +40763,8 @@
   "lessons": [
    "TH_L000010",
    "TH_L000053",
-   "TH_L000090"
+   "TH_L000090",
+   "TH_L000468"
   ],
   "images": [],
   "audio": {
@@ -40823,7 +41051,9 @@
   ],
   "lessons": [
    "TH_L000008",
-   "TH_L000018"
+   "TH_L000463",
+   "TH_L000018",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -40978,7 +41208,9 @@
    }
   ],
   "lessons": [
-   "TH_L000009"
+   "TH_L000009",
+   "TH_L000463",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -41321,6 +41553,7 @@
   ],
   "lessons": [
    "TH_L000009",
+   "TH_L000463",
    "TH_L000034",
    "TH_L000089",
    "TH_L000094"
@@ -41526,7 +41759,8 @@
    "TH_L000003",
    "TH_L000084",
    "TH_L000100",
-   "TH_L000421"
+   "TH_L000421",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001030.jpg"
@@ -41609,7 +41843,8 @@
    "TH_L000048",
    "TH_L000068",
    "TH_L000073",
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001031.jpg"
@@ -41741,7 +41976,8 @@
    "TH_L000050",
    "TH_L000054",
    "TH_L000091",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000479"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001033.jpg"
@@ -42309,7 +42545,9 @@
    "TH_L000002",
    "TH_L000054",
    "TH_L000061",
-   "TH_L000091"
+   "TH_L000091",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001043.jpg"
@@ -42588,7 +42826,8 @@
    "TH_L000002",
    "TH_L000049",
    "TH_L000084",
-   "TH_L000279"
+   "TH_L000279",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001136.jpg"
@@ -42719,7 +42958,8 @@
    }
   ],
   "lessons": [
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -43224,7 +43464,8 @@
    "TH_L000018",
    "TH_L000055",
    "TH_L000056",
-   "TH_L000085"
+   "TH_L000085",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -43421,7 +43662,8 @@
    }
   ],
   "lessons": [
-   "TH_L000002"
+   "TH_L000002",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001084.jpg"
@@ -43504,7 +43746,9 @@
    "TH_L000018",
    "TH_L000054",
    "TH_L000061",
-   "TH_L000091"
+   "TH_L000091",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001085.jpg"
@@ -43711,7 +43955,8 @@
    "TH_L000013",
    "TH_L000048",
    "TH_L000064",
-   "TH_L000373"
+   "TH_L000373",
+   "TH_L000481"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001091.jpg"
@@ -44344,7 +44589,8 @@
    "TH_L000018",
    "TH_L000128",
    "TH_L000154",
-   "TH_L000292"
+   "TH_L000292",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -44425,7 +44671,8 @@
    "TH_L000034",
    "TH_L000050",
    "TH_L000086",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -44468,7 +44715,8 @@
   "lessons": [
    "TH_L000025",
    "TH_L000260",
-   "TH_L000377"
+   "TH_L000377",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -44661,6 +44909,7 @@
   ],
   "lessons": [
    "TH_L000009",
+   "TH_L000463",
    "TH_L000018"
   ],
   "images": [],
@@ -45024,7 +45273,8 @@
    "TH_L000010",
    "TH_L000048",
    "TH_L000068",
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001132.jpg"
@@ -45838,7 +46088,8 @@
    "TH_L000019",
    "TH_L000018",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001157.jpg"
@@ -45971,7 +46222,8 @@
    "TH_L000033",
    "TH_L000085",
    "TH_L000375",
-   "TH_L000400"
+   "TH_L000400",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -46252,7 +46504,8 @@
   ],
   "lessons": [
    "TH_L000018",
-   "TH_L000348"
+   "TH_L000348",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -46408,7 +46661,8 @@
   "lessons": [
    "TH_L000018",
    "TH_L000084",
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000470"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001173.jpg"
@@ -47089,7 +47343,8 @@
   ],
   "lessons": [
    "TH_L000030",
-   "TH_L000018"
+   "TH_L000018",
+   "TH_L000485"
   ],
   "images": [],
   "audio": {
@@ -47231,7 +47486,8 @@
    "TH_L000019",
    "TH_L000458",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001196.jpg"
@@ -47313,7 +47569,8 @@
    "TH_L000019",
    "TH_L000458",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001197.jpg"
@@ -47395,7 +47652,8 @@
    "TH_L000019",
    "TH_L000458",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001198.jpg"
@@ -47476,7 +47734,8 @@
   "lessons": [
    "TH_L000019",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001199.jpg"
@@ -47557,7 +47816,8 @@
   "lessons": [
    "TH_L000019",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001200.jpg"
@@ -47638,7 +47898,8 @@
   "lessons": [
    "TH_L000019",
    "TH_L000295",
-   "TH_L000388"
+   "TH_L000388",
+   "TH_L000466"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001201.jpg"
@@ -47717,7 +47978,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -47794,7 +48056,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -47871,7 +48134,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -47948,7 +48212,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -48025,7 +48290,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -48410,7 +48676,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -48564,7 +48831,8 @@
    }
   ],
   "lessons": [
-   "TH_L000019"
+   "TH_L000019",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -49104,7 +49372,8 @@
   ],
   "lessons": [
    "TH_L000019",
-   "TH_L000458"
+   "TH_L000458",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -49182,7 +49451,8 @@
   ],
   "lessons": [
    "TH_L000019",
-   "TH_L000458"
+   "TH_L000458",
+   "TH_L000466"
   ],
   "images": [],
   "audio": {
@@ -49400,7 +49670,8 @@
   "lessons": [
    "TH_L000020",
    "TH_L000224",
-   "TH_L000335"
+   "TH_L000335",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -51717,7 +51988,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001301.mp3",
@@ -52763,7 +53036,8 @@
   "lessons": [
    "TH_L000035",
    "TH_L000363",
-   "TH_L000412"
+   "TH_L000412",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -53179,7 +53453,8 @@
    "TH_L000036",
    "TH_L000221",
    "TH_L000395",
-   "TH_L000412"
+   "TH_L000412",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -54922,7 +55197,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000029",
-   "TH_L000411"
+   "TH_L000411",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -55327,7 +55603,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000476"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001420.mp3",
@@ -55834,7 +56112,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000478"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001437.mp3",
@@ -55987,7 +56267,9 @@
     "role": null
    }
   ],
-  "lessons": [],
+  "lessons": [
+   "TH_L000488"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001441.mp3",
@@ -56957,7 +57239,8 @@
   "lessons": [
    "TH_L000048",
    "TH_L000068",
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001474.jpg"
@@ -57372,7 +57655,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000029",
-   "TH_L000411"
+   "TH_L000411",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -57554,7 +57838,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001494.mp3",
@@ -57732,7 +58018,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000025",
-   "TH_L000407"
+   "TH_L000407",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -58060,7 +58347,9 @@
   ],
   "lessons": [
    "TH_L000030",
-   "TH_L000366"
+   "TH_L000366",
+   "TH_L000473",
+   "TH_L000485"
   ],
   "images": [],
   "audio": {
@@ -58181,7 +58470,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000323",
-   "TH_L000405"
+   "TH_L000405",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -58835,7 +59125,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000022"
+   "TH_L000022",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -58925,7 +59216,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000411",
-   "TH_L000415"
+   "TH_L000415",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -60043,7 +60335,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000025"
+   "TH_L000025",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -60189,7 +60482,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001592.mp3",
@@ -60962,7 +61257,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000467"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001618.mp3",
@@ -61333,6 +61630,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000036",
    "TH_L000043"
   ],
@@ -61412,9 +61710,11 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000042",
    "TH_L000105",
-   "TH_L000255"
+   "TH_L000255",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -61444,7 +61744,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000479"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001629.mp3",
@@ -61583,6 +61885,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000114"
   ],
   "images": [],
@@ -61735,7 +62038,9 @@
   "sentences": [],
   "lessons": [
    "TH_L000088",
-   "TH_L000410"
+   "TH_L000410",
+   "TH_L000471",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -61766,7 +62071,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000106"
+   "TH_L000106",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -61799,7 +62105,8 @@
   "lessons": [
    "TH_L000158",
    "TH_L000296",
-   "TH_L000415"
+   "TH_L000415",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -62527,7 +62834,9 @@
    }
   ],
   "lessons": [
-   "TH_L000028"
+   "TH_L000028",
+   "TH_L000471",
+   "TH_L000488"
   ],
   "images": [],
   "audio": {
@@ -62943,7 +63252,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000479"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001679.mp3",
@@ -63380,7 +63691,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001696.mp3",
@@ -63647,7 +63960,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000100",
-   "TH_L000296"
+   "TH_L000296",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -65013,7 +65327,9 @@
   ],
   "lessons": [
    "TH_L000054",
-   "TH_L000090"
+   "TH_L000090",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [],
   "audio": {
@@ -65434,7 +65750,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000109"
+   "TH_L000109",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -65755,7 +66072,8 @@
    "TH_L000128",
    "TH_L000154",
    "TH_L000211",
-   "TH_L000461"
+   "TH_L000461",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001798.jpg"
@@ -65788,7 +66106,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000289"
+   "TH_L000289",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -65880,7 +66199,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000040"
+   "TH_L000040",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -66583,7 +66903,8 @@
   ],
   "lessons": [
    "TH_L000100",
-   "TH_L000459"
+   "TH_L000459",
+   "TH_L000465"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_001824.jpg"
@@ -66647,7 +66968,8 @@
   "lessons": [
    "TH_L000041",
    "TH_L000100",
-   "TH_L000425"
+   "TH_L000425",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -67630,7 +67952,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000117",
-   "TH_L000412"
+   "TH_L000412",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -67841,7 +68164,8 @@
    "TH_L000042",
    "TH_L000088",
    "TH_L000106",
-   "TH_L000410"
+   "TH_L000410",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -68763,7 +69087,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000378"
+   "TH_L000378",
+   "TH_L000465"
   ],
   "images": [],
   "audio": {
@@ -69968,7 +70293,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000024"
+   "TH_L000024",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -70209,7 +70535,8 @@
   "lessons": [
    "TH_L000109",
    "TH_L000301",
-   "TH_L000426"
+   "TH_L000426",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -70669,7 +70996,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001955.mp3",
@@ -72757,7 +73086,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000032",
-   "TH_L000380"
+   "TH_L000380",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -72938,7 +73268,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000029",
-   "TH_L000411"
+   "TH_L000411",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -73672,7 +74003,8 @@
    }
   ],
   "lessons": [
-   "TH_L000031"
+   "TH_L000031",
+   "TH_L000488"
   ],
   "images": [],
   "audio": {
@@ -73841,6 +74173,7 @@
    "TH_L000030",
    "TH_L000366",
    "TH_L000403",
+   "TH_L000472",
    "TH_L000484"
   ],
   "images": [
@@ -74409,7 +74742,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000476"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002079.mp3",
@@ -75963,7 +76298,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000023"
+   "TH_L000023",
+   "TH_L000481"
   ],
   "images": [],
   "audio": {
@@ -76779,7 +77115,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000479"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002158.mp3",
@@ -78480,7 +78818,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000029"
+   "TH_L000029",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -79787,7 +80126,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000024"
+   "TH_L000024",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -79818,7 +80158,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000024"
+   "TH_L000024",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -79883,7 +80224,8 @@
    "TH_L000025",
    "TH_L000357",
    "TH_L000377",
-   "TH_L000407"
+   "TH_L000407",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -79914,7 +80256,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000025"
+   "TH_L000025",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -79979,7 +80322,8 @@
    "TH_L000025",
    "TH_L000173",
    "TH_L000377",
-   "TH_L000407"
+   "TH_L000407",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -80055,7 +80399,8 @@
    "TH_L000314",
    "TH_L000417",
    "TH_L000425",
-   "TH_L000434"
+   "TH_L000434",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -80087,7 +80432,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000026",
-   "TH_L000302"
+   "TH_L000302",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -80200,7 +80546,8 @@
    "TH_L000297",
    "TH_L000413",
    "TH_L000415",
-   "TH_L000420"
+   "TH_L000420",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -80233,7 +80580,8 @@
   "lessons": [
    "TH_L000026",
    "TH_L000153",
-   "TH_L000301"
+   "TH_L000301",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -80394,7 +80742,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000028",
-   "TH_L000374"
+   "TH_L000374",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -80459,7 +80808,8 @@
    "TH_L000028",
    "TH_L000033",
    "TH_L000363",
-   "TH_L000412"
+   "TH_L000412",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -80554,7 +80904,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000029"
+   "TH_L000029",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -80585,7 +80936,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000029"
+   "TH_L000029",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -80962,7 +81314,8 @@
    }
   ],
   "lessons": [
-   "TH_L000030"
+   "TH_L000030",
+   "TH_L000485"
   ],
   "images": [],
   "audio": {
@@ -81105,7 +81458,8 @@
    }
   ],
   "lessons": [
-   "TH_L000031"
+   "TH_L000031",
+   "TH_L000488"
   ],
   "images": [],
   "audio": {
@@ -81270,7 +81624,8 @@
    }
   ],
   "lessons": [
-   "TH_L000031"
+   "TH_L000031",
+   "TH_L000488"
   ],
   "images": [],
   "audio": {
@@ -81489,7 +81844,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000032"
+   "TH_L000032",
+   "TH_L000480"
   ],
   "images": [],
   "audio": {
@@ -81922,7 +82278,8 @@
    "TH_L000034",
    "TH_L000050",
    "TH_L000086",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -82221,7 +82578,8 @@
   "lessons": [
    "TH_L000036",
    "TH_L000219",
-   "TH_L000239"
+   "TH_L000239",
+   "TH_L000479"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_002329.jpg"
@@ -82646,7 +83004,8 @@
    "TH_L000101",
    "TH_L000110",
    "TH_L000155",
-   "TH_L000241"
+   "TH_L000241",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -82744,7 +83103,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000038",
-   "TH_L000099"
+   "TH_L000099",
+   "TH_L000475"
   ],
   "images": [],
   "audio": {
@@ -83654,7 +84014,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000041"
+   "TH_L000041",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -84148,6 +84509,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000043"
   ],
   "images": [],
@@ -84226,6 +84588,7 @@
   ],
   "lessons": [
    "TH_L000433",
+   "TH_L000463",
    "TH_L000043"
   ],
   "images": [],
@@ -84712,7 +85075,8 @@
    "TH_L000046",
    "TH_L000078",
    "TH_L000080",
-   "TH_L000083"
+   "TH_L000083",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_002403.jpg"
@@ -84954,7 +85318,8 @@
    "TH_L000045",
    "TH_L000052",
    "TH_L000082",
-   "TH_L000274"
+   "TH_L000274",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_002410.jpg"
@@ -85027,7 +85392,8 @@
    "TH_L000046",
    "TH_L000080",
    "TH_L000083",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000468"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_002412.jpg"
@@ -87028,7 +87394,8 @@
    "TH_L000055",
    "TH_L000086",
    "TH_L000375",
-   "TH_L000400"
+   "TH_L000400",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -87061,7 +87428,8 @@
   "lessons": [
    "TH_L000050",
    "TH_L000055",
-   "TH_L000086"
+   "TH_L000086",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -88550,7 +88918,8 @@
   "lessons": [
    "TH_L000054",
    "TH_L000067",
-   "TH_L000091"
+   "TH_L000091",
+   "TH_L000468"
   ],
   "images": [],
   "audio": {
@@ -88773,7 +89142,8 @@
    "TH_L000054",
    "TH_L000067",
    "TH_L000090",
-   "TH_L000092"
+   "TH_L000092",
+   "TH_L000468"
   ],
   "images": [],
   "audio": {
@@ -89071,7 +89441,8 @@
    "TH_L000055",
    "TH_L000087",
    "TH_L000094",
-   "TH_L000401"
+   "TH_L000401",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -89246,7 +89617,8 @@
   "lessons": [
    "TH_L000055",
    "TH_L000085",
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000469"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_002538.jpg"
@@ -103683,7 +104055,9 @@
    }
   ],
   "lessons": [
-   "TH_L000084"
+   "TH_L000084",
+   "TH_L000468",
+   "TH_L000486"
   ],
   "images": [],
   "audio": {
@@ -104535,7 +104909,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000086",
-   "TH_L000091"
+   "TH_L000091",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -106654,7 +107029,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000089",
-   "TH_L000094"
+   "TH_L000094",
+   "TH_L000469"
   ],
   "images": [],
   "audio": {
@@ -110320,7 +110696,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000097",
-   "TH_L000432"
+   "TH_L000432",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -111389,7 +111766,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000099",
-   "TH_L000123"
+   "TH_L000123",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -113486,7 +113864,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000103"
+   "TH_L000103",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -114622,7 +115001,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000106",
-   "TH_L000108"
+   "TH_L000108",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -116146,7 +116526,8 @@
    "TH_L000109",
    "TH_L000154",
    "TH_L000182",
-   "TH_L000300"
+   "TH_L000300",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -125480,7 +125861,8 @@
    "TH_L000153",
    "TH_L000301",
    "TH_L000418",
-   "TH_L000428"
+   "TH_L000428",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -138224,7 +138606,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000152",
-   "TH_L000182"
+   "TH_L000182",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -138794,7 +139177,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000155",
-   "TH_L000302"
+   "TH_L000302",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -154041,7 +154425,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000205"
+   "TH_L000205",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -163743,7 +164128,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000259"
+   "TH_L000259",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -163774,7 +164160,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000259"
+   "TH_L000259",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -168725,7 +169112,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000291",
-   "TH_L000425"
+   "TH_L000425",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -169258,7 +169646,8 @@
    "TH_L000297",
    "TH_L000413",
    "TH_L000416",
-   "TH_L000420"
+   "TH_L000420",
+   "TH_L000467"
   ],
   "images": [],
   "audio": {
@@ -179260,7 +179649,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000346"
+   "TH_L000346",
+   "TH_L000481"
   ],
   "images": [],
   "audio": {
@@ -179880,7 +180270,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000349"
+   "TH_L000349",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -183389,7 +183780,8 @@
   "lessons": [
    "TH_L000364",
    "TH_L000371",
-   "TH_L000403"
+   "TH_L000403",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -183875,7 +184267,9 @@
   ],
   "lessons": [
    "TH_L000365",
-   "TH_L000403"
+   "TH_L000403",
+   "TH_L000473",
+   "TH_L000488"
   ],
   "images": [],
   "audio": {
@@ -183906,7 +184300,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000365"
+   "TH_L000365",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -183937,7 +184332,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000366"
+   "TH_L000366",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -184000,7 +184396,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000366",
-   "TH_L000403"
+   "TH_L000403",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -184124,7 +184521,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000366"
+   "TH_L000366",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -184498,7 +184896,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000368"
+   "TH_L000368",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -184934,7 +185333,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000369"
+   "TH_L000369",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -184996,7 +185396,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000369"
+   "TH_L000369",
+   "TH_L000473"
   ],
   "images": [],
   "audio": {
@@ -185152,7 +185553,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000370",
-   "TH_L000405"
+   "TH_L000405",
+   "TH_L000470"
   ],
   "images": [],
   "audio": {
@@ -185619,7 +186021,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000372"
+   "TH_L000372",
+   "TH_L000471"
   ],
   "images": [],
   "audio": {
@@ -185650,7 +186053,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000373"
+   "TH_L000373",
+   "TH_L000481"
   ],
   "images": [],
   "audio": {
@@ -186586,7 +186990,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000377",
-   "TH_L000413"
+   "TH_L000413",
+   "TH_L000476"
   ],
   "images": [],
   "audio": {
@@ -187331,7 +187736,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000380"
+   "TH_L000380",
+   "TH_L000480"
   ],
   "images": [],
   "audio": {
@@ -189503,7 +189909,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000390",
-   "TH_L000415"
+   "TH_L000415",
+   "TH_L000478"
   ],
   "images": [],
   "audio": {
@@ -190408,7 +190815,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000393",
-   "TH_L000402"
+   "TH_L000402",
+   "TH_L000482"
   ],
   "images": [],
   "audio": {
@@ -192061,7 +192469,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000398"
+   "TH_L000398",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -193642,7 +194051,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000408"
+   "TH_L000408",
+   "TH_L000477"
   ],
   "images": [],
   "audio": {
@@ -194077,7 +194487,8 @@
   "sentences": [],
   "lessons": [
    "TH_L000411",
-   "TH_L000415"
+   "TH_L000415",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -194108,7 +194519,8 @@
   "mnemonic_concept": null,
   "sentences": [],
   "lessons": [
-   "TH_L000411"
+   "TH_L000411",
+   "TH_L000472"
   ],
   "images": [],
   "audio": {
@@ -197336,7 +197748,9 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463",
+   "TH_L000479"
   ],
   "images": [],
   "audio": {
@@ -197413,7 +197827,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197490,7 +197905,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197567,7 +197983,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197644,7 +198061,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197721,7 +198139,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197798,7 +198217,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197875,7 +198295,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -197952,7 +198373,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -198029,7 +198451,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -198106,7 +198529,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -198183,7 +198607,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -198260,7 +198685,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -198337,7 +198763,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -198414,7 +198841,8 @@
    }
   ],
   "lessons": [
-   "TH_L000433"
+   "TH_L000433",
+   "TH_L000463"
   ],
   "images": [],
   "audio": {
@@ -204878,7 +205306,8 @@
    }
   ],
   "lessons": [
-   "TH_L000460"
+   "TH_L000460",
+   "TH_L000467"
   ],
   "images": [
    "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/images/TH_006208.jpg"
@@ -207338,7 +207767,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000465"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006291.mp3",
@@ -207367,7 +207798,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000465"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006292.mp3",
@@ -207396,7 +207829,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000468"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006293.mp3",
@@ -207425,7 +207860,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006294.mp3",
@@ -207500,7 +207937,10 @@
     "role": null
    }
   ],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471",
+   "TH_L000488"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006295.mp3",
@@ -207529,7 +207969,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006296.mp3",
@@ -207558,7 +208000,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006297.mp3",
@@ -207587,7 +208031,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006298.mp3",
@@ -207616,7 +208062,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000471"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006299.mp3",
@@ -207645,7 +208093,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000472"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006300.mp3",
@@ -207674,7 +208124,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000473"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006301.mp3",
@@ -207703,7 +208155,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000473"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006302.mp3",
@@ -207732,7 +208186,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000473"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006303.mp3",
@@ -207877,7 +208333,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006308.mp3",
@@ -207906,7 +208364,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006309.mp3",
@@ -207935,7 +208395,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006310.mp3",
@@ -207964,7 +208426,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006311.mp3",
@@ -207993,7 +208457,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006312.mp3",
@@ -208022,7 +208488,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006313.mp3",
@@ -208051,7 +208519,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006314.mp3",
@@ -208080,7 +208550,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006315.mp3",
@@ -208109,7 +208581,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006316.mp3",
@@ -208138,7 +208612,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000477"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006317.mp3",
@@ -208167,7 +208643,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000478"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006318.mp3",
@@ -208196,7 +208674,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000478"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006319.mp3",
@@ -208225,7 +208705,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000478"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006320.mp3",
@@ -208254,7 +208736,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000479"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006321.mp3",
@@ -208283,7 +208767,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000479"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006322.mp3",
@@ -208312,7 +208798,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006323.mp3",
@@ -208341,7 +208829,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006324.mp3",
@@ -208370,7 +208860,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006325.mp3",
@@ -208399,7 +208891,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006326.mp3",
@@ -208428,7 +208922,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006327.mp3",
@@ -208457,7 +208953,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006328.mp3",
@@ -208486,7 +208984,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006329.mp3",
@@ -208515,7 +209015,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006330.mp3",
@@ -208544,7 +209046,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006331.mp3",
@@ -208573,7 +209077,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000480"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006332.mp3",
@@ -208602,7 +209108,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006333.mp3",
@@ -208631,7 +209139,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006334.mp3",
@@ -208660,7 +209170,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006335.mp3",
@@ -208689,7 +209201,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006336.mp3",
@@ -208718,7 +209232,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006337.mp3",
@@ -208747,7 +209263,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006338.mp3",
@@ -208776,7 +209294,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006339.mp3",
@@ -208805,7 +209325,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006340.mp3",
@@ -208834,7 +209356,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006341.mp3",
@@ -208863,7 +209387,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006342.mp3",
@@ -208892,7 +209418,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006343.mp3",
@@ -208921,7 +209449,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006344.mp3",
@@ -208950,7 +209480,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000481"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006345.mp3",
@@ -208979,7 +209511,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006346.mp3",
@@ -209008,7 +209542,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006347.mp3",
@@ -209037,7 +209573,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006348.mp3",
@@ -209066,7 +209604,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006349.mp3",
@@ -209095,7 +209635,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006350.mp3",
@@ -209124,7 +209666,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006351.mp3",
@@ -209153,7 +209697,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006352.mp3",
@@ -209182,7 +209728,9 @@
   "mnemonic": null,
   "mnemonic_concept": null,
   "sentences": [],
-  "lessons": [],
+  "lessons": [
+   "TH_L000482"
+  ],
   "images": [],
   "audio": {
    "word": "https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_006353.mp3",
