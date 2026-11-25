@@ -1,0 +1,1976 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:calc(16px * var(--fs,1))}
+body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--s0);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent2)}
+.site-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--s0);position:sticky;top:0;z-index:5}
+.brand{font-size:1.125rem;font-weight:800;color:var(--text);text-decoration:none}.brand .bolt{color:var(--accent)}.brand b{color:var(--accent)}
+.app-link{font-size:0.75rem;color:var(--muted);text-decoration:none}.app-link:hover{color:var(--accent2)}
+.wrap{max-width:760px;margin:0 auto;padding:30px 20px 50px}
+.hero h1{font-size:2.125rem;line-height:1.2;color:var(--bright);margin-bottom:10px}
+.hero .tagline{font-size:1.0625rem;color:var(--text2);margin-bottom:10px}.hero .how{font-size:0.875rem;color:var(--muted)}
+.sec-h{font-size:0.8125rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:34px 0 14px;font-weight:700}
+.lesson-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.lesson-link{display:flex;align-items:center;gap:14px;padding:15px 16px;background:var(--s3);border:1px solid var(--edge);border-radius:11px;text-decoration:none;color:inherit;transition:border-color .12s,transform .12s}
+.lesson-link:hover{border-color:var(--accent);transform:translateY(-1px)}
+.lesson-link .num{font-family:monospace;font-size:1.125rem;color:var(--accent);font-weight:700}
+.lesson-link .meta{flex:1;display:flex;flex-direction:column}
+.lesson-link .lt{font-size:1rem;font-weight:700;color:var(--text)}.lesson-link .ld{font-size:0.75rem;color:var(--dim)}
+.lesson-link .go{font-size:1.25rem;color:var(--edge)}
+.crumbs{font-size:0.7812rem;color:var(--dim);margin-bottom:18px}.crumbs a{color:var(--muted);text-decoration:none}.crumbs span{margin:0 6px;color:var(--edge)}
+article h1{font-size:1.75rem;color:var(--bright);line-height:1.25;margin-bottom:10px}
+.lead{font-size:0.9688rem;color:var(--text3);margin-bottom:20px}
+.study-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.btn{display:inline-block;padding:11px 18px;border-radius:9px;text-decoration:none;font-size:0.875rem;font-weight:700;border:1px solid var(--edge);background:var(--s2);color:var(--text2)}
+.btn:hover{border-color:var(--edge)}.btn.primary{background:var(--accentbg);border-color:var(--accent);color:var(--accent3)}.btn.primary:hover{background:var(--accentbg)}
+.cta-note{font-size:0.75rem;color:var(--dim);margin-bottom:24px}
+.vocab{display:flex;flex-direction:column;border-radius:10px;overflow:hidden}
+.vocab-row{display:flex;align-items:center;gap:16px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.vocab-row:nth-child(odd){background:var(--s2)}
+.vocab-pic{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px}
+.vocab-pic img{width:120px;height:80px;object-fit:cover;border-radius:8px;display:block}
+.vocab-pic .cred{font-size:0.5312rem;color:var(--faint);max-width:120px;text-align:center;line-height:1.2}
+.vocab-pic .cred a{color:var(--dim)}
+.vocab-row dt{flex:1;min-width:0}.vocab-row .th{font-size:1.3125rem;color:var(--bright);font-weight:600}.vocab-row .rom{font-size:0.875rem;color:var(--accent2);margin-left:8px}
+.vocab-row dd{font-size:0.9375rem;color:var(--text2);text-align:right;min-width:110px}
+.lesson-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;font-size:0.8438rem}
+.lesson-nav a{color:var(--accentq);text-decoration:none}.lesson-nav a:hover{color:var(--accent2)}
+.site-foot{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:var(--dim);font-size:0.7812rem}.site-foot a{color:var(--muted)}
+@media(max-width:540px){.hero h1{font-size:1.6875rem}.vocab-row dd{min-width:70px}.vocab-pic img{width:88px;height:62px}.vocab-pic .cred{display:none}}
+/* the sound hook and the picture-it line: the method, in text a search engine
+   can read — and the play button, neither of which the reference site had */
+.vocab-row .aid{font-size:0.7812rem;color:var(--muted);margin-top:2px;line-height:1.45}
+.vocab-row .aid .hook{color:var(--gold);font-weight:700;letter-spacing:.02em}
+@media(max-width:540px){.vocab-row .aid{font-size:0.7188rem}}
+.vocab-row .say{background:none;border:0;color:var(--accent2);font-size:1.0625rem;cursor:pointer;padding:2px 6px;line-height:1}
+.vocab-row .say:hover{color:var(--accent3)}
+.vocab-row .say.slow{font-size:0.9375rem;color:var(--accentq)}
+.vocab-row .say.slow:hover{color:var(--text3)}
+
+/* ------------------------------------------------------------------ shell
+   The course pages are a room, not a scroll: a menu that never moves, a bar
+   that says where you are, the picture, and the word beside it.
+
+       ┌──────────┬───────────────────────────────┐
+       │          │            SLIDER             │
+       │   MENU   ├───────────────┬───────────────┤
+       │          │     IMAGE     │     INFO      │
+       └──────────┴───────────────┴───────────────┘
+
+   Everything above this line is still in use: the two hand-made pages in
+   the repository (thai-basics-100 and the class-9 list) load this same
+   stylesheet, and replacing it rather than adding to it would strip them. */
+:root{
+  --ink:#000;
+  --s0:#0a0a11;
+  --s1:#0f0f17;
+  --s2:#12121b;
+  --front:#161622;
+  --back:#1c1616;
+  --s3:#15151f;
+  --frontbar:#1a1a35;
+  --backbar:#2a1818;
+  --line:#1c1c2a;
+  --edge:#24243a;
+  --frontedge:#2a3a5a;
+  --backedge:#4a2a2a;
+  --frontdot:#2a4a7a;
+  --backdot:#6a2a2a;
+  --bright:#fff;
+  --text:#ece9f5;
+  --text2:#d4d4e4;
+  --text3:#b6b6cf;
+  --muted:#9a9ab8;
+  --dim:#7a7a98;
+  --faint:#5a5a72;
+  --accent:#3b82f6;
+  --accent2:#60a5fa;
+  --accent3:#9cc4ff;
+  --accentq:#8aa9d8;
+  --accentbg:#16233a;
+  --onaccent:#06122a;
+  --ok:#34c98e;
+  --bad:#f2705f;
+  --bad2:#f87171;
+  --badbg:#5a1e1e;
+  --gold:#c9a227;
+  --gold2:#f5cb6e;
+  --goldbg:#3a2a14;
+  --violet:#a78bfa;
+  --violet2:#c4b5fd;
+  --violetbg:#2a1a4a;
+  --menu:320px;--rail:50px;--bar:3em;
+  --panel:#12121b
+}
+/* Daylight. The same palette, the same jobs — only the values
+   change, which is the whole reason the colours have names. */
+html.light-pre body,body.light{
+  --ink:#000;
+  --s0:#eef0f5;
+  --s1:#f4f5f9;
+  --s2:#ffffff;
+  --s3:#e9ebf2;
+  --front:#ffffff;
+  --back:#fff6f4;
+  --frontbar:#dde7fb;
+  --backbar:#fadbd6;
+  --line:#d9dde8;
+  --edge:#c9cfdd;
+  --frontedge:#9fbdf0;
+  --backedge:#e8b4ab;
+  --frontdot:#7aa6e8;
+  --backdot:#d99a8f;
+  --bright:#0b0d14;
+  --text:#1a1d29;
+  --text2:#333747;
+  --text3:#454a5c;
+  --muted:#5a6072;
+  --dim:#6f7588;
+  --faint:#8c93a6;
+  --accent:#1d63d8;
+  --accent2:#1554bd;
+  --accent3:#123f8e;
+  --accentq:#3a6cb5;
+  --accentbg:#dbe6fb;
+  --onaccent:#ffffff;
+  --ok:#127a52;
+  --bad:#c0392b;
+  --bad2:#a93226;
+  --badbg:#fadbd6;
+  --gold:#8a6d10;
+  --gold2:#6f5608;
+  --goldbg:#faeecd;
+  --violet:#6d3fd4;
+  --violet2:#5327b5;
+  --violetbg:#e7defb;
+  --panel:#ffffff;
+}
+body.light img{filter:none}
+
+[hidden]{display:none!important}
+/* The drawer's backdrop exists only on a phone, but it is a child of the grid,
+   so it has to be taken out of the layout HERE rather than inside the media
+   query — an unstyled div in a grid is a grid item, and it would claim a cell. */
+.scrim{display:none}
+body.shell{height:100vh;overflow:hidden}
+/* The room is a grid, and every panel is placed on a NAMED line rather than a
+   numbered one. Turning the video column on adds two cells in the middle, and
+   hiding the menu takes its cell away entirely — with plain auto-placement
+   each of those slid every later panel into the wrong column. Named lines
+   survive both, because a panel says which line it starts on rather than how
+   many came before it. The widths are variables because the reader drags
+   them; --wyt/--wa/--wb are what the grips write. */
+.page{display:grid;--wyt:1.15fr;--wa:1fr;--wb:1fr;--grip:6px;
+  grid-template-columns:[rail] var(--rail) [menu] var(--menu) [pic] var(--wa)
+    [gb] var(--grip) [txt] var(--wb);
+  grid-template-rows:var(--bar) auto 1fr;height:100vh}
+body.yt-on .page{grid-template-columns:[rail] var(--rail) [menu] var(--menu)
+  [ytc] var(--wyt) [ga] var(--grip) [pic] var(--wa) [gb] var(--grip)
+  [txt] var(--wb)}
+.menu{grid-row:1/-1;grid-column:menu;border-right:1px solid var(--line);
+  background:var(--s0);display:flex;flex-direction:column;min-height:0;
+  min-width:0}
+.slider{grid-column:3/-1;grid-row:1;border-bottom:1px solid var(--line);
+  background:var(--s0);display:flex;align-items:center;gap:14px;padding:0 16px;
+  min-width:0}
+.left{grid-row:3;grid-column:pic;min-width:0;min-height:0;display:flex;
+  overflow:hidden;align-items:center;justify-content:center;padding:22px;
+  background:var(--s1)}
+.right{grid-row:3;grid-column:txt;min-width:0;min-height:0;overflow-y:auto;
+  padding:26px 28px 34px;border-left:1px solid var(--line)}
+
+/* the grips. A hidden panel must leave the grid entirely, or its empty cell
+   still takes a column's worth of room. */
+.yt[hidden],.grip[hidden]{display:none}
+.grip{grid-row:3;background:var(--line);cursor:col-resize;position:relative;
+  border:0;padding:0}
+#gripa{grid-column:ga}
+#gripb{grid-column:gb}
+.grip::after{content:"";position:absolute;inset:0 -4px;}
+.grip:hover,.grip.dragging{background:var(--accent)}
+.grip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+body.resizing{cursor:col-resize;user-select:none}
+body.resizing iframe{pointer-events:none}
+
+/* the video column */
+.yt{grid-row:3;grid-column:ytc;min-width:0;min-height:0;display:flex;
+  flex-direction:column;justify-content:safe center;
+  background:var(--s0);padding:14px 14px 10px;gap:10px;overflow:hidden}
+/* The video sits in the middle of its column rather than pinned to the
+   top of it, and stops growing before it dwarfs the words beside it. */
+.ytframe{width:100%;max-width:640px;margin:0 auto;
+  aspect-ratio:16/9;background:var(--ink);border-radius:10px;
+  overflow:hidden;flex:none;display:flex;align-items:center;
+  justify-content:center}
+.ytframe iframe{width:100%;height:100%;border:0;display:block}
+.ytload{color:var(--faint);font-size:0.7812rem}
+.ytbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  width:100%;max-width:640px;margin:0 auto}
+.ytbar button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:8px;padding:5px 9px;font-size:0.75rem;cursor:pointer;
+  font-family:inherit}
+.ytbar button:hover{border-color:var(--accent);color:var(--bright)}
+.ytbar .ymode.on{border-color:var(--accent);background:var(--accentbg);color:var(--accent3)}
+.ytbar .yspace{flex:1}
+.ytwho{width:100%;max-width:640px;margin:0 auto;
+  font-size:0.75rem;color:var(--faint);line-height:1.4;
+  overflow:hidden;text-overflow:ellipsis;display:-webkit-box;
+  -webkit-line-clamp:2;-webkit-box-orient:vertical}
+.slider .ytbtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:8px;width:30px;height:28px;font-size:0.8125rem;cursor:pointer;
+  flex-shrink:0;font-family:inherit}
+.slider .ytbtn:hover{border-color:var(--accent);color:var(--bright)}
+.slider .ytbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accentbg);
+  color:var(--accent3)}
+
+/* menu */
+.menu .brand{display:block;padding:14px 16px;border-bottom:1px solid var(--line);
+  font-size:1rem;font-weight:800;color:var(--text);text-decoration:none}
+.menu .find{padding:12px 12px 8px}
+.menu .find input{width:100%;padding:8px 10px;border-radius:8px;
+  border:1px solid var(--edge);background:var(--s2);color:var(--text);font-size:0.8125rem}
+.menu .find input:focus{outline:none;border-color:var(--accent)}
+.menu nav{flex:1;overflow-y:auto;padding:0 8px 8px}
+
+/* ------------------------------------------- where you are, and next */
+/* Dan's mockup: the two buttons flank the current lesson rather than stack
+   under it, each with its chevron over its word. In a column this narrow that
+   is the shape that works — the title gets the whole middle instead of
+   sharing a line with a label.
+
+   OUTSIDE the scrolling nav, at the foot of the column, so it is in the same
+   place on every page rather than wherever the list happened to be left. */
+.menu .where{flex:0 0 auto;padding:10px 10px 12px;
+  border-top:1px solid var(--line);background:var(--s0)}
+.menu .wk{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-bottom:7px}
+.menu .wnav{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  gap:8px;align-items:stretch}
+.menu .wnav.start{grid-template-columns:minmax(0,1fr) auto}
+/* The buttons: chevron above the word, a fixed width so the middle column is
+   the same size on every page and the title never jumps about. */
+.menu .step{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:2px;width:58px;padding:7px 4px;
+  border:1px solid var(--edge);border-radius:9px;background:var(--s2);
+  text-decoration:none;color:var(--text2);line-height:1.1}
+.menu a.step:hover{border-color:var(--accent);color:var(--bright);
+  background:var(--s3)}
+.menu a.step:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.menu .step .ch{font-size:1.0625rem;line-height:1;color:var(--accent)}
+.menu .step .k{font-size:0.6875rem;font-weight:600}
+/* The end of the course, said rather than left as a button that looks live
+   and does nothing. */
+.menu .step.off{color:var(--faint);cursor:default;background:transparent;
+  border-style:dashed}
+.menu .step.off .ch{color:var(--faint)}
+.menu .wmid{min-width:0;display:flex;flex-direction:column;
+  justify-content:center;text-align:center;padding:0 2px}
+.menu .wlab{font-size:0.625rem;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--dim);font-weight:700}
+/* Two lines at most. A video lesson's title can run to seventy characters,
+   and four lines of it pushes the buttons either side out of shape. The whole
+   title is in the row's tooltip and in the breadcrumb. */
+.menu .wnow{font-size:0.8125rem;font-weight:700;color:var(--bright);
+  line-height:1.3;margin:2px 0 1px;display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden}
+/* Where it sits in its OWN category. The course position is already the
+   number on the title, so repeating it here would say one thing twice. */
+.menu .wsub{font-size:0.6875rem;color:var(--dim);line-height:1.3}
+.menu .fav{background:none;border:0;color:var(--faint);font-size:0.8125rem;
+  line-height:1;cursor:pointer;padding:0 0 0 5px}
+.menu .fav:hover{color:var(--accent3)}
+.menu .fav[aria-pressed="true"]{color:var(--accent)}
+
+/* ------------------------------------------------------- the launcher */
+/* The column is a flex COLUMN with ONE scrolling region in it — the header,
+   the search box and the current-lesson block hold their place while `nav`
+   takes the rest and scrolls. `min-height:0` on `.menu` is what makes that
+   work: a flex item's default minimum size is its content, so without it the
+   nav grows the whole column instead of scrolling inside it.
+
+   Dan: "Two scroll bars looks kinda janky." They were: the column scrolled,
+   and so did the lesson list inside each open category. There is one now,
+   because the lessons are not in here any more — they are in the catalogue,
+   which is what "All lessons" opens. */
+.menu .mhead{display:flex;align-items:center;gap:6px;
+  border-bottom:1px solid var(--line);padding-right:8px}
+.menu .mhead .brand{flex:1 1 auto;min-width:0;border-bottom:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* The toggle, in the header where the mockup puts it. The burger in the top
+   bar does the same thing and still works; this is the one you find without
+   having to look for it. */
+.menu .mcollapse{flex:none;background:none;border:0;color:var(--faint);
+  font-size:0.9375rem;line-height:1;padding:6px 7px;border-radius:7px;
+  cursor:pointer}
+.menu .mcollapse:hover{background:var(--s3);color:var(--accent3)}
+.menu .mcollapse:focus-visible{outline:2px solid var(--accent);
+  outline-offset:-2px}
+
+/* A row of the launcher: icon, label, count. One line, always, whatever the
+   course grows to — the count is the only part that changes with the data. */
+.menu a.item{display:flex;align-items:center;gap:10px;padding:8px 9px;
+  border-radius:8px;font-size:0.8125rem;color:var(--text2);
+  text-decoration:none;line-height:1.35}
+.menu a.item[hidden]{display:none}
+.menu a.item:hover{background:var(--s3);color:var(--bright)}
+.menu a.item.on{background:var(--accentbg);color:var(--accent3)}
+.menu a.item .ic{flex:none;width:17px;text-align:center;color:var(--faint);
+  font-size:0.875rem}
+.menu a.item:hover .ic,.menu a.item.on .ic{color:var(--accent)}
+.menu a.item .lb{flex:1 1 auto;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.menu a.item .sub{display:block;font-size:0.6875rem;color:var(--dim);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu a.item.on .sub{color:var(--accentq)}
+/* The count, hard right and in tabular figures so the column of them lines
+   up — which is what makes the sizes comparable at a glance. */
+.menu a.item .n{flex:none;font-size:0.6875rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.menu a.item.on .n{color:var(--accentq)}
+/* All lessons: the one row whose usefulness does not change as the course
+   grows, so it is the one row that is allowed to be loud. */
+.menu a.item.big{font-weight:700;color:var(--text);background:var(--s2);
+  border:1px solid var(--edge);margin-bottom:6px}
+.menu a.item.big:hover{border-color:var(--accent)}
+.menu a.item.big .ic{color:var(--accent)}
+/* A category opens its own page in the main area — the chevron says "through
+   here", not "unfold". A triangle that does not turn is how a reader learns
+   to stop trusting the triangles. */
+.menu a.item.cat{color:var(--text);font-weight:600}
+.menu a.item.also{font-weight:500}
+.menu .grp{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;padding:14px 9px 5px}
+.menu .none{padding:10px 9px;font-size:0.75rem;color:var(--dim)}
+/* Search results, under the box. The lesson titles are no longer in this
+   column's markup — that is the whole point of the change — so a search shows
+   what it found rather than hiding what it did not. */
+.menu .hits{margin-top:4px}
+.menu .hits[hidden]{display:none}
+.menu .hits a.hit{display:block;padding:6px 9px;border-radius:7px;
+  font-size:0.78125rem;color:var(--text2);text-decoration:none;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .hits a.hit:hover{background:var(--s3);color:var(--bright)}
+.menu .hits a.hit .w{color:var(--faint);font-size:0.6875rem;margin-left:6px}
+.menu .hits .hmore{display:block;padding:7px 9px;font-size:0.71875rem;
+  color:var(--accent);text-decoration:none;font-weight:600}
+
+/* Every approved sentence, to read down. Wider spacing than the ones on a
+   word card, because here they are the content rather than an illustration
+   of it. */
+.sent-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.sent-list li{padding:14px 16px;border:1px solid var(--edge);border-radius:11px;
+  background:var(--s3);margin-bottom:8px}
+.sent-list .sx{font-size:1.125rem;color:var(--text);line-height:1.5}
+.sent-list .sr{font-size:0.8125rem;color:var(--accent2);margin-top:3px}
+.sent-list .st{font-size:0.875rem;color:var(--muted);margin-top:4px}
+.sent-list .sl{font-size:0.6875rem;color:var(--dim);margin-top:7px}
+.sent-list .sl a{color:var(--dim);text-decoration:none}
+.sent-list .sl a:hover{color:var(--accent)}
+.menu .acts{border-top:1px solid var(--line);padding:10px 10px 4px;
+  display:flex;flex-wrap:wrap;gap:6px}
+.menu .acts .btn{padding:6px 10px;font-size:0.75rem;border-radius:7px;
+  font-weight:600}
+.menu .foot{border-top:1px solid var(--line);padding:12px 16px;font-size:0.6875rem;
+  color:var(--dim);line-height:1.5}
+.menu .foot a{color:var(--muted)}
+
+/* Collapsed. The menu is a reference, not a companion — on a laptop the two
+   panes are the work, and 220px of lesson titles is 220px the picture could
+   have had. ☰ puts it back, and the choice is remembered. */
+body.no-lessons{--menu:0;--mheadw:236px}
+/* Dan: "when we collapse the menu I want .mhead to be visible, just the menu
+   title, and the collapse/expand button." So collapsing puts away everything
+   BUT the header, and the header is what you press to bring it back — the
+   column used to vanish whole, taking its own button with it.
+   It is laid over the left end of the controls bar rather than given a column
+   of its own: a column holding one header would be 236px of empty screen
+   beside the lesson. The bar makes room for it and keeps its crumb —
+   category / lesson — which the menu is no longer there to say. */
+body.no-lessons .page{position:relative}
+body.no-lessons .menu{display:block;position:absolute;left:0;top:0;
+  width:var(--mheadw);height:var(--bar);z-index:13;border-right:0;
+  background:var(--s0);overflow:hidden}
+body.no-lessons .menu>:not(.mhead){display:none}
+body.no-lessons .menu .mhead{height:100%;border-bottom:1px solid var(--line)}
+body.no-lessons .menu .mhead .brand{padding:0 6px 0 14px;font-size:1rem}
+body.no-lessons .slider{padding-left:calc(var(--mheadw) + 14px)}
+body.no-lessons .menu .mcollapse{color:var(--text2);border:1px solid var(--edge);
+  background:var(--s3)}
+
+/* slider bar */
+.slider .burger{display:block;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:7px;width:32px;height:28px;font-size:0.9375rem;
+  cursor:pointer;line-height:1;flex-shrink:0}
+.slider .burger:hover{border-color:var(--accent);color:var(--bright)}
+.slider .name{font-size:0.875rem;font-weight:700;color:var(--text);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.slider .name a{color:var(--dim);text-decoration:none}
+.slider .pager{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.slider .pager button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;width:30px;height:26px;font-size:0.875rem;cursor:pointer;
+  line-height:1}
+.slider .pager button:hover:not(:disabled){border-color:var(--accent);color:var(--bright)}
+.slider .pager button:disabled{opacity:.35;cursor:default}
+.slider .pager .count{font-family:monospace;font-size:0.7812rem;color:var(--dim);
+  min-width:64px;text-align:center}
+.slider .scrub{flex:0 1 200px;accent-color:var(--accent);min-width:80px}
+.slider .hint{font-size:0.6875rem;color:var(--faint);white-space:nowrap;flex-shrink:0}
+@media(max-width:1100px){.slider .hint{display:none}}
+
+/* the picture */
+.left a{max-width:100%;max-height:100%;text-decoration:none}
+.left figure{max-width:100%;max-height:100%;display:flex;flex-direction:column;
+  align-items:center;gap:10px}
+.left img{max-width:100%;max-height:calc(100vh - var(--bar) - 96px);
+  object-fit:contain;border-radius:12px;display:block}
+/* 60vw was a share of the window, which was the whole width of this column
+   until the reader could drag it narrower. Now it is a share of the column:
+   otherwise the placeholder keeps its width while its column shrinks and
+   spills out over whatever is beside it. */
+.left .nopic{width:min(360px,100%);aspect-ratio:4/3;border-radius:12px;
+  border:1px dashed var(--edge);background:var(--s2);display:flex;align-items:center;
+  justify-content:center;color:var(--faint);font-size:4rem}
+/* A drawn card is a picture, not a placeholder: square, no dashed "nothing
+   here yet" border, and it fills its box. The colour tokens let the card take
+   the site's palette in both themes without the renderer knowing anything
+   about either. */
+/* The palette a drawn card takes. On `.nopic.drawn` itself and not on
+   `.left .nopic.drawn`, because the same card is now shown on a flashcard
+   face and in a quiz option — and scoped to the column it used to live in it
+   left those two rendering the SVG's own light defaults, which on this theme
+   is a white tile. */
+.nopic.drawn{aspect-ratio:1/1;border:1px solid var(--edge);padding:0;
+  background:transparent;overflow:hidden;
+  --vis-bg:var(--s2);--vis-ink:var(--accent,#2f6f8f);--vis-soft:var(--s1);
+  --vis-accent:#d2691e;--vis-tone:#3f9156;--vis-toneband:var(--s1);
+  --vis-rule:var(--edge)}
+.nopic.drawn svg{display:block;width:100%;height:100%}
+.left figcaption{font-size:0.6875rem;color:var(--faint);text-align:center}
+
+/* the word */
+.info .th{font-size:3.25rem;line-height:1.15;color:var(--bright);font-weight:600;
+  word-break:break-word}
+.info .rom{font-size:1.0625rem;color:var(--accent2);margin-top:4px}
+.info .en{font-size:1.1875rem;color:var(--text);margin-top:14px}
+.info .pos{font-size:0.75rem;color:var(--dim);margin-top:2px}
+.info .plays{display:flex;gap:8px;margin-top:16px;align-items:center;flex-wrap:wrap}
+.info .ropts{display:inline-flex;gap:12px;align-items:center;margin-left:6px;font-size:0.75rem;color:var(--dim)}
+.info .ropts label{display:inline-flex;gap:5px;align-items:center;cursor:pointer;white-space:nowrap}
+.info .ropts input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px}
+.info .ropts .ro-n{width:3.2em;padding:2px 4px;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text);border-radius:6px;font:inherit;text-align:center}
+.info .plays .probbtn{margin:0 0 0 auto}
+.info .ropts .sh{display:none}
+/* a narrow reading pane: short labels, and the flag on its own, so the whole
+   row stays on one line with the problem button at the far end */
+.info .card{container-type:inline-size;container-name:wcard}
+@container wcard (max-width: 560px){
+  .info .ropts .lg{display:none}
+  .info .ropts .sh{display:inline}
+  .info .ropts{gap:8px;margin-left:2px}
+  .info .plays .probbtn .pt{display:none}
+}
+.info .wpl{text-align:right;margin:22px 0 0}
+.info .plays button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:8px;padding:7px 12px;font-size:0.8125rem;cursor:pointer}
+.info .plays button:hover{border-color:var(--accent);color:var(--bright)}
+.info .aid{margin-top:20px;padding:14px 15px;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel)}
+.info .aid .k{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700}
+.info .aid .hook{font-size:1rem;color:var(--gold);font-weight:700;
+  letter-spacing:.02em;margin-top:3px}
+.info .aid p{font-size:0.8438rem;color:var(--text3);margin-top:8px;line-height:1.55}
+.info .ex{margin-top:18px}
+.info .ex li{list-style:none;padding:10px 0;border-top:1px solid var(--line)}
+.info .ex .sx{font-size:1.0625rem;color:var(--text)}
+.info .ex .sr{font-size:0.7812rem;color:var(--accent2)}
+.info .ex .st{font-size:0.8125rem;color:var(--muted)}
+.info .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+
+/* ------------------------------------------------------------------ modes
+   Three ways to look at the same lesson, chosen in the bar. They change the
+   RIGHT panel and nothing else: the menu, the picture, the arrow keys and the
+   scrubber all behave identically in all three, so switching is a change of
+   what you are being shown rather than a different place to be. */
+.slider .modes{display:flex;gap:3px;flex-shrink:0}
+.slider .md{background:var(--s3);border:1px solid var(--edge);color:var(--muted);
+  border-radius:8px;width:31px;height:28px;font-size:0.875rem;cursor:pointer;
+  line-height:1;font-family:inherit;padding:0}
+.slider .md:hover{border-color:var(--accent);color:var(--bright)}
+.slider .md[aria-pressed="true"]{border-color:var(--accent);background:var(--accentbg);
+  color:var(--accent3)}
+
+/* The three answers, along the foot of the card itself — where you are
+   looking the moment you have turned it over and are deciding. */
+.fknow{display:flex;gap:6px;flex-shrink:0;padding:8px 10px;
+  border-top:1px solid var(--frontedge);border-radius:0 0 10px 10px;
+  background:var(--frontbar);transition:background .4s,border-color .4s}
+.fshell.flipped .fknow{background:var(--backbar);
+  border-top-color:var(--backedge)}
+.fknow .kno{flex:1;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;padding:5px 8px;font-size:0.75rem;
+  cursor:pointer;font-family:inherit;white-space:nowrap}
+.fknow .kno:hover{border-color:var(--accent);color:var(--bright)}
+.fknow .kno[data-know="known"].on{border-color:var(--ok);color:var(--ok)}
+.fknow .kno[data-know="unsure"].on{border-color:var(--violet2);
+  color:var(--violet2)}
+.fknow .kno[data-know="learning"].on{border-color:var(--gold2);
+  color:var(--gold2)}
+
+/* a panel over the page: progress, about, guide */
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;
+  display:flex;align-items:center;justify-content:center;padding:20px}
+.sheet-box{background:var(--s2);border:1px solid var(--line);
+  border-radius:12px;width:min(680px,100%);max-height:86vh;display:flex;
+  flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;border-bottom:1px solid var(--line)}
+.sheet-head b{font-size:0.9375rem;color:var(--bright)}
+.sheet-head .x{background:none;border:0;color:var(--dim);font-size:0.9375rem;
+  cursor:pointer;font-family:inherit}
+.sheet-head .x:hover{color:var(--bright)}
+.sheet-body{padding:16px;overflow-y:auto}
+.sheet-p{font-size:0.8125rem;color:var(--muted);line-height:1.6;margin:0 0 14px}
+.sheet-row{margin-top:14px}
+.sheet-row .wipe{background:var(--s3);border:1px solid var(--edge);
+  color:var(--muted);border-radius:7px;padding:6px 12px;font-size:0.7812rem;
+  cursor:pointer;font-family:inherit}
+.sheet-row .wipe:hover{border-color:var(--bad);color:var(--bad)}
+.pstat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.pc{flex:1;min-width:120px;border:1px solid var(--line);border-radius:9px;
+  padding:11px 13px;font-size:0.75rem;color:var(--dim);background:var(--s3)}
+.pc b{display:block;font-size:1.5rem;color:var(--text);margin-bottom:2px}
+.pc.ok b{color:var(--ok)}
+.pc.warn b{color:var(--gold2)}
+.ptab{width:100%;border-collapse:collapse;font-size:0.8125rem}
+.ptab th{text-align:left;font-size:0.6562rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--faint);padding:0 8px 7px 0;
+  font-weight:700}
+.ptab td{padding:6px 8px 6px 0;border-top:1px solid var(--line);
+  color:var(--text2)}
+.ptab td.ok{color:var(--ok)}
+.ptab td.warn{color:var(--gold2)}
+.ptab td.n{font-family:monospace;color:var(--dim);text-align:right;
+  width:52px}
+.ptab .best{color:var(--faint);font-size:0.6875rem}
+.dimq{color:var(--faint)}
+
+/* ------------------------------------------------------ the site's menu
+   The ☰ sits on a rail at the very left — before the brand, before the
+   lessons — because it is the way out of all of them. The course's lessons
+   keep their own panel; this one is about the site. */
+.rail{grid-row:1/-1;grid-column:rail;background:var(--s0);
+  border-right:1px solid var(--line);display:flex;flex-direction:column;
+  align-items:center;padding:9px 0;gap:8px;z-index:14;position:relative}
+.rail .burger{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;width:32px;height:30px;font-size:0.875rem;
+  cursor:pointer;flex-shrink:0;font-family:inherit;line-height:1}
+.rail .burger:hover{border-color:var(--accent);color:var(--bright)}
+.rail .burger[aria-expanded="true"]{border-color:var(--accent);
+  background:var(--accentbg);color:var(--accent3)}
+.mainmenu{position:absolute;left:100%;top:0;bottom:0;width:212px;
+  background:var(--s0);border-right:1px solid var(--line);padding:9px;
+  display:flex;flex-direction:column;gap:2px;
+  transform:translateX(-100%);opacity:0;pointer-events:none;
+  transition:transform .18s ease,opacity .18s ease;overflow-y:auto}
+body.mm-open .mainmenu{transform:none;opacity:1;pointer-events:auto;
+  box-shadow:10px 0 30px rgba(0,0,0,.35)}
+.mm-head{font-size:0.6562rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);font-weight:700;padding:4px 8px 8px}
+.mm{display:flex;gap:10px;align-items:center;width:100%;text-align:left;
+  background:none;border:0;color:var(--text2);border-radius:7px;
+  padding:8px 9px;font-size:0.8125rem;cursor:pointer;font-family:inherit}
+.mm:hover{background:var(--s3);color:var(--bright)}
+.mm .i{width:17px;text-align:center;color:var(--faint);flex:none}
+/* a setting that is simply on or off: a checkbox, then its name */
+.mm-check{cursor:pointer;padding-top:7px;padding-bottom:7px}
+.mm-check input{appearance:none;-webkit-appearance:none;flex:none;width:17px;height:17px;margin:0;
+  border:1.5px solid var(--edge);border-radius:4px;background:var(--s2);display:inline-grid;place-content:center;cursor:pointer}
+.mm-check input::after{content:"";width:9px;height:5px;border:solid #fff;border-width:0 0 2px 2px;
+  transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.mm-check input:checked{background:var(--accent);border-color:var(--accent)}
+.mm-check input:checked::after{opacity:1}
+.mm-check input:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.mm-check .t{flex:1}
+.mm[aria-pressed="true"] .i{color:var(--accent2)}
+/* the progress and the two buttons under "Keep sounds on this device" */
+.mm-keep{margin:0 9px 6px 35px;font-size:0.75rem;color:var(--text2);line-height:1.35}
+.mm-keep[hidden],.mm-keepbar[hidden],.mm-mini[hidden]{display:none}
+.mm-keepbar{height:5px;border-radius:99px;background:var(--s3);margin:6px 0 2px;overflow:hidden}
+.mm-keepbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.mm-keepbtns{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.mm-mini{background:var(--s3);border:1px solid var(--edge);color:var(--text2);border-radius:999px;
+  padding:3px 10px;font-size:0.6875rem;cursor:pointer;font-family:inherit}
+.mm-mini:hover{border-color:var(--accent);color:var(--bright)}
+.mm-sep{height:1px;background:var(--line);margin:7px 4px}
+/* A row rather than a button: the thing being set has more than two states,
+   and the reader wants to see the effect of each press before deciding. */
+.mm-row{display:flex;gap:10px;align-items:center;width:100%;
+  color:var(--text2);padding:8px 9px;font-size:0.8125rem}
+.mm-row .i{width:17px;text-align:center;color:var(--faint);flex:none;
+  font-weight:700}
+.mm-row .t{flex:1;white-space:nowrap}
+.fsc{display:flex;align-items:center;gap:3px;flex:none}
+.fsc button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:6px;width:22px;height:22px;line-height:1;padding:0;
+  font-size:0.8125rem;cursor:pointer;font-family:inherit}
+.fsc button:hover:not(:disabled){border-color:var(--accent);color:var(--bright)}
+.fsc button:disabled{opacity:.35;cursor:default}
+.fsc .fsnow{font-size:0.625rem;color:var(--dim);font-family:monospace;
+  min-width:30px;text-align:center}
+
+/* ------------------------------------------------- one panel, not two
+   Reading a word wants the picture beside it. A flashcard IS the picture and
+   the word, and a question wants the whole width for its options — so those
+   two modes take the room the picture column was using. The video column is
+   left alone: a video lesson still plays beside its own cards. */
+body.mode-card .left,body.mode-quiz .left,
+body.mode-card #gripb,body.mode-quiz #gripb{display:none}
+body.mode-card .right,body.mode-quiz .right{grid-column:pic/-1;border-left:0;
+  overflow:hidden;padding:0}
+body.mode-card .info>.card,body.mode-quiz .info>.card,
+body.mode-card .info .cta,body.mode-quiz .info .cta{display:none}
+
+/* the mode bar: what shuffle, reverse and the rest live in */
+.mbar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;
+  padding:8px 14px;border-bottom:1px solid var(--line);background:var(--s0);
+  font-size:0.75rem;color:var(--dim)}
+.mbar button{background:var(--s3);border:1px solid var(--edge);color:var(--muted);
+  border-radius:7px;padding:4px 10px;font-size:0.7188rem;cursor:pointer;
+  font-family:inherit;display:inline-flex;gap:5px;align-items:center}
+.mbar button:hover{border-color:var(--accent);color:var(--bright)}
+.mbar button.on{border-color:var(--violet);background:var(--violetbg);color:var(--violet2)}
+.mbar .sp{flex:1}
+.mbar .grp{display:flex;gap:3px;align-items:center}
+.mbar .grp b{font-weight:600;color:var(--dim);margin-right:2px;font-size:0.6875rem}
+.mbar .nbtn{width:26px;padding:0;height:24px;justify-content:center;
+  font-family:monospace}
+.mbar .nbtn.on{border-color:var(--gold2);background:var(--goldbg);color:var(--gold2)}
+.mbar .score{font-family:monospace;color:var(--muted)}
+
+/* --------------------------------------------------------- the flashcard
+   Copied from inaflash.cards: a shell you drag by its bar and resize by its
+   corner, two faces on a 3D turn, the front blue and the back red. */
+.fcwrap{position:relative;height:calc(100% - 44px);overflow:hidden}
+.grab{position:absolute;left:0;top:0;cursor:grab;user-select:none}
+.fshell{position:relative;display:flex;flex-direction:column;
+  width:480px;height:520px;min-width:300px;min-height:260px;border-radius:10px;
+  border:1px solid var(--frontedge);background:var(--front);
+  box-shadow:0 8px 40px rgba(0,0,0,.75);transition:border-color .4s,background .4s}
+.fshell.flipped{border-color:var(--backedge);background:var(--back)}
+.fbar{display:flex;align-items:center;justify-content:space-between;
+  padding:0 12px;height:34px;border-radius:10px 10px 0 0;
+  border-bottom:1px solid var(--frontedge);background:var(--frontbar);cursor:grab;
+  user-select:none;flex-shrink:0;transition:background .4s,border-color .4s}
+.fbar:active{cursor:grabbing}
+.fshell.flipped .fbar{background:var(--backbar);border-bottom-color:var(--backedge)}
+.fdots{display:flex;gap:5px;pointer-events:none}
+.fdots span{width:9px;height:9px;border-radius:50%;background:var(--frontdot)}
+.fshell.flipped .fdots span{background:var(--backdot)}
+.fbadge{font-size:0.625rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:2px 8px;border-radius:20px;
+  pointer-events:none;background:var(--accentbg);color:var(--accent2);transition:background .4s,color .4s}
+.fshell.flipped .fbadge{background:var(--badbg);color:var(--bad2)}
+/* what goes on each side, asked on the card rather than in the bar */
+.fbar .fcog{background:transparent;border:1px solid var(--frontedge);
+  color:var(--text2);border-radius:7px;padding:2px 9px;font-size:0.6875rem;
+  cursor:pointer;font-family:inherit;flex-shrink:0;line-height:1.6;
+  transition:border-color .4s,color .4s}
+.fbar .fcog:hover{border-color:var(--accent);color:var(--bright)}
+.fshell.flipped .fbar .fcog{border-color:var(--backedge)}
+.fbody{flex:1;min-height:0;position:relative;overflow:hidden}
+.finner{position:absolute;inset:0;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:pointer}
+/* Set for the instant a new word arrives on a card that was left turned
+   over: the card is put face up with no turn, so the answer to a question
+   you have not been asked yet never swings past. */
+.finner.noturn,.finner.noturn .fface{transition:none}
+.fshell.flipped .finner{transform:rotateY(180deg)}
+.fface{position:absolute;inset:0;backface-visibility:hidden;display:flex;
+  flex-direction:column;justify-content:safe center;align-items:center;
+  gap:10px;overflow-y:auto;padding:16px 18px;text-align:center;
+  font-size:0.9375rem;line-height:1.7;color:var(--text)}
+/* Some browsers ignore backface-visibility on a scrollable face and show the
+   other side mirrored, so visibility swaps at the half-way point too. */
+.ffront{transform:rotateY(0deg);visibility:visible;transition:visibility 0s .25s;
+  background:var(--front)}
+.fshell.flipped .ffront{visibility:hidden}
+.fback{visibility:hidden;transition:visibility 0s .25s;background:var(--back);
+  transform:rotateY(180deg)}
+.fshell.flipped .fback{visibility:visible}
+.fface .f-word{font-size:2.5rem;line-height:1.15;color:var(--bright);font-weight:600;
+  word-break:break-word}
+.fface .f-rom{font-size:1rem;color:var(--accent2)}
+.fface .f-pos{font-size:0.75rem;color:var(--dim)}
+.fface .f-mean{font-size:1.25rem;color:var(--text)}
+.fface .f-hook{font-size:0.875rem;color:var(--gold);font-weight:700}
+.fface .f-ex{font-size:0.8125rem;color:var(--muted)}
+/* The picture takes whatever room the words have left rather than a fixed
+   200px, so making the card bigger makes the picture bigger. */
+.fface img{flex:1 1 auto;min-height:60px;width:100%;max-height:100%;
+  object-fit:contain;border-radius:8px}
+/* The picture box on a face, whichever of the four stand-ins ends up in it.
+   Before this a face asked only for a photograph and showed nothing when
+   there was none, which on this course is most words. */
+.f-img{flex:1 1 auto;min-height:60px;width:100%;display:flex;
+  align-items:center;justify-content:center;overflow:hidden}
+.f-img .nopic{width:auto;height:100%;max-width:100%;aspect-ratio:1/1;
+  font-size:2.5rem}
+.fface .f-img .nopic.drawn svg{height:100%;width:auto}
+.qcard .f-img{max-height:190px}
+/* An option is a row, so its picture is a thumbnail beside the text rather
+   than a block above it. */
+.qopt .f-img{flex:none;width:56px;height:56px;min-height:0}
+.qopt .f-img .nopic{font-size:1.75rem}
+/* The copied play buttons. Not .fface-only: the quiz copies the same block
+   on to its question and, when it is asking the other way round, on to the
+   answers as well — and an unstyled button in either place looks like a
+   mistake. */
+.f-snd{display:flex;gap:8px;justify-content:center;flex:none}
+.f-snd button{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:8px;padding:6px 11px;font-size:0.7812rem;
+  cursor:pointer;font-family:inherit;white-space:nowrap}
+.f-snd button:hover{border-color:var(--accent);color:var(--bright)}
+.qopt .f-snd{justify-content:flex-start}
+.qopt .f-snd button{padding:4px 9px;font-size:0.7188rem}
+.fface .f-empty{color:var(--faint);font-size:0.8125rem;font-style:italic}
+.fresize{position:absolute;right:-4px;bottom:-4px;width:16px;height:16px;
+  cursor:nwse-resize}
+.fresize::before{content:"";position:absolute;right:6px;bottom:6px;width:8px;
+  height:8px;border-right:2px solid var(--frontedge);border-bottom:2px solid var(--frontedge)}
+.fhint{position:absolute;left:0;right:0;bottom:8px;text-align:center;
+  font-size:0.6875rem;color:var(--faint);pointer-events:none}
+.fhint span{margin:0 8px}
+
+/* ------------------------------------------------------------- the quiz */
+/* The question and its answers are the whole of this mode, so they sit in
+   the middle of the room rather than pinned to the top of it with the rest
+   of the screen left empty underneath — and in ONE column, because a word
+   and the four things it might mean is a short list you read downwards. Two
+   columns gave a wide empty box on the left and a thin stack on the right,
+   and made the eye change direction to answer. */
+.quiz{position:relative;display:none;height:calc(100% - 44px);
+  overflow-y:auto;padding:22px 26px}
+body.mode-quiz .quiz{display:flex;align-items:safe center;
+  justify-content:safe center}
+.qbody{width:100%}
+.qsplit{display:flex;flex-direction:column;gap:18px;
+  width:100%;max-width:580px;margin:0 auto}
+
+/* How many wrong answers, and what is on each side: settings for the run,
+   parked under Reset in the corner of the panel rather than in the toolbar
+   where they sat between you and the question. */
+.qtools{position:absolute;top:2px;right:0;display:flex;flex-direction:column;
+  align-items:flex-end;gap:7px;z-index:4}
+.qwrongs{display:flex;align-items:center;gap:4px;font-size:0.6875rem;
+  color:var(--dim)}
+.qwrongs b{font-weight:600;margin-right:2px}
+.qwrongs .nbtn{background:var(--s3);border:1px solid var(--edge);
+  color:var(--muted);border-radius:6px;width:23px;height:23px;padding:0;
+  font-size:0.6875rem;cursor:pointer;font-family:inherit;line-height:1}
+.qwrongs .nbtn:hover{border-color:var(--accent);color:var(--bright)}
+.qwrongs .nbtn.on{border-color:var(--gold2);background:var(--goldbg);
+  color:var(--gold2)}
+.qshow{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;padding:4px 10px;font-size:0.6875rem;cursor:pointer;
+  font-family:inherit}
+.qshow:hover{border-color:var(--accent);color:var(--bright)}
+@media(max-width:820px){.qtools{position:static;flex-direction:row;
+  align-items:center;justify-content:space-between;width:100%;
+  margin-bottom:14px}}
+.qcard{border:1px solid var(--frontedge);background:var(--front);
+  border-radius:10px;padding:22px;text-align:center;display:flex;
+  flex-direction:column;gap:10px;align-items:center;justify-content:center}
+.qbadge{font-size:0.625rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:2px 8px;border-radius:20px;
+  background:var(--accentbg);color:var(--accent2);align-self:center}
+.qcard .f-word{font-size:2.375rem;color:var(--bright);font-weight:600;line-height:1.15}
+.qcard img{max-width:100%;max-height:190px;object-fit:contain;border-radius:8px}
+.qopts{display:grid;grid-template-columns:1fr;gap:10px}
+.qopt{display:flex;gap:11px;align-items:center;text-align:left;
+  background:var(--s3);border:1px solid var(--edge);color:var(--text);border-radius:10px;
+  padding:11px 14px;font-size:1.0625rem;cursor:pointer;font-family:inherit;
+  transition:border-color .12s}
+.qopt:hover:not(:disabled):not(.qlocked){border-color:var(--accent)}
+.qopt .qkey{flex:none;width:22px;height:22px;border-radius:5px;
+  background:var(--edge);color:var(--muted);font-size:0.6875rem;font-family:monospace;
+  display:flex;align-items:center;justify-content:center}
+.qopt .qtext{flex:1;min-width:0;display:flex;gap:10px;align-items:center}
+.qopt img{max-height:56px;max-width:84px;object-fit:contain;border-radius:6px;
+  flex:none}
+.qopt .f-rom{font-size:0.7812rem;color:var(--accent2)}
+.qopt.qok{border-color:var(--ok);background:rgba(52,201,142,.12)}
+.qopt.qno{border-color:var(--bad);background:rgba(242,112,95,.12)}
+.qopt:disabled,.qopt.qlocked{cursor:default}
+.qresult{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  justify-content:center;font-size:0.8125rem;color:var(--muted);
+  min-height:32px}
+.qnext{background:var(--accent);border:1px solid var(--accent);color:var(--onaccent);
+  border-radius:8px;padding:6px 14px;font-size:0.8125rem;font-weight:600;
+  cursor:pointer;font-family:inherit}
+.qnote{font-size:0.6875rem;color:var(--dim);font-style:italic;margin-top:8px;
+  text-align:center}
+.qdone{margin-top:20px;padding:16px;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel)}
+.qdone h2{margin:0 0 6px;font-size:1.125rem;color:var(--bright)}
+.qdone p{margin:0 0 12px;color:var(--muted);font-size:0.8438rem}
+.qdone button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:8px;padding:7px 13px;font-size:0.8125rem;cursor:pointer;
+  font-family:inherit;margin-right:8px}
+
+/* which fields go on which side */
+.sides{position:absolute;right:14px;top:46px;z-index:20;width:min(360px,90%);
+  background:var(--s2);border:1px solid var(--frontedge);border-radius:10px;padding:14px;
+  box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.sides h3{margin:0 0 3px;font-size:0.875rem;color:var(--accent3)}
+.sides p{margin:0 0 12px;font-size:0.7188rem;color:var(--dim);line-height:1.5}
+.sides table{width:100%;border-collapse:collapse;font-size:0.7812rem}
+.sides th{text-align:center;font-size:0.6562rem;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--dim);padding-bottom:6px}
+.sides th:first-child{text-align:left}
+.sides td{padding:4px 0;color:var(--text2)}
+.sides td.c{text-align:center;width:56px}
+.sides input{accent-color:var(--accent);cursor:pointer}
+.sides .row{display:flex;gap:8px;margin-top:14px}
+.sides .row button{flex:1;background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);border-radius:7px;padding:6px;font-size:0.75rem;cursor:pointer;
+  font-family:inherit}
+.sides .row button.primary{background:var(--accentbg);border-color:var(--accent);
+  color:var(--accent2)}
+
+@media(max-width:1100px){.slider .modes{order:3}}
+
+/* the readable list a crawler reads, and anyone with no JavaScript.
+   Present in the markup on purpose — the panes show one word at a time, the
+   page still contains all of them. */
+.seo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+  white-space:nowrap;border:0}
+
+/* ------------------------------------------------ from a YouTube video
+   A tool rather than a lesson, so it takes the whole width under the bar
+   instead of splitting into picture and word. */
+/* The video pages have one content column, not two, so it runs from where the
+   picture would start to the end. Written as a named line rather than "2/4",
+   which meant "both content columns" only while there were exactly three. */
+.wide{grid-column:pic/-1;grid-row:3;min-width:0;min-height:0;overflow-y:auto;
+  padding:26px 28px 40px}
+@media(max-width:900px){.wide{grid-column:1;grid-row:auto;padding:20px}}
+.paste{display:flex;gap:8px;flex-wrap:wrap;max-width:720px}
+.paste input{flex:1;min-width:260px;padding:11px 13px;border-radius:9px;
+  border:1px solid var(--edge);background:var(--s2);color:var(--text);font-size:0.875rem}
+.paste input:focus{outline:none;border-color:var(--accent)}
+.vhits{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;margin-top:18px}
+.vcard{border:1px solid var(--line);border-radius:11px;background:var(--panel);
+  padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+.vcard img{width:74px;height:56px;object-fit:cover;border-radius:8px;
+  flex-shrink:0}
+.vcard .vemoji{width:74px;height:56px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:2.125rem;
+  background:var(--s3);border:1px solid var(--edge)}
+.vcard .b{min-width:0;flex:1}
+.vcard .w{font-size:1.375rem;color:var(--bright);font-weight:600;line-height:1.2}
+.vcard .r{font-size:0.7812rem;color:var(--accent2)}
+.vcard .m{font-size:0.8125rem;color:var(--text2);margin-top:3px}
+.vcard .at{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+.vcard .at a{font-family:monospace;font-size:0.7188rem;color:var(--muted);
+  border:1px solid var(--edge);border-radius:6px;padding:1px 6px;
+  text-decoration:none}
+.vcard .at a:hover{border-color:var(--accent);color:var(--accent3)}
+.vcard .say{background:none;border:0;color:var(--accent2);font-size:1rem;
+  cursor:pointer;padding:0 4px;line-height:1}
+.vmiss{margin-top:10px;font-size:0.9375rem;color:var(--gold);line-height:2;
+  word-spacing:6px}
+.vstat{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px}
+.vstat b{display:block;font-size:1.625rem;color:var(--bright);line-height:1.1}
+.vstat span{font-size:0.75rem;color:var(--dim)}
+/* One video's words, in the order they are said. A row rather than a card:
+   the useful comparison here is down the column — what comes next — not
+   across, and a learner scanning for a word wants them in one line each. */
+.vlist{list-style:none;margin-top:18px;display:flex;flex-direction:column;
+  border-radius:10px;overflow:hidden}
+.vrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  padding:11px 14px;border-bottom:1px solid var(--line)}
+.vrow:nth-child(odd){background:var(--s2)}
+.vrow .vw{font-size:1.25rem;color:var(--bright);font-weight:600;line-height:1.3}
+.vrow .vrom{font-size:0.8125rem;color:var(--accent2)}
+.vrow .vmean{flex:1;min-width:120px;font-size:0.875rem;color:var(--text2)}
+.vrow .vat{display:flex;gap:6px;flex-wrap:wrap}
+.vrow .vat .at{font-family:monospace;font-size:0.7188rem;color:var(--muted);
+  border:1px solid var(--edge);border-radius:6px;padding:1px 6px;
+  text-decoration:none}
+.vrow .vat .at:hover{border-color:var(--accent);color:var(--accent3)}
+.vrow .vles{font-size:0.75rem;color:var(--accentq);text-decoration:none;white-space:nowrap}
+.vrow .vles:hover{color:var(--accent2)}
+.vthumb{width:96px;height:54px;object-fit:cover;border-radius:7px;
+  flex-shrink:0;display:block}
+@media(max-width:540px){.vthumb{width:72px;height:41px}
+  .vrow{gap:8px;padding:10px 12px}.vrow .vmean{min-width:100%}}
+
+/* On a phone the menu is a drawer, not a wall. Laid out in the flow it put
+   five lesson links between the top of the page and the word you came to
+   read, which is the wrong way round on the screen with the least room. */
+@media(max-width:900px){
+  body.shell{height:auto;overflow:auto}
+  /* One column, everything stacked, and no grips: there is no width to
+     trade on a phone, so a drag handle would only be something to hit by
+     accident. The video goes above the word, which is the right order here
+     — on a wide screen it sits beside it. */
+  /* align-content:start, because the page is min-height:100vh and the rows
+     are `auto`: with a short lesson the leftover height was shared out among
+     them and the course band became a 150px strip with four chips floating
+     in the middle of it. */
+  /* The top bar is TWO things side by side, not two things on top of each
+     other. The rail (the site's ☰) and the slider (prev, next, count, the
+     three modes) were both put in column 1 of row 1, so on a phone the rail's
+     opaque bar sat over the slider and hid every control the learner had:
+     no way to leave the first card. They share the row now, the ☰ at the left
+     and the controls filling the rest. */
+  .rail{grid-row:1;grid-column:1;flex-direction:row;align-items:flex-start;
+    padding:9px 0 0 8px;width:48px;box-sizing:border-box;
+    border-right:0;border-bottom:1px solid var(--line);
+    position:sticky;top:0}
+  .mainmenu{left:0;top:100%;bottom:auto;height:auto;max-height:70vh;
+    width:min(300px,92vw);transform:translateY(-8px)}
+  body.mm-open .mainmenu{transform:none}
+  .page,body.yt-on .page{grid-template-columns:48px 1fr;
+    grid-template-rows:auto auto auto auto auto;height:auto;
+    min-height:100vh;align-content:start}
+  /* Wraps onto a second line for the scrubber, which is the control Dan asked
+     to see on a phone ("the slider does not appear"): the pager and modes keep
+     the first line, and the range runs the full width under them. */
+  .slider{grid-column:2;grid-row:1;position:sticky;top:0;z-index:12;
+    flex-wrap:wrap;gap:6px 8px;padding:8px 10px 6px 4px;align-content:center}
+  /* The crumb — category / lesson — gets a line of its own between the
+     controls and the scrubber. Squeezed in beside the pager it was cut to
+     "Beginn…", which is the one thing the collapsed menu left to say where you
+     are. */
+  .slider .name{order:9;flex:1 1 100%;min-width:0;font-size:0.8125rem}
+  .slider .scrub{display:block;order:10;flex:1 1 100%;min-width:0;width:100%;
+    height:22px;margin:0}
+  .slider .pager button{width:40px;height:34px}
+  .slider .md{min-width:34px;height:34px}
+  .slider .pager .count{min-width:54px}
+  .grip{display:none}
+  /* row 2 is a wide-screen idea. Here they stack, so each takes the next row
+     it is given — without this they all land in row two on top of each other. */
+  .yt,.left,.right,.wide{grid-column:1/-1;grid-row:auto}
+  /* The card is swiped sideways, and the browser must leave that to the page:
+     left to itself a sideways drag is "go back" to the previous site (it did,
+     in testing — the second swipe left the lesson altogether). Vertical
+     scrolling and pinch-zoom stay the browser's. The slider and menus are
+     outside these two panes, so their own drags are unaffected. */
+  html,body{overscroll-behavior-x:none}
+  .left,.right{touch-action:pan-y pinch-zoom}
+  /* Flashcards and the quiz put the study pane across "pic/-1" — line names
+     that only exist in the wide layout. On a phone there is one column and no
+     such line, so the browser invented columns for it and the pane landed
+     off to the right, cut off. Same rule, stated for one column. */
+  body.mode-card .right,body.mode-quiz .right{grid-column:1/-1}
+  /* Those two panes size their insides as a percentage of the pane ("the
+     deck is the pane's height less its toolbar"), which is a sum that needs
+     a pane with a height. On the wide layout the grid gives it one. Here the
+     row is `auto`, so the pane was as tall as its toolbar and the flashcard,
+     which is 100% of nothing, was not drawn at all. So give it the screen:
+     what is left under the controls bar. */
+  /* 112 is the controls bar with its crumb and scrubber; the collapsed menu's
+     strip under it is another 46. */
+  body.mode-card .right,body.mode-quiz .right{
+    height:calc(100vh - 112px);height:calc(100dvh - 112px);min-height:420px}
+  body.no-lessons.mode-card .right,body.no-lessons.mode-quiz .right{
+    height:calc(100vh - 158px);height:calc(100dvh - 158px)}
+  /* The flashcard is a card you drag by its bar and resize by its corner on a
+     desk. Under a thumb that is a way to lose it, and the swipe is the thing
+     the thumb is for — so on a phone it simply fills the pane. The sizes the
+     script writes onto it are overridden, not removed, so the desk layout
+     comes back untouched when the window is wide again. */
+  .grab{left:0!important;top:0!important;width:100%!important;height:100%!important;
+    transform:none!important}
+  .fshell{width:100%!important;height:100%!important;min-width:0;min-height:0;
+    border-radius:0;border-left:0;border-right:0;box-shadow:none}
+  .fbar{cursor:default;border-radius:0}
+  .fresize{display:none}
+  .fhint{display:none}
+  /* The quiz is a row on the desk — settings on one side, the question on the
+     other — and on a phone that put the settings strip beside a question
+     squeezed into what was left. One column: settings above, question under. */
+  body.mode-quiz .quiz{flex-direction:column;align-items:stretch;
+    justify-content:flex-start;padding:14px 14px 28px}
+  .qbody{width:100%;min-width:0}
+  .qcard .f-word{font-size:2rem}
+  .yt{padding:12px 14px}
+  .left{padding:16px}
+  .left img{max-height:46vh}
+  .right{border-left:0;border-top:1px solid var(--line);padding:20px}
+  .info .th{font-size:2.6rem}
+  .menu{position:fixed;top:0;bottom:0;left:0;width:min(300px,86vw);z-index:30;
+    border-right:1px solid var(--line);transform:translateX(-100%);
+    transition:transform .18s ease;box-shadow:0 0 40px rgba(0,0,0,.6)}
+  body:not(.no-lessons) .menu{transform:none}
+  /* Collapsed on a phone: not a drawer at all but a slim strip under the
+     controls, the title and the button that opens the drawer. */
+  body.no-lessons .menu{position:static;width:auto;height:auto;
+    grid-column:1/-1;grid-row:2;transform:none;box-shadow:none;
+    border-right:0;z-index:auto;overflow:visible}
+  body.no-lessons .menu .mhead{height:auto;padding:2px 8px 2px 0}
+  body.no-lessons .menu .mhead .brand{padding:9px 6px 9px 14px;font-size:0.9375rem}
+  body.no-lessons .slider{padding-left:4px}
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20}
+  body:not(.no-lessons) .scrim{display:block}
+  body:not(.no-lessons){overflow:hidden}
+}
+
+/* Where the work went, inside My progress. A learner asks "am I done with
+   Lesson 2?", and a list of four hundred words sorted by how often they were
+   missed cannot answer it. */
+.plesson{margin:14px 0 4px}
+.plesson .ph{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-bottom:8px}
+.pl{display:grid;grid-template-columns:1fr 110px auto;gap:12px;
+  align-items:center;padding:8px 10px;border-radius:8px;text-decoration:none;
+  color:var(--text2)}
+.pl:hover{background:var(--s3);color:var(--bright)}
+.pln{font-size:0.8125rem;text-transform:capitalize;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.plb{height:6px;border-radius:3px;background:var(--s2);overflow:hidden}
+.plb i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+.plc{font-size:0.75rem;color:var(--dim);font-variant-numeric:tabular-nums}
+
+/* What info mode shows. The chooser writes these on <body>; the rules live
+   here so turning a field off costs one class rather than a walk of the DOM
+   on every card change. */
+body.hide-word  .info .th   { display: none }
+body.hide-rom   .info .rom  { display: none }
+body.hide-pos   .info .pos  { display: none }
+body.hide-mean  .info .en   { display: none }
+body.hide-hook  .info .aid  { display: none }
+body.hide-ex    .info .ex   { display: none }
+body.hide-sound .info .plays{ display: none }
+body.hide-image .left figure{ display: none }
+/* ------------------------------------------------------- the Show button */
+/* In the top-right corner of the pane it governs, which is where Dan asked
+   for it and where it belongs: it was a cog in the MODE toolbar, among three
+   mode buttons, which made it read as a fourth mode.
+   `height:0` so it overlays the corner instead of pushing the word down, and
+   `sticky` rather than `absolute` because this pane scrolls — a control that
+   scrolls away is a control you have to go back for. Only in read mode:
+   flashcards and the quiz each have their own, about their own sides. */
+.showbar { position: sticky; top: 4px; z-index: 5; height: 0;
+  display: flex; justify-content: flex-end; pointer-events: none }
+body:not(.mode-info) .showbar { display: none }
+/* It was drawn ten pixels too high, so the pill's top edge was cut off by the
+   pane and its label hung out of the bottom. Now it sits wholly inside the
+   corner, one fixed height, label centred on the line. */
+.showbtn { pointer-events: auto; display: inline-flex; align-items: center;
+  gap: 5px; height: 26px; box-sizing: border-box; line-height: 1;
+  background: var(--s2); border: 1px solid var(--edge); color: var(--muted);
+  border-radius: 999px; padding: 0 11px; font-size: 0.75rem;
+  font-family: inherit; cursor: pointer; white-space: nowrap }
+.showbtn:hover { border-color: var(--accent); color: var(--bright) }
+/* ---------------------------------------------------------------- the tone */
+/* Its own element beside the word, not a band inside the picture — see
+   `tone_inline` in app/altvis.py for why that move was the whole point. It
+   follows the text it belongs to: `em`, `currentColor`, and a contour sized
+   like a line of type. The picture setting cannot reach it, and a flashcard
+   face carries it the way it carries any other field. */
+.tone { display: flex; align-items: center; gap: 0.5em; margin-top: 2px;
+  color: var(--accent2) }
+.tone .tmark { height: 1.05em; width: auto; flex: none;
+  overflow: visible }
+.tone .tname { font-size: 0.75rem; color: var(--dim);
+  letter-spacing: .02em }
+body.hide-tone .tone, body.hide-tone .f-tone { display: none }
+/* On a card face the mark carries the name with it, a little larger, because
+   a face has room and nothing else on it to read the shape against. */
+.fface .f-tone { color: var(--accent2); justify-content: center }
+.fface .f-tone .tmark { height: 1.1em }
+.qcard .f-tone { justify-content: center }
+.qopt .f-tone .tname { display: none }
+
+/* ASCII art: the third stand-in, and the only one where the characters ARE
+   the picture. Monospace and pre-wrap are load-bearing — the author lined the
+   columns up by counting characters, and a proportional font throws that
+   away. It is sized off the container rather than in points so a long line
+   shrinks to fit instead of overflowing the column. */
+/* The ASCII card's own frame, wherever it is shown — the reading pane, a
+   flashcard face, a quiz option. */
+.nopic.ascii { aspect-ratio: 1/1; border: 1px solid var(--edge);
+  background: var(--s2); overflow: hidden; padding: 0 }
+/* An explicit width in the reading pane, where the drawn card gets away with
+   a percentage. The <figure> around it shrink-wraps its contents, so a box
+   whose only width is `100%` and whose only content is also `100%` resolves
+   to two pixels — which is exactly what it did. The SVG card escapes that
+   because it carries an intrinsic size in its viewBox; characters in a <pre>
+   carry none. */
+.left .nopic.ascii { width: 360px; max-width: 100% }
+/* The drawing itself. Monospace and `pre` are load-bearing — the author lined
+   the columns up by counting characters, and a proportional font or a
+   collapsed run of spaces throws that away.
+   The size comes from the element's own width (`cqw`) rather than from the
+   viewport, because this box is a column of the page and not a share of the
+   screen: sized in vw it was a postage stamp beside the lesson panel and
+   overflowed once the panel was closed. `ch` units do the arithmetic the
+   author did — 40 columns is 40 characters wide whatever the font — so the
+   widest drawing we accept fits exactly, and a narrower one is simply
+   smaller rather than stretched. */
+/* Sized to FILL the box, from the drawing's own dimensions. The page sets
+   --cols and --rows on the box; the two terms below are "as big as the width
+   allows" and "as big as the height allows", and the smaller wins. 0.6em is
+   the advance width of a monospaced glyph, which is the one constant that
+   makes this arithmetic possible at all. Without it the choice is a fixed
+   font size — tiny for a six-column drawing, overflowing for a forty-column
+   one — because CSS cannot see how wide the art is. */
+.asciibox { container-type: size; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  --cols: 20; --rows: 10 }
+.asciibox pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+  "Liberation Mono", monospace;
+  white-space: pre; line-height: 1.12; letter-spacing: 0; margin: 0;
+  text-align: left; color: var(--text2);
+  font-size: min(calc(92cqw / (var(--cols) * 0.6)),
+                 calc(88cqh / (var(--rows) * 1.12))) }
+.card .asc { display: none }
+
+/* ------------------------------------------------------------------ tones */
+/* The five shapes. A contour IS the sound, so it is drawn rather than named —
+   the caption is there to learn the name by, not to read the shape from. */
+.tshapes { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0 22px }
+.tshape { margin: 0; flex: 1 1 130px; background: var(--s2);
+  border: 1px solid var(--edge); border-radius: 12px; padding: 12px 10px 8px;
+  color: var(--accent, #6fd08c) }
+.tshape svg { display: block; width: 100%; height: auto }
+.tshape figcaption { text-align: center; margin-top: 6px; font-size: .8125rem;
+  color: var(--faint); text-transform: capitalize }
+/* Minimal pairs. The whole argument for the page: a tone on its own is a fact,
+   a tone against the word it would otherwise be is the distinction. */
+.tpairs { list-style: none; margin: 10px 0 24px; padding: 0;
+  display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)) }
+.tpair { display: flex; gap: 10px; background: var(--s2);
+  border: 1px solid var(--edge); border-radius: 12px; padding: 11px }
+.tw { flex: 1; min-width: 0 }
+.tw .play { margin-bottom: 5px }
+.tw-x { font-size: 1.35rem; line-height: 1.2; color: var(--bright) }
+.tw-r { font-size: .8125rem; color: var(--accent, #6fd08c) }
+.tw-t { display: flex; gap: 3px; margin: 4px 0 2px; color: var(--accent, #6fd08c) }
+.tmini { width: 30px; height: 18px }
+.tw-m { font-size: .75rem; color: var(--faint); line-height: 1.35 }
+/* The rule, generated from the function that actually computes it. */
+.trule { overflow-x: auto; margin: 10px 0 14px }
+.trule table { border-collapse: collapse; font-size: .8125rem; min-width: 520px }
+.trule th, .trule td { border: 1px solid var(--edge); padding: 7px 10px;
+  text-align: center; white-space: nowrap }
+.trule th { color: var(--faint); font-weight: 600 }
+.trule th.cls { text-align: left; color: var(--bright); text-transform: capitalize }
+
+/* ------------------------------------------------- the reader's own copy */
+/* A field the reader has changed. Marked, quietly, so they can tell their
+   own words from the course's — without it an edit is indistinguishable from
+   a fact, which is how somebody ends up trusting a typo of their own. */
+.info .mine { border-left: 2px solid var(--accent, #6fd08c); padding-left: 8px }
+/* Editing is off by default, so nothing here applies until it is asked for. */
+body.editing .info .th, body.editing .info .rom, body.editing .info .pos,
+body.editing .info .en, body.editing .info .aid, body.editing .info .ex,
+body.editing .info .mynote {
+  cursor: text; border-radius: 6px;
+  outline: 1px dashed color-mix(in srgb, var(--edge) 70%, transparent);
+  outline-offset: 3px;
+}
+body.editing .info .th:hover, body.editing .info .rom:hover,
+body.editing .info .pos:hover, body.editing .info .en:hover,
+body.editing .info .aid:hover, body.editing .info .ex:hover,
+body.editing .info .mynote:hover { outline-color: var(--accent, #6fd08c) }
+.edin { width: 100%; font: inherit; color: inherit; background: var(--s1);
+  border: 1px solid var(--accent, #6fd08c); border-radius: 6px;
+  padding: 4px 7px; resize: vertical }
+.mynote { margin-top: 12px; padding: 9px 11px; background: var(--s2);
+  border: 1px solid var(--edge); border-left: 2px solid var(--accent, #6fd08c);
+  border-radius: 8px; font-size: .875rem; white-space: pre-wrap }
+.mynote.empty::before { content: "Add a note…"; color: var(--faint) }
+body:not(.editing) .mynote.empty { display: none }
+#edtoast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+  background: var(--s1); color: var(--bright); border: 1px solid var(--edge);
+  border-radius: 10px; padding: 9px 15px; font-size: .8125rem; z-index: 60;
+  opacity: 0; pointer-events: none; transition: opacity .2s }
+#edtoast.on { opacity: 1 }
+.myedits td .dim { color: var(--faint); font-size: .75rem }
+
+/* ------------------------------------------------------- the catalogue */
+/* Every lesson on one page, narrowed rather than paged. Four hundred rows is
+   about sixty kilobytes of markup — less than one picture on a card — so the
+   page is complete before any script runs and the filters only ever HIDE
+   rows. That is why narrowing four hundred lessons is instant. */
+.catalogue .catbar{display:flex;flex-direction:column;gap:10px;
+  margin:0 0 16px}
+.catalogue .cfind{width:100%;padding:11px 14px;border-radius:10px;
+  border:1px solid var(--edge);background:var(--s2);color:var(--text);
+  font-size:0.9375rem;font-family:inherit}
+.catalogue .cfind:focus{outline:none;border-color:var(--accent)}
+.catalogue .chips{display:flex;flex-wrap:wrap;gap:6px}
+.catalogue .chip{display:inline-flex;align-items:center;gap:6px;
+  padding:6px 11px;border-radius:999px;border:1px solid var(--edge);
+  background:var(--s2);color:var(--text2);font-family:inherit;
+  font-size:0.75rem;font-weight:600;cursor:pointer;line-height:1.3}
+.catalogue .chip:hover{border-color:var(--accent);color:var(--bright)}
+.catalogue .chip.on{background:var(--accentbg);border-color:var(--accent);
+  color:var(--accent3)}
+.catalogue .chip .cn{font-size:0.6875rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.catalogue .chip.on .cn{color:var(--accentq)}
+.catalogue .cstat{font-size:0.75rem;color:var(--dim)}
+/* Tighter than the category page's list: this one is read by scanning a few
+   hundred titles, not by looking at a dozen. */
+.catalogue .lesson-list{gap:6px}
+.catalogue .lesson-link{padding:11px 14px}
+.catalogue .lesson-link .lt{font-size:0.9375rem}
+.catalogue .lrow[hidden]{display:none}
+.catalogue .none{color:var(--dim);font-size:0.875rem;padding:20px 0}
+.catalogue .none[hidden]{display:none}
+
+/* ------------------------------------- a category, opened where it stands */
+/* Dan: "being able to expand the categories with a fixed size div, like 10em
+   or something with a navigation of : <1234>. It would avoid the double
+   scroll bars."
+
+   Which is the right answer to the thing that sank the tree. A box of a FIXED
+   number of rows cannot push the other categories down the column however
+   many lessons the category holds — and a page turn is not a second
+   scrollbar. The rows are built from search.json on first open, so a category
+   nobody expands costs nothing and no page ships four hundred links.
+
+   The height is the row count times the row height, exactly, so the box can
+   never overflow and `overflow:hidden` is a guarantee rather than a crop. */
+.menu .catwrap{margin:1px 0}
+.menu .catline{display:flex;align-items:stretch;gap:2px}
+.menu .catline a.item{flex:1 1 auto;min-width:0}
+.menu .catx{flex:none;width:22px;background:none;border:0;color:var(--faint);
+  font-family:var(--mono);font-size:0.9375rem;line-height:1;cursor:pointer;
+  border-radius:7px}
+.menu .catx:hover{background:var(--s3);color:var(--accent3)}
+.menu .catx:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.menu .catbox{margin:2px 0 6px 10px;padding-left:8px;
+  border-left:1px solid var(--edge)}
+.menu .catbox[hidden]{display:none}
+.menu .catpage{--rowh:1.7rem;--rows:6;
+  height:calc(var(--rowh) * var(--rows));overflow:hidden}
+.menu .catpage a.item.seq{display:flex;gap:7px;align-items:center;
+  height:var(--rowh);padding:0 7px;font-size:0.75rem}
+.menu .catpage a.item.seq .n{flex:none;font-size:0.6875rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.menu .catpage a.item.seq .t{flex:1 1 auto;min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.menu .catpage a.item.seq .w{flex:none;font-size:0.6562rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.menu .catpage a.item.seq.on{background:var(--accentbg);color:var(--accent3)}
+.menu .catpage a.item.seq.on .n,.menu .catpage a.item.seq.on .w{
+  color:var(--accentq)}
+/* ‹ 1 2 3 4 › — and only when there is more than one page to turn to. */
+.menu .catnav{display:flex;align-items:center;gap:2px;padding:3px 5px 0;
+  flex-wrap:wrap}
+.menu .catnav button{background:none;border:0;border-radius:6px;
+  color:var(--muted);font-family:inherit;font-size:0.6875rem;font-weight:600;
+  min-width:18px;padding:2px 4px;cursor:pointer;line-height:1.4}
+.menu .catnav button:hover:not(:disabled){background:var(--s3);
+  color:var(--accent3)}
+.menu .catnav button.on{background:var(--accentbg);color:var(--accent3)}
+.menu .catnav button:disabled{color:var(--faint);cursor:default}
+.menu .catnav .gap{color:var(--faint);font-size:0.6875rem;padding:0 1px}
+.menu .catnav .all{margin-left:auto;color:var(--accent);text-decoration:none;
+  font-size:0.6562rem;font-weight:600;padding:2px 5px;border-radius:6px}
+.menu .catnav .all:hover{background:var(--s3)}
+
+/* ------------------------------------------------------------- the grip */
+/* Dan: "I think we make the side menu resizable on the x axis. Navigation is
+   a big part of what we are offering." How much of the screen navigation
+   deserves is the reader's judgement, not mine — and a lesson title is as
+   long as it is. Double-click puts it back. */
+.menu{position:relative}
+.mgrip{position:absolute;top:0;right:-3px;bottom:0;width:7px;cursor:col-resize;
+  z-index:3;background:transparent}
+.mgrip:hover,.mgrip:focus-visible,body.mresize .mgrip{
+  background:var(--accent);opacity:.55;outline:none}
+body.mresize{cursor:col-resize;user-select:none}
+body.mresize iframe{pointer-events:none}
+
+/* --------------------------------------------------------- scrollbars */
+/* Dan: "Change the css of the scrollbar to match the site in both dark and
+   light mode." Written once against the palette's own names rather than twice
+   against two sets of colours — `--edge` and `--faint` are already redefined
+   under `body.light`, so the bars follow the theme with no second rule and
+   nothing to keep in step. */
+*{scrollbar-width:thin;scrollbar-color:var(--edge) transparent}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-corner{background:transparent}
+/* The transparent border plus `background-clip` is what makes the thumb a
+   floating pill with air around it instead of a bar wedged against the
+   content — the same trick both themes need. */
+::-webkit-scrollbar-thumb{background:var(--edge);border-radius:99px;
+  border:3px solid transparent;background-clip:padding-box;min-height:34px}
+::-webkit-scrollbar-thumb:hover{background:var(--faint);
+  border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:active{background:var(--accent);
+  border:2px solid transparent;background-clip:padding-box}
+
+/* Numbers the script fills in: nothing to show until it has, and no jump when it does */
+.menu a.item .n:empty{display:none}
+.menu .wsub[data-fill]{min-height:1.3em}
+
+/* Sentences under a word: ‹ the sentence › one at a time */
+.info .sents{margin-top:18px}
+.info .sents .sec-h{margin:0 0 8px}
+.info .sents .sbody{display:flex;align-items:stretch;gap:6px}
+.info .sents .sslides{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--s2,transparent)}
+.info .sents .sent{display:none}
+.info .sents .sent.on{display:block}
+.info .sents .sx{font-size:1.125rem;color:var(--text);line-height:1.5}
+.info .sents .sr{font-size:0.7812rem;color:var(--accent2);margin-top:2px}
+.info .sents .st{font-size:0.8438rem;color:var(--muted);margin-top:2px}
+.info .sents .splay{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.info .sents .splay button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);padding:5px 11px;border-radius:8px;font-size:0.8125rem;cursor:pointer}
+.info .sents .splay button:hover{border-color:var(--accent);color:var(--bright)}
+.info .sents .snav{flex:0 0 32px;background:var(--s3);border:1px solid var(--edge);color:var(--text2);border-radius:8px;font-size:1.4rem;line-height:1;cursor:pointer}
+.info .sents .snav:hover{border-color:var(--accent);color:var(--bright)}
+.info .sents .scount{text-align:center;font-size:0.7188rem;color:var(--dim);margin-top:6px}
+body.hide-ex .info .sents{display:none}
+
+/* Plain-text pages: the start-here guide and the word lists on topic pages.
+   Ordinary visible text, so a reader, a search engine and an assistant all
+   get the same thing. */
+.g-list{margin:0 0 6px 1.2em;line-height:1.6;color:var(--text3)}
+.g-list li{margin:4px 0}
+.g-list a{color:var(--accent)}
+.g-h{font-size:1rem;color:var(--text);margin:18px 0 6px;font-weight:600}
+.g-h a{color:inherit;text-decoration:none}
+.g-h a:hover{color:var(--accent)}
+.guide p{line-height:1.6;color:var(--text3);margin:0 0 10px}
+.guide p a{color:var(--accent)}
+.wordlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:4px 18px;margin:0 0 8px}
+.wordlist div{display:flex;flex-direction:column;padding:5px 0;border-bottom:1px solid var(--edge)}
+.wordlist dt{font-size:1.05rem;color:var(--text)}
+.wordlist .rom{font-size:0.8125rem;color:var(--accent2);margin-left:4px}
+.wordlist dd{margin:0;font-size:0.875rem;color:var(--muted)}
+
+/* A page for one word: no menu, no script bundle, just the word. */
+body.lean{display:block;min-height:100vh;overflow:auto;background:var(--s0);color:var(--text)}
+.lbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;
+  border-bottom:1px solid var(--edge);position:sticky;top:0;background:var(--s0);z-index:2}
+.lbar a{color:var(--text3);text-decoration:none;font-size:0.9rem}
+.lbar a:hover{color:var(--accent)}
+.lbar .lhome{color:var(--text);font-weight:600}
+.lbar nav{display:flex;gap:16px}
+.lmain{max-width:720px;margin:0 auto;padding:28px 20px 64px}
+.lword{font-size:3.4rem;line-height:1.2;font-weight:600;margin:6px 0 2px;color:var(--text)}
+.lrom{font-size:1.25rem;color:var(--accent2);margin-bottom:6px}
+.lmean{font-size:1.15rem;color:var(--text);margin:10px 0 14px;line-height:1.5}
+.lmain .pos{font-size:0.8125rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.lmain .tone{display:flex;align-items:center;gap:8px;color:var(--dim);font-size:0.875rem;margin:6px 0}
+.lmain .plays{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lmain button{font:inherit;font-size:0.9rem;padding:8px 14px;border-radius:9px;cursor:pointer;
+  background:var(--s2);color:var(--text);border:1px solid var(--edge)}
+.lmain button:hover{border-color:var(--accent)}
+.lmain .btn{display:inline-block;padding:9px 16px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none;font-size:0.9rem}
+.lmain .study{margin:14px 0 0}
+.lmain .aid{color:var(--text3);line-height:1.6}
+.lmain .aid .hook{font-weight:600;color:var(--text)}
+.lmain .sent-list li{list-style:none}
+.lmain .splay{margin-top:6px;display:flex;gap:6px}
+.lmain .splay button{padding:4px 10px}
+.relwords{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;padding:0;margin:0}
+.relwords a{display:block;padding:10px 12px;border:1px solid var(--edge);border-radius:10px;
+  background:var(--s2);color:var(--text);text-decoration:none;line-height:1.35}
+.relwords a:hover{border-color:var(--accent)}
+.relwords .rom{color:var(--accent2);font-size:0.8125rem}
+.relwords .mn{display:block;color:var(--muted);font-size:0.8125rem}
+.relwords.big{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:4px 14px}
+.relwords.big a{border:0;background:none;padding:6px 2px;border-bottom:1px solid var(--edge);border-radius:0}
+.azjump{display:flex;flex-wrap:wrap;gap:6px 12px;margin:0 0 6px}
+.azjump a{color:var(--accent);text-decoration:none;font-weight:600}
+.wordlist a{color:inherit;text-decoration:none}
+.wordlist a:hover{color:var(--accent)}
+
+/* ---------------------------------------------------------- tones in sentences
+   Dan: "need tones in sentences". Each word coloured by its tone, with the
+   same marks the word cards use set above it. A word whose syllables are on
+   different tones keeps the plain colour; its marks still show each one. */
+.tw{display:inline-flex;flex-direction:column;align-items:center;vertical-align:bottom;line-height:1.25}
+.tw .tm{display:block;font-style:normal;height:.62em;line-height:0;margin-bottom:1px;opacity:.85}
+.tw .tm .tmark{height:100%;width:auto;display:block}
+body.hide-tone .tw .tm{display:none}
+
+/* A sentence as a flashcard or a quiz question: the same faces as a word, at
+   a size a whole sentence fits. */
+.sface .f-word{font-size:1.75rem;line-height:1.5;font-weight:500}
+.qcard.sface .f-word,.sface.qcard .f-word{font-size:1.6rem}
+.qopt.sface .f-word,.sface .qtext .f-word{font-size:1.15rem}
+/* A sentence page: the same reading pane, with a sentence where the word is */
+.info .card.sc .th{font-size:2rem;line-height:1.5}
+
+/* Word lessons | Sentence lessons — building blocks and what you can build.
+   One switch at the top of the menu's list, the same pair at the top of the
+   two catalogues. */
+.menu .mtabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:10px 4px 8px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--s2)}
+.menu .mtabs button{display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 4px;border:0;border-radius:8px;background:transparent;color:var(--text2);font:inherit;font-size:0.8125rem;font-weight:700;cursor:pointer;line-height:1.2}
+.menu .mtabs button small{font-size:0.6562rem;font-weight:500;color:var(--dim)}
+.menu .mtabs button:hover{color:var(--bright)}
+.menu .mtabs button.on{background:var(--accent);color:#fff}
+.menu .mtabs button.on small{color:rgba(255,255,255,.8)}
+.menu .mtabs button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.menu .mlist[hidden]{display:none}
+.menu .mnote{font-size:0.7188rem;color:var(--dim);padding:8px 10px 4px;line-height:1.4}
+.pswitch{display:grid;grid-template-columns:1fr 1fr;gap:4px;max-width:480px;margin:6px 0 22px;padding:3px;border:1px solid var(--line);border-radius:12px;background:var(--s2)}
+.pswitch a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 6px;border-radius:9px;text-decoration:none;color:var(--text2);font-size:0.875rem;font-weight:700}
+.pswitch a small{font-size:0.6875rem;font-weight:500;color:var(--dim)}
+.pswitch a:hover{color:var(--bright)}
+.pswitch a.on{background:var(--accent);color:#fff}
+.pswitch a.on small{color:rgba(255,255,255,.8)}
+.info .sents .sec-h{display:flex;align-items:baseline;gap:8px}
+.info .sents .vsl{margin-left:auto;font-size:0.7188rem;text-transform:none;letter-spacing:0;font-weight:600;color:var(--accent2);text-decoration:none}
+.info .sents .vsl:hover{color:var(--accent3);text-decoration:underline}
+.builtfrom{display:inline-block;margin:0 0 12px;font-size:0.7812rem;color:var(--accent2);text-decoration:none}
+.builtfrom:hover{text-decoration:underline}
+.menu .mlist>a.item.cat{margin-left:24px}
+
+/* Male and female. ♂ blue, ♀ pink, ♀♂ (ฉัน, used by both) violet. */
+.gicon{font-weight:700;line-height:1;font-size:1.35em}
+.gicon.g-male{color:#4f8ff7}
+.gicon.g-female{color:#e0609a}
+.gicon.g-neutral{color:#a07be0}
+.gword{margin:8px 0 2px}
+.gbadge{position:relative;display:inline-flex;gap:5px;align-items:center;padding:2px 8px 2px 9px;border:1px solid var(--line);border-radius:999px;background:var(--s2);font-size:0.75rem;color:var(--text2);cursor:help;outline:none}
+.gbadge:focus-visible{border-color:var(--accent)}
+.gbadge .gicon{font-size:1.3em}
+.gbadge .ginfo{display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;border:1px solid var(--edge);font:italic 700 9px/1 Georgia,serif;color:var(--dim)}
+.gpop{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:30;min-width:240px;max-width:min(340px,80vw);padding:10px 12px;border:1px solid var(--edge);border-radius:10px;background:var(--s1,var(--s2));box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:0.8125rem;line-height:1.45;color:var(--text2);cursor:auto;white-space:normal}
+.gbadge:hover .gpop,.gbadge:focus .gpop,.gbadge:focus-within .gpop{display:block}
+.gpop::before{content:"";position:absolute;left:0;right:0;top:-8px;height:8px}
+.gpop .gme{display:flex;gap:6px;align-items:baseline}
+.gpop .gsay{font-weight:600}
+.gpop .gothers{display:flex;flex-direction:column;gap:2px;margin-top:5px}
+.gpop .gother{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.gpop .glead{color:var(--dim)}
+.gpop .gother b{font-size:1.05rem;color:var(--bright)}
+.gpop .gother a{text-decoration:none}
+.gpop .gother a:hover b{text-decoration:underline}
+.gpop .rom{color:var(--accent2)}
+.gpop .mn{color:var(--muted)}
+.gtipbox .gme{display:flex;gap:6px;align-items:baseline}
+.gtipbox .gsay{font-weight:600}
+.gtipbox .gothers{display:flex;flex-direction:column;gap:2px;margin-top:5px}
+.gtipbox .gother{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.gtipbox .glead{color:var(--dim)}
+.gtipbox .gother b{font-size:1.05rem;color:var(--bright)}
+.gtipbox .gother a{text-decoration:none}
+.gtipbox .gother a:hover b{text-decoration:underline}
+.gtipbox .rom{color:var(--accent2)}
+.gtipbox .mn{color:var(--muted)}
+.gsw{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:999px;background:var(--s2);margin:0 0 6px;font-size:0.75rem}
+.gsw button{display:inline-flex;gap:5px;align-items:center;padding:3px 10px;border:1px solid transparent;border-radius:999px;background:transparent;color:var(--dim);font:inherit;cursor:pointer}
+.gsw button:hover{color:var(--bright)}
+.gsw button.on{background:var(--accentbg);border-color:var(--accent);color:var(--bright)}
+.gsw.solo{padding:3px 10px;gap:5px;align-items:center;color:var(--dim)}
+.info .card.sc .gsw{margin-top:6px}
+.qg{display:inline-flex;gap:6px;align-items:center;margin:0 0 8px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--s2);font-size:0.75rem;color:var(--text2)}
+
+/* The end of a lesson: what next */
+.lend{margin:18px 0 8px;padding:12px 14px;border:1px solid var(--accent);border-radius:12px;background:var(--accentbg);display:flex;flex-direction:column;gap:6px}
+.lend-msg{font-size:0.8125rem;color:var(--text2)}
+.lend-go{align-self:flex-start;padding:9px 16px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;font-size:0.9375rem}
+.lend-go:hover{filter:brightness(1.1)}
+.lend-tip{font-size:0.7188rem;color:var(--dim)}
+#next.tonext{background:var(--accent);color:#fff;border-color:var(--accent)}
+.qnextlesson{display:inline-block;margin-left:8px;padding:8px 14px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
+/* The lesson's introduction: readable text for the reader and the search engine. */
+/* Dan: "is our about lesson text in a good place for seo?" It was not: it was
+   display:none, and a search engine discounts text nobody can see. Now it sits
+   under the word in Read it, and steps aside in the flashcard and quiz modes. */
+body.mode-card .aboutlesson,body.mode-quiz .aboutlesson{display:none}
+.aboutlesson{max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
+.aboutlesson h2{font-size:1rem;color:var(--text);margin:0 0 8px}
+.aboutlesson p{margin:0 0 10px}
+.aboutlesson .aboutlinks a{color:var(--accent2);text-decoration:none}
+
+/* a word a man and a woman say differently (ผม / ฉัน, ครับ / ค่ะ): underlined, the other version on hover */
+.gw{text-decoration:underline dotted;text-decoration-thickness:2px;text-underline-offset:.22em;cursor:help;outline:none;border-radius:3px}
+.gw.g-male{text-decoration-color:#6aa7ff}
+.gw.g-female{text-decoration-color:#f08cb8}
+.gw.g-neutral{text-decoration-color:#b79cf0}
+.gw:hover,.gw:focus-visible,.gw.on{background:rgba(127,127,127,.22)}
+body.light .gw.g-male{text-decoration-color:#1f62d0}
+body.light .gw.g-female{text-decoration-color:#c2407e}
+body.light .gw.g-neutral{text-decoration-color:#7a52d6}
+.gtipbox{position:fixed;z-index:60;min-width:220px;max-width:min(340px,86vw);padding:10px 12px;border:1px solid var(--edge);border-radius:10px;background:var(--s1,var(--s2));box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:0.8125rem;line-height:1.45;color:var(--text2);white-space:normal;text-align:left;font-family:inherit}
+.gtipbox[hidden]{display:none}
+.gtipbox .gme{display:flex;gap:6px;align-items:baseline}
+
+/* ------------------------------------------------------------ the tone colours
+   ONE palette. Every place a tone has a colour — the word, its romanization, the
+   contour marks, the tone's name, the Tones page — uses these five variables and
+   nothing else, so a rising tone is the same green wherever it is met. Change a
+   colour here and it changes everywhere. */
+:root{--tone-mid:#8fa8bf;--tone-low:#6aa7ff;--tone-falling:#ff7b72;--tone-high:#f2c14e;--tone-rising:#58d68d}
+html.light-pre body,body.light{--tone-mid:#4f6475;--tone-low:#1f62d0;--tone-falling:#c83c32;--tone-high:#a87600;--tone-rising:#1c8f4c}
+.tc.t-mid,.tw.t-mid,.rt.t-mid{color:var(--tone-mid)}
+.tc.t-low,.tw.t-low,.rt.t-low{color:var(--tone-low)}
+.tc.t-falling,.tw.t-falling,.rt.t-falling{color:var(--tone-falling)}
+.tc.t-high,.tw.t-high,.rt.t-high{color:var(--tone-high)}
+.tc.t-rising,.tw.t-rising,.rt.t-rising{color:var(--tone-rising)}
+/* the word beside its male / female badge */
+.throw{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px}
+.throw .gword{margin:0}
+/* "about" — a small link beside the lesson's title; the text opens in a pop-up */
+.slider .name{display:flex;align-items:baseline;gap:10px}
+.slider .name .nt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* the lesson's title is the page's main heading, but looks like the rest of the bar */
+.slider .name .lt{display:inline;font:inherit;color:inherit;margin:0;padding:0}
+.slider .name .aboutlink{flex:none;font-size:0.6875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent2);text-decoration:none;border:1px solid var(--edge);border-radius:999px;padding:1px 8px}
+.slider .name .aboutlink:hover{border-color:var(--accent);color:var(--bright)}
+.aboutpop{position:fixed;z-index:60;width:min(460px,92vw);max-height:70vh;overflow:auto;padding:14px 16px;border:1px solid var(--edge);border-radius:12px;background:var(--s1,var(--s2));box-shadow:0 10px 30px rgba(0,0,0,.4);color:var(--text2);font-size:0.875rem;line-height:1.6}
+.aboutpop[hidden]{display:none}
+.aboutpop h2{font-size:1rem;color:var(--text);margin:0 0 8px}
+.aboutpop p{margin:0 0 10px}
+.aboutpop a{color:var(--accent2)}
+
+/* a lesson card's link to the word's own page */
+.info .wpl{font-size:0.75rem}
+.info .wpl a{color:var(--accent2);text-decoration:none;font-weight:600}
+.info .wpl a:hover{color:var(--accent3);text-decoration:underline}
+
+/* ===================================================== the new menu
+   Dan's approved mockup: Continue, three tiles, My courses, half the
+   categories with Show all, Explore. Colours are the site's own tokens, so
+   light mode follows without a rule of its own. */
+.menu .mcont{display:flex;flex-direction:column;gap:5px;margin:2px 0 8px;padding:10px 12px;
+  border-radius:11px;background:var(--accentbg);border:1px solid var(--accent);
+  text-decoration:none;color:var(--text)}
+.menu .mcont[hidden]{display:none}
+.menu .mcont:hover{border-color:var(--accent2)}
+.menu .mcont .ck{font-size:0.625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent3)}
+.menu .mcont .ct{display:flex;align-items:baseline;gap:8px}
+.menu .mcont .ctt{flex:1;min-width:0;font-size:0.875rem;font-weight:700;color:var(--bright);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .mcont .ctn{flex:none;font-size:0.6875rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.menu .mcont .cs{font-size:0.6875rem;color:var(--dim)}
+.menu .mcont .cs:empty{display:none}
+.menu .mcont .cbar{display:block;height:4px;border-radius:99px;background:var(--s3);overflow:hidden}
+.menu .mcont .cbar[hidden]{display:none}
+.menu .mcont .cbar i{display:block;height:100%;width:0;background:var(--accent)}
+.menu .mtiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:5px;margin:0 0 4px}
+.menu .mtiles a.item.tile{flex-direction:column-reverse;align-items:flex-start;gap:1px;
+  padding:7px 9px;margin:0;border-radius:9px;background:var(--s2);border:1px solid var(--edge)}
+.menu .mtiles a.item.tile .n{font-size:0.9375rem;font-weight:700;color:var(--bright)}
+.menu .mtiles a.item.tile .lb{font-size:0.6875rem;color:var(--dim);font-weight:500}
+.menu .mtiles a.item.tile:hover{border-color:var(--accent)}
+.menu .mtiles a.item.tile[hidden]{display:none}
+.menu .mcourses{margin:10px 0 2px}
+.menu .mch{display:flex;align-items:baseline;gap:8px;padding:4px 9px 5px}
+.menu .mch span{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);font-weight:700}
+.menu .mch small{margin-left:auto;font-size:0.625rem;color:var(--faint)}
+.menu .crs{display:flex;flex-direction:column;gap:1px;width:100%;text-align:left;margin:0 0 4px;
+  padding:7px 10px;border-radius:9px;background:var(--s2);border:1px solid var(--edge);
+  color:var(--text);font:inherit;cursor:pointer}
+.menu .crs:hover{border-color:var(--accent)}
+.menu .crs .cn{font-size:0.8125rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .crs .cm{font-size:0.6875rem;color:var(--dim)}
+.menu .mbuild{display:flex;align-items:center;gap:7px;width:100%;padding:8px 10px;border-radius:9px;
+  border:1px dashed var(--edge);background:none;color:var(--accent2);font:inherit;font-size:0.8125rem;
+  font-weight:600;cursor:pointer;text-align:left}
+.menu .mbuild:hover{border-color:var(--accent);color:var(--accent3)}
+.menu .mbuild span{font-size:1rem;line-height:1}
+.menu nav.q .mcont,.menu nav.q .mcourses{display:none}
+.menu .catmore{display:none}
+.menu .catmore.open{display:block}
+.menu .catallbtn{display:block;width:calc(100% - 8px);margin:6px 4px 2px;padding:8px 10px;border-radius:9px;
+  border:1px solid var(--edge);background:var(--s2);color:var(--text2);font:inherit;font-size:0.75rem;
+  font-weight:600;cursor:pointer}
+.menu .catallbtn:hover{border-color:var(--accent);color:var(--bright)}
+.menu .catallbtn[hidden]{display:none}
+.menu .catalso{margin:0 0 8px 10px;padding:6px 0 2px 8px;border-left:1px solid var(--edge)}
+.menu .catalso[hidden]{display:none}
+.menu .catalso .ah{font-size:0.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);padding:2px 7px 3px}
+.menu .catalso a.kept{display:flex;gap:7px;align-items:center;min-height:1.7rem;padding:0 7px;
+  border-radius:7px;font-size:0.75rem;color:var(--text2);text-decoration:none}
+.menu .catalso a.kept:hover{background:var(--s3);color:var(--bright)}
+.menu .catalso a.kept .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.menu .catalso a.kept .w{font-size:0.6562rem;color:var(--faint)}
+.menu .catpage.fit{height:auto}
+/* how far you are in a lesson: empty, part, done */
+.rg{flex:none;width:11px;height:11px;border-radius:50%;box-sizing:border-box;
+  border:1.5px solid var(--edge);display:inline-block}
+.rg.part{border-color:var(--edge);border-top-color:var(--warn,#f0a050);border-right-color:var(--warn,#f0a050)}
+.rg.done{background:var(--accent);border-color:var(--accent)}
+.lesson-link.kept .num{color:var(--faint)}
+
+/* the course sheets */
+.sheet-body.builder .bl{display:flex;flex-direction:column;gap:5px;margin:0 0 12px}
+.sheet-body.builder .bl span{font-size:0.75rem;font-weight:600;color:var(--text2)}
+.sheet-body.builder input[type=text],.sheet-body.builder input[type=search]{width:100%;box-sizing:border-box;
+  padding:9px 11px;border-radius:9px;border:1px solid var(--edge);background:var(--s1);color:var(--text);
+  font:inherit;font-size:0.875rem}
+.sheet-body.builder input:focus{outline:none;border-color:var(--accent)}
+.sheet-body .bcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.sheet-body .bcols{grid-template-columns:minmax(0,1fr)}}
+.sheet-body .bres{display:flex;flex-direction:column;gap:5px;max-height:46vh;overflow-y:auto;padding-right:2px}
+.sheet-body .bopt{display:flex;gap:9px;align-items:center;padding:8px 10px;border-radius:9px;
+  background:var(--s3);border:1px solid var(--edge);cursor:pointer}
+.sheet-body .bopt.on{border-color:var(--accent)}
+.sheet-body .bopt input{width:17px;height:17px;accent-color:var(--accent);flex:none}
+.sheet-body .tx{display:flex;flex-direction:column;min-width:0}
+.sheet-body .tx .t,.sheet-body .bsel .t{font-size:0.8125rem;font-weight:600;color:var(--text);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-body .tx .m{font-size:0.6875rem;color:var(--dim)}
+.sheet-body .bmine{padding:12px;border-radius:12px;background:var(--s1);border:1px solid var(--edge)}
+.sheet-body .bh{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.sheet-body .bh b{font-size:0.8125rem;color:var(--bright)}
+.sheet-body .btot{margin-left:auto;font-size:0.6875rem;color:var(--dim)}
+.sheet-body .bsel{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;counter-reset:b}
+.sheet-body .bsel li{display:flex;align-items:center;gap:6px;padding:6px 6px 6px 10px;border-radius:8px;
+  background:var(--s3);border:1px solid var(--edge);counter-increment:b}
+.sheet-body .bsel li::before{content:counter(b);font-size:0.6875rem;color:var(--faint);width:14px}
+.sheet-body .bsel .t{flex:1;min-width:0}
+.sheet-body .bsel .m{font-size:0.6875rem;color:var(--faint)}
+.sheet-body .bsel .cbtn{padding:3px 7px;min-width:28px}
+.sheet-body .bempty{font-size:0.75rem;color:var(--dim);margin:6px 0}
+.sheet-body .bempty[hidden]{display:none}
+.sheet-body .cbtn{padding:8px 12px;border-radius:9px;border:1px solid var(--edge);background:var(--s3);
+  color:var(--text2);font:inherit;font-size:0.8125rem;font-weight:600;cursor:pointer}
+.sheet-body .cbtn:hover:not(:disabled){border-color:var(--accent);color:var(--bright)}
+.sheet-body .cbtn:disabled{opacity:.45;cursor:default}
+.sheet-body .cbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.sheet-body .bbtns,.sheet-body .cbtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sheet-body .clessons{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-direction:column;gap:4px}
+.sheet-body .clessons a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;
+  background:var(--s3);border:1px solid var(--edge);text-decoration:none;color:var(--text)}
+.sheet-body .clessons a:hover{border-color:var(--accent)}
+.sheet-body .clessons .t{flex:1;min-width:0;font-size:0.8125rem;font-weight:600;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.sheet-body .clessons .m{font-size:0.6875rem;color:var(--dim)}
+.sheet-body .cgo{padding:9px 14px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none;
+  font-size:0.8125rem;font-weight:700}
+
+/* Dan: "We need the Romanization to be bigger, because new learners can't
+   read Thai script." Everywhere a word or sentence is spelled out in Latin
+   letters, it is now big enough to read first. */
+.info .rom{font-size:1.5rem;line-height:1.3;margin-top:6px}
+.info .sents .sr,.info .ex .sr,.sent-list .sr{font-size:1.0625rem;line-height:1.4}
+.fface .f-rom,.qcard .f-rom{font-size:1.375rem;color:var(--accent2)}
+.qopt .f-rom{font-size:1rem}
+.lrom{font-size:1.5rem}
+.vocab-row .rom,.wordlist .rom,.relwords .rom{font-size:1rem}
+@media(max-width:540px){.info .rom{font-size:1.3125rem}}
+
+/* Remember it by: on every word, with its own ✎ */
+.info .aid .k{display:flex;align-items:center;gap:8px}
+.info .aid .aidedit{margin-left:auto;background:none;border:1px solid var(--edge);color:var(--accent2);
+  border-radius:999px;padding:2px 10px;font:inherit;font-size:0.6875rem;letter-spacing:0;
+  text-transform:none;font-weight:600;cursor:pointer}
+.info .aid .aidedit:hover{border-color:var(--accent);color:var(--accent3)}
+.info .aid .aidtx.mine{white-space:pre-line;font-size:0.9375rem;color:var(--text2);margin-top:8px;line-height:1.5}
+.info .aid.empty .aidtx:empty::before{content:"Add your own way to remember this \2014 a sound, a picture, a story.";
+  display:block;margin-top:8px;font-size:0.8125rem;color:var(--faint);font-style:italic}
+.info .aid .aidtx textarea.edin{width:100%;box-sizing:border-box;margin-top:8px;min-height:64px}
+
+/* ✎ Picture, on the picture pane */
+.left{position:relative}
+.left .picedit{position:absolute;top:12px;right:12px;background:var(--s2);border:1px solid var(--edge);
+  color:var(--text2);border-radius:999px;padding:5px 12px;font:inherit;font-size:0.75rem;font-weight:600;
+  cursor:pointer;opacity:.8}
+.left .picedit:hover,.left .picedit:focus-visible{opacity:1;border-color:var(--accent);color:var(--bright)}
+body.mode-card .left .picedit,body.mode-quiz .left .picedit{display:none}
+.left .nopic.mine{font-size:7rem;display:flex;align-items:center;justify-content:center}
+.sheet-body.picsheet .ppv{display:flex;justify-content:center;margin:0 0 14px}
+.sheet-body.picsheet .ppv .f-img img{max-height:160px;border-radius:10px}
+.sheet-body.picsheet .ppv .nopic{font-size:4rem}
+.sheet-body.picsheet .prow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.sheet-body.picsheet .bl{display:flex;flex-direction:column;gap:5px}
+.sheet-body.picsheet .bl > span:first-child{font-size:0.75rem;font-weight:600;color:var(--text2)}
+.sheet-body.picsheet input[type=url],.sheet-body.picsheet input[type=text]{flex:1;min-width:0;padding:9px 11px;
+  border-radius:9px;border:1px solid var(--edge);background:var(--s1);color:var(--text);font:inherit;font-size:0.875rem}
+.sheet-body.picsheet .perr{color:var(--bad);font-size:0.8125rem}
+.sheet-body.picsheet .perr[hidden]{display:none}
+
+/* ===================================================== quiz 2.0 */
+.qtools .qstyles{display:flex;gap:3px}
+.qtools .qlisten{font-size:0.8125rem;font-weight:700;color:var(--accent3)}
+.qtools .qtypebtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.qask{font-size:0.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
+  text-align:center;margin-bottom:6px}
+.qcard .qbig{font-size:2rem;font-weight:600}
+.qcard .qear{font-size:3.25rem;line-height:1;margin-bottom:10px}
+.qplays{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.qplays .qplay{background:var(--s3);border:1px solid var(--edge);color:var(--text);border-radius:999px;
+  padding:9px 18px;font:inherit;font-size:0.9375rem;font-weight:600;cursor:pointer}
+.qplays .qplay:hover{border-color:var(--accent)}
+.qopt .qthai{font-size:1.5rem}
+.qopt .qtone{font-size:1.125rem;font-weight:700;text-transform:capitalize}
+.qsent{font-size:1.6rem;line-height:1.6;display:flex;flex-wrap:wrap;gap:2px 4px;justify-content:center}
+.qsent .qgap{display:inline-block;min-width:3.2em;border-bottom:3px solid var(--accent);color:transparent}
+.qtr{font-size:0.9375rem;color:var(--muted);text-align:center;margin-top:8px}
+/* fill the gap: the sentence's romanization, the same word blanked, and each
+   choice's romanization under its Thai */
+.qsrom{font-size:1rem;color:var(--accent2);text-align:center;margin-top:6px;line-height:1.6}
+.qsrom .qgap{display:inline-block;min-width:3em;border-bottom:2px solid var(--accent);color:transparent;margin:0 3px}
+.qopt .qtext .qorom{font-size:0.875rem;color:var(--accent2);font-weight:500}
+.qtr.qbigtr{font-size:1.25rem;color:var(--text)}
+/* typing first */
+.qtyp{display:flex;flex-direction:column;gap:8px;margin:2px 0 8px}
+.qtyp:empty{display:none}
+.qtlab{display:flex;flex-direction:column;gap:6px}
+.qtlab span{font-size:0.8125rem;color:var(--text2);font-weight:600}
+.qtlab .qin{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid var(--edge);
+  background:var(--s1);color:var(--text);font:inherit;font-size:1.125rem}
+.qtlab .qin:focus{outline:none;border-color:var(--accent)}
+.qtbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.qskip{background:none;border:1px solid var(--edge);color:var(--text2);border-radius:8px;padding:6px 14px;
+  font:inherit;font-size:0.8125rem;cursor:pointer}
+.qskip:hover{border-color:var(--accent);color:var(--bright)}
+.qmiss{font-size:0.875rem;color:var(--warn,#f0a050);text-align:center}
+.qopts[hidden]{display:none}
+/* try a sentence */
+.qorder{display:flex;flex-direction:column;gap:12px}
+.qline{min-height:56px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:10px;
+  border:2px dashed var(--edge);border-radius:12px}
+.qline.ok{border-style:solid;border-color:var(--ok)}
+.qline.no{border-style:solid;border-color:var(--bad)}
+.qtiles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.qtile{background:var(--s3);border:1px solid var(--edge);color:var(--text);border-radius:10px;padding:8px 14px;
+  font:inherit;font-size:1.375rem;cursor:pointer}
+.qtile:hover{border-color:var(--accent)}
+.qtile.placed{background:var(--accentbg);border-color:var(--accent)}
+.qcheck:disabled{opacity:.45;cursor:default}
+/* the answer, said */
+.qsay{font-weight:700;font-size:0.9375rem}
+.qsay.ok{color:var(--ok)}
+.qsay.no{color:var(--bad)}
+.qreveal{width:100%;text-align:center;font-size:0.9375rem;color:var(--text2)}
+.qreveal b{font-size:1.25rem;color:var(--bright)}
+.qreveal .f-rom{color:var(--accent2);font-size:1rem}
+.qreveal .qplays{margin-top:6px}
+/* a pop for right, a shake for wrong */
+@keyframes qyay{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes qshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@keyframes qburst{0%{opacity:0;transform:translateY(6px) scale(.6)}30%{opacity:1;transform:translateY(-4px) scale(1.15)}100%{opacity:0;transform:translateY(-26px) scale(1)}}
+.qyay{animation:qyay .35s ease-out}
+.qshake{animation:qshake .35s ease-in-out}
+.qresult{position:relative}
+.qburst{position:absolute;left:50%;top:-34px;margin-left:-1em;font-size:1.75rem;font-weight:800;color:var(--ok);
+  animation:qburst .85s ease-out forwards;pointer-events:none;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.qyay,.qshake,.qburst{animation:none}.qburst{display:none}}
+.mbar .qstreak{font-size:0.75rem;color:var(--text2);margin-left:10px}
+.mbar .qstreak[hidden]{display:none}
+.mbar .qstreak b{color:#f0a050}
+.mbar .qstreak span{color:var(--faint);margin-left:4px}
+/* the review */
+.qrev{display:flex;flex-direction:column;gap:4px;margin:10px 0 12px;max-height:46vh;overflow-y:auto}
+.qrow{display:grid;grid-template-columns:22px auto auto minmax(0,1fr);gap:4px 10px;align-items:baseline;
+  padding:7px 10px;border-radius:8px;background:var(--s3);border:1px solid var(--edge);cursor:pointer}
+.qrow.no{border-color:var(--bad)}
+.qrow .qmark{color:var(--ok);font-weight:800}
+.qrow input{accent-color:var(--accent)}
+.qrow .qw{font-size:1.125rem;color:var(--bright)}
+.qrow .qr{color:var(--accent2);font-size:0.875rem}
+.qrow .qm{color:var(--text2);font-size:0.8125rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qrow .qk{grid-column:2/-1;font-size:0.6875rem;color:var(--faint)}
+.qdbtns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.qdone .qadd{background:var(--accent);border:1px solid var(--accent);color:#fff;border-radius:8px;padding:7px 14px;
+  font:inherit;font-size:0.8125rem;font-weight:700;cursor:pointer}
+.qdone .qadd:disabled{opacity:.7;cursor:default}
+.qtools .qstyles .nbtn,.qtools .qtypebtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;padding:4px 10px;font-size:0.6875rem;cursor:pointer;font-family:inherit;line-height:1.2}
+.qtools .qstyles .nbtn:hover,.qtools .qtypebtn:hover{border-color:var(--accent);color:var(--bright)}
+.qtools .qstyles .nbtn.on{border-color:var(--gold2);background:var(--goldbg);color:var(--gold2)}
+@media(max-width:820px){.qtools{flex-wrap:wrap;gap:6px}}
+
+/* ⚑ Problem word, and the page of them */
+.info .probbtn{display:inline-flex;align-items:center;gap:6px;margin:10px 0 0;background:none;border:1px solid var(--edge);
+  color:var(--text2);border-radius:999px;padding:5px 12px;font:inherit;font-size:0.75rem;font-weight:600;cursor:pointer}
+.info .probbtn:hover{border-color:var(--accent);color:var(--bright)}
+.info .probbtn[aria-pressed="true"]{border-color:#f0a050;color:#f0a050;background:rgba(240,160,80,.08)}
+.info .pfrom{margin-top:14px;font-size:0.8125rem;color:var(--dim)}
+.info .pfrom a{color:var(--accent2)}
+.info .pempty{max-width:520px;margin:40px auto;text-align:center;color:var(--text2);line-height:1.6}
+.info .pempty h2{color:var(--bright);font-size:1.25rem;margin:0 0 8px}
+body.mode-card .info .probbtn,body.mode-quiz .info .probbtn{display:none}
+
+/* the backup reminder, and its panel */
+#bknag{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:70;display:flex;gap:10px;
+  align-items:center;flex-wrap:wrap;max-width:min(680px,calc(100vw - 32px));padding:10px 14px;border-radius:12px;
+  background:var(--s2);border:1px solid var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.4);
+  font-size:0.8125rem;color:var(--text)}
+#bknag .bt{flex:1 1 260px}
+#bknag button{border-radius:8px;padding:6px 12px;font:inherit;font-size:0.8125rem;font-weight:600;cursor:pointer}
+#bknag .bs{background:var(--accent);border:1px solid var(--accent);color:#fff}
+#bknag .bl{background:none;border:1px solid var(--edge);color:var(--text2)}
+.sheet-body .bkrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sheet-body .bkhow{font-size:0.8125rem;color:var(--text2);display:flex;gap:6px;align-items:center}
+.sheet-body .bkmsg[hidden]{display:none}
+.sheet-body .bkmsg{color:var(--ok)}
+/* a grammar lesson: the "How it works" box, and its grammar words picked out of every example */
+.gbox{margin:38px 0 16px;border:1px solid var(--edge);border-left:3px solid var(--accent);border-radius:10px;background:var(--s2);padding:0 14px}
+.gbox summary{cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:10px 0;list-style:none}
+.gbox summary::-webkit-details-marker{display:none}
+.gbox summary::before{content:"\25B8";color:var(--accent);font-size:0.8rem}
+.gbox[open] summary::before{content:"\25BE"}
+.gbox .gk{font-size:0.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--accent2)}
+.gbox .gpat{font-size:0.9375rem;color:var(--bright);font-weight:600}
+.gbox .gbody{padding:0 0 12px;font-size:0.9375rem;color:var(--text2);line-height:1.65}
+.gbox .gbody p{margin:0 0 9px}
+.gbox .gmis{border-top:1px dashed var(--edge);padding-top:9px}
+.gbox .gmis b{color:var(--bright)}
+.gbox .gnote{font-size:0.75rem;color:var(--dim);margin:0}
+body.mode-card .gbox,body.mode-quiz .gbox{display:none}
+.tw.gt{background:var(--accentbg);border-radius:4px;box-shadow:0 0 0 2px var(--accentbg),inset 0 -2px 0 var(--accent)}
+/* the alphabet page */
+.abc .ab-how{font-size:0.875rem}
+.abc .ab-jump{font-size:0.8125rem;color:var(--dim);margin:-4px 0 6px}
+.abc .ab-jump a{color:var(--accent2);text-decoration:none}
+.abc .ab-c{font-size:0.75rem;color:var(--faint);margin-left:6px;letter-spacing:0}
+.ab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-bottom:8px}
+.ab-t{background:var(--s3);border:1px solid var(--edge);border-radius:11px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.ab-t.obs{opacity:.55}
+.ab-x{font-size:2.6rem;line-height:1.15;color:var(--bright);font-weight:500}
+.ab-n{font-size:1rem;color:var(--text)}
+.ab-g{font-size:0.75rem;color:var(--muted)}
+.ab-s{font-size:0.8125rem;color:var(--text2);margin-top:2px}
+.ab-s b{color:var(--accent2);font-weight:600}
+.ab-note{font-size:0.6875rem;color:var(--dim);line-height:1.35}
+.ab-e{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);min-width:0}
+.ab-e img{width:40px;height:40px;object-fit:cover;border-radius:6px;flex:none}
+.ab-e .play{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--edge);background:var(--s2);color:var(--accent2);cursor:pointer;font-size:0.7rem}
+.ab-ew{display:flex;flex-direction:column;min-width:0;font-size:1rem;line-height:1.25}
+.ab-ew a{color:var(--text);text-decoration:none}
+.ab-ew a:hover{color:var(--accent2)}
+.ab-er{font-size:0.75rem}
+.ab-em{font-size:0.6875rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------------------------------------------------------------- game mode
+   🎮 beside the study modes opens game mode (Flash the Cat in a column, the
+   course beside it). Inside game mode the button is lit, and the quiz button
+   pulses when Flash is in trouble or needs quiz answers to stay strong. */
+.slider .md.gmode{margin-left:6px}
+.slider .md.gmode[aria-pressed="true"]{border-color:#ff9f5a;background:rgba(255,159,90,.16);color:var(--bright)}
+@keyframes wb-gq{from{box-shadow:0 0 0 0 rgba(242,112,95,.0)}to{box-shadow:0 0 0 3px rgba(242,112,95,.85)}}
+body.game-danger .slider .md[data-mode="quiz"],
+body.game-needquiz .slider .md[data-mode="quiz"]{border-color:#f2705f;color:var(--bright);animation:wb-gq .7s ease-in-out infinite alternate}
+body.game-danger.mode-quiz .slider .md[data-mode="quiz"],
+body.game-needquiz.mode-quiz .slider .md[data-mode="quiz"]{animation:none}
+/* the pop quiz (game mode only): a card over the lesson now and then */
+.wbpop{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;width:min(460px,calc(100vw - 32px));
+ background:var(--s2);border:2px solid #ff9f5a;border-radius:16px;padding:12px 14px 14px;color:var(--text);
+ box-shadow:0 12px 40px rgba(0,0,0,.45);animation:wbpop-in .25s ease-out}
+@keyframes wbpop-in{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.wbpop-h{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.wbpop-h b{color:#ff9f5a;font-size:1rem}
+.wbpop-h span{color:var(--muted);font-size:.8rem;flex:1}
+.wbpop-x{background:none;border:0;color:var(--muted);font-size:1rem;cursor:pointer;padding:2px 4px}
+.wbpop-x:hover{color:var(--text)}
+.wbpop-p{text-align:center;margin-bottom:10px}
+.wbpop-th{font-size:2.3rem;line-height:1.2;color:var(--bright)}
+.wbpop-say{margin-left:8px;vertical-align:middle;font-size:1rem;background:var(--s3);border:1px solid var(--edge);
+ border-radius:8px;color:var(--text);cursor:pointer;padding:2px 7px}
+.wbpop-rom{color:#ffb35a;font-size:.95rem}
+.wbpop-en{font-size:1.35rem;font-weight:700;color:var(--bright)}
+.wbpop-ask{color:var(--muted);font-size:.8rem;margin-top:2px}
+.wbpop-os{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wbpop-o{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;position:relative;
+ background:var(--s3);border:1px solid var(--edge);border-radius:11px;padding:9px 10px 8px;min-height:48px;
+ color:var(--text);font:inherit;font-size:.92rem;cursor:pointer}
+.wbpop-o i{position:absolute;left:8px;top:6px;font-style:normal;font-size:.7rem;color:var(--muted)}
+.wbpop-o span[lang]{font-size:1.35rem}
+.wbpop-o small{color:#ffb35a;font-size:.78rem}
+.wbpop-o:hover:not(:disabled){border-color:#ff9f5a}
+.wbpop-o.ok{border-color:#34c98e;background:rgba(52,201,142,.18)}
+.wbpop-o.no{border-color:#f2705f;background:rgba(242,112,95,.18)}
+.wbpop-o:disabled{cursor:default}
+/* the pop quiz's countdown */
+.wbpop-s{font-style:normal;font-variant-numeric:tabular-nums;color:var(--muted);font-size:.8rem;min-width:2.4em;text-align:right}
+.wbpop-t{height:4px;border-radius:2px;background:var(--s3);overflow:hidden;margin:-2px 0 10px}
+.wbpop-t i{display:block;height:100%;width:100%;background:#ff9f5a;border-radius:2px}
+.wbpop.hurry .wbpop-t i{background:#f2705f}
+.wbpop.hurry .wbpop-s{color:#f2705f;font-weight:700}
+.wbpop.timeout{border-color:#f2705f}
+/* quiz: Auto-play Thai, styled like Type first */
+.qtools .qautobtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;padding:4px 10px;font-size:0.6875rem;cursor:pointer;font-family:inherit;line-height:1.2}
+.qtools .qautobtn:hover{border-color:var(--accent);color:var(--bright)}
+.qtools .qautobtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+/* game mode, Learn: ⏩ auto-move bar along the bottom of the course */
+.wbauto{position:fixed;right:14px;bottom:10px;z-index:55;display:flex;align-items:center;gap:8px;
+ padding:7px 14px;border-radius:999px;background:var(--s2);border:1px solid #3b82f6;color:var(--text);font-size:13.5px;
+ box-shadow:0 6px 24px rgba(0,0,0,.35);white-space:nowrap}
+.wbauto[hidden]{display:none}
+.wbauto label{display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:600}
+.wbauto select{background:var(--s1,#1a1d29);color:var(--text);border:1px solid var(--line,#333);border-radius:8px;padding:2px 4px;font:inherit}
+.wbauto-n{color:var(--dim,#9aa);font-variant-numeric:tabular-nums}
+body.has-wbauto .wbpop{bottom:62px}
+
+/* ---- the main use of a word with several meanings (app/main_use.py) ----
+   The main use sits where the meaning sits; the other meanings follow it,
+   quieter, and then the one sentence chosen to show it. */
+.info .also,.lmain .also{font-size:0.8438rem;color:var(--muted);margin-top:4px;line-height:1.45}
+.info .also b,.lmain .also b{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-right:6px}
+.info .mu,.lmain .mu{margin-top:14px;padding:12px 14px;border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:10px;background:var(--s2,transparent)}
+.info .mu .muk,.lmain .mu .muk{font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin-bottom:6px}
+.info .mu .sx,.lmain .mu .sx{font-size:1.25rem;color:var(--text);line-height:1.5}
+.info .mu .sr,.lmain .mu .sr{font-size:1.0625rem;color:var(--accent2);margin-top:2px;line-height:1.4}
+.info .mu .st,.lmain .mu .st{font-size:0.9062rem;color:var(--muted);margin-top:2px}
+.info .mu .splay,.lmain .mu .splay{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.info .mu .splay button,.lmain .mu .splay button{background:var(--s3);border:1px solid var(--edge);
+  color:var(--text2);padding:5px 11px;border-radius:8px;font-size:0.8125rem;cursor:pointer}
+.info .mu .splay button:hover,.lmain .mu .splay button:hover{border-color:var(--accent);color:var(--bright)}
+body.hide-mean .info .also,body.hide-mean .info .mu .st{display:none}
+body.hide-sound .info .mu .splay{display:none}
+body.hide-rom .info .mu .sr{display:none}
+
+/* ---- mouth and tongue (app/mouth.py, mouth.js) ---- */
+.mouthsvg{display:block;width:100%;height:auto}
+.mouthsvg path,.mouthsvg circle{vector-effect:non-scaling-stroke}
+.mouthsvg .mf{fill:none;stroke:var(--mo-line,#c9ced8);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mouthsvg .mlip{fill:var(--mo-skin,#d98f7e);stroke:var(--mo-lip-edge,#a8604f);stroke-width:1.5;stroke-linejoin:round}
+.mouthsvg .mn{fill:var(--mo-nose,rgba(120,160,230,.10))}
+.mouthsvg .mp{fill:none;stroke:var(--mo-roof,#9aa3b5);stroke-width:5;stroke-linecap:round}
+.mouthsvg .mvel{stroke:var(--mo-velum,#b48ead)}
+.mouthsvg .mtooth{fill:var(--mo-tooth,#f2f0ea);stroke:var(--mo-line,#c9ced8);stroke-width:1}
+.mouthsvg .mt{fill:var(--mo-tongue,#e0707e);stroke:var(--mo-tongue-edge,#b84a5a);stroke-width:1.5}
+.mouthsvg .mg{fill:none;stroke:var(--mo-tongue,#e0707e);stroke-width:1.5;stroke-dasharray:4 3;opacity:.8}
+.mouthsvg .mc{fill:var(--mo-hit,rgba(255,196,0,.35));stroke:var(--mo-hit-edge,#ffc400);stroke-width:2}
+.mouthsvg .mc.near{fill:none;stroke-dasharray:3 2}
+.mouthsvg .ma{fill:none;stroke:var(--mo-air,#5fb3ff);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mouthsvg .mnose{stroke-dasharray:5 4}
+.mouthsvg .mhiss{stroke-dasharray:2 3}
+.mouthsvg .mflow{opacity:.55}
+.mouthsvg .mglide{stroke:var(--mo-tongue-edge,#b84a5a)}
+.mouthsvg .mhold{fill:none;stroke:var(--mo-hit-edge,#ffc400);stroke-width:3;stroke-linecap:round}
+.mouthsvg .mlx{fill:none;stroke:var(--mo-line,#c9ced8);stroke-width:2;stroke-linecap:round}
+.mouthsvg .mv{fill:none;stroke:var(--mo-air,#5fb3ff);stroke-width:2;stroke-linecap:round}
+html.light-pre body,body.light{--mo-line:#55606f;--mo-roof:#7d8797;--mo-tooth:#fff;--mo-nose:rgba(60,110,200,.10);
+  --mo-hit:rgba(230,160,0,.30);--mo-hit-edge:#c98a00;--mo-air:#1f6fd0}
+.mouthbox{margin-top:10px}
+.mouthbtn{background:var(--s3);border:1px solid var(--edge);color:var(--text2);padding:5px 11px;
+  border-radius:8px;font-size:0.8125rem;cursor:pointer}
+.mouthbtn:hover,.mouthbtn[aria-expanded="true"]{border-color:var(--accent);color:var(--bright)}
+.mouthbox.loading .mouthbtn{opacity:.6;cursor:progress}
+.mouthpanel{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:12px;
+  display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 16px;align-items:start;max-width:620px}
+.mouthpanel[hidden]{display:none}
+.mouthpanel.mfail{display:block;color:var(--muted);font-size:.875rem}
+.mouthchips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.mouthchips .mchip{background:var(--s2,transparent);border:1px solid var(--edge);color:var(--text2);
+  border-radius:7px;padding:2px 9px;font-size:.9375rem;cursor:pointer;min-width:30px}
+.mouthchips .mchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.mouthchips .msep{color:var(--dim);padding:0 2px}
+.mouthfig{grid-row:2/4}
+.mouthtxt .mname{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.mouthtxt .mname b{font-size:1.375rem;color:var(--bright)}
+.mouthtxt .mthai{font-size:1.0625rem;color:var(--text)}
+.mouthtxt .mtags{font-size:.6875rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-weight:700}
+.mouthtxt .mtip{margin-top:6px;color:var(--text2);font-size:.9375rem;line-height:1.45}
+.mouthnav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mouthnav button{background:var(--s3);border:1px solid var(--edge);color:var(--text2);border-radius:8px;
+  padding:4px 11px;font-size:.875rem;cursor:pointer}
+.mouthnav .mprev,.mouthnav .mnext{font-size:1.125rem;line-height:1;padding:3px 12px}
+.mouthnav .mcount{font-size:.8125rem;color:var(--muted);min-width:42px;text-align:center}
+@media (max-width:560px){.mouthpanel{grid-template-columns:1fr}.mouthfig{grid-row:auto;max-width:260px}}
