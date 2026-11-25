@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="robots" content="noindex,nofollow,noarchive"/>
+<meta name="referrer" content="no-referrer"/>
+<title>Record the Thai alphabet</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
+<style>:root{--bg:#121417;--s1:#1b1e23;--s2:#23272e;--line:#2f343c;--text:#e7e9ec;--dim:#9aa1ab;
+  --accent:#4f9cf9;--ok:#3ecf8e;--warn:#f5a524;--bad:#f2555a;--rec:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text)}
+body{font-family:-apple-system,Segoe UI,Roboto,"Noto Sans Thai",Arial,sans-serif;line-height:1.5;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:var(--s2);border:1px solid var(--line);border-radius:12px;
+  padding:10px 14px;cursor:pointer;touch-action:manipulation}
+button:disabled{opacity:.35;cursor:default}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+input[type=text],textarea{font:inherit;color:var(--text);background:var(--s1);border:1px solid var(--line);
+  border-radius:10px;padding:10px 12px;width:100%}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 120px}
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  padding:10px 16px;display:flex;align-items:center;gap:10px}
+header.top b{flex:1}
+.bar{height:6px;background:var(--s2);border-radius:4px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.dim{color:var(--dim)} .small{font-size:.85rem}
+h1{font-size:1.5rem;margin:6px 0 10px} h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);margin:22px 0 8px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.check{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+.check input{width:22px;height:22px;flex-shrink:0;margin-top:2px}
+.meter{height:12px;background:var(--s2);border-radius:6px;overflow:hidden;margin:10px 0}
+.meter i{display:block;height:100%;width:0;background:var(--ok);transition:width .05s}
+/* the chart */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:8px}
+.tile{position:relative;background:var(--s1);border:1px solid var(--line);border-radius:12px;
+  padding:10px 4px 18px;text-align:center;font-size:1.9rem;line-height:1.2;cursor:pointer}
+.tile .dots{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:center;gap:4px}
+.tile .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.tile .dots i.on{background:var(--ok)}
+.tile.done{border-color:var(--ok)}
+.tile.unsure::after{content:"?";position:absolute;top:2px;right:6px;font-size:.8rem;color:var(--warn);font-weight:700}
+/* one letter */
+.letter{text-align:center;padding:10px 0 4px}
+.letter .big{font-size:6.5rem;line-height:1.1}
+.letter .rom{color:var(--dim);font-size:1rem}
+.part{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+.part .lab{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+.part .say{font-size:2rem;line-height:1.3;margin:2px 0 8px}
+.part .say small{font-size:.9rem;color:var(--dim)}
+.part.done{border-color:var(--ok)}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.recbtn{background:var(--rec);border-color:var(--rec);color:#fff;font-weight:700;
+  padding:12px 16px;border-radius:999px}
+.recbtn.on{animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.6}}
+.status{font-size:.85rem;color:var(--dim);margin-top:6px;min-height:1.2em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px;z-index:6}
+.nav button{flex:1;padding:14px}
+.unsure-on{border-color:var(--warn);color:var(--warn)}
+.foot{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--s2);
+  border:1px solid var(--line);padding:10px 16px;border-radius:12px;z-index:9;max-width:90vw}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="application/json" id="rec-data">{"lang": "th", "language_name": "Thai", "sections": [{"title": "Consonants · mid class", "items": [{"code": "L001", "id": 1, "kind": "consonant", "script": "ก", "rom": "g", "name": "กอ ไก่", "sound": "กอ", "gloss": "chicken"}, {"code": "L008", "id": 8, "kind": "consonant", "script": "จ", "rom": "j", "name": "จอ จาน", "sound": "จอ", "gloss": "plate"}, {"code": "L014", "id": 14, "kind": "consonant", "script": "ฎ", "rom": "d", "name": "ฎอ ชฎา", "sound": "ฎอ", "gloss": "headdress"}, {"code": "L015", "id": 15, "kind": "consonant", "script": "ฏ", "rom": "dt", "name": "ฏอ ปฏัก", "sound": "ฏอ", "gloss": "goad"}, {"code": "L020", "id": 20, "kind": "consonant", "script": "ด", "rom": "d", "name": "ดอ เด็ก", "sound": "ดอ", "gloss": "child"}, {"code": "L021", "id": 21, "kind": "consonant", "script": "ต", "rom": "dt", "name": "ตอ เต่า", "sound": "ตอ", "gloss": "turtle"}, {"code": "L026", "id": 26, "kind": "consonant", "script": "บ", "rom": "b", "name": "บอ ใบไม้", "sound": "บอ", "gloss": "leaf"}, {"code": "L027", "id": 27, "kind": "consonant", "script": "ป", "rom": "bp", "name": "ปอ ปลา", "sound": "ปอ", "gloss": "fish"}, {"code": "L043", "id": 43, "kind": "consonant", "script": "อ", "rom": "—", "name": "ออ อ่าง", "sound": "ออ", "gloss": "basin"}]}, {"title": "Consonants · high class", "items": [{"code": "L002", "id": 2, "kind": "consonant", "script": "ข", "rom": "kh", "name": "ขอ ไข่", "sound": "ขอ", "gloss": "egg"}, {"code": "L009", "id": 9, "kind": "consonant", "script": "ฉ", "rom": "ch", "name": "ฉอ ฉิ่ง", "sound": "ฉอ", "gloss": "cymbals"}, {"code": "L016", "id": 16, "kind": "consonant", "script": "ฐ", "rom": "th", "name": "ฐอ ฐาน", "sound": "ฐอ", "gloss": "base"}, {"code": "L022", "id": 22, "kind": "consonant", "script": "ถ", "rom": "th", "name": "ถอ ถุง", "sound": "ถอ", "gloss": "sack"}, {"code": "L028", "id": 28, "kind": "consonant", "script": "ผ", "rom": "ph", "name": "ผอ ผึ้ง", "sound": "ผอ", "gloss": "bee"}, {"code": "L029", "id": 29, "kind": "consonant", "script": "ฝ", "rom": "f", "name": "ฝอ ฝา", "sound": "ฝอ", "gloss": "lid"}, {"code": "L038", "id": 38, "kind": "consonant", "script": "ศ", "rom": "s", "name": "ศอ ศาลา", "sound": "ศอ", "gloss": "pavilion"}, {"code": "L039", "id": 39, "kind": "consonant", "script": "ษ", "rom": "s", "name": "ษอ ฤๅษี", "sound": "ษอ", "gloss": "hermit"}, {"code": "L040", "id": 40, "kind": "consonant", "script": "ส", "rom": "s", "name": "สอ เสือ", "sound": "สอ", "gloss": "tiger"}, {"code": "L041", "id": 41, "kind": "consonant", "script": "ห", "rom": "h", "name": "หอ หีบ", "sound": "หอ", "gloss": "chest"}]}, {"title": "Consonants · low class", "items": [{"code": "L004", "id": 4, "kind": "consonant", "script": "ค", "rom": "kh", "name": "คอ ควาย", "sound": "คอ", "gloss": "buffalo"}, {"code": "L006", "id": 6, "kind": "consonant", "script": "ฆ", "rom": "kh", "name": "ฆอ ระฆัง", "sound": "ฆอ", "gloss": "bell"}, {"code": "L007", "id": 7, "kind": "consonant", "script": "ง", "rom": "ng", "name": "งอ งู", "sound": "งอ", "gloss": "snake"}, {"code": "L010", "id": 10, "kind": "consonant", "script": "ช", "rom": "ch", "name": "ชอ ช้าง", "sound": "ชอ", "gloss": "elephant"}, {"code": "L011", "id": 11, "kind": "consonant", "script": "ซ", "rom": "s", "name": "ซอ โซ่", "sound": "ซอ", "gloss": "chain"}, {"code": "L012", "id": 12, "kind": "consonant", "script": "ฌ", "rom": "ch", "name": "ฌอ เฌอ", "sound": "ฌอ", "gloss": "tree"}, {"code": "L013", "id": 13, "kind": "consonant", "script": "ญ", "rom": "y", "name": "ญอ หญิง", "sound": "ญอ", "gloss": "woman"}, {"code": "L017", "id": 17, "kind": "consonant", "script": "ฑ", "rom": "th", "name": "ฑอ มณโฑ", "sound": "ฑอ", "gloss": "Montho"}, {"code": "L018", "id": 18, "kind": "consonant", "script": "ฒ", "rom": "th", "name": "ฒอ ผู้เฒ่า", "sound": "ฒอ", "gloss": "elder"}, {"code": "L019", "id": 19, "kind": "consonant", "script": "ณ", "rom": "n", "name": "ณอ เณร", "sound": "ณอ", "gloss": "novice monk"}, {"code": "L023", "id": 23, "kind": "consonant", "script": "ท", "rom": "th", "name": "ทอ ทหาร", "sound": "ทอ", "gloss": "soldier"}, {"code": "L024", "id": 24, "kind": "consonant", "script": "ธ", "rom": "th", "name": "ธอ ธง", "sound": "ธอ", "gloss": "flag"}, {"code": "L025", "id": 25, "kind": "consonant", "script": "น", "rom": "n", "name": "นอ หนู", "sound": "นอ", "gloss": "mouse"}, {"code": "L030", "id": 30, "kind": "consonant", "script": "พ", "rom": "ph", "name": "พอ พาน", "sound": "พอ", "gloss": "tray"}, {"code": "L031", "id": 31, "kind": "consonant", "script": "ฟ", "rom": "f", "name": "ฟอ ฟัน", "sound": "ฟอ", "gloss": "tooth"}, {"code": "L032", "id": 32, "kind": "consonant", "script": "ภ", "rom": "ph", "name": "ภอ สำเภา", "sound": "ภอ", "gloss": "junk boat"}, {"code": "L033", "id": 33, "kind": "consonant", "script": "ม", "rom": "m", "name": "มอ ม้า", "sound": "มอ", "gloss": "horse"}, {"code": "L034", "id": 34, "kind": "consonant", "script": "ย", "rom": "y", "name": "ยอ ยักษ์", "sound": "ยอ", "gloss": "giant"}, {"code": "L035", "id": 35, "kind": "consonant", "script": "ร", "rom": "r", "name": "รอ เรือ", "sound": "รอ", "gloss": "boat"}, {"code": "L036", "id": 36, "kind": "consonant", "script": "ล", "rom": "l", "name": "ลอ ลิง", "sound": "ลอ", "gloss": "monkey"}, {"code": "L037", "id": 37, "kind": "consonant", "script": "ว", "rom": "w", "name": "วอ แหวน", "sound": "วอ", "gloss": "ring"}, {"code": "L042", "id": 42, "kind": "consonant", "script": "ฬ", "rom": "l", "name": "ฬอ จุฬา", "sound": "ฬอ", "gloss": "kite"}, {"code": "L044", "id": 44, "kind": "consonant", "script": "ฮ", "rom": "h", "name": "ฮอ นกฮูก", "sound": "ฮอ", "gloss": "owl"}]}, {"title": "Vowels", "items": [{"code": "L045", "id": 45, "kind": "vowel", "script": "◌ะ", "rom": "a", "name": "สระอะ", "sound": "กะ", "gloss": ""}, {"code": "L046", "id": 46, "kind": "vowel", "script": "◌ั◌", "rom": "a", "name": "ไม้หันอากาศ", "sound": "กัน", "gloss": ""}, {"code": "L047", "id": 47, "kind": "vowel", "script": "◌า", "rom": "aa", "name": "สระอา", "sound": "กา", "gloss": ""}, {"code": "L048", "id": 48, "kind": "vowel", "script": "◌ิ", "rom": "i", "name": "สระอิ", "sound": "กิ", "gloss": ""}, {"code": "L049", "id": 49, "kind": "vowel", "script": "◌ี", "rom": "ii", "name": "สระอี", "sound": "กี", "gloss": ""}, {"code": "L050", "id": 50, "kind": "vowel", "script": "◌ึ", "rom": "ʉ", "name": "สระอึ", "sound": "กึ", "gloss": ""}, {"code": "L051", "id": 51, "kind": "vowel", "script": "◌ื◌", "rom": "ʉʉ", "name": "สระอือ", "sound": "กือ", "gloss": ""}, {"code": "L052", "id": 52, "kind": "vowel", "script": "◌ุ", "rom": "u", "name": "สระอุ", "sound": "กุ", "gloss": ""}, {"code": "L053", "id": 53, "kind": "vowel", "script": "◌ู", "rom": "uu", "name": "สระอู", "sound": "กู", "gloss": ""}, {"code": "L054", "id": 54, "kind": "vowel", "script": "เ◌ะ", "rom": "e", "name": "สระเอะ", "sound": "เกะ", "gloss": ""}, {"code": "L055", "id": 55, "kind": "vowel", "script": "เ◌", "rom": "ee", "name": "สระเอ", "sound": "เก", "gloss": ""}, {"code": "L056", "id": 56, "kind": "vowel", "script": "แ◌ะ", "rom": "ɛ", "name": "สระแอะ", "sound": "แกะ", "gloss": ""}, {"code": "L057", "id": 57, "kind": "vowel", "script": "แ◌", "rom": "ɛɛ", "name": "สระแอ", "sound": "แก", "gloss": ""}, {"code": "L058", "id": 58, "kind": "vowel", "script": "โ◌ะ", "rom": "o", "name": "สระโอะ", "sound": "โกะ", "gloss": ""}, {"code": "L059", "id": 59, "kind": "vowel", "script": "โ◌", "rom": "oo", "name": "สระโอ", "sound": "โก", "gloss": ""}, {"code": "L060", "id": 60, "kind": "vowel", "script": "เ◌าะ", "rom": "ɔ", "name": "สระเอาะ", "sound": "เกาะ", "gloss": ""}, {"code": "L061", "id": 61, "kind": "vowel", "script": "◌อ", "rom": "ɔɔ", "name": "สระออ", "sound": "กอ", "gloss": ""}, {"code": "L062", "id": 62, "kind": "vowel", "script": "เ◌อะ", "rom": "ə", "name": "สระเออะ", "sound": "เกอะ", "gloss": ""}, {"code": "L063", "id": 63, "kind": "vowel", "script": "เ◌อ", "rom": "əə", "name": "สระเออ", "sound": "เกอ", "gloss": ""}, {"code": "L064", "id": 64, "kind": "vowel", "script": "เ◌ียะ", "rom": "ia", "name": "สระเอียะ", "sound": "เกียะ", "gloss": ""}, {"code": "L065", "id": 65, "kind": "vowel", "script": "เ◌ีย", "rom": "ia", "name": "สระเอีย", "sound": "เกีย", "gloss": ""}, {"code": "L066", "id": 66, "kind": "vowel", "script": "เ◌ือะ", "rom": "ʉa", "name": "สระเอือะ", "sound": "เกือะ", "gloss": ""}, {"code": "L067", "id": 67, "kind": "vowel", "script": "เ◌ือ", "rom": "ʉa", "name": "สระเอือ", "sound": "เกือ", "gloss": ""}, {"code": "L068", "id": 68, "kind": "vowel", "script": "◌ัวะ", "rom": "ua", "name": "สระอัวะ", "sound": "กัวะ", "gloss": ""}, {"code": "L069", "id": 69, "kind": "vowel", "script": "◌ัว", "rom": "ua", "name": "สระอัว", "sound": "กัว", "gloss": ""}, {"code": "L070", "id": 70, "kind": "vowel", "script": "ไ◌", "rom": "ai", "name": "สระไอ ไม้มลาย", "sound": "ไก", "gloss": ""}, {"code": "L071", "id": 71, "kind": "vowel", "script": "ใ◌", "rom": "ai", "name": "สระใอ ไม้ม้วน", "sound": "ใก", "gloss": ""}, {"code": "L072", "id": 72, "kind": "vowel", "script": "◌าย", "rom": "aai", "name": "", "sound": "กาย", "gloss": ""}, {"code": "L073", "id": 73, "kind": "vowel", "script": "เ◌า", "rom": "ao", "name": "สระเอา", "sound": "เกา", "gloss": ""}, {"code": "L074", "id": 74, "kind": "vowel", "script": "◌าว", "rom": "aao", "name": "", "sound": "กาว", "gloss": ""}, {"code": "L075", "id": 75, "kind": "vowel", "script": "◌ำ", "rom": "am", "name": "สระอำ", "sound": "กำ", "gloss": ""}, {"code": "L080", "id": 80, "kind": "vowel", "script": "◌อย", "rom": "ɔɔi", "name": "", "sound": "กอย", "gloss": ""}, {"code": "L081", "id": 81, "kind": "vowel", "script": "◌ุย", "rom": "ui", "name": "", "sound": "กุย", "gloss": ""}, {"code": "L082", "id": 82, "kind": "vowel", "script": "◌วย", "rom": "uai", "name": "", "sound": "กวย", "gloss": ""}, {"code": "L083", "id": 83, "kind": "vowel", "script": "เ◌ียว", "rom": "iao", "name": "", "sound": "เกียว", "gloss": ""}, {"code": "L084", "id": 84, "kind": "vowel", "script": "เ◌ย", "rom": "əəi", "name": "", "sound": "เกย", "gloss": ""}, {"code": "L085", "id": 85, "kind": "vowel", "script": "โ◌ย", "rom": "ooi", "name": "", "sound": "โกย", "gloss": ""}, {"code": "L086", "id": 86, "kind": "vowel", "script": "เ◌ือย", "rom": "ʉai", "name": "", "sound": "เกือย", "gloss": ""}, {"code": "L102", "id": 102, "kind": "vowel", "script": "◌◌", "rom": "o", "name": "", "sound": "กน", "gloss": ""}, {"code": "L103", "id": 103, "kind": "vowel", "script": "◌ิว", "rom": "iu", "name": "", "sound": "กิว", "gloss": ""}, {"code": "L104", "id": 104, "kind": "vowel", "script": "เ◌็ว", "rom": "eo", "name": "", "sound": "เก็ว", "gloss": ""}, {"code": "L105", "id": 105, "kind": "vowel", "script": "เ◌ว", "rom": "eeo", "name": "", "sound": "เกว", "gloss": ""}, {"code": "L106", "id": 106, "kind": "vowel", "script": "แ◌ว", "rom": "ɛɛo", "name": "", "sound": "แกว", "gloss": ""}, {"code": "L107", "id": 107, "kind": "vowel", "script": "ฤ", "rom": "rʉ", "name": "ตัว ฤ", "sound": "ฤ", "gloss": ""}]}, {"title": "Tone marks", "items": [{"code": "L076", "id": 76, "kind": "tone", "script": "◌่", "rom": "", "name": "ไม้เอก", "sound": "ก่า", "gloss": ""}, {"code": "L077", "id": 77, "kind": "tone", "script": "◌้", "rom": "", "name": "ไม้โท", "sound": "ก้า", "gloss": ""}, {"code": "L078", "id": 78, "kind": "tone", "script": "◌๊", "rom": "", "name": "ไม้ตรี", "sound": "ก๊า", "gloss": ""}, {"code": "L079", "id": 79, "kind": "tone", "script": "◌๋", "rom": "", "name": "ไม้จัตวา", "sound": "ก๋า", "gloss": ""}]}, {"title": "Two letters, one sound", "items": [{"code": "L087", "id": 87, "kind": "cluster", "script": "กร", "rom": "gr", "name": "", "sound": "กรา", "gloss": ""}, {"code": "L088", "id": 88, "kind": "cluster", "script": "กล", "rom": "gl", "name": "", "sound": "กลา", "gloss": ""}, {"code": "L089", "id": 89, "kind": "cluster", "script": "กว", "rom": "gw", "name": "", "sound": "กวา", "gloss": ""}, {"code": "L090", "id": 90, "kind": "cluster", "script": "ขร", "rom": "khr", "name": "", "sound": "ขรา", "gloss": ""}, {"code": "L091", "id": 91, "kind": "cluster", "script": "ขล", "rom": "khl", "name": "", "sound": "ขลา", "gloss": ""}, {"code": "L092", "id": 92, "kind": "cluster", "script": "ขว", "rom": "khw", "name": "", "sound": "ขวา", "gloss": ""}, {"code": "L093", "id": 93, "kind": "cluster", "script": "คร", "rom": "khr", "name": "", "sound": "ครา", "gloss": ""}, {"code": "L094", "id": 94, "kind": "cluster", "script": "คล", "rom": "khl", "name": "", "sound": "คลา", "gloss": ""}, {"code": "L095", "id": 95, "kind": "cluster", "script": "คว", "rom": "khw", "name": "", "sound": "ควา", "gloss": ""}, {"code": "L096", "id": 96, "kind": "cluster", "script": "ตร", "rom": "dtr", "name": "", "sound": "ตรา", "gloss": ""}, {"code": "L097", "id": 97, "kind": "cluster", "script": "ปร", "rom": "bpr", "name": "", "sound": "ปรา", "gloss": ""}, {"code": "L098", "id": 98, "kind": "cluster", "script": "ปล", "rom": "bpl", "name": "", "sound": "ปลา", "gloss": ""}, {"code": "L099", "id": 99, "kind": "cluster", "script": "ผล", "rom": "phl", "name": "", "sound": "ผลา", "gloss": ""}, {"code": "L100", "id": 100, "kind": "cluster", "script": "พร", "rom": "phr", "name": "", "sound": "พรา", "gloss": ""}, {"code": "L101", "id": 101, "kind": "cluster", "script": "พล", "rom": "phl", "name": "", "sound": "พลา", "gloss": ""}]}], "contact": "", "consent": "I agree that inaflash.cards may use these recordings of my voice in its Thai course, on its website and in its apps. I made them myself."}</script>
+<script>// The native speaker's recording page.
+//
+// A speaker opens it on their phone, records each letter's NAME and SOUND,
+// and downloads one zip to send back. Nothing leaves the device until they do
+// that: recordings are kept in the browser (IndexedDB), so closing the page
+// and coming back tomorrow loses nothing. They are given no audio to copy.
+//
+// Recording is plain PCM through Web Audio, written out as 16-bit WAV — every
+// phone records it the same way, where MediaRecorder gives webm on Android and
+// mp4 on iPhone. Silence is trimmed and the level evened out on the device.
+(function () {
+"use strict";
+const D = JSON.parse(document.getElementById("rec-data").textContent);
+const LANG = D.lang;
+const ITEMS = [];
+for (const s of D.sections) for (const it of s.items) { it.section = s.title; ITEMS.push(it); }
+const PARTS = it => it.name ? ["name", "sound"] : ["sound"];
+const TOTAL = ITEMS.reduce((n, it) => n + PARTS(it).length, 0);
+const $ = s => document.querySelector(s);
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") el.className = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (v === true) el.setAttribute(k, "");
+    else if (v !== false && v != null) el.setAttribute(k, v);
+  }
+  for (const c of kids.flat(5)) if (c != null && c !== false)
+    el.append(c.nodeType ? c : document.createTextNode(c));
+  return el;
+}
+function toast(msg, ms) {
+  const t = h("div", { class: "toast" }, msg);
+  document.body.append(t);
+  setTimeout(() => t.remove(), ms || 2600);
+}
+
+// ------------------------------------------------------------------ storage
+const Store = {
+  db: null,
+  open() {
+    if (this.db) return Promise.resolve(this.db);
+    return new Promise((res, rej) => {
+      const r = indexedDB.open("inaflash-record", 1);
+      r.onupgradeneeded = () => {
+        r.result.createObjectStore("clips");
+        r.result.createObjectStore("meta");
+      };
+      r.onsuccess = () => { this.db = r.result; res(this.db); };
+      r.onerror = () => rej(r.error);
+    });
+  },
+  async tx(store, mode, fn) {
+    const db = await this.open();
+    return new Promise((res, rej) => {
+      const t = db.transaction(store, mode);
+      const out = fn(t.objectStore(store));
+      t.oncomplete = () => res(out instanceof IDBRequest ? out.result : out);
+      t.onerror = () => rej(t.error);
+    });
+  },
+  key: (code, part) => `${LANG}:${code}:${part}`,
+  // Kept as bytes rather than a Blob: older iPhones could not store a Blob in
+  // IndexedDB, and bytes go in everywhere.
+  async put(code, part, val) {
+    const buf = await val.blob.arrayBuffer();
+    return this.tx("clips", "readwrite", s => s.put({ buf, secs: val.secs, at: val.at },
+                                                    this.key(code, part)));
+  },
+  async get(code, part) {
+    const v = await this.tx("clips", "readonly", s => s.get(this.key(code, part)));
+    return v ? { ...v, blob: new Blob([v.buf], { type: "audio/wav" }) } : null;
+  },
+  del(code, part) { return this.tx("clips", "readwrite", s => s.delete(this.key(code, part))); },
+  async keys() {
+    const all = await this.tx("clips", "readonly", s => s.getAllKeys());
+    return (all || []).filter(k => String(k).startsWith(LANG + ":"));
+  },
+  async meta() { return (await this.tx("meta", "readonly", s => s.get(LANG))) || {}; },
+  async saveMeta(m) { return this.tx("meta", "readwrite", s => s.put(m, LANG)); },
+};
+let META = {};
+let HAVE = new Set();               // "L012:name"
+
+// ---------------------------------------------------------------- recording
+const Mic = {
+  ctx: null, stream: null, src: null, an: null, proc: null, buf: [], on: false,
+  async ready() {
+    if (!this.stream) {
+      this.stream = await navigator.mediaDevices.getUserMedia({ audio: {
+        channelCount: 1, echoCancellation: false, noiseSuppression: true, autoGainControl: true } });
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AC();
+      this.src = this.ctx.createMediaStreamSource(this.stream);
+      this.an = this.ctx.createAnalyser();
+      this.an.fftSize = 1024;
+      this.src.connect(this.an);
+    }
+    if (this.ctx.state === "suspended") await this.ctx.resume();
+  },
+  level() {
+    if (!this.an) return 0;
+    const a = new Float32Array(this.an.fftSize);
+    this.an.getFloatTimeDomainData(a);
+    let s = 0; for (const x of a) s += x * x;
+    return Math.min(1, Math.sqrt(s / a.length) * 6);
+  },
+  async start() {
+    await this.ready();
+    this.buf = [];
+    this.proc = this.ctx.createScriptProcessor(4096, 1, 1);
+    this.proc.onaudioprocess = e => { if (this.on) this.buf.push(new Float32Array(e.inputBuffer.getChannelData(0))); };
+    this.src.connect(this.proc);
+    this.proc.connect(this.ctx.destination);   // it only runs when connected
+    this.on = true;
+  },
+  stop() {
+    this.on = false;
+    try { this.src.disconnect(this.proc); this.proc.disconnect(); } catch (e) {}
+    const n = this.buf.reduce((a, b) => a + b.length, 0);
+    const out = new Float32Array(n);
+    let o = 0; for (const b of this.buf) { out.set(b, o); o += b.length; }
+    this.buf = [];
+    return { pcm: out, rate: this.ctx.sampleRate };
+  },
+};
+
+// Trim the silence, even out the level, bring it to 24 kHz.
+function tidy(pcm, rate) {
+  const step = Math.round(rate * 0.01);
+  const rms = [];
+  let peak = 0;
+  for (let i = 0; i < pcm.length; i += step) {
+    let s = 0;
+    for (let j = i; j < Math.min(i + step, pcm.length); j++) { s += pcm[j] * pcm[j]; peak = Math.max(peak, Math.abs(pcm[j])); }
+    rms.push(Math.sqrt(s / step));
+  }
+  const loud = Math.max(...rms, 0);
+  if (loud < 0.004) return { error: "I could not hear anything — check the microphone and try again." };
+  const thr = Math.max(0.006, loud * 0.08);
+  let a = rms.findIndex(x => x > thr), b = rms.length - 1 - [...rms].reverse().findIndex(x => x > thr);
+  a = Math.max(0, a - 12); b = Math.min(rms.length - 1, b + 20);           // 120 ms before, 200 after
+  let clip = pcm.slice(a * step, (b + 1) * step);
+  const secs = clip.length / rate;
+  if (secs < 0.2) return { error: "That was very short — try again, a little slower." };
+  const clipped = clip.filter(x => Math.abs(x) > 0.995).length > rate * 0.002;
+  const g = 0.89 / Math.max(peak, 1e-4);
+  const target = 24000;
+  const n = Math.floor(clip.length * target / rate);
+  const out = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const x = i * rate / target, k = Math.floor(x), f = x - k;
+    const v = (clip[k] || 0) * (1 - f) + (clip[k + 1] || 0) * f;
+    out[i] = Math.max(-1, Math.min(1, v * g));
+  }
+  // short fades so it does not click
+  const fade = Math.min(240, n >> 3);
+  for (let i = 0; i < fade; i++) { out[i] *= i / fade; out[n - 1 - i] *= i / fade; }
+  return { pcm: out, rate: target, secs: n / target, clipped };
+}
+
+function wav(pcm, rate) {
+  const buf = new ArrayBuffer(44 + pcm.length * 2);
+  const v = new DataView(buf);
+  const w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, "RIFF"); v.setUint32(4, 36 + pcm.length * 2, true); w(8, "WAVE"); w(12, "fmt ");
+  v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true);
+  v.setUint16(34, 16, true); w(36, "data"); v.setUint32(40, pcm.length * 2, true);
+  for (let i = 0; i < pcm.length; i++) v.setInt16(44 + i * 2, Math.round(pcm[i] * 32767), true);
+  return new Blob([buf], { type: "audio/wav" });
+}
+
+let PLAYER = null;
+function play(blob) {
+  if (PLAYER) { PLAYER.pause(); URL.revokeObjectURL(PLAYER.src); }
+  PLAYER = new Audio(URL.createObjectURL(blob));
+  PLAYER.play().catch(() => toast("Could not play it back"));
+}
+
+// ---------------------------------------------------------------------- zip
+// Stored, not compressed: WAV barely compresses, and this needs no library.
+const CRC = (() => { const t = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+  return t; })();
+function crc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+async function zip(files) {                    // [{name, data: Uint8Array}]
+  const enc = new TextEncoder(), parts = [], central = [];
+  let off = 0;
+  const d = new Date();
+  const dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF;
+  const dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+  for (const f of files) {
+    const name = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true);
+    lh.setUint16(8, 0, true); lh.setUint16(10, dt, true); lh.setUint16(12, dd, true);
+    lh.setUint32(14, crc, true); lh.setUint32(18, size, true); lh.setUint32(22, size, true);
+    lh.setUint16(26, name.length, true); lh.setUint16(28, 0, true);
+    parts.push(new Uint8Array(lh.buffer), name, f.data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true);
+    ch.setUint16(8, 0x0800, true); ch.setUint16(10, 0, true); ch.setUint16(12, dt, true);
+    ch.setUint16(14, dd, true); ch.setUint32(16, crc, true); ch.setUint32(20, size, true);
+    ch.setUint32(24, size, true); ch.setUint16(28, name.length, true);
+    ch.setUint32(42, off, true);
+    central.push(new Uint8Array(ch.buffer), name);
+    off += 30 + name.length + size;
+  }
+  const csize = central.reduce((a, b) => a + b.length, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true);
+  end.setUint16(10, files.length, true); end.setUint32(12, csize, true); end.setUint32(16, off, true);
+  return new Blob([...parts, ...central, new Uint8Array(end.buffer)], { type: "application/zip" });
+}
+
+async function bundle() {
+  const files = [], items = [];
+  for (const it of ITEMS) {
+    const rec = { code: it.code, script: it.script, kind: it.kind, files: {},
+                  asked: { name: it.name || null, sound: it.sound },
+                  unsure: !!(META.unsure || {})[it.code], note: (META.notes || {})[it.code] || "" };
+    for (const part of PARTS(it)) {
+      const c = await Store.get(it.code, part);
+      if (!c) continue;
+      const fname = `${it.code}-${part}.wav`;
+      files.push({ name: fname, data: new Uint8Array(await c.blob.arrayBuffer()) });
+      rec.files[part] = fname;
+    }
+    if (Object.keys(rec.files).length || rec.unsure || rec.note) items.push(rec);
+  }
+  const manifest = { kind: "inaflash-recordings", version: 1, language: LANG,
+    language_name: D.language_name, site: location.origin, speaker: META.name || "",
+    credit: !!META.credit, native: true, consent: !!META.consent, consent_text: D.consent,
+    made: new Date().toISOString(), device: navigator.userAgent, items };
+  files.push({ name: "manifest.json", data: new TextEncoder().encode(JSON.stringify(manifest, null, 2)) });
+  const blob = await zip(files);
+  const who = (META.name || "speaker").replace(/[^\w฀-๿-]+/g, "-").slice(0, 30);
+  const name = `${LANG}-recordings-${who}-${new Date().toISOString().slice(0, 10)}.zip`;
+  return { blob, name, count: files.length - 1 };
+}
+
+async function download() {
+  const { blob, name, count } = await bundle();
+  if (!count) return toast("Nothing recorded yet");
+  const file = new File([blob], name, { type: "application/zip" });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: name }); return; }
+    catch (e) { if (e && e.name === "AbortError") return; }
+  }
+  const a = h("a", { href: URL.createObjectURL(blob), download: name });
+  document.body.append(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+  toast(`${count} recordings saved as ${name}`, 4000);
+}
+
+// ------------------------------------------------------------------- screens
+const done = it => PARTS(it).every(p => HAVE.has(`${it.code}:${p}`));
+function progress() {
+  const n = HAVE.size;
+  return { n, pct: Math.round(100 * n / TOTAL) };
+}
+function topBar(title, back) {
+  const p = progress();
+  return h("header", { class: "top" },
+    back ? h("button", { onclick: back, "aria-label": "back to the chart" }, "☰") : "",
+    h("b", {}, title,
+      h("div", { class: "bar" }, h("i", { style: `width:${p.pct}%` }))),
+    h("span", { class: "dim small" }, `${p.n}/${TOTAL}`));
+}
+
+function startScreen() {
+  const app = $("#app"); app.innerHTML = "";
+  const name = h("input", { type: "text", value: META.name || "", placeholder: "Your name" });
+  const credit = h("input", { type: "checkbox" }); credit.checked = META.credit !== false;
+  const consent = h("input", { type: "checkbox" }); consent.checked = !!META.consent;
+  const meter = h("i", {});
+  let testing = false;
+  const test = async () => {
+    try { await Mic.ready(); } catch (e) { return toast("The microphone is not available — allow it in the browser's settings"); }
+    testing = true;
+    const tick = () => { if (!testing) return; meter.style.width = (Mic.level() * 100) + "%"; requestAnimationFrame(tick); };
+    tick();
+    toast("Say something — the bar should move");
+  };
+  app.append(
+    h("div", { class: "wrap" },
+      h("h1", {}, `Record the ${D.language_name} alphabet`),
+      h("p", {}, `Thank you for helping. You will see each ${D.language_name} letter, one at a time. `,
+        "For each one, record its ", h("b", {}, "name"), " and its ", h("b", {}, "sound"),
+        " — the way you would say them to someone learning to read."),
+      h("div", { class: "card" },
+        h("b", {}, "Before you start"),
+        h("ul", { style: "margin:8px 0 0 18px" },
+          h("li", {}, "A quiet room. No fan, TV or traffic if you can."),
+          h("li", {}, "Hold the phone about a hand's width from your mouth."),
+          h("li", {}, "Say each one once, clearly, at a normal speed."),
+          h("li", {}, "Not sure how a letter is said? Press ", h("b", {}, "Not sure"), " and move on."),
+          h("li", {}, "Everything stays on this phone until you press ", h("b", {}, "Download"), "."))),
+      h("div", { class: "card" },
+        h("b", {}, "Microphone"),
+        h("div", { class: "meter" }, meter),
+        h("button", { onclick: test }, "🎤 Test the microphone")),
+      h("div", { class: "card" },
+        name,
+        h("label", { class: "check" }, credit, h("span", {}, "Credit me by name in the course")),
+        h("label", { class: "check" }, consent, h("span", { class: "small" }, D.consent))),
+      h("button", { class: "primary", style: "width:100%;padding:16px", onclick: async () => {
+        if (!consent.checked) return toast("Please tick the agreement first");
+        testing = false;
+        META = { ...META, name: name.value.trim(), credit: credit.checked, consent: true };
+        await Store.saveMeta(META);
+        try { await Mic.ready(); } catch (e) { return toast("The microphone is not available — allow it in the browser's settings"); }
+        location.hash = "chart";
+      } }, "Start")));
+}
+
+function chartScreen() {
+  const app = $("#app"); app.innerHTML = "";
+  const first = ITEMS.find(it => !done(it) && !(META.unsure || {})[it.code]);
+  const wrap = h("div", { class: "wrap" },
+    h("p", { class: "dim small" }, "Tap any letter. A green outline means it is done; ",
+      "the two dots are its name and its sound."),
+    h("div", { class: "foot" },
+      h("button", { class: "primary", onclick: () => go(first || ITEMS[0]) },
+        first ? "Continue →" : "Go through them again"),
+      h("button", { onclick: download }, `⤓ Download my recordings (${HAVE.size})`)));
+  for (const s of D.sections) {
+    wrap.append(h("h2", {}, s.title));
+    wrap.append(h("div", { class: "grid" }, ...s.items.map(it => {
+      const cls = ["tile", done(it) ? "done" : "", (META.unsure || {})[it.code] ? "unsure" : ""].join(" ");
+      return h("div", { class: cls, onclick: () => go(it) }, it.script,
+        h("span", { class: "dots" }, ...PARTS(it).map(p =>
+          h("i", { class: HAVE.has(`${it.code}:${p}`) ? "on" : "" }))));
+    })));
+  }
+  wrap.append(h("div", { class: "card small dim", style: "margin-top:24px" },
+    "When you have finished — or want to send what you have so far — press ",
+    h("b", {}, "Download my recordings"), " and send the file to ",
+    D.contact ? h("b", {}, D.contact) : "the person who asked you", ". ",
+    "On a phone you can send it straight from the share menu."));
+  app.append(topBar(`${D.language_name} alphabet`), wrap);
+}
+
+function go(it) { location.hash = it.code; }
+
+async function cardScreen(code) {
+  const i = ITEMS.findIndex(x => x.code === code);
+  if (i < 0) return chartScreen();
+  const it = ITEMS[i];
+  const app = $("#app"); app.innerHTML = "";
+  const wrap = h("div", { class: "wrap" });
+  wrap.append(h("div", { class: "dim small", style: "text-align:center" }, it.section),
+    h("div", { class: "letter" },
+      h("div", { class: "big", lang: LANG }, it.script),
+      it.rom ? h("div", { class: "rom" }, it.rom) : ""));
+  for (const part of PARTS(it)) wrap.append(await partBox(it, part));
+  const unsure = !!(META.unsure || {})[it.code];
+  const note = h("input", { type: "text", value: (META.notes || {})[it.code] || "",
+    placeholder: "Anything we should know about this one? (optional)" });
+  note.addEventListener("change", async () => {
+    META.notes = { ...(META.notes || {}), [it.code]: note.value.trim() };
+    await Store.saveMeta(META);
+  });
+  wrap.append(h("div", { class: "controls", style: "margin-top:6px" },
+    h("button", { class: unsure ? "unsure-on" : "", onclick: async () => {
+      META.unsure = { ...(META.unsure || {}) };
+      if (META.unsure[it.code]) delete META.unsure[it.code]; else META.unsure[it.code] = true;
+      await Store.saveMeta(META);
+      cardScreen(code);
+    } }, unsure ? "? Marked not sure" : "Not sure")),
+    h("div", { style: "margin-top:8px" }, note));
+  const prev = ITEMS[i - 1], next = ITEMS[i + 1];
+  const nav = h("div", { class: "nav" },
+    h("button", { disabled: !prev, onclick: () => prev && go(prev) }, "← Back"),
+    h("button", { class: done(it) ? "primary" : "", onclick: () => next ? go(next) : (location.hash = "chart") },
+      next ? "Next →" : "Finish"));
+  app.append(topBar(`${i + 1} of ${ITEMS.length}`, () => (location.hash = "chart")), wrap, nav);
+  // swipe between letters
+  let x0 = null;
+  wrap.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 80 && !Mic.on) { if (dx < 0 && next) go(next); if (dx > 0 && prev) go(prev); }
+  });
+}
+
+async function partBox(it, part) {
+  const have = await Store.get(it.code, part);
+  const say = part === "name" ? it.name : it.sound;
+  const status = h("div", { class: "status" + (have ? " ok" : "") },
+    have ? `✓ recorded · ${have.secs.toFixed(1)} s` : "");
+  const box = h("div", { class: "part" + (have ? " done" : "") });
+  const recBtn = h("button", { class: "recbtn" }, have ? "● Record again" : "● Record");
+  const playBtn = h("button", { disabled: !have, onclick: async () => {
+    const c = await Store.get(it.code, part); if (c) play(c.blob);
+  } }, "▶ Play");
+  const delBtn = h("button", { disabled: !have, "aria-label": "delete", onclick: async () => {
+    if (!confirm("Delete this recording?")) return;
+    await Store.del(it.code, part); HAVE.delete(`${it.code}:${part}`);
+    cardScreen(it.code);
+  } }, "🗑 Delete");
+  let timer = null, raf = null;
+  const stop = async () => {
+    clearTimeout(timer); cancelAnimationFrame(raf);
+    const { pcm, rate } = Mic.stop();
+    recBtn.classList.remove("on");
+    const t = tidy(pcm, rate);
+    if (t.error) { status.className = "status warn"; status.textContent = t.error;
+                   recBtn.textContent = "● Record"; return; }
+    const blob = wav(t.pcm, t.rate);
+    await Store.put(it.code, part, { blob, secs: t.secs, at: Date.now() });
+    HAVE.add(`${it.code}:${part}`);
+    play(blob);
+    status.className = "status " + (t.clipped ? "warn" : "ok");
+    status.textContent = t.clipped
+      ? "Recorded — but it was very loud. Move the phone back a little and record again."
+      : `✓ recorded · ${t.secs.toFixed(1)} s — listen, and record again if it is not right`;
+    box.classList.add("done"); recBtn.textContent = "● Record again";
+    playBtn.disabled = false; delBtn.disabled = false;
+    const nb = document.querySelector(".nav button:last-child");
+    if (nb && done(it)) nb.classList.add("primary");
+    const bar = document.querySelector("header .bar i");
+    if (bar) bar.style.width = progress().pct + "%";
+    const cnt = document.querySelector("header .small");
+    if (cnt) cnt.textContent = `${progress().n}/${TOTAL}`;
+  };
+  recBtn.addEventListener("click", async () => {
+    if (Mic.on) return stop();
+    try { await Mic.start(); }
+    catch (e) { return toast("The microphone is not available — allow it in the browser's settings"); }
+    if (PLAYER) PLAYER.pause();
+    recBtn.classList.add("on"); recBtn.textContent = "■ Stop";
+    status.className = "status"; status.textContent = "Recording… say it, then press Stop";
+    const tick = () => { status.style.opacity = 0.5 + Mic.level() / 2; raf = requestAnimationFrame(tick); };
+    tick();
+    timer = setTimeout(stop, 8000);
+  });
+  box.append(
+    h("div", { class: "lab" }, part === "name" ? "Its name" : "Its sound"),
+    h("div", { class: "say", lang: LANG }, say,
+      part === "name" && it.gloss ? h("small", {}, `  (${it.gloss})`) : ""),
+    h("div", { class: "controls" }, recBtn, playBtn, delBtn),
+    status);
+  return box;
+}
+
+// -------------------------------------------------------------------- route
+async function route() {
+  if (Mic.on) Mic.stop();
+  window.scrollTo(0, 0);
+  const k = location.hash.replace("#", "");
+  if (!META.consent) return startScreen();
+  if (!k || k === "chart") return chartScreen();
+  return cardScreen(k);
+}
+
+(async () => {
+  if (!window.indexedDB || !navigator.mediaDevices) {
+    $("#app").innerHTML = "<div class='wrap'><h1>This browser cannot record</h1>" +
+      "<p>Please open this page in Chrome or Safari on your phone.</p></div>";
+    return;
+  }
+  try {
+    META = await Store.meta();
+    HAVE = new Set((await Store.keys()).map(k => k.split(":").slice(1).join(":")));
+    if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+  } catch (e) {
+    $("#app").innerHTML = "<div class='wrap'><h1>Recordings cannot be kept here</h1>" +
+      "<p>This browser is blocking storage (a private window?). Please open the page in a normal window.</p></div>";
+    return;
+  }
+  window.addEventListener("hashchange", route);
+  route();
+})();
+})();
+</script>
+</body>
+</html>

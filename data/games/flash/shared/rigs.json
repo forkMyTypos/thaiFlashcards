@@ -1,0 +1,119 @@
+[
+  {
+    "id": "skeleton_modular",
+    "name": "Modular skeleton",
+    "kind": "modular",
+    "parts": [
+      "skull",
+      "ribcage",
+      "pelvis",
+      "upper_arm",
+      "forearm",
+      "hand",
+      "thigh",
+      "lower_leg",
+      "foot"
+    ],
+    "variations_per_part": 10,
+    "attachment_points": [
+      "neck",
+      "shoulder_l",
+      "shoulder_r",
+      "elbow_l",
+      "elbow_r",
+      "wrist_l",
+      "wrist_r",
+      "hip_l",
+      "hip_r",
+      "knee_l",
+      "knee_r",
+      "ankle_l",
+      "ankle_r",
+      "weapon_hand",
+      "head_top"
+    ],
+    "states": [
+      "idle",
+      "walk",
+      "run",
+      "attack",
+      "hit",
+      "death",
+      "explode"
+    ],
+    "pixel_scale": 1,
+    "rarity_rules": {
+      "common": "ordinary bones",
+      "uncommon": "armour or unusual skulls",
+      "rare": "glowing bones, horns",
+      "elite": "distinctive combinations and effects"
+    },
+    "notes": "One master template first: same pixel scale, pivots, bone lengths and attachment coordinates for every part."
+  },
+  {
+    "id": "cat_flash",
+    "name": "Flash (cat)",
+    "kind": "cutout",
+    "parts": [
+      "body",
+      "head",
+      "ear_l",
+      "ear_r",
+      "eyes",
+      "mouth",
+      "front_leg_l",
+      "front_leg_r",
+      "back_leg_l",
+      "back_leg_r",
+      "tail",
+      "accessories"
+    ],
+    "layers": [
+      "back_leg_l",
+      "front_leg_l",
+      "tail",
+      "body",
+      "back_leg_r",
+      "front_leg_r",
+      "head",
+      "ear_l",
+      "ear_r",
+      "eyes",
+      "mouth",
+      "accessories"
+    ],
+    "parent": {
+      "head": "body",
+      "ear_l": "head",
+      "ear_r": "head",
+      "eyes": "head",
+      "mouth": "head",
+      "front_leg_l": "body",
+      "front_leg_r": "body",
+      "back_leg_l": "body",
+      "back_leg_r": "body",
+      "tail": "body",
+      "accessories": "body"
+    },
+    "variations_per_part": 1,
+    "attachment_points": [
+      "front_paw_l",
+      "front_paw_r",
+      "back_paw_l",
+      "back_paw_r",
+      "tail"
+    ],
+    "states": [
+      "idle",
+      "crouch",
+      "walk",
+      "jump",
+      "attack",
+      "hit",
+      "cast",
+      "victory",
+      "death"
+    ],
+    "notes": "2D cutout rig for regular gameplay: reusable body parts, keyframed. Special attacks and cinematics can use more elaborate techniques. Weapons are separate sprites at the attachment points. Flash stays in the centre; animation supplies the movement and personality."
+  }
+]

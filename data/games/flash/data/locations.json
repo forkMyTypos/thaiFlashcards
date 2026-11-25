@@ -1,0 +1,205 @@
+[
+  {
+    "id": "temple",
+    "name": "Temple",
+    "icon": "🛕",
+    "thai": "วัด",
+    "order": 1,
+    "description": "A temple courtyard at dusk: warm stone, gold trim, torches. The old bell comes down now and then.",
+    "floor": {
+      "base": "#3d2c22",
+      "tile": "#6e5238",
+      "accent": "#e0b040",
+      "pattern": "tiles"
+    },
+    "props": [
+      "torch",
+      "bell",
+      "bones"
+    ],
+    "light": "#ffb347",
+    "mix": {},
+    "ranged": 1,
+    "hazard": {
+      "kind": "strike",
+      "name": "Falling bell",
+      "icon": "🔔",
+      "every": 26,
+      "warn": 1.6,
+      "count": 1,
+      "radius": 90,
+      "flash_damage": 0.1,
+      "enemy_damage": 0.6,
+      "element": "none",
+      "slow": 0.5,
+      "linger": 2.5,
+      "colour": "#e0b040"
+    },
+    "boss": "skeleton_king",
+    "boss_hp": 1
+  },
+  {
+    "id": "night_market",
+    "name": "Night market",
+    "icon": "🏮",
+    "thai": "ตลาดกลางคืน",
+    "order": 2,
+    "description": "Stalls, lanterns and wet tarmac. Somebody keeps letting off firecrackers.",
+    "floor": {
+      "base": "#1f1b2e",
+      "tile": "#3a3350",
+      "accent": "#ff5a7a",
+      "pattern": "concrete"
+    },
+    "props": [
+      "lantern",
+      "stall"
+    ],
+    "light": "#ff6b6b",
+    "mix": {
+      "skeleton_berserker": 1.5,
+      "skeleton_archer": 0.7
+    },
+    "ranged": 1,
+    "hazard": {
+      "kind": "strike",
+      "name": "Firecrackers",
+      "icon": "🧨",
+      "every": 20,
+      "warn": 1.3,
+      "count": 4,
+      "radius": 46,
+      "flash_damage": 0.06,
+      "enemy_damage": 0.3,
+      "element": "fire",
+      "colour": "#ff7a2a"
+    },
+    "boss": "bone_golem",
+    "boss_hp": 0.45,
+    "boss_name": "Tuk-Tuk Golem"
+  },
+  {
+    "id": "beach",
+    "name": "Beach",
+    "icon": "🏖️",
+    "thai": "ชายหาด",
+    "order": 3,
+    "description": "Sand at sunset, palms, the sea on one side. Every so often a big wave comes right up the beach.",
+    "floor": {
+      "base": "#5c4d3c",
+      "tile": "#7a6a52",
+      "accent": "#3aa8c8",
+      "pattern": "sand"
+    },
+    "props": [
+      "palm",
+      "parasol",
+      "rock"
+    ],
+    "light": "#ffd27a",
+    "mix": {
+      "skeleton_archer": 1.4,
+      "skeleton_armoured": 0.6
+    },
+    "ranged": 1.3,
+    "hazard": {
+      "kind": "sweep",
+      "name": "Big wave",
+      "icon": "🌊",
+      "every": 24,
+      "warn": 2,
+      "radius": 110,
+      "speed": 420,
+      "push": 160,
+      "flash_damage": 0.07,
+      "enemy_damage": 0.25,
+      "element": "ice",
+      "colour": "#4ac0d8"
+    },
+    "boss": "bone_dragon",
+    "boss_hp": 0.65,
+    "boss_name": "Bone Naga"
+  },
+  {
+    "id": "jungle",
+    "name": "Jungle",
+    "icon": "🌴",
+    "thai": "ป่า",
+    "order": 4,
+    "description": "Thick green, vines and roots. Mind the coconuts.",
+    "floor": {
+      "base": "#1e3322",
+      "tile": "#2f5236",
+      "accent": "#8fe36a",
+      "pattern": "grass"
+    },
+    "props": [
+      "vine",
+      "rock",
+      "palm"
+    ],
+    "light": "#b6ff7a",
+    "mix": {
+      "skeleton_berserker": 1.6,
+      "skeleton_mage": 0.7
+    },
+    "ranged": 1,
+    "hazard": {
+      "kind": "strike",
+      "name": "Coconuts",
+      "icon": "🥥",
+      "every": 16,
+      "warn": 1.0,
+      "count": 3,
+      "radius": 40,
+      "flash_damage": 0.07,
+      "enemy_damage": 0.5,
+      "element": "none",
+      "colour": "#c9a070"
+    },
+    "boss": "bone_golem",
+    "boss_hp": 0.45,
+    "boss_name": "Bone Elephant"
+  },
+  {
+    "id": "rooftops",
+    "name": "Bangkok rooftops",
+    "icon": "🌃",
+    "thai": "ดาดฟ้า",
+    "order": 5,
+    "description": "Concrete, neon and aerials, high over the city. The storm season never really ends up here.",
+    "floor": {
+      "base": "#1a1f2b",
+      "tile": "#2c3445",
+      "accent": "#4fd8ff",
+      "pattern": "concrete"
+    },
+    "props": [
+      "neon",
+      "antenna"
+    ],
+    "light": "#4fd8ff",
+    "mix": {
+      "skeleton_archer": 1.5,
+      "skeleton_mage": 1.4,
+      "skeleton_grunt": 0.8
+    },
+    "ranged": 1.5,
+    "hazard": {
+      "kind": "strike",
+      "name": "Lightning",
+      "icon": "⚡",
+      "every": 18,
+      "warn": 1.1,
+      "count": 2,
+      "radius": 62,
+      "flash_damage": 0.08,
+      "enemy_damage": 0.45,
+      "element": "lightning",
+      "colour": "#d8c8ff"
+    },
+    "boss": "lich",
+    "boss_hp": 0.9,
+    "boss_name": "Neon Lich"
+  }
+]

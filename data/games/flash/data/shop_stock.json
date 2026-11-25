@@ -1,0 +1,67 @@
+[
+  {
+    "id": "common_item",
+    "name": "Common item",
+    "kind": "item",
+    "rarity": "common",
+    "price": 30
+  },
+  {
+    "id": "uncommon_item",
+    "name": "Uncommon item",
+    "kind": "item",
+    "rarity": "uncommon",
+    "price": 60
+  },
+  {
+    "id": "rare_item",
+    "name": "Rare item",
+    "kind": "item",
+    "rarity": "rare",
+    "price": 120
+  },
+  {
+    "id": "epic_item",
+    "name": "Epic item",
+    "kind": "item",
+    "rarity": "epic",
+    "price": 250
+  },
+  {
+    "id": "legendary_item",
+    "name": "Legendary item",
+    "kind": "item",
+    "rarity": "legendary",
+    "price": 500
+  },
+  {
+    "id": "random_weapon",
+    "name": "Random weapon",
+    "kind": "weapon",
+    "price": 100
+  },
+  {
+    "id": "random_spell",
+    "name": "Random spell",
+    "kind": "spell",
+    "price": 100
+  },
+  {
+    "id": "random_upgrade",
+    "name": "Random upgrade",
+    "kind": "upgrade",
+    "price": 50
+  },
+  {
+    "id": "healing_potion",
+    "name": "Healing potion",
+    "kind": "consumable",
+    "price": 40
+  },
+  {
+    "id": "reroll",
+    "name": "Reroll shop",
+    "kind": "reroll",
+    "price": 25
+  }
+]

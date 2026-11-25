@@ -1,0 +1,272 @@
+[
+  {
+    "id": "tree",
+    "name": "Tree",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "dead_tree",
+    "name": "Dead Tree",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "frozen_tree",
+    "name": "Frozen Tree",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "tree_stump",
+    "name": "Tree Stump",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "rock",
+    "name": "Rock",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "bush",
+    "name": "Bush",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "mushroom",
+    "name": "Mushroom",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "roots",
+    "name": "Roots",
+    "category": "nature",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "gravestone",
+    "name": "Gravestone",
+    "category": "graveyard",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "iron_fence",
+    "name": "Iron Fence",
+    "category": "graveyard",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "coffin",
+    "name": "Coffin",
+    "category": "graveyard",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "bones_pile",
+    "name": "Bones Pile",
+    "category": "graveyard",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "skull",
+    "name": "Skull",
+    "category": "graveyard",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "barrel",
+    "name": "Barrel",
+    "category": "dungeon",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "crate",
+    "name": "Crate",
+    "category": "dungeon",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "chains",
+    "name": "Chains",
+    "category": "dungeon",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "torch",
+    "name": "Torch",
+    "category": "dungeon",
+    "sprite": null,
+    "animation": "burning",
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "stone_wall",
+    "name": "Stone Wall",
+    "category": "dungeon",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "broken_column",
+    "name": "Broken Column",
+    "category": "ruins",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "broken_wall",
+    "name": "Broken Wall",
+    "category": "ruins",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "rubble",
+    "name": "Rubble",
+    "category": "ruins",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "banner",
+    "name": "Banner",
+    "category": "ruins",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "crystal",
+    "name": "Crystal",
+    "category": "magical",
+    "sprite": null,
+    "animation": "aura",
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "ice_crystal",
+    "name": "Ice Crystal",
+    "category": "magical",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "rune",
+    "name": "Rune",
+    "category": "magical",
+    "sprite": null,
+    "animation": "aura",
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "glowing_mushroom",
+    "name": "Glowing Mushroom",
+    "category": "magical",
+    "sprite": null,
+    "animation": "aura",
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "lava_crack",
+    "name": "Lava Crack",
+    "category": "magical",
+    "sprite": null,
+    "animation": "burning",
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "flowers",
+    "name": "Flowers",
+    "category": "decoration",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "grass",
+    "name": "Grass",
+    "category": "decoration",
+    "sprite": null,
+    "animation": null,
+    "decorative": true,
+    "status": "needs art"
+  },
+  {
+    "id": "candle",
+    "name": "Candle",
+    "category": "decoration",
+    "sprite": null,
+    "animation": "burning",
+    "decorative": true,
+    "status": "needs art"
+  }
+]

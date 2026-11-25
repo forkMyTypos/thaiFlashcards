@@ -1,0 +1,110 @@
+[
+  {
+    "id": "giant",
+    "name": "Giant",
+    "effects": [
+      {
+        "stat": "max_hp",
+        "op": "multiply",
+        "value": 5
+      }
+    ],
+    "size_scale": 3,
+    "description": "3x size, 5x HP"
+  },
+  {
+    "id": "armoured",
+    "name": "Armoured",
+    "effects": [
+      {
+        "stat": "defence",
+        "op": "add",
+        "value": 0.3
+      }
+    ],
+    "description": "+30% defence"
+  },
+  {
+    "id": "swift",
+    "name": "Swift",
+    "effects": [
+      {
+        "stat": "movement_speed",
+        "op": "add_pct",
+        "value": 0.5
+      }
+    ],
+    "description": "+50% movement speed"
+  },
+  {
+    "id": "vampiric",
+    "name": "Vampiric",
+    "effects": [
+      {
+        "stat": "lifesteal",
+        "op": "add",
+        "value": 0.05
+      }
+    ],
+    "description": "Lifesteal",
+    "notes": "5% guessed"
+  },
+  {
+    "id": "explosive",
+    "name": "Explosive",
+    "effects": [],
+    "on_death": [
+      "explosion"
+    ],
+    "description": "Explodes on death"
+  },
+  {
+    "id": "regenerating",
+    "name": "Regenerating",
+    "effects": [],
+    "special": "regenerate 5% max HP per second",
+    "description": "+5% HP/sec"
+  },
+  {
+    "id": "flaming",
+    "name": "Flaming",
+    "effects": [],
+    "applies_effects": [
+      "burn"
+    ],
+    "description": "Attacks inflict burn"
+  },
+  {
+    "id": "frozen",
+    "name": "Frozen",
+    "effects": [],
+    "applies_effects": [
+      "freeze"
+    ],
+    "description": "Attacks can freeze Flash"
+  },
+  {
+    "id": "enraged",
+    "name": "Enraged",
+    "effects": [
+      {
+        "stat": "damage",
+        "op": "add_pct",
+        "value": 1.0
+      },
+      {
+        "stat": "attack_speed",
+        "op": "add_pct",
+        "value": 0.5
+      }
+    ],
+    "description": "+100% damage, +50% attack speed"
+  },
+  {
+    "id": "summoner",
+    "name": "Summoner",
+    "effects": [],
+    "special": "periodically summons skeletons",
+    "description": "Periodically summons skeletons"
+  }
+]

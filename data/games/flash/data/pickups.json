@@ -1,0 +1,44 @@
+[
+  {
+    "id": "xp_crystal",
+    "name": "XP crystal",
+    "effect": "Grants XP"
+  },
+  {
+    "id": "gold_coins",
+    "name": "Gold coins",
+    "effect": "Grants gold"
+  },
+  {
+    "id": "health_orb",
+    "name": "Health orb",
+    "effect": "Restores HP",
+    "heal_pct": 0.1,
+    "notes": "heal amount guessed"
+  },
+  {
+    "id": "treasure_chest",
+    "name": "Treasure chest",
+    "effect": "Random reward (see chests)"
+  },
+  {
+    "id": "equipment_drop",
+    "name": "Equipment drop",
+    "effect": "Random item"
+  },
+  {
+    "id": "weapon_chest",
+    "name": "Weapon chest",
+    "effect": "Random weapon"
+  },
+  {
+    "id": "spell_tome",
+    "name": "Spell tome",
+    "effect": "Random spell"
+  },
+  {
+    "id": "mystery_chest",
+    "name": "Mystery chest",
+    "effect": "Random assortment of rewards"
+  }
+]

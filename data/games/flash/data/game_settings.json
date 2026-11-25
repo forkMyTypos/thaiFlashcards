@@ -1,0 +1,420 @@
+[
+  {
+    "id": "rounds",
+    "values": {
+      "round_length": 60,
+      "break_length": 0,
+      "picks_banked_until_break": true,
+      "pause_allowed": true
+    },
+    "notes": "Break has no time limit: it waits for the player's skill picks."
+  },
+  {
+    "id": "spawning",
+    "values": {
+      "initial_enemies": 5,
+      "spawn_interval": 2.0,
+      "enemies_per_spawn": 1,
+      "max_active": 40,
+      "spawn_radius": 400,
+      "max_active_cap": 1000
+    },
+    "notes": "Starting values from the plan; they ramp per level."
+  },
+  {
+    "id": "levelling",
+    "values": {
+      "xp_base": 50,
+      "xp_linear": 25,
+      "xp_square": 5,
+      "choices_per_level": 3
+    },
+    "notes": "XP to next level = 50 + 25L + 5L^2"
+  },
+  {
+    "id": "combat",
+    "values": {
+      "min_damage": 1,
+      "dodge_cap": 0.75,
+      "weapon_slots": 4,
+      "tail_slot_unlockable": true,
+      "ranged_max_share": 0.25,
+      "ranged_damage": 0.6,
+      "ranged_range": 0.7,
+      "arrow_speed": 180
+    },
+    "notes": ""
+  },
+  {
+    "id": "performance",
+    "values": {
+      "target_fps": 60,
+      "fixed_timestep": 0.0166667,
+      "pause_when_hidden": true
+    },
+    "notes": "Game must never make the flashcards stutter."
+  },
+  {
+    "id": "shop",
+    "values": {
+      "stock_slots": 5,
+      "reroll_cost": 25,
+      "every_levels": 5,
+      "pauses_combat": true,
+      "price_scaling_per_stage": 0.12,
+      "unaffordable_visible": true,
+      "item_power_per_stage": 0.06,
+      "rarity_shift_per_stage": 0.3,
+      "vault_from_stage": 3,
+      "vault_markup": 1.4,
+      "weapon_upgrade_from_stage": 2,
+      "weapon_upgrade_price": 70,
+      "weapon_upgrade_price_per_level": 0.35
+    },
+    "notes": "price scaling guessed; Merchant's Ring etc. reduce prices"
+  },
+  {
+    "id": "choices",
+    "values": {
+      "level_up_choices": 3,
+      "reroll_allowed": true,
+      "skip_allowed": true,
+      "skip_gold": 10,
+      "favour_current_build": 0.5,
+      "lean_towards_build": 0.35,
+      "lean_next_tier": 1.5,
+      "lean_evolution": 2
+    },
+    "notes": "skip gold and build weighting guessed"
+  },
+  {
+    "id": "stages",
+    "values": {
+      "stage_length_seconds": 30
+    },
+    "notes": "Flash level (XP) and run stage (time) are separate. Stage length guessed so stage 100 ~ 50-60 min"
+  },
+  {
+    "id": "run_targets",
+    "values": {
+      "first_mini_boss_min": 5,
+      "first_major_boss_min": 10,
+      "stage_50_min": 30,
+      "stage_100_min": 55
+    },
+    "notes": "targets to test, not fixed timings"
+  },
+  {
+    "id": "player_options",
+    "values": {
+      "sound": true,
+      "music": true,
+      "volume": 0.8,
+      "damage_numbers": true,
+      "screen_shake": true,
+      "particles": "high",
+      "enemy_health_bars": true,
+      "pause_when_hidden": true
+    },
+    "notes": "player-facing settings"
+  },
+  {
+    "id": "hud",
+    "values": {
+      "stage": "top-left",
+      "timer": "top-centre",
+      "gold": "top-right",
+      "health": "upper",
+      "xp_bar": "below health",
+      "weapons": "bottom-left",
+      "spells": "bottom-right",
+      "pause": "top corner",
+      "boss_bar": "top"
+    },
+    "notes": "adapt for the tall narrow game column"
+  },
+  {
+    "id": "worlds",
+    "values": {
+      "environments": [
+        "dungeon",
+        "graveyard",
+        "dark_forest",
+        "volcanic_wasteland",
+        "frozen_wastes",
+        "castle_ruins"
+      ],
+      "start_with": "dungeon"
+    },
+    "notes": "Shared library environment ids. Order guessed. Build one polished arena first."
+  },
+  {
+    "id": "damage_formula",
+    "values": {
+      "formula": "damage = attack x modifiers x (1 - defence)",
+      "min_damage": 1,
+      "crit_multiplier": 1.5,
+      "crit_shared": true,
+      "defence": "percentage, applies to all damage, no cap",
+      "dodge_cap": 0.75,
+      "regen": "continuous",
+      "modifier_order": [
+        "add",
+        "add_pct",
+        "multiply"
+      ]
+    },
+    "notes": "From the design summary. Crit applies after defence."
+  },
+  {
+    "id": "tuning",
+    "values": {
+      "enemy_hp": 0.4,
+      "enemy_damage": 0.2,
+      "spawn_rate": 3,
+      "enemy_speed": 1,
+      "flash_hp": 1,
+      "xp": 1,
+      "study_power": 3
+    },
+    "notes": "Global multipliers on top of all the other data. study_power scales every study reward. Tuned 1 Nov: no study = dies in round 1-2; quiz every 5-10s = several rounds. 1 Nov: enemy_damage 0.1 -> 0.2 because Flash now moves and dodges."
+  },
+  {
+    "id": "movement",
+    "values": {
+      "enabled": true,
+      "speed": 95,
+      "look_ahead": 0.5,
+      "wall_margin": 45,
+      "decide_every": 0.1,
+      "preferred_range": 0.6,
+      "fear": 1,
+      "trap_fear": 1
+    },
+    "notes": "Flash scores 16 directions every decide_every seconds and takes the safest. preferred_range is a fraction of his longest weapon range (melee builds move in, ranged builds hang back). fear = how much he avoids skeletons; trap_fear = how much he avoids being boxed in."
+  },
+  {
+    "id": "director",
+    "values": {
+      "enabled": true,
+      "target_low": 0.3,
+      "target_high": 0.65,
+      "min_intensity": 1,
+      "max_intensity": 5,
+      "ramp_up": 0.03,
+      "ramp_down": 0.25,
+      "cap_per_round": 0.35,
+      "warmup_seconds": 15,
+      "final_surge_seconds": 10,
+      "final_surge_mult": 1.6,
+      "danger_hp": 0.3,
+      "damage_power": 0.8,
+      "hp_power": 0.5
+    },
+    "notes": "Keeps rounds tense. Raises intensity (more, tougher, harder-hitting skeletons) while Flash is comfortable; backs off (never below 1 = normal) when he's struggling. The cap grows each round. Below danger_hp the game shows 'answer a quiz to heal him'. Last final_surge_seconds of a round spawn faster."
+  },
+  {
+    "id": "words",
+    "values": {
+      "enabled": true,
+      "max_pairs": 2,
+      "first_after": 4,
+      "spawn_every": 10,
+      "life": 45,
+      "speed": 16,
+      "pop_quiz": true,
+      "pop_quiz_every_words": 8,
+      "pop_quiz_min_seconds": 50,
+      "pop_quiz_max_backoff": 4,
+      "slow_motion": 0.35,
+      "rescue_chain": 3,
+      "rescue_cooldown": 25,
+      "decoys_min": 3,
+      "decoys_max": 6,
+      "decoys_every_matches": 3,
+      "decoy_every": 2.5,
+      "pop_timer_new": 30,
+      "pop_timer_min": 6,
+      "pop_timer_shrink": 0.7,
+      "rescue_time": 20
+    },
+    "notes": "Word gems: up to max_pairs Thai/English pairs drift in the arena (a new pair every spawn_every s, each lives life s, drifting at speed). Pop quiz: over the lesson after about pop_quiz_every_words words read and at least pop_quiz_min_seconds apart; each one closed without answering doubles the wait, up to pop_quiz_max_backoff times. Rescue: when Flash is in danger a question appears in the game column (another after a right answer, up to rescue_chain), at most every rescue_cooldown s. slow_motion = game speed while a question is open. Decoys: gems with no partner, decoys_min at the start of a run and one more every decoys_every_matches pairs matched, up to decoys_max (a new one at most every decoy_every s). Timers: a pop quiz gives pop_timer_new s for a word never answered right, x pop_timer_shrink for each right answer in a row since its last mistake, never under pop_timer_min s. rescue_time = the Save Flash! countdown."
+  },
+  {
+    "id": "learn",
+    "values": {
+      "enabled": true,
+      "min_words": 4,
+      "max_words": 8,
+      "reps": 2,
+      "reps_hard": 3,
+      "show_seconds": 5,
+      "test_pairs": 3,
+      "pass": 0.8,
+      "max_bonus": 3,
+      "bonus_rarities": [
+        "rare",
+        "epic"
+      ],
+      "skeleton_every": 3.5,
+      "skeleton_max": 3
+    },
+    "notes": "Learning mode, offered on the 'Flash fell!' screen. Words: the ones missed (a gem pair drifted away, a question timed out) or got wrong this run, worst first, up to max_words; topped up to min_words with other words from the run. Each is shown as a joined Thai = English pair reps times (reps_hard for words that went wrong twice or more), Thai first then English first; each stays show_seconds unless the learner taps on. Then a test: test_pairs pairs at a time, no decoys; a word is right if matched with no wrong try starting from it. A score of pass (0.8 = 80%) or more wins one random item of bonus_rarities, given at the start of the next run (up to max_bonus can wait). The arena stays calm: one skeleton every skeleton_every s, never more than skeleton_max, Flash can't be hurt, no XP or gold."
+  },
+  {
+    "id": "modes",
+    "values": {
+      "learn_hint_until": 2,
+      "learn_helped_strength": 1,
+      "learn_decoys_min": 2,
+      "learn_decoys_max": 3,
+      "learn_new_per_round": 0,
+      "learn_enemy_damage": 1,
+      "learn_pairs": 3,
+      "learn_shows": 5,
+      "learn_relearn_shows": 2,
+      "learned_after": 2,
+      "learn_hp_floor": 0,
+      "learn_spawn_rate": 1,
+      "learn_test_choices": 3,
+      "learn_test_after": 2
+    },
+    "notes": "Learn mode (chosen on the start screen; Test is the game as it was). A word's Thai gem shows its English, and the pair shares a colour, until the word has been matched learn_hint_until times without help (or the course already counts it as known); 👁 Show answers shows it on every word. A match made with the answer showing gives learn_helped_strength of the power. A wrong pair lights up the right partner. Decoys: learn_decoys_min to learn_decoys_max, only from words already met. At most learn_new_per_round never-seen words per round. Skeletons hit for learn_enemy_damage of normal. In the course: gems and pop quizzes lean hard on the words just read, and ⏩ Auto-move (reading mode) moves the slide on by itself. Word ladder (Learn mode): learn_pairs pairs stay on screen, from the whole lesson; a popped pair is replaced at once. A word shows its answer until it has been matched learn_shows times; then it is tested (no answer). Right = it stays tested (learned_after right in a row = ⭐ learned, comes up less); wrong = back to learning for learn_relearn_shows more. learn_new_per_round 0 = no limit on new words. Learn mode is not balanced: Flash's health never goes below learn_hp_floor, skeletons come at learn_spawn_rate. A word due for testing comes back as a warned ✍ mini test after learn_test_after other matches, with learn_test_choices English answers. (3 Nov) Learn mode is the normal game with the answers showing: learn_enemy_damage 1, learn_hp_floor 0, learn_spawn_rate 1, learn_helped_strength 1 = no difference from Test; change them only to make Learn mode gentler on purpose."
+  },
+  {
+    "id": "recall",
+    "values": {
+      "meet_reps": 3,
+      "pick2_right": 2,
+      "pick4_right": 2,
+      "gaps": [
+        2,
+        5,
+        10,
+        20
+      ],
+      "meet_gap": 2,
+      "wrong_gap": 2,
+      "max_new": 3,
+      "max_new_good": 4,
+      "low_acc": 0.7,
+      "high_acc": 0.9,
+      "acc_window": 10,
+      "slow_ms": 8000,
+      "box_days": [
+        1,
+        3,
+        7,
+        16,
+        35
+      ],
+      "learned_gap_h": 20,
+      "longterm_box": 4,
+      "session_cap": 8,
+      "ready_share": 0.8,
+      "reverse": true,
+      "audio": true,
+      "meet_strength": 0.6,
+      "recall_strength": 1,
+      "next_after_right": 0.55,
+      "next_after_wrong": 1.9,
+      "next_after_meet": 0.35,
+      "pick6_right": 2,
+      "new_per_day": 20,
+      "lapse_keep": 0.5,
+      "due_fuzz": 0.1,
+      "audio_from_step": 4,
+      "sentences": true,
+      "tones": true,
+      "special_gap": 3,
+      "sentence_cover": 0.8,
+      "sentence_strength": 1.3,
+      "next_after_sentence": 1.6,
+      "daily_goal": 20,
+      "fsrs": true,
+      "retention": 0.9,
+      "max_days": 365,
+      "review_min_h": 12,
+      "easy_ms": 2500,
+      "longterm_days": 21,
+      "review_run": 4
+    },
+    "notes": "The word card (the default; Options > Words can switch back to the classic gem hunt). Each word climbs, separately for Thai -> meaning, meaning -> Thai and listening: meet (one answer, meet_reps times) -> pick of 2 (pick2_right right) -> pick of 4 (pick4_right right) -> recall (no choices, self-graded). Meaning -> Thai starts at pick of 4 of Thai -> meaning; listening at recall (words with a recording). In a session a word comes back after gaps[n] other questions (wrong_gap after a wrong answer); at most max_new words in their first steps (max_new_good above high_acc right, none below low_acc); a right answer slower than slow_ms doesn't move it up. Between sessions: box_days. Learned = recalled twice at least learned_gap_h hours apart; long-term = box longterm_box (passed the 7-day review). Next level offered at ready_share of the level recognised. A right answer powers Flash like a matched pair (meet_strength for a meeting, recall_strength for a recall); the next card comes next_after_* seconds later."
+  },
+  {
+    "id": "elements",
+    "values": {
+      "burn_spread_chance": 0.3,
+      "burn_spread_radius": 46,
+      "burn_spread_on_death": 2,
+      "burn_spread_power": 0.6,
+      "spreads_per_second": 90,
+      "chill_slow": 0.4,
+      "chill_duration": 2,
+      "freeze_after_hits": 3,
+      "frozen_damage_bonus": 0.5,
+      "shatter_damage": 0.35,
+      "shatter_radius": 46,
+      "steam_damage": 28,
+      "steam_radius": 70,
+      "superconduct_mult": 2.5,
+      "overload_damage": 24,
+      "overload_radius": 56,
+      "combos_per_second": 30,
+      "big_combo_hits": 8
+    },
+    "notes": "Round 3 step 3. Fire: a burn tick can catch a neighbour (burn_spread_chance), a burning skeleton that falls lights burn_spread_on_death more. Ice: each cold hit chills (slower by chill_slow); freeze_after_hits in a row freezes; frozen skeletons take frozen_damage_bonus more damage and shatter, hurting those close by (shatter_damage = share of the shattered one's HP). Combos: fire on frozen (or ice on burning) = steam burst; lightning on frozen = superconduct (x superconduct_mult); lightning on burning = overload. spreads_per_second / combos_per_second ration them so huge hordes stay cheap. A combo hitting big_combo_hits or more can flash the screen."
+  },
+  {
+    "id": "fish",
+    "values": {
+      "drop_chance": 0.006,
+      "elite_drop_chance": 0.25,
+      "boss_drops": 2,
+      "horde_drop_chance": 0.0004,
+      "carry": 5,
+      "heal": 0.25,
+      "auto_eat_below": 0.3,
+      "floor_seconds": 18,
+      "floor_max": 10,
+      "magnet_range": 70,
+      "eat_gap": 0.6
+    },
+    "notes": "Dan: 'carryable heal items (~5)'. A skeleton drops a fish now and then (elites more, a boss always boss_drops); horde_drop_chance is for mega-wave skeletons. Flash carries up to `carry`; each heals `heal` of his max HP. Tap the 🐟 button or press H to eat one; ⚙ Options → Auto-eat eats one below auto_eat_below. Fish still on the floor at the end of a round are scooped up if there's room."
+  },
+  {
+    "id": "feel",
+    "values": {
+      "revive_hp": 0.5,
+      "revive_invulnerable": 2.5,
+      "revive_radius": 280,
+      "revive_damage": 60,
+      "strike_pins": 5
+    },
+    "notes": "😼 Nine Lives: Flash gets back up with revive_hp of his health, can't be hurt for revive_invulnerable seconds, and everything within revive_radius is thrown back (revive_damage + 4 per level). 🎳 A Bowling Paw throw that hits strike_pins or more is a STRIKE."
+  },
+  {
+    "id": "build",
+    "values": {
+      "weapon_element_chance": 0.35,
+      "arc_damage": 0.5,
+      "arc_radius": 90,
+      "arc_targets": 2,
+      "arcs_per_second": 40
+    },
+    "notes": "Round 3 step 4. A weapon with an element (an evolved one) sets alight / chills / arcs on weapon_element_chance of its hits, on top of what tags and items give. An arc hits arc_targets neighbours within arc_radius for arc_damage of the hit; arcs_per_second rations them so huge hordes stay cheap. How offers lean towards the build is in the row `choices` (lean_towards_build per thing already owned with the tag, lean_next_tier when the pick would switch a tier on, lean_evolution for the item an owned weapon needs to evolve)."
+  },
+  {
+    "id": "locations",
+    "values": {
+      "enabled": true,
+      "lessons_per_location": 10,
+      "loop": true,
+      "hazards": true,
+      "hazards_from_round": 2,
+      "hazard_damage": 1,
+      "hazard_enemy_damage": 1
+    },
+    "notes": "Round 3 step 5. The location follows the lesson: lessons 1-10 are the first row of Locations (by `order`), 11-20 the second, and so on (lessons_per_location); after the last one it starts again if loop is on. A run keeps its location until the next round starts. hazards switches every location's hazard off; hazards_from_round keeps the first round(s) calm; hazard_damage / hazard_enemy_damage scale what hazards do to Flash / to skeletons. enabled: false = the old dungeon floor everywhere, no hazards, the usual bosses."
+  }
+]

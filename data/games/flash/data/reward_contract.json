@@ -1,0 +1,29 @@
+[
+  {
+    "id": "inaflash_reward_v1",
+    "event": "inaflash:reward",
+    "version": 1,
+    "direction": "site -> game",
+    "fields": {
+      "v": "1",
+      "kind": "reward | penalty | warning",
+      "source": "quiz | lesson | audio | flashcard",
+      "strength": "0-1, already reduced by the site's shrinking rules",
+      "streak": "current correct-answer streak (integer)",
+      "word": "optional word id, e.g. TH_000001",
+      "message": "text to show for warnings"
+    },
+    "notes": "WordBase decides when a reward is earned and how strong it is. The game only applies it."
+  },
+  {
+    "id": "inaflash_game_v1",
+    "event": "inaflash:game",
+    "version": 1,
+    "direction": "game -> site",
+    "fields": {
+      "v": "1",
+      "state": "ready | paused | resumed | round_end | died"
+    },
+    "notes": "Optional. The site does not need to listen yet."
+  }
+]

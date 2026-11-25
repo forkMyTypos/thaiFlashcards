@@ -1,0 +1,40 @@
+[
+  {
+    "id": "flash",
+    "name": "Flash",
+    "kind": "player",
+    "stats": {
+      "max_hp": 150,
+      "hp_regen": 1,
+      "damage": 0,
+      "attack_speed": 1,
+      "defence": 0.05,
+      "crit_chance": 0.05,
+      "crit_damage": 1.5,
+      "dodge": 0.05,
+      "movement_speed": 0,
+      "attack_range": 1,
+      "luck": 0
+    },
+    "notes": "Flash's damage, attack speed and range come from his weapons; these are modifiers."
+  },
+  {
+    "id": "skeleton_basic",
+    "name": "Basic skeleton",
+    "kind": "enemy",
+    "stats": {
+      "max_hp": 40,
+      "hp_regen": 0,
+      "damage": 5,
+      "attack_speed": 1,
+      "defence": 0,
+      "crit_chance": 0,
+      "crit_damage": 1.5,
+      "dodge": 0,
+      "movement_speed": 60,
+      "attack_range": 60,
+      "luck": 0
+    },
+    "notes": "Every skeleton starts here; equipment and scaling change it."
+  }
+]

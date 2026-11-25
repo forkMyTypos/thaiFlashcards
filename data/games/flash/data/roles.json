@@ -1,0 +1,64 @@
+[
+  {
+    "id": "damage",
+    "purpose": "Directly hurts enemies",
+    "examples": [
+      "pocket_cannon",
+      "fireball"
+    ]
+  },
+  {
+    "id": "area_damage",
+    "purpose": "Hits groups",
+    "examples": [
+      "meteor_shower",
+      "explosion"
+    ]
+  },
+  {
+    "id": "crowd_control",
+    "purpose": "Disrupts enemies",
+    "examples": [
+      "frost_nova",
+      "knockback"
+    ]
+  },
+  {
+    "id": "defence",
+    "purpose": "Protects Flash",
+    "examples": [
+      "magic_shield",
+      "iron_collar"
+    ]
+  },
+  {
+    "id": "support",
+    "purpose": "Improves other abilities",
+    "examples": [
+      "quick_paws"
+    ]
+  },
+  {
+    "id": "summoning",
+    "purpose": "Creates allies or helpers",
+    "examples": [
+      "spirit_wolves",
+      "ghost_cats"
+    ]
+  },
+  {
+    "id": "healing",
+    "purpose": "Restores health",
+    "examples": [
+      "healing_aura"
+    ]
+  },
+  {
+    "id": "economy",
+    "purpose": "Improves rewards",
+    "examples": [
+      "golden_fish",
+      "magnetic_collar"
+    ]
+  }
+]

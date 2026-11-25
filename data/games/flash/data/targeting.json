@@ -1,0 +1,77 @@
+[
+  {
+    "id": "nearest",
+    "kind": "mode",
+    "description": "Attacks the closest skeleton"
+  },
+  {
+    "id": "smart",
+    "kind": "mode",
+    "description": "Prioritises the most dangerous target (threat score)"
+  },
+  {
+    "id": "weakest",
+    "kind": "mode",
+    "description": "Finishes off nearly dead enemies"
+  },
+  {
+    "id": "strongest",
+    "kind": "mode",
+    "description": "Focuses elites and bosses"
+  },
+  {
+    "id": "spread",
+    "kind": "mode",
+    "description": "Distributes attacks across different enemies"
+  },
+  {
+    "id": "random",
+    "kind": "mode",
+    "description": "Selects an unpredictable target"
+  },
+  {
+    "id": "directional",
+    "kind": "mode",
+    "description": "Attacks in a particular direction"
+  },
+  {
+    "id": "area",
+    "kind": "mode",
+    "description": "Attacks everything within a radius"
+  },
+  {
+    "id": "homing",
+    "kind": "mode",
+    "description": "Projectile follows its target"
+  },
+  {
+    "id": "hunter",
+    "kind": "upgrade",
+    "description": "Prioritise elite enemies"
+  },
+  {
+    "id": "executioner",
+    "kind": "upgrade",
+    "description": "Prioritise weakened enemies"
+  },
+  {
+    "id": "tactician",
+    "kind": "upgrade",
+    "description": "Avoid wasting attacks on already-doomed targets"
+  },
+  {
+    "id": "berserker",
+    "kind": "upgrade",
+    "description": "Prioritise the closest enemies"
+  },
+  {
+    "id": "boss_slayer",
+    "kind": "upgrade",
+    "description": "Prioritise bosses above everything else"
+  },
+  {
+    "id": "threat_score",
+    "kind": "rule",
+    "description": "Smart threat = distance, current/remaining HP, damage potential, type (normal/elite/boss), incoming damage already on the way, and whether it's charging an attack. Skip targets that incoming projectiles will already kill."
+  }
+]

@@ -1,0 +1,126 @@
+[
+  {
+    "id": "start",
+    "condition": "start",
+    "value": 0,
+    "unlocks": [
+      "bone_boomerang",
+      "crossbow",
+      "great_sword",
+      "pocket_cannon",
+      "twin_daggers",
+      "fireball",
+      "chain_lightning",
+      "shadow_bolt",
+      "frost_nova"
+    ],
+    "description": "Available from the first run"
+  },
+  {
+    "id": "reach_level_10",
+    "condition": "reach_level",
+    "value": 10,
+    "unlocks": [
+      "throwing_axe",
+      "whirling_blades",
+      "skull_crusher"
+    ],
+    "description": "Level 10: 3 more weapons enter the pool"
+  },
+  {
+    "id": "survive_10_minutes",
+    "condition": "survive_minutes",
+    "value": 10,
+    "unlocks": [
+      "spiked_flail"
+    ],
+    "description": "Example from the plan"
+  },
+  {
+    "id": "kill_500",
+    "condition": "kills",
+    "value": 500,
+    "unlocks": [
+      "ricochet_disc"
+    ],
+    "description": "Example from the plan"
+  },
+  {
+    "id": "defeat_elite",
+    "condition": "defeat_elite",
+    "value": 1,
+    "unlocks": [
+      "sniper_rifle"
+    ],
+    "description": "Example from the plan"
+  },
+  {
+    "id": "reach_level_15",
+    "condition": "reach_level",
+    "value": 15,
+    "unlocks": [
+      "spear",
+      "ice_shards",
+      "magic_shield",
+      "tornado",
+      "soul_drain",
+      "bone_curse",
+      "healing_aura"
+    ],
+    "notes": "spell stage 2 = levels 10-20; exact level guessed"
+  },
+  {
+    "id": "reach_level_25",
+    "condition": "reach_level",
+    "value": 25,
+    "unlocks": [
+      "bone_saw",
+      "repeater_cannon",
+      "razor_feathers",
+      "meteor_shower",
+      "plague",
+      "earthquake",
+      "spirit_wolves",
+      "death_mark",
+      "holy_light"
+    ],
+    "description": "Advanced arsenal"
+  },
+  {
+    "id": "reach_level_50",
+    "condition": "reach_level",
+    "value": 50,
+    "unlocks": [
+      "giant_hammer",
+      "blade_storm",
+      "skull_gatling",
+      "flying_fish",
+      "soul_explosion",
+      "ghost_cats",
+      "skeleton_conversion",
+      "time_warp"
+    ],
+    "description": "Rare and ridiculous"
+  },
+  {
+    "id": "reach_level_100",
+    "condition": "reach_level",
+    "value": 100,
+    "unlocks": [
+      "iron_paw"
+    ],
+    "description": "Final initial arsenal"
+  },
+  {
+    "id": "rare_weird",
+    "condition": "special",
+    "value": 0,
+    "unlocks": [
+      "angry_pigeon",
+      "giant_slipper",
+      "hairball_launcher",
+      "the_bonker_3000"
+    ],
+    "notes": "rare, deliberately strange unlocks from the plan - not designed yet"
+  }
+]

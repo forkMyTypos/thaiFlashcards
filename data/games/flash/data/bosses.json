@@ -1,0 +1,62 @@
+[
+  {
+    "id": "skeleton_king",
+    "name": "Skeleton King",
+    "base": "skeleton_basic",
+    "hp_multiplier": 60,
+    "attacks": [
+      "heavy melee slam (telegraphed)"
+    ],
+    "summons": "skeleton_grunt",
+    "phases": 2,
+    "xp": 250,
+    "gold": 100,
+    "description": "Heavy melee attacks, summons minions.",
+    "notes": "HP multiplier and phases guessed"
+  },
+  {
+    "id": "bone_dragon",
+    "name": "Bone Dragon",
+    "base": "skeleton_basic",
+    "hp_multiplier": 100,
+    "attacks": [
+      "fire breath",
+      "sweeping tail"
+    ],
+    "phases": 3,
+    "xp": 250,
+    "gold": 100,
+    "description": "Fire breath, sweeping attacks.",
+    "notes": "HP multiplier and phases guessed"
+  },
+  {
+    "id": "lich",
+    "name": "Lich",
+    "base": "skeleton_basic",
+    "hp_multiplier": 70,
+    "attacks": [
+      "spell volley",
+      "dark nova"
+    ],
+    "summons": "skeleton_mage",
+    "phases": 2,
+    "xp": 250,
+    "gold": 100,
+    "description": "Spell attacks, summons undead.",
+    "notes": "HP multiplier and phases guessed"
+  },
+  {
+    "id": "bone_golem",
+    "name": "Bone Golem",
+    "base": "skeleton_basic",
+    "hp_multiplier": 150,
+    "attacks": [
+      "ground smash"
+    ],
+    "phases": 2,
+    "xp": 250,
+    "gold": 100,
+    "description": "Massive HP, ground-smashing attacks.",
+    "notes": "HP multiplier and phases guessed"
+  }
+]

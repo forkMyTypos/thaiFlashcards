@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>🎮 Game mode · Flash the Cat</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>"/>
+<link rel="stylesheet" href="../games/flash/flash-game.css?v=5062d4b639"/>
+<style>
+/* Game mode: Flash the Cat in a column on the left, the course in a frame on
+   the right. The game lives in this page, so moving around the course only
+   reloads the frame and the game never stops. */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #101014; color: #e8eaee;
+  font: 13px/1.4 "Segoe UI", system-ui, sans-serif; overflow: hidden; }
+/* 100dvh where it exists: on a phone 100vh is the height with the browser's
+   address bar hidden, so the bottom of the game sat under the bar */
+.gm { display: flex; height: 100vh; height: 100dvh; }
+.gm-col { width: var(--gw, 40%); min-width: 300px; height: 100vh; height: 100dvh; flex: none; display: flex; flex-direction: column;
+  position: relative; }
+/* the divider: drag to share the screen differently, double-click for 40% */
+.gm-grip { flex: none; width: 6px; cursor: col-resize; background: #2e333d; position: relative; z-index: 2; }
+.gm-grip:hover, .gm.drag .gm-grip { background: #4f9cf9; }
+.gm.drag #site { pointer-events: none; }
+.gm.drag { cursor: col-resize; user-select: none; }
+#game { flex: 1; min-height: 0; position: relative; }
+.gm-bar { flex: none; display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #16181d;
+  border-top: 1px solid #2e333d; font-size: 12px; color: #9aa2af; }
+.gm-bar .sp { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gm-bar button { background: #23272f; color: #e8eaee; border: 1px solid #2e333d; border-radius: 7px;
+  padding: 3px 9px; font: inherit; cursor: pointer; white-space: nowrap; }
+.gm-bar button:hover { border-color: #4f9cf9; }
+.gm-bar { padding-bottom: max(5px, env(safe-area-inset-bottom)); }
+/* a phone: the bar keeps to the buttons, as icons */
+@media (max-width: 600px), (max-height: 500px) {
+  .gm-bar #gm-runs { flex: 1; font-size: 0; }
+  .gm-bar #gm-runs::before { content: "🧪"; font-size: 13px; }
+  .gm-bar button { padding: 6px 11px; font-size: 13px; }
+  .gm-bar .lbl { display: none; }
+}
+#site { flex: 1; height: 100vh; border: 0; background: #101014; min-width: 0; }
+/* Dan: "full screen will be the default option, but we should have an option
+   screen where the user can go back to split mode". Full: the game fills the
+   page and the course keeps running out of sight, still supplying the words,
+   moving between levels and saving study progress. Split: side by side. */
+body.full .gm-col { width: 100%; }
+body.full .gm-grip { display: none; }
+body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height: 800px; flex: none; visibility: hidden; }
+.gm-note { position: absolute; left: 12px; right: 12px; bottom: 44px; z-index: 10; background: #1b1e24;
+  border: 1px solid #4f9cf9; border-radius: 12px; padding: 12px 14px; box-shadow: 0 8px 30px rgba(0,0,0,.5);
+  font-size: 13px; line-height: 1.5; }
+.gm-note b { color: #ffd27a; }
+.gm-note p { margin: 0 0 8px; color: #c9ced6; }
+.gm-note .row { display: flex; gap: 8px; justify-content: flex-end; }
+.gm-note button { background: #4f9cf9; color: #0d1117; border: 0; border-radius: 8px; padding: 6px 14px;
+  font: inherit; font-weight: 700; cursor: pointer; }
+.gm-note button.ghost { background: transparent; color: #9aa2af; border: 1px solid #2e333d; font-weight: 400; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous"
+  referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
+</head>
+<body>
+<div class="gm">
+  <div class="gm-col">
+    <div id="game"></div>
+    <div class="gm-bar">
+      <span class="sp" id="gm-runs" title="How your games go is kept in this browser to help balance the game">🧪 Testing</span>
+      <button id="gm-dl" title="Save how your games went as a file (to send to us)">⬇<span class="lbl"> Game data</span></button>
+      <button id="gm-full" title="Full screen: the game and the course, without the browser around them (Esc to leave)">⛶<span class="lbl"> Full screen</span></button>
+      <button id="gm-exit" title="Back to the course without the game">✕ Leave</button>
+    </div>
+  </div>
+  <div class="gm-grip" id="gm-grip" title="Drag to resize · double-click for 40%"></div>
+  <iframe id="site" title="The course"></iframe>
+</div>
+<script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
+<script src="../games/flash/flash-sim.js?v=47d5f0c154"></script>
+<script src="../games/flash/flash-learn.js?v=153bcf6fbf"></script>
+<script src="../games/flash/flash-game.js?v=b3a9787cdb"></script>
+<script>
+(function () {
+  "use strict";
+  var site = document.getElementById("site");
+  // the layout: full (the default) or split, remembered in this browser
+  var layout = "full";
+  try { layout = localStorage.getItem("ftc.layout") === "split" ? "split" : "full"; } catch (e) {}
+  // A phone has no room for the course beside the game: there it is always
+  // the game alone (the reader's choice for a bigger screen is kept).
+  var narrow = function () { return window.innerWidth < 700; };
+  if (narrow()) layout = "full";
+  function applyLayout() {
+    window.FTC_LAYOUT = layout;                      // the course reads it (no auto-play when it's out of sight)
+    document.body.classList.toggle("full", layout === "full");
+    site.setAttribute("aria-hidden", layout === "full" ? "true" : "false");
+    site.tabIndex = layout === "full" ? -1 : 0;
+  }
+  applyLayout();
+  // Dan: "when we load up the game, it keeps repeating a word". With the game
+  // full screen the course is out of sight, but it was still auto-playing its
+  // cards (Auto-play, 3 times). Each page the frame opens is silenced as soon
+  // as it exists, before its own auto-play gets going; Game + course lets it
+  // speak again. The game's own sounds play from this page, not the frame.
+  var muteDoc = null;
+  function muteFrame() {
+    var w; try { w = site.contentWindow; if (!w || !w.document || w.location.href === "about:blank") return; } catch (e) { return; }
+    w.__ftcMute = layout === "full";
+    if (w.document === muteDoc) return;
+    muteDoc = w.document;
+    try {
+      var P = w.HTMLMediaElement && w.HTMLMediaElement.prototype;
+      if (P && !P.__ftcPatched) {
+        var play = P.play; P.__ftcPatched = 1;
+        P.play = function () { if (w.__ftcMute) { try { this.pause(); } catch (e) {} return Promise.resolve(); } return play.apply(this, arguments); };
+      }
+      var ss = w.speechSynthesis;
+      if (ss && !ss.__ftcPatched) { var speak = ss.speak.bind(ss); ss.__ftcPatched = 1; ss.speak = function (u) { if (!w.__ftcMute) speak(u); }; }
+    } catch (e) {}
+  }
+  setInterval(muteFrame, 25);
+  function setLayout(v) {
+    layout = v === "split" ? "split" : "full";
+    try { localStorage.setItem("ftc.layout", layout); } catch (e) {}
+    if (narrow()) layout = "full";
+    applyLayout(); muteFrame(); tell();
+  }
+  var ROOT = new URL("../", location.href).href;
+  var started = Date.now();
+
+  // ------------------------------------------------------------ the course
+  // ?p= is where the reader was (a path inside the site). Only ever a path:
+  // nothing that could point the frame at another site.
+  var p = new URLSearchParams(location.search).get("p") || "";
+  if (/^[a-z][a-z0-9+.-]*:|^\/\/|\.\./i.test(p)) p = "";
+  site.src = ROOT + p.replace(/^\/+/, "");
+  function rel(href) { return href.indexOf(ROOT) === 0 ? href.slice(ROOT.length) : ""; }
+  function siteHref() { try { return site.contentWindow.location.href; } catch (e) { return ROOT; } }
+
+  var pages = 0, lessons = {}, nav = [];
+  site.addEventListener("load", function () {
+    var w = site.contentWindow, r;
+    try { r = rel(w.location.href); } catch (e) { return; }
+    pages++;
+    try { var les = w.document.body.dataset.lesson; if (les) lessons[les] = 1; } catch (e) {}
+    if (nav.length < 400) nav.push([Math.round((Date.now() - started) / 1000), r.split("#")[0]]);
+    try { history.replaceState(null, "", "?p=" + encodeURIComponent(r)); } catch (e) {}
+    try { document.title = "🎮 " + w.document.title; } catch (e) {}
+    tell();
+  });
+  function leave() { location.href = siteHref(); }
+  document.getElementById("gm-exit").onclick = leave;
+  // Full screen: the whole game-mode page (game and course together), so
+  // studying beside the game still works; Esc (or the button) leaves it.
+  var fullBtn = document.getElementById("gm-full");
+  var canFull = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+  if (!canFull) fullBtn.hidden = true;
+  fullBtn.onclick = function () {
+    var d = document, el = d.documentElement;
+    try {
+      if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+      else { var r = (el.requestFullscreen || el.webkitRequestFullscreen).call(el); if (r && r.catch) r.catch(function () {}); }
+    } catch (e) {}
+  };
+  function fullLabel() { var on = !!(document.fullscreenElement || document.webkitFullscreenElement);
+    fullBtn.innerHTML = on ? '⛶<span class="lbl"> Exit full screen</span>' : '⛶<span class="lbl"> Full screen</span>'; }
+  document.addEventListener("fullscreenchange", fullLabel); document.addEventListener("webkitfullscreenchange", fullLabel);
+
+  // messages from the course: study rewards, and "leave game mode"
+  window.addEventListener("message", function (e) {
+    if (e.origin !== location.origin || e.source !== site.contentWindow) return;
+    var m = e.data || {};
+    if (m.type === "inaflash:reward") window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: m.detail || {} }));
+    else if (m.type === "ftc:exit") leave();
+    else if (m.type === "ftc:words") { if (api) { api.setWords(m.words || [], m.extra || []); if (api.setLesson) api.setLesson(m.lesson || null); } else pendingWords = m;
+      loadPack(m.lesson && m.lesson.id); }
+    else if (m.type === "ftc:slow") { if (api) api.setSlow(!!m.on); }
+    else if (m.type === "ftc:question") { var r = asks[m.req]; if (r) { delete asks[m.req]; r(m.q || null); } }
+    else if (m.type === "ftc:popquiz") {
+      // a pop quiz over the lesson: right = a power-up; wrong or closed costs nothing (it is only noted)
+      if (m.right) window.dispatchEvent(new CustomEvent("inaflash:reward", { detail: { v: 1, kind: "reward", source: "popquiz", strength: 1, word: m.word || "" } }));
+      else if (api) api.sim.noteStudy(m.closed ? "popquiz_closed" : m.timeout ? "popquiz_timeout" : "popquiz_wrong");
+      // for learning mode after Flash falls
+      if (api && api.noteWord && m.w && !m.closed) api.noteWord(m.w, m.right ? "right" : m.timeout ? "missed" : "wrong");
+    }
+  });
+  // ...and the game's state back to the course (it lights up the quiz button in danger)
+  function toSite(m) { try { site.contentWindow.postMessage(m, location.origin); } catch (e) {} }
+  function tell() {
+    toSite({ type: "ftc:state", state: window.FTC_STATE });
+    if (api) {
+      var ws = api.wordSettings();
+      if (layout === "full") ws.pop_quiz = false;            // they'd pop up over a course nobody can see
+      toSite({ type: "ftc:config", words: ws });             // the site answers with its words
+    }
+  }
+  var asks = {}, askN = 0, pendingWords = null;
+  // the game wants a question about the learner's words ("Save Flash!")
+  function askQuestion(kind) {
+    return new Promise(function (res) {
+      var req = ++askN; asks[req] = res;
+      toSite({ type: "ftc:ask", kind: kind, req: req });
+      setTimeout(function () { if (asks[req]) { delete asks[req]; res(null); } }, 1500);
+    });
+  }
+  window.addEventListener("inaflash:game", function (e) { window.FTC_STATE = (e.detail || {}).state; tell(); });
+
+  // --------------------------------------------------- how the games go
+  // Every run is kept in this browser (IndexedDB through Dexie, or
+  // localStorage if Dexie didn't load) and nowhere else. "⬇ Game data" saves
+  // them as a file, which Gamebase's Balance screen imports.
+  var db = null, LS = "ftc.runs", MAX = 400;
+  try { if (window.Dexie) { db = new Dexie("ftc-telemetry"); db.version(1).stores({ runs: "uid, updated" }); } } catch (e) { db = null; }
+  function lsAll() { try { return JSON.parse(localStorage.getItem(LS) || "{}"); } catch (e) { return {}; } }
+  function lsPut(row) {
+    var all = lsAll(); all[row.uid] = row;
+    var keys = Object.keys(all).sort(function (a, b) { return all[a].updated - all[b].updated; });
+    while (keys.length > 30) delete all[keys.shift()];
+    try { localStorage.setItem(LS, JSON.stringify(all)); } catch (e) {}
+  }
+  function save(t) {
+    var row = { uid: t.uid, updated: Date.now(), data: t };
+    if (db) db.runs.put(row).then(prune).then(count).catch(function () { lsPut(row); count(); });
+    else { lsPut(row); count(); }
+  }
+  function prune() {
+    return db.runs.count().then(function (n) {
+      if (n > MAX) return db.runs.orderBy("updated").limit(n - MAX).delete();
+    });
+  }
+  function all() {
+    var fromLs = Object.values(lsAll());
+    if (!db) return Promise.resolve(fromLs);
+    return db.runs.toArray().then(function (r) { return r.concat(fromLs); }).catch(function () { return fromLs; });
+  }
+  function count() {
+    all().then(function (rows) {
+      document.getElementById("gm-runs").textContent = "🧪 Testing · " + rows.length + " game" + (rows.length === 1 ? "" : "s") + " recorded";
+    });
+  }
+  document.getElementById("gm-dl").onclick = function () {
+    if (api) api.sendTelemetry();
+    setTimeout(function () {
+      var learnP = api && api.learn ? Promise.resolve(api.learn.attempts()).catch(function () { return []; }) : Promise.resolve([]);
+      Promise.all([all(), learnP]).then(function (got) {
+        var rows = got[0], seen = {}, runs = [];
+        rows.sort(function (a, b) { return b.updated - a.updated; })
+            .forEach(function (r) { if (!seen[r.uid]) { seen[r.uid] = 1; runs.push(r.data); } });
+        var blob = new Blob([JSON.stringify({ format: "ftc-telemetry", version: 1, site: location.host,
+                                              exported_at: new Date().toISOString(), runs: runs,
+                                              save: api && api.save ? api.save() : null,
+                                              // the word card: each word's state per direction, and every answer
+                                              learn: api && api.learn ? { items: api.learn.items(), attempts: got[1].slice(-5000) } : null })], { type: "application/json" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "flash-the-cat-game-data-" + new Date().toISOString().slice(0, 10) + ".json";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+      });
+    }, 300);
+  };
+
+  // what the course side of a run looked like
+  var hiddenMs = 0, hiddenAt = 0;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { hiddenAt = Date.now(); if (api) api.sendTelemetry(); }
+    else if (hiddenAt) { hiddenMs += Date.now() - hiddenAt; hiddenAt = 0; }
+  });
+  function meta() {
+    return { site: { pages: pages, lessons: Object.keys(lessons).length, nav: nav.slice(-400),
+                     hidden_s: Math.round((hiddenMs + (hiddenAt ? Date.now() - hiddenAt : 0)) / 1000),
+                     game_width: document.querySelector(".gm-col").offsetWidth, window_width: window.innerWidth, layout: layout } };
+  }
+
+  // ------------------------------------------------------------ levels
+  // Each word lesson of the course is a level (the site's menu.json, in course
+  // order). Picking one moves the course to it, and the course sends its words.
+  var levelList = null;
+  function catNames() {
+    var out = {};
+    try { [].forEach.call(site.contentWindow.document.querySelectorAll(".catwrap[data-cat]"), function (c) { out[c.dataset.cat] = c.dataset.name || ""; }); } catch (e) {}
+    return out;
+  }
+  function levels() {
+    if (levelList) return Promise.resolve(levelList);
+    return fetch(ROOT + "menu.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      var names = catNames();
+      levelList = ((d && d.lessons) || []).filter(function (l) { return l && l.folder && l.title; }).map(function (l) {
+        var c = l.cat || "";
+        return { id: l.folder, title: l.title, cat: c, w: l.w || 0,
+                 catName: names[c] || c.replace(/^c-/, "").replace(/-/g, " ").replace(/^\w/, function (x) { return x.toUpperCase(); }) };
+      });
+      return levelList;
+    }).catch(function () { return []; });
+  }
+  function goLevel(id) {
+    if (!id || /[^a-z0-9._-]/i.test(id)) return;
+    site.src = ROOT + id + "/";
+  }
+
+  // -------------------------------------------------------- word packs
+  // Dan: "more polish on our word data". Each lesson has a words.json that
+  // WordBase writes when it builds the site: every word with its tones,
+  // recordings, picture, memory hook and sentences. The game takes its level
+  // from it rather than from the lesson page's markup. Addresses in it are
+  // the page's own (relative to the lesson's folder), made absolute here.
+  var packFor = null, pack = null;
+  function loadPack(id) {
+    if (!id || id === packFor || /[^a-z0-9._-]/i.test(id)) return;
+    packFor = id;
+    var base = ROOT + id + "/";
+    fetch(base + "words.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (d) {
+      if (packFor !== id) return;
+      // no word pack yet (the course not rebuilt since): read the lesson's own cards
+      if (!d || !d.words) d = packFromPage(id);
+      if (!d || !d.words || !d.words.length) { packFor = null; return; }
+      var abs = function (u) { try { return u ? new URL(u, base).href : ""; } catch (e) { return ""; } };
+      // a page that loaded before its cards were ready: try again shortly
+      if (d.from === "page" && d.words.length < 2) { packFor = null; setTimeout(function () { loadPack(id); }, 1500); return; }
+      d.words.forEach(function (w) {
+        w.audio = abs(w.audio); w.slow = abs(w.slow); w.img = abs(w.img); w.lesson = id;
+        (w.sents || []).forEach(function (x) { if (x.audio) x.audio = abs(x.audio); });
+        (w.pairs || []).forEach(function (x) { if (x.audio) x.audio = abs(x.audio); });
+      });
+      pack = d;
+      keptFor(d.words);
+      if (api && api.setPack) api.setPack(d);
+    }).catch(function () {});
+  }
+  // The lesson page's word cards, as a word pack. Same origin, so the frame's
+  // markup can be read: the picture (data-img), the drawn picture (.vis), the
+  // emoji (data-ch), tones, recordings, memory hook and sentences.
+  function packFromPage(id) {
+    var doc, w; try { w = site.contentWindow; doc = w.document; } catch (e) { return null; }
+    if (!doc || (doc.body && doc.body.dataset.lesson) !== id) return null;
+    var txt = function (el) { if (!el) return ""; var c = el.cloneNode(true); [].forEach.call(c.querySelectorAll(".tm,svg,.gtip,.aidedit,button,.gword"), function (x) { x.remove(); }); return (c.textContent || "").replace(/\s+/g, " ").trim(); };
+    var url = function (u) { try { return u ? new URL(u, w.location.href).href : ""; } catch (e) { return ""; } };
+    var words = [];
+    [].forEach.call(doc.querySelectorAll("article.card:not(.sc)"), function (c) {
+      var th = txt(c.querySelector(".throw .th") || c.querySelector(".th")), en = txt(c.querySelector(".en"));
+      if (!c.dataset.wid || !th || !en) return;
+      var pl = c.querySelectorAll(".plays [data-play]"), vis = c.querySelector(".vis svg"), aid = c.querySelector(".aid .aidtx");
+      var hook = aid && aid.querySelector(".hook"), rest = "";
+      if (aid) { var a2 = aid.cloneNode(true), h2 = a2.querySelector(".hook"); if (h2) h2.remove(); rest = (a2.textContent || "").replace(/\s+/g, " ").trim(); }
+      var sents = [];
+      [].forEach.call(c.querySelectorAll(".sents .sent, .ex li"), function (x) {
+        if (sents.length >= 3) return;
+        var sx = txt(x.querySelector(".sx")); if (!sx) return;
+        var b = x.querySelector("[data-play]");
+        sents.push({ th: sx, rom: txt(x.querySelector(".sr")), en: txt(x.querySelector(".st")), audio: b ? url(b.dataset.play) : "" });
+      });
+      words.push({ id: c.dataset.wid, th: th, en: en, rom: txt(c.querySelector(":scope > .rom")), pos: txt(c.querySelector(".pos")),
+        tones: [].map.call(c.querySelectorAll(":scope > .rom .rt"), function (r) { var m = /\bt-([a-z]+)/.exec(r.className); return [(r.textContent || "").trim(), m ? m[1] : ""]; }),
+        audio: pl[0] ? pl[0].dataset.play : "", slow: pl[1] ? pl[1].dataset.play : "", img: c.getAttribute("data-img") || "",
+        ch: c.dataset.ch || "", vis: vis ? vis.outerHTML : "", hook: hook ? (hook.textContent || "").trim() : "", aid: rest, sents: sents });
+    });
+    var h1 = doc.getElementById("fav-btn");
+    return { format: "wb-words", version: 1, lesson: id, title: (h1 && h1.dataset.title) || "", words: words, from: "page" };
+  }
+  // Sounds the reader chose to keep on this device (the course's "Keep sounds
+  // offline", IndexedDB wb-sounds): the game plays those copies, instantly.
+  var KEPT = {};
+  function keptFor(ws) {
+    try {
+      var r = indexedDB.open("wb-sounds");
+      r.onupgradeneeded = function () { try { r.transaction.abort(); } catch (e) {} };
+      r.onsuccess = function () {
+        var d = r.result;
+        if (!d.objectStoreNames.contains("clips")) { d.close(); return; }
+        var t = d.transaction("clips", "readonly"), st = t.objectStore("clips");
+        ws.forEach(function (w) { [w.audio, w.slow].forEach(function (u) {
+          if (!u || KEPT[u]) return;
+          var q = st.get(u); q.onsuccess = function () { if (q.result && q.result.blob) KEPT[u] = URL.createObjectURL(q.result.blob); };
+        }); });
+        t.oncomplete = function () { d.close(); };
+      };
+    } catch (e) {}
+  }
+
+  // ------------------------------------------------------------ the game
+  var api = null;
+  FlashGame.mount(document.getElementById("game"), { base: "../games/flash/", source: "site",
+                                                     telemetry: save, telemetryMeta: meta,
+                                                     askQuestion: askQuestion,
+                                                     onAnswer: function (q, right) { toSite({ type: "ftc:answered", id: q.right, right: right }); },
+                                                     onWord: function (r) { toSite(Object.assign({ type: "ftc:word" }, r)); },
+                                                     // Learn / Test changed: the course weights its words and questions by it
+                                                     onMode: function () { tell(); },
+                                                     // a lesson mastered: on to the next one (the game keeps going)
+                                                     goNextLesson: function () { toSite({ type: "ftc:goto", where: "next" }); },
+                                                     goQuiz: function () { toSite({ type: "ftc:mode", mode: "quiz" }); },
+                                                     // ⚙ Options: the layout and the level
+                                                     layout: function () { return layout; }, setLayout: setLayout,
+                                                     levels: levels, goLevel: goLevel,
+                                                     keptAudio: function (u) { return KEPT[u] || ""; },
+                                                     // the share card links here
+                                                     siteUrl: ROOT })
+    .then(function (a) {
+      api = a; window.ftc = a;
+      if (pendingWords) { api.setWords(pendingWords.words || [], pendingWords.extra || []); if (api.setLesson) api.setLesson(pendingWords.lesson || null); }
+      if (pack && api.setPack) api.setPack(pack);
+      tell();
+    })
+    .catch(function (e) {
+      document.getElementById("game").innerHTML = '<p style="padding:20px;color:#f2705f">The game could not start: ' +
+        String(e && e.message || e).replace(/</g, "&lt;") + "</p>";
+    });
+  count();
+
+  // ← → move through the course even when the keyboard is in the game page
+  // (after clicking a gem, say); so do the pop quiz's 1-4 and Esc.
+  document.addEventListener("keydown", function (e) {
+    var t = e.target; if (t && /INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
+    if (api && api.questionOpen && api.questionOpen()) return;     // the game's own question has the keys
+    if (e.key === "Escape" && api && api.hasPick && api.hasPick()) return;   // Esc lets go of a picked gem (the game does it)
+    if (api && api.cardOpen && api.cardOpen() && /^[1-6 ]$|^Enter$/.test(e.key)) return;   // the word card's answer keys
+    if (layout === "full") return;                                             // the course is out of sight
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Escape" || /^[1-4]$/.test(e.key)) {
+      if (e.key.indexOf("Arrow") === 0) e.preventDefault();
+      toSite({ type: "ftc:key", key: e.key });
+    }
+  });
+
+  // ------------------------------------------------------------ the divider
+  var gm = document.querySelector(".gm"), col = document.querySelector(".gm-col"), grip = document.getElementById("gm-grip");
+  function setW(pct, remember) {
+    pct = Math.max(22, Math.min(65, pct));
+    // the course keeps room for its normal (non-phone) layout where it can
+    var maxPx = window.innerWidth - 940;
+    if (maxPx > 300 && pct / 100 * window.innerWidth > maxPx) pct = Math.max(22, maxPx / window.innerWidth * 100);
+    document.documentElement.style.setProperty("--gw", pct.toFixed(1) + "%");
+    if (remember) try { localStorage.setItem("ftc.gw", pct.toFixed(1)); } catch (e) {}
+  }
+  try { var saved = parseFloat(localStorage.getItem("ftc.gw")); setW(saved || 40, false); } catch (e) { setW(40, false); }
+  grip.addEventListener("mousedown", function (e) {
+    e.preventDefault(); gm.classList.add("drag");
+    function move(ev) { setW(ev.clientX / window.innerWidth * 100, false); }
+    function up(ev) { gm.classList.remove("drag"); setW(ev.clientX / window.innerWidth * 100, true);
+      document.removeEventListener("mousemove", move); document.removeEventListener("mouseup", up); }
+    document.addEventListener("mousemove", move); document.addEventListener("mouseup", up);
+  });
+  grip.addEventListener("dblclick", function () { setW(40, true); });
+
+  // ------------------------------------------------- the testing notice
+  var NOTE = "ftc.noted";
+  var noted = false; try { noted = localStorage.getItem(NOTE) === "1"; } catch (e) {}
+  if (!noted) {
+    var n = document.createElement("div");
+    n.className = "gm-note";
+    n.innerHTML = "<p><b>🎮 Game mode is new, and we're testing it.</b></p>" +
+      "<p>Answer the word card to power Flash up: each word starts easy and asks more of your memory as you learn it, " +
+      "and comes back over the following days so it sticks. Each lesson of the course is a level. " +
+      "⚙ Options has the level, and can put the course beside the game instead.</p>" +
+      "<p>To balance the game, this browser keeps a record of how each game goes (rounds, Flash's health, " +
+      "which kinds of studying you did, not your answers). It stays on this computer unless you press " +
+      "<b>⬇ Game data</b> and send us the file.</p>" +
+      '<div class="row"><button class="ghost" id="gm-no">Leave game mode</button><button id="gm-ok">OK, let\'s play</button></div>';
+    document.querySelector(".gm-col").appendChild(n);
+    n.querySelector("#gm-ok").onclick = function () { try { localStorage.setItem(NOTE, "1"); } catch (e) {} n.remove(); };
+    n.querySelector("#gm-no").onclick = leave;
+  }
+})();
+</script>
+</body>
+</html>

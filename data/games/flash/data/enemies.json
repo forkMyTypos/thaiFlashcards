@@ -1,0 +1,108 @@
+[
+  {
+    "id": "skeleton_grunt",
+    "name": "Grunt",
+    "base": "skeleton_basic",
+    "role": "melee",
+    "equipment_pool": [
+      "rusty_sword",
+      "bone_club"
+    ],
+    "armour_pool": [],
+    "xp": 5,
+    "gold": 1,
+    "spawn_weight": 10,
+    "min_level": 1,
+    "description": "Basic weapon, no armour, poor life choices."
+  },
+  {
+    "id": "skeleton_archer",
+    "name": "Archer",
+    "base": "skeleton_basic",
+    "role": "ranged",
+    "equipment_pool": [
+      "bone_bow",
+      "skeleton_crossbow"
+    ],
+    "armour_pool": [
+      "scrap_armour"
+    ],
+    "xp": 7,
+    "gold": 2,
+    "spawn_weight": 4,
+    "min_level": 5,
+    "description": "Keeps its distance and shoots."
+  },
+  {
+    "id": "skeleton_armoured",
+    "name": "Armoured",
+    "base": "skeleton_basic",
+    "role": "tank",
+    "equipment_pool": [
+      "rusty_sword",
+      "skull_mace"
+    ],
+    "armour_pool": [
+      "bone_armour",
+      "iron_armour"
+    ],
+    "xp": 12,
+    "gold": 3,
+    "spawn_weight": 3,
+    "min_level": 8,
+    "description": "High HP and defence."
+  },
+  {
+    "id": "skeleton_berserker",
+    "name": "Berserker",
+    "base": "skeleton_basic",
+    "role": "melee",
+    "equipment_pool": [
+      "skeleton_daggers"
+    ],
+    "armour_pool": [],
+    "accessory_pool": [
+      "berserker_mask"
+    ],
+    "xp": 10,
+    "gold": 3,
+    "spawn_weight": 3,
+    "min_level": 10,
+    "description": "Fast attacks, very angry."
+  },
+  {
+    "id": "skeleton_mage",
+    "name": "Mage",
+    "base": "skeleton_basic",
+    "role": "caster",
+    "equipment_pool": [
+      "lightning_staff"
+    ],
+    "armour_pool": [
+      "shadow_armour"
+    ],
+    "xp": 15,
+    "gold": 4,
+    "spawn_weight": 2,
+    "min_level": 15,
+    "description": "Ranged spell attacks."
+  },
+  {
+    "id": "skeleton_elemental",
+    "name": "Elemental",
+    "base": "skeleton_basic",
+    "role": "melee",
+    "equipment_pool": [
+      "flaming_sword",
+      "frost_axe"
+    ],
+    "armour_pool": [
+      "bone_armour"
+    ],
+    "xp": 12,
+    "gold": 3,
+    "spawn_weight": 2,
+    "min_level": 20,
+    "description": "Special weapon with elemental effects."
+  }
+]

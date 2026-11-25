@@ -1,0 +1,83 @@
+[
+  {
+    "id": "stage_10",
+    "from_stage": 10,
+    "to_stage": 10,
+    "encounter": "First mini-boss",
+    "boss_pool": [
+      "skeleton_king"
+    ]
+  },
+  {
+    "id": "stage_20",
+    "from_stage": 20,
+    "to_stage": 20,
+    "encounter": "First major boss",
+    "boss_pool": [
+      "bone_golem",
+      "lich"
+    ]
+  },
+  {
+    "id": "stage_30",
+    "from_stage": 30,
+    "to_stage": 30,
+    "encounter": "Elite boss",
+    "boss_pool": [
+      "skeleton_king",
+      "lich"
+    ]
+  },
+  {
+    "id": "stage_40",
+    "from_stage": 40,
+    "to_stage": 40,
+    "encounter": "Major boss",
+    "boss_pool": [
+      "bone_golem",
+      "lich"
+    ]
+  },
+  {
+    "id": "stage_50",
+    "from_stage": 50,
+    "to_stage": 50,
+    "encounter": "World boss",
+    "boss_pool": [
+      "bone_dragon"
+    ]
+  },
+  {
+    "id": "stage_60_90",
+    "from_stage": 60,
+    "to_stage": 90,
+    "encounter": "Increasingly difficult bosses (every 10)",
+    "boss_pool": [
+      "skeleton_king",
+      "lich",
+      "bone_golem",
+      "bone_dragon"
+    ]
+  },
+  {
+    "id": "stage_100",
+    "from_stage": 100,
+    "to_stage": 100,
+    "encounter": "Major milestone boss",
+    "boss_pool": [
+      "bone_dragon"
+    ]
+  },
+  {
+    "id": "endless",
+    "from_stage": 101,
+    "to_stage": null,
+    "encounter": "Randomised endless bosses (every 10)",
+    "boss_pool": [
+      "skeleton_king",
+      "lich",
+      "bone_golem",
+      "bone_dragon"
+    ]
+  }
+]
