@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Learn 18 Thai words for joining ideas, including แต่ (but), เพราะ (because), ดังนั้น (therefore). With audio, romanization, free flashcards and a quiz."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=d1d22050"/>
+<link rel="stylesheet" href="../style.css?v=19529d13"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -69,10 +69,24 @@
     <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
+    <div class="catwrap" data-cat="c-crash-course" data-name="Crash Course">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Crash Course">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-crash-course/" data-title="crash course"><span class="lb">Crash Course</span><span class="n" data-fill="cat:c-crash-course"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="cat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="cat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -136,6 +150,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-friends-social-thai" data-name="Friends &amp; Social Thai">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Friends &amp; Social Thai">+</button>
@@ -150,7 +165,6 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
-    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -229,13 +243,20 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
-    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="24" data-more="13">Show all 24 categories (13 more)</button>
     </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/sentences/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="scat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="s:c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/sentences/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="scat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -253,8 +274,8 @@
     <a class="item also" id="m-prob" href="https://thai.inaflash.cards/problems/" data-title="problem words"><span class="lb">Problem words<span class="sub">the ones you are working on</span></span><span class="n" data-fill="prob"></span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2516 to read through</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">51 pairs that differ only by tone</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2622 to read through</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">54 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/alphabet/" data-title="the alphabet"><span class="lb">The alphabet<span class="sub">44 letters, the vowels and the tone marks</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
@@ -443,6 +464,6 @@
     <dl class="vocab seo"><h2>Vocabulary (18 words)</h2><div><dt lang="th">แต่ <span class="rom">dtàe</span></dt><dd>but, however, only, from [time]</dd></div><div><dt lang="th">เพราะ <span class="rom">phrɔ́</span></dt><dd>because, as, since</dd></div><div><dt lang="th">ดังนั้น <span class="rom">dang-nán</span></dt><dd>therefore, thus, so, consequently</dd></div><div><dt lang="th">ถ้า <span class="rom">thâa</span></dt><dd>if</dd></div><div><dt lang="th">เมื่อ <span class="rom">mûea</span></dt><dd>when, upon, time, occasion</dd></div><div><dt lang="th">ว่า <span class="rom">wâa</span></dt><dd>to say, speak, scold, that [introducing reported speech/thought], [colloquial sentence-ending particle]</dd></div><div><dt lang="th">ก็ <span class="rom">gâw</span></dt><dd>then, so, consequently, also, too, [common discourse particle, often linking clauses or emphasizing]</dd></div><div><dt lang="th">ต่อ <span class="rom">dtɔ̀ɔ</span></dt><dd>to connect, extend, continue, ต่อสู้, to, towards, per, next, further</dd></div><div><dt lang="th">อีก <span class="rom">ìik</span></dt><dd>again, more, further, other</dd></div><div><dt lang="th">แค่ <span class="rom">khâae</span></dt><dd>only, just, merely, up to, as far as</dd></div><div><dt lang="th">เท่านั้น <span class="rom">thâo-nán</span></dt><dd>only, solely, that&#x27;s all</dd></div><div><dt lang="th">จริงๆ <span class="rom">jing-jing</span></dt><dd>really, truly, actually</dd></div><div><dt lang="th">ด้วย <span class="rom">dûay</span></dt><dd>with, by means of, also, too, as well, [polite request marker]</dd></div><div><dt lang="th">น้อย <span class="rom">nɔ́ɔi</span></dt><dd>small [amount], little, few, less, slightly</dd></div><div><dt lang="th">หรือ <span class="rom">rǔue</span></dt><dd>or</dd></div><div><dt lang="th">อย่างไร <span class="rom">yàang-rai</span></dt><dd>how?, in what way?</dd></div><div><dt lang="th">ไหน <span class="rom">nǎi</span></dt><dd>which?, where?, any</dd></div><div><dt lang="th">อะไร <span class="rom">à-rai</span></dt><dd>what?, something, anything</dd></div></dl>
   </div>
 </div>
-<script src="../shell.js?v=236caf04"></script>
+<script src="../shell.js?v=28cd8dff"></script>
 <script src="../mouth.js?v=b53939cf" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Thai Vocabulary: Lesson 13 — Joining ideas","description":"Learn 18 Thai words for joining ideas, including แต่ (but), เพราะ (because), ดังนั้น (therefore). With audio, romanization, free flashcards and a quiz.","url":"https://thai.inaflash.cards/17-lesson-13-joining-ideas/","inLanguage":"th","educationalLevel":"beginner","teaches":["but, however, only, from [time]","because, as, since","therefore, thus, so, consequently","if","when, upon, time, occasion","to say, speak, scold, that [introducing reported speech/thought], [colloquial sentence-ending particle]","then, so, consequently, also, too, [common discourse particle, often linking clauses or emphasizing]","to connect, extend, continue, ต่อสู้, to, towards, per, next, further","again, more, further, other","only, just, merely, up to, as far as","only, solely, that's all","really, truly, actually","with, by means of, also, too, as well, [polite request marker]","small [amount], little, few, less, slightly","or","how?, in what way?","which?, where?, any","what?, something, anything"],"isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"provider":{"@type":"Organization","name":"inaflash.cards","url":"https://inaflash.cards"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Lesson 13 — Joining ideas","item":"https://thai.inaflash.cards/17-lesson-13-joining-ideas/"}]}</script><script type="application/json" id="gtips">{"TH_000751":"\u003cspan class=\"gme\"\u003e\u003cspan class=\"gicon g-male\" aria-hidden=\"true\"\u003e♂\u003c/span\u003e \u003cspan class=\"gsay\"\u003eSaid by men\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"gothers\"\u003e\u003cspan class=\"gother\"\u003e\u003cspan class=\"gicon g-female\" aria-hidden=\"true\"\u003e♀\u003c/span\u003e \u003cspan class=\"glead\"\u003ewomen say\u003c/span\u003e \u003ca href=\"https://thai.inaflash.cards/word/00489-polite-particle-used-by-females-fall/\"\u003e\u003cb lang=\"th\"\u003eค่ะ\u003c/b\u003e\u003c/a\u003e \u003cspan class=\"rom\"\u003e\u003cspan class=\"rt t-falling\"\u003ekhâ\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"gother\"\u003e\u003cspan class=\"gicon g-female\" aria-hidden=\"true\"\u003e♀\u003c/span\u003e \u003cspan class=\"glead\"\u003ewomen say\u003c/span\u003e \u003ca href=\"https://thai.inaflash.cards/word/05917-polite-question-ending/\"\u003e\u003cb lang=\"th\"\u003eคะ\u003c/b\u003e\u003c/a\u003e \u003cspan class=\"rom\"\u003e\u003cspan class=\"rt t-high\"\u003ekhá\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e"}</script></body></html>
