@@ -1974,3 +1974,144 @@ html.light-pre body,body.light{--mo-line:#55606f;--mo-roof:#7d8797;--mo-tooth:#f
 .mouthnav .mprev,.mouthnav .mnext{font-size:1.125rem;line-height:1;padding:3px 12px}
 .mouthnav .mcount{font-size:.8125rem;color:var(--muted);min-width:42px;text-align:center}
 @media (max-width:560px){.mouthpanel{grid-template-columns:1fr}.mouthfig{grid-row:auto;max-width:260px}}
+
+/* ------------------------------------------------- the phone, made roomy
+   Dan: "On mobile the menus are taking up way too much space. We need a more
+   space optimized setup." Measured at 375x812 they took 191px before the
+   picture, a quarter of the screen, and 144px of it stayed pinned while
+   reading: the ☰ and the pager on one line, the five modes on a second, the
+   crumb on a third, the scrubber on a fourth, then the brand strip.
+
+   Now (his pick of three drawings, "Option A"):
+   - one 48px bar: ☰ · category over lesson title ▾ · ‹ 1/18 ›, with the
+     scrubber as a line along its bottom edge that can still be dragged;
+   - the modes as tabs along the bottom of the screen, where the thumb is;
+   - the bar steps up out of the way while reading down the page and comes
+     back the moment the reader scrolls up (shell.js, "the phone's top bar");
+   - no brand strip: the lessons open from the title, and both they and the ☰
+     menu come up as sheets from the bottom rather than drawers from the side.
+   Below the earlier phone rules on purpose, so these are the ones that win. */
+@media(max-width:900px){
+  :root{--tabs:calc(56px + env(safe-area-inset-bottom,0px))}
+  body:has(#modes){padding-bottom:var(--tabs)}
+
+  /* the bar */
+  .rail{align-items:center;padding:0 0 0 8px;height:48px;transition:top .2s ease}
+  .slider{flex-wrap:nowrap;gap:6px;height:48px;box-sizing:border-box;
+    padding:0 8px 0 2px;transition:top .2s ease}
+  body.bar-off .rail,body.bar-off .slider{top:-56px}
+  .slider .name{order:0;flex:1 1 auto;min-width:0;align-items:center;gap:6px;
+    height:100%;font-size:0.875rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .slider .name .aboutlink{display:none}
+  /* "Category / Title" as two lines, small over large. The " / " between them
+     is a bare text node, so the line's own size is zero and each half sets
+     its own. Only where there is a title heading: the front page's crumb is
+     all text, and this would make it vanish. */
+  .slider .name .nt:has(.lt){font-size:0;display:flex;flex-direction:column;
+    justify-content:center;line-height:1.25;min-width:0}
+  .slider .name .nt:has(.lt) a{font-size:0.6875rem;font-weight:600;color:var(--dim);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .slider .name .nt .lt{display:block;font-size:0.875rem;overflow:hidden;
+    text-overflow:ellipsis;white-space:nowrap}
+  body:has(aside.menu) .slider .name::after{content:"\25BE";flex:none;
+    color:var(--dim);font-size:0.75rem}
+  .slider .pager{order:1;gap:2px}
+  .slider .pager button{width:34px;height:34px}
+  .slider .pager .count{min-width:46px;font-size:0.75rem}
+  .slider .ytbtn{order:0;flex:none}
+
+  /* the scrubber: a line along the bar's bottom edge. 16px tall so a thumb
+     can catch it, 3px drawn. --p is how far along, set by show() in shell.js;
+     Firefox draws that part itself. */
+  .slider .scrub{position:absolute;left:0;right:0;bottom:-8px;width:100%;
+    height:16px;margin:0;padding:0;flex:none;min-width:0;order:0;
+    -webkit-appearance:none;appearance:none;background:transparent;
+    z-index:2;touch-action:none;cursor:pointer}
+  .slider .scrub::-webkit-slider-runnable-track{height:3px;border:0;
+    background:linear-gradient(var(--accent),var(--accent)) 0 0/var(--p,0%) 100% no-repeat,var(--line)}
+  .slider .scrub::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;margin-top:-5.5px;border-radius:50%;
+    background:var(--accent);border:2px solid var(--s0);box-sizing:border-box}
+  .slider .scrub::-moz-range-track{height:3px;border:0;background:var(--line)}
+  .slider .scrub::-moz-range-progress{height:3px;background:var(--accent)}
+  .slider .scrub::-moz-range-thumb{width:10px;height:10px;border-radius:50%;
+    background:var(--accent);border:2px solid var(--s0)}
+
+  /* the modes, as tabs along the bottom. Still inside .slider in the markup,
+     so nothing that finds them by #modes or .md changes; `top` rather than a
+     transform moves the bar away, because a transform on .slider would make
+     this fixed bar move with it. */
+  .slider .modes{position:fixed;left:0;right:0;bottom:0;z-index:13;order:0;
+    display:flex;gap:0;height:var(--tabs);box-sizing:border-box;
+    padding:0 4px env(safe-area-inset-bottom,0px);
+    background:var(--s0);border-top:1px solid var(--line)}
+  .slider .md,.slider .md.gmode{flex:1 1 0;min-width:0;width:auto;height:56px;
+    margin:0;border:0;border-radius:0;background:none;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;font-size:1.125rem;color:var(--muted);-webkit-tap-highlight-color:transparent}
+  .slider .md:hover{border:0}
+  .slider .md::after{font-size:0.625rem;font-weight:600;letter-spacing:.02em;
+    color:var(--dim);line-height:1}
+  .slider .md[data-mode="info"]::after{content:"Read"}
+  .slider .md[data-mode="card"]::after{content:"Cards"}
+  .slider .md[data-mode="quiz"]::after{content:"Quiz"}
+  .slider .md[data-mode="listen"]::after{content:"Listen"}
+  .slider .md.gmode::after{content:"Game"}
+  .slider .md[aria-pressed="true"],.slider .md.gmode[aria-pressed="true"]{
+    background:none;border:0;color:var(--accent3)}
+  .slider .md[aria-pressed="true"]::after{color:var(--accent3)}
+  .slider .md[aria-pressed="true"]::before{content:"";position:absolute;top:-1px;
+    left:24%;right:24%;height:2px;border-radius:0 0 2px 2px;background:var(--accent)}
+  .slider .md.gmode[aria-pressed="true"]::before{background:#ff9f5a}
+
+  /* what used to sit at the bottom of the screen moves up over the tabs */
+  body:has(#modes) #edtoast,body:has(#modes) .wbpop{bottom:calc(var(--tabs) + 14px)}
+  body:has(#modes) #bknag{bottom:calc(var(--tabs) + 10px)}
+  body:has(#modes) .wbauto{bottom:calc(var(--tabs) + 8px)}
+  body:has(#modes).has-wbauto .wbpop{bottom:calc(var(--tabs) + 60px)}
+
+  /* Flashcards and the quiz fill what is left between the bar and the tabs. */
+  body.mode-card .right,body.mode-quiz .right,
+  body.no-lessons.mode-card .right,body.no-lessons.mode-quiz .right{
+    height:calc(100vh - 48px - var(--tabs));height:calc(100dvh - 48px - var(--tabs));
+    min-height:380px}
+
+  /* the lessons: gone until asked for, then a sheet from the bottom.
+     `position` again here because the grip's `.menu{position:relative}`
+     further up the file comes after the earlier phone rules and had quietly
+     put the drawer back into the page flow, beside the lesson, not over it. */
+  body.no-lessons .menu{display:none}
+  .mgrip{display:none}
+  .menu,body:not(.no-lessons) .menu{position:fixed;z-index:30;top:auto;right:0;bottom:0;left:0;width:auto;
+    height:min(86vh,680px);height:min(86dvh,680px);transform:none;transition:none;
+    border-right:0;border-top:1px solid var(--edge);border-radius:16px 16px 0 0;
+    box-shadow:0 -10px 40px rgba(0,0,0,.5);overflow:hidden;
+    padding-bottom:env(safe-area-inset-bottom,0px)}
+  .menu .mhead{position:relative;padding-top:12px}
+  .menu .mhead::before{content:"";position:absolute;left:50%;top:6px;width:36px;
+    height:4px;margin-left:-18px;border-radius:2px;background:var(--edge)}
+
+  /* the ☰ menu: a sheet too, with the four things a learner reaches for most
+     as tiles across the top and the settings listed under them */
+  .mainmenu{position:fixed;left:0;right:0;top:auto;bottom:0;width:auto;height:auto;
+    max-height:82vh;max-height:82dvh;overflow-y:auto;
+    border-right:0;border-top:1px solid var(--edge);border-radius:16px 16px 0 0;
+    padding:20px 12px calc(12px + env(safe-area-inset-bottom,0px));
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px 6px;
+    align-content:start;transform:translateY(100%)}
+  body.mm-open .mainmenu{transform:none;box-shadow:0 -10px 40px rgba(0,0,0,.5)}
+  .mainmenu::before{content:"";position:absolute;left:50%;top:7px;width:36px;
+    height:4px;margin-left:-18px;border-radius:2px;background:var(--edge)}
+  .mainmenu>*{grid-column:1/-1;order:2}
+  .mainmenu>.mm-head{order:0}
+  .mainmenu #mm-lessons,.mainmenu #mm-progress,.mainmenu #mm-game,.mainmenu #mm-pics{
+    grid-column:auto;order:1;flex-direction:column;justify-content:center;gap:6px;
+    min-height:72px;margin-bottom:8px;padding:10px 4px;text-align:center;
+    background:var(--s2);border:1px solid var(--line);border-radius:12px;
+    font-size:0.75rem;line-height:1.2}
+  .mainmenu #mm-lessons .i,.mainmenu #mm-progress .i,
+  .mainmenu #mm-game .i,.mainmenu #mm-pics .i{width:auto;font-size:1.25rem}
+  /* its backdrop: on <body>, so a tap on it is outside the rail and closes it */
+  body.mm-open::after{content:"";position:fixed;inset:0;z-index:13;
+    background:rgba(0,0,0,.5)}
+}

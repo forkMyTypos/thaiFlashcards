@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Learn the days of the week, months of the year and how to talk about dates in everyday Thai. 47 Thai words with audio, including วัน (day)."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=d1d22050"/>
+<link rel="stylesheet" href="../style.css?v=19529d13"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -69,10 +69,24 @@
     <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
+    <div class="catwrap" data-cat="c-crash-course" data-name="Crash Course">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Crash Course">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-crash-course/" data-title="crash course"><span class="lb">Crash Course</span><span class="n" data-fill="cat:c-crash-course"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="cat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="cat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -136,6 +150,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-friends-social-thai" data-name="Friends &amp; Social Thai">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Friends &amp; Social Thai">+</button>
@@ -150,7 +165,6 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
-    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -229,13 +243,20 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
-    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="24" data-more="13">Show all 24 categories (13 more)</button>
     </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/sentences/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="scat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="s:c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/sentences/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="scat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -253,8 +274,8 @@
     <a class="item also" id="m-prob" href="https://thai.inaflash.cards/problems/" data-title="problem words"><span class="lb">Problem words<span class="sub">the ones you are working on</span></span><span class="n" data-fill="prob"></span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2516 to read through</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">51 pairs that differ only by tone</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2622 to read through</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">54 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/alphabet/" data-title="the alphabet"><span class="lb">The alphabet<span class="sub">44 letters, the vowels and the tone marks</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
@@ -675,6 +696,6 @@
     <dl class="vocab seo"><h2>Vocabulary (47 words)</h2><div><dt lang="th">วัน <span class="rom">wan</span></dt><dd>day, [classifier for days]</dd></div><div><dt lang="th">วันจันทร์ <span class="rom">wan-jan</span></dt><dd>Monday</dd></div><div><dt lang="th">วันอังคาร <span class="rom">wan-ang-khaan</span></dt><dd>Tuesday</dd></div><div><dt lang="th">วันพุธ <span class="rom">wan-phút</span></dt><dd>Wednesday</dd></div><div><dt lang="th">วันพฤหัสบดี <span class="rom">wan-phá-rɯ́-hàt-sà-bɔɔ-dii</span></dt><dd>Thursday</dd></div><div><dt lang="th">วันศุกร์ <span class="rom">wan-sùk</span></dt><dd>Friday</dd></div><div><dt lang="th">วันเสาร์ <span class="rom">wan-sǎo</span></dt><dd>Saturday</dd></div><div><dt lang="th">วันอาทิตย์ <span class="rom">wan-aa-thít</span></dt><dd>Sunday</dd></div><div><dt lang="th">วันนี้ <span class="rom">wan-níi</span></dt><dd>today</dd></div><div><dt lang="th">พรุ่งนี้ <span class="rom">phrûng-níi</span></dt><dd>tomorrow</dd></div><div><dt lang="th">เมื่อวาน <span class="rom">mʉ̂a-waan</span></dt><dd>yesterday</dd></div><div><dt lang="th">สัปดาห์ <span class="rom">sàp-daa / sàp-bpà-daa</span></dt><dd>week</dd></div><div><dt lang="th">เดือน <span class="rom">duean</span></dt><dd>month, moon, [classifier for months]</dd></div><div><dt lang="th">มกราคม <span class="rom">má-gà-raa-khom / mók-gà-raa-khom</span></dt><dd>January</dd></div><div><dt lang="th">กุมภาพันธ์ <span class="rom">kum-phaa-phan</span></dt><dd>February</dd></div><div><dt lang="th">มีนาคม <span class="rom">mii-naa-khom</span></dt><dd>March</dd></div><div><dt lang="th">เมษายน <span class="rom">mee-sǎa-yon</span></dt><dd>April</dd></div><div><dt lang="th">พฤษภาคม <span class="rom">phrɯ́t-sà-phaa-khom</span></dt><dd>May</dd></div><div><dt lang="th">มิถุนายน <span class="rom">mí-thù-naa-yon</span></dt><dd>June</dd></div><div><dt lang="th">กรกฎาคม <span class="rom">gà-rá-gà-daa-khom</span></dt><dd>July</dd></div><div><dt lang="th">สิงหาคม <span class="rom">sǐng-hǎa-khom</span></dt><dd>August</dd></div><div><dt lang="th">กันยายน <span class="rom">gan-yaa-yon</span></dt><dd>September</dd></div><div><dt lang="th">ตุลาคม <span class="rom">dtù-laa-khom</span></dt><dd>October</dd></div><div><dt lang="th">พฤศจิกายน <span class="rom">phrɯ́(t)-sà-jì-gaa-yon</span></dt><dd>November</dd></div><div><dt lang="th">ธันวาคม <span class="rom">than-waa-khom</span></dt><dd>December</dd></div><div><dt lang="th">วันที่ <span class="rom">wan-thîi</span></dt><dd>date, the day that...</dd></div><div><dt lang="th">วันเกิด <span class="rom">wan-gə̀ət</span></dt><dd>birthday</dd></div><div><dt lang="th">วันหยุด <span class="rom">wan-yùt</span></dt><dd>day off / holiday</dd></div><div><dt lang="th">วันธรรมดา <span class="rom">wan-tham-má-daa</span></dt><dd>weekday / ordinary day</dd></div><div><dt lang="th">สุดสัปดาห์ <span class="rom">sùt-sàp-daa</span></dt><dd>weekend</dd></div><div><dt lang="th">เดือนนี้ <span class="rom">duean-níi</span></dt><dd>this month</dd></div><div><dt lang="th">เดือนหน้า <span class="rom">dʉan-nâa</span></dt><dd>next month</dd></div><div><dt lang="th">เดือนที่แล้ว <span class="rom">duean-thîi-láew</span></dt><dd>last month</dd></div><div><dt lang="th">วันไหน <span class="rom">wan-nǎi</span></dt><dd>which day?</dd></div><div><dt lang="th">วันอะไร <span class="rom">wan-à-rai</span></dt><dd>what day?</dd></div><div><dt lang="th">วันนี้วันอะไร <span class="rom">wan-níi wan-à-rai</span></dt><dd>what day is it today?</dd></div><div><dt lang="th">วันจันทร์ถึงวันศุกร์ <span class="rom">wan-jan thʉ̌ng wan-sùk</span></dt><dd>Monday to Friday</dd></div><div><dt lang="th">ทุกวัน <span class="rom">thúk-wan</span></dt><dd>every day</dd></div><div><dt lang="th">ทุกเดือน <span class="rom">thúk-duean</span></dt><dd>every month</dd></div><div><dt lang="th">ปี <span class="rom">pii</span></dt><dd>year, [classifier for years]</dd></div><div><dt lang="th">ปีนี้ <span class="rom">bpii-níi</span></dt><dd>this year</dd></div><div><dt lang="th">ปีหน้า <span class="rom">bpii-nâa</span></dt><dd>next year</dd></div><div><dt lang="th">ปีที่แล้ว <span class="rom">bpii-thîi-láew</span></dt><dd>last year</dd></div><div><dt lang="th">วันที่เท่าไหร่ <span class="rom">wan-thîi thâo-rài</span></dt><dd>what date?</dd></div><div><dt lang="th">ต้นเดือน <span class="rom">dtôn-duean</span></dt><dd>beginning of the month</dd></div><div><dt lang="th">กลางเดือน <span class="rom">glaang-duean</span></dt><dd>middle of the month</dd></div><div><dt lang="th">ปลายเดือน <span class="rom">bplaai-duean</span></dt><dd>end of the month</dd></div></dl>
   </div>
 </div>
-<script src="../shell.js?v=236caf04"></script>
+<script src="../shell.js?v=28cd8dff"></script>
 <script src="../mouth.js?v=b53939cf" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Thai Vocabulary: Days \u0026 Months","description":"Learn the days of the week, months of the year and how to talk about dates in everyday Thai. 47 Thai words with audio, including วัน (day).","url":"https://thai.inaflash.cards/09-days-months/","inLanguage":"th","educationalLevel":"beginner","teaches":["day, [classifier for days]","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","today","tomorrow","yesterday","week","month, moon, [classifier for months]","January","February","March","April","May","June","July","August","September","October","November","December","date, the day that...","birthday","day off / holiday","weekday / ordinary day","weekend","this month","next month","last month","which day?","what day?","what day is it today?","Monday to Friday","every day","every month","year, [classifier for years]","this year","next year","last year","what date?","beginning of the month","middle of the month","end of the month"],"isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"provider":{"@type":"Organization","name":"inaflash.cards","url":"https://inaflash.cards"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Days \u0026 Months","item":"https://thai.inaflash.cards/09-days-months/"}]}</script><script type="application/json" id="gtips">{"TH_000489":"\u003cspan class=\"gme\"\u003e\u003cspan class=\"gicon g-female\" aria-hidden=\"true\"\u003e♀\u003c/span\u003e \u003cspan class=\"gsay\"\u003eSaid by women\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"gothers\"\u003e\u003cspan class=\"gother\"\u003e\u003cspan class=\"gicon g-male\" aria-hidden=\"true\"\u003e♂\u003c/span\u003e \u003cspan class=\"glead\"\u003emen say\u003c/span\u003e \u003ca href=\"https://thai.inaflash.cards/word/00751-polite-ending-particle-for-male-spea/\"\u003e\u003cb lang=\"th\"\u003eครับ\u003c/b\u003e\u003c/a\u003e \u003cspan class=\"rom\"\u003e\u003cspan class=\"rt t-high\"\u003ekhráp\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e","TH_000751":"\u003cspan class=\"gme\"\u003e\u003cspan class=\"gicon g-male\" aria-hidden=\"true\"\u003e♂\u003c/span\u003e \u003cspan class=\"gsay\"\u003eSaid by men\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"gothers\"\u003e\u003cspan class=\"gother\"\u003e\u003cspan class=\"gicon g-female\" aria-hidden=\"true\"\u003e♀\u003c/span\u003e \u003cspan class=\"glead\"\u003ewomen say\u003c/span\u003e \u003ca href=\"https://thai.inaflash.cards/word/00489-polite-particle-used-by-females-fall/\"\u003e\u003cb lang=\"th\"\u003eค่ะ\u003c/b\u003e\u003c/a\u003e \u003cspan class=\"rom\"\u003e\u003cspan class=\"rt t-falling\"\u003ekhâ\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"gother\"\u003e\u003cspan class=\"gicon g-female\" aria-hidden=\"true\"\u003e♀\u003c/span\u003e \u003cspan class=\"glead\"\u003ewomen say\u003c/span\u003e \u003ca href=\"https://thai.inaflash.cards/word/05917-polite-question-ending/\"\u003e\u003cb lang=\"th\"\u003eคะ\u003c/b\u003e\u003c/a\u003e \u003cspan class=\"rom\"\u003e\u003cspan class=\"rt t-high\"\u003ekhá\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e","TH_005917":"\u003cspan class=\"gme\"\u003e\u003cspan class=\"gicon g-female\" aria-hidden=\"true\"\u003e♀\u003c/span\u003e \u003cspan class=\"gsay\"\u003eSaid by women\u003c/span\u003e\u003c/span\u003e\u003cspan class=\"gothers\"\u003e\u003cspan class=\"gother\"\u003e\u003cspan class=\"gicon g-male\" aria-hidden=\"true\"\u003e♂\u003c/span\u003e \u003cspan class=\"glead\"\u003emen say\u003c/span\u003e \u003ca href=\"https://thai.inaflash.cards/word/00751-polite-ending-particle-for-male-spea/\"\u003e\u003cb lang=\"th\"\u003eครับ\u003c/b\u003e\u003c/a\u003e \u003cspan class=\"rom\"\u003e\u003cspan class=\"rt t-high\"\u003ekhráp\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e\u003c/span\u003e"}</script></body></html>
