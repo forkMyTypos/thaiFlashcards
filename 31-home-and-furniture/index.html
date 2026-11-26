@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Talk about where things are in your home. 14 Thai words with audio, including โต๊ะ (table), เก้าอี้ (chair), เตียง (bed). Free flashcards and a quiz."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=d1d22050"/>
+<link rel="stylesheet" href="../style.css?v=19529d13"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -69,10 +69,24 @@
     <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
+    <div class="catwrap" data-cat="c-crash-course" data-name="Crash Course">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Crash Course">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-crash-course/" data-title="crash course"><span class="lb">Crash Course</span><span class="n" data-fill="cat:c-crash-course"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="cat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="cat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -136,6 +150,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-friends-social-thai" data-name="Friends &amp; Social Thai">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Friends &amp; Social Thai">+</button>
@@ -150,7 +165,6 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
-    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -229,13 +243,20 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
-    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="24" data-more="13">Show all 24 categories (13 more)</button>
     </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/sentences/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="scat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="s:c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/sentences/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="scat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -253,8 +274,8 @@
     <a class="item also" id="m-prob" href="https://thai.inaflash.cards/problems/" data-title="problem words"><span class="lb">Problem words<span class="sub">the ones you are working on</span></span><span class="n" data-fill="prob"></span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2516 to read through</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">51 pairs that differ only by tone</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2622 to read through</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">54 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/alphabet/" data-title="the alphabet"><span class="lb">The alphabet<span class="sub">44 letters, the vowels and the tone marks</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
@@ -308,7 +329,7 @@
   <div class="throw"><div class="th tc t-falling" lang="th">เก้าอี้</div></div>
   <div class="rom"><span class="rt t-falling">gâo</span>-<span class="rt t-falling">îi</span></div><div class="tone" title="tone: falling-falling"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: falling-falling" preserveAspectRatio="xMinYMid meet"><use href="#tc-falling" x="0" class="tc t-falling"><title>falling tone — syllable 1 of 2</title></use><use href="#tc-falling" x="126" class="tc t-falling"><title>falling tone — syllable 2 of 2</title></use></svg><span class="tname"><span class="tc t-falling">falling</span>-<span class="tc t-falling">falling</span></span></div><div class="pos">noun</div><div class="mouthbox" data-mouth="g a w|ʔ ii"><button type="button" class="mouthbtn" aria-expanded="false">👄 Mouth &amp; tongue</button></div>
   <div class="en">chair</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001193.mp3" aria-label="Play เก้าอี้">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001193_slow.mp3" aria-label="Play เก้าอี้ slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001193.mp3" aria-label="Play เก้าอี้">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001193_slow.mp3" aria-label="Play เก้าอี้ slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ห้องนี้มีเก้าอี้ไหมครับ</div><div class="sr"><span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">níi</span> <span class="rt t-mid">mii</span> <span class="rt t-falling">gâo</span>-<span class="rt t-falling">îi</span> <span class="rt t-rising">mǎi</span> <span class="rt t-high">khráp</span></div><div class="st">Does this room have a chair?</div></li><li><div class="sx" lang="th">เก้าอี้อยู่ในห้องนั้นครับ</div><div class="sr"><span class="rt t-falling">gâo</span>-<span class="rt t-falling">îi</span> <span class="rt t-low">yùu</span> <span class="rt t-mid">nai</span> <span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">nán</span> <span class="rt t-high">khráp</span></div><div class="st">The chair is in that room.</div></li><li><div class="sx" lang="th">เก้าอี้อยู่ในห้องครับ</div><div class="sr"><span class="rt t-falling">gâo</span>-<span class="rt t-falling">îi</span> <span class="rt t-low">yùu</span> <span class="rt t-mid">nai</span> <span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">khráp</span></div><div class="st">The chair is in the room.</div></li></ul></div>
   <div class="wpl"><a href="https://thai.inaflash.cards/word/01193-chair/">Word page for เก้าอี้ →</a></div>
 </article>
 <article class="card" data-img="" data-alt="bed — เตียง" data-wid="TH_001510" data-ch="🛏️" data-vis="1">
@@ -316,7 +337,7 @@
   <div class="throw"><div class="th tc t-mid" lang="th">เตียง</div></div>
   <div class="rom"><span class="rt t-mid">dtiang</span></div><div class="tone" title="tone: mid"><svg class="tmark" viewBox="0 0 100 60" role="img" aria-label="tone: mid" preserveAspectRatio="xMinYMid meet"><use href="#tc-mid" x="0" class="tc t-mid"><title>mid tone</title></use></svg><span class="tname"><span class="tc t-mid">mid</span></span></div><div class="pos">noun</div><div class="mouthbox" data-mouth="dt ia ng"><button type="button" class="mouthbtn" aria-expanded="false">👄 Mouth &amp; tongue</button></div>
   <div class="en">bed</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001510.mp3" aria-label="Play เตียง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001510_slow.mp3" aria-label="Play เตียง slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001510.mp3" aria-label="Play เตียง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_001510_slow.mp3" aria-label="Play เตียง slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">เตียงอยู่ในห้องครับ</div><div class="sr"><span class="rt t-mid">dtiiang</span> <span class="rt t-low">yùu</span> <span class="rt t-mid">nai</span> <span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">khráp</span></div><div class="st">The bed is in the room.</div></li><li><div class="sx" lang="th">ห้องนี้มีเตียงไหมครับ</div><div class="sr"><span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">níi</span> <span class="rt t-mid">mii</span> <span class="rt t-mid">dtiiang</span> <span class="rt t-rising">mǎi</span> <span class="rt t-high">khráp</span></div><div class="st">Does this room have a bed?</div></li><li><div class="sx" lang="th">ห้องนี้มีเตียงและเก้าอี้ครับ</div><div class="sr"><span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">níi</span> <span class="rt t-mid">mii</span> <span class="rt t-mid">dtiiang</span> <span class="rt t-high">láe</span> <span class="rt t-falling">gâo</span>-<span class="rt t-falling">îi</span> <span class="rt t-high">khráp</span></div><div class="st">This room has a bed and a chair.</div></li></ul></div>
   <div class="wpl"><a href="https://thai.inaflash.cards/word/01510-bed/">Word page for เตียง →</a></div>
 </article>
 <article class="card" data-img="" data-alt="cabinet; cupboard; box; compartment — ตู้" data-wid="TH_001958" data-ch="🗄️" data-vis="1">
@@ -340,7 +361,7 @@
   <div class="throw"><div class="th" lang="th">ห้องน้ำ</div></div>
   <div class="rom"><span class="rt t-falling">hɔ̂ng</span>-<span class="rt t-high">náam</span></div><div class="tone" title="tone: falling-high"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: falling-high" preserveAspectRatio="xMinYMid meet"><use href="#tc-falling" x="0" class="tc t-falling"><title>falling tone — syllable 1 of 2</title></use><use href="#tc-high" x="126" class="tc t-high"><title>high tone — syllable 2 of 2</title></use></svg><span class="tname"><span class="tc t-falling">falling</span>-<span class="tc t-high">high</span></span></div><div class="pos">noun</div><div class="mouthbox" data-mouth="h ɔ ng|n aa m"><button type="button" class="mouthbtn" aria-expanded="false">👄 Mouth &amp; tongue</button></div>
   <div class="en">bathroom; restroom</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002060.mp3" aria-label="Play ห้องน้ำ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002060_slow.mp3" aria-label="Play ห้องน้ำ slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002060.mp3" aria-label="Play ห้องน้ำ">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002060_slow.mp3" aria-label="Play ห้องน้ำ slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">ห้องน้ำอยู่ที่ไหนครับ</div><div class="sr"><span class="rt t-falling">hɔ̂ng</span>-<span class="rt t-high">náam</span> <span class="rt t-low">yùu</span> <span class="rt t-falling">thîi</span>-<span class="rt t-rising">nǎi</span> <span class="rt t-high">khráp</span></div><div class="st">Where is the bathroom?</div></li><li><div class="sx" lang="th">ขอไปห้องน้ำหน่อยครับ</div><div class="sr"><span class="rt t-rising">khɔ̌ɔ</span> <span class="rt t-mid">bpai</span> <span class="rt t-falling">hɔ̂ng</span>-<span class="rt t-high">náam</span> <span class="rt t-low">nɔ̀i</span> <span class="rt t-high">khráp</span></div><div class="st">May I go to the bathroom, please?</div></li><li><div class="sx" lang="th">ห้องน้ำนี้มีหน้าต่างไหมครับ</div><div class="sr"><span class="rt t-falling">hɔ̂ng</span>-<span class="rt t-high">náam</span> <span class="rt t-high">níi</span> <span class="rt t-mid">mii</span> <span class="rt t-falling">nâa</span>-<span class="rt t-low">dtàang</span> <span class="rt t-rising">mǎi</span> <span class="rt t-high">khráp</span></div><div class="st">Does this bathroom have a window?</div></li></ul></div>
   <div class="wpl"><a href="https://thai.inaflash.cards/word/02060-bathroom/">Word page for ห้องน้ำ →</a></div>
 </article>
 <article class="card" data-img="" data-alt="kitchen — ห้องครัว" data-wid="TH_002289" data-ch="🍳" data-vis="1">
@@ -372,7 +393,7 @@
   <div class="throw"><div class="th" lang="th">หน้าต่าง</div></div>
   <div class="rom"><span class="rt t-falling">nâa</span>-<span class="rt t-low">dtàang</span></div><div class="tone" title="tone: falling-low"><svg class="tmark" viewBox="0 0 226 60" role="img" aria-label="tone: falling-low" preserveAspectRatio="xMinYMid meet"><use href="#tc-falling" x="0" class="tc t-falling"><title>falling tone — syllable 1 of 2</title></use><use href="#tc-low" x="126" class="tc t-low"><title>low tone — syllable 2 of 2</title></use></svg><span class="tname"><span class="tc t-falling">falling</span>-<span class="tc t-low">low</span></span></div><div class="mouthbox" data-mouth="n aa|dt aa ng"><button type="button" class="mouthbtn" aria-expanded="false">👄 Mouth &amp; tongue</button></div>
   <div class="en">window</div>
-  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002292.mp3" aria-label="Play หน้าต่าง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002292_slow.mp3" aria-label="Play หน้าต่าง slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div>
+  <div class="plays"><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002292.mp3" aria-label="Play หน้าต่าง">🔊 Say it</button><button data-play="https://pub-1a03a552b5064c9990dda34518ab71aa.r2.dev/th/audio/TH_002292_slow.mp3" aria-label="Play หน้าต่าง slowly">🐢 Slowly</button></div><div class="aid empty"><div class="k">Remember it by<button type="button" class="aidedit" title="Write your own way to remember it">✎ <span>Add yours</span></button></div><div class="aidtx"></div></div><div class="ex"><div class="k sec-h">In a sentence</div><ul><li><div class="sx" lang="th">บ้านนี้มีหน้าต่างไหมครับ</div><div class="sr"><span class="rt t-falling">bâan</span> <span class="rt t-high">níi</span> <span class="rt t-mid">mii</span> <span class="rt t-falling">nâa</span>-<span class="rt t-low">dtàang</span> <span class="rt t-rising">mǎi</span> <span class="rt t-high">khráp</span></div><div class="st">Does this house have windows?</div></li><li><div class="sx" lang="th">หน้าต่างอยู่ในห้องครับ</div><div class="sr"><span class="rt t-falling">nâa</span>-<span class="rt t-low">dtàang</span> <span class="rt t-low">yùu</span> <span class="rt t-mid">nai</span> <span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">khráp</span></div><div class="st">The window is in the room.</div></li><li><div class="sx" lang="th">หน้าต่างห้องนี้อยู่ที่ไหนครับ</div><div class="sr"><span class="rt t-falling">nâa</span>-<span class="rt t-low">dtàang</span> <span class="rt t-falling">hɔ̂ng</span> <span class="rt t-high">níi</span> <span class="rt t-low">yùu</span> <span class="rt t-falling">thîi</span>-<span class="rt t-rising">nǎi</span> <span class="rt t-high">khráp</span></div><div class="st">Where is the window in this room?</div></li></ul></div>
   <div class="wpl"><a href="https://thai.inaflash.cards/word/02292-window/">Word page for หน้าต่าง →</a></div>
 </article>
 <article class="card" data-img="" data-alt="floor, ground, surface, basis [พื้นฐาน], basic — พื้น" data-wid="TH_000921" data-ch="▔" data-vis="1">
@@ -411,6 +432,6 @@
     <dl class="vocab seo"><h2>Vocabulary (14 words)</h2><div><dt lang="th">โต๊ะ <span class="rom">dtó</span></dt><dd>table, desk</dd></div><div><dt lang="th">เก้าอี้ <span class="rom">gâo-îi</span></dt><dd>chair</dd></div><div><dt lang="th">เตียง <span class="rom">dtiang</span></dt><dd>bed</dd></div><div><dt lang="th">ตู้ <span class="rom">dtûu</span></dt><dd>cabinet; cupboard; box; compartment</dd></div><div><dt lang="th">โซฟา <span class="rom">soo-faa</span></dt><dd>sofa, couch</dd></div><div><dt lang="th">ห้องน้ำ <span class="rom">hɔ̂ng-náam</span></dt><dd>bathroom; restroom</dd></div><div><dt lang="th">ห้องครัว <span class="rom">hɔ̂ng-khrua</span></dt><dd>kitchen</dd></div><div><dt lang="th">ห้องนอน <span class="rom">hɔ̂ng-nɔɔn</span></dt><dd>bedroom</dd></div><div><dt lang="th">ห้องนั่งเล่น <span class="rom">hɔ̂ng-nâng-lên</span></dt><dd>living room</dd></div><div><dt lang="th">หน้าต่าง <span class="rom">nâa-dtàang</span></dt><dd>window</dd></div><div><dt lang="th">พื้น <span class="rom">phúen</span></dt><dd>floor, ground, surface, basis [พื้นฐาน], basic</dd></div><div><dt lang="th">ผนัง <span class="rom">phà-nǎng</span></dt><dd>wall</dd></div><div><dt lang="th">เพดาน <span class="rom">phá-yaan</span></dt><dd>ceiling</dd></div><div><dt lang="th">ไฟ <span class="rom">fai</span></dt><dd>light, lamp, electricity</dd></div></dl>
   </div>
 </div>
-<script src="../shell.js?v=236caf04"></script>
+<script src="../shell.js?v=28cd8dff"></script>
 <script src="../mouth.js?v=b53939cf" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Thai Vocabulary: Home and furniture","description":"Talk about where things are in your home. 14 Thai words with audio, including โต๊ะ (table), เก้าอี้ (chair), เตียง (bed). Free flashcards and a quiz.","url":"https://thai.inaflash.cards/31-home-and-furniture/","inLanguage":"th","educationalLevel":"beginner","teaches":["table, desk","chair","bed","cabinet; cupboard; box; compartment","sofa, couch","bathroom; restroom","kitchen","bedroom","living room","window","floor, ground, surface, basis [พื้นฐาน], basic","wall","ceiling","light, lamp, electricity"],"isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"provider":{"@type":"Organization","name":"inaflash.cards","url":"https://inaflash.cards"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Home and furniture","item":"https://thai.inaflash.cards/31-home-and-furniture/"}]}</script></body></html>
