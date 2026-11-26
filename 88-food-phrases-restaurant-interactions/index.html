@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Useful Thai words and phrases for ordering, eating, and interacting in restaurants. 26 Thai words with audio, including สั่งอาหาร (order food)."/>
 <meta name="theme-color" content="#0d0d14"/>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="%2310131f" stroke="%233b82f6" stroke-width="1"/><polygon points="12.67 4.5 6 13.5 12 13.5 11.33 19.5 18 10.5 12 10.5 12.67 4.5" fill="%233b82f6"/></svg>'/>
-<link rel="stylesheet" href="../style.css?v=d1d22050"/>
+<link rel="stylesheet" href="../style.css?v=19529d13"/>
 <script>try{if(localStorage.getItem("wb.theme")==="light")document.documentElement.classList.add("light-pre");var f=[0.85,0.925,1,1.1,1.25,1.4,1.6][parseInt(localStorage.getItem("wb.fs"),10)];if(f)document.documentElement.style.setProperty("--fs",f);}catch(e){}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
 </head>
@@ -69,10 +69,24 @@
     <div class="grp" data-grp>Categories</div>
     <div class="mtabs" data-grp role="tablist" aria-label="Which lessons"><button type="button" role="tab" data-side="w" aria-selected="true" class="on">Word lessons<small>building blocks</small></button><button type="button" role="tab" data-side="s" aria-selected="false">Sentence lessons<small>what you can build</small></button></div>
     <div class="mlist" data-list="w">
+    <div class="catwrap" data-cat="c-crash-course" data-name="Crash Course">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Crash Course">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-crash-course/" data-title="crash course"><span class="lb">Crash Course</span><span class="n" data-fill="cat:c-crash-course"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
     <div class="catwrap" data-cat="c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="cat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="cat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -136,6 +150,7 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
+    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-friends-social-thai" data-name="Friends &amp; Social Thai">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Friends &amp; Social Thai">+</button>
@@ -150,7 +165,6 @@
       </div>
       <div class="catbox" hidden></div>
     </div>
-    <div class="catmore" id="catmore">
     <div class="catwrap" data-cat="c-regional-thai-isaan-northern-southern" data-name="Regional Thai — Isaan / Northern / Southern">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the lessons in Regional Thai — Isaan / Northern / Southern">+</button>
@@ -229,13 +243,20 @@
       <div class="catbox" hidden></div>
     </div>
     </div>
-    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="22" data-more="11">Show all 22 categories (11 more)</button>
+    <button type="button" class="catallbtn" id="cat-more" data-grp aria-expanded="false" aria-controls="catmore" data-all="24" data-more="13">Show all 24 categories (13 more)</button>
     </div>
     <div class="mlist" data-list="s" hidden>
     <div class="catwrap" data-cat="s:c-support-words" data-name="Support Words">
       <div class="catline">
         <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Support Words">+</button>
   <a class="item cat" href="https://thai.inaflash.cards/sentences/c-support-words/" data-title="support words"><span class="lb">Support Words</span><span class="n" data-fill="scat:c-support-words"></span></a>
+      </div>
+      <div class="catbox" hidden></div>
+    </div>
+    <div class="catwrap" data-cat="s:c-beginner-core-vocabulary-everyday-nouns" data-name="Beginner Core Vocabulary — Everyday nouns">
+      <div class="catline">
+        <button type="button" class="catx" aria-expanded="false" title="Show the sentence lessons in Beginner Core Vocabulary — Everyday nouns">+</button>
+  <a class="item cat" href="https://thai.inaflash.cards/sentences/c-beginner-core-vocabulary-everyday-nouns/" data-title="beginner core vocabulary — everyday nouns"><span class="lb">Beginner Core Vocabulary — Everyday nouns</span><span class="n" data-fill="scat:c-beginner-core-vocabulary-everyday-nouns"></span></a>
       </div>
       <div class="catbox" hidden></div>
     </div>
@@ -253,8 +274,8 @@
     <a class="item also" id="m-prob" href="https://thai.inaflash.cards/problems/" data-title="problem words"><span class="lb">Problem words<span class="sub">the ones you are working on</span></span><span class="n" data-fill="prob"></span></a>
     <a class="item also" href="https://thai.inaflash.cards/start/" data-title="start here"><span class="lb">Start here<span class="sub">how the course works</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/words/" data-title="all words"><span class="lb">All words<span class="sub">every word, A–Z</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2516 to read through</span></span></a>
-    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">51 pairs that differ only by tone</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/sentences/" data-title="sentences"><span class="lb">Sentences<span class="sub">2622 to read through</span></span></a>
+    <a class="item also" href="https://thai.inaflash.cards/tones/" data-title="tones"><span class="lb">Tones<span class="sub">54 pairs that differ only by tone</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/alphabet/" data-title="the alphabet"><span class="lb">The alphabet<span class="sub">44 letters, the vowels and the tone marks</span></span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-video-lessons/" data-title="video lessons"><span class="lb">Video lessons</span></a>
     <a class="item also" href="https://thai.inaflash.cards/c-top-words/" data-title="top words"><span class="lb">Top Words</span></a>
@@ -507,6 +528,6 @@
     <dl class="vocab seo"><h2>Vocabulary (26 words)</h2><div><dt lang="th">สั่งอาหาร <span class="rom">sàng aa-hǎan</span></dt><dd>order food</dd></div><div><dt lang="th">เมนู <span class="rom">mee-nuu</span></dt><dd>menu</dd></div><div><dt lang="th">รายการอาหาร <span class="rom">raai-gaan aa-hǎan</span></dt><dd>food list, menu</dd></div><div><dt lang="th">โต๊ะ <span class="rom">dtó</span></dt><dd>table, desk</dd></div><div><dt lang="th">ที่นั่ง <span class="rom">thîi-nâng</span></dt><dd>seat</dd></div><div><dt lang="th">พนักงาน <span class="rom">phá-nák-ngaan</span></dt><dd>employee, staff, worker, officer</dd></div><div><dt lang="th">พนักงานเสิร์ฟ <span class="rom">phá-nák-ngaan-sə̀əf</span></dt><dd>waiter, server</dd></div><div><dt lang="th">ลูกค้า <span class="rom">lûuk-kháa</span></dt><dd>customer; client</dd></div><div><dt lang="th">จาน <span class="rom">jaan</span></dt><dd>plate, dish, classifier for plates, classifier for plates of food</dd></div><div><dt lang="th">ชาม <span class="rom">chaam</span></dt><dd>bowl</dd></div><div><dt lang="th">แก้ว <span class="rom">gâew</span></dt><dd>glass, cup</dd></div><div><dt lang="th">ช้อน <span class="rom">chɔ́ɔn</span></dt><dd>spoon</dd></div><div><dt lang="th">ส้อม <span class="rom">sɔ̂ɔm</span></dt><dd>fork</dd></div><div><dt lang="th">ตะเกียบ <span class="rom">dtà-gìap</span></dt><dd>chopsticks</dd></div><div><dt lang="th">กระดาษทิชชู <span class="rom">grà-dàat thít-chûu</span></dt><dd>tissue, napkin</dd></div><div><dt lang="th">น้ำเปล่า <span class="rom">náam-bplào</span></dt><dd>plain water</dd></div><div><dt lang="th">ขอน้ำหน่อย <span class="rom">khɔ̌ɔ náam nòi</span></dt><dd>can I have some water?</dd></div><div><dt lang="th">ขอเมนูหน่อย <span class="rom">khɔ̌ɔ mee-nuu nòi</span></dt><dd>can I have the menu?</dd></div><div><dt lang="th">เอาอันนี้ <span class="rom">ao-an-níi</span></dt><dd>I&#x27;ll take this one</dd></div><div><dt lang="th">เอาอันนั้น <span class="rom">ao an-nán</span></dt><dd>I&#x27;ll take that one</dd></div><div><dt lang="th">ไม่เอา <span class="rom">mâi-ao</span></dt><dd>don&#x27;t want, no thanks</dd></div><div><dt lang="th">คิดเงินด้วย <span class="rom">khít-ngən dûai</span></dt><dd>bill, please</dd></div><div><dt lang="th">เช็กบิล <span class="rom">chék-bin</span></dt><dd>check, bill</dd></div><div><dt lang="th">จ่ายเงิน <span class="rom">jàai-ngən</span></dt><dd>pay</dd></div><div><dt lang="th">อร่อยมาก <span class="rom">à-rɔ̀i mâak</span></dt><dd>very delicious</dd></div><div><dt lang="th">อิ่มแล้ว <span class="rom">ìm láew</span></dt><dd>I&#x27;m full</dd></div></dl>
   </div>
 </div>
-<script src="../shell.js?v=236caf04"></script>
+<script src="../shell.js?v=28cd8dff"></script>
 <script src="../mouth.js?v=b53939cf" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Thai Vocabulary: Food Phrases \u0026 Restaurant Interactions","description":"Useful Thai words and phrases for ordering, eating, and interacting in restaurants. 26 Thai words with audio, including สั่งอาหาร (order food).","url":"https://thai.inaflash.cards/88-food-phrases-restaurant-interactions/","inLanguage":"th","educationalLevel":"beginner","teaches":["order food","menu","food list, menu","table, desk","seat","employee, staff, worker, officer","waiter, server","customer; client","plate, dish, classifier for plates, classifier for plates of food","bowl","glass, cup","spoon","fork","chopsticks","tissue, napkin","plain water","can I have some water?","can I have the menu?","I'll take this one","I'll take that one","don't want, no thanks","bill, please","check, bill","pay","very delicious","I'm full"],"isPartOf":{"@type":"Course","name":"Learn Thai with Flashcards","url":"https://thai.inaflash.cards/"},"provider":{"@type":"Organization","name":"inaflash.cards","url":"https://inaflash.cards"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Learn Thai with Flashcards","item":"https://thai.inaflash.cards/"},{"@type":"ListItem","position":2,"name":"Food Phrases \u0026 Restaurant Interactions","item":"https://thai.inaflash.cards/88-food-phrases-restaurant-interactions/"}]}</script></body></html>
