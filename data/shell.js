@@ -790,7 +790,9 @@
    next.title=onward?'Next lesson: '+nextTitle():'';
    next.setAttribute('aria-label',onward?'Next lesson':'Next word');
   }
-  if(scrub)scrub.value=at+1;
+  if(scrub){scrub.value=at+1;
+   // how far along, for the phone's line-shaped scrubber (style.css)
+   scrub.style.setProperty('--p',(cards.length>1?at/(cards.length-1)*100:100)+'%');}
   if(pic){
    pic.innerHTML='';
    pic.appendChild(pictureFor(cards[meIdx],true));
@@ -3431,7 +3433,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  });
 
  // --- the lessons panel
- function setLessons(on){
+ function setLessons(on,unsaved){
   document.body.classList.toggle('no-lessons',!on);
   var b=document.getElementById('mm-lessons');
   if(b){b.setAttribute('aria-pressed',on?'true':'false');
@@ -3446,12 +3448,47 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    mcb.setAttribute('aria-label',t);mcb.title=t;
    mcb.textContent=on?'\u25e8':'\u25e7';
   }
-  try{localStorage.setItem('wb.lessons',on?'1':'0');}catch(e){}
+  if(!unsaved)try{localStorage.setItem('wb.lessons',on?'1':'0');}catch(e){}
  }
  var lesBtn=document.getElementById('mm-lessons');
  if(lesBtn)lesBtn.addEventListener('click',function(){
   setLessons(document.body.classList.contains('no-lessons'));
  });
+
+ // ------------------------------------------------- the phone's top bar
+ //
+ // Dan: "On mobile the menus are taking up way too much space." On a phone
+ // the bar is one line now and the modes are tabs at the bottom (style.css,
+ // "the phone, made roomy"). Two things the stylesheet cannot do:
+ // - the strip that held the lessons' button is gone, so the lesson's title
+ //   opens them - it is what a reader taps to ask "where am I, what else?";
+ // - the bar steps out of the way while the reader goes down the page, and
+ //   comes back the moment they scroll up. Not while a menu is open, and
+ //   never within the first 80px, so the top of the page always has it.
+ (function(){
+  var narrow=function(){return matchMedia('(max-width:900px)').matches;},
+      body=document.body,nm=document.querySelector('.slider .name');
+  if(nm&&document.querySelector('aside.menu'))nm.addEventListener('click',function(e){
+   if(!narrow()||(e.target.closest&&e.target.closest('.aboutlink')))return;
+   e.preventDefault();mmOpen(false);setLessons(true);
+  });
+  // "Show the lessons" in the ☰ sheet: the lessons come up as their own
+  // sheet, so the menu one goes down rather than staying open underneath.
+  if(lesBtn)lesBtn.addEventListener('click',function(){if(narrow())mmOpen(false);});
+  var last=window.scrollY||0,tick=false;
+  window.addEventListener('scroll',function(){
+   if(tick)return;tick=true;
+   requestAnimationFrame(function(){
+    tick=false;
+    var y=window.scrollY||0,d=y-last;
+    if(!narrow()||y<80||body.classList.contains('mm-open')
+       ||!body.classList.contains('no-lessons'))body.classList.remove('bar-off');
+    else if(d>8)body.classList.add('bar-off');
+    else if(d<-8)body.classList.remove('bar-off');
+    if(Math.abs(d)>8||y<80)last=y;
+   });
+  },{passive:true});
+ })();
 
  // --- a panel, for the three that open one
  function panel(title,build){
@@ -3661,11 +3698,15 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
      setTheme(localStorage.getItem('wb.theme')==='light');
      var fk=parseInt(localStorage.getItem('wb.fs'),10);
      setFS(isNaN(fk)?FSDEF:fk,false);
-     // On a phone the lessons are a drawer over the lesson you came to read,
-     // so they start put away; on a wide screen they are a column beside it
-     // and start open. Either way, what you chose last wins.
+     // On a wide screen the lessons are a column beside the lesson and start
+     // open, unless the reader put them away last time. On a phone they are
+     // a sheet over the whole lesson, and one left open would greet the next
+     // page with a wall of links, so a phone always starts with them put
+     // away - without writing that down, so it does not undo the choice made
+     // on a laptop sharing the same browser profile.
      var lk=localStorage.getItem('wb.lessons');
-     setLessons(lk===null?!phone():lk!=='0');}catch(e){}
+     if(phone())setLessons(false,true);
+     else setLessons(lk===null?true:lk!=='0');}catch(e){}
  // and what you already know, so a card can say so the moment it is drawn
  Progress.all().then(function(rows){
   for(var i=0;i<rows.length;i++)knownNow[rows[i].id]=rows[i].state;
