@@ -9,6 +9,107 @@
   return v?JSON.parse(v):d;}catch(e){return d;}}
  function write(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 
+ // ------------------------------------------ how far, in every lesson
+ //
+ // Dan: "I want to show what the user has studied, like 50% of the lesson."
+ // A lesson's % is its words LEARNED (recalled right on two occasions a day
+ // apart, the latest answer right: the engine's own label, Thai -> meaning);
+ // a lighter shade behind it is the words MET. The words of each lesson come
+ // from lesson-words.json (Publish), the record from the engine (Learn, below).
+ // Worked out once when both arrive and again after any answer, here or in
+ // another tab or the game beside this page; every menu then repaints on
+ // `wb:prog`.
+ var Prog=(function(){
+  var LW=null,lwP=null,nvP=null,NV=null,S={},C={},due=0,started=false,tm=null,ok=false;
+  function words(){
+   if(!lwP)lwP=fetch(base()+'/lesson-words.json').then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(j){LW=j||{};return LW;}).catch(function(){LW={};return LW;});
+   return lwP;
+  }
+  function navj(){
+   if(NAVJ)return Promise.resolve(NAVJ);
+   if(!nvP)nvP=fetch(base()+'/nav.json').then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(j){NV=j;return j;}).catch(function(){NV={l:[],s:[]};return NV;});
+   return nvP;
+  }
+  // a lesson's folder (03-x, sentences/03-x, 1000-words/1-100) to its key in
+  // lesson-words.json (03-x, s:03-x, k:1-100)
+  function key(f){
+   f=String(f||'').replace(/^\/+|\/+$/g,'');
+   if(f.indexOf('sentences/')===0)return 's:'+f.slice(10);
+   if(f.indexOf('1000-words/')===0)return 'k:'+f.slice(11);
+   return f;
+  }
+  function compute(){
+   var e=typeof Learn!=='undefined'&&Learn.engine();
+   if(!e||!LW)return;
+   var j=NAVJ||NV||{l:[],s:[]},k,ids={};
+   S={};for(k in LW)if(LW.hasOwnProperty(k))S[k]=e.stats(LW[k]);
+   // a category is every word of its lessons, each once
+   (j.l||[]).forEach(function(p){if(!p[1])return;var a=ids[p[1]]||(ids[p[1]]=[]);
+    a.push.apply(a,LW[p[0]]||[]);});
+   (j.s||[]).forEach(function(p){if(!p[1])return;var a=ids['s:'+p[1]]||(ids['s:'+p[1]]=[]);
+    a.push.apply(a,LW['s:'+p[0]]||[]);});
+   C={};for(k in ids)C[k]=e.stats(ids[k]);
+   due=e.dueIds().length;
+   ok=true;
+   try{window.dispatchEvent(new Event('wb:prog'));}catch(x){}
+  }
+  function soon(){clearTimeout(tm);tm=setTimeout(compute,250);}
+  // The look every menu shares: a thin bar (met behind, learned in front) and
+  // the learned %. Hidden until there is something to say.
+  function paint(b,st){
+   var t=st&&st.total,m=t?Math.round(100*st.met/t):0,l=t?Math.round(100*st.learned/t):0;
+   b.hidden=!st||!t;
+   if(!t)return b;
+   b.querySelector('.lpm').style.width=m+'%';
+   b.querySelector('.lpl').style.width=l+'%';
+   b.querySelector('.lpp').textContent=l+'%';
+   b.title=st.learned+' of '+t+' words learned'+(st.met>st.learned?', '+st.met+' met':'')
+    +(st.due?' \u00b7 '+st.due+' to review':'');
+   b.classList.toggle('done',t>0&&st.learned>=t);
+   return b;
+  }
+  function bar(st,cls){
+   var b=document.createElement('span');b.className='lpb'+(cls?' '+cls:'');
+   b.innerHTML='<span class="lpt" aria-hidden="true"><i class="lpm"></i><i class="lpl"></i></span><span class="lpp"></span>';
+   return paint(b,st);
+  }
+  return {
+   start:function(){
+    if(started)return;started=true;
+    Promise.all([Learn.ready,words(),navj()]).then(compute);
+    window.addEventListener('learn:changed',soon);
+   },
+   ready:function(){return ok;},
+   key:key,words:words,
+   ids:function(f){return LW?LW[key(f)]||null:null;},
+   lesson:function(f){return S[key(f)]||null;},
+   cat:function(c){return C[c]||null;},
+   due:function(){return due;},
+   bar:bar,paint:paint,
+   // Every lesson link in the page's own lists (All lessons, a category page,
+   // the sentence lessons, the 1,000-words pages) gets the same bar
+   decorate:function(root){
+    if(!ok)return;
+    var as=(root||document).querySelectorAll('a.lesson-link,.k1bands a,.k1idx a[href]'),i;
+    for(i=0;i<as.length;i++){
+     var a=as[i],f='';
+     try{f=new URL(a.getAttribute('href')||'',location.href).pathname;}catch(x){continue;}
+     var root2='';try{root2=new URL((base()||'.')+'/',location.href).pathname;}catch(x){}
+     if(root2&&f.indexOf(root2)===0)f=f.slice(root2.length);
+     var st=S[key(f)];if(!st)continue;
+     var b=a.querySelector(':scope > .lpb');
+     if(!b){b=bar(st,a.classList.contains('lesson-link')?'lpbig':'');
+      var go=a.querySelector(':scope > .go');
+      if(go)a.insertBefore(b,go);else a.appendChild(b);}
+     else paint(b,st);
+    }
+   }
+  };
+ })();
+ window.addEventListener('wb:prog',function(){Prog.decorate();});
+
  // ------------------------------------------------------- collapse / show
  //
  // Dan: "It should also be toggled, collapse/show."
@@ -176,9 +277,9 @@
    a.className='item seq'+(isHere(l.folder)?' on':'');
    a.href=base()+'/'+l.folder+'/';
    a.title=l.title;
-   a.appendChild(ring(KNOWN[l.folder]||0,l.w||0));
    a.appendChild(el('span','t',l.title));
-   a.appendChild(el('span','w',String(l.w||'')));
+   // how far: the bar and the learned % (Prog), the same in every menu
+   a.appendChild(Prog.bar(Prog.lesson(l.folder)));
    pg.appendChild(a);
   }
   box.appendChild(pg);
@@ -209,6 +310,8 @@
  }
  // How far the reader has got in a lesson: an empty ring, a part one, a
  // filled one. Read from their own progress (KNOWN, words known per lesson).
+ // Kept for the menus outside this file's lists; the bars (Prog.bar) took
+ // its place in every list here.
  function ring(k,w){
   var r=document.createElement('span');
   r.className='rg'+(w&&k>=w?' done':k?' part':'');
@@ -233,7 +336,8 @@
    var box=wrap.querySelector('.catbox'),x=wrap.querySelector('.catx');
    box.hidden=!on;
    var al=wrap.querySelector('.catalso');if(al)al.hidden=!on;
-   x.textContent=on?'−':'+';
+   x.textContent='\u203a';
+   x.classList.toggle('open',!!on);
    x.setAttribute('aria-expanded',on?'true':'false');
    if(!on)return;
    // undefined, not 0: "no page chosen yet" is what makes it open where the
@@ -245,32 +349,55 @@
   for(var i=0;i<wraps.length;i++)(function(wrap){
    wrap.querySelector('.catx').addEventListener('click',function(e){
     e.preventDefault();e.stopPropagation();
-    var on=wrap.querySelector('.catbox').hidden;
-    openOne(wrap,on);
-    try{
-     var o=read('wb.catopen',[])||[],k=o.indexOf(wrap.dataset.cat);
-     if(on&&k<0)o.push(wrap.dataset.cat);
-     if(!on&&k>=0)o.splice(k,1);
-     write('wb.catopen',o);
-    }catch(e2){}
+    openOne(wrap,wrap.querySelector('.catbox').hidden);
    });
   })(wraps[i]);
-  // What was left open, reopened. Every lesson is its own page on a static
-  // site, so a category that shut itself on every click would be worse than
-  // one that never opened.
-  var want=read('wb.catopen',[])||[];
-  for(var j=0;j<wraps.length;j++)
-   if(want.indexOf(wraps[j].dataset.cat)>=0)openOne(wraps[j],true);
-  if(want.length)loadMenu();
+  // Dan: "the categories should collapse/open, with collapse being the
+  // default." Every category starts shut, except the one holding the lesson
+  // you are on, which opens at your lesson. (Categories used to reopen from a
+  // remembered list, wb.catopen; that is gone.)
+  var cn=document.querySelector('.menu .wsub[data-cname]'),
+      cname=cn?cn.getAttribute('data-cname'):'',
+      sideS=document.body.dataset.kind==='sentences',mineW=null;
+  if(cname)for(var j=0;j<wraps.length;j++){
+   var isS=(wraps[j].dataset.cat||'').indexOf('s:')===0;
+   if(wraps[j].dataset.name===cname&&isS===sideS){mineW=wraps[j];break;}
+  }
+  if(mineW){openOne(mineW,true);loadMenu();}
   // a reader who opens a category a moment later should not wait for it
   setTimeout(loadMenu,400);
   // And once the index lands, whatever is open gets its real rows.
-  window.addEventListener('wb:index',function(){
+  function redraw(){
    for(var k=0;k<wraps.length;k++)
     if(!wraps[k].querySelector('.catbox').hidden)
      drawCat(wraps[k],wraps[k].dataset.page===undefined
        ?undefined:+wraps[k].dataset.page);
-  });
+  }
+  window.addEventListener('wb:index',redraw);
+  for(var c0=0;c0<wraps.length;c0++){var x0=wraps[c0].querySelector('.catx');
+   if(x0&&wraps[c0].querySelector('.catbox').hidden)x0.textContent='\u203a';}
+  // Each category row: its bar and %, and how many of its words are due.
+  function paintCats(){
+   for(var k=0;k<wraps.length;k++){
+    var w=wraps[k],a=w.querySelector('.catline a.item');if(!a)continue;
+    var st=Prog.cat(w.dataset.cat),b=a.querySelector('.lpb');
+    if(!b){b=Prog.bar(st,'lpcat');a.appendChild(b);}else Prog.paint(b,st);
+    var d=a.querySelector('.ldue');
+    if(st&&st.due){if(!d){d=el('span','ldue');a.insertBefore(d,b);}
+     d.textContent=st.due+' due';d.title=st.due+' word'+(st.due===1?'':'s')+' to review';}
+    else if(d)d.remove();
+   }
+   // the header of the list: everything due, and the way to review it
+   var g=nav&&nav.querySelector('.grp'),n=Prog.due();
+   if(g){var r=g.querySelector('.mrev');
+    if(!r){r=document.createElement('a');r.className='mrev';
+     r.href=base()+'/problems/#review';g.appendChild(r);
+     r.addEventListener('click',function(){try{sessionStorage.removeItem('wb.review');}catch(x){}});}
+    r.hidden=!n;
+    r.textContent='Review \u00b7 '+n+' due';
+    r.title='A mixed review of the words due from every lesson you have studied';}
+  }
+  window.addEventListener('wb:prog',function(){paintCats();redraw();});
  })();
 
  // --------------------------------------------- show all the categories
@@ -626,6 +753,30 @@
  }
  function readProblems(){try{var v=JSON.parse(localStorage.getItem('wb.problems')||'[]');
   return Object.prototype.toString.call(v)==='[object Array]'?v:[];}catch(e){return [];}}
+ // ---- Review · N due: the words whose review day has come, from every lesson
+ // studied, as one quiz. The Problem words page does the work: it is already a
+ // lesson whose cards are made from a list, and its quiz modes are the site's
+ // own. With #review it makes its cards from the due words instead.
+ function reviewList(e){
+  var ids=e?e.dueIds(40):[],out=[],i,w;
+  for(i=0;i<ids.length;i++){w=e.word(ids[i]);if(!w||!w.th||!w.en)continue;
+   out.push({id:ids[i],word:w.th,rom:w.rom||'',mean:w.en,snd:w.audio||'',slow:w.slow||'',
+             img:typeof w.img==='string'?w.img:'',ch:w.ch||'',lesson:w.lesson||'',
+             title:(w.lesson||'').replace(/^\d+-/,'').replace(/-/g,' ')});}
+  return out;
+ }
+ var REVIEW=document.body.dataset.kind==='problems'&&location.hash==='#review';
+ if(document.body.dataset.kind==='problems')window.addEventListener('hashchange',function(){
+  if((location.hash==='#review')!==REVIEW)location.reload();});
+ document.addEventListener('click',function(e){
+  var a=e.target.closest?e.target.closest('a.mrev'):null;if(!a)return;
+  // the list is made here, from this page's engine, so the review page can
+  // draw it at once; without one it makes its own and reloads
+  var eng=Learn.engine();
+  try{if(eng)sessionStorage.setItem('wb.review',JSON.stringify(reviewList(eng)));
+   else sessionStorage.removeItem('wb.review');}catch(x){}
+  if(REVIEW){e.preventDefault();location.reload();}
+ });
  // Dan: "The problem list is a list you can add problems words to, you can
  // then study through these words." The page is built like a lesson, so it
  // reads, flips and quizzes like one; its cards come from the reader's list.
@@ -635,6 +786,38 @@
    if(!host)return;
    for(var i=0;i<ph.length;i++)ph[i].remove();
    var list=readProblems();
+   if(REVIEW){
+    var nt=document.querySelector('.slider .name .nt');
+    if(nt)nt.innerHTML=nt.innerHTML.replace('My problem words','Review \u00b7 words due');
+    document.title=document.title.replace('My problem words','Review');
+    var snap=null;try{snap=JSON.parse(sessionStorage.getItem('wb.review')||'null');}catch(x){}
+    if(!snap){
+     // opened by its address: make the list once the engine is up, then draw it
+     // (later: the engine is set up further down this script)
+     setTimeout(function(){Learn.ready.then(function(eng){
+      if(!eng)return;
+      try{sessionStorage.setItem('wb.review',JSON.stringify(reviewList(eng)));}catch(x){return;}
+      location.reload();
+     });},0);
+     list=[];
+    }else list=snap;
+    if(snap&&!list.length){
+     var e0=document.createElement('div');e0.className='pempty';
+     e0.innerHTML='<h2>Nothing to review right now</h2><p>Every word you have studied is '
+      +'up to date. Each one comes back on the day you are likely to start forgetting it, '
+      +'so check back tomorrow — or carry on with a new lesson.</p>';
+     host.appendChild(e0);
+     var md0=document.getElementById('modes');if(md0)md0.hidden=true;
+     return;
+    }
+    if(!snap)return;
+    list.forEach(function(x){host.appendChild(probCard(x));});
+    var sc0=document.getElementById('scrub');if(sc0)sc0.max=String(list.length);
+    document.body.classList.add('reviewing');
+    // straight into the quiz: a review is answering, not reading
+    setTimeout(function(){var q=document.querySelector('[data-mode="quiz"]');if(q)q.click();},0);
+    return;
+   }
    if(!list.length){
     var e=document.createElement('div');e.className='pempty';
     e.innerHTML='<h2>No problem words yet</h2><p>Mark a word with <b>⚑ Problem word</b> on any card, '
@@ -778,6 +961,10 @@
   // lets a shuffled pass leave the page's own order alone for a crawler.
   var meIdx=(typeof order!=='undefined'&&order&&order.length)?order[at]:at;
   for(var i=0;i<cards.length;i++)cards[i].hidden=(i!==meIdx);
+  // the lesson's introduction belongs to its first word only (see #about-lesson)
+  document.body.classList.toggle('past-first',at>0);
+  var ab=document.getElementById('about-lesson');
+  if(ab&&ab.classList.contains('asked')){ab.classList.remove('asked');if(at>0)ab.open=false;}
   if(count)count.textContent=(at+1)+' / '+cards.length;
   if(prev)prev.disabled=at===0;
   if(next){
@@ -798,7 +985,8 @@
    pic.appendChild(pictureFor(cards[meIdx],true));
    picButton(pic,cards[meIdx]);
   }
-  if(history.replaceState)history.replaceState(null,'','#'+(at+1));
+  // (a review keeps its #review, so a reload is still the review)
+  if(history.replaceState&&!REVIEW)history.replaceState(null,'','#'+(at+1));
   if(window.wbGame){wbGame.saw(cards[meIdx],byUser);
    if(byUser&&document.body.classList.contains('mode-info'))wbGame.study('lesson',meIdx);}
   try{document.dispatchEvent(new CustomEvent('wb:card',{detail:{card:cards[meIdx]}}));}catch(e){}
@@ -1331,16 +1519,28 @@
   function close(){if(pop)pop.hidden=true;}
   function open(a){
    var src=document.getElementById('about-lesson');if(!src)return;
+   // Reading: open the folded block where it is, on whichever card, and go to
+   // it. The flashcards and the quiz hide it, so there it is a pop-up.
+   if(!document.body.classList.contains('mode-card')&&!document.body.classList.contains('mode-quiz')
+      &&src.tagName==='DETAILS'){
+    src.classList.add('asked');src.open=true;
+    try{src.scrollIntoView({behavior:'smooth',block:'nearest'});}catch(x){src.scrollIntoView();}
+    return;
+   }
    if(!pop){pop=document.createElement('div');pop.className='aboutpop';pop.setAttribute('role','dialog');
     pop.setAttribute('aria-label','About this lesson');document.body.appendChild(pop);}
    pop.innerHTML=src.innerHTML;pop.hidden=false;
+   var sm=pop.querySelector('summary');if(sm)sm.remove();
    var r=a.getBoundingClientRect();
    pop.style.top=Math.min(r.bottom+8,window.innerHeight-pop.offsetHeight-8)+'px';
    pop.style.left=Math.max(8,Math.min(r.left,window.innerWidth-pop.offsetWidth-8))+'px';
   }
   document.addEventListener('click',function(e){
    var a=e.target.closest?e.target.closest('#aboutlink'):null;
-   if(a){e.preventDefault();if(pop&&!pop.hidden)close();else open(a);return;}
+   if(a){e.preventDefault();
+    var src2=document.getElementById('about-lesson');
+    if(src2&&src2.open&&src2.classList.contains('asked')&&!(pop&&!pop.hidden)){src2.open=false;src2.classList.remove('asked');return;}
+    if(pop&&!pop.hidden)close();else open(a);return;}
    if(pop&&!pop.hidden&&!(e.target.closest&&e.target.closest('.aboutpop')))close();
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
@@ -1666,6 +1866,110 @@
   };
  })();
 
+ // ------------------------------------------------- the learning engine
+ // Dan: "I want to implement a science backed system, for repetition, like in
+ // the flash the cat game, but for the whole site" and "get everything
+ // 'communicating', or getting data from one place". This is that place: the
+ // game's engine (learn/learn.js, the same file the game runs), on the game's
+ // store (IndexedDB "ftc-learn"), so a word answered on a lesson page and the
+ // same word answered in Flash the Cat are one record with one review day.
+ //
+ // Only retrieval moves a word: a quiz answer, "I know it" / "Not yet" on a
+ // flashcard, a question in the game. Reading a card only marks it met.
+ // Every change, here or in another tab or the game beside this frame, is
+ // announced on window as `learn:changed` ({ids, from}), so a menu or a stats
+ // panel listens rather than asks.
+ //
+ // `Progress` (above) still keeps its row per word: the reader's own edits and
+ // notes live there, and the stats panel reads it until it moves over here.
+ var Learn=(function(){
+  var LEARN_V='?v=64c756a0';          // the engine's version, written in by Publish (course.py)
+  var eng=null;
+  var ready=new Promise(function(done){
+   function make(){
+    var L=window.FlashLearn;if(!L||!L.create){done(null);return;}
+    try{
+     var st=(L.dexieStore&&L.dexieStore('ftc-learn'))||L.lsStore('ftc.learn');
+     var e=L.create({store:st,fallback:L.lsStore('ftc.learn')});
+     // a store that never answers must not hold the page's answers hostage
+     Promise.race([e.ready,new Promise(function(r){setTimeout(r,3000);})]).then(function(){
+      return moveOld(e);
+     }).then(function(){
+      eng=e;
+      // The store writes a moment after each answer; a page closed or left in
+      // that moment must not lose it.
+      var fl=function(){try{e.flush();}catch(x){}};
+      window.addEventListener('pagehide',fl);
+      document.addEventListener('visibilitychange',function(){if(document.hidden)fl();});
+      e.onChange(function(ev){
+       try{window.dispatchEvent(new CustomEvent('learn:changed',{detail:ev}));}catch(x){}});
+      done(e);
+     });
+    }catch(x){done(null);}
+   }
+   if(window.FlashLearn)return make();
+   var sc=document.createElement('script');
+   sc.src=(base()||'.')+'/learn/learn.js'+LEARN_V;sc.async=true;
+   sc.onload=make;sc.onerror=function(){done(null);};
+   (document.head||document.body).appendChild(sc);
+  });
+  // Step 2 of the plan, once per browser: the course's record from before the
+  // engine (wordbase-progress: "two right in a row = known") comes in. Known
+  // words start at recall with a short stability, so their first review is
+  // soon and FSRS finds their level from there; the rest are met. The old
+  // database is left as it is, as a backup. `learn.moved` (not a wb. key, so
+  // a backup file does not carry it to another browser) says it is done.
+  function moveOld(e){
+   var was=null;try{was=localStorage.getItem('learn.moved');}catch(x){}
+   if(was||typeof Progress==='undefined')return Promise.resolve(null);
+   return Promise.resolve(Progress.all()).then(function(rows){
+    var r=e.importOld(rows||[]);
+    try{localStorage.setItem('learn.moved',JSON.stringify({at:Date.now(),known:r.known,met:r.met}));}catch(x){}
+    return r;
+   }).catch(function(){return null;});
+  }
+  function when(f){return ready.then(function(e){if(!e)return null;try{return f(e);}catch(x){return null;}});}
+  return {
+   ready:ready,
+   importOld:function(rows){return when(function(e){return e.importOld(rows);});},
+   engine:function(){return eng;},
+   // one answer to a question about the word: dir th | en | au | cx ...,
+   // o.kind 'pick' (o.choices of them) or 'recall', o.src where it was asked
+   // Saved at once rather than a moment later: on a lesson page the next
+   // thing is often a link to another page. Resolves once it is written.
+   answer:function(id,dir,right,o){o=o||{};
+    return when(function(e){var r=e.record(id,dir,o.kind==='recall'?'recall':'pick',!!right,o);
+     return e.flush().then(function(){return r;});});},
+   met:function(id,word){return when(function(e){var r=e.met(id,word);return e.flush().then(function(){return r;});});},
+   // {total, met, learned, pct, metPct, due ...} for a list of word ids (Thai -> meaning)
+   lessonStats:function(ids){return when(function(e){return e.stats(ids);});},
+   // reviews waiting now, across every lesson studied
+   due:function(){return when(function(e){return e.dueSoon().now;});},
+   label:function(id,dir){return when(function(e){return e.label(id,dir);});},
+   // for Back up & restore
+   dump:function(){return when(function(e){return e.dump();});},
+   restore:function(data,how){return when(function(e){return e.restore(data,how);});}
+  };
+ })();
+ // for the console, the tests, and any page script that wants the numbers
+ window.wbLearn=Learn;
+ Prog.start();
+ // What the engine keeps about a word, read off its card (the game reads the
+ // same things, so either of them may be the first to tell the engine).
+ function learnWord(card){
+  if(!card||card.classList.contains('sc'))return null;
+  function txt(el){if(!el)return '';var c=el.cloneNode(true);
+   c.querySelectorAll('.tm,svg,.gtip,.aidedit,button').forEach(function(x){x.remove();});
+   return (c.textContent||'').replace(/\s+/g,' ').trim();}
+  var th=txt(card.querySelector('.throw .th')||card.querySelector('.th')),
+      en=txt(card.querySelector('.en')),
+      rom=txt(card.querySelector(':scope > .rom')||card.querySelector('.rom')),
+      pl=card.querySelector('.plays [data-play]'),au='';
+  if(!th||!en)return null;
+  try{au=pl?new URL(pl.dataset.play,location.href).href:'';}catch(e){}
+  return {th:th,en:en,rom:rom,audio:au,lesson:card.dataset.lesson||document.body.dataset.lesson||''};
+ }
+
  // What this lesson's words are called in the store. The display id is the
  // one thing a word carries that survives a rebuild of the site.
  function wordKey(card){
@@ -1680,13 +1984,28 @@
           // a problem word asked on another page still belongs to its lesson
           lesson:card.dataset.lesson||document.body.dataset.lesson||''};
  }
- // An answer, right or wrong — the quiz's business.
- function scored(card,right){
+ // An answer, right or wrong — the quiz's business. `q` says what was asked
+ // ({kind, typed, choices}), which is what the engine needs to know: the
+ // meaning picked from four is not the meaning typed from memory.
+ function scored(card,right,q){
   var k=wordKey(card);if(!k)return;
   if(typeof Problems!=='undefined')Problems.answered(k,right);
   Progress.note(k,right,cardFacts(card)).then(function(row){
    if(typeof knownNow!=='undefined')knownNow[k]=row.state;
   });
+  var how=quizLearn(q);
+  if(how)Learn.answer(k,how.dir,right,{kind:how.kind,choices:how.choices,src:'quiz',word:learnWord(card)});
+ }
+ // A quiz question, as the engine sees it. Tones, romanization, word order and
+ // the grammar gap are practice of something else, not this word's memory.
+ function quizLearn(q){
+  if(!q)return null;
+  var k=q.kind,dir=null;
+  if(k==='meaning'||k==='thai')dir=((k==='meaning')!==!!reversed)?'th':'en';
+  else if(k==='listen')dir='au';
+  else if(k==='gap')dir='cx';
+  if(!dir)return null;
+  return {dir:dir,kind:(q.typed||!q.choices)?'recall':'pick',choices:q.choices||0};
  }
  // And what the reader says themselves, on a card.
  function remember(card,state){
@@ -1694,7 +2013,32 @@
   Progress.say(k,state,cardFacts(card)).then(function(row){
    if(typeof knownNow!=='undefined')knownNow[k]=row.state;
   });
+  // Turning a card over to check is recall with no choices. "Not sure" is not
+  // a yes, so to the scheduler it is a "Not yet": the word comes back soon.
+  var dir=cardDir();
+  if(dir)Learn.answer(k,dir,state==='known',{kind:'recall',src:'card',word:learnWord(card)});
  }
+ // What the front of a flashcard asks: the Thai (-> meaning), the meaning or
+ // picture (-> Thai), the sound alone; nothing when it shows both sides' answers.
+ function cardDir(){
+  var f=(typeof sides!=='undefined'&&sides&&sides.front)||['word'];
+  var thai=f.indexOf('word')>=0||f.indexOf('rom')>=0,mean=f.indexOf('mean')>=0||f.indexOf('image')>=0;
+  if(thai&&mean)return null;
+  if(thai)return 'th';
+  if(mean)return 'en';
+  if(f.indexOf('sound')>=0)return 'au';
+  return null;
+ }
+ // A card shown on the reading pane or as a flashcard: met. Not while the
+ // page is out of sight (Flash the Cat full screen keeps this page playing in
+ // a hidden frame), and never in a quiz, where the card is the question.
+ document.addEventListener('wb:card',function(e){
+  var card=e.detail&&e.detail.card;if(!card)return;
+  if(document.hidden||window.__ftcMute)return;
+  if(typeof mode!=='undefined'&&mode!=='info'&&mode!=='card')return;
+  var k=wordKey(card),w=learnWord(card);
+  if(k&&w)Learn.met(k,w);
+ });
 
  // --------------------------------------------------------- the reader's own
  // Every field on a card can be changed by the person reading it, and a word
@@ -2803,7 +3147,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   // a run of right answers, kept across lessons, and the best one ever
   qrun=right?qrun+1:0;if(qrun>qbest)qbest=qrun;
   try{localStorage.setItem('wb.qrun',String(qrun));localStorage.setItem('wb.qbest',String(qbest));}catch(e){}
-  scored(cards[me],right);
+  scored(cards[me],right,{kind:spec.kind,typed:!!extra.typed,choices:(spec.opts||[]).length});
   if(window.wbGame)wbGame.quiz(right,qrun,cards[me]);
   drawQuiz();
   cheer(right,extra);
@@ -3512,106 +3856,150 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  }
 
  // --- how you are getting on
+ //
+ // Dan: "people like stats, and to see progress, we need a section showing
+ // them what they have learnt", and "we should be able to select today,
+ // weekly, and forever". Everything here comes from the learning engine, the
+ // same record the menus' bars and Flash the Cat use: its labels for each
+ // word (met, recognises, recalls, learned, long-term) and its log of answers,
+ // which has the time of each one, so Today and This week are real counts.
+ var PLAB={met:'met',recognises:'recognises',recalls:'recalls',learned:'learned',longterm:'long-term'};
  function progressPanel(){
   mmOpen(false);
+  var per='week';
+  try{per=localStorage.getItem('wb.pper')||'week';}catch(e){}
   panel('My progress',function(body){
    body.innerHTML='<p class="sheet-p">Kept in this browser only. Nothing is '
     +'sent anywhere, and clearing your browser data clears it.</p>'
-    +'<div class="pstat"></div><div class="plist"></div>';
-   Progress.all().then(function(rows){
-    var known=rows.filter(function(r){return r.state==='known';}),
-        shaky=rows.filter(function(r){return r.state==='unsure';}),
-        learn=rows.filter(function(r){
-          return r.state!=='known'&&r.state!=='unsure';}),
-        seen=0,right=0,wrong=0,i;
-    for(i=0;i<rows.length;i++){
-     seen+=rows[i].seen||0;right+=rows[i].right||0;wrong+=rows[i].wrong||0;
-    }
-    var asked=right+wrong,
-        acc=asked?Math.round(100*right/asked):null;
-    // What was learned lately, and how steadily. The totals above say how far
-    // somebody has come; these two say whether they are still coming, which
-    // is the part that keeps anybody turning up.
-    var week=Date.now()-7*864e5,
-        fresh=rows.filter(function(r){
-          return r.state==='known'&&r.knownAt&&r.knownAt>=week;}).length,
-        run=Days.streak(),studied=Days.all().length;
+    +'<div class="pper" role="tablist" aria-label="Which period">'
+    +'<button type="button" data-per="day">Today</button>'
+    +'<button type="button" data-per="week">This week</button>'
+    +'<button type="button" data-per="all">All time</button></div>'
+    +'<div class="pstat"><p class="sheet-p">Loading…</p></div><div class="psince"></div>'
+    +'<div class="pshare"></div><div class="plabels"></div><div class="pbyl"></div><div class="plist"></div>';
+   Learn.ready.then(function(e){
+    if(!e){body.querySelector('.pstat').innerHTML='<p class="sheet-p">Your progress could not be '
+      +'opened in this browser (private browsing, or storage turned off).</p>';return;}
+    return Promise.resolve(e.attempts()).catch(function(){return [];}).then(function(att){
+     draw(e,att||[]);
+    });
+   });
+   function since(p){
+    if(p==='all')return 0;
+    var d=new Date();d.setHours(0,0,0,0);
+    return p==='day'?d.getTime():d.getTime()-6*864e5;
+   }
+   // when a word became learned: its first right answer a day or more after the first
+   function learnedAt(it){
+    var ok=it.ok||[],i,gap=(e0().S.learned_gap_h||20)*36e5;
+    for(i=1;i<ok.length;i++)if(ok[i]-ok[0]>=gap)return ok[i];
+    return it.last||0;
+   }
+   var E=null;function e0(){return E;}
+   function draw(e,att){
+    E=e;
+    var t0=since(per),items=e.items(),th=items.filter(function(x){return x.dir==='th'&&e.word(x.id);}),
+        asked=att.filter(function(a){return a.kind!=='meet'&&(a.at||0)>=t0;}),
+        right=asked.filter(function(a){return a.right;}).length,
+        acc=asked.length?Math.round(100*right/asked.length):null,
+        reviews=asked.filter(function(a){return a.review;}).length,
+        metN=th.filter(function(x){var w=x.met||(x.seen?x.born:0);return (x.seen||x.met)&&(w||0)>=t0;}).length,
+        learnedN=th.filter(function(x){var L=e.label(x.id,'th');
+          return (L==='learned'||L==='longterm')&&learnedAt(x)>=t0;}).length,
+        days=Days.all(),d0=new Date(t0),key0=t0?d0.getFullYear()+'-'+('0'+(d0.getMonth()+1)).slice(-2)+'-'+('0'+d0.getDate()).slice(-2):'',
+        studied=days.filter(function(d){return d>=key0;}).length,
+        run=Days.streak(),soon=e.dueSoon(),dueN=e.dueIds().length,
+        word={day:'today',week:'this week',all:'in all'}[per];
+    body.querySelectorAll('.pper button').forEach(function(b){
+     b.classList.toggle('on',b.dataset.per===per);b.setAttribute('aria-selected',b.dataset.per===per?'true':'false');});
     var st=body.querySelector('.pstat');
-    st.innerHTML='<div class="pc ok"><b>'+known.length+'</b>known</div>'
-     +'<div class="pc warn"><b>'+shaky.length+'</b>not sure</div>'
-     +'<div class="pc warn"><b>'+learn.length+'</b>still learning</div>'
+    st.innerHTML='<div class="pc ok"><b>'+learnedN+'</b>words learned '+word+'</div>'
+     +'<div class="pc"><b>'+metN+'</b>new words met</div>'
+     +'<div class="pc"><b>'+asked.length+'</b>answers</div>'
      +'<div class="pc"><b>'+(acc===null?'—':acc+'%')+'</b>answered right</div>'
-     +'<div class="pc"><b>'+seen+'</b>times seen</div>'
-     +'<div class="pc ok"><b>'+fresh+'</b>learned this week</div>'
-     +'<div class="pc'+(run>1?' ok':'')+'"><b>'+run
-       +'</b>day'+(run===1?'':'s')+' in a row</div>'
-     +'<div class="pc"><b>'+studied+'</b>day'+(studied===1?'':'s')+' studied</div>';
-
-    // Where the work went. The rows carry the lesson they were answered in,
-    // so this costs nothing to work out and is the one breakdown a learner
-    // asks for — "am I done with Lesson 2?" is not answerable from a list of
-    // four hundred words sorted by how often they were missed.
-    var byLesson={},i2;
-    for(i2=0;i2<rows.length;i2++){
-     var L=rows[i2].lesson||'';if(!L)continue;
-     var g=byLesson[L]||(byLesson[L]={n:0,known:0});
-     g.n++;if(rows[i2].state==='known')g.known++;
+     +'<div class="pc"><b>'+reviews+'</b>reviews done</div>'
+     +'<div class="pc'+(dueN?' warn':'')+'"><b>'+dueN+'</b>due now'+(soon.tomorrow?' · '+soon.tomorrow+' tomorrow':'')+'</div>'
+     +'<div class="pc'+(run>1?' ok':'')+'"><b>'+run+'</b>day'+(run===1?'':'s')+' in a row</div>'
+     +'<div class="pc"><b>'+(per==='day'?(studied?'yes':'not yet'):studied)+'</b>'+(per==='day'?'studied today':'day'+(studied===1?'':'s')+' studied')+'</div>';
+    if(dueN){var rv=document.createElement('a');rv.className='mrev pgo';rv.href=base()+'/problems/#review';
+     rv.textContent='Review the '+dueN+' due now →';st.appendChild(rv);}
+    // the answer log is only as old as the engine on this site: say so
+    var first=att.length?att[0].at:0,ps=body.querySelector('.psince');
+    ps.textContent=first&&per==='all'?'Answers counted since '+new Date(first).toLocaleDateString()+'.':'';
+    // every word by how well it is known (all time)
+    var sm=e.summary().th,lab=body.querySelector('.plabels'),
+        rows=[['met','met at least once'],['recognises','picked out of four'],['recalls','remembered with no help'],
+              ['learned','remembered on two different days'],['longterm','learned, and still there weeks later']];
+    lab.innerHTML='<div class="ph">Your words, all time</div>'+rows.map(function(r){
+     return '<div class="plab"><b>'+sm[r[0]]+'</b><span>'+PLAB[r[0]]+'</span><small>'+r[1]+'</small></div>';}).join('');
+    // the lessons studied, each with the same bar as the menu
+    var byl=body.querySelector('.pbyl');byl.innerHTML='';
+    var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],names={},i;
+    for(i=0;i<L.length;i++)names[L[i].folder]=L[i].title;
+    var mine=[];
+    Object.keys(names).forEach(function(f){var s2=Prog.lesson(f);if(s2&&s2.met)mine.push([f,s2]);});
+    if(!L.length){var seenL={};th.forEach(function(x){var w=e.word(x.id);if(w&&w.lesson&&!seenL[w.lesson]){seenL[w.lesson]=1;
+     var s3=Prog.lesson(w.lesson);if(s3&&s3.met)mine.push([w.lesson,s3]);}});}
+    mine.sort(function(a,b){return b[1].pct-a[1].pct||b[1].met-a[1].met;});
+    if(mine.length){
+     byl.innerHTML='<div class="ph">By lesson</div>';
+     mine.slice(0,60).forEach(function(m){
+      var a=document.createElement('a');a.className='pl';a.href=base()+'/'+m[0]+'/';
+      var n=document.createElement('span');n.className='pln';
+      n.textContent=names[m[0]]||m[0].replace(/^\d+-/,'').replace(/-/g,' ');
+      var c=document.createElement('span');c.className='plc';c.textContent=m[1].learned+'/'+m[1].total;
+      a.appendChild(n);a.appendChild(Prog.bar(m[1]));a.appendChild(c);byl.appendChild(a);
+     });
     }
-    var names=Object.keys(byLesson);
-    if(names.length>1){
-     names.sort(function(a,b){return byLesson[b].n-byLesson[a].n;});
-     var lh='<div class="plesson"><div class="ph">By lesson</div>';
-     for(i2=0;i2<names.length;i2++){
-      var gg=byLesson[names[i2]],
-          pct=gg.n?Math.round(100*gg.known/gg.n):0,
-          // the folder is "03-lesson-2-asking-for-things"; the title is what
-          // the reader saw on the page
-          nice=names[i2].replace(/^\d+-/,'').replace(/-/g,' ');
-      lh+='<a class="pl" href="'
-        +esc((document.body.dataset.root||'.')+'/'+names[i2]+'/')+'">'
-        +'<span class="pln">'+esc(nice)+'</span>'
-        +'<span class="plb"><i style="width:'+pct+'%"></i></span>'
-        +'<span class="plc">'+gg.known+'/'+gg.n+'</span></a>';
-     }
-     body.querySelector('.pstat').insertAdjacentHTML('afterend',lh+'</div>');
-    }
-    var list=body.querySelector('.plist');
-    if(!rows.length){
+    // and every word, the ones not sticking first
+    var list=body.querySelector('.plist'),v=e.vocab();
+    if(!v.length){
      list.innerHTML='<p class="sheet-p">Nothing yet. Answer a question, or '
       +'press <b>✓ I know it</b> on a card, and it will show up here.</p>';
-     return;
+    }else{
+     var rank={met:0,recognises:1,recalls:2,learned:3,longterm:4};
+     v.sort(function(a,b){var la=rank[a.dirs.th]||0,lb=rank[b.dirs.th]||0;
+      return la-lb||(b.wrong-a.wrong)||(b.last-a.last);});
+     var now=Date.now(),html='<div class="ph">Every word</div><table class="ptab"><tr><th>Word</th><th>Meaning</th>'
+      +'<th>Right</th><th>Wrong</th><th>How it stands</th><th>Next review</th></tr>';
+     for(i=0;i<v.length&&i<400;i++){
+      var r=v[i],it=e.item(r.id,'th')||{},L2=r.dirs.th||'met',due=it.due&&it.box?Math.round((it.due-now)/864e5):null;
+      html+='<tr><td lang="'+(document.documentElement.lang||'')+'">'+esc(r.word.th)+'</td><td>'+esc(r.word.en)+'</td>'
+       +'<td class="n">'+r.right+'</td><td class="n">'+r.wrong+'</td>'
+       +'<td class="'+(rank[L2]>=3?'ok':'warn')+'">'+(PLAB[L2]||L2)+'</td>'
+       +'<td class="n">'+(due===null?'—':due<=0?'now':due===1?'tomorrow':'in '+due+' days')+'</td></tr>';
+     }
+     list.innerHTML=html+'</table>'
+      +'<p class="sheet-p" style="margin:14px 0 0">A word is <b>learned</b> once you have remembered it '
+      +'on two different days, and comes back to review just as you are likely to start forgetting it. '
+      +'The same record is used by every lesson, the quiz and Flash the Cat.</p>'
+      +'<div class="sheet-row"><button class="wipe">Forget all of it</button></div>';
+     list.querySelector('.wipe').addEventListener('click',function(){
+      if(!this.dataset.sure){this.dataset.sure='1';
+       this.textContent='Forget every word, here and in the game — press again to be sure';return;}
+      e.resetAll();
+      Promise.resolve(Progress.clear()).then(function(){knownNow={};progressPanel();});
+     });
     }
-    // Worst first: the point of a list like this is the words that are not
-    // sticking, and they should not be at the bottom of it.
-    rows.sort(function(a,b){
-     var wa=(a.state==='known'?1:0),wb=(b.state==='known'?1:0);
-     if(wa!==wb)return wa-wb;
-     return (b.wrong||0)-(a.wrong||0)||(b.at||0)-(a.at||0);
-    });
-    var html='<table class="ptab"><tr><th>Word</th><th>Meaning</th>'
-     +'<th>Seen</th><th>Right</th><th>Wrong</th><th>Run</th>'
-     +'<th>How it stands</th></tr>';
-    for(i=0;i<rows.length&&i<400;i++){
-     var r=rows[i],ok2=r.state==='known',
-         how=ok2?'known':(r.state==='unsure'?'not sure':'still learning');
-     html+='<tr><td lang="'+(document.documentElement.lang||'')+'">'
-      +esc(r.word||r.id)+'</td><td>'+esc(r.mean||'')+'</td>'
-      +'<td class="n">'+(r.seen||0)+'</td>'
-      +'<td class="n">'+(r.right||0)+'</td>'
-      +'<td class="n">'+(r.wrong||0)+'</td>'
-      +'<td class="n">'+(r.streak||0)
-      +(r.best>(r.streak||0)?' <span class="best">best '+r.best+'</span>':'')
-      +'</td>'
-      +'<td class="'+(ok2?'ok':'warn')+'">'+how+'</td></tr>';
-    }
-    list.innerHTML=html+'</table>'
-     +'<p class="sheet-p" style="margin:14px 0 0">A word counts as known once '
-     +'you have got it twice in a row, or when you say so on a card. '
-     +'<span class="dimq">Kept by '+Progress.engine()+'.</span></p>'
-     +'<div class="sheet-row"><button class="wipe">Forget all of it</button></div>';
-    list.querySelector('.wipe').addEventListener('click',function(){
-     Progress.clear().then(function(){knownNow={};progressPanel();});
-    });
+    // share the numbers, never the words
+    var sh=body.querySelector('.pshare'),host=location.host||'this site',
+        lang=document.documentElement.lang==='th'?'Thai ':'';
+    var text=per==='day'?'I learned '+learnedN+' '+lang+'words today on '+host+' ('+sm.learned+' so far).'
+     :per==='week'?'I learned '+learnedN+' '+lang+'words this week on '+host+', '+run+' day'+(run===1?'':'s')+' in a row ('+sm.learned+' so far).'
+     :'I have learned '+sm.learned+' '+lang+'words on '+host+'.';
+    sh.innerHTML='<button type="button" class="cbtn pshb">Share this</button><span class="pshm"></span>';
+    sh.querySelector('.pshb').onclick=function(){
+     var m=sh.querySelector('.pshm'),url=location.origin+(base()?new URL((base()||'.')+'/',location.href).pathname:'/');
+     if(navigator.share)navigator.share({title:document.title,text:text,url:url}).catch(function(){});
+     else if(navigator.clipboard)navigator.clipboard.writeText(text+' '+url).then(function(){m.textContent='Copied.';},
+      function(){m.textContent=text;});
+     else m.textContent=text;
+    };
+   }
+   body.querySelector('.pper').addEventListener('click',function(ev){
+    var b=ev.target.closest?ev.target.closest('[data-per]'):null;if(!b||!E)return;
+    per=b.dataset.per;try{localStorage.setItem('wb.pper',per);}catch(x){}
+    Promise.resolve(E.attempts()).catch(function(){return [];}).then(function(a){draw(E,a||[]);});
    });
   });
  }
@@ -3910,19 +4298,19 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
  // anywhere; there is nothing to send it to.
  (function(){
   if(!nav)return;
-  // ---- how far: words known per lesson, from the reader's progress. Only
-  // read when they have ever recorded any (Days is written with every
-  // answer), so a first visit opens no database at all.
+  // ---- how far: words LEARNED per lesson, from the learning engine (Prog
+  // works it out; this keeps the old name for the bits below that count)
   function known(){
-   var any=false;try{any=!!localStorage.getItem('wb.days');}catch(e){}
-   if(!any||typeof Progress==='undefined')return Promise.resolve();
-   return Promise.resolve(Progress.all()).then(function(rows){
-    var k={},i;
-    for(i=0;i<(rows||[]).length;i++)
-     if(rows[i].state==='known'&&rows[i].lesson)k[rows[i].lesson]=(k[rows[i].lesson]||0)+1;
-    KNOWN=k;
-    window.dispatchEvent(new Event('wb:index'));   // redraw open categories
-   }).catch(function(){});
+   function upd(){
+    var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],k={},i,st;
+    for(i=0;i<L.length;i++){st=Prog.lesson(L[i].folder);if(st)k[L[i].folder]=st.learned;}
+    if(!L.length&&typeof NAVJ==='object'&&NAVJ)for(i=0;i<(NAVJ.l||[]).length;i++){
+     st=Prog.lesson(NAVJ.l[i][0]);if(st)k[NAVJ.l[i][0]]=st.learned;}
+    KNOWN=k;paintCont();paintCourses();
+   }
+   window.addEventListener('wb:prog',upd);
+   if(Prog.ready())upd();
+   return Promise.resolve();
   }
   function lessonOf(folder){
    var L=(mnu&&mnu.lessons)||(idx&&idx.lessons)||[],i;
@@ -3959,7 +4347,7 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    if(cat)for(i=0;i<L.length;i++)if(L[i][1]===cat){tot++;if(L[i][0]===r.folder)at=tot;}
    ctn.textContent=tot?at+' of '+tot:'';
    cs.textContent=cat?catName(cat):'';
-   var l=lessonOf(r.folder),w=l?l.w:0,k=KNOWN[r.folder]||0;
+   var st=Prog.lesson(r.folder),w=st?st.total:0,k=st?st.learned:0;
    bar.hidden=!w;
    if(w)bar.firstElementChild.style.width=Math.min(100,Math.round(100*k/w))+'%';
   }
@@ -4024,9 +4412,13 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
   var LIST=[];
   function sizeOf(c){
    var w=0,k=0,i,l;
+   var ids=[];
    for(i=0;i<c.lessons.length;i++){l=lessonOf(c.lessons[i]);
-    if(l){w+=l.w||0;k+=Math.min(KNOWN[c.lessons[i]]||0,l.w||0);}}
-   return {w:w,k:k};
+    if(l){w+=l.w||0;k+=Math.min(KNOWN[c.lessons[i]]||0,l.w||0);}
+    ids.push.apply(ids,Prog.ids(c.lessons[i])||[]);}
+   var e=Learn.engine(),st=e&&ids.length?e.stats(ids):null;
+   if(st){w=st.total;k=st.learned;}
+   return {w:w,k:k,st:st};
   }
   var clist=document.getElementById('m-clist');
   function paintCourses(){
@@ -4039,7 +4431,8 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     b.innerHTML='<span class="cn"></span><span class="cm"></span>';
     b.querySelector('.cn').textContent=c.name;
     b.querySelector('.cm').textContent=c.lessons.length+' lesson'+(c.lessons.length===1?'':'s')
-     +(z.w?' · '+z.w+' words':'')+(z.k&&z.w?' · '+Math.round(100*z.k/z.w)+'% known':'');
+     +(z.w?' · '+z.w+' words':'');
+    if(z.st)b.appendChild(Prog.bar(z.st));
     b.addEventListener('click',function(){withMenu(function(){coursePanel(c);});});
     clist.appendChild(b);
    });
@@ -4065,17 +4458,17 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
     body.innerHTML='<p class="sheet-p cdesc"></p><ol class="clessons"></ol>'
      +'<div class="sheet-row cbtns"></div>';
     body.querySelector('.cdesc').textContent=c.lessons.length+' lessons · '
-     +z.w+' words'+(z.w?' · '+z.k+' known':'')+'. Saved in this browser.';
+     +z.w+' words'+(z.w?' · '+z.k+' learned':'')+'. Saved in this browser.';
     var ol=body.querySelector('.clessons');
     c.lessons.forEach(function(f){
      var L=lessonOf(f),li=document.createElement('li'),a=document.createElement('a');
      a.href=base()+'/'+f+'/';
-     a.appendChild(ring(KNOWN[f]||0,L?L.w:0));
      var t=document.createElement('span');t.className='t';
      t.textContent=L?L.title:f+' (no longer on the site)';
      var m=document.createElement('span');m.className='m';
      m.textContent=L?catName(L.cat)+' · '+L.w+' words':'';
-     a.appendChild(t);a.appendChild(m);li.appendChild(a);ol.appendChild(li);
+     a.appendChild(t);a.appendChild(m);a.appendChild(Prog.bar(Prog.lesson(f)));
+     li.appendChild(a);ol.appendChild(li);
     });
     var bt=body.querySelector('.cbtns');
     if(next){var go=document.createElement('a');go.className='cgo';
@@ -4250,9 +4643,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
      return c;
     }));
    }).then(function(rows){
-    return Promise.resolve(CoursesStore?CoursesStore.all():[]).then(function(cs){
+    return Promise.all([Promise.resolve(CoursesStore?CoursesStore.all():[]),Learn.dump()]).then(function(got){
      return {kind:'wordbase-backup',v:1,site:location.host,at:new Date().toISOString(),
-             progress:rows,courses:cs||[],local:local};
+             progress:rows,courses:got[0]||[],local:local,learn:got[1]||null};
     });
    });
   }
@@ -4295,6 +4688,11 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
      return Promise.all((cs||[]).map(function(c){return CoursesStore.del(c.id);}));});
     return pr.then(function(){return Promise.all(courses.map(function(c){return CoursesStore.put(c);}));})
      .then(function(){if(courses.length)try{localStorage.setItem('wb.courses','1');}catch(e){}});
+   }).then(function(){
+    // every word's steps and review days; a backup from before 28 Nov has
+    // none, so its rows are brought in the way this browser's own old rows were
+    if(data.learn)return Learn.restore(data.learn,how);
+    return Learn.importOld(rows);
    }).then(function(){
     Object.keys(local).forEach(function(k){
      if(k.indexOf('wb.')!==0)return;
@@ -4751,7 +5149,9 @@ var SIDES_DEFAULT={front:['word','rom','tone','sound'],back:['mean','image']};
    else if(m.type==='ftc:config'){if(m.words)for(var k in cfg)if(m.words[k]!==undefined)cfg[k]=m.words[k];pushWords();}
    // one question at a time: no "Save Flash!" while a pop quiz is up
    else if(m.type==='ftc:ask')post({type:'ftc:question',req:m.req,q:popEl?null:question()});
-   else if(m.type==='ftc:answered'){if(m.right!==null&&m.right!==undefined){note(m.id,!!m.right);ladderAnswer(m.id,!!m.right);quizReset();}}
+   else if(m.type==='ftc:answered'){if(m.right!==null&&m.right!==undefined){note(m.id,!!m.right);ladderAnswer(m.id,!!m.right);quizReset();
+    // "Save Flash!": a question about the word, Thai -> meaning out of a few
+    Learn.answer(m.id,'th',!!m.right,{kind:'pick',choices:4,src:'game'});}}
    else if(m.type==='ftc:word'){if(m.result==='miss')note(m.id,false);else if(m.result==='match')note(m.id,m.helped?'helped':true);else if(m.result==='expired')note(m.id,'missed');else if(m.result==='ladder')ladderSet(m.id,m);}
    else if(m.type==='ftc:goto'&&m.where==='next'){var nx=document.querySelector('.menu .where a.step.nx');
     // the link is the site's full address; on another address for the same site (a preview, www.) keep the path

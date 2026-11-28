@@ -1484,7 +1484,16 @@ body.hide-tone .tw .tm{display:none}
    display:none, and a search engine discounts text nobody can see. Now it sits
    under the word in Read it, and steps aside in the flashcard and quiz modes. */
 body.mode-card .aboutlesson,body.mode-quiz .aboutlesson{display:none}
-.aboutlesson{max-width:640px;margin:28px auto 8px;padding:18px 4px 0;border-top:1px solid var(--line);color:var(--text2);font-size:0.875rem;line-height:1.6}
+.aboutlesson{max-width:640px;margin:48px auto 8px;padding:10px 4px 0;color:var(--text2);font-size:0.875rem;line-height:1.6}
+/* Folded: one small grey line at the foot of the pane, under the first word only */
+.aboutlesson>summary{cursor:pointer;list-style:none;font-size:0.75rem;color:var(--faint);user-select:none;display:inline-flex;gap:5px;align-items:center}
+.aboutlesson>summary::-webkit-details-marker{display:none}
+.aboutlesson>summary::after{content:"\25b8";font-size:0.7rem;transition:transform .15s}
+.aboutlesson[open]>summary::after{transform:rotate(90deg)}
+.aboutlesson>summary:hover{color:var(--accent2)}
+.aboutlesson[open]{border-top:1px solid var(--line)}
+.aboutlesson[open]>summary{margin-bottom:10px}
+body.past-first .aboutlesson:not(.asked){display:none}
 .aboutlesson h2{font-size:1rem;color:var(--text);margin:0 0 8px}
 .aboutlesson p{margin:0 0 10px}
 .aboutlesson .aboutlinks a{color:var(--accent2);text-decoration:none}
@@ -2115,3 +2124,58 @@ html.light-pre body,body.light{--mo-line:#55606f;--mo-roof:#7d8797;--mo-tooth:#f
   body.mm-open::after{content:"";position:fixed;inset:0;z-index:13;
     background:rgba(0,0,0,.5)}
 }
+
+/* ---- how far: one bar for every menu (Prog.bar in shell.js). Words met
+   behind, words learned in front, and the learned % beside it. */
+.lpb{flex:none;display:inline-flex;align-items:center;gap:5px;margin-left:auto}
+.lpb[hidden]{display:none}
+.lpt{position:relative;width:38px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.lpt i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;width:0}
+.lpt .lpm{background:var(--edge);background:color-mix(in srgb,var(--accent) 32%,var(--line))}
+.lpt .lpl{background:var(--accent)}
+.lpb.done .lpl{background:var(--ok)}
+.lpp{font-size:0.625rem;color:var(--faint);font-variant-numeric:tabular-nums;min-width:2.2em;text-align:right}
+.lpb.done .lpp{color:var(--ok)}
+.menu .catpage a.item.seq .lpb{margin-left:4px}
+.menu .catpage a.item.seq.on .lpp{color:var(--accentq)}
+.menu a.item.cat .lpb{margin-left:6px}
+.menu a.item.cat .lpt{width:30px}
+.lpb.lpbig{gap:8px;margin:0 6px 0 10px}
+.lpb.lpbig .lpt{width:72px;height:5px}
+.lpb.lpbig .lpp{font-size:0.75rem}
+.k1bands a .lpb{margin-left:6px}
+.k1bands a .lpt{width:24px}
+/* a category's chevron turns as it opens; shut is the default */
+.menu .catx{font-size:1.05rem;transition:transform .15s,color .12s}
+.menu .catx.open{transform:rotate(90deg);color:var(--accent3)}
+/* "N due" on a category, and Review · N due in the list's header */
+.ldue{flex:none;font-size:0.5938rem;font-weight:700;color:var(--gold2);background:var(--goldbg);
+  border-radius:999px;padding:0 6px;margin-left:6px;line-height:1.5}
+.menu .grp{display:flex;align-items:center;gap:6px}
+.mrev{margin-left:auto;text-transform:none;letter-spacing:0;font-size:0.6875rem;font-weight:700;
+  color:var(--gold2);background:var(--goldbg);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);
+  border-radius:999px;padding:1px 9px;text-decoration:none;white-space:nowrap}
+.mrev:hover{border-color:var(--gold2)}
+.mrev[hidden]{display:none}
+.mrev.pgo{display:inline-block;margin:4px 0 0;font-size:0.8125rem;padding:4px 12px}
+/* My courses: the bar under each course's line */
+.mcourses .crs .lpb{margin:3px 0 0;display:flex}
+.clessons a .lpb{margin-left:auto}
+/* My progress: Today / This week / All time */
+.pper{display:flex;gap:4px;margin:0 0 12px}
+.pper button{background:var(--s2);border:1px solid var(--edge);color:var(--muted);border-radius:999px;
+  padding:4px 12px;font:inherit;font-size:0.8125rem;cursor:pointer}
+.pper button.on{background:var(--accentbg);border-color:var(--accent);color:var(--accent3)}
+.psince{font-size:0.75rem;color:var(--faint);margin:-8px 0 10px}
+.pshare{display:flex;gap:10px;align-items:center;margin:0 0 14px}
+.pshm{font-size:0.75rem;color:var(--dim)}
+.plabels{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.plabels .ph,.pbyl .ph,.plist .ph{width:100%;font-size:0.6562rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);font-weight:700;margin:8px 0 4px}
+.plab{flex:1;min-width:110px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;display:flex;flex-direction:column}
+.plab b{font-size:1.25rem;color:var(--text)}
+.plab span{font-size:0.8125rem;color:var(--text2)}
+.plab small{font-size:0.6875rem;color:var(--faint)}
+.pbyl .pl{grid-template-columns:1fr auto auto}
+/* the lesson's introduction is not under every word (step 7) */
+body.reviewing .aboutlesson{display:none}
