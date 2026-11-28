@@ -1,4 +1,22 @@
-/* Flash the Cat - the learning engine behind the word card.
+/* The learning engine: one for the whole site (Flash the Cat's word card,
+ * the lesson flashcards, the quiz modes, the reviews and the menus' progress).
+ *
+ * THE copy lives in WordBase: app/site/learn.js. Publish sends it to the site
+ * twice, as learn/learn.js (every page) and as games/flash/flash-learn.js (the
+ * game), so the game and the course always run the same code against the same
+ * store (IndexedDB "ftc-learn", the game's own, so its history carries over).
+ * Gamebase's projects/flash_the_cat/game/flash-learn.js is a copy for its test
+ * bench; change this one and copy it there, never the other way round.
+ *
+ * Every page that runs an engine on the same store hears the others' answers
+ * (a BroadcastChannel), so the game and the course in the frame beside it
+ * never write over each other's newer state.
+ *
+ * Answers the engine did not ask itself (a quiz on a lesson page, a flashcard
+ * "I know it") come in through record(); a word that was only looked at or
+ * listened to comes in through met(), which is not a review and moves nothing.
+ *
+ * Flash the Cat - the learning engine behind the word card.
  *
  * Dan: "the focus should be on, can the user recall the word, memory test,
  * not whether the user can find the word." One question at a time; each word
@@ -112,10 +130,23 @@
       delItems: keys => { for (const k of keys) delete items[k]; },
       log: a => { attempts.push(a); },
       attempts: async () => attempts.slice(),
+      clearLog: () => { attempts.length = 0; },
+    };
+  }
+  // Other pages on this site using the same store (the game and the course in
+  // its frame, two tabs): each change is told to them, so none of them saves
+  // a stale copy of a word over a newer one.
+  function channel(name) {
+    let ch = null; const subs = [];
+    try { if (typeof BroadcastChannel !== "undefined") { ch = new BroadcastChannel("learn:" + name); ch.onmessage = e => { for (const f of subs) try { f(e.data || {}); } catch (x) {} }; } } catch (e) { ch = null; }
+    return {
+      post: m => { if (ch) try { ch.postMessage(m); } catch (e) {} },
+      subscribe: f => { subs.push(f); },
     };
   }
   function lsStore(key) {
     key = key || "ftc.learn";
+    const bc = channel(key);
     const read = () => { try { return JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch (e) { return {}; } };
     let d = read(); d.items = d.items || {}; d.words = d.words || {}; d.att = d.att || [];
     let t = null;
@@ -124,12 +155,15 @@
     return {
       kind: "localStorage",
       load: async () => ({ items: Object.values(d.items), words: Object.values(d.words) }),
-      putItems: list => { for (const i of list) d.items[i.k] = i; soon(); },
-      putWords: list => { for (const w of list) d.words[w.id] = w; soon(); },
-      delItems: keys => { for (const k of keys) delete d.items[k]; soon(); },
+      putItems: list => { for (const i of list) d.items[i.k] = i; soon(); bc.post({ items: list }); },
+      putWords: list => { for (const w of list) d.words[w.id] = w; soon(); bc.post({ words: list }); },
+      delItems: keys => { for (const k of keys) delete d.items[k]; soon(); bc.post({ del: keys }); },
       log: a => { d.att.push(a); soon(); },
       attempts: async () => d.att.slice(),
+      clearLog: () => { d.att = []; soon(); },
       flush,
+      // what another page changed: kept here too, so this page's next save carries it
+      subscribe: f => bc.subscribe(m => { for (const i of m.items || []) d.items[i.k] = i; for (const w of m.words || []) d.words[w.id] = w; for (const k of m.del || []) delete d.items[k]; f(m); }),
     };
   }
   function dexieStore(name) {
@@ -137,19 +171,21 @@
     let db;
     try { db = new Dexie(name || "ftc-learn"); db.version(1).stores({ items: "k, id, due", words: "id", attempts: "++n, id, at" }); }
     catch (e) { return null; }
-    const pend = { items: {}, words: {}, att: [] };
+    const pend = { items: {}, words: {}, att: [] }, bc = channel(name || "ftc-learn");
     let t = null, logged = 0;
+    // returns when the writes are in (a page can wait for that before it moves on)
     const flush = () => {
-      t = null;
-      const it = Object.values(pend.items), ws = Object.values(pend.words), at = pend.att.splice(0);
+      if (t) { clearTimeout(t); t = null; }
+      const it = Object.values(pend.items), ws = Object.values(pend.words), at = pend.att.splice(0), w = [];
       pend.items = {}; pend.words = {};
       try {
-        if (it.length) db.items.bulkPut(it).catch(() => {});
-        if (ws.length) db.words.bulkPut(ws).catch(() => {});
-        if (at.length) db.attempts.bulkAdd(at).catch(() => {});
+        if (it.length) w.push(db.items.bulkPut(it).catch(() => {}));
+        if (ws.length) w.push(db.words.bulkPut(ws).catch(() => {}));
+        if (at.length) w.push(db.attempts.bulkAdd(at).catch(() => {}));
         // keep the attempt log from growing forever
         if ((logged += at.length) > 500) { logged = 0; db.attempts.count().then(n => n > 20000 ? db.attempts.orderBy("n").limit(n - 20000).delete() : 0).catch(() => {}); }
       } catch (e) {}
+      return Promise.all(w);
     };
     const soon = () => { if (!t) t = setTimeout(flush, 400); };
     return {
@@ -158,12 +194,15 @@
         const go = Promise.all([db.items.toArray(), db.words.toArray()]).then(([items, words]) => ({ items, words }));
         return Promise.race([go, new Promise((_, rej) => setTimeout(() => rej(new Error("slow")), 2500))]);
       },
-      putItems: list => { for (const i of list) pend.items[i.k] = i; soon(); },
-      putWords: list => { for (const w of list) pend.words[w.id] = w; soon(); },
-      delItems: keys => { for (const k of keys) delete pend.items[k]; try { db.items.bulkDelete(keys).catch(() => {}); } catch (e) {} },
+      putItems: list => { for (const i of list) pend.items[i.k] = i; soon(); bc.post({ items: list }); },
+      putWords: list => { for (const w of list) pend.words[w.id] = w; soon(); bc.post({ words: list }); },
+      delItems: keys => { for (const k of keys) delete pend.items[k]; try { db.items.bulkDelete(keys).catch(() => {}); } catch (e) {} bc.post({ del: keys }); },
       log: a => { pend.att.push(a); soon(); },
-      attempts: () => db.attempts.toArray(),
+      // the log as saved, and what is about to be (a page asking right after an answer)
+      attempts: () => db.attempts.toArray().then(a => a.concat(pend.att)),
+      clearLog: () => { pend.att = []; try { db.attempts.clear().catch(() => {}); } catch (e) {} },
       flush,
+      subscribe: bc.subscribe,
     };
   }
 
@@ -179,7 +218,7 @@
     let only = null;            // a review of just these word ids (null = every word)
     let n = 0, lastId = null, focus = "new", lastSpecial = -99, revRun = 0;                         // focus: "new" (new words + review) | "review"
     const recent = [];                                               // right/wrong of recent choice/recall answers
-    const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow", "born", "v", "stab", "diff", "lastRev"];
+    const KEEP = ["k", "id", "dir", "step", "streak", "seen", "right", "wrong", "box", "due", "r4", "rc", "ok", "last", "lastOk", "ms", "slow", "born", "v", "stab", "diff", "lastRev", "met", "old"];
     const save = it => { const x = {}; for (const f of KEEP) x[f] = it[f]; store.putItems([x]); };
     const key = (id, dir) => id + "|" + dir;
 
@@ -212,6 +251,30 @@
       if (i.box >= 1 && !i.stab) { i.stab = S.box_days[Math.min(S.box_days.length, i.box) - 1]; i.diff = 5; i.lastRev = i.last || now(); }
       return i;
     };
+    // ---- who wants to know when a word changed (the menus, the stats)
+    const listeners = [];
+    let changed = null, changedFrom = "local";
+    function notify(ids, from) {
+      if (!changed) { changed = new Set(); changedFrom = from; setTimeout(() => { const list = [...changed], f = changedFrom; changed = null; for (const fn of listeners) try { fn({ ids: list, from: f }); } catch (e) {} }, 0); }
+      for (const id of ids) changed.add(id);
+      if (from !== changedFrom) changedFrom = "both";
+    }
+    // another page answered: take its newer copy of each word, keep this page's session
+    function merge(m) {
+      const ids = [];
+      for (const w of m.words || []) if (w && w.id) { words[w.id] = w; ids.push(w.id); }
+      for (const x of m.items || []) {
+        if (!x || !x.k) continue;
+        const was = items[x.k];
+        if (was && (was.last || 0) > (x.last || 0)) continue;           // ours is newer
+        items[x.k] = Object.assign(up(Object.assign({}, x)), { ok: x.ok || [],
+          sess: was ? was.sess : 0, sessRight: was ? was.sessRight : 0, nextN: was ? was.nextN : 0,
+          retry: was ? was.retry : false, doneSess: was ? was.doneSess : false, active: was ? was.active : false });
+        ids.push(x.id);
+      }
+      for (const k of m.del || []) if (items[k]) { ids.push(items[k].id); delete items[k]; }
+      if (ids.length) notify(ids, "remote");
+    }
     const ready = (async () => {
       try {
         const d = await store.load();
@@ -220,6 +283,7 @@
       } catch (e) {
         if (o.fallback) { store = o.fallback; try { const d = await store.load(); for (const w of d.words || []) words[w.id] = w; for (const i of d.items || []) items[i.k] = Object.assign(up(i), { ok: i.ok || [], sess: 0, sessRight: 0, nextN: 0, retry: false, doneSess: false }); } catch (e2) {} }
       }
+      if (store.subscribe) try { store.subscribe(merge); } catch (e) {}
       return true;
     })();
 
@@ -233,7 +297,7 @@
       if (learnedIt(it)) return (it.stab ? it.stab >= S.longterm_days : it.box >= S.longterm_box) ? "longterm" : "learned";
       if (it.rc) return "recalls";
       if (it.r4) return "recognises";
-      return it.seen || it.step ? "met" : "new";
+      return it.seen || it.step || it.met ? "met" : "new";
     }
     const atLeast = (lab, want) => LABELS.indexOf(lab) >= LABELS.indexOf(want);
 
@@ -433,6 +497,7 @@
       if (q.review) revRun++; else if (q.kind === "meet" || !it.box) revRun = 0;
       const was = { step: it.step, box: it.box, label: label(it) }, due = isDue(it);
       n++; lastId = it.id; if (SPECIAL.has(it.dir)) lastSpecial = n;
+      if (!it.seen) it.born = t;
       it.sess++; it.seen++; it.active = true; it.last = t; it.lastOk = right;
       if (q.kind !== "meet") { recent.push(right); if (recent.length > S.acc_window) recent.shift(); it.ms = it.ms ? Math.round(it.ms * 0.7 + ms * 0.3) : ms; }
       const slow = right && q.kind === "pick" && ms > S.slow_ms;
@@ -498,10 +563,63 @@
       }
       save(it);
       const attempt = { id: it.id, dir: it.dir, step: q.step, kind: q.kind, choices: q.choices ? q.choices.length : 0, right, ms, at: t, review: !!q.review, slow };
+      if (res.src) attempt.src = res.src;                // where it was answered: "game" (none), "quiz", "card" ...
       try { store.log(attempt); } catch (e) {}
       // when it comes back (days), if this answer set a new day for it
       const backIn = it.due && it.due !== dueWas && it.due > t + HOUR ? Math.max(1, Math.round((it.due - t) / DAY)) : 0;
+      notify([it.id], "local");
       return { right, slow, grade, review, backIn, item: Object.assign({}, it), was, now: { step: it.step, box: it.box, label: label(it) }, opened, retryIn: it.retry ? gap : 0 };
+    }
+
+    // ---- answers to questions the engine did not ask (the course's quiz, a flashcard)
+    // kind: "pick" (o.choices answers to choose from) or "recall" (no choices:
+    // typed, or "I know it" / "Not yet"). Only these are retrieval, so only
+    // these move a word; a review counts as one only review_min_h after the last.
+    const START = { en: 1, au: 2, cx: 2, sm: 2, tp: 2 };
+    function record(id, dir, kind, right, o2) {
+      o2 = o2 || {};
+      if (!id) return null;
+      if (DIRS.indexOf(dir) < 0) dir = "th";
+      if (o2.word) remember([Object.assign({}, o2.word, { id })]);
+      const it = item(id, dir, START[dir] ? { step: START[dir] } : {});
+      const before = it.step, recall = kind === "recall";
+      if (!it.step) it.step = 1;                       // answering it means it has been met
+      const count = recall ? 0 : Math.max(2, +o2.choices || 4);
+      const q = { n, k: it.k, id, dir, step: it.step, kind: recall ? "recall" : "pick", word: words[id] || null,
+                  choices: new Array(count).fill(0), review: isDue(it), isNew: !it.seen, label: label(it), t: now() };
+      const r = answer(q, { right: !!right, ms: o2.ms, grade: o2.grade, src: o2.src || "site" });
+      if (right && !recall && count >= 4) it.r4 = true;           // right out of four or more: recognises
+      if (recall) {
+        if (right && it.step < RECALL && !SPECIAL.has(dir)) it.step = RECALL;      // recalled with no help
+        if (!right && before < RECALL) it.step = Math.max(1, before >= 2 ? before - 1 : before);
+      }
+      save(it);
+      if (r) { r.item = Object.assign({}, it); r.now = { step: it.step, box: it.box, label: label(it) }; }
+      return r;
+    }
+    // looked at or listened to, nothing asked: "met", nothing more (not a
+    // review, not one of today's new words, the game still introduces it)
+    function met(id, word) {
+      if (!id) return false;
+      if (word) remember([Object.assign({}, word, { id })]);
+      const it = items[key(id, "th")];
+      if (it && (it.seen || it.step || it.met)) return false;
+      item(id, "th", { met: now() });
+      notify([id], "local");
+      return true;
+    }
+    // how far along a list of words is (a lesson, a category): Thai -> meaning
+    function stats(ids) {
+      const c = { total: 0, met: 0, recognises: 0, recalls: 0, learned: 0, longterm: 0, due: 0 }, t = now(), seen = new Set();
+      for (const id of ids || []) {
+        if (!id || seen.has(id)) continue; seen.add(id); c.total++;
+        const lab = label(items[key(id, "th")]);
+        for (const L of ["met", "recognises", "recalls", "learned", "longterm"]) if (atLeast(lab, L)) c[L]++;
+        for (const d of DIRS) { const it = items[key(id, d)]; if (it && it.box >= 1 && it.due && it.due <= t) { c.due++; break; } }
+      }
+      c.pct = c.total ? Math.round(c.learned / c.total * 100) : 0;
+      c.metPct = c.total ? Math.round(c.met / c.total * 100) : 0;
+      return c;
     }
 
     // ---- what the level looks like
@@ -564,6 +682,87 @@
       items: () => Object.values(items).map(it => Object.assign({}, it)),
       word: id => words[id] || null,
       levelProgress, summary,
+      record, met, stats,
+      // words with a review waiting now (any direction), the most at risk of
+      // being forgotten first: a mixed review across every lesson studied
+      dueIds(k) {
+        const t = now(), by = {};
+        for (const it of Object.values(items)) {
+          if (!words[it.id] || !it.box || !it.due || it.due > t) continue;
+          const r = it.stab ? recallP(Math.max(0, (t - (it.lastRev || t)) / DAY), it.stab) : 0.5;
+          if (!(it.id in by) || r < by[it.id]) by[it.id] = r;
+        }
+        return Object.keys(by).sort((a, b) => by[a] - by[b]).slice(0, k || 1e9);
+      },
+      // The course's record from before this engine (IndexedDB "wordbase-progress",
+      // "two right in a row = known"), brought in once. A word the engine
+      // already has is left as it is: what was answered here is newer.
+      //   known            -> Thai -> meaning at recall, a short stability (2 days)
+      //                       so the first review comes soon and FSRS finds its level
+      //   learning, unsure -> met
+      // The old counts are kept on the word (`old`) for the stats.
+      importOld(rows) {
+        const t = now(); let known = 0, metN = 0; const ids = [];
+        for (const r of rows || []) {
+          if (!r || !r.id || !(r.seen || r.state)) continue;
+          if (r.word && r.mean) remember([{ id: r.id, th: r.word, en: r.mean, lesson: r.lesson || "" }]);
+          const k = key(r.id, "th"), was = items[k];
+          if (was && (was.seen || was.step)) continue;
+          const old = { seen: r.seen || 0, right: r.right || 0, wrong: r.wrong || 0, first: r.first || 0, at: r.at || 0 };
+          if (r.state === "known") {
+            const when = r.knownAt || r.at || t;
+            const it = was || item(r.id, "th", {});
+            Object.assign(it, { step: RECALL, streak: 0, seen: Math.max(1, r.seen || 0), right: r.right || 0, wrong: r.wrong || 0,
+                                r4: true, rc: true, ok: [when], lastOk: true, last: when, born: r.first || when, old,
+                                stab: 2, diff: 5, lastRev: t });
+            if (r.first) it.met = r.first;
+            schedule(it, t);
+            save(it); known++;
+          } else {
+            const it = was || item(r.id, "th", {});
+            it.met = it.met || r.first || r.at || t; it.old = old;
+            save(it); metN++;
+          }
+          ids.push(r.id);
+        }
+        if (ids.length) notify(ids, "local");
+        return { known, met: metN };
+      },
+      // every word, every direction, as if never met (the "Forget all of it" button)
+      resetAll() {
+        const ks = Object.keys(items);
+        for (const k of ks) delete items[k];
+        if (ks.length && store.delItems) store.delItems(ks);
+        recent.length = 0; revRun = 0;
+        if (store.clearLog) try { store.clearLog(); } catch (e) {}
+        notify(ks.map(k => k.split("|")[0]), "local");
+        return ks.length;
+      },
+      // the reader's whole record, for a backup file, and back from one:
+      // "merge" keeps whichever copy of a word was answered last, "replace"
+      // starts from the file alone
+      dump() { return { v: 1, items: Object.values(items).map(it => { const x = {}; for (const f of KEEP) if (it[f] !== undefined) x[f] = it[f]; return x; }), words: Object.values(words) }; },
+      restore(data, how) {
+        data = data || {};
+        if (how === "replace") { const ks = Object.keys(items); for (const k of ks) delete items[k]; if (ks.length && store.delItems) store.delItems(ks); }
+        const ws = (data.words || []).filter(w => w && w.id && w.th && w.en);
+        for (const w of ws) words[w.id] = Object.assign({}, words[w.id] || {}, w);
+        if (ws.length) store.putWords(ws.map(w => words[w.id]));
+        let n2 = 0; const ids = [];
+        for (const x of data.items || []) {
+          if (!x || !x.k || !x.id || DIRS.indexOf(x.dir) < 0) continue;
+          const was = items[x.k];
+          if (how !== "replace" && was && (was.last || 0) > (x.last || 0)) continue;
+          items[x.k] = Object.assign(up(Object.assign({}, x)), { ok: x.ok || [], sess: 0, sessRight: 0, nextN: 0, retry: false, doneSess: false, active: false });
+          save(items[x.k]); n2++; ids.push(x.id);
+        }
+        if (ids.length) notify(ids, "local");
+        return n2;
+      },
+      // words the course knows about (Thai, meaning, sound ...): kept, nothing asked
+      addWords: list => remember(list),
+      // ({ ids, from: "local" | "remote" | "both" }) after any word changed, here or on another page
+      onChange: fn => { if (typeof fn === "function") listeners.push(fn); },
       // Flash's to-do list: what the learner would do next, in plain numbers
       todo() {
         const t = now(); let due = 0, ready = 0, forgot = 0;
@@ -580,7 +779,7 @@
       vocab() {
         const by = {};
         for (const it of Object.values(items)) {
-          if (!words[it.id] || !(it.seen || it.step)) continue;
+          if (!words[it.id] || !(it.seen || it.step || it.met)) continue;
           const v = by[it.id] || (by[it.id] = { id: it.id, word: words[it.id], dirs: {}, wrong: 0, right: 0, last: 0 });
           v.dirs[it.dir] = label(it); v.wrong += it.wrong; v.right += it.right; v.last = Math.max(v.last, it.last || 0);
         }
@@ -613,7 +812,7 @@
       recallNow(id, dir) { const it = items[key(id, dir || "th")]; return it && it.stab ? recallP(Math.max(0, (now() - (it.lastRev || now())) / DAY), it.stab) : null; },
       count: () => n,
       attempts: () => store.attempts ? store.attempts() : Promise.resolve([]),
-      flush: () => { if (store.flush) store.flush(); },
+      flush: () => Promise.resolve(store.flush ? store.flush() : null).catch(() => null),
     };
   }
 

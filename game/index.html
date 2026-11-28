@@ -56,6 +56,41 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
 .gm-note button { background: #4f9cf9; color: #0d1117; border: 0; border-radius: 8px; padding: 6px 14px;
   font: inherit; font-weight: 700; cursor: pointer; }
 .gm-note button.ghost { background: transparent; color: #9aa2af; border: 1px solid #2e333d; font-weight: 400; }
+/* The lesson picker: the same menu as the course's (categories shut except
+   the current lesson's, a bar and the learned % on every row, "N due"). It
+   stands in for the game's two native drop-downs, which cannot fold. */
+.lm-btn { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; min-width: 0; background: #23272f; color: #e8eaee;
+  border: 1px solid #2e333d; border-radius: 8px; padding: 4px 10px; font: inherit; cursor: pointer; text-align: left; }
+.lm-btn:hover, .lm-btn[aria-expanded="true"] { border-color: #4f9cf9; }
+.lm-btn .lm-t { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lm-btn .lm-cv { color: #9aa2af; }
+.lm-pop { position: fixed; z-index: 60; width: 340px; max-width: calc(100vw - 16px); max-height: min(70vh, 560px); overflow: auto;
+  background: #16181d; border: 1px solid #2e333d; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.55); padding: 6px; }
+.lm-head { display: flex; align-items: center; gap: 8px; padding: 6px 8px 8px; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .08em; color: #9aa2af; font-weight: 700; }
+.lm-head .lm-due { margin-left: auto; text-transform: none; letter-spacing: 0; }
+.lm-cat { display: flex; align-items: center; gap: 6px; width: 100%; background: none; border: 0; color: #e8eaee; font: inherit;
+  font-weight: 600; padding: 6px 8px; border-radius: 8px; cursor: pointer; text-align: left; }
+.lm-cat:hover { background: #1f232b; }
+.lm-cat .lm-ch { width: 12px; color: #9aa2af; transition: transform .15s; }
+.lm-cat.open .lm-ch { transform: rotate(90deg); color: #9cc4ff; }
+.lm-cat .lm-n { color: #6b7280; font-size: 11px; font-weight: 400; }
+.lm-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lm-list { margin: 0 0 4px 14px; border-left: 1px solid #2e333d; padding-left: 4px; }
+.lm-row { display: flex; align-items: center; gap: 6px; width: 100%; background: none; border: 0; color: #c9ced6; font: inherit;
+  font-size: 12px; padding: 5px 8px; border-radius: 7px; cursor: pointer; text-align: left; }
+.lm-row:hover { background: #1f232b; color: #fff; }
+.lm-row.on { background: #16233a; color: #9cc4ff; }
+.lm-due { flex: none; font-size: 10px; font-weight: 700; color: #f5cb6e; background: #3a2a14; border-radius: 999px; padding: 0 6px; }
+.lpb { flex: none; display: inline-flex; align-items: center; gap: 5px; }
+.lpb[hidden] { display: none; }
+.lpt { position: relative; width: 34px; height: 4px; border-radius: 2px; background: #262a33; overflow: hidden; }
+.lpt i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; width: 0; }
+.lpt .lpm { background: #2b4166; }
+.lpt .lpl { background: #3b82f6; }
+.lpb.done .lpl { background: #34c98e; }
+.lpp { font-size: 10px; color: #6b7280; min-width: 2.2em; text-align: right; font-variant-numeric: tabular-nums; }
+.lpb.done .lpp { color: #34c98e; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.11/dexie.min.js" crossorigin="anonymous"
   referrerpolicy="no-referrer" onerror="window.__noDexie=1"></script>
@@ -76,7 +111,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
 </div>
 <script>window.FTC_FRAME = 1; window.FTC_STATE = "ready";</script>
 <script src="../games/flash/flash-sim.js?v=47d5f0c154"></script>
-<script src="../games/flash/flash-learn.js?v=153bcf6fbf"></script>
+<script src="../games/flash/flash-learn.js?v=64c756a0da"></script>
 <script src="../games/flash/flash-game.js?v=b3a9787cdb"></script>
 <script>
 (function () {
@@ -297,6 +332,120 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
     site.src = ROOT + id + "/";
   }
 
+  // ------------------------------------------------ the lesson picker
+  // Dan: "the categories should collapse/open, with collapse being the
+  // default" and "I want to show what the user has studied, like 50% of the
+  // lesson", for every menu, the game's included. The game draws its lesson
+  // switch as a native <select> twice (the side bar, and Options > Level),
+  // which cannot fold or show a bar. Each one is kept, hidden, and a button
+  // stands in front of it; picking a lesson sets the select and fires its own
+  // change event, so the game does exactly what it did before. The numbers
+  // are the game's engine (the site's learn.js) over lesson-words.json.
+  var LW = null;
+  fetch(ROOT + "lesson-words.json").then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) { LW = j || {}; repaint(); }).catch(function () { LW = {}; });
+  function eng() { return api && api.learn && api.learn.stats ? api.learn : null; }
+  function stOf(ids) { var e = eng(); return e && ids && ids.length ? e.stats(ids) : null; }
+  function bar(st) {
+    var b = document.createElement("span"); b.className = "lpb";
+    b.innerHTML = '<span class="lpt" aria-hidden="true"><i class="lpm"></i><i class="lpl"></i></span><span class="lpp"></span>';
+    var t = st && st.total; b.hidden = !t;
+    if (t) {
+      b.querySelector(".lpm").style.width = Math.round(100 * st.met / t) + "%";
+      b.querySelector(".lpl").style.width = Math.round(100 * st.learned / t) + "%";
+      b.querySelector(".lpp").textContent = Math.round(100 * st.learned / t) + "%";
+      b.title = st.learned + " of " + t + " words learned" + (st.met > st.learned ? ", " + st.met + " met" : "");
+      b.classList.toggle("done", st.learned >= t);
+    }
+    return b;
+  }
+  var pop = null, popFor = null;
+  function closePop() { if (pop) { pop.remove(); pop = null; } if (popFor) { popFor.setAttribute("aria-expanded", "false"); popFor = null; } }
+  function openPop(btn, sel) {
+    closePop();
+    var cur = sel.value, opts = [].slice.call(sel.querySelectorAll("option")), groups = [], by = {};
+    opts.forEach(function (o) {
+      if (!o.value) return;
+      var g = o.parentNode && o.parentNode.tagName === "OPTGROUP" ? o.parentNode.label : "Lessons";
+      if (!by[g]) { by[g] = []; groups.push(g); }
+      by[g].push({ id: o.value, title: o.textContent.replace(/\s*\(\d+\)\s*$/, "").replace(/\s*🏆\s*$/, ""), cup: /🏆/.test(o.textContent) });
+    });
+    pop = document.createElement("div"); pop.className = "lm-pop"; pop.setAttribute("role", "listbox");
+    var e = eng(), due = e && e.dueIds ? e.dueIds().length : 0;
+    pop.innerHTML = '<div class="lm-head">Lessons' + (due ? '<span class="lm-due" title="words to review">' + due + ' due</span>' : "") + "</div>";
+    groups.forEach(function (g) {
+      var ls = by[g], mine = ls.some(function (l) { return l.id === cur; }), ids = [];
+      ls.forEach(function (l) { if (LW && LW[l.id]) ids.push.apply(ids, LW[l.id]); });
+      var cst = stOf(ids), head = document.createElement("button"), list = document.createElement("div");
+      head.type = "button"; head.className = "lm-cat" + (mine ? " open" : "");
+      head.innerHTML = '<span class="lm-ch">\u203a</span><span class="lm-name"></span><span class="lm-n"></span>';
+      head.querySelector(".lm-name").textContent = g;
+      head.querySelector(".lm-n").textContent = ls.length;
+      if (cst && cst.due) { var d = document.createElement("span"); d.className = "lm-due"; d.textContent = cst.due + " due"; head.appendChild(d); }
+      head.appendChild(bar(cst));
+      list.className = "lm-list"; list.hidden = !mine;
+      ls.forEach(function (l) {
+        var r = document.createElement("button"); r.type = "button"; r.className = "lm-row" + (l.id === cur ? " on" : "");
+        r.setAttribute("role", "option"); r.setAttribute("aria-selected", l.id === cur ? "true" : "false");
+        var t = document.createElement("span"); t.className = "lm-name"; t.textContent = l.title + (l.cup ? " 🏆" : "");
+        r.appendChild(t); r.appendChild(bar(stOf(LW && LW[l.id])));
+        r.onclick = function () {
+          closePop();
+          // the side bar redraws itself every few hundred ms: use the select it has now
+          var live = document.contains(sel) ? sel : pickers().filter(function (x) { return x.className === sel.className; })[0];
+          if (!live || l.id === live.value) return;
+          live.value = l.id;
+          live.dispatchEvent(new Event("change", { bubbles: true }));
+        };
+        list.appendChild(r);
+      });
+      head.onclick = function () { list.hidden = !list.hidden; head.classList.toggle("open", !list.hidden); };
+      pop.appendChild(head); pop.appendChild(list);
+    });
+    document.body.appendChild(pop);
+    var r = btn.getBoundingClientRect(), h = pop.offsetHeight;
+    pop.style.left = Math.max(8, Math.min(r.left, window.innerWidth - pop.offsetWidth - 8)) + "px";
+    pop.style.top = (r.bottom + 6 + h < window.innerHeight ? r.bottom + 6 : Math.max(8, r.top - 6 - h)) + "px";
+    var on = pop.querySelector(".lm-row.on"); if (on) on.scrollIntoView({ block: "nearest" });
+    popFor = btn; btn.setAttribute("aria-expanded", "true");
+  }
+  document.addEventListener("pointerdown", function (e) { if (pop && !pop.contains(e.target) && e.target !== popFor && !(popFor && popFor.contains(e.target))) closePop(); }, true);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && pop) closePop(); });
+  function pickers() {
+    var root = document.getElementById("game"), out = [];
+    if (!root) return out;
+    [].forEach.call(root.querySelectorAll("select.ftc-side-sel[data-level]"), function (s) { out.push(s); });
+    [].forEach.call(root.querySelectorAll(".ftc-opt select.ftc-sel"), function (s) {
+      var lab = s.parentNode && s.parentNode.querySelector("label.t");
+      if (lab && /^\s*level\s*$/i.test(lab.textContent)) out.push(s);
+    });
+    return out;
+  }
+  function stand(sel) {
+    if (sel.__lm && sel.__lm.parentNode) { paintBtn(sel.__lm, sel); return; }
+    var b = document.createElement("button"); b.type = "button"; b.className = "lm-btn";
+    b.setAttribute("aria-haspopup", "listbox"); b.setAttribute("aria-expanded", "false"); b.title = sel.title || "Switch lesson";
+    b.innerHTML = '<span class="lm-t"></span><span class="lm-cv">\u25be</span>';
+    b.onclick = function (e) { e.preventDefault(); e.stopPropagation(); if (pop && popFor === b) closePop(); else openPop(b, sel); };
+    sel.style.display = "none"; sel.parentNode.insertBefore(b, sel); sel.__lm = b;
+    paintBtn(b, sel);
+  }
+  function paintBtn(b, sel) {
+    var o = sel.options[sel.selectedIndex], t = o ? o.textContent : "Choose a lesson",
+        st = sel.value && LW && LW[sel.value] ? stOf(LW[sel.value]) : null,
+        sig = t + "|" + (st ? st.met + "/" + st.learned + "/" + st.total : "");
+    // only when something changed: this runs from a watcher of the game's DOM,
+    // and a change made here would otherwise wake it again
+    if (b.__sig === sig) return;
+    b.__sig = sig;
+    b.querySelector(".lm-t").textContent = t;
+    var old = b.querySelector(".lpb"); if (old) old.remove();
+    if (st) b.insertBefore(bar(st), b.lastChild);
+  }
+  function repaint() { pickers().forEach(stand); }
+  var mo = new MutationObserver(function () { repaint(); });
+  function watch() { var g = document.getElementById("game"); if (g) mo.observe(g, { childList: true, subtree: true }); }
+  watch();
+
   // -------------------------------------------------------- word packs
   // Dan: "more polish on our word data". Each lesson has a words.json that
   // WordBase writes when it builds the site: every word with its tones,
@@ -396,6 +545,7 @@ body.full #site { position: fixed; left: -12000px; top: 0; width: 1100px; height
                                                      siteUrl: ROOT })
     .then(function (a) {
       api = a; window.ftc = a;
+      if (a.learn && a.learn.onChange) a.learn.onChange(function () { repaint(); });
       if (pendingWords) { api.setWords(pendingWords.words || [], pendingWords.extra || []); if (api.setLesson) api.setLesson(pendingWords.lesson || null); }
       if (pack && api.setPack) api.setPack(pack);
       tell();
